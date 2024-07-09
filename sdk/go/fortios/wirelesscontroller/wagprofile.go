@@ -41,14 +41,14 @@ type Wagprofile struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1).
 	PingInterval pulumi.IntOutput `pulumi:"pingInterval"`
-	// Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+	// Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
 	PingNumber pulumi.IntOutput `pulumi:"pingNumber"`
 	// Window of time for the return packets from the tunnel's remote end (1 - 65535 sec, default = 160).
 	ReturnPacketTimeout pulumi.IntOutput `pulumi:"returnPacketTimeout"`
 	// Tunnel type. Valid values: `l2tpv3`, `gre`.
 	TunnelType pulumi.StringOutput `pulumi:"tunnelType"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// IP Address of the wireless access gateway.
 	WagIp pulumi.StringOutput `pulumi:"wagIp"`
 	// UDP port of the wireless access gateway.
@@ -93,7 +93,7 @@ type wagprofileState struct {
 	Name *string `pulumi:"name"`
 	// Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1).
 	PingInterval *int `pulumi:"pingInterval"`
-	// Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+	// Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
 	PingNumber *int `pulumi:"pingNumber"`
 	// Window of time for the return packets from the tunnel's remote end (1 - 65535 sec, default = 160).
 	ReturnPacketTimeout *int `pulumi:"returnPacketTimeout"`
@@ -116,7 +116,7 @@ type WagprofileState struct {
 	Name pulumi.StringPtrInput
 	// Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1).
 	PingInterval pulumi.IntPtrInput
-	// Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+	// Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
 	PingNumber pulumi.IntPtrInput
 	// Window of time for the return packets from the tunnel's remote end (1 - 65535 sec, default = 160).
 	ReturnPacketTimeout pulumi.IntPtrInput
@@ -143,7 +143,7 @@ type wagprofileArgs struct {
 	Name *string `pulumi:"name"`
 	// Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1).
 	PingInterval *int `pulumi:"pingInterval"`
-	// Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+	// Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
 	PingNumber *int `pulumi:"pingNumber"`
 	// Window of time for the return packets from the tunnel's remote end (1 - 65535 sec, default = 160).
 	ReturnPacketTimeout *int `pulumi:"returnPacketTimeout"`
@@ -167,7 +167,7 @@ type WagprofileArgs struct {
 	Name pulumi.StringPtrInput
 	// Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1).
 	PingInterval pulumi.IntPtrInput
-	// Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+	// Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
 	PingNumber pulumi.IntPtrInput
 	// Window of time for the return packets from the tunnel's remote end (1 - 65535 sec, default = 160).
 	ReturnPacketTimeout pulumi.IntPtrInput
@@ -288,7 +288,7 @@ func (o WagprofileOutput) PingInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Wagprofile) pulumi.IntOutput { return v.PingInterval }).(pulumi.IntOutput)
 }
 
-// Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+// Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
 func (o WagprofileOutput) PingNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v *Wagprofile) pulumi.IntOutput { return v.PingNumber }).(pulumi.IntOutput)
 }
@@ -304,8 +304,8 @@ func (o WagprofileOutput) TunnelType() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o WagprofileOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Wagprofile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o WagprofileOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Wagprofile) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // IP Address of the wireless access gateway.

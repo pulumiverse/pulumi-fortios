@@ -103,9 +103,19 @@ __all__ = [
     'InternetservicegroupMemberArgs',
     'InternetservicesubappSubAppArgs',
     'Localinpolicy6DstaddrArgs',
+    'Localinpolicy6InternetService6SrcCustomArgs',
+    'Localinpolicy6InternetService6SrcCustomGroupArgs',
+    'Localinpolicy6InternetService6SrcGroupArgs',
+    'Localinpolicy6InternetService6SrcNameArgs',
+    'Localinpolicy6IntfBlockArgs',
     'Localinpolicy6ServiceArgs',
     'Localinpolicy6SrcaddrArgs',
     'LocalinpolicyDstaddrArgs',
+    'LocalinpolicyInternetServiceSrcCustomArgs',
+    'LocalinpolicyInternetServiceSrcCustomGroupArgs',
+    'LocalinpolicyInternetServiceSrcGroupArgs',
+    'LocalinpolicyInternetServiceSrcNameArgs',
+    'LocalinpolicyIntfBlockArgs',
     'LocalinpolicyServiceArgs',
     'LocalinpolicySrcaddrArgs',
     'Multicastaddress6TaggingArgs',
@@ -116,6 +126,9 @@ __all__ = [
     'Multicastpolicy6SrcaddrArgs',
     'MulticastpolicyDstaddrArgs',
     'MulticastpolicySrcaddrArgs',
+    'OndemandsnifferHostArgs',
+    'OndemandsnifferPortArgs',
+    'OndemandsnifferProtocolArgs',
     'Policy46DstaddrArgs',
     'Policy46PoolnameArgs',
     'Policy46ServiceArgs',
@@ -295,6 +308,7 @@ __all__ = [
     'SnifferAnomalyArgs',
     'SnifferIpThreatfeedArgs',
     'SslsshprofileDotArgs',
+    'SslsshprofileEchOuterSniArgs',
     'SslsshprofileFtpsArgs',
     'SslsshprofileHttpsArgs',
     'SslsshprofileImapsArgs',
@@ -368,34 +382,7 @@ class Accessproxy6ApiGateway6Args:
                  url_map_type: Optional[pulumi.Input[str]] = None,
                  virtual_host: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[Sequence[pulumi.Input['Accessproxy6ApiGateway6ApplicationArgs']]] applications: SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
-        :param pulumi.Input[str] h2_support: HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] h3_support: HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
-        :param pulumi.Input[str] http_cookie_domain: Domain that HTTP cookie persistence should apply to.
-        :param pulumi.Input[str] http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] http_cookie_generation: Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-        :param pulumi.Input[str] http_cookie_path: Limit HTTP cookie persistence to the specified path.
-        :param pulumi.Input[str] http_cookie_share: Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-        :param pulumi.Input[str] https_cookie_secure: Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] id: API Gateway ID.
-        :param pulumi.Input[str] ldb_method: Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
-        :param pulumi.Input[str] persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
-        :param pulumi.Input['Accessproxy6ApiGateway6QuicArgs'] quic: QUIC setting. The structure of `quic` block is documented below.
-        :param pulumi.Input[Sequence[pulumi.Input['Accessproxy6ApiGateway6RealserverArgs']]] realservers: Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
-        :param pulumi.Input[str] saml_redirect: Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] saml_server: SAML service provider configuration for VIP authentication.
-        :param pulumi.Input[str] service: Service.
-        :param pulumi.Input[str] ssl_algorithm: Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
-        :param pulumi.Input[Sequence[pulumi.Input['Accessproxy6ApiGateway6SslCipherSuiteArgs']]] ssl_cipher_suites: SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_cipher_suites` block is documented below.
-        :param pulumi.Input[str] ssl_dh_bits: Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-        :param pulumi.Input[str] ssl_max_version: Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-        :param pulumi.Input[str] ssl_min_version: Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-        :param pulumi.Input[str] ssl_renegotiation: Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ssl_vpn_web_portal: SSL-VPN web portal.
-        :param pulumi.Input[str] url_map: URL pattern to match.
-        :param pulumi.Input[str] url_map_type: Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
-        :param pulumi.Input[str] virtual_host: Virtual host.
+        :param pulumi.Input[int] id: an identifier for the resource with format {{name}}.
         """
         if applications is not None:
             pulumi.set(__self__, "applications", applications)
@@ -457,9 +444,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter
     def applications(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Accessproxy6ApiGateway6ApplicationArgs']]]]:
-        """
-        SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
-        """
         return pulumi.get(self, "applications")
 
     @applications.setter
@@ -469,9 +453,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="h2Support")
     def h2_support(self) -> Optional[pulumi.Input[str]]:
-        """
-        HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "h2_support")
 
     @h2_support.setter
@@ -481,9 +462,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="h3Support")
     def h3_support(self) -> Optional[pulumi.Input[str]]:
-        """
-        HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "h3_support")
 
     @h3_support.setter
@@ -493,9 +471,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="httpCookieAge")
     def http_cookie_age(self) -> Optional[pulumi.Input[int]]:
-        """
-        Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
-        """
         return pulumi.get(self, "http_cookie_age")
 
     @http_cookie_age.setter
@@ -505,9 +480,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="httpCookieDomain")
     def http_cookie_domain(self) -> Optional[pulumi.Input[str]]:
-        """
-        Domain that HTTP cookie persistence should apply to.
-        """
         return pulumi.get(self, "http_cookie_domain")
 
     @http_cookie_domain.setter
@@ -517,9 +489,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="httpCookieDomainFromHost")
     def http_cookie_domain_from_host(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "http_cookie_domain_from_host")
 
     @http_cookie_domain_from_host.setter
@@ -529,9 +498,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="httpCookieGeneration")
     def http_cookie_generation(self) -> Optional[pulumi.Input[int]]:
-        """
-        Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-        """
         return pulumi.get(self, "http_cookie_generation")
 
     @http_cookie_generation.setter
@@ -541,9 +507,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="httpCookiePath")
     def http_cookie_path(self) -> Optional[pulumi.Input[str]]:
-        """
-        Limit HTTP cookie persistence to the specified path.
-        """
         return pulumi.get(self, "http_cookie_path")
 
     @http_cookie_path.setter
@@ -553,9 +516,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="httpCookieShare")
     def http_cookie_share(self) -> Optional[pulumi.Input[str]]:
-        """
-        Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-        """
         return pulumi.get(self, "http_cookie_share")
 
     @http_cookie_share.setter
@@ -565,9 +525,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="httpsCookieSecure")
     def https_cookie_secure(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "https_cookie_secure")
 
     @https_cookie_secure.setter
@@ -578,7 +535,7 @@ class Accessproxy6ApiGateway6Args:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[int]]:
         """
-        API Gateway ID.
+        an identifier for the resource with format {{name}}.
         """
         return pulumi.get(self, "id")
 
@@ -589,9 +546,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="ldbMethod")
     def ldb_method(self) -> Optional[pulumi.Input[str]]:
-        """
-        Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
-        """
         return pulumi.get(self, "ldb_method")
 
     @ldb_method.setter
@@ -601,9 +555,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter
     def persistence(self) -> Optional[pulumi.Input[str]]:
-        """
-        Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
-        """
         return pulumi.get(self, "persistence")
 
     @persistence.setter
@@ -613,9 +564,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter
     def quic(self) -> Optional[pulumi.Input['Accessproxy6ApiGateway6QuicArgs']]:
-        """
-        QUIC setting. The structure of `quic` block is documented below.
-        """
         return pulumi.get(self, "quic")
 
     @quic.setter
@@ -625,9 +573,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter
     def realservers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Accessproxy6ApiGateway6RealserverArgs']]]]:
-        """
-        Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
-        """
         return pulumi.get(self, "realservers")
 
     @realservers.setter
@@ -637,9 +582,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="samlRedirect")
     def saml_redirect(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "saml_redirect")
 
     @saml_redirect.setter
@@ -649,9 +591,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="samlServer")
     def saml_server(self) -> Optional[pulumi.Input[str]]:
-        """
-        SAML service provider configuration for VIP authentication.
-        """
         return pulumi.get(self, "saml_server")
 
     @saml_server.setter
@@ -661,9 +600,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter
     def service(self) -> Optional[pulumi.Input[str]]:
-        """
-        Service.
-        """
         return pulumi.get(self, "service")
 
     @service.setter
@@ -673,9 +609,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="sslAlgorithm")
     def ssl_algorithm(self) -> Optional[pulumi.Input[str]]:
-        """
-        Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
-        """
         return pulumi.get(self, "ssl_algorithm")
 
     @ssl_algorithm.setter
@@ -685,9 +618,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="sslCipherSuites")
     def ssl_cipher_suites(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Accessproxy6ApiGateway6SslCipherSuiteArgs']]]]:
-        """
-        SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_cipher_suites` block is documented below.
-        """
         return pulumi.get(self, "ssl_cipher_suites")
 
     @ssl_cipher_suites.setter
@@ -697,9 +627,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="sslDhBits")
     def ssl_dh_bits(self) -> Optional[pulumi.Input[str]]:
-        """
-        Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-        """
         return pulumi.get(self, "ssl_dh_bits")
 
     @ssl_dh_bits.setter
@@ -709,9 +636,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="sslMaxVersion")
     def ssl_max_version(self) -> Optional[pulumi.Input[str]]:
-        """
-        Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-        """
         return pulumi.get(self, "ssl_max_version")
 
     @ssl_max_version.setter
@@ -721,9 +645,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="sslMinVersion")
     def ssl_min_version(self) -> Optional[pulumi.Input[str]]:
-        """
-        Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-        """
         return pulumi.get(self, "ssl_min_version")
 
     @ssl_min_version.setter
@@ -733,9 +654,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="sslRenegotiation")
     def ssl_renegotiation(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ssl_renegotiation")
 
     @ssl_renegotiation.setter
@@ -745,9 +663,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="sslVpnWebPortal")
     def ssl_vpn_web_portal(self) -> Optional[pulumi.Input[str]]:
-        """
-        SSL-VPN web portal.
-        """
         return pulumi.get(self, "ssl_vpn_web_portal")
 
     @ssl_vpn_web_portal.setter
@@ -757,9 +672,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="urlMap")
     def url_map(self) -> Optional[pulumi.Input[str]]:
-        """
-        URL pattern to match.
-        """
         return pulumi.get(self, "url_map")
 
     @url_map.setter
@@ -769,9 +681,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="urlMapType")
     def url_map_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
-        """
         return pulumi.get(self, "url_map_type")
 
     @url_map_type.setter
@@ -781,9 +690,6 @@ class Accessproxy6ApiGateway6Args:
     @property
     @pulumi.getter(name="virtualHost")
     def virtual_host(self) -> Optional[pulumi.Input[str]]:
-        """
-        Virtual host.
-        """
         return pulumi.get(self, "virtual_host")
 
     @virtual_host.setter
@@ -2404,34 +2310,7 @@ class AccessproxyApiGateway6Args:
                  url_map_type: Optional[pulumi.Input[str]] = None,
                  virtual_host: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[Sequence[pulumi.Input['AccessproxyApiGateway6ApplicationArgs']]] applications: SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
-        :param pulumi.Input[str] h2_support: HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] h3_support: HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
-        :param pulumi.Input[str] http_cookie_domain: Domain that HTTP cookie persistence should apply to.
-        :param pulumi.Input[str] http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] http_cookie_generation: Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-        :param pulumi.Input[str] http_cookie_path: Limit HTTP cookie persistence to the specified path.
-        :param pulumi.Input[str] http_cookie_share: Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-        :param pulumi.Input[str] https_cookie_secure: Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] id: API Gateway ID.
-        :param pulumi.Input[str] ldb_method: Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
-        :param pulumi.Input[str] persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
-        :param pulumi.Input['AccessproxyApiGateway6QuicArgs'] quic: QUIC setting. The structure of `quic` block is documented below.
-        :param pulumi.Input[Sequence[pulumi.Input['AccessproxyApiGateway6RealserverArgs']]] realservers: Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
-        :param pulumi.Input[str] saml_redirect: Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] saml_server: SAML service provider configuration for VIP authentication.
-        :param pulumi.Input[str] service: Service.
-        :param pulumi.Input[str] ssl_algorithm: Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
-        :param pulumi.Input[Sequence[pulumi.Input['AccessproxyApiGateway6SslCipherSuiteArgs']]] ssl_cipher_suites: SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_cipher_suites` block is documented below.
-        :param pulumi.Input[str] ssl_dh_bits: Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-        :param pulumi.Input[str] ssl_max_version: Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-        :param pulumi.Input[str] ssl_min_version: Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-        :param pulumi.Input[str] ssl_renegotiation: Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ssl_vpn_web_portal: SSL-VPN web portal.
-        :param pulumi.Input[str] url_map: URL pattern to match.
-        :param pulumi.Input[str] url_map_type: Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
-        :param pulumi.Input[str] virtual_host: Virtual host.
+        :param pulumi.Input[int] id: an identifier for the resource with format {{name}}.
         """
         if applications is not None:
             pulumi.set(__self__, "applications", applications)
@@ -2493,9 +2372,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter
     def applications(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AccessproxyApiGateway6ApplicationArgs']]]]:
-        """
-        SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
-        """
         return pulumi.get(self, "applications")
 
     @applications.setter
@@ -2505,9 +2381,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="h2Support")
     def h2_support(self) -> Optional[pulumi.Input[str]]:
-        """
-        HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "h2_support")
 
     @h2_support.setter
@@ -2517,9 +2390,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="h3Support")
     def h3_support(self) -> Optional[pulumi.Input[str]]:
-        """
-        HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "h3_support")
 
     @h3_support.setter
@@ -2529,9 +2399,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="httpCookieAge")
     def http_cookie_age(self) -> Optional[pulumi.Input[int]]:
-        """
-        Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
-        """
         return pulumi.get(self, "http_cookie_age")
 
     @http_cookie_age.setter
@@ -2541,9 +2408,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="httpCookieDomain")
     def http_cookie_domain(self) -> Optional[pulumi.Input[str]]:
-        """
-        Domain that HTTP cookie persistence should apply to.
-        """
         return pulumi.get(self, "http_cookie_domain")
 
     @http_cookie_domain.setter
@@ -2553,9 +2417,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="httpCookieDomainFromHost")
     def http_cookie_domain_from_host(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "http_cookie_domain_from_host")
 
     @http_cookie_domain_from_host.setter
@@ -2565,9 +2426,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="httpCookieGeneration")
     def http_cookie_generation(self) -> Optional[pulumi.Input[int]]:
-        """
-        Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-        """
         return pulumi.get(self, "http_cookie_generation")
 
     @http_cookie_generation.setter
@@ -2577,9 +2435,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="httpCookiePath")
     def http_cookie_path(self) -> Optional[pulumi.Input[str]]:
-        """
-        Limit HTTP cookie persistence to the specified path.
-        """
         return pulumi.get(self, "http_cookie_path")
 
     @http_cookie_path.setter
@@ -2589,9 +2444,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="httpCookieShare")
     def http_cookie_share(self) -> Optional[pulumi.Input[str]]:
-        """
-        Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-        """
         return pulumi.get(self, "http_cookie_share")
 
     @http_cookie_share.setter
@@ -2601,9 +2453,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="httpsCookieSecure")
     def https_cookie_secure(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "https_cookie_secure")
 
     @https_cookie_secure.setter
@@ -2614,7 +2463,7 @@ class AccessproxyApiGateway6Args:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[int]]:
         """
-        API Gateway ID.
+        an identifier for the resource with format {{name}}.
         """
         return pulumi.get(self, "id")
 
@@ -2625,9 +2474,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="ldbMethod")
     def ldb_method(self) -> Optional[pulumi.Input[str]]:
-        """
-        Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
-        """
         return pulumi.get(self, "ldb_method")
 
     @ldb_method.setter
@@ -2637,9 +2483,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter
     def persistence(self) -> Optional[pulumi.Input[str]]:
-        """
-        Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
-        """
         return pulumi.get(self, "persistence")
 
     @persistence.setter
@@ -2649,9 +2492,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter
     def quic(self) -> Optional[pulumi.Input['AccessproxyApiGateway6QuicArgs']]:
-        """
-        QUIC setting. The structure of `quic` block is documented below.
-        """
         return pulumi.get(self, "quic")
 
     @quic.setter
@@ -2661,9 +2501,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter
     def realservers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AccessproxyApiGateway6RealserverArgs']]]]:
-        """
-        Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
-        """
         return pulumi.get(self, "realservers")
 
     @realservers.setter
@@ -2673,9 +2510,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="samlRedirect")
     def saml_redirect(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "saml_redirect")
 
     @saml_redirect.setter
@@ -2685,9 +2519,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="samlServer")
     def saml_server(self) -> Optional[pulumi.Input[str]]:
-        """
-        SAML service provider configuration for VIP authentication.
-        """
         return pulumi.get(self, "saml_server")
 
     @saml_server.setter
@@ -2697,9 +2528,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter
     def service(self) -> Optional[pulumi.Input[str]]:
-        """
-        Service.
-        """
         return pulumi.get(self, "service")
 
     @service.setter
@@ -2709,9 +2537,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="sslAlgorithm")
     def ssl_algorithm(self) -> Optional[pulumi.Input[str]]:
-        """
-        Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
-        """
         return pulumi.get(self, "ssl_algorithm")
 
     @ssl_algorithm.setter
@@ -2721,9 +2546,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="sslCipherSuites")
     def ssl_cipher_suites(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AccessproxyApiGateway6SslCipherSuiteArgs']]]]:
-        """
-        SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_cipher_suites` block is documented below.
-        """
         return pulumi.get(self, "ssl_cipher_suites")
 
     @ssl_cipher_suites.setter
@@ -2733,9 +2555,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="sslDhBits")
     def ssl_dh_bits(self) -> Optional[pulumi.Input[str]]:
-        """
-        Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-        """
         return pulumi.get(self, "ssl_dh_bits")
 
     @ssl_dh_bits.setter
@@ -2745,9 +2564,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="sslMaxVersion")
     def ssl_max_version(self) -> Optional[pulumi.Input[str]]:
-        """
-        Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-        """
         return pulumi.get(self, "ssl_max_version")
 
     @ssl_max_version.setter
@@ -2757,9 +2573,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="sslMinVersion")
     def ssl_min_version(self) -> Optional[pulumi.Input[str]]:
-        """
-        Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-        """
         return pulumi.get(self, "ssl_min_version")
 
     @ssl_min_version.setter
@@ -2769,9 +2582,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="sslRenegotiation")
     def ssl_renegotiation(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ssl_renegotiation")
 
     @ssl_renegotiation.setter
@@ -2781,9 +2591,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="sslVpnWebPortal")
     def ssl_vpn_web_portal(self) -> Optional[pulumi.Input[str]]:
-        """
-        SSL-VPN web portal.
-        """
         return pulumi.get(self, "ssl_vpn_web_portal")
 
     @ssl_vpn_web_portal.setter
@@ -2793,9 +2600,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="urlMap")
     def url_map(self) -> Optional[pulumi.Input[str]]:
-        """
-        URL pattern to match.
-        """
         return pulumi.get(self, "url_map")
 
     @url_map.setter
@@ -2805,9 +2609,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="urlMapType")
     def url_map_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
-        """
         return pulumi.get(self, "url_map_type")
 
     @url_map_type.setter
@@ -2817,9 +2618,6 @@ class AccessproxyApiGateway6Args:
     @property
     @pulumi.getter(name="virtualHost")
     def virtual_host(self) -> Optional[pulumi.Input[str]]:
-        """
-        Virtual host.
-        """
         return pulumi.get(self, "virtual_host")
 
     @virtual_host.setter
@@ -5206,18 +5004,12 @@ class AuthportalGroupArgs:
 class CentralsnatmapDstAddr6Args:
     def __init__(__self__, *,
                  name: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] name: Address name.
-        """
         if name is not None:
             pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Address name.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -5275,18 +5067,12 @@ class CentralsnatmapDstintfArgs:
 class CentralsnatmapNatIppool6Args:
     def __init__(__self__, *,
                  name: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] name: Address name.
-        """
         if name is not None:
             pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Address name.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -5321,18 +5107,12 @@ class CentralsnatmapNatIppoolArgs:
 class CentralsnatmapOrigAddr6Args:
     def __init__(__self__, *,
                  name: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] name: Address name.
-        """
         if name is not None:
             pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Address name.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -5469,8 +5249,8 @@ class DoSpolicy6AnomalyArgs:
         :param pulumi.Input[str] quarantine_expiry: Duration of quarantine. (Format ###d##h##m, minimum 1m, maximum 364d23h59m, default = 5m). Requires quarantine set to attacker.
         :param pulumi.Input[str] quarantine_log: Enable/disable quarantine logging. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] status: Enable/disable this anomaly. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] threshold: Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
-        :param pulumi.Input[int] thresholddefault: Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        :param pulumi.Input[int] threshold: Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
+        :param pulumi.Input[int] thresholddefault: Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
         """
         if action is not None:
             pulumi.set(__self__, "action", action)
@@ -5579,7 +5359,7 @@ class DoSpolicy6AnomalyArgs:
     @pulumi.getter
     def threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
         """
         return pulumi.get(self, "threshold")
 
@@ -5591,7 +5371,7 @@ class DoSpolicy6AnomalyArgs:
     @pulumi.getter
     def thresholddefault(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
         """
         return pulumi.get(self, "thresholddefault")
 
@@ -5689,8 +5469,8 @@ class DoSpolicyAnomalyArgs:
         :param pulumi.Input[str] quarantine_expiry: Duration of quarantine. (Format ###d##h##m, minimum 1m, maximum 364d23h59m, default = 5m). Requires quarantine set to attacker.
         :param pulumi.Input[str] quarantine_log: Enable/disable quarantine logging. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] status: Enable/disable this anomaly. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] threshold: Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
-        :param pulumi.Input[int] thresholddefault: Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        :param pulumi.Input[int] threshold: Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
+        :param pulumi.Input[int] thresholddefault: Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
         """
         if action is not None:
             pulumi.set(__self__, "action", action)
@@ -5799,7 +5579,7 @@ class DoSpolicyAnomalyArgs:
     @pulumi.getter
     def threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
         """
         return pulumi.get(self, "threshold")
 
@@ -5811,7 +5591,7 @@ class DoSpolicyAnomalyArgs:
     @pulumi.getter
     def thresholddefault(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
         """
         return pulumi.get(self, "thresholddefault")
 
@@ -6758,9 +6538,7 @@ class InternetserviceextensionDisableEntryIp6RangeArgs:
                  id: Optional[pulumi.Input[int]] = None,
                  start_ip6: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] end_ip6: End IPv6 address.
-        :param pulumi.Input[int] id: Disable entry ID.
-        :param pulumi.Input[str] start_ip6: Start IPv6 address.
+        :param pulumi.Input[int] id: an identifier for the resource with format {{fosid}}.
         """
         if end_ip6 is not None:
             pulumi.set(__self__, "end_ip6", end_ip6)
@@ -6772,9 +6550,6 @@ class InternetserviceextensionDisableEntryIp6RangeArgs:
     @property
     @pulumi.getter(name="endIp6")
     def end_ip6(self) -> Optional[pulumi.Input[str]]:
-        """
-        End IPv6 address.
-        """
         return pulumi.get(self, "end_ip6")
 
     @end_ip6.setter
@@ -6785,7 +6560,7 @@ class InternetserviceextensionDisableEntryIp6RangeArgs:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[int]]:
         """
-        Disable entry ID.
+        an identifier for the resource with format {{fosid}}.
         """
         return pulumi.get(self, "id")
 
@@ -6796,9 +6571,6 @@ class InternetserviceextensionDisableEntryIp6RangeArgs:
     @property
     @pulumi.getter(name="startIp6")
     def start_ip6(self) -> Optional[pulumi.Input[str]]:
-        """
-        Start IPv6 address.
-        """
         return pulumi.get(self, "start_ip6")
 
     @start_ip6.setter
@@ -7027,18 +6799,12 @@ class InternetserviceextensionEntryArgs:
 class InternetserviceextensionEntryDst6Args:
     def __init__(__self__, *,
                  name: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] name: Select the destination address6 or address group object from available options.
-        """
         if name is not None:
             pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Select the destination address6 or address group object from available options.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -7191,6 +6957,97 @@ class Localinpolicy6DstaddrArgs:
     def __init__(__self__, *,
                  name: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[str] name: Custom Internet Service6 group name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Custom Internet Service6 group name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class Localinpolicy6InternetService6SrcCustomArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class Localinpolicy6InternetService6SrcCustomGroupArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class Localinpolicy6InternetService6SrcGroupArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class Localinpolicy6InternetService6SrcNameArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class Localinpolicy6IntfBlockArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
         :param pulumi.Input[str] name: Address name.
         """
         if name is not None:
@@ -7257,6 +7114,121 @@ class Localinpolicy6SrcaddrArgs:
 
 @pulumi.input_type
 class LocalinpolicyDstaddrArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Address name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Address name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class LocalinpolicyInternetServiceSrcCustomArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Custom Internet Service name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Custom Internet Service name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class LocalinpolicyInternetServiceSrcCustomGroupArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Custom Internet Service group name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Custom Internet Service group name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class LocalinpolicyInternetServiceSrcGroupArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Internet Service group name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Internet Service group name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class LocalinpolicyInternetServiceSrcNameArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Internet Service name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Internet Service name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class LocalinpolicyIntfBlockArgs:
     def __init__(__self__, *,
                  name: Optional[pulumi.Input[str]] = None):
         """
@@ -7570,6 +7542,75 @@ class MulticastpolicySrcaddrArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class OndemandsnifferHostArgs:
+    def __init__(__self__, *,
+                 host: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] host: IPv4 or IPv6 host.
+        """
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+
+    @property
+    @pulumi.getter
+    def host(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPv4 or IPv6 host.
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "host", value)
+
+
+@pulumi.input_type
+class OndemandsnifferPortArgs:
+    def __init__(__self__, *,
+                 port: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] port: Port to filter in this traffic sniffer.
+        """
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port to filter in this traffic sniffer.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
+
+
+@pulumi.input_type
+class OndemandsnifferProtocolArgs:
+    def __init__(__self__, *,
+                 protocol: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] protocol: Integer value for the protocol type as defined by IANA (0 - 255).
+        """
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[int]]:
+        """
+        Integer value for the protocol type as defined by IANA (0 - 255).
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "protocol", value)
 
 
 @pulumi.input_type
@@ -10862,18 +10903,6 @@ class ProfileprotocoloptionsPop3Args:
                  status: Optional[pulumi.Input[str]] = None,
                  uncompressed_nest_limit: Optional[pulumi.Input[int]] = None,
                  uncompressed_oversize_limit: Optional[pulumi.Input[int]] = None):
-        """
-        :param pulumi.Input[str] inspect_all: Enable/disable the inspection of all ports for the protocol. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] options: One or more options that can be applied to the session. Valid values: `oversize`.
-        :param pulumi.Input[int] oversize_limit: Maximum in-memory file size that can be scanned (MB).
-        :param pulumi.Input[int] ports: Ports to scan for content (1 - 65535, default = 445).
-        :param pulumi.Input[str] proxy_after_tcp_handshake: Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] scan_bzip2: Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ssl_offloaded: SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
-        :param pulumi.Input[str] status: Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] uncompressed_nest_limit: Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
-        :param pulumi.Input[int] uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (MB).
-        """
         if inspect_all is not None:
             pulumi.set(__self__, "inspect_all", inspect_all)
         if options is not None:
@@ -10898,9 +10927,6 @@ class ProfileprotocoloptionsPop3Args:
     @property
     @pulumi.getter(name="inspectAll")
     def inspect_all(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable the inspection of all ports for the protocol. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "inspect_all")
 
     @inspect_all.setter
@@ -10910,9 +10936,6 @@ class ProfileprotocoloptionsPop3Args:
     @property
     @pulumi.getter
     def options(self) -> Optional[pulumi.Input[str]]:
-        """
-        One or more options that can be applied to the session. Valid values: `oversize`.
-        """
         return pulumi.get(self, "options")
 
     @options.setter
@@ -10922,9 +10945,6 @@ class ProfileprotocoloptionsPop3Args:
     @property
     @pulumi.getter(name="oversizeLimit")
     def oversize_limit(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum in-memory file size that can be scanned (MB).
-        """
         return pulumi.get(self, "oversize_limit")
 
     @oversize_limit.setter
@@ -10934,9 +10954,6 @@ class ProfileprotocoloptionsPop3Args:
     @property
     @pulumi.getter
     def ports(self) -> Optional[pulumi.Input[int]]:
-        """
-        Ports to scan for content (1 - 65535, default = 445).
-        """
         return pulumi.get(self, "ports")
 
     @ports.setter
@@ -10946,9 +10963,6 @@ class ProfileprotocoloptionsPop3Args:
     @property
     @pulumi.getter(name="proxyAfterTcpHandshake")
     def proxy_after_tcp_handshake(self) -> Optional[pulumi.Input[str]]:
-        """
-        Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "proxy_after_tcp_handshake")
 
     @proxy_after_tcp_handshake.setter
@@ -10958,9 +10972,6 @@ class ProfileprotocoloptionsPop3Args:
     @property
     @pulumi.getter(name="scanBzip2")
     def scan_bzip2(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "scan_bzip2")
 
     @scan_bzip2.setter
@@ -10970,9 +10981,6 @@ class ProfileprotocoloptionsPop3Args:
     @property
     @pulumi.getter(name="sslOffloaded")
     def ssl_offloaded(self) -> Optional[pulumi.Input[str]]:
-        """
-        SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
-        """
         return pulumi.get(self, "ssl_offloaded")
 
     @ssl_offloaded.setter
@@ -10982,9 +10990,6 @@ class ProfileprotocoloptionsPop3Args:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -10994,9 +10999,6 @@ class ProfileprotocoloptionsPop3Args:
     @property
     @pulumi.getter(name="uncompressedNestLimit")
     def uncompressed_nest_limit(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
-        """
         return pulumi.get(self, "uncompressed_nest_limit")
 
     @uncompressed_nest_limit.setter
@@ -11006,9 +11008,6 @@ class ProfileprotocoloptionsPop3Args:
     @property
     @pulumi.getter(name="uncompressedOversizeLimit")
     def uncompressed_oversize_limit(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum in-memory uncompressed file size that can be scanned (MB).
-        """
         return pulumi.get(self, "uncompressed_oversize_limit")
 
     @uncompressed_oversize_limit.setter
@@ -13876,7 +13875,7 @@ class SnifferAnomalyArgs:
         :param pulumi.Input[str] quarantine_expiry: Duration of quarantine. (Format ###d##h##m, minimum 1m, maximum 364d23h59m, default = 5m). Requires quarantine set to attacker.
         :param pulumi.Input[str] quarantine_log: Enable/disable quarantine logging. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] status: Enable/disable this anomaly. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] threshold: Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        :param pulumi.Input[int] threshold: Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
         :param pulumi.Input[int] thresholddefault: Number of detected instances (packets per second or concurrent session number) which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it.
         """
         if action is not None:
@@ -13986,7 +13985,7 @@ class SnifferAnomalyArgs:
     @pulumi.getter
     def threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+        Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
         """
         return pulumi.get(self, "threshold")
 
@@ -14243,6 +14242,45 @@ class SslsshprofileDotArgs:
     @untrusted_server_cert.setter
     def untrusted_server_cert(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "untrusted_server_cert", value)
+
+
+@pulumi.input_type
+class SslsshprofileEchOuterSniArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None,
+                 sni: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: ClientHelloOuter SNI name.
+        :param pulumi.Input[str] sni: ClientHelloOuter SNI to be blocked.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if sni is not None:
+            pulumi.set(__self__, "sni", sni)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        ClientHelloOuter SNI name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def sni(self) -> Optional[pulumi.Input[str]]:
+        """
+        ClientHelloOuter SNI to be blocked.
+        """
+        return pulumi.get(self, "sni")
+
+    @sni.setter
+    def sni(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sni", value)
 
 
 @pulumi.input_type
@@ -14516,6 +14554,7 @@ class SslsshprofileHttpsArgs:
                  cert_validation_timeout: Optional[pulumi.Input[str]] = None,
                  client_cert_request: Optional[pulumi.Input[str]] = None,
                  client_certificate: Optional[pulumi.Input[str]] = None,
+                 encrypted_client_hello: Optional[pulumi.Input[str]] = None,
                  expired_server_cert: Optional[pulumi.Input[str]] = None,
                  invalid_server_cert: Optional[pulumi.Input[str]] = None,
                  min_allowed_ssl_version: Optional[pulumi.Input[str]] = None,
@@ -14536,6 +14575,7 @@ class SslsshprofileHttpsArgs:
         :param pulumi.Input[str] cert_validation_timeout: Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
         :param pulumi.Input[str] client_cert_request: Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
         :param pulumi.Input[str] client_certificate: Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
+        :param pulumi.Input[str] encrypted_client_hello: Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
         :param pulumi.Input[str] expired_server_cert: Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
         :param pulumi.Input[str] invalid_server_cert: Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
         :param pulumi.Input[str] min_allowed_ssl_version: Minimum SSL version to be allowed. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
@@ -14561,6 +14601,8 @@ class SslsshprofileHttpsArgs:
             pulumi.set(__self__, "client_cert_request", client_cert_request)
         if client_certificate is not None:
             pulumi.set(__self__, "client_certificate", client_certificate)
+        if encrypted_client_hello is not None:
+            pulumi.set(__self__, "encrypted_client_hello", encrypted_client_hello)
         if expired_server_cert is not None:
             pulumi.set(__self__, "expired_server_cert", expired_server_cert)
         if invalid_server_cert is not None:
@@ -14649,6 +14691,18 @@ class SslsshprofileHttpsArgs:
     @client_certificate.setter
     def client_certificate(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "client_certificate", value)
+
+    @property
+    @pulumi.getter(name="encryptedClientHello")
+    def encrypted_client_hello(self) -> Optional[pulumi.Input[str]]:
+        """
+        Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
+        """
+        return pulumi.get(self, "encrypted_client_hello")
+
+    @encrypted_client_hello.setter
+    def encrypted_client_hello(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "encrypted_client_hello", value)
 
     @property
     @pulumi.getter(name="expiredServerCert")
@@ -15101,24 +15155,6 @@ class SslsshprofilePop3sArgs:
                  unsupported_ssl_negotiation: Optional[pulumi.Input[str]] = None,
                  unsupported_ssl_version: Optional[pulumi.Input[str]] = None,
                  untrusted_server_cert: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] cert_validation_failure: Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
-        :param pulumi.Input[str] cert_validation_timeout: Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
-        :param pulumi.Input[str] client_cert_request: Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
-        :param pulumi.Input[str] client_certificate: Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
-        :param pulumi.Input[str] expired_server_cert: Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
-        :param pulumi.Input[str] invalid_server_cert: Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
-        :param pulumi.Input[str] ports: Ports to use for scanning (1 - 65535, default = 443).
-        :param pulumi.Input[str] proxy_after_tcp_handshake: Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] revoked_server_cert: Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
-        :param pulumi.Input[str] sni_server_cert_check: Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
-        :param pulumi.Input[str] status: Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
-        :param pulumi.Input[str] unsupported_ssl: Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
-        :param pulumi.Input[str] unsupported_ssl_cipher: Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
-        :param pulumi.Input[str] unsupported_ssl_negotiation: Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
-        :param pulumi.Input[str] unsupported_ssl_version: Action based on the SSL version used being unsupported.
-        :param pulumi.Input[str] untrusted_server_cert: Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
-        """
         if cert_validation_failure is not None:
             pulumi.set(__self__, "cert_validation_failure", cert_validation_failure)
         if cert_validation_timeout is not None:
@@ -15155,9 +15191,6 @@ class SslsshprofilePop3sArgs:
     @property
     @pulumi.getter(name="certValidationFailure")
     def cert_validation_failure(self) -> Optional[pulumi.Input[str]]:
-        """
-        Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
-        """
         return pulumi.get(self, "cert_validation_failure")
 
     @cert_validation_failure.setter
@@ -15167,9 +15200,6 @@ class SslsshprofilePop3sArgs:
     @property
     @pulumi.getter(name="certValidationTimeout")
     def cert_validation_timeout(self) -> Optional[pulumi.Input[str]]:
-        """
-        Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
-        """
         return pulumi.get(self, "cert_validation_timeout")
 
     @cert_validation_timeout.setter
@@ -15179,9 +15209,6 @@ class SslsshprofilePop3sArgs:
     @property
     @pulumi.getter(name="clientCertRequest")
     def client_cert_request(self) -> Optional[pulumi.Input[str]]:
-        """
-        Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
-        """
         return pulumi.get(self, "client_cert_request")
 
     @client_cert_request.setter
@@ -15191,9 +15218,6 @@ class SslsshprofilePop3sArgs:
     @property
     @pulumi.getter(name="clientCertificate")
     def client_certificate(self) -> Optional[pulumi.Input[str]]:
-        """
-        Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
-        """
         return pulumi.get(self, "client_certificate")
 
     @client_certificate.setter
@@ -15203,9 +15227,6 @@ class SslsshprofilePop3sArgs:
     @property
     @pulumi.getter(name="expiredServerCert")
     def expired_server_cert(self) -> Optional[pulumi.Input[str]]:
-        """
-        Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
-        """
         return pulumi.get(self, "expired_server_cert")
 
     @expired_server_cert.setter
@@ -15215,9 +15236,6 @@ class SslsshprofilePop3sArgs:
     @property
     @pulumi.getter(name="invalidServerCert")
     def invalid_server_cert(self) -> Optional[pulumi.Input[str]]:
-        """
-        Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
-        """
         return pulumi.get(self, "invalid_server_cert")
 
     @invalid_server_cert.setter
@@ -15227,9 +15245,6 @@ class SslsshprofilePop3sArgs:
     @property
     @pulumi.getter
     def ports(self) -> Optional[pulumi.Input[str]]:
-        """
-        Ports to use for scanning (1 - 65535, default = 443).
-        """
         return pulumi.get(self, "ports")
 
     @ports.setter
@@ -15239,9 +15254,6 @@ class SslsshprofilePop3sArgs:
     @property
     @pulumi.getter(name="proxyAfterTcpHandshake")
     def proxy_after_tcp_handshake(self) -> Optional[pulumi.Input[str]]:
-        """
-        Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "proxy_after_tcp_handshake")
 
     @proxy_after_tcp_handshake.setter
@@ -15251,9 +15263,6 @@ class SslsshprofilePop3sArgs:
     @property
     @pulumi.getter(name="revokedServerCert")
     def revoked_server_cert(self) -> Optional[pulumi.Input[str]]:
-        """
-        Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
-        """
         return pulumi.get(self, "revoked_server_cert")
 
     @revoked_server_cert.setter
@@ -15263,9 +15272,6 @@ class SslsshprofilePop3sArgs:
     @property
     @pulumi.getter(name="sniServerCertCheck")
     def sni_server_cert_check(self) -> Optional[pulumi.Input[str]]:
-        """
-        Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
-        """
         return pulumi.get(self, "sni_server_cert_check")
 
     @sni_server_cert_check.setter
@@ -15275,9 +15281,6 @@ class SslsshprofilePop3sArgs:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
-        """
-        Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
-        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -15287,9 +15290,6 @@ class SslsshprofilePop3sArgs:
     @property
     @pulumi.getter(name="unsupportedSsl")
     def unsupported_ssl(self) -> Optional[pulumi.Input[str]]:
-        """
-        Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
-        """
         return pulumi.get(self, "unsupported_ssl")
 
     @unsupported_ssl.setter
@@ -15299,9 +15299,6 @@ class SslsshprofilePop3sArgs:
     @property
     @pulumi.getter(name="unsupportedSslCipher")
     def unsupported_ssl_cipher(self) -> Optional[pulumi.Input[str]]:
-        """
-        Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
-        """
         return pulumi.get(self, "unsupported_ssl_cipher")
 
     @unsupported_ssl_cipher.setter
@@ -15311,9 +15308,6 @@ class SslsshprofilePop3sArgs:
     @property
     @pulumi.getter(name="unsupportedSslNegotiation")
     def unsupported_ssl_negotiation(self) -> Optional[pulumi.Input[str]]:
-        """
-        Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
-        """
         return pulumi.get(self, "unsupported_ssl_negotiation")
 
     @unsupported_ssl_negotiation.setter
@@ -15323,9 +15317,6 @@ class SslsshprofilePop3sArgs:
     @property
     @pulumi.getter(name="unsupportedSslVersion")
     def unsupported_ssl_version(self) -> Optional[pulumi.Input[str]]:
-        """
-        Action based on the SSL version used being unsupported.
-        """
         return pulumi.get(self, "unsupported_ssl_version")
 
     @unsupported_ssl_version.setter
@@ -15335,9 +15326,6 @@ class SslsshprofilePop3sArgs:
     @property
     @pulumi.getter(name="untrustedServerCert")
     def untrusted_server_cert(self) -> Optional[pulumi.Input[str]]:
-        """
-        Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
-        """
         return pulumi.get(self, "untrusted_server_cert")
 
     @untrusted_server_cert.setter
@@ -15751,6 +15739,7 @@ class SslsshprofileSslArgs:
                  cert_validation_timeout: Optional[pulumi.Input[str]] = None,
                  client_cert_request: Optional[pulumi.Input[str]] = None,
                  client_certificate: Optional[pulumi.Input[str]] = None,
+                 encrypted_client_hello: Optional[pulumi.Input[str]] = None,
                  expired_server_cert: Optional[pulumi.Input[str]] = None,
                  inspect_all: Optional[pulumi.Input[str]] = None,
                  invalid_server_cert: Optional[pulumi.Input[str]] = None,
@@ -15768,6 +15757,7 @@ class SslsshprofileSslArgs:
         :param pulumi.Input[str] cert_validation_timeout: Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
         :param pulumi.Input[str] client_cert_request: Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
         :param pulumi.Input[str] client_certificate: Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
+        :param pulumi.Input[str] encrypted_client_hello: Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
         :param pulumi.Input[str] expired_server_cert: Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
         :param pulumi.Input[str] inspect_all: Level of SSL inspection. Valid values: `disable`, `certificate-inspection`, `deep-inspection`.
         :param pulumi.Input[str] invalid_server_cert: Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
@@ -15790,6 +15780,8 @@ class SslsshprofileSslArgs:
             pulumi.set(__self__, "client_cert_request", client_cert_request)
         if client_certificate is not None:
             pulumi.set(__self__, "client_certificate", client_certificate)
+        if encrypted_client_hello is not None:
+            pulumi.set(__self__, "encrypted_client_hello", encrypted_client_hello)
         if expired_server_cert is not None:
             pulumi.set(__self__, "expired_server_cert", expired_server_cert)
         if inspect_all is not None:
@@ -15872,6 +15864,18 @@ class SslsshprofileSslArgs:
     @client_certificate.setter
     def client_certificate(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "client_certificate", value)
+
+    @property
+    @pulumi.getter(name="encryptedClientHello")
+    def encrypted_client_hello(self) -> Optional[pulumi.Input[str]]:
+        """
+        Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
+        """
+        return pulumi.get(self, "encrypted_client_hello")
+
+    @encrypted_client_hello.setter
+    def encrypted_client_hello(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "encrypted_client_hello", value)
 
     @property
     @pulumi.getter(name="expiredServerCert")

@@ -74,7 +74,7 @@ export class Vdomproperty extends pulumi.CustomResource {
      */
     public readonly firewallAddrgrp!: pulumi.Output<string>;
     /**
-     * Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+     * Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
      */
     public readonly firewallPolicy!: pulumi.Output<string>;
     /**
@@ -94,7 +94,7 @@ export class Vdomproperty extends pulumi.CustomResource {
      */
     public readonly ipsecPhase2Interface!: pulumi.Output<string>;
     /**
-     * Log disk quota in MB (range depends on how much disk space is available).
+     * Log disk quota in megabytes (MB). Range depends on how much disk space is available.
      */
     public readonly logDiskQuota!: pulumi.Output<string>;
     /**
@@ -122,7 +122,7 @@ export class Vdomproperty extends pulumi.CustomResource {
      */
     public readonly session!: pulumi.Output<string>;
     /**
-     * Permanent SNMP Index of the virtual domain (0 - 4294967295).
+     * Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions >= 6.4.0: 1 - 2147483647.
      */
     public readonly snmpIndex!: pulumi.Output<number>;
     /**
@@ -140,7 +140,7 @@ export class Vdomproperty extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Vdomproperty resource with the given unique name, arguments, and options.
@@ -232,7 +232,7 @@ export interface VdompropertyState {
      */
     firewallAddrgrp?: pulumi.Input<string>;
     /**
-     * Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+     * Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
      */
     firewallPolicy?: pulumi.Input<string>;
     /**
@@ -252,7 +252,7 @@ export interface VdompropertyState {
      */
     ipsecPhase2Interface?: pulumi.Input<string>;
     /**
-     * Log disk quota in MB (range depends on how much disk space is available).
+     * Log disk quota in megabytes (MB). Range depends on how much disk space is available.
      */
     logDiskQuota?: pulumi.Input<string>;
     /**
@@ -280,7 +280,7 @@ export interface VdompropertyState {
      */
     session?: pulumi.Input<string>;
     /**
-     * Permanent SNMP Index of the virtual domain (0 - 4294967295).
+     * Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions >= 6.4.0: 1 - 2147483647.
      */
     snmpIndex?: pulumi.Input<number>;
     /**
@@ -326,7 +326,7 @@ export interface VdompropertyArgs {
      */
     firewallAddrgrp?: pulumi.Input<string>;
     /**
-     * Maximum guaranteed number of firewall policies (IPv4, IPv6, policy46, policy64, DoS-policy4, DoS-policy6, multicast).
+     * Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast).
      */
     firewallPolicy?: pulumi.Input<string>;
     /**
@@ -346,7 +346,7 @@ export interface VdompropertyArgs {
      */
     ipsecPhase2Interface?: pulumi.Input<string>;
     /**
-     * Log disk quota in MB (range depends on how much disk space is available).
+     * Log disk quota in megabytes (MB). Range depends on how much disk space is available.
      */
     logDiskQuota?: pulumi.Input<string>;
     /**
@@ -374,7 +374,7 @@ export interface VdompropertyArgs {
      */
     session?: pulumi.Input<string>;
     /**
-     * Permanent SNMP Index of the virtual domain (0 - 4294967295).
+     * Permanent SNMP Index of the virtual domain. On FortiOS versions 6.2.0-6.2.6: 0 - 4294967295. On FortiOS versions >= 6.4.0: 1 - 2147483647.
      */
     snmpIndex?: pulumi.Input<number>;
     /**

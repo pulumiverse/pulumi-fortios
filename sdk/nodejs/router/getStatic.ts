@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
@@ -21,7 +20,6 @@ import * as utilities from "../utilities";
  * });
  * export const output1 = sample1;
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getStatic(args: GetStaticArgs, opts?: pulumi.InvokeOptions): Promise<GetStaticResult> {
 
@@ -153,7 +151,6 @@ export interface GetStaticResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
@@ -163,7 +160,6 @@ export interface GetStaticResult {
  * });
  * export const output1 = sample1;
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getStaticOutput(args: GetStaticOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStaticResult> {
     return pulumi.output(args).apply((a: any) => getStatic(a, opts))

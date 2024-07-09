@@ -11,11 +11,10 @@ using Pulumi;
 namespace Pulumiverse.Fortios.Endpointcontrol
 {
     /// <summary>
-    /// Configure endpoint control settings. Applies to FortiOS Version `6.2.0,6.2.4,6.2.6,7.4.0,7.4.1,7.4.2`.
+    /// Configure endpoint control settings. Applies to FortiOS Version `6.2.0,6.2.4,6.2.6,7.4.0,7.4.1,7.4.2,7.4.3,7.4.4`.
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -42,7 +41,6 @@ namespace Pulumiverse.Fortios.Endpointcontrol
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -165,7 +163,7 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>

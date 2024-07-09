@@ -46,7 +46,7 @@ type Policy struct {
 	// Auto-Config storm control policy.
 	StormControlPolicy pulumi.StringOutput `pulumi:"stormControlPolicy"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewPolicy registers a new resource with the given unique name, arguments, and options.
@@ -269,8 +269,8 @@ func (o PolicyOutput) StormControlPolicy() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o PolicyOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o PolicyOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type PolicyArrayOutput struct{ *pulumi.OutputState }

@@ -35,7 +35,7 @@ type Speedtestserver struct {
 
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Hosts of the server. The structure of `host` block is documented below.
 	Hosts SpeedtestserverHostArrayOutput `pulumi:"hosts"`
@@ -44,7 +44,7 @@ type Speedtestserver struct {
 	// Speed test server timestamp.
 	Timestamp pulumi.IntOutput `pulumi:"timestamp"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewSpeedtestserver registers a new resource with the given unique name, arguments, and options.
@@ -79,7 +79,7 @@ func GetSpeedtestserver(ctx *pulumi.Context,
 type speedtestserverState struct {
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Hosts of the server. The structure of `host` block is documented below.
 	Hosts []SpeedtestserverHost `pulumi:"hosts"`
@@ -94,7 +94,7 @@ type speedtestserverState struct {
 type SpeedtestserverState struct {
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Hosts of the server. The structure of `host` block is documented below.
 	Hosts SpeedtestserverHostArrayInput
@@ -113,7 +113,7 @@ func (SpeedtestserverState) ElementType() reflect.Type {
 type speedtestserverArgs struct {
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Hosts of the server. The structure of `host` block is documented below.
 	Hosts []SpeedtestserverHost `pulumi:"hosts"`
@@ -129,7 +129,7 @@ type speedtestserverArgs struct {
 type SpeedtestserverArgs struct {
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Hosts of the server. The structure of `host` block is documented below.
 	Hosts SpeedtestserverHostArrayInput
@@ -233,7 +233,7 @@ func (o SpeedtestserverOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Speedtestserver) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o SpeedtestserverOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Speedtestserver) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -254,8 +254,8 @@ func (o SpeedtestserverOutput) Timestamp() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SpeedtestserverOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Speedtestserver) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SpeedtestserverOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Speedtestserver) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type SpeedtestserverArrayOutput struct{ *pulumi.OutputState }

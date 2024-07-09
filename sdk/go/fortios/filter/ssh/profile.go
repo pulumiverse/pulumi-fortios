@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,7 +40,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -71,7 +69,7 @@ type Profile struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter ProfileFileFilterOutput `pulumi:"fileFilter"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// SSH logging options.
 	Log pulumi.StringOutput `pulumi:"log"`
@@ -80,7 +78,7 @@ type Profile struct {
 	// SSH command filter. The structure of `shellCommands` block is documented below.
 	ShellCommands ProfileShellCommandArrayOutput `pulumi:"shellCommands"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewProfile registers a new resource with the given unique name, arguments, and options.
@@ -121,7 +119,7 @@ type profileState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter *ProfileFileFilter `pulumi:"fileFilter"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// SSH logging options.
 	Log *string `pulumi:"log"`
@@ -142,7 +140,7 @@ type ProfileState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter ProfileFileFilterPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// SSH logging options.
 	Log pulumi.StringPtrInput
@@ -167,7 +165,7 @@ type profileArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter *ProfileFileFilter `pulumi:"fileFilter"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// SSH logging options.
 	Log *string `pulumi:"log"`
@@ -189,7 +187,7 @@ type ProfileArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// File filter. The structure of `fileFilter` block is documented below.
 	FileFilter ProfileFileFilterPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// SSH logging options.
 	Log pulumi.StringPtrInput
@@ -308,7 +306,7 @@ func (o ProfileOutput) FileFilter() ProfileFileFilterOutput {
 	return o.ApplyT(func(v *Profile) ProfileFileFilterOutput { return v.FileFilter }).(ProfileFileFilterOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -329,8 +327,8 @@ func (o ProfileOutput) ShellCommands() ProfileShellCommandArrayOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ProfileOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ProfileOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ProfileArrayOutput struct{ *pulumi.OutputState }

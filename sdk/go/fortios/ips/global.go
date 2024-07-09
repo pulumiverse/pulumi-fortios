@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -50,7 +49,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -90,7 +88,7 @@ type Global struct {
 	ExcludeSignatures pulumi.StringOutput `pulumi:"excludeSignatures"`
 	// Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
 	FailOpen pulumi.StringOutput `pulumi:"failOpen"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
 	IntelligentMode pulumi.StringOutput `pulumi:"intelligentMode"`
@@ -115,7 +113,7 @@ type Global struct {
 	// Enable/disable submitting attack data found by this FortiGate to FortiGuard. Valid values: `enable`, `disable`.
 	TrafficSubmit pulumi.StringOutput `pulumi:"trafficSubmit"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewGlobal registers a new resource with the given unique name, arguments, and options.
@@ -166,7 +164,7 @@ type globalState struct {
 	ExcludeSignatures *string `pulumi:"excludeSignatures"`
 	// Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
 	FailOpen *string `pulumi:"failOpen"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
 	IntelligentMode *string `pulumi:"intelligentMode"`
@@ -213,7 +211,7 @@ type GlobalState struct {
 	ExcludeSignatures pulumi.StringPtrInput
 	// Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
 	FailOpen pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
 	IntelligentMode pulumi.StringPtrInput
@@ -264,7 +262,7 @@ type globalArgs struct {
 	ExcludeSignatures *string `pulumi:"excludeSignatures"`
 	// Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
 	FailOpen *string `pulumi:"failOpen"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
 	IntelligentMode *string `pulumi:"intelligentMode"`
@@ -312,7 +310,7 @@ type GlobalArgs struct {
 	ExcludeSignatures pulumi.StringPtrInput
 	// Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
 	FailOpen pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
 	IntelligentMode pulumi.StringPtrInput
@@ -472,7 +470,7 @@ func (o GlobalOutput) FailOpen() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.FailOpen }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o GlobalOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -533,8 +531,8 @@ func (o GlobalOutput) TrafficSubmit() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o GlobalOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o GlobalOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type GlobalArrayOutput struct{ *pulumi.OutputState }

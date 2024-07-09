@@ -45,7 +45,7 @@ type Profile struct {
 	FeatureSet pulumi.StringOutput `pulumi:"featureSet"`
 	// Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
 	FullArchiveProto pulumi.StringOutput `pulumi:"fullArchiveProto"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
 	NacQuarLog pulumi.StringOutput `pulumi:"nacQuarLog"`
@@ -58,7 +58,7 @@ type Profile struct {
 	// Protocols to always log summary. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
 	SummaryProto pulumi.StringOutput `pulumi:"summaryProto"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewProfile registers a new resource with the given unique name, arguments, and options.
@@ -103,7 +103,7 @@ type profileState struct {
 	FeatureSet *string `pulumi:"featureSet"`
 	// Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
 	FullArchiveProto *string `pulumi:"fullArchiveProto"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
 	NacQuarLog *string `pulumi:"nacQuarLog"`
@@ -132,7 +132,7 @@ type ProfileState struct {
 	FeatureSet pulumi.StringPtrInput
 	// Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
 	FullArchiveProto pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
 	NacQuarLog pulumi.StringPtrInput
@@ -165,7 +165,7 @@ type profileArgs struct {
 	FeatureSet *string `pulumi:"featureSet"`
 	// Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
 	FullArchiveProto *string `pulumi:"fullArchiveProto"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
 	NacQuarLog *string `pulumi:"nacQuarLog"`
@@ -195,7 +195,7 @@ type ProfileArgs struct {
 	FeatureSet pulumi.StringPtrInput
 	// Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-get`, `http-post`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
 	FullArchiveProto pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable NAC quarantine logging. Valid values: `enable`, `disable`.
 	NacQuarLog pulumi.StringPtrInput
@@ -328,7 +328,7 @@ func (o ProfileOutput) FullArchiveProto() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.FullArchiveProto }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -359,8 +359,8 @@ func (o ProfileOutput) SummaryProto() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ProfileOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ProfileOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ProfileArrayOutput struct{ *pulumi.OutputState }

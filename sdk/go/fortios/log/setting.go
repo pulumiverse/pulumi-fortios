@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -57,7 +56,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -99,7 +97,7 @@ type Setting struct {
 	Fwpolicy6ImplicitLog pulumi.StringOutput `pulumi:"fwpolicy6ImplicitLog"`
 	// Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
 	FwpolicyImplicitLog pulumi.StringOutput `pulumi:"fwpolicyImplicitLog"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
 	LocalInAllow pulumi.StringOutput `pulumi:"localInAllow"`
@@ -136,7 +134,7 @@ type Setting struct {
 	// Enable/disable anonymizing user names in log messages. Valid values: `enable`, `disable`.
 	UserAnonymize pulumi.StringOutput `pulumi:"userAnonymize"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewSetting registers a new resource with the given unique name, arguments, and options.
@@ -189,7 +187,7 @@ type settingState struct {
 	Fwpolicy6ImplicitLog *string `pulumi:"fwpolicy6ImplicitLog"`
 	// Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
 	FwpolicyImplicitLog *string `pulumi:"fwpolicyImplicitLog"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
 	LocalInAllow *string `pulumi:"localInAllow"`
@@ -250,7 +248,7 @@ type SettingState struct {
 	Fwpolicy6ImplicitLog pulumi.StringPtrInput
 	// Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
 	FwpolicyImplicitLog pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
 	LocalInAllow pulumi.StringPtrInput
@@ -315,7 +313,7 @@ type settingArgs struct {
 	Fwpolicy6ImplicitLog *string `pulumi:"fwpolicy6ImplicitLog"`
 	// Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
 	FwpolicyImplicitLog *string `pulumi:"fwpolicyImplicitLog"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
 	LocalInAllow *string `pulumi:"localInAllow"`
@@ -377,7 +375,7 @@ type SettingArgs struct {
 	Fwpolicy6ImplicitLog pulumi.StringPtrInput
 	// Enable/disable implicit firewall policy logging. Valid values: `enable`, `disable`.
 	FwpolicyImplicitLog pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable local-in-allow logging. Valid values: `enable`, `disable`.
 	LocalInAllow pulumi.StringPtrInput
@@ -554,7 +552,7 @@ func (o SettingOutput) FwpolicyImplicitLog() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.FwpolicyImplicitLog }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o SettingOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -645,8 +643,8 @@ func (o SettingOutput) UserAnonymize() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SettingOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Setting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SettingOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type SettingArrayOutput struct{ *pulumi.OutputState }

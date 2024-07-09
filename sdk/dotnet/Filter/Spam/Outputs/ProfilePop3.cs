@@ -14,21 +14,9 @@ namespace Pulumiverse.Fortios.Filter.Spam.Outputs
     [OutputType]
     public sealed class ProfilePop3
     {
-        /// <summary>
-        /// Action for spam email. Valid values: `pass`, `tag`.
-        /// </summary>
         public readonly string? Action;
-        /// <summary>
-        /// Enable/disable logging. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? Log;
-        /// <summary>
-        /// Subject text or header added to spam email.
-        /// </summary>
         public readonly string? TagMsg;
-        /// <summary>
-        /// Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-        /// </summary>
         public readonly string? TagType;
 
         [OutputConstructor]

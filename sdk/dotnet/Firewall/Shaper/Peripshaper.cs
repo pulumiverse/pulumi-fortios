@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -37,7 +36,6 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -91,7 +89,7 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
         public Output<string> DiffservcodeRev { get; private set; } = null!;
 
         /// <summary>
-        /// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, &gt;= 7.2.1: 0 - 80000000.
+        /// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, &gt;= 7.2.1: 0 - 80000000.
         /// </summary>
         [Output("maxBandwidth")]
         public Output<int> MaxBandwidth { get; private set; } = null!;
@@ -124,7 +122,7 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -204,7 +202,7 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
         public Input<string>? DiffservcodeRev { get; set; }
 
         /// <summary>
-        /// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, &gt;= 7.2.1: 0 - 80000000.
+        /// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, &gt;= 7.2.1: 0 - 80000000.
         /// </summary>
         [Input("maxBandwidth")]
         public Input<int>? MaxBandwidth { get; set; }
@@ -278,7 +276,7 @@ namespace Pulumiverse.Fortios.Firewall.Shaper
         public Input<string>? DiffservcodeRev { get; set; }
 
         /// <summary>
-        /// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, &gt;= 7.2.1: 0 - 80000000.
+        /// Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, &gt;= 7.2.1: 0 - 80000000.
         /// </summary>
         [Input("maxBandwidth")]
         public Input<int>? MaxBandwidth { get; set; }

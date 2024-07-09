@@ -46,6 +46,7 @@ class LdapArgs:
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_port: Optional[pulumi.Input[int]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
+                 status_ttl: Optional[pulumi.Input[int]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  two_factor: Optional[pulumi.Input[str]] = None,
                  two_factor_authentication: Optional[pulumi.Input[str]] = None,
@@ -59,7 +60,7 @@ class LdapArgs:
         The set of arguments for constructing a Ldap resource.
         :param pulumi.Input[str] dn: Distinguished name used to look up entries on the LDAP server.
         :param pulumi.Input[str] server: LDAP server CN domain name or IP.
-        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking.
         :param pulumi.Input[str] account_key_filter: Account key filter, using the UPN as the search filter.
         :param pulumi.Input[str] account_key_processing: Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
         :param pulumi.Input[str] account_key_upn_san: Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
@@ -89,6 +90,7 @@ class LdapArgs:
         :param pulumi.Input[str] source_ip: Source IP for communications to LDAP server.
         :param pulumi.Input[int] source_port: Source port to be used for communication with the LDAP server.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
+        :param pulumi.Input[int] status_ttl: Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
         :param pulumi.Input[str] tertiary_server: Tertiary LDAP server CN domain name or IP.
         :param pulumi.Input[str] two_factor: Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
         :param pulumi.Input[str] two_factor_authentication: Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
@@ -161,6 +163,8 @@ class LdapArgs:
             pulumi.set(__self__, "source_port", source_port)
         if ssl_min_proto_version is not None:
             pulumi.set(__self__, "ssl_min_proto_version", ssl_min_proto_version)
+        if status_ttl is not None:
+            pulumi.set(__self__, "status_ttl", status_ttl)
         if tertiary_server is not None:
             pulumi.set(__self__, "tertiary_server", tertiary_server)
         if two_factor is not None:
@@ -208,7 +212,7 @@ class LdapArgs:
     @pulumi.getter(name="accountKeyCertField")
     def account_key_cert_field(self) -> Optional[pulumi.Input[str]]:
         """
-        Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        Define subject identity field in certificate for user access right checking.
         """
         return pulumi.get(self, "account_key_cert_field")
 
@@ -565,6 +569,18 @@ class LdapArgs:
         pulumi.set(self, "ssl_min_proto_version", value)
 
     @property
+    @pulumi.getter(name="statusTtl")
+    def status_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+        """
+        return pulumi.get(self, "status_ttl")
+
+    @status_ttl.setter
+    def status_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "status_ttl", value)
+
+    @property
     @pulumi.getter(name="tertiaryServer")
     def tertiary_server(self) -> Optional[pulumi.Input[str]]:
         """
@@ -708,6 +724,7 @@ class _LdapState:
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_port: Optional[pulumi.Input[int]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
+                 status_ttl: Optional[pulumi.Input[int]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  two_factor: Optional[pulumi.Input[str]] = None,
                  two_factor_authentication: Optional[pulumi.Input[str]] = None,
@@ -719,7 +736,7 @@ class _LdapState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Ldap resources.
-        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking.
         :param pulumi.Input[str] account_key_filter: Account key filter, using the UPN as the search filter.
         :param pulumi.Input[str] account_key_processing: Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
         :param pulumi.Input[str] account_key_upn_san: Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
@@ -751,6 +768,7 @@ class _LdapState:
         :param pulumi.Input[str] source_ip: Source IP for communications to LDAP server.
         :param pulumi.Input[int] source_port: Source port to be used for communication with the LDAP server.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
+        :param pulumi.Input[int] status_ttl: Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
         :param pulumi.Input[str] tertiary_server: Tertiary LDAP server CN domain name or IP.
         :param pulumi.Input[str] two_factor: Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
         :param pulumi.Input[str] two_factor_authentication: Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
@@ -825,6 +843,8 @@ class _LdapState:
             pulumi.set(__self__, "source_port", source_port)
         if ssl_min_proto_version is not None:
             pulumi.set(__self__, "ssl_min_proto_version", ssl_min_proto_version)
+        if status_ttl is not None:
+            pulumi.set(__self__, "status_ttl", status_ttl)
         if tertiary_server is not None:
             pulumi.set(__self__, "tertiary_server", tertiary_server)
         if two_factor is not None:
@@ -848,7 +868,7 @@ class _LdapState:
     @pulumi.getter(name="accountKeyCertField")
     def account_key_cert_field(self) -> Optional[pulumi.Input[str]]:
         """
-        Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        Define subject identity field in certificate for user access right checking.
         """
         return pulumi.get(self, "account_key_cert_field")
 
@@ -1229,6 +1249,18 @@ class _LdapState:
         pulumi.set(self, "ssl_min_proto_version", value)
 
     @property
+    @pulumi.getter(name="statusTtl")
+    def status_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+        """
+        return pulumi.get(self, "status_ttl")
+
+    @status_ttl.setter
+    def status_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "status_ttl", value)
+
+    @property
     @pulumi.getter(name="tertiaryServer")
     def tertiary_server(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1374,6 +1406,7 @@ class Ldap(pulumi.CustomResource):
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_port: Optional[pulumi.Input[int]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
+                 status_ttl: Optional[pulumi.Input[int]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  two_factor: Optional[pulumi.Input[str]] = None,
                  two_factor_authentication: Optional[pulumi.Input[str]] = None,
@@ -1389,7 +1422,6 @@ class Ldap(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1412,7 +1444,6 @@ class Ldap(pulumi.CustomResource):
             ssl_min_proto_version="default",
             type="simple")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1434,7 +1465,7 @@ class Ldap(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking.
         :param pulumi.Input[str] account_key_filter: Account key filter, using the UPN as the search filter.
         :param pulumi.Input[str] account_key_processing: Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
         :param pulumi.Input[str] account_key_upn_san: Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
@@ -1466,6 +1497,7 @@ class Ldap(pulumi.CustomResource):
         :param pulumi.Input[str] source_ip: Source IP for communications to LDAP server.
         :param pulumi.Input[int] source_port: Source port to be used for communication with the LDAP server.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
+        :param pulumi.Input[int] status_ttl: Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
         :param pulumi.Input[str] tertiary_server: Tertiary LDAP server CN domain name or IP.
         :param pulumi.Input[str] two_factor: Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
         :param pulumi.Input[str] two_factor_authentication: Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
@@ -1487,7 +1519,6 @@ class Ldap(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1510,7 +1541,6 @@ class Ldap(pulumi.CustomResource):
             ssl_min_proto_version="default",
             type="simple")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1577,6 +1607,7 @@ class Ldap(pulumi.CustomResource):
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_port: Optional[pulumi.Input[int]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
+                 status_ttl: Optional[pulumi.Input[int]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  two_factor: Optional[pulumi.Input[str]] = None,
                  two_factor_authentication: Optional[pulumi.Input[str]] = None,
@@ -1631,6 +1662,7 @@ class Ldap(pulumi.CustomResource):
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["source_port"] = source_port
             __props__.__dict__["ssl_min_proto_version"] = ssl_min_proto_version
+            __props__.__dict__["status_ttl"] = status_ttl
             __props__.__dict__["tertiary_server"] = tertiary_server
             __props__.__dict__["two_factor"] = two_factor
             __props__.__dict__["two_factor_authentication"] = two_factor_authentication
@@ -1684,6 +1716,7 @@ class Ldap(pulumi.CustomResource):
             source_ip: Optional[pulumi.Input[str]] = None,
             source_port: Optional[pulumi.Input[int]] = None,
             ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
+            status_ttl: Optional[pulumi.Input[int]] = None,
             tertiary_server: Optional[pulumi.Input[str]] = None,
             two_factor: Optional[pulumi.Input[str]] = None,
             two_factor_authentication: Optional[pulumi.Input[str]] = None,
@@ -1700,7 +1733,7 @@ class Ldap(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        :param pulumi.Input[str] account_key_cert_field: Define subject identity field in certificate for user access right checking.
         :param pulumi.Input[str] account_key_filter: Account key filter, using the UPN as the search filter.
         :param pulumi.Input[str] account_key_processing: Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
         :param pulumi.Input[str] account_key_upn_san: Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
@@ -1732,6 +1765,7 @@ class Ldap(pulumi.CustomResource):
         :param pulumi.Input[str] source_ip: Source IP for communications to LDAP server.
         :param pulumi.Input[int] source_port: Source port to be used for communication with the LDAP server.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
+        :param pulumi.Input[int] status_ttl: Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
         :param pulumi.Input[str] tertiary_server: Tertiary LDAP server CN domain name or IP.
         :param pulumi.Input[str] two_factor: Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
         :param pulumi.Input[str] two_factor_authentication: Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
@@ -1778,6 +1812,7 @@ class Ldap(pulumi.CustomResource):
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["source_port"] = source_port
         __props__.__dict__["ssl_min_proto_version"] = ssl_min_proto_version
+        __props__.__dict__["status_ttl"] = status_ttl
         __props__.__dict__["tertiary_server"] = tertiary_server
         __props__.__dict__["two_factor"] = two_factor
         __props__.__dict__["two_factor_authentication"] = two_factor_authentication
@@ -1793,7 +1828,7 @@ class Ldap(pulumi.CustomResource):
     @pulumi.getter(name="accountKeyCertField")
     def account_key_cert_field(self) -> pulumi.Output[str]:
         """
-        Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+        Define subject identity field in certificate for user access right checking.
         """
         return pulumi.get(self, "account_key_cert_field")
 
@@ -2046,6 +2081,14 @@ class Ldap(pulumi.CustomResource):
         return pulumi.get(self, "ssl_min_proto_version")
 
     @property
+    @pulumi.getter(name="statusTtl")
+    def status_ttl(self) -> pulumi.Output[int]:
+        """
+        Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+        """
+        return pulumi.get(self, "status_ttl")
+
+    @property
     @pulumi.getter(name="tertiaryServer")
     def tertiary_server(self) -> pulumi.Output[str]:
         """
@@ -2111,7 +2154,7 @@ class Ldap(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

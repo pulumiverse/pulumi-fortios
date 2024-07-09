@@ -19,15 +19,21 @@ class MpskprofileArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  mpsk_concurrent_clients: Optional[pulumi.Input[int]] = None,
+                 mpsk_external_server: Optional[pulumi.Input[str]] = None,
+                 mpsk_external_server_auth: Optional[pulumi.Input[str]] = None,
                  mpsk_groups: Optional[pulumi.Input[Sequence[pulumi.Input['MpskprofileMpskGroupArgs']]]] = None,
+                 mpsk_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Mpskprofile resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] mpsk_concurrent_clients: Maximum number of concurrent clients that connect using the same passphrase in multiple PSK authentication (0 - 65535, default = 0, meaning no limitation).
+        :param pulumi.Input[str] mpsk_external_server: RADIUS server to be used to authenticate MPSK users.
+        :param pulumi.Input[str] mpsk_external_server_auth: Enable/Disable MPSK external server authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['MpskprofileMpskGroupArgs']]] mpsk_groups: List of multiple PSK groups. The structure of `mpsk_group` block is documented below.
+        :param pulumi.Input[str] mpsk_type: Select the security type of keys for this profile. Valid values: `wpa2-personal`, `wpa3-sae`, `wpa3-sae-transition`.
         :param pulumi.Input[str] name: MPSK profile name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -37,8 +43,14 @@ class MpskprofileArgs:
             pulumi.set(__self__, "get_all_tables", get_all_tables)
         if mpsk_concurrent_clients is not None:
             pulumi.set(__self__, "mpsk_concurrent_clients", mpsk_concurrent_clients)
+        if mpsk_external_server is not None:
+            pulumi.set(__self__, "mpsk_external_server", mpsk_external_server)
+        if mpsk_external_server_auth is not None:
+            pulumi.set(__self__, "mpsk_external_server_auth", mpsk_external_server_auth)
         if mpsk_groups is not None:
             pulumi.set(__self__, "mpsk_groups", mpsk_groups)
+        if mpsk_type is not None:
+            pulumi.set(__self__, "mpsk_type", mpsk_type)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -60,7 +72,7 @@ class MpskprofileArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -81,6 +93,30 @@ class MpskprofileArgs:
         pulumi.set(self, "mpsk_concurrent_clients", value)
 
     @property
+    @pulumi.getter(name="mpskExternalServer")
+    def mpsk_external_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        RADIUS server to be used to authenticate MPSK users.
+        """
+        return pulumi.get(self, "mpsk_external_server")
+
+    @mpsk_external_server.setter
+    def mpsk_external_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mpsk_external_server", value)
+
+    @property
+    @pulumi.getter(name="mpskExternalServerAuth")
+    def mpsk_external_server_auth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/Disable MPSK external server authentication (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "mpsk_external_server_auth")
+
+    @mpsk_external_server_auth.setter
+    def mpsk_external_server_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mpsk_external_server_auth", value)
+
+    @property
     @pulumi.getter(name="mpskGroups")
     def mpsk_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MpskprofileMpskGroupArgs']]]]:
         """
@@ -91,6 +127,18 @@ class MpskprofileArgs:
     @mpsk_groups.setter
     def mpsk_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MpskprofileMpskGroupArgs']]]]):
         pulumi.set(self, "mpsk_groups", value)
+
+    @property
+    @pulumi.getter(name="mpskType")
+    def mpsk_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select the security type of keys for this profile. Valid values: `wpa2-personal`, `wpa3-sae`, `wpa3-sae-transition`.
+        """
+        return pulumi.get(self, "mpsk_type")
+
+    @mpsk_type.setter
+    def mpsk_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mpsk_type", value)
 
     @property
     @pulumi.getter
@@ -123,15 +171,21 @@ class _MpskprofileState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  mpsk_concurrent_clients: Optional[pulumi.Input[int]] = None,
+                 mpsk_external_server: Optional[pulumi.Input[str]] = None,
+                 mpsk_external_server_auth: Optional[pulumi.Input[str]] = None,
                  mpsk_groups: Optional[pulumi.Input[Sequence[pulumi.Input['MpskprofileMpskGroupArgs']]]] = None,
+                 mpsk_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Mpskprofile resources.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] mpsk_concurrent_clients: Maximum number of concurrent clients that connect using the same passphrase in multiple PSK authentication (0 - 65535, default = 0, meaning no limitation).
+        :param pulumi.Input[str] mpsk_external_server: RADIUS server to be used to authenticate MPSK users.
+        :param pulumi.Input[str] mpsk_external_server_auth: Enable/Disable MPSK external server authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['MpskprofileMpskGroupArgs']]] mpsk_groups: List of multiple PSK groups. The structure of `mpsk_group` block is documented below.
+        :param pulumi.Input[str] mpsk_type: Select the security type of keys for this profile. Valid values: `wpa2-personal`, `wpa3-sae`, `wpa3-sae-transition`.
         :param pulumi.Input[str] name: MPSK profile name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -141,8 +195,14 @@ class _MpskprofileState:
             pulumi.set(__self__, "get_all_tables", get_all_tables)
         if mpsk_concurrent_clients is not None:
             pulumi.set(__self__, "mpsk_concurrent_clients", mpsk_concurrent_clients)
+        if mpsk_external_server is not None:
+            pulumi.set(__self__, "mpsk_external_server", mpsk_external_server)
+        if mpsk_external_server_auth is not None:
+            pulumi.set(__self__, "mpsk_external_server_auth", mpsk_external_server_auth)
         if mpsk_groups is not None:
             pulumi.set(__self__, "mpsk_groups", mpsk_groups)
+        if mpsk_type is not None:
+            pulumi.set(__self__, "mpsk_type", mpsk_type)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -164,7 +224,7 @@ class _MpskprofileState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -185,6 +245,30 @@ class _MpskprofileState:
         pulumi.set(self, "mpsk_concurrent_clients", value)
 
     @property
+    @pulumi.getter(name="mpskExternalServer")
+    def mpsk_external_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        RADIUS server to be used to authenticate MPSK users.
+        """
+        return pulumi.get(self, "mpsk_external_server")
+
+    @mpsk_external_server.setter
+    def mpsk_external_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mpsk_external_server", value)
+
+    @property
+    @pulumi.getter(name="mpskExternalServerAuth")
+    def mpsk_external_server_auth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/Disable MPSK external server authentication (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "mpsk_external_server_auth")
+
+    @mpsk_external_server_auth.setter
+    def mpsk_external_server_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mpsk_external_server_auth", value)
+
+    @property
     @pulumi.getter(name="mpskGroups")
     def mpsk_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MpskprofileMpskGroupArgs']]]]:
         """
@@ -195,6 +279,18 @@ class _MpskprofileState:
     @mpsk_groups.setter
     def mpsk_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MpskprofileMpskGroupArgs']]]]):
         pulumi.set(self, "mpsk_groups", value)
+
+    @property
+    @pulumi.getter(name="mpskType")
+    def mpsk_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select the security type of keys for this profile. Valid values: `wpa2-personal`, `wpa3-sae`, `wpa3-sae-transition`.
+        """
+        return pulumi.get(self, "mpsk_type")
+
+    @mpsk_type.setter
+    def mpsk_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mpsk_type", value)
 
     @property
     @pulumi.getter
@@ -229,7 +325,10 @@ class Mpskprofile(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  mpsk_concurrent_clients: Optional[pulumi.Input[int]] = None,
+                 mpsk_external_server: Optional[pulumi.Input[str]] = None,
+                 mpsk_external_server_auth: Optional[pulumi.Input[str]] = None,
                  mpsk_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MpskprofileMpskGroupArgs']]]]] = None,
+                 mpsk_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -257,9 +356,12 @@ class Mpskprofile(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] mpsk_concurrent_clients: Maximum number of concurrent clients that connect using the same passphrase in multiple PSK authentication (0 - 65535, default = 0, meaning no limitation).
+        :param pulumi.Input[str] mpsk_external_server: RADIUS server to be used to authenticate MPSK users.
+        :param pulumi.Input[str] mpsk_external_server_auth: Enable/Disable MPSK external server authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MpskprofileMpskGroupArgs']]]] mpsk_groups: List of multiple PSK groups. The structure of `mpsk_group` block is documented below.
+        :param pulumi.Input[str] mpsk_type: Select the security type of keys for this profile. Valid values: `wpa2-personal`, `wpa3-sae`, `wpa3-sae-transition`.
         :param pulumi.Input[str] name: MPSK profile name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -308,7 +410,10 @@ class Mpskprofile(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  mpsk_concurrent_clients: Optional[pulumi.Input[int]] = None,
+                 mpsk_external_server: Optional[pulumi.Input[str]] = None,
+                 mpsk_external_server_auth: Optional[pulumi.Input[str]] = None,
                  mpsk_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MpskprofileMpskGroupArgs']]]]] = None,
+                 mpsk_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -323,7 +428,10 @@ class Mpskprofile(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["mpsk_concurrent_clients"] = mpsk_concurrent_clients
+            __props__.__dict__["mpsk_external_server"] = mpsk_external_server
+            __props__.__dict__["mpsk_external_server_auth"] = mpsk_external_server_auth
             __props__.__dict__["mpsk_groups"] = mpsk_groups
+            __props__.__dict__["mpsk_type"] = mpsk_type
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
         super(Mpskprofile, __self__).__init__(
@@ -339,7 +447,10 @@ class Mpskprofile(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             get_all_tables: Optional[pulumi.Input[str]] = None,
             mpsk_concurrent_clients: Optional[pulumi.Input[int]] = None,
+            mpsk_external_server: Optional[pulumi.Input[str]] = None,
+            mpsk_external_server_auth: Optional[pulumi.Input[str]] = None,
             mpsk_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MpskprofileMpskGroupArgs']]]]] = None,
+            mpsk_type: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Mpskprofile':
         """
@@ -350,9 +461,12 @@ class Mpskprofile(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] mpsk_concurrent_clients: Maximum number of concurrent clients that connect using the same passphrase in multiple PSK authentication (0 - 65535, default = 0, meaning no limitation).
+        :param pulumi.Input[str] mpsk_external_server: RADIUS server to be used to authenticate MPSK users.
+        :param pulumi.Input[str] mpsk_external_server_auth: Enable/Disable MPSK external server authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MpskprofileMpskGroupArgs']]]] mpsk_groups: List of multiple PSK groups. The structure of `mpsk_group` block is documented below.
+        :param pulumi.Input[str] mpsk_type: Select the security type of keys for this profile. Valid values: `wpa2-personal`, `wpa3-sae`, `wpa3-sae-transition`.
         :param pulumi.Input[str] name: MPSK profile name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -363,7 +477,10 @@ class Mpskprofile(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["mpsk_concurrent_clients"] = mpsk_concurrent_clients
+        __props__.__dict__["mpsk_external_server"] = mpsk_external_server
+        __props__.__dict__["mpsk_external_server_auth"] = mpsk_external_server_auth
         __props__.__dict__["mpsk_groups"] = mpsk_groups
+        __props__.__dict__["mpsk_type"] = mpsk_type
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
         return Mpskprofile(resource_name, opts=opts, __props__=__props__)
@@ -380,7 +497,7 @@ class Mpskprofile(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -393,12 +510,36 @@ class Mpskprofile(pulumi.CustomResource):
         return pulumi.get(self, "mpsk_concurrent_clients")
 
     @property
+    @pulumi.getter(name="mpskExternalServer")
+    def mpsk_external_server(self) -> pulumi.Output[str]:
+        """
+        RADIUS server to be used to authenticate MPSK users.
+        """
+        return pulumi.get(self, "mpsk_external_server")
+
+    @property
+    @pulumi.getter(name="mpskExternalServerAuth")
+    def mpsk_external_server_auth(self) -> pulumi.Output[str]:
+        """
+        Enable/Disable MPSK external server authentication (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "mpsk_external_server_auth")
+
+    @property
     @pulumi.getter(name="mpskGroups")
     def mpsk_groups(self) -> pulumi.Output[Optional[Sequence['outputs.MpskprofileMpskGroup']]]:
         """
         List of multiple PSK groups. The structure of `mpsk_group` block is documented below.
         """
         return pulumi.get(self, "mpsk_groups")
+
+    @property
+    @pulumi.getter(name="mpskType")
+    def mpsk_type(self) -> pulumi.Output[str]:
+        """
+        Select the security type of keys for this profile. Valid values: `wpa2-personal`, `wpa3-sae`, `wpa3-sae-transition`.
+        """
+        return pulumi.get(self, "mpsk_type")
 
     @property
     @pulumi.getter
@@ -410,7 +551,7 @@ class Mpskprofile(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

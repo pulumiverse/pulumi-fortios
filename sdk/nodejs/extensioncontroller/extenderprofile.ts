@@ -80,7 +80,7 @@ export class Extenderprofile extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -96,7 +96,7 @@ export class Extenderprofile extends pulumi.CustomResource {
      */
     public readonly loginPasswordChange!: pulumi.Output<string>;
     /**
-     * Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+     * Model.
      */
     public readonly model!: pulumi.Output<string>;
     /**
@@ -106,7 +106,11 @@ export class Extenderprofile extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
+    /**
+     * FortiExtender wifi configuration. The structure of `wifi` block is documented below.
+     */
+    public readonly wifi!: pulumi.Output<outputs.extensioncontroller.ExtenderprofileWifi>;
 
     /**
      * Create a Extenderprofile resource with the given unique name, arguments, and options.
@@ -134,6 +138,7 @@ export class Extenderprofile extends pulumi.CustomResource {
             resourceInputs["model"] = state ? state.model : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["wifi"] = state ? state.wifi : undefined;
         } else {
             const args = argsOrState as ExtenderprofileArgs | undefined;
             resourceInputs["allowaccess"] = args ? args.allowaccess : undefined;
@@ -149,6 +154,7 @@ export class Extenderprofile extends pulumi.CustomResource {
             resourceInputs["model"] = args ? args.model : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["wifi"] = args ? args.wifi : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Extenderprofile.__pulumiType, name, resourceInputs, opts);
@@ -184,7 +190,7 @@ export interface ExtenderprofileState {
      */
     fosid?: pulumi.Input<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -200,7 +206,7 @@ export interface ExtenderprofileState {
      */
     loginPasswordChange?: pulumi.Input<string>;
     /**
-     * Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+     * Model.
      */
     model?: pulumi.Input<string>;
     /**
@@ -211,6 +217,10 @@ export interface ExtenderprofileState {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * FortiExtender wifi configuration. The structure of `wifi` block is documented below.
+     */
+    wifi?: pulumi.Input<inputs.extensioncontroller.ExtenderprofileWifi>;
 }
 
 /**
@@ -242,7 +252,7 @@ export interface ExtenderprofileArgs {
      */
     fosid?: pulumi.Input<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -258,7 +268,7 @@ export interface ExtenderprofileArgs {
      */
     loginPasswordChange?: pulumi.Input<string>;
     /**
-     * Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+     * Model.
      */
     model?: pulumi.Input<string>;
     /**
@@ -269,4 +279,8 @@ export interface ExtenderprofileArgs {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * FortiExtender wifi configuration. The structure of `wifi` block is documented below.
+     */
+    wifi?: pulumi.Input<inputs.extensioncontroller.ExtenderprofileWifi>;
 }

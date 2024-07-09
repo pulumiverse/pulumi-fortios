@@ -32,6 +32,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Inputs
         public Input<int>? ConcurrentClients { get; set; }
 
         /// <summary>
+        /// Select the type of the key. Valid values: `wpa2-personal`, `wpa3-sae`.
+        /// </summary>
+        [Input("keyType")]
+        public Input<string>? KeyType { get; set; }
+
+        /// <summary>
         /// MAC address.
         /// </summary>
         [Input("mac")]
@@ -70,6 +76,24 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Inputs
                 _passphrase = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// WPA3 SAE password.
+        /// </summary>
+        [Input("saePassword")]
+        public Input<string>? SaePassword { get; set; }
+
+        /// <summary>
+        /// Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("saePk")]
+        public Input<string>? SaePk { get; set; }
+
+        /// <summary>
+        /// Private key used for WPA3 SAE-PK authentication.
+        /// </summary>
+        [Input("saePrivateKey")]
+        public Input<string>? SaePrivateKey { get; set; }
 
         public MpskprofileMpskGroupMpskKeyGetArgs()
         {

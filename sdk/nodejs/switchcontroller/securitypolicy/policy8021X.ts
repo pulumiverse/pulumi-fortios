@@ -11,7 +11,6 @@ import * as utilities from "../../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -34,7 +33,6 @@ import * as utilities from "../../utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -99,6 +97,14 @@ export class Policy8021X extends pulumi.CustomResource {
      */
     public readonly authserverTimeoutPeriod!: pulumi.Output<number>;
     /**
+     * Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+     */
+    public readonly authserverTimeoutTagged!: pulumi.Output<string>;
+    /**
+     * Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
+     */
+    public readonly authserverTimeoutTaggedVlanid!: pulumi.Output<string>;
+    /**
      * Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
      */
     public readonly authserverTimeoutVlan!: pulumi.Output<string>;
@@ -106,6 +112,10 @@ export class Policy8021X extends pulumi.CustomResource {
      * Authentication server timeout VLAN name.
      */
     public readonly authserverTimeoutVlanid!: pulumi.Output<string>;
+    /**
+     * Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
+     */
+    public readonly dacl!: pulumi.Output<string>;
     /**
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
@@ -123,7 +133,7 @@ export class Policy8021X extends pulumi.CustomResource {
      */
     public readonly framevidApply!: pulumi.Output<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -173,7 +183,7 @@ export class Policy8021X extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Policy8021X resource with the given unique name, arguments, and options.
@@ -192,8 +202,11 @@ export class Policy8021X extends pulumi.CustomResource {
             resourceInputs["authFailVlanId"] = state ? state.authFailVlanId : undefined;
             resourceInputs["authFailVlanid"] = state ? state.authFailVlanid : undefined;
             resourceInputs["authserverTimeoutPeriod"] = state ? state.authserverTimeoutPeriod : undefined;
+            resourceInputs["authserverTimeoutTagged"] = state ? state.authserverTimeoutTagged : undefined;
+            resourceInputs["authserverTimeoutTaggedVlanid"] = state ? state.authserverTimeoutTaggedVlanid : undefined;
             resourceInputs["authserverTimeoutVlan"] = state ? state.authserverTimeoutVlan : undefined;
             resourceInputs["authserverTimeoutVlanid"] = state ? state.authserverTimeoutVlanid : undefined;
+            resourceInputs["dacl"] = state ? state.dacl : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["eapAutoUntaggedVlans"] = state ? state.eapAutoUntaggedVlans : undefined;
             resourceInputs["eapPassthru"] = state ? state.eapPassthru : undefined;
@@ -217,8 +230,11 @@ export class Policy8021X extends pulumi.CustomResource {
             resourceInputs["authFailVlanId"] = args ? args.authFailVlanId : undefined;
             resourceInputs["authFailVlanid"] = args ? args.authFailVlanid : undefined;
             resourceInputs["authserverTimeoutPeriod"] = args ? args.authserverTimeoutPeriod : undefined;
+            resourceInputs["authserverTimeoutTagged"] = args ? args.authserverTimeoutTagged : undefined;
+            resourceInputs["authserverTimeoutTaggedVlanid"] = args ? args.authserverTimeoutTaggedVlanid : undefined;
             resourceInputs["authserverTimeoutVlan"] = args ? args.authserverTimeoutVlan : undefined;
             resourceInputs["authserverTimeoutVlanid"] = args ? args.authserverTimeoutVlanid : undefined;
+            resourceInputs["dacl"] = args ? args.dacl : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["eapAutoUntaggedVlans"] = args ? args.eapAutoUntaggedVlans : undefined;
             resourceInputs["eapPassthru"] = args ? args.eapPassthru : undefined;
@@ -263,6 +279,14 @@ export interface Policy8021XState {
      */
     authserverTimeoutPeriod?: pulumi.Input<number>;
     /**
+     * Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+     */
+    authserverTimeoutTagged?: pulumi.Input<string>;
+    /**
+     * Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
+     */
+    authserverTimeoutTaggedVlanid?: pulumi.Input<string>;
+    /**
      * Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
      */
     authserverTimeoutVlan?: pulumi.Input<string>;
@@ -270,6 +294,10 @@ export interface Policy8021XState {
      * Authentication server timeout VLAN name.
      */
     authserverTimeoutVlanid?: pulumi.Input<string>;
+    /**
+     * Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
+     */
+    dacl?: pulumi.Input<string>;
     /**
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
@@ -287,7 +315,7 @@ export interface Policy8021XState {
      */
     framevidApply?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -361,6 +389,14 @@ export interface Policy8021XArgs {
      */
     authserverTimeoutPeriod?: pulumi.Input<number>;
     /**
+     * Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. Valid values: `disable`, `lldp-voice`, `static`.
+     */
+    authserverTimeoutTagged?: pulumi.Input<string>;
+    /**
+     * Tagged VLAN name for which the timeout option is applied to (only one VLAN ID).
+     */
+    authserverTimeoutTaggedVlanid?: pulumi.Input<string>;
+    /**
      * Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable.  Valid values: `disable`, `enable`.
      */
     authserverTimeoutVlan?: pulumi.Input<string>;
@@ -368,6 +404,10 @@ export interface Policy8021XArgs {
      * Authentication server timeout VLAN name.
      */
     authserverTimeoutVlanid?: pulumi.Input<string>;
+    /**
+     * Enable/disable dynamic access control list on this interface. Valid values: `disable`, `enable`.
+     */
+    dacl?: pulumi.Input<string>;
     /**
      * Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
      */
@@ -385,7 +425,7 @@ export interface Policy8021XArgs {
      */
     framevidApply?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**

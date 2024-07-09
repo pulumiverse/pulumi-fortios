@@ -14,49 +14,16 @@ namespace Pulumiverse.Fortios.Switchcontroller.Outputs
     [OutputType]
     public sealed class ManagedswitchN8021xSettings
     {
-        /// <summary>
-        /// Authentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-        /// </summary>
         public readonly string? LinkDownAuth;
-        /// <summary>
-        /// Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? LocalOverride;
-        /// <summary>
-        /// Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
-        /// </summary>
         public readonly string? MabReauth;
-        /// <summary>
-        /// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        /// </summary>
         public readonly string? MacCalledStationDelimiter;
-        /// <summary>
-        /// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        /// </summary>
         public readonly string? MacCallingStationDelimiter;
-        /// <summary>
-        /// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
-        /// </summary>
         public readonly string? MacCase;
-        /// <summary>
-        /// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        /// </summary>
         public readonly string? MacPasswordDelimiter;
-        /// <summary>
-        /// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        /// </summary>
         public readonly string? MacUsernameDelimiter;
-        /// <summary>
-        /// Maximum number of authentication attempts (0 - 15, default = 3).
-        /// </summary>
         public readonly int? MaxReauthAttempt;
-        /// <summary>
-        /// Reauthentication time interval (1 - 1440 min, default = 60, 0 = disable).
-        /// </summary>
         public readonly int? ReauthPeriod;
-        /// <summary>
-        /// 802.1X Tx period (seconds, default=30).
-        /// </summary>
         public readonly int? TxPeriod;
 
         [OutputConstructor]

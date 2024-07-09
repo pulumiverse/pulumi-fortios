@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -49,7 +48,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -100,7 +98,7 @@ type Eventfilter struct {
 	// Enable/disable user authentication event logging. Valid values: `enable`, `disable`.
 	User pulumi.StringOutput `pulumi:"user"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable VPN event logging. Valid values: `enable`, `disable`.
 	Vpn pulumi.StringOutput `pulumi:"vpn"`
 	// Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
@@ -467,8 +465,8 @@ func (o EventfilterOutput) User() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o EventfilterOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Eventfilter) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o EventfilterOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Eventfilter) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable VPN event logging. Valid values: `enable`, `disable`.

@@ -13,33 +13,21 @@ namespace Pulumiverse.Fortios.System.Snmp.Inputs
 
     public sealed class CommunityHosts6Args : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
-        /// </summary>
         [Input("haDirect")]
         public Input<string>? HaDirect { get; set; }
 
-        /// <summary>
-        /// Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both. Valid values: `any`, `query`, `trap`.
-        /// </summary>
         [Input("hostType")]
         public Input<string>? HostType { get; set; }
 
         /// <summary>
-        /// Host6 entry ID.
+        /// an identifier for the resource with format {{fosid}}.
         /// </summary>
         [Input("id")]
         public Input<int>? Id { get; set; }
 
-        /// <summary>
-        /// SNMP manager IPv6 address prefix.
-        /// </summary>
         [Input("ipv6")]
         public Input<string>? Ipv6 { get; set; }
 
-        /// <summary>
-        /// Source IPv6 address for SNMP traps.
-        /// </summary>
         [Input("sourceIpv6")]
         public Input<string>? SourceIpv6 { get; set; }
 

@@ -28,7 +28,7 @@ class IngressArgs:
         :param pulumi.Input['IngressClassifierArgs'] classifier: ACL classifiers. The structure of `classifier` block is documented below.
         :param pulumi.Input[str] description: Description for the ACL policy.
         :param pulumi.Input[int] fosid: ACL ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if action is not None:
@@ -96,7 +96,7 @@ class IngressArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -132,7 +132,7 @@ class _IngressState:
         :param pulumi.Input['IngressClassifierArgs'] classifier: ACL classifiers. The structure of `classifier` block is documented below.
         :param pulumi.Input[str] description: Description for the ACL policy.
         :param pulumi.Input[int] fosid: ACL ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if action is not None:
@@ -200,7 +200,7 @@ class _IngressState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -260,7 +260,7 @@ class Ingress(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['IngressClassifierArgs']] classifier: ACL classifiers. The structure of `classifier` block is documented below.
         :param pulumi.Input[str] description: Description for the ACL policy.
         :param pulumi.Input[int] fosid: ACL ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -353,7 +353,7 @@ class Ingress(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['IngressClassifierArgs']] classifier: ACL classifiers. The structure of `classifier` block is documented below.
         :param pulumi.Input[str] description: Description for the ACL policy.
         :param pulumi.Input[int] fosid: ACL ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -404,13 +404,13 @@ class Ingress(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

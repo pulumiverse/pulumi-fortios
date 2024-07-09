@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -19,7 +18,6 @@ import * as utilities from "../utilities";
  *     floodUnknownMulticast: "disable",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -82,7 +80,7 @@ export class Igmpsnooping extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Igmpsnooping resource with the given unique name, arguments, and options.

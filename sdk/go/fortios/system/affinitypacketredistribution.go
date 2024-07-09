@@ -42,10 +42,10 @@ type Affinitypacketredistribution struct {
 	Interface pulumi.StringOutput `pulumi:"interface"`
 	// Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
 	RoundRobin pulumi.StringOutput `pulumi:"roundRobin"`
-	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
+	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution (255 = all queues).
 	Rxqid pulumi.IntOutput `pulumi:"rxqid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewAffinitypacketredistribution registers a new resource with the given unique name, arguments, and options.
@@ -98,7 +98,7 @@ type affinitypacketredistributionState struct {
 	Interface *string `pulumi:"interface"`
 	// Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
 	RoundRobin *string `pulumi:"roundRobin"`
-	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
+	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution (255 = all queues).
 	Rxqid *int `pulumi:"rxqid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -113,7 +113,7 @@ type AffinitypacketredistributionState struct {
 	Interface pulumi.StringPtrInput
 	// Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
 	RoundRobin pulumi.StringPtrInput
-	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
+	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution (255 = all queues).
 	Rxqid pulumi.IntPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -132,7 +132,7 @@ type affinitypacketredistributionArgs struct {
 	Interface string `pulumi:"interface"`
 	// Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
 	RoundRobin *string `pulumi:"roundRobin"`
-	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
+	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution (255 = all queues).
 	Rxqid int `pulumi:"rxqid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -148,7 +148,7 @@ type AffinitypacketredistributionArgs struct {
 	Interface pulumi.StringInput
 	// Enable/disable round-robin redistribution to multiple CPUs. Valid values: `enable`, `disable`.
 	RoundRobin pulumi.StringPtrInput
-	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
+	// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution (255 = all queues).
 	Rxqid pulumi.IntInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -261,14 +261,14 @@ func (o AffinitypacketredistributionOutput) RoundRobin() pulumi.StringOutput {
 	return o.ApplyT(func(v *Affinitypacketredistribution) pulumi.StringOutput { return v.RoundRobin }).(pulumi.StringOutput)
 }
 
-// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
+// ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution (255 = all queues).
 func (o AffinitypacketredistributionOutput) Rxqid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Affinitypacketredistribution) pulumi.IntOutput { return v.Rxqid }).(pulumi.IntOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o AffinitypacketredistributionOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Affinitypacketredistribution) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o AffinitypacketredistributionOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Affinitypacketredistribution) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type AffinitypacketredistributionArrayOutput struct{ *pulumi.OutputState }

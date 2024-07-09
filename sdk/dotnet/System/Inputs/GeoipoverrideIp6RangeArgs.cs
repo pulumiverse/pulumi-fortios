@@ -13,21 +13,15 @@ namespace Pulumiverse.Fortios.System.Inputs
 
     public sealed class GeoipoverrideIp6RangeArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Ending IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-        /// </summary>
         [Input("endIp")]
         public Input<string>? EndIp { get; set; }
 
         /// <summary>
-        /// ID of individual entry in the IPv6 range table.
+        /// an identifier for the resource with format {{name}}.
         /// </summary>
         [Input("id")]
         public Input<int>? Id { get; set; }
 
-        /// <summary>
-        /// Starting IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-        /// </summary>
         [Input("startIp")]
         public Input<string>? StartIp { get; set; }
 

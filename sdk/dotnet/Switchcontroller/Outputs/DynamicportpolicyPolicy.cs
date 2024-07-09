@@ -51,6 +51,14 @@ namespace Pulumiverse.Fortios.Switchcontroller.Outputs
         /// </summary>
         public readonly string? Mac;
         /// <summary>
+        /// Number of days the matched devices will be retained (0 - 120, 0 = always retain).
+        /// </summary>
+        public readonly int? MatchPeriod;
+        /// <summary>
+        /// Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+        /// </summary>
+        public readonly string? MatchType;
+        /// <summary>
         /// 802.1x security policy to be applied when using this policy.
         /// </summary>
         public readonly string? N8021x;
@@ -95,6 +103,10 @@ namespace Pulumiverse.Fortios.Switchcontroller.Outputs
 
             string? mac,
 
+            int? matchPeriod,
+
+            string? matchType,
+
             string? n8021x,
 
             string? name,
@@ -116,6 +128,8 @@ namespace Pulumiverse.Fortios.Switchcontroller.Outputs
             InterfaceTags = interfaceTags;
             LldpProfile = lldpProfile;
             Mac = mac;
+            MatchPeriod = matchPeriod;
+            MatchType = matchType;
             N8021x = n8021x;
             Name = name;
             QosPolicy = qosPolicy;

@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -29,7 +28,6 @@ import * as utilities from "../utilities";
  *     username: "sg",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -142,7 +140,7 @@ export class Sdnconnector extends pulumi.CustomResource {
      */
     public readonly gcpProjectLists!: pulumi.Output<outputs.system.SdnconnectorGcpProjectList[] | undefined>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -282,7 +280,7 @@ export class Sdnconnector extends pulumi.CustomResource {
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+     * Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions >= 6.2.4: 30 - 3600 sec.
      */
     public readonly updateInterval!: pulumi.Output<number>;
     /**
@@ -312,7 +310,7 @@ export class Sdnconnector extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Enable/disable server certificate verification. Valid values: `disable`, `enable`.
      */
@@ -542,7 +540,7 @@ export interface SdnconnectorState {
      */
     gcpProjectLists?: pulumi.Input<pulumi.Input<inputs.system.SdnconnectorGcpProjectList>[]>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -682,7 +680,7 @@ export interface SdnconnectorState {
      */
     type?: pulumi.Input<string>;
     /**
-     * Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+     * Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions >= 6.2.4: 30 - 3600 sec.
      */
     updateInterval?: pulumi.Input<number>;
     /**
@@ -792,7 +790,7 @@ export interface SdnconnectorArgs {
      */
     gcpProjectLists?: pulumi.Input<pulumi.Input<inputs.system.SdnconnectorGcpProjectList>[]>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -932,7 +930,7 @@ export interface SdnconnectorArgs {
      */
     type: pulumi.Input<string>;
     /**
-     * Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+     * Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions >= 6.2.4: 30 - 3600 sec.
      */
     updateInterval?: pulumi.Input<number>;
     /**

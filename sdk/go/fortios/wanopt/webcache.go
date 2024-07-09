@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -55,7 +54,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -112,7 +110,7 @@ type Webcache struct {
 	// Enable/disable revalidation of pragma-no-cache (PNC) to address bandwidth concerns. Valid values: `enable`, `disable`.
 	RevalPnc pulumi.StringOutput `pulumi:"revalPnc"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewWebcache registers a new resource with the given unique name, arguments, and options.
@@ -478,8 +476,8 @@ func (o WebcacheOutput) RevalPnc() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o WebcacheOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Webcache) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o WebcacheOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webcache) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type WebcacheArrayOutput struct{ *pulumi.OutputState }

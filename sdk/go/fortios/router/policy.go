@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -57,7 +56,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -97,7 +95,7 @@ type Policy struct {
 	EndSourcePort pulumi.IntOutput `pulumi:"endSourcePort"`
 	// IP address of the gateway.
 	Gateway pulumi.StringOutput `pulumi:"gateway"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
 	InputDeviceNegate pulumi.StringOutput `pulumi:"inputDeviceNegate"`
@@ -130,7 +128,7 @@ type Policy struct {
 	// Type of service evaluated bits.
 	TosMask pulumi.StringOutput `pulumi:"tosMask"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewPolicy registers a new resource with the given unique name, arguments, and options.
@@ -181,7 +179,7 @@ type policyState struct {
 	EndSourcePort *int `pulumi:"endSourcePort"`
 	// IP address of the gateway.
 	Gateway *string `pulumi:"gateway"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
 	InputDeviceNegate *string `pulumi:"inputDeviceNegate"`
@@ -236,7 +234,7 @@ type PolicyState struct {
 	EndSourcePort pulumi.IntPtrInput
 	// IP address of the gateway.
 	Gateway pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
 	InputDeviceNegate pulumi.StringPtrInput
@@ -295,7 +293,7 @@ type policyArgs struct {
 	EndSourcePort *int `pulumi:"endSourcePort"`
 	// IP address of the gateway.
 	Gateway *string `pulumi:"gateway"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
 	InputDeviceNegate *string `pulumi:"inputDeviceNegate"`
@@ -351,7 +349,7 @@ type PolicyArgs struct {
 	EndSourcePort pulumi.IntPtrInput
 	// IP address of the gateway.
 	Gateway pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable negation of input device match. Valid values: `enable`, `disable`.
 	InputDeviceNegate pulumi.StringPtrInput
@@ -519,7 +517,7 @@ func (o PolicyOutput) Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o PolicyOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -600,8 +598,8 @@ func (o PolicyOutput) TosMask() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o PolicyOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Policy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o PolicyOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type PolicyArrayOutput struct{ *pulumi.OutputState }

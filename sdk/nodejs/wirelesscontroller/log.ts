@@ -96,7 +96,7 @@ export class Log extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Lowest severity level to log WIDS message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
      */
@@ -105,6 +105,10 @@ export class Log extends pulumi.CustomResource {
      * Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
      */
     public readonly wtpEventLog!: pulumi.Output<string>;
+    /**
+     * Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+     */
+    public readonly wtpFipsEventLog!: pulumi.Output<string>;
 
     /**
      * Create a Log resource with the given unique name, arguments, and options.
@@ -132,6 +136,7 @@ export class Log extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["widsLog"] = state ? state.widsLog : undefined;
             resourceInputs["wtpEventLog"] = state ? state.wtpEventLog : undefined;
+            resourceInputs["wtpFipsEventLog"] = state ? state.wtpFipsEventLog : undefined;
         } else {
             const args = argsOrState as LogArgs | undefined;
             resourceInputs["addrgrpLog"] = args ? args.addrgrpLog : undefined;
@@ -147,6 +152,7 @@ export class Log extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["widsLog"] = args ? args.widsLog : undefined;
             resourceInputs["wtpEventLog"] = args ? args.wtpEventLog : undefined;
+            resourceInputs["wtpFipsEventLog"] = args ? args.wtpFipsEventLog : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Log.__pulumiType, name, resourceInputs, opts);
@@ -209,6 +215,10 @@ export interface LogState {
      * Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
      */
     wtpEventLog?: pulumi.Input<string>;
+    /**
+     * Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+     */
+    wtpFipsEventLog?: pulumi.Input<string>;
 }
 
 /**
@@ -267,4 +277,8 @@ export interface LogArgs {
      * Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
      */
     wtpEventLog?: pulumi.Input<string>;
+    /**
+     * Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+     */
+    wtpFipsEventLog?: pulumi.Input<string>;
 }

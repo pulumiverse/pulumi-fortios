@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -95,7 +94,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -119,9 +117,9 @@ type Profile struct {
 
 	// Comment.
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Flow or proxy inspection feature set.
+	// IPS or voipd (SIP-ALG) inspection feature set.
 	FeatureSet pulumi.StringOutput `pulumi:"featureSet"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// MSRP. The structure of `msrp` block is documented below.
 	Msrp ProfileMsrpOutput `pulumi:"msrp"`
@@ -132,7 +130,7 @@ type Profile struct {
 	// SIP. The structure of `sip` block is documented below.
 	Sip ProfileSipOutput `pulumi:"sip"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewProfile registers a new resource with the given unique name, arguments, and options.
@@ -167,9 +165,9 @@ func GetProfile(ctx *pulumi.Context,
 type profileState struct {
 	// Comment.
 	Comment *string `pulumi:"comment"`
-	// Flow or proxy inspection feature set.
+	// IPS or voipd (SIP-ALG) inspection feature set.
 	FeatureSet *string `pulumi:"featureSet"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// MSRP. The structure of `msrp` block is documented below.
 	Msrp *ProfileMsrp `pulumi:"msrp"`
@@ -186,9 +184,9 @@ type profileState struct {
 type ProfileState struct {
 	// Comment.
 	Comment pulumi.StringPtrInput
-	// Flow or proxy inspection feature set.
+	// IPS or voipd (SIP-ALG) inspection feature set.
 	FeatureSet pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// MSRP. The structure of `msrp` block is documented below.
 	Msrp ProfileMsrpPtrInput
@@ -209,9 +207,9 @@ func (ProfileState) ElementType() reflect.Type {
 type profileArgs struct {
 	// Comment.
 	Comment *string `pulumi:"comment"`
-	// Flow or proxy inspection feature set.
+	// IPS or voipd (SIP-ALG) inspection feature set.
 	FeatureSet *string `pulumi:"featureSet"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// MSRP. The structure of `msrp` block is documented below.
 	Msrp *ProfileMsrp `pulumi:"msrp"`
@@ -229,9 +227,9 @@ type profileArgs struct {
 type ProfileArgs struct {
 	// Comment.
 	Comment pulumi.StringPtrInput
-	// Flow or proxy inspection feature set.
+	// IPS or voipd (SIP-ALG) inspection feature set.
 	FeatureSet pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// MSRP. The structure of `msrp` block is documented below.
 	Msrp ProfileMsrpPtrInput
@@ -337,12 +335,12 @@ func (o ProfileOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
-// Flow or proxy inspection feature set.
+// IPS or voipd (SIP-ALG) inspection feature set.
 func (o ProfileOutput) FeatureSet() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.FeatureSet }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -368,8 +366,8 @@ func (o ProfileOutput) Sip() ProfileSipOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ProfileOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ProfileOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ProfileArrayOutput struct{ *pulumi.OutputState }

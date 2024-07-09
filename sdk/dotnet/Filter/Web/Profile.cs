@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.Filter.Web
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -105,7 +104,6 @@ namespace Pulumiverse.Fortios.Filter.Web
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -171,7 +169,7 @@ namespace Pulumiverse.Fortios.Filter.Web
         public Output<Outputs.ProfileFtgdWf> FtgdWf { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -234,7 +232,7 @@ namespace Pulumiverse.Fortios.Filter.Web
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Web content filtering settings. The structure of `web` block is documented below.
@@ -470,7 +468,7 @@ namespace Pulumiverse.Fortios.Filter.Web
         public Input<Inputs.ProfileFtgdWfArgs>? FtgdWf { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -742,7 +740,7 @@ namespace Pulumiverse.Fortios.Filter.Web
         public Input<Inputs.ProfileFtgdWfGetArgs>? FtgdWf { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }

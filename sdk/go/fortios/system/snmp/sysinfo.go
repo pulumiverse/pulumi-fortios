@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,7 +41,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -64,11 +62,13 @@ import (
 type Sysinfo struct {
 	pulumi.CustomResourceState
 
+	// Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
+	AppendIndex pulumi.StringOutput `pulumi:"appendIndex"`
 	// Contact information.
 	ContactInfo pulumi.StringPtrOutput `pulumi:"contactInfo"`
 	// System description.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Local SNMP engineID string (maximum 24 characters).
+	// Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions >= 7.0.1: maximum 27 characters.
 	EngineId pulumi.StringOutput `pulumi:"engineId"`
 	// Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
 	EngineIdType pulumi.StringOutput `pulumi:"engineIdType"`
@@ -87,7 +87,7 @@ type Sysinfo struct {
 	// Memory usage when trap is sent.
 	TrapLowMemoryThreshold pulumi.IntOutput `pulumi:"trapLowMemoryThreshold"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewSysinfo registers a new resource with the given unique name, arguments, and options.
@@ -120,11 +120,13 @@ func GetSysinfo(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Sysinfo resources.
 type sysinfoState struct {
+	// Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
+	AppendIndex *string `pulumi:"appendIndex"`
 	// Contact information.
 	ContactInfo *string `pulumi:"contactInfo"`
 	// System description.
 	Description *string `pulumi:"description"`
-	// Local SNMP engineID string (maximum 24 characters).
+	// Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions >= 7.0.1: maximum 27 characters.
 	EngineId *string `pulumi:"engineId"`
 	// Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
 	EngineIdType *string `pulumi:"engineIdType"`
@@ -147,11 +149,13 @@ type sysinfoState struct {
 }
 
 type SysinfoState struct {
+	// Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
+	AppendIndex pulumi.StringPtrInput
 	// Contact information.
 	ContactInfo pulumi.StringPtrInput
 	// System description.
 	Description pulumi.StringPtrInput
-	// Local SNMP engineID string (maximum 24 characters).
+	// Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions >= 7.0.1: maximum 27 characters.
 	EngineId pulumi.StringPtrInput
 	// Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
 	EngineIdType pulumi.StringPtrInput
@@ -178,11 +182,13 @@ func (SysinfoState) ElementType() reflect.Type {
 }
 
 type sysinfoArgs struct {
+	// Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
+	AppendIndex *string `pulumi:"appendIndex"`
 	// Contact information.
 	ContactInfo *string `pulumi:"contactInfo"`
 	// System description.
 	Description *string `pulumi:"description"`
-	// Local SNMP engineID string (maximum 24 characters).
+	// Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions >= 7.0.1: maximum 27 characters.
 	EngineId *string `pulumi:"engineId"`
 	// Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
 	EngineIdType *string `pulumi:"engineIdType"`
@@ -206,11 +212,13 @@ type sysinfoArgs struct {
 
 // The set of arguments for constructing a Sysinfo resource.
 type SysinfoArgs struct {
+	// Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
+	AppendIndex pulumi.StringPtrInput
 	// Contact information.
 	ContactInfo pulumi.StringPtrInput
 	// System description.
 	Description pulumi.StringPtrInput
-	// Local SNMP engineID string (maximum 24 characters).
+	// Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions >= 7.0.1: maximum 27 characters.
 	EngineId pulumi.StringPtrInput
 	// Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
 	EngineIdType pulumi.StringPtrInput
@@ -319,6 +327,11 @@ func (o SysinfoOutput) ToSysinfoOutputWithContext(ctx context.Context) SysinfoOu
 	return o
 }
 
+// Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
+func (o SysinfoOutput) AppendIndex() pulumi.StringOutput {
+	return o.ApplyT(func(v *Sysinfo) pulumi.StringOutput { return v.AppendIndex }).(pulumi.StringOutput)
+}
+
 // Contact information.
 func (o SysinfoOutput) ContactInfo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Sysinfo) pulumi.StringPtrOutput { return v.ContactInfo }).(pulumi.StringPtrOutput)
@@ -329,7 +342,7 @@ func (o SysinfoOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Sysinfo) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// Local SNMP engineID string (maximum 24 characters).
+// Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions >= 7.0.1: maximum 27 characters.
 func (o SysinfoOutput) EngineId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sysinfo) pulumi.StringOutput { return v.EngineId }).(pulumi.StringOutput)
 }
@@ -375,8 +388,8 @@ func (o SysinfoOutput) TrapLowMemoryThreshold() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SysinfoOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Sysinfo) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SysinfoOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Sysinfo) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type SysinfoArrayOutput struct{ *pulumi.OutputState }

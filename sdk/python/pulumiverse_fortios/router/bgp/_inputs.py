@@ -20,11 +20,6 @@ class NeighborConditionalAdvertise6Args:
                  advertise_routemap: Optional[pulumi.Input[str]] = None,
                  condition_routemap: Optional[pulumi.Input[str]] = None,
                  condition_type: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] advertise_routemap: Name of advertising route map.
-        :param pulumi.Input[str] condition_routemap: Name of condition route map.
-        :param pulumi.Input[str] condition_type: Type of condition. Valid values: `exist`, `non-exist`.
-        """
         if advertise_routemap is not None:
             pulumi.set(__self__, "advertise_routemap", advertise_routemap)
         if condition_routemap is not None:
@@ -35,9 +30,6 @@ class NeighborConditionalAdvertise6Args:
     @property
     @pulumi.getter(name="advertiseRoutemap")
     def advertise_routemap(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name of advertising route map.
-        """
         return pulumi.get(self, "advertise_routemap")
 
     @advertise_routemap.setter
@@ -47,9 +39,6 @@ class NeighborConditionalAdvertise6Args:
     @property
     @pulumi.getter(name="conditionRoutemap")
     def condition_routemap(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name of condition route map.
-        """
         return pulumi.get(self, "condition_routemap")
 
     @condition_routemap.setter
@@ -59,9 +48,6 @@ class NeighborConditionalAdvertise6Args:
     @property
     @pulumi.getter(name="conditionType")
     def condition_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        Type of condition. Valid values: `exist`, `non-exist`.
-        """
         return pulumi.get(self, "condition_type")
 
     @condition_type.setter

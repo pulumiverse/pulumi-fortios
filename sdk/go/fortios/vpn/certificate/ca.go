@@ -44,6 +44,8 @@ type Ca struct {
 	CaIdentifier pulumi.StringOutput `pulumi:"caIdentifier"`
 	// URL of the EST server.
 	EstUrl pulumi.StringOutput `pulumi:"estUrl"`
+	// Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
+	FabricCa pulumi.StringOutput `pulumi:"fabricCa"`
 	// Time at which CA was last updated.
 	LastUpdated pulumi.IntOutput `pulumi:"lastUpdated"`
 	// Name.
@@ -63,7 +65,7 @@ type Ca struct {
 	// Enable/disable as a trusted CA. Valid values: `enable`, `disable`.
 	Trusted pulumi.StringOutput `pulumi:"trusted"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewCa registers a new resource with the given unique name, arguments, and options.
@@ -116,6 +118,8 @@ type caState struct {
 	CaIdentifier *string `pulumi:"caIdentifier"`
 	// URL of the EST server.
 	EstUrl *string `pulumi:"estUrl"`
+	// Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
+	FabricCa *string `pulumi:"fabricCa"`
 	// Time at which CA was last updated.
 	LastUpdated *int `pulumi:"lastUpdated"`
 	// Name.
@@ -149,6 +153,8 @@ type CaState struct {
 	CaIdentifier pulumi.StringPtrInput
 	// URL of the EST server.
 	EstUrl pulumi.StringPtrInput
+	// Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
+	FabricCa pulumi.StringPtrInput
 	// Time at which CA was last updated.
 	LastUpdated pulumi.IntPtrInput
 	// Name.
@@ -186,6 +192,8 @@ type caArgs struct {
 	CaIdentifier *string `pulumi:"caIdentifier"`
 	// URL of the EST server.
 	EstUrl *string `pulumi:"estUrl"`
+	// Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
+	FabricCa *string `pulumi:"fabricCa"`
 	// Time at which CA was last updated.
 	LastUpdated *int `pulumi:"lastUpdated"`
 	// Name.
@@ -220,6 +228,8 @@ type CaArgs struct {
 	CaIdentifier pulumi.StringPtrInput
 	// URL of the EST server.
 	EstUrl pulumi.StringPtrInput
+	// Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
+	FabricCa pulumi.StringPtrInput
 	// Time at which CA was last updated.
 	LastUpdated pulumi.IntPtrInput
 	// Name.
@@ -354,6 +364,11 @@ func (o CaOutput) EstUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ca) pulumi.StringOutput { return v.EstUrl }).(pulumi.StringOutput)
 }
 
+// Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
+func (o CaOutput) FabricCa() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ca) pulumi.StringOutput { return v.FabricCa }).(pulumi.StringOutput)
+}
+
 // Time at which CA was last updated.
 func (o CaOutput) LastUpdated() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ca) pulumi.IntOutput { return v.LastUpdated }).(pulumi.IntOutput)
@@ -400,8 +415,8 @@ func (o CaOutput) Trusted() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o CaOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Ca) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o CaOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ca) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type CaArrayOutput struct{ *pulumi.OutputState }

@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -66,7 +65,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -144,7 +142,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> FtpProxyThreshold { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -156,7 +154,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> GratuitousArps { get; private set; } = null!;
 
         /// <summary>
-        /// Cluster group ID  (0 - 255). Must be the same for all members.
+        /// HA group ID. Must be the same for all members. On FortiOS versions 6.2.0-6.2.6: 0 - 255. On FortiOS versions 7.0.2-7.0.15: 0 - 1023. On FortiOS versions 7.2.0: 0 - 1023;  or 0 - 7 when there are more than 2 vclusters.
         /// </summary>
         [Output("groupId")]
         public Output<int> GroupId { get; private set; } = null!;
@@ -168,7 +166,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> GroupName { get; private set; } = null!;
 
         /// <summary>
-        /// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+        /// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, FortiSandbox, sFlow, and Netflow. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("haDirect")]
         public Output<string> HaDirect { get; private set; } = null!;
@@ -198,7 +196,7 @@ namespace Pulumiverse.Fortios.System
         public Output<int> HaUptimeDiffMargin { get; private set; } = null!;
 
         /// <summary>
-        /// Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+        /// Time between sending heartbeat packets (1 - 20). Increase to reduce false positives.
         /// </summary>
         [Output("hbInterval")]
         public Output<int> HbInterval { get; private set; } = null!;
@@ -342,7 +340,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Monitor { get; private set; } = null!;
 
         /// <summary>
-        /// HA multicast TTL on master (5 - 3600 sec).
+        /// HA multicast TTL on primary (5 - 3600 sec).
         /// </summary>
         [Output("multicastTtl")]
         public Output<int> MulticastTtl { get; private set; } = null!;
@@ -552,7 +550,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> UnicastStatus { get; private set; } = null!;
 
         /// <summary>
-        /// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+        /// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (default = 30). On FortiOS versions 6.4.10-6.4.15, 7.0.2-7.0.5: 1 - 300. On FortiOS versions &gt;= 7.0.6: 15 - 300.
         /// </summary>
         [Output("uninterruptiblePrimaryWait")]
         public Output<int> UninterruptiblePrimaryWait { get; private set; } = null!;
@@ -603,7 +601,7 @@ namespace Pulumiverse.Fortios.System
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Weight-round-robin weight for each cluster unit. Syntax &lt;priority&gt; &lt;weight&gt;.
@@ -718,7 +716,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? FtpProxyThreshold { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -730,7 +728,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? GratuitousArps { get; set; }
 
         /// <summary>
-        /// Cluster group ID  (0 - 255). Must be the same for all members.
+        /// HA group ID. Must be the same for all members. On FortiOS versions 6.2.0-6.2.6: 0 - 255. On FortiOS versions 7.0.2-7.0.15: 0 - 1023. On FortiOS versions 7.2.0: 0 - 1023;  or 0 - 7 when there are more than 2 vclusters.
         /// </summary>
         [Input("groupId")]
         public Input<int>? GroupId { get; set; }
@@ -742,7 +740,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? GroupName { get; set; }
 
         /// <summary>
-        /// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+        /// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, FortiSandbox, sFlow, and Netflow. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("haDirect")]
         public Input<string>? HaDirect { get; set; }
@@ -778,7 +776,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? HaUptimeDiffMargin { get; set; }
 
         /// <summary>
-        /// Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+        /// Time between sending heartbeat packets (1 - 20). Increase to reduce false positives.
         /// </summary>
         [Input("hbInterval")]
         public Input<int>? HbInterval { get; set; }
@@ -932,7 +930,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Monitor { get; set; }
 
         /// <summary>
-        /// HA multicast TTL on master (5 - 3600 sec).
+        /// HA multicast TTL on primary (5 - 3600 sec).
         /// </summary>
         [Input("multicastTtl")]
         public Input<int>? MulticastTtl { get; set; }
@@ -1158,7 +1156,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? UnicastStatus { get; set; }
 
         /// <summary>
-        /// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+        /// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (default = 30). On FortiOS versions 6.4.10-6.4.15, 7.0.2-7.0.5: 1 - 300. On FortiOS versions &gt;= 7.0.6: 15 - 300.
         /// </summary>
         [Input("uninterruptiblePrimaryWait")]
         public Input<int>? UninterruptiblePrimaryWait { get; set; }
@@ -1286,7 +1284,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? FtpProxyThreshold { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -1298,7 +1296,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? GratuitousArps { get; set; }
 
         /// <summary>
-        /// Cluster group ID  (0 - 255). Must be the same for all members.
+        /// HA group ID. Must be the same for all members. On FortiOS versions 6.2.0-6.2.6: 0 - 255. On FortiOS versions 7.0.2-7.0.15: 0 - 1023. On FortiOS versions 7.2.0: 0 - 1023;  or 0 - 7 when there are more than 2 vclusters.
         /// </summary>
         [Input("groupId")]
         public Input<int>? GroupId { get; set; }
@@ -1310,7 +1308,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? GroupName { get; set; }
 
         /// <summary>
-        /// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+        /// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, FortiSandbox, sFlow, and Netflow. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("haDirect")]
         public Input<string>? HaDirect { get; set; }
@@ -1346,7 +1344,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? HaUptimeDiffMargin { get; set; }
 
         /// <summary>
-        /// Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+        /// Time between sending heartbeat packets (1 - 20). Increase to reduce false positives.
         /// </summary>
         [Input("hbInterval")]
         public Input<int>? HbInterval { get; set; }
@@ -1500,7 +1498,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Monitor { get; set; }
 
         /// <summary>
-        /// HA multicast TTL on master (5 - 3600 sec).
+        /// HA multicast TTL on primary (5 - 3600 sec).
         /// </summary>
         [Input("multicastTtl")]
         public Input<int>? MulticastTtl { get; set; }
@@ -1726,7 +1724,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? UnicastStatus { get; set; }
 
         /// <summary>
-        /// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+        /// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (default = 30). On FortiOS versions 6.4.10-6.4.15, 7.0.2-7.0.5: 1 - 300. On FortiOS versions &gt;= 7.0.6: 15 - 300.
         /// </summary>
         [Input("uninterruptiblePrimaryWait")]
         public Input<int>? UninterruptiblePrimaryWait { get; set; }

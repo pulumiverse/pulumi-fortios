@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,7 +41,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -77,7 +75,7 @@ type Realm struct {
 	// URL path to access SSL-VPN login page.
 	UrlPath pulumi.StringOutput `pulumi:"urlPath"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Virtual host name for realm.
 	VirtualHost pulumi.StringPtrOutput `pulumi:"virtualHost"`
 	// Enable/disable enforcement of virtual host method for SSL-VPN client access. Valid values: `enable`, `disable`.
@@ -330,8 +328,8 @@ func (o RealmOutput) UrlPath() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o RealmOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o RealmOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Virtual host name for realm.

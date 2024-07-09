@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.Webproxy
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -43,7 +42,6 @@ namespace Pulumiverse.Fortios.Webproxy
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -66,6 +64,12 @@ namespace Pulumiverse.Fortios.Webproxy
     [FortiosResourceType("fortios:webproxy/global:Global")]
     public partial class Global : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("alwaysLearnClientIp")]
+        public Output<string> AlwaysLearnClientIp { get; private set; } = null!;
+
         /// <summary>
         /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
         /// </summary>
@@ -91,7 +95,7 @@ namespace Pulumiverse.Fortios.Webproxy
         public Output<int> ForwardServerAffinityTimeout { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -151,7 +155,7 @@ namespace Pulumiverse.Fortios.Webproxy
         public Output<int> MaxMessageLength { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+        /// Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions &gt;= 6.2.4: default = 8.
         /// </summary>
         [Output("maxRequestLength")]
         public Output<int> MaxRequestLength { get; private set; } = null!;
@@ -173,6 +177,12 @@ namespace Pulumiverse.Fortios.Webproxy
         /// </summary>
         [Output("proxyFqdn")]
         public Output<string> ProxyFqdn { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("proxyTransparentCertInspection")]
+        public Output<string> ProxyTransparentCertInspection { get; private set; } = null!;
 
         /// <summary>
         /// IPv4 source addresses to exempt proxy affinity.
@@ -220,7 +230,7 @@ namespace Pulumiverse.Fortios.Webproxy
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Name of the web proxy profile to apply when explicit proxy traffic is allowed by default and traffic is accepted that does not match an explicit proxy policy.
@@ -276,6 +286,12 @@ namespace Pulumiverse.Fortios.Webproxy
     public sealed class GlobalArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("alwaysLearnClientIp")]
+        public Input<string>? AlwaysLearnClientIp { get; set; }
+
+        /// <summary>
         /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
         /// </summary>
         [Input("dynamicSortSubtable")]
@@ -300,7 +316,7 @@ namespace Pulumiverse.Fortios.Webproxy
         public Input<int>? ForwardServerAffinityTimeout { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -372,7 +388,7 @@ namespace Pulumiverse.Fortios.Webproxy
         public Input<int>? MaxMessageLength { get; set; }
 
         /// <summary>
-        /// Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+        /// Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions &gt;= 6.2.4: default = 8.
         /// </summary>
         [Input("maxRequestLength")]
         public Input<int>? MaxRequestLength { get; set; }
@@ -394,6 +410,12 @@ namespace Pulumiverse.Fortios.Webproxy
         /// </summary>
         [Input("proxyFqdn", required: true)]
         public Input<string> ProxyFqdn { get; set; } = null!;
+
+        /// <summary>
+        /// Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("proxyTransparentCertInspection")]
+        public Input<string>? ProxyTransparentCertInspection { get; set; }
 
         /// <summary>
         /// IPv4 source addresses to exempt proxy affinity.
@@ -458,6 +480,12 @@ namespace Pulumiverse.Fortios.Webproxy
     public sealed class GlobalState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable/disable learning the client's IP address from headers for every request. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("alwaysLearnClientIp")]
+        public Input<string>? AlwaysLearnClientIp { get; set; }
+
+        /// <summary>
         /// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -&gt; [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -&gt; [ a10, a2 ].
         /// </summary>
         [Input("dynamicSortSubtable")]
@@ -482,7 +510,7 @@ namespace Pulumiverse.Fortios.Webproxy
         public Input<int>? ForwardServerAffinityTimeout { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -554,7 +582,7 @@ namespace Pulumiverse.Fortios.Webproxy
         public Input<int>? MaxMessageLength { get; set; }
 
         /// <summary>
-        /// Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
+        /// Maximum length of HTTP request line (2 - 64 Kbytes). On FortiOS versions 6.2.0: default = 4. On FortiOS versions &gt;= 6.2.4: default = 8.
         /// </summary>
         [Input("maxRequestLength")]
         public Input<int>? MaxRequestLength { get; set; }
@@ -576,6 +604,12 @@ namespace Pulumiverse.Fortios.Webproxy
         /// </summary>
         [Input("proxyFqdn")]
         public Input<string>? ProxyFqdn { get; set; }
+
+        /// <summary>
+        /// Enable/disable transparent proxy certificate inspection. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("proxyTransparentCertInspection")]
+        public Input<string>? ProxyTransparentCertInspection { get; set; }
 
         /// <summary>
         /// IPv4 source addresses to exempt proxy affinity.

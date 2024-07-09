@@ -27,8 +27,14 @@ class GlobalArgs:
                  ipsec_base_ip: Optional[pulumi.Input[str]] = None,
                  link_aggregation: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
+                 max_ble_device: Optional[pulumi.Input[int]] = None,
                  max_clients: Optional[pulumi.Input[int]] = None,
                  max_retransmit: Optional[pulumi.Input[int]] = None,
+                 max_rogue_ap: Optional[pulumi.Input[int]] = None,
+                 max_rogue_ap_wtp: Optional[pulumi.Input[int]] = None,
+                 max_rogue_sta: Optional[pulumi.Input[int]] = None,
+                 max_sta_cap: Optional[pulumi.Input[int]] = None,
+                 max_sta_cap_wtp: Optional[pulumi.Input[int]] = None,
                  mesh_eth_type: Optional[pulumi.Input[int]] = None,
                  nac_interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -42,11 +48,11 @@ class GlobalArgs:
         """
         The set of arguments for constructing a Global resource.
         :param pulumi.Input[int] acd_process_count: Configure the number cw_acd daemons for multi-core CPU support (default = 0).
-        :param pulumi.Input[str] ap_log_server: Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ap_log_server: Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ap_log_server_ip: IP address that APs or FortiAPs send log messages to.
         :param pulumi.Input[int] ap_log_server_port: Port that APs or FortiAPs send log messages to.
         :param pulumi.Input[str] control_message_offload: Configure CAPWAP control message data channel offload.
-        :param pulumi.Input[str] data_ethernet_ii: Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] data_ethernet_ii: Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dfs_lab_test: Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] discovery_mc_addr: Multicast IP address for AP discovery (default = 244.0.1.140).
         :param pulumi.Input[int] fiapp_eth_type: Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
@@ -54,8 +60,14 @@ class GlobalArgs:
         :param pulumi.Input[str] ipsec_base_ip: Base IP address for IPsec VPN tunnels between the access points and the wireless controller (default = 169.254.0.1).
         :param pulumi.Input[str] link_aggregation: Enable/disable calculating the CAPWAP transmit hash to load balance sessions to link aggregation nodes (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] location: Description of the location of the wireless controller.
+        :param pulumi.Input[int] max_ble_device: Maximum number of BLE devices stored on the controller (default = 0).
         :param pulumi.Input[int] max_clients: Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
         :param pulumi.Input[int] max_retransmit: Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
+        :param pulumi.Input[int] max_rogue_ap: Maximum number of rogue APs stored on the controller (default = 0).
+        :param pulumi.Input[int] max_rogue_ap_wtp: Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+        :param pulumi.Input[int] max_rogue_sta: Maximum number of rogue stations stored on the controller (default = 0).
+        :param pulumi.Input[int] max_sta_cap: Maximum number of station cap stored on the controller (default = 0).
+        :param pulumi.Input[int] max_sta_cap_wtp: Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
         :param pulumi.Input[int] mesh_eth_type: Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
         :param pulumi.Input[int] nac_interval: Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
         :param pulumi.Input[str] name: Name of the wireless controller.
@@ -93,10 +105,22 @@ class GlobalArgs:
             pulumi.set(__self__, "link_aggregation", link_aggregation)
         if location is not None:
             pulumi.set(__self__, "location", location)
+        if max_ble_device is not None:
+            pulumi.set(__self__, "max_ble_device", max_ble_device)
         if max_clients is not None:
             pulumi.set(__self__, "max_clients", max_clients)
         if max_retransmit is not None:
             pulumi.set(__self__, "max_retransmit", max_retransmit)
+        if max_rogue_ap is not None:
+            pulumi.set(__self__, "max_rogue_ap", max_rogue_ap)
+        if max_rogue_ap_wtp is not None:
+            pulumi.set(__self__, "max_rogue_ap_wtp", max_rogue_ap_wtp)
+        if max_rogue_sta is not None:
+            pulumi.set(__self__, "max_rogue_sta", max_rogue_sta)
+        if max_sta_cap is not None:
+            pulumi.set(__self__, "max_sta_cap", max_sta_cap)
+        if max_sta_cap_wtp is not None:
+            pulumi.set(__self__, "max_sta_cap_wtp", max_sta_cap_wtp)
         if mesh_eth_type is not None:
             pulumi.set(__self__, "mesh_eth_type", mesh_eth_type)
         if nac_interval is not None:
@@ -134,7 +158,7 @@ class GlobalArgs:
     @pulumi.getter(name="apLogServer")
     def ap_log_server(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+        Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "ap_log_server")
 
@@ -182,7 +206,7 @@ class GlobalArgs:
     @pulumi.getter(name="dataEthernetIi")
     def data_ethernet_ii(self) -> Optional[pulumi.Input[str]]:
         """
-        Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+        Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "data_ethernet_ii")
 
@@ -275,6 +299,18 @@ class GlobalArgs:
         pulumi.set(self, "location", value)
 
     @property
+    @pulumi.getter(name="maxBleDevice")
+    def max_ble_device(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of BLE devices stored on the controller (default = 0).
+        """
+        return pulumi.get(self, "max_ble_device")
+
+    @max_ble_device.setter
+    def max_ble_device(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_ble_device", value)
+
+    @property
     @pulumi.getter(name="maxClients")
     def max_clients(self) -> Optional[pulumi.Input[int]]:
         """
@@ -297,6 +333,66 @@ class GlobalArgs:
     @max_retransmit.setter
     def max_retransmit(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_retransmit", value)
+
+    @property
+    @pulumi.getter(name="maxRogueAp")
+    def max_rogue_ap(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of rogue APs stored on the controller (default = 0).
+        """
+        return pulumi.get(self, "max_rogue_ap")
+
+    @max_rogue_ap.setter
+    def max_rogue_ap(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_rogue_ap", value)
+
+    @property
+    @pulumi.getter(name="maxRogueApWtp")
+    def max_rogue_ap_wtp(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+        """
+        return pulumi.get(self, "max_rogue_ap_wtp")
+
+    @max_rogue_ap_wtp.setter
+    def max_rogue_ap_wtp(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_rogue_ap_wtp", value)
+
+    @property
+    @pulumi.getter(name="maxRogueSta")
+    def max_rogue_sta(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of rogue stations stored on the controller (default = 0).
+        """
+        return pulumi.get(self, "max_rogue_sta")
+
+    @max_rogue_sta.setter
+    def max_rogue_sta(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_rogue_sta", value)
+
+    @property
+    @pulumi.getter(name="maxStaCap")
+    def max_sta_cap(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of station cap stored on the controller (default = 0).
+        """
+        return pulumi.get(self, "max_sta_cap")
+
+    @max_sta_cap.setter
+    def max_sta_cap(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_sta_cap", value)
+
+    @property
+    @pulumi.getter(name="maxStaCapWtp")
+    def max_sta_cap_wtp(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
+        """
+        return pulumi.get(self, "max_sta_cap_wtp")
+
+    @max_sta_cap_wtp.setter
+    def max_sta_cap_wtp(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_sta_cap_wtp", value)
 
     @property
     @pulumi.getter(name="meshEthType")
@@ -435,8 +531,14 @@ class _GlobalState:
                  ipsec_base_ip: Optional[pulumi.Input[str]] = None,
                  link_aggregation: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
+                 max_ble_device: Optional[pulumi.Input[int]] = None,
                  max_clients: Optional[pulumi.Input[int]] = None,
                  max_retransmit: Optional[pulumi.Input[int]] = None,
+                 max_rogue_ap: Optional[pulumi.Input[int]] = None,
+                 max_rogue_ap_wtp: Optional[pulumi.Input[int]] = None,
+                 max_rogue_sta: Optional[pulumi.Input[int]] = None,
+                 max_sta_cap: Optional[pulumi.Input[int]] = None,
+                 max_sta_cap_wtp: Optional[pulumi.Input[int]] = None,
                  mesh_eth_type: Optional[pulumi.Input[int]] = None,
                  nac_interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -450,11 +552,11 @@ class _GlobalState:
         """
         Input properties used for looking up and filtering Global resources.
         :param pulumi.Input[int] acd_process_count: Configure the number cw_acd daemons for multi-core CPU support (default = 0).
-        :param pulumi.Input[str] ap_log_server: Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ap_log_server: Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ap_log_server_ip: IP address that APs or FortiAPs send log messages to.
         :param pulumi.Input[int] ap_log_server_port: Port that APs or FortiAPs send log messages to.
         :param pulumi.Input[str] control_message_offload: Configure CAPWAP control message data channel offload.
-        :param pulumi.Input[str] data_ethernet_ii: Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] data_ethernet_ii: Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dfs_lab_test: Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] discovery_mc_addr: Multicast IP address for AP discovery (default = 244.0.1.140).
         :param pulumi.Input[int] fiapp_eth_type: Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
@@ -462,8 +564,14 @@ class _GlobalState:
         :param pulumi.Input[str] ipsec_base_ip: Base IP address for IPsec VPN tunnels between the access points and the wireless controller (default = 169.254.0.1).
         :param pulumi.Input[str] link_aggregation: Enable/disable calculating the CAPWAP transmit hash to load balance sessions to link aggregation nodes (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] location: Description of the location of the wireless controller.
+        :param pulumi.Input[int] max_ble_device: Maximum number of BLE devices stored on the controller (default = 0).
         :param pulumi.Input[int] max_clients: Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
         :param pulumi.Input[int] max_retransmit: Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
+        :param pulumi.Input[int] max_rogue_ap: Maximum number of rogue APs stored on the controller (default = 0).
+        :param pulumi.Input[int] max_rogue_ap_wtp: Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+        :param pulumi.Input[int] max_rogue_sta: Maximum number of rogue stations stored on the controller (default = 0).
+        :param pulumi.Input[int] max_sta_cap: Maximum number of station cap stored on the controller (default = 0).
+        :param pulumi.Input[int] max_sta_cap_wtp: Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
         :param pulumi.Input[int] mesh_eth_type: Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
         :param pulumi.Input[int] nac_interval: Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
         :param pulumi.Input[str] name: Name of the wireless controller.
@@ -501,10 +609,22 @@ class _GlobalState:
             pulumi.set(__self__, "link_aggregation", link_aggregation)
         if location is not None:
             pulumi.set(__self__, "location", location)
+        if max_ble_device is not None:
+            pulumi.set(__self__, "max_ble_device", max_ble_device)
         if max_clients is not None:
             pulumi.set(__self__, "max_clients", max_clients)
         if max_retransmit is not None:
             pulumi.set(__self__, "max_retransmit", max_retransmit)
+        if max_rogue_ap is not None:
+            pulumi.set(__self__, "max_rogue_ap", max_rogue_ap)
+        if max_rogue_ap_wtp is not None:
+            pulumi.set(__self__, "max_rogue_ap_wtp", max_rogue_ap_wtp)
+        if max_rogue_sta is not None:
+            pulumi.set(__self__, "max_rogue_sta", max_rogue_sta)
+        if max_sta_cap is not None:
+            pulumi.set(__self__, "max_sta_cap", max_sta_cap)
+        if max_sta_cap_wtp is not None:
+            pulumi.set(__self__, "max_sta_cap_wtp", max_sta_cap_wtp)
         if mesh_eth_type is not None:
             pulumi.set(__self__, "mesh_eth_type", mesh_eth_type)
         if nac_interval is not None:
@@ -542,7 +662,7 @@ class _GlobalState:
     @pulumi.getter(name="apLogServer")
     def ap_log_server(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+        Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "ap_log_server")
 
@@ -590,7 +710,7 @@ class _GlobalState:
     @pulumi.getter(name="dataEthernetIi")
     def data_ethernet_ii(self) -> Optional[pulumi.Input[str]]:
         """
-        Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+        Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "data_ethernet_ii")
 
@@ -683,6 +803,18 @@ class _GlobalState:
         pulumi.set(self, "location", value)
 
     @property
+    @pulumi.getter(name="maxBleDevice")
+    def max_ble_device(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of BLE devices stored on the controller (default = 0).
+        """
+        return pulumi.get(self, "max_ble_device")
+
+    @max_ble_device.setter
+    def max_ble_device(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_ble_device", value)
+
+    @property
     @pulumi.getter(name="maxClients")
     def max_clients(self) -> Optional[pulumi.Input[int]]:
         """
@@ -705,6 +837,66 @@ class _GlobalState:
     @max_retransmit.setter
     def max_retransmit(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_retransmit", value)
+
+    @property
+    @pulumi.getter(name="maxRogueAp")
+    def max_rogue_ap(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of rogue APs stored on the controller (default = 0).
+        """
+        return pulumi.get(self, "max_rogue_ap")
+
+    @max_rogue_ap.setter
+    def max_rogue_ap(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_rogue_ap", value)
+
+    @property
+    @pulumi.getter(name="maxRogueApWtp")
+    def max_rogue_ap_wtp(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+        """
+        return pulumi.get(self, "max_rogue_ap_wtp")
+
+    @max_rogue_ap_wtp.setter
+    def max_rogue_ap_wtp(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_rogue_ap_wtp", value)
+
+    @property
+    @pulumi.getter(name="maxRogueSta")
+    def max_rogue_sta(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of rogue stations stored on the controller (default = 0).
+        """
+        return pulumi.get(self, "max_rogue_sta")
+
+    @max_rogue_sta.setter
+    def max_rogue_sta(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_rogue_sta", value)
+
+    @property
+    @pulumi.getter(name="maxStaCap")
+    def max_sta_cap(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of station cap stored on the controller (default = 0).
+        """
+        return pulumi.get(self, "max_sta_cap")
+
+    @max_sta_cap.setter
+    def max_sta_cap(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_sta_cap", value)
+
+    @property
+    @pulumi.getter(name="maxStaCapWtp")
+    def max_sta_cap_wtp(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
+        """
+        return pulumi.get(self, "max_sta_cap_wtp")
+
+    @max_sta_cap_wtp.setter
+    def max_sta_cap_wtp(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_sta_cap_wtp", value)
 
     @property
     @pulumi.getter(name="meshEthType")
@@ -845,8 +1037,14 @@ class Global(pulumi.CustomResource):
                  ipsec_base_ip: Optional[pulumi.Input[str]] = None,
                  link_aggregation: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
+                 max_ble_device: Optional[pulumi.Input[int]] = None,
                  max_clients: Optional[pulumi.Input[int]] = None,
                  max_retransmit: Optional[pulumi.Input[int]] = None,
+                 max_rogue_ap: Optional[pulumi.Input[int]] = None,
+                 max_rogue_ap_wtp: Optional[pulumi.Input[int]] = None,
+                 max_rogue_sta: Optional[pulumi.Input[int]] = None,
+                 max_sta_cap: Optional[pulumi.Input[int]] = None,
+                 max_sta_cap_wtp: Optional[pulumi.Input[int]] = None,
                  mesh_eth_type: Optional[pulumi.Input[int]] = None,
                  nac_interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -863,7 +1061,6 @@ class Global(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -885,7 +1082,6 @@ class Global(pulumi.CustomResource):
             rogue_scan_mac_adjacency=7,
             wtp_share="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -908,11 +1104,11 @@ class Global(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] acd_process_count: Configure the number cw_acd daemons for multi-core CPU support (default = 0).
-        :param pulumi.Input[str] ap_log_server: Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ap_log_server: Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ap_log_server_ip: IP address that APs or FortiAPs send log messages to.
         :param pulumi.Input[int] ap_log_server_port: Port that APs or FortiAPs send log messages to.
         :param pulumi.Input[str] control_message_offload: Configure CAPWAP control message data channel offload.
-        :param pulumi.Input[str] data_ethernet_ii: Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] data_ethernet_ii: Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dfs_lab_test: Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] discovery_mc_addr: Multicast IP address for AP discovery (default = 244.0.1.140).
         :param pulumi.Input[int] fiapp_eth_type: Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
@@ -920,8 +1116,14 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] ipsec_base_ip: Base IP address for IPsec VPN tunnels between the access points and the wireless controller (default = 169.254.0.1).
         :param pulumi.Input[str] link_aggregation: Enable/disable calculating the CAPWAP transmit hash to load balance sessions to link aggregation nodes (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] location: Description of the location of the wireless controller.
+        :param pulumi.Input[int] max_ble_device: Maximum number of BLE devices stored on the controller (default = 0).
         :param pulumi.Input[int] max_clients: Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
         :param pulumi.Input[int] max_retransmit: Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
+        :param pulumi.Input[int] max_rogue_ap: Maximum number of rogue APs stored on the controller (default = 0).
+        :param pulumi.Input[int] max_rogue_ap_wtp: Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+        :param pulumi.Input[int] max_rogue_sta: Maximum number of rogue stations stored on the controller (default = 0).
+        :param pulumi.Input[int] max_sta_cap: Maximum number of station cap stored on the controller (default = 0).
+        :param pulumi.Input[int] max_sta_cap_wtp: Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
         :param pulumi.Input[int] mesh_eth_type: Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
         :param pulumi.Input[int] nac_interval: Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
         :param pulumi.Input[str] name: Name of the wireless controller.
@@ -944,7 +1146,6 @@ class Global(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -966,7 +1167,6 @@ class Global(pulumi.CustomResource):
             rogue_scan_mac_adjacency=7,
             wtp_share="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1014,8 +1214,14 @@ class Global(pulumi.CustomResource):
                  ipsec_base_ip: Optional[pulumi.Input[str]] = None,
                  link_aggregation: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
+                 max_ble_device: Optional[pulumi.Input[int]] = None,
                  max_clients: Optional[pulumi.Input[int]] = None,
                  max_retransmit: Optional[pulumi.Input[int]] = None,
+                 max_rogue_ap: Optional[pulumi.Input[int]] = None,
+                 max_rogue_ap_wtp: Optional[pulumi.Input[int]] = None,
+                 max_rogue_sta: Optional[pulumi.Input[int]] = None,
+                 max_sta_cap: Optional[pulumi.Input[int]] = None,
+                 max_sta_cap_wtp: Optional[pulumi.Input[int]] = None,
                  mesh_eth_type: Optional[pulumi.Input[int]] = None,
                  nac_interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -1048,8 +1254,14 @@ class Global(pulumi.CustomResource):
             __props__.__dict__["ipsec_base_ip"] = ipsec_base_ip
             __props__.__dict__["link_aggregation"] = link_aggregation
             __props__.__dict__["location"] = location
+            __props__.__dict__["max_ble_device"] = max_ble_device
             __props__.__dict__["max_clients"] = max_clients
             __props__.__dict__["max_retransmit"] = max_retransmit
+            __props__.__dict__["max_rogue_ap"] = max_rogue_ap
+            __props__.__dict__["max_rogue_ap_wtp"] = max_rogue_ap_wtp
+            __props__.__dict__["max_rogue_sta"] = max_rogue_sta
+            __props__.__dict__["max_sta_cap"] = max_sta_cap
+            __props__.__dict__["max_sta_cap_wtp"] = max_sta_cap_wtp
             __props__.__dict__["mesh_eth_type"] = mesh_eth_type
             __props__.__dict__["nac_interval"] = nac_interval
             __props__.__dict__["name"] = name
@@ -1083,8 +1295,14 @@ class Global(pulumi.CustomResource):
             ipsec_base_ip: Optional[pulumi.Input[str]] = None,
             link_aggregation: Optional[pulumi.Input[str]] = None,
             location: Optional[pulumi.Input[str]] = None,
+            max_ble_device: Optional[pulumi.Input[int]] = None,
             max_clients: Optional[pulumi.Input[int]] = None,
             max_retransmit: Optional[pulumi.Input[int]] = None,
+            max_rogue_ap: Optional[pulumi.Input[int]] = None,
+            max_rogue_ap_wtp: Optional[pulumi.Input[int]] = None,
+            max_rogue_sta: Optional[pulumi.Input[int]] = None,
+            max_sta_cap: Optional[pulumi.Input[int]] = None,
+            max_sta_cap_wtp: Optional[pulumi.Input[int]] = None,
             mesh_eth_type: Optional[pulumi.Input[int]] = None,
             nac_interval: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -1103,11 +1321,11 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] acd_process_count: Configure the number cw_acd daemons for multi-core CPU support (default = 0).
-        :param pulumi.Input[str] ap_log_server: Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ap_log_server: Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ap_log_server_ip: IP address that APs or FortiAPs send log messages to.
         :param pulumi.Input[int] ap_log_server_port: Port that APs or FortiAPs send log messages to.
         :param pulumi.Input[str] control_message_offload: Configure CAPWAP control message data channel offload.
-        :param pulumi.Input[str] data_ethernet_ii: Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] data_ethernet_ii: Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dfs_lab_test: Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] discovery_mc_addr: Multicast IP address for AP discovery (default = 244.0.1.140).
         :param pulumi.Input[int] fiapp_eth_type: Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
@@ -1115,8 +1333,14 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] ipsec_base_ip: Base IP address for IPsec VPN tunnels between the access points and the wireless controller (default = 169.254.0.1).
         :param pulumi.Input[str] link_aggregation: Enable/disable calculating the CAPWAP transmit hash to load balance sessions to link aggregation nodes (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] location: Description of the location of the wireless controller.
+        :param pulumi.Input[int] max_ble_device: Maximum number of BLE devices stored on the controller (default = 0).
         :param pulumi.Input[int] max_clients: Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
         :param pulumi.Input[int] max_retransmit: Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
+        :param pulumi.Input[int] max_rogue_ap: Maximum number of rogue APs stored on the controller (default = 0).
+        :param pulumi.Input[int] max_rogue_ap_wtp: Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+        :param pulumi.Input[int] max_rogue_sta: Maximum number of rogue stations stored on the controller (default = 0).
+        :param pulumi.Input[int] max_sta_cap: Maximum number of station cap stored on the controller (default = 0).
+        :param pulumi.Input[int] max_sta_cap_wtp: Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
         :param pulumi.Input[int] mesh_eth_type: Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
         :param pulumi.Input[int] nac_interval: Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
         :param pulumi.Input[str] name: Name of the wireless controller.
@@ -1145,8 +1369,14 @@ class Global(pulumi.CustomResource):
         __props__.__dict__["ipsec_base_ip"] = ipsec_base_ip
         __props__.__dict__["link_aggregation"] = link_aggregation
         __props__.__dict__["location"] = location
+        __props__.__dict__["max_ble_device"] = max_ble_device
         __props__.__dict__["max_clients"] = max_clients
         __props__.__dict__["max_retransmit"] = max_retransmit
+        __props__.__dict__["max_rogue_ap"] = max_rogue_ap
+        __props__.__dict__["max_rogue_ap_wtp"] = max_rogue_ap_wtp
+        __props__.__dict__["max_rogue_sta"] = max_rogue_sta
+        __props__.__dict__["max_sta_cap"] = max_sta_cap
+        __props__.__dict__["max_sta_cap_wtp"] = max_sta_cap_wtp
         __props__.__dict__["mesh_eth_type"] = mesh_eth_type
         __props__.__dict__["nac_interval"] = nac_interval
         __props__.__dict__["name"] = name
@@ -1171,7 +1401,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="apLogServer")
     def ap_log_server(self) -> pulumi.Output[str]:
         """
-        Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+        Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "ap_log_server")
 
@@ -1203,7 +1433,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="dataEthernetIi")
     def data_ethernet_ii(self) -> pulumi.Output[str]:
         """
-        Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+        Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "data_ethernet_ii")
 
@@ -1264,6 +1494,14 @@ class Global(pulumi.CustomResource):
         return pulumi.get(self, "location")
 
     @property
+    @pulumi.getter(name="maxBleDevice")
+    def max_ble_device(self) -> pulumi.Output[int]:
+        """
+        Maximum number of BLE devices stored on the controller (default = 0).
+        """
+        return pulumi.get(self, "max_ble_device")
+
+    @property
     @pulumi.getter(name="maxClients")
     def max_clients(self) -> pulumi.Output[int]:
         """
@@ -1278,6 +1516,46 @@ class Global(pulumi.CustomResource):
         Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
         """
         return pulumi.get(self, "max_retransmit")
+
+    @property
+    @pulumi.getter(name="maxRogueAp")
+    def max_rogue_ap(self) -> pulumi.Output[int]:
+        """
+        Maximum number of rogue APs stored on the controller (default = 0).
+        """
+        return pulumi.get(self, "max_rogue_ap")
+
+    @property
+    @pulumi.getter(name="maxRogueApWtp")
+    def max_rogue_ap_wtp(self) -> pulumi.Output[int]:
+        """
+        Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+        """
+        return pulumi.get(self, "max_rogue_ap_wtp")
+
+    @property
+    @pulumi.getter(name="maxRogueSta")
+    def max_rogue_sta(self) -> pulumi.Output[int]:
+        """
+        Maximum number of rogue stations stored on the controller (default = 0).
+        """
+        return pulumi.get(self, "max_rogue_sta")
+
+    @property
+    @pulumi.getter(name="maxStaCap")
+    def max_sta_cap(self) -> pulumi.Output[int]:
+        """
+        Maximum number of station cap stored on the controller (default = 0).
+        """
+        return pulumi.get(self, "max_sta_cap")
+
+    @property
+    @pulumi.getter(name="maxStaCapWtp")
+    def max_sta_cap_wtp(self) -> pulumi.Output[int]:
+        """
+        Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
+        """
+        return pulumi.get(self, "max_sta_cap_wtp")
 
     @property
     @pulumi.getter(name="meshEthType")
@@ -1337,7 +1615,7 @@ class Global(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

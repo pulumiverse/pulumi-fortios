@@ -66,7 +66,7 @@ class LocalArgs:
         :param pulumi.Input[str] certificate: PEM format certificate.
         :param pulumi.Input[str] cmp_path: Path location inside CMP server.
         :param pulumi.Input[str] cmp_regeneration_method: CMP auto-regeneration method. Valid values: `keyupate`, `renewal`.
-        :param pulumi.Input[str] cmp_server: 'ADDRESS:PORT' for CMP server.
+        :param pulumi.Input[str] cmp_server: Address and port for CMP server (format = address:port).
         :param pulumi.Input[str] cmp_server_cert: CMP server certificate.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] csr: Certificate Signing Request.
@@ -310,7 +310,7 @@ class LocalArgs:
     @pulumi.getter(name="cmpServer")
     def cmp_server(self) -> Optional[pulumi.Input[str]]:
         """
-        'ADDRESS:PORT' for CMP server.
+        Address and port for CMP server (format = address:port).
         """
         return pulumi.get(self, "cmp_server")
 
@@ -698,7 +698,7 @@ class _LocalState:
         :param pulumi.Input[str] certificate: PEM format certificate.
         :param pulumi.Input[str] cmp_path: Path location inside CMP server.
         :param pulumi.Input[str] cmp_regeneration_method: CMP auto-regeneration method. Valid values: `keyupate`, `renewal`.
-        :param pulumi.Input[str] cmp_server: 'ADDRESS:PORT' for CMP server.
+        :param pulumi.Input[str] cmp_server: Address and port for CMP server (format = address:port).
         :param pulumi.Input[str] cmp_server_cert: CMP server certificate.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] csr: Certificate Signing Request.
@@ -942,7 +942,7 @@ class _LocalState:
     @pulumi.getter(name="cmpServer")
     def cmp_server(self) -> Optional[pulumi.Input[str]]:
         """
-        'ADDRESS:PORT' for CMP server.
+        Address and port for CMP server (format = address:port).
         """
         return pulumi.get(self, "cmp_server")
 
@@ -1354,7 +1354,7 @@ class Local(pulumi.CustomResource):
         :param pulumi.Input[str] certificate: PEM format certificate.
         :param pulumi.Input[str] cmp_path: Path location inside CMP server.
         :param pulumi.Input[str] cmp_regeneration_method: CMP auto-regeneration method. Valid values: `keyupate`, `renewal`.
-        :param pulumi.Input[str] cmp_server: 'ADDRESS:PORT' for CMP server.
+        :param pulumi.Input[str] cmp_server: Address and port for CMP server (format = address:port).
         :param pulumi.Input[str] cmp_server_cert: CMP server certificate.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] csr: Certificate Signing Request.
@@ -1581,7 +1581,7 @@ class Local(pulumi.CustomResource):
         :param pulumi.Input[str] certificate: PEM format certificate.
         :param pulumi.Input[str] cmp_path: Path location inside CMP server.
         :param pulumi.Input[str] cmp_regeneration_method: CMP auto-regeneration method. Valid values: `keyupate`, `renewal`.
-        :param pulumi.Input[str] cmp_server: 'ADDRESS:PORT' for CMP server.
+        :param pulumi.Input[str] cmp_server: Address and port for CMP server (format = address:port).
         :param pulumi.Input[str] cmp_server_cert: CMP server certificate.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] csr: Certificate Signing Request.
@@ -1747,7 +1747,7 @@ class Local(pulumi.CustomResource):
     @pulumi.getter(name="cmpServer")
     def cmp_server(self) -> pulumi.Output[str]:
         """
-        'ADDRESS:PORT' for CMP server.
+        Address and port for CMP server (format = address:port).
         """
         return pulumi.get(self, "cmp_server")
 
@@ -1961,7 +1961,7 @@ class Local(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

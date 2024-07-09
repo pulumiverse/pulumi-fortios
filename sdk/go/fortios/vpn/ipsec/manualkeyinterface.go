@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -52,7 +51,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -105,7 +103,7 @@ type Manualkeyinterface struct {
 	// Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
 	RemoteSpi pulumi.StringOutput `pulumi:"remoteSpi"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewManualkeyinterface registers a new resource with the given unique name, arguments, and options.
@@ -471,8 +469,8 @@ func (o ManualkeyinterfaceOutput) RemoteSpi() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ManualkeyinterfaceOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Manualkeyinterface) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ManualkeyinterfaceOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Manualkeyinterface) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ManualkeyinterfaceArrayOutput struct{ *pulumi.OutputState }

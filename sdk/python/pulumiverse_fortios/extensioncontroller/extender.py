@@ -49,7 +49,7 @@ class ExtenderArgs:
         :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] login_password: Set the managed extender's administrator password.
         :param pulumi.Input[str] login_password_change: Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
         :param pulumi.Input[str] name: FortiExtender entry name.
@@ -228,7 +228,7 @@ class ExtenderArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -393,7 +393,7 @@ class _ExtenderState:
         :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] login_password: Set the managed extender's administrator password.
         :param pulumi.Input[str] login_password_change: Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
         :param pulumi.Input[str] name: FortiExtender entry name.
@@ -572,7 +572,7 @@ class _ExtenderState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -762,7 +762,7 @@ class Extender(pulumi.CustomResource):
         :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] login_password: Set the managed extender's administrator password.
         :param pulumi.Input[str] login_password_change: Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
         :param pulumi.Input[str] name: FortiExtender entry name.
@@ -916,7 +916,7 @@ class Extender(pulumi.CustomResource):
         :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] login_password: Set the managed extender's administrator password.
         :param pulumi.Input[str] login_password_change: Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
         :param pulumi.Input[str] name: FortiExtender entry name.
@@ -1039,7 +1039,7 @@ class Extender(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1109,7 +1109,7 @@ class Extender(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

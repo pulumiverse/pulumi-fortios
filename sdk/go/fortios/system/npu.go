@@ -41,7 +41,7 @@ type Npu struct {
 	DedicatedManagementCpu pulumi.StringOutput `pulumi:"dedicatedManagementCpu"`
 	// Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
 	Fastpath pulumi.StringOutput `pulumi:"fastpath"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
 	IpsecDecSubengineMask pulumi.StringOutput `pulumi:"ipsecDecSubengineMask"`
@@ -74,7 +74,7 @@ type Npu struct {
 	// Enable/disable UDP-encapsulated ESP offload (default = disable). Valid values: `enable`, `disable`.
 	UespOffload pulumi.StringOutput `pulumi:"uespOffload"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewNpu registers a new resource with the given unique name, arguments, and options.
@@ -115,7 +115,7 @@ type npuState struct {
 	DedicatedManagementCpu *string `pulumi:"dedicatedManagementCpu"`
 	// Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
 	Fastpath *string `pulumi:"fastpath"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
 	IpsecDecSubengineMask *string `pulumi:"ipsecDecSubengineMask"`
@@ -160,7 +160,7 @@ type NpuState struct {
 	DedicatedManagementCpu pulumi.StringPtrInput
 	// Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
 	Fastpath pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
 	IpsecDecSubengineMask pulumi.StringPtrInput
@@ -209,7 +209,7 @@ type npuArgs struct {
 	DedicatedManagementCpu *string `pulumi:"dedicatedManagementCpu"`
 	// Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
 	Fastpath *string `pulumi:"fastpath"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
 	IpsecDecSubengineMask *string `pulumi:"ipsecDecSubengineMask"`
@@ -255,7 +255,7 @@ type NpuArgs struct {
 	DedicatedManagementCpu pulumi.StringPtrInput
 	// Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
 	Fastpath pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
 	IpsecDecSubengineMask pulumi.StringPtrInput
@@ -398,7 +398,7 @@ func (o NpuOutput) Fastpath() pulumi.StringOutput {
 	return o.ApplyT(func(v *Npu) pulumi.StringOutput { return v.Fastpath }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o NpuOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Npu) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -479,8 +479,8 @@ func (o NpuOutput) UespOffload() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o NpuOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Npu) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o NpuOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Npu) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type NpuArrayOutput struct{ *pulumi.OutputState }

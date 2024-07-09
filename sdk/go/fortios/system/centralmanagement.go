@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -66,7 +65,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -112,7 +110,7 @@ type Centralmanagement struct {
 	FmgUpdatePort pulumi.StringOutput `pulumi:"fmgUpdatePort"`
 	// Override access profile.
 	FortigateCloudSsoDefaultProfile pulumi.StringOutput `pulumi:"fortigateCloudSsoDefaultProfile"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
 	IncludeDefaultServers pulumi.StringOutput `pulumi:"includeDefaultServers"`
@@ -137,7 +135,7 @@ type Centralmanagement struct {
 	// Virtual domain (VDOM) name to use when communicating with FortiManager.
 	Vdom pulumi.StringOutput `pulumi:"vdom"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewCentralmanagement registers a new resource with the given unique name, arguments, and options.
@@ -194,7 +192,7 @@ type centralmanagementState struct {
 	FmgUpdatePort *string `pulumi:"fmgUpdatePort"`
 	// Override access profile.
 	FortigateCloudSsoDefaultProfile *string `pulumi:"fortigateCloudSsoDefaultProfile"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
 	IncludeDefaultServers *string `pulumi:"includeDefaultServers"`
@@ -247,7 +245,7 @@ type CentralmanagementState struct {
 	FmgUpdatePort pulumi.StringPtrInput
 	// Override access profile.
 	FortigateCloudSsoDefaultProfile pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
 	IncludeDefaultServers pulumi.StringPtrInput
@@ -304,7 +302,7 @@ type centralmanagementArgs struct {
 	FmgUpdatePort *string `pulumi:"fmgUpdatePort"`
 	// Override access profile.
 	FortigateCloudSsoDefaultProfile *string `pulumi:"fortigateCloudSsoDefaultProfile"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
 	IncludeDefaultServers *string `pulumi:"includeDefaultServers"`
@@ -358,7 +356,7 @@ type CentralmanagementArgs struct {
 	FmgUpdatePort pulumi.StringPtrInput
 	// Override access profile.
 	FortigateCloudSsoDefaultProfile pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
 	IncludeDefaultServers pulumi.StringPtrInput
@@ -533,7 +531,7 @@ func (o CentralmanagementOutput) FortigateCloudSsoDefaultProfile() pulumi.String
 	return o.ApplyT(func(v *Centralmanagement) pulumi.StringOutput { return v.FortigateCloudSsoDefaultProfile }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o CentralmanagementOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Centralmanagement) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -594,8 +592,8 @@ func (o CentralmanagementOutput) Vdom() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o CentralmanagementOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Centralmanagement) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o CentralmanagementOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Centralmanagement) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type CentralmanagementArrayOutput struct{ *pulumi.OutputState }

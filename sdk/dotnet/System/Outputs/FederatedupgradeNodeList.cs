@@ -31,11 +31,11 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? Serial;
         /// <summary>
-        /// When the upgrade was configured. Format hh:mm yyyy/mm/dd UTC.
+        /// Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
         /// </summary>
         public readonly string? SetupTime;
         /// <summary>
-        /// Scheduled time for the upgrade. Format hh:mm yyyy/mm/dd UTC.
+        /// Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC).
         /// </summary>
         public readonly string? Time;
         /// <summary>

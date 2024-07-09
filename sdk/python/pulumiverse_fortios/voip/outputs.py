@@ -642,7 +642,7 @@ class ProfileSip(dict):
         :param int prack_rate: PRACK request rate limit (per second, per policy).
         :param str prack_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         :param str preserve_override: Override i line to preserve original IPS (default: append). Valid values: `disable`, `enable`.
-        :param int provisional_invite_expiry_time: Expiry time for provisional INVITE (10 - 3600 sec).
+        :param int provisional_invite_expiry_time: Expiry time (10-3600, in seconds) for provisional INVITE.
         :param int publish_rate: PUBLISH request rate limit (per second, per policy).
         :param str publish_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         :param int refer_rate: REFER request rate limit (per second, per policy).
@@ -1602,7 +1602,7 @@ class ProfileSip(dict):
     @pulumi.getter(name="provisionalInviteExpiryTime")
     def provisional_invite_expiry_time(self) -> Optional[int]:
         """
-        Expiry time for provisional INVITE (10 - 3600 sec).
+        Expiry time (10-3600, in seconds) for provisional INVITE.
         """
         return pulumi.get(self, "provisional_invite_expiry_time")
 

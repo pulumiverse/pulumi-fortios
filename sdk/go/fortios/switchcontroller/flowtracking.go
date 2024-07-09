@@ -45,7 +45,7 @@ type Flowtracking struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
 	Format pulumi.StringOutput `pulumi:"format"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
 	Level pulumi.StringOutput `pulumi:"level"`
@@ -74,7 +74,7 @@ type Flowtracking struct {
 	// Configure L4 transport protocol for exporting packets. Valid values: `udp`, `tcp`, `sctp`.
 	Transport pulumi.StringOutput `pulumi:"transport"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewFlowtracking registers a new resource with the given unique name, arguments, and options.
@@ -119,7 +119,7 @@ type flowtrackingState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
 	Format *string `pulumi:"format"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
 	Level *string `pulumi:"level"`
@@ -164,7 +164,7 @@ type FlowtrackingState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
 	Format pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
 	Level pulumi.StringPtrInput
@@ -213,7 +213,7 @@ type flowtrackingArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
 	Format *string `pulumi:"format"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
 	Level *string `pulumi:"level"`
@@ -259,7 +259,7 @@ type FlowtrackingArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Configure flow tracking protocol. Valid values: `netflow1`, `netflow5`, `netflow9`, `ipfix`.
 	Format pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Configure flow tracking level. Valid values: `vlan`, `ip`, `port`, `proto`, `mac`.
 	Level pulumi.StringPtrInput
@@ -408,7 +408,7 @@ func (o FlowtrackingOutput) Format() pulumi.StringOutput {
 	return o.ApplyT(func(v *Flowtracking) pulumi.StringOutput { return v.Format }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o FlowtrackingOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Flowtracking) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -479,8 +479,8 @@ func (o FlowtrackingOutput) Transport() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o FlowtrackingOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Flowtracking) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o FlowtrackingOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Flowtracking) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type FlowtrackingArrayOutput struct{ *pulumi.OutputState }

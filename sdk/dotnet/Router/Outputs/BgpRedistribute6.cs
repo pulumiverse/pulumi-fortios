@@ -14,17 +14,8 @@ namespace Pulumiverse.Fortios.Router.Outputs
     [OutputType]
     public sealed class BgpRedistribute6
     {
-        /// <summary>
-        /// Neighbor group name.
-        /// </summary>
         public readonly string? Name;
-        /// <summary>
-        /// Route map of VRF leaking.
-        /// </summary>
         public readonly string? RouteMap;
-        /// <summary>
-        /// Status Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? Status;
 
         [OutputConstructor]

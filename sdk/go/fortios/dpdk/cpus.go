@@ -42,7 +42,7 @@ type Cpus struct {
 	// CPUs enabled to run DPDK TX engines.
 	TxCpus pulumi.StringOutput `pulumi:"txCpus"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// CPUs enabled to run DPDK VNP engines.
 	VnpCpus pulumi.StringOutput `pulumi:"vnpCpus"`
 	// CPUs enabled to run DPDK VNP slow path.
@@ -259,8 +259,8 @@ func (o CpusOutput) TxCpus() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o CpusOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Cpus) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o CpusOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cpus) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // CPUs enabled to run DPDK VNP engines.

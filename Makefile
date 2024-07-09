@@ -111,7 +111,7 @@ tidy:: upstream/.git # call go mod tidy in relevant directories
 	find ./provider -name go.mod -execdir go mod tidy \;
 
 cleanup:: # cleans up the temporary directory
-	rm -r $(WORKING_DIR)/bin
+	rm -rf $(WORKING_DIR)/bin
 	rm -f provider/cmd/${PROVIDER}/schema.go
 
 help::

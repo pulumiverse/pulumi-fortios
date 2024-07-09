@@ -13,9 +13,6 @@ namespace Pulumiverse.Fortios.System.Inputs
 
     public sealed class VxlanRemoteIp6Args : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// IPv6 address.
-        /// </summary>
         [Input("ip6")]
         public Input<string>? Ip6 { get; set; }
 

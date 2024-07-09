@@ -82,7 +82,6 @@ def get_interfacelist(filter: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -90,7 +89,6 @@ def get_interfacelist(filter: Optional[str] = None,
     sample1 = fortios.system.get_interfacelist(filter="name!=port1")
     pulumi.export("output1", data["fortios_system_interfacelist"]["sample2"]["namelist"])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str filter: A filter used to scope the list. See Filter results of datasource.
@@ -118,7 +116,6 @@ def get_interfacelist_output(filter: Optional[pulumi.Input[Optional[str]]] = Non
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -126,7 +123,6 @@ def get_interfacelist_output(filter: Optional[pulumi.Input[Optional[str]]] = Non
     sample1 = fortios.system.get_interfacelist(filter="name!=port1")
     pulumi.export("output1", data["fortios_system_interfacelist"]["sample2"]["namelist"])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str filter: A filter used to scope the list. See Filter results of datasource.

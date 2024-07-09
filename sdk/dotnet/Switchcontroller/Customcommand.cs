@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.Switchcontroller
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -32,7 +31,6 @@ namespace Pulumiverse.Fortios.Switchcontroller
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -56,7 +54,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
     public partial class Customcommand : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
+        /// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
         /// </summary>
         [Output("command")]
         public Output<string> Command { get; private set; } = null!;
@@ -77,7 +75,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -127,7 +125,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
     public sealed class CustomcommandArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
+        /// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
         /// </summary>
         [Input("command", required: true)]
         public Input<string> Command { get; set; } = null!;
@@ -159,7 +157,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
     public sealed class CustomcommandState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
+        /// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
         /// </summary>
         [Input("command")]
         public Input<string>? Command { get; set; }

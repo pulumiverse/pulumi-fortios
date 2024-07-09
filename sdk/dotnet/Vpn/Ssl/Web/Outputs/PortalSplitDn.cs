@@ -23,7 +23,7 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web.Outputs
         /// </summary>
         public readonly string? DnsServer2;
         /// <summary>
-        /// Split DNS domains used for SSL-VPN clients separated by comma(,).
+        /// Split DNS domains used for SSL-VPN clients separated by comma.
         /// </summary>
         public readonly string? Domains;
         /// <summary>

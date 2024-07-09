@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -54,7 +53,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -113,7 +111,7 @@ type Gretunnel struct {
 	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
 	UseSdwan pulumi.StringOutput `pulumi:"useSdwan"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewGretunnel registers a new resource with the given unique name, arguments, and options.
@@ -498,8 +496,8 @@ func (o GretunnelOutput) UseSdwan() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o GretunnelOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Gretunnel) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o GretunnelOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Gretunnel) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type GretunnelArrayOutput struct{ *pulumi.OutputState }

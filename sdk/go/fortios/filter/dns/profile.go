@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -77,7 +76,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -115,7 +113,7 @@ type Profile struct {
 	ExternalIpBlocklists ProfileExternalIpBlocklistArrayOutput `pulumi:"externalIpBlocklists"`
 	// FortiGuard DNS Filter settings. The structure of `ftgdDns` block is documented below.
 	FtgdDns ProfileFtgdDnsOutput `pulumi:"ftgdDns"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
 	LogAllDomain pulumi.StringOutput `pulumi:"logAllDomain"`
@@ -131,11 +129,13 @@ type Profile struct {
 	SdnsDomainLog pulumi.StringOutput `pulumi:"sdnsDomainLog"`
 	// Enable/disable FortiGuard SDNS rating error logging. Valid values: `enable`, `disable`.
 	SdnsFtgdErrLog pulumi.StringOutput `pulumi:"sdnsFtgdErrLog"`
+	// Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. Valid values: `disable`, `enable`.
+	StripEch pulumi.StringOutput `pulumi:"stripEch"`
 	// Transparent DNS database zones. The structure of `transparentDnsDatabase` block is documented below.
 	TransparentDnsDatabases ProfileTransparentDnsDatabaseArrayOutput `pulumi:"transparentDnsDatabases"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
+	// Set safe search for YouTube restriction level.
 	YoutubeRestrict pulumi.StringOutput `pulumi:"youtubeRestrict"`
 }
 
@@ -185,7 +185,7 @@ type profileState struct {
 	ExternalIpBlocklists []ProfileExternalIpBlocklist `pulumi:"externalIpBlocklists"`
 	// FortiGuard DNS Filter settings. The structure of `ftgdDns` block is documented below.
 	FtgdDns *ProfileFtgdDns `pulumi:"ftgdDns"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
 	LogAllDomain *string `pulumi:"logAllDomain"`
@@ -201,11 +201,13 @@ type profileState struct {
 	SdnsDomainLog *string `pulumi:"sdnsDomainLog"`
 	// Enable/disable FortiGuard SDNS rating error logging. Valid values: `enable`, `disable`.
 	SdnsFtgdErrLog *string `pulumi:"sdnsFtgdErrLog"`
+	// Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. Valid values: `disable`, `enable`.
+	StripEch *string `pulumi:"stripEch"`
 	// Transparent DNS database zones. The structure of `transparentDnsDatabase` block is documented below.
 	TransparentDnsDatabases []ProfileTransparentDnsDatabase `pulumi:"transparentDnsDatabases"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
-	// Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
+	// Set safe search for YouTube restriction level.
 	YoutubeRestrict *string `pulumi:"youtubeRestrict"`
 }
 
@@ -226,7 +228,7 @@ type ProfileState struct {
 	ExternalIpBlocklists ProfileExternalIpBlocklistArrayInput
 	// FortiGuard DNS Filter settings. The structure of `ftgdDns` block is documented below.
 	FtgdDns ProfileFtgdDnsPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
 	LogAllDomain pulumi.StringPtrInput
@@ -242,11 +244,13 @@ type ProfileState struct {
 	SdnsDomainLog pulumi.StringPtrInput
 	// Enable/disable FortiGuard SDNS rating error logging. Valid values: `enable`, `disable`.
 	SdnsFtgdErrLog pulumi.StringPtrInput
+	// Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. Valid values: `disable`, `enable`.
+	StripEch pulumi.StringPtrInput
 	// Transparent DNS database zones. The structure of `transparentDnsDatabase` block is documented below.
 	TransparentDnsDatabases ProfileTransparentDnsDatabaseArrayInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
-	// Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
+	// Set safe search for YouTube restriction level.
 	YoutubeRestrict pulumi.StringPtrInput
 }
 
@@ -271,7 +275,7 @@ type profileArgs struct {
 	ExternalIpBlocklists []ProfileExternalIpBlocklist `pulumi:"externalIpBlocklists"`
 	// FortiGuard DNS Filter settings. The structure of `ftgdDns` block is documented below.
 	FtgdDns *ProfileFtgdDns `pulumi:"ftgdDns"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
 	LogAllDomain *string `pulumi:"logAllDomain"`
@@ -287,11 +291,13 @@ type profileArgs struct {
 	SdnsDomainLog *string `pulumi:"sdnsDomainLog"`
 	// Enable/disable FortiGuard SDNS rating error logging. Valid values: `enable`, `disable`.
 	SdnsFtgdErrLog *string `pulumi:"sdnsFtgdErrLog"`
+	// Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. Valid values: `disable`, `enable`.
+	StripEch *string `pulumi:"stripEch"`
 	// Transparent DNS database zones. The structure of `transparentDnsDatabase` block is documented below.
 	TransparentDnsDatabases []ProfileTransparentDnsDatabase `pulumi:"transparentDnsDatabases"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
-	// Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
+	// Set safe search for YouTube restriction level.
 	YoutubeRestrict *string `pulumi:"youtubeRestrict"`
 }
 
@@ -313,7 +319,7 @@ type ProfileArgs struct {
 	ExternalIpBlocklists ProfileExternalIpBlocklistArrayInput
 	// FortiGuard DNS Filter settings. The structure of `ftgdDns` block is documented below.
 	FtgdDns ProfileFtgdDnsPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `enable`, `disable`.
 	LogAllDomain pulumi.StringPtrInput
@@ -329,11 +335,13 @@ type ProfileArgs struct {
 	SdnsDomainLog pulumi.StringPtrInput
 	// Enable/disable FortiGuard SDNS rating error logging. Valid values: `enable`, `disable`.
 	SdnsFtgdErrLog pulumi.StringPtrInput
+	// Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. Valid values: `disable`, `enable`.
+	StripEch pulumi.StringPtrInput
 	// Transparent DNS database zones. The structure of `transparentDnsDatabase` block is documented below.
 	TransparentDnsDatabases ProfileTransparentDnsDatabaseArrayInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
-	// Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
+	// Set safe search for YouTube restriction level.
 	YoutubeRestrict pulumi.StringPtrInput
 }
 
@@ -464,7 +472,7 @@ func (o ProfileOutput) FtgdDns() ProfileFtgdDnsOutput {
 	return o.ApplyT(func(v *Profile) ProfileFtgdDnsOutput { return v.FtgdDns }).(ProfileFtgdDnsOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -504,17 +512,22 @@ func (o ProfileOutput) SdnsFtgdErrLog() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.SdnsFtgdErrLog }).(pulumi.StringOutput)
 }
 
+// Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. Valid values: `disable`, `enable`.
+func (o ProfileOutput) StripEch() pulumi.StringOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.StripEch }).(pulumi.StringOutput)
+}
+
 // Transparent DNS database zones. The structure of `transparentDnsDatabase` block is documented below.
 func (o ProfileOutput) TransparentDnsDatabases() ProfileTransparentDnsDatabaseArrayOutput {
 	return o.ApplyT(func(v *Profile) ProfileTransparentDnsDatabaseArrayOutput { return v.TransparentDnsDatabases }).(ProfileTransparentDnsDatabaseArrayOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ProfileOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ProfileOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
-// Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
+// Set safe search for YouTube restriction level.
 func (o ProfileOutput) YoutubeRestrict() pulumi.StringOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.YoutubeRestrict }).(pulumi.StringOutput)
 }

@@ -33,8 +33,8 @@ class StandaloneclusterArgs:
         :param pulumi.Input[Sequence[pulumi.Input['StandaloneclusterClusterPeerArgs']]] cluster_peers: Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. The structure of `cluster_peer` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] encryption: Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
-        :param pulumi.Input[int] group_member_id: Cluster member ID (0 - 3).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[int] group_member_id: Cluster member ID. On FortiOS versions 6.4.0: 0 - 3. On FortiOS versions >= 6.4.1: 0 - 15.
         :param pulumi.Input[str] layer2_connection: Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
         :param pulumi.Input[str] psksecret: Pre-shared secret for session synchronization (ASCII string or hexadecimal encoded with a leading 0x).
         :param pulumi.Input[str] session_sync_dev: Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
@@ -116,7 +116,7 @@ class StandaloneclusterArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -128,7 +128,7 @@ class StandaloneclusterArgs:
     @pulumi.getter(name="groupMemberId")
     def group_member_id(self) -> Optional[pulumi.Input[int]]:
         """
-        Cluster member ID (0 - 3).
+        Cluster member ID. On FortiOS versions 6.4.0: 0 - 3. On FortiOS versions >= 6.4.1: 0 - 15.
         """
         return pulumi.get(self, "group_member_id")
 
@@ -217,8 +217,8 @@ class _StandaloneclusterState:
         :param pulumi.Input[Sequence[pulumi.Input['StandaloneclusterClusterPeerArgs']]] cluster_peers: Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. The structure of `cluster_peer` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] encryption: Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
-        :param pulumi.Input[int] group_member_id: Cluster member ID (0 - 3).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[int] group_member_id: Cluster member ID. On FortiOS versions 6.4.0: 0 - 3. On FortiOS versions >= 6.4.1: 0 - 15.
         :param pulumi.Input[str] layer2_connection: Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
         :param pulumi.Input[str] psksecret: Pre-shared secret for session synchronization (ASCII string or hexadecimal encoded with a leading 0x).
         :param pulumi.Input[str] session_sync_dev: Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
@@ -300,7 +300,7 @@ class _StandaloneclusterState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -312,7 +312,7 @@ class _StandaloneclusterState:
     @pulumi.getter(name="groupMemberId")
     def group_member_id(self) -> Optional[pulumi.Input[int]]:
         """
-        Cluster member ID (0 - 3).
+        Cluster member ID. On FortiOS versions 6.4.0: 0 - 3. On FortiOS versions >= 6.4.1: 0 - 15.
         """
         return pulumi.get(self, "group_member_id")
 
@@ -425,8 +425,8 @@ class Standalonecluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StandaloneclusterClusterPeerArgs']]]] cluster_peers: Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. The structure of `cluster_peer` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] encryption: Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
-        :param pulumi.Input[int] group_member_id: Cluster member ID (0 - 3).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[int] group_member_id: Cluster member ID. On FortiOS versions 6.4.0: 0 - 3. On FortiOS versions >= 6.4.1: 0 - 15.
         :param pulumi.Input[str] layer2_connection: Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
         :param pulumi.Input[str] psksecret: Pre-shared secret for session synchronization (ASCII string or hexadecimal encoded with a leading 0x).
         :param pulumi.Input[str] session_sync_dev: Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
@@ -540,8 +540,8 @@ class Standalonecluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StandaloneclusterClusterPeerArgs']]]] cluster_peers: Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. The structure of `cluster_peer` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] encryption: Enable/disable encryption when synchronizing sessions. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
-        :param pulumi.Input[int] group_member_id: Cluster member ID (0 - 3).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[int] group_member_id: Cluster member ID. On FortiOS versions 6.4.0: 0 - 3. On FortiOS versions >= 6.4.1: 0 - 15.
         :param pulumi.Input[str] layer2_connection: Indicate whether layer 2 connections are present among FGSP members. Valid values: `available`, `unavailable`.
         :param pulumi.Input[str] psksecret: Pre-shared secret for session synchronization (ASCII string or hexadecimal encoded with a leading 0x).
         :param pulumi.Input[str] session_sync_dev: Offload session-sync process to kernel and sync sessions using connected interface(s) directly.
@@ -601,7 +601,7 @@ class Standalonecluster(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -609,7 +609,7 @@ class Standalonecluster(pulumi.CustomResource):
     @pulumi.getter(name="groupMemberId")
     def group_member_id(self) -> pulumi.Output[int]:
         """
-        Cluster member ID (0 - 3).
+        Cluster member ID. On FortiOS versions 6.4.0: 0 - 3. On FortiOS versions >= 6.4.1: 0 - 15.
         """
         return pulumi.get(self, "group_member_id")
 
@@ -647,7 +647,7 @@ class Standalonecluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

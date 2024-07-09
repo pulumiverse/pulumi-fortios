@@ -113,6 +113,7 @@ from .object_servicecategory import *
 from .object_servicegroup import *
 from .object_vip import *
 from .object_vipgroup import *
+from .ondemandsniffer import *
 from .policy import *
 from .policy46 import *
 from .policy6 import *

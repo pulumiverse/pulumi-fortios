@@ -31,6 +31,10 @@ export interface GetSysinfoArgs {
  */
 export interface GetSysinfoResult {
     /**
+     * Enable/disable allowance of appending VDOM or interface index in some RFC tables.
+     */
+    readonly appendIndex: string;
+    /**
      * Contact information.
      */
     readonly contactInfo: string;

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,7.0.0`.
+ * Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,6.4.15,7.0.0`.
  *
  * ## Import
  *
@@ -62,7 +62,7 @@ export class Nacsettings extends pulumi.CustomResource {
      */
     public readonly bounceNacPort!: pulumi.Output<string>;
     /**
-     * Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
+     * Time interval(minutes, 0 = no expiry) to be included in the inactive NAC devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
      */
     public readonly inactiveTimer!: pulumi.Output<number>;
     /**
@@ -84,7 +84,7 @@ export class Nacsettings extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Nacsettings resource with the given unique name, arguments, and options.
@@ -136,7 +136,7 @@ export interface NacsettingsState {
      */
     bounceNacPort?: pulumi.Input<string>;
     /**
-     * Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
+     * Time interval(minutes, 0 = no expiry) to be included in the inactive NAC devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
      */
     inactiveTimer?: pulumi.Input<number>;
     /**
@@ -174,7 +174,7 @@ export interface NacsettingsArgs {
      */
     bounceNacPort?: pulumi.Input<string>;
     /**
-     * Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
+     * Time interval(minutes, 0 = no expiry) to be included in the inactive NAC devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
      */
     inactiveTimer?: pulumi.Input<number>;
     /**

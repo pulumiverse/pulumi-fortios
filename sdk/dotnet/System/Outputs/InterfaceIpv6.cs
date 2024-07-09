@@ -14,203 +14,54 @@ namespace Pulumiverse.Fortios.System.Outputs
     [OutputType]
     public sealed class InterfaceIpv6
     {
-        /// <summary>
-        /// Enable/disable address auto config. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? Autoconf;
-        /// <summary>
-        /// CLI IPv6 connection status.
-        /// </summary>
         public readonly int? CliConn6Status;
-        /// <summary>
-        /// DHCPv6 client options. Valid values: `rapid`, `iapd`, `iana`.
-        /// </summary>
         public readonly string? Dhcp6ClientOptions;
-        /// <summary>
-        /// DHCPv6 IA-PD list The structure of `dhcp6_iapd_list` block is documented below.
-        /// </summary>
         public readonly ImmutableArray<Outputs.InterfaceIpv6Dhcp6IapdList> Dhcp6IapdLists;
-        /// <summary>
-        /// Enable/disable DHCPv6 information request. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? Dhcp6InformationRequest;
-        /// <summary>
-        /// Enable/disable DHCPv6 prefix delegation. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? Dhcp6PrefixDelegation;
-        /// <summary>
-        /// DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
-        /// </summary>
         public readonly string? Dhcp6PrefixHint;
-        /// <summary>
-        /// DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
-        /// </summary>
         public readonly int? Dhcp6PrefixHintPlt;
-        /// <summary>
-        /// DHCPv6 prefix hint valid life time (sec).
-        /// </summary>
         public readonly int? Dhcp6PrefixHintVlt;
-        /// <summary>
-        /// DHCP6 relay interface ID.
-        /// </summary>
         public readonly string? Dhcp6RelayInterfaceId;
-        /// <summary>
-        /// DHCPv6 relay IP address.
-        /// </summary>
         public readonly string? Dhcp6RelayIp;
-        /// <summary>
-        /// Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
-        /// </summary>
         public readonly string? Dhcp6RelayService;
-        /// <summary>
-        /// Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
-        /// </summary>
         public readonly string? Dhcp6RelaySourceInterface;
-        /// <summary>
-        /// IPv6 address used by the DHCP6 relay as its source IP.
-        /// </summary>
         public readonly string? Dhcp6RelaySourceIp;
-        /// <summary>
-        /// DHCPv6 relay type. Valid values: `regular`.
-        /// </summary>
         public readonly string? Dhcp6RelayType;
-        /// <summary>
-        /// Enable/disable sending of ICMPv6 redirects. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? Icmp6SendRedirect;
-        /// <summary>
-        /// IPv6 interface identifier.
-        /// </summary>
         public readonly string? InterfaceIdentifier;
-        /// <summary>
-        /// Primary IPv6 address prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
-        /// </summary>
         public readonly string? Ip6Address;
-        /// <summary>
-        /// Allow management access to the interface.
-        /// </summary>
         public readonly string? Ip6Allowaccess;
-        /// <summary>
-        /// Default life (sec).
-        /// </summary>
         public readonly int? Ip6DefaultLife;
-        /// <summary>
-        /// IAID of obtained delegated-prefix from the upstream interface.
-        /// </summary>
         public readonly int? Ip6DelegatedPrefixIaid;
-        /// <summary>
-        /// Advertised IPv6 delegated prefix list. The structure of `ip6_delegated_prefix_list` block is documented below.
-        /// </summary>
         public readonly ImmutableArray<Outputs.InterfaceIpv6Ip6DelegatedPrefixList> Ip6DelegatedPrefixLists;
-        /// <summary>
-        /// Enable/disable using the DNS server acquired by DHCP. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? Ip6DnsServerOverride;
-        /// <summary>
-        /// Extra IPv6 address prefixes of interface. The structure of `ip6_extra_addr` block is documented below.
-        /// </summary>
         public readonly ImmutableArray<Outputs.InterfaceIpv6Ip6ExtraAddr> Ip6ExtraAddrs;
-        /// <summary>
-        /// Hop limit (0 means unspecified).
-        /// </summary>
         public readonly int? Ip6HopLimit;
-        /// <summary>
-        /// IPv6 link MTU.
-        /// </summary>
         public readonly int? Ip6LinkMtu;
-        /// <summary>
-        /// Enable/disable the managed flag. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? Ip6ManageFlag;
-        /// <summary>
-        /// IPv6 maximum interval (4 to 1800 sec).
-        /// </summary>
         public readonly int? Ip6MaxInterval;
-        /// <summary>
-        /// IPv6 minimum interval (3 to 1350 sec).
-        /// </summary>
         public readonly int? Ip6MinInterval;
-        /// <summary>
-        /// Addressing mode (static, DHCP, delegated). Valid values: `static`, `dhcp`, `pppoe`, `delegated`.
-        /// </summary>
         public readonly string? Ip6Mode;
-        /// <summary>
-        /// Enable/disable the other IPv6 flag. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? Ip6OtherFlag;
-        /// <summary>
-        /// Advertised prefix list. The structure of `ip6_prefix_list` block is documented below.
-        /// </summary>
         public readonly ImmutableArray<Outputs.InterfaceIpv6Ip6PrefixList> Ip6PrefixLists;
-        /// <summary>
-        /// Assigning a prefix from DHCP or RA. Valid values: `dhcp6`, `ra`.
-        /// </summary>
         public readonly string? Ip6PrefixMode;
-        /// <summary>
-        /// IPv6 reachable time (milliseconds; 0 means unspecified).
-        /// </summary>
         public readonly int? Ip6ReachableTime;
-        /// <summary>
-        /// IPv6 retransmit time (milliseconds; 0 means unspecified).
-        /// </summary>
         public readonly int? Ip6RetransTime;
-        /// <summary>
-        /// Enable/disable sending advertisements about the interface. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? Ip6SendAdv;
-        /// <summary>
-        /// Subnet to routing prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
-        /// </summary>
         public readonly string? Ip6Subnet;
-        /// <summary>
-        /// Interface name providing delegated information.
-        /// </summary>
         public readonly string? Ip6UpstreamInterface;
-        /// <summary>
-        /// Neighbor discovery certificate.
-        /// </summary>
         public readonly string? NdCert;
-        /// <summary>
-        /// Neighbor discovery CGA modifier.
-        /// </summary>
         public readonly string? NdCgaModifier;
-        /// <summary>
-        /// Neighbor discovery mode. Valid values: `basic`, `SEND-compatible`.
-        /// </summary>
         public readonly string? NdMode;
-        /// <summary>
-        /// Neighbor discovery security level (0 - 7; 0 = least secure, default = 0).
-        /// </summary>
         public readonly int? NdSecurityLevel;
-        /// <summary>
-        /// Neighbor discovery timestamp delta value (1 - 3600 sec; default = 300).
-        /// </summary>
         public readonly int? NdTimestampDelta;
-        /// <summary>
-        /// Neighbor discovery timestamp fuzz factor (1 - 60 sec; default = 1).
-        /// </summary>
         public readonly int? NdTimestampFuzz;
-        /// <summary>
-        /// Enable/disable sending link MTU in RA packet. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? RaSendMtu;
-        /// <summary>
-        /// Enable/disable unique auto config address. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? UniqueAutoconfAddr;
-        /// <summary>
-        /// Link-local IPv6 address of virtual router.
-        /// </summary>
         public readonly string? Vrip6LinkLocal;
-        /// <summary>
-        /// IPv6 VRRP configuration. The structure of `vrrp6` block is documented below.
-        /// 
-        /// The `ip6_extra_addr` block supports:
-        /// </summary>
         public readonly ImmutableArray<Outputs.InterfaceIpv6Vrrp6> Vrrp6s;
-        /// <summary>
-        /// Enable/disable virtual MAC for VRRP. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? VrrpVirtualMac6;
 
         [OutputConstructor]

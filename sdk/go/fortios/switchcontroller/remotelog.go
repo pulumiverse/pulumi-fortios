@@ -48,7 +48,7 @@ type Remotelog struct {
 	// Enable/disable logging by FortiSwitch device to a remote syslog server. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewRemotelog registers a new resource with the given unique name, arguments, and options.
@@ -284,8 +284,8 @@ func (o RemotelogOutput) Status() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o RemotelogOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Remotelog) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o RemotelogOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Remotelog) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type RemotelogArrayOutput struct{ *pulumi.OutputState }

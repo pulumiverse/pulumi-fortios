@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -93,7 +92,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -127,7 +125,7 @@ type Profile struct {
 	ForticlientIosSettings ProfileForticlientIosSettingsOutput `pulumi:"forticlientIosSettings"`
 	// FortiClient settings for Windows/Mac platform. The structure of `forticlientWinmacSettings` block is documented below.
 	ForticlientWinmacSettings ProfileForticlientWinmacSettingsOutput `pulumi:"forticlientWinmacSettings"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Addresses for on-net detection. The structure of `onNetAddr` block is documented below.
 	OnNetAddrs ProfileOnNetAddrArrayOutput `pulumi:"onNetAddrs"`
@@ -142,7 +140,7 @@ type Profile struct {
 	// Users. The structure of `users` block is documented below.
 	Users ProfileUserArrayOutput `pulumi:"users"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewProfile registers a new resource with the given unique name, arguments, and options.
@@ -187,7 +185,7 @@ type profileState struct {
 	ForticlientIosSettings *ProfileForticlientIosSettings `pulumi:"forticlientIosSettings"`
 	// FortiClient settings for Windows/Mac platform. The structure of `forticlientWinmacSettings` block is documented below.
 	ForticlientWinmacSettings *ProfileForticlientWinmacSettings `pulumi:"forticlientWinmacSettings"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Addresses for on-net detection. The structure of `onNetAddr` block is documented below.
 	OnNetAddrs []ProfileOnNetAddr `pulumi:"onNetAddrs"`
@@ -218,7 +216,7 @@ type ProfileState struct {
 	ForticlientIosSettings ProfileForticlientIosSettingsPtrInput
 	// FortiClient settings for Windows/Mac platform. The structure of `forticlientWinmacSettings` block is documented below.
 	ForticlientWinmacSettings ProfileForticlientWinmacSettingsPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Addresses for on-net detection. The structure of `onNetAddr` block is documented below.
 	OnNetAddrs ProfileOnNetAddrArrayInput
@@ -253,7 +251,7 @@ type profileArgs struct {
 	ForticlientIosSettings *ProfileForticlientIosSettings `pulumi:"forticlientIosSettings"`
 	// FortiClient settings for Windows/Mac platform. The structure of `forticlientWinmacSettings` block is documented below.
 	ForticlientWinmacSettings *ProfileForticlientWinmacSettings `pulumi:"forticlientWinmacSettings"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Addresses for on-net detection. The structure of `onNetAddr` block is documented below.
 	OnNetAddrs []ProfileOnNetAddr `pulumi:"onNetAddrs"`
@@ -285,7 +283,7 @@ type ProfileArgs struct {
 	ForticlientIosSettings ProfileForticlientIosSettingsPtrInput
 	// FortiClient settings for Windows/Mac platform. The structure of `forticlientWinmacSettings` block is documented below.
 	ForticlientWinmacSettings ProfileForticlientWinmacSettingsPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Addresses for on-net detection. The structure of `onNetAddr` block is documented below.
 	OnNetAddrs ProfileOnNetAddrArrayInput
@@ -420,7 +418,7 @@ func (o ProfileOutput) ForticlientWinmacSettings() ProfileForticlientWinmacSetti
 	return o.ApplyT(func(v *Profile) ProfileForticlientWinmacSettingsOutput { return v.ForticlientWinmacSettings }).(ProfileForticlientWinmacSettingsOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ProfileOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -456,8 +454,8 @@ func (o ProfileOutput) Users() ProfileUserArrayOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ProfileOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Profile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ProfileOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Profile) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ProfileArrayOutput struct{ *pulumi.OutputState }

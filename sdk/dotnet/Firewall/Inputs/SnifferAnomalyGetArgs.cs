@@ -56,7 +56,7 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, &gt;= 7.2.1: packets per second or concurrent session number.
+        /// Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, &gt;= 7.2.1: packets per second or concurrent session number.
         /// </summary>
         [Input("threshold")]
         public Input<int>? Threshold { get; set; }

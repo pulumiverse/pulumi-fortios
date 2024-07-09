@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -46,7 +45,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -95,7 +93,7 @@ type Quarantine struct {
 	// Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
 	StoreMachineLearning pulumi.StringOutput `pulumi:"storeMachineLearning"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewQuarantine registers a new resource with the given unique name, arguments, and options.
@@ -409,8 +407,8 @@ func (o QuarantineOutput) StoreMachineLearning() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o QuarantineOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Quarantine) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o QuarantineOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Quarantine) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type QuarantineArrayOutput struct{ *pulumi.OutputState }

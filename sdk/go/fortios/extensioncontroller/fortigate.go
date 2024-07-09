@@ -50,7 +50,7 @@ type Fortigate struct {
 	// VDOM.
 	Vdom pulumi.IntOutput `pulumi:"vdom"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewFortigate registers a new resource with the given unique name, arguments, and options.
@@ -299,8 +299,8 @@ func (o FortigateOutput) Vdom() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o FortigateOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Fortigate) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o FortigateOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Fortigate) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type FortigateArrayOutput struct{ *pulumi.OutputState }

@@ -41,7 +41,7 @@ type Macaddresstable struct {
 	// New MAC for reply traffic.
 	ReplySubstitute pulumi.StringOutput `pulumi:"replySubstitute"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewMacaddresstable registers a new resource with the given unique name, arguments, and options.
@@ -231,8 +231,8 @@ func (o MacaddresstableOutput) ReplySubstitute() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o MacaddresstableOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Macaddresstable) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o MacaddresstableOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Macaddresstable) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type MacaddresstableArrayOutput struct{ *pulumi.OutputState }

@@ -36,7 +36,7 @@ type Options struct {
 	// DNS query time out (1 - 30 sec).
 	DnsTimeout pulumi.IntOutput `pulumi:"dnsTimeout"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewOptions registers a new resource with the given unique name, arguments, and options.
@@ -194,8 +194,8 @@ func (o OptionsOutput) DnsTimeout() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o OptionsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Options) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o OptionsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Options) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type OptionsArrayOutput struct{ *pulumi.OutputState }

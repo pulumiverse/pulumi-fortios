@@ -18,7 +18,6 @@ namespace Pulumiverse.Fortios.Networking
     /// ## Example Usage
     /// 
     /// ### Loopback Interface
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -42,10 +41,8 @@ namespace Pulumiverse.Fortios.Networking
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### VLAN Interface
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -70,10 +67,8 @@ namespace Pulumiverse.Fortios.Networking
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Physical Interface
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -104,7 +99,6 @@ namespace Pulumiverse.Fortios.Networking
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:networking/interfacePort:InterfacePort")]
     public partial class InterfacePort : global::Pulumi.CustomResource

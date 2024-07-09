@@ -64,7 +64,7 @@ export class Setting extends pulumi.CustomResource {
      */
     public readonly country!: pulumi.Output<string>;
     /**
-     * Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+     * Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
      */
     public readonly darrpOptimize!: pulumi.Output<number>;
     /**
@@ -104,7 +104,7 @@ export class Setting extends pulumi.CustomResource {
      */
     public readonly firmwareProvisionOnAuthorization!: pulumi.Output<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -122,7 +122,7 @@ export class Setting extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Enable/disable WFA compatibility. Valid values: `enable`, `disable`.
      */
@@ -198,7 +198,7 @@ export interface SettingState {
      */
     country?: pulumi.Input<string>;
     /**
-     * Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+     * Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
      */
     darrpOptimize?: pulumi.Input<number>;
     /**
@@ -238,7 +238,7 @@ export interface SettingState {
      */
     firmwareProvisionOnAuthorization?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -276,7 +276,7 @@ export interface SettingArgs {
      */
     country?: pulumi.Input<string>;
     /**
-     * Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+     * Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
      */
     darrpOptimize?: pulumi.Input<number>;
     /**
@@ -316,7 +316,7 @@ export interface SettingArgs {
      */
     firmwareProvisionOnAuthorization?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**

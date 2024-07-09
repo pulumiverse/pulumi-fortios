@@ -15,10 +15,6 @@ namespace Pulumiverse.Fortios.Router.Inputs
     {
         [Input("targets")]
         private InputList<Inputs.BgpVrfLeak6TargetGetArgs>? _targets;
-
-        /// <summary>
-        /// Target VRF table. The structure of `target` block is documented below.
-        /// </summary>
         public InputList<Inputs.BgpVrfLeak6TargetGetArgs> Targets
         {
             get => _targets ?? (_targets = new InputList<Inputs.BgpVrfLeak6TargetGetArgs>());

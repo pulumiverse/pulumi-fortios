@@ -100,6 +100,10 @@ namespace Pulumiverse.Fortios
         [Output("username")]
         public Output<string?> Username { get; private set; } = null!;
 
+        /// <summary>
+        /// Vdom name of FortiOS. It will apply to all resources. Specify variable `vdomparam` on each resource will override the
+        /// vdom value on that resource.
+        /// </summary>
         [Output("vdom")]
         public Output<string?> Vdom { get; private set; } = null!;
 
@@ -253,6 +257,10 @@ namespace Pulumiverse.Fortios
         [Input("username")]
         public Input<string>? Username { get; set; }
 
+        /// <summary>
+        /// Vdom name of FortiOS. It will apply to all resources. Specify variable `vdomparam` on each resource will override the
+        /// vdom value on that resource.
+        /// </summary>
         [Input("vdom")]
         public Input<string>? Vdom { get; set; }
 

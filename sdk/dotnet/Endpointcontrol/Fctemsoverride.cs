@@ -47,6 +47,12 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         public Output<string> Capabilities { get; private set; } = null!;
 
         /// <summary>
+        /// FortiClient EMS Cloud multitenancy access key
+        /// </summary>
+        [Output("cloudAuthenticationAccessKey")]
+        public Output<string> CloudAuthenticationAccessKey { get; private set; } = null!;
+
+        /// <summary>
         /// Cloud server type. Valid values: `production`, `alpha`, `beta`.
         /// </summary>
         [Output("cloudServerType")]
@@ -182,7 +188,7 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Lowest CA cert on Fortigate in verified EMS cert chain.
@@ -254,6 +260,12 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         /// </summary>
         [Input("capabilities")]
         public Input<string>? Capabilities { get; set; }
+
+        /// <summary>
+        /// FortiClient EMS Cloud multitenancy access key
+        /// </summary>
+        [Input("cloudAuthenticationAccessKey")]
+        public Input<string>? CloudAuthenticationAccessKey { get; set; }
 
         /// <summary>
         /// Cloud server type. Valid values: `production`, `alpha`, `beta`.
@@ -424,6 +436,12 @@ namespace Pulumiverse.Fortios.Endpointcontrol
         /// </summary>
         [Input("capabilities")]
         public Input<string>? Capabilities { get; set; }
+
+        /// <summary>
+        /// FortiClient EMS Cloud multitenancy access key
+        /// </summary>
+        [Input("cloudAuthenticationAccessKey")]
+        public Input<string>? CloudAuthenticationAccessKey { get; set; }
 
         /// <summary>
         /// Cloud server type. Valid values: `production`, `alpha`, `beta`.

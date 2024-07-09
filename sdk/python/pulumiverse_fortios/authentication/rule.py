@@ -17,6 +17,7 @@ __all__ = ['RuleArgs', 'Rule']
 class RuleArgs:
     def __init__(__self__, *,
                  active_auth_method: Optional[pulumi.Input[str]] = None,
+                 cert_auth_cookie: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  cors_depth: Optional[pulumi.Input[int]] = None,
                  cors_stateful: Optional[pulumi.Input[str]] = None,
@@ -39,13 +40,14 @@ class RuleArgs:
         """
         The set of arguments for constructing a Rule resource.
         :param pulumi.Input[str] active_auth_method: Select an active authentication method.
+        :param pulumi.Input[str] cert_auth_cookie: Enable/disable to use device certificate as authentication cookie (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[int] cors_depth: Depth to allow CORS access (default = 3).
         :param pulumi.Input[str] cors_stateful: Enable/disable allowance of CORS access (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['RuleDstaddr6Args']]] dstaddr6s: Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['RuleDstaddrArgs']]] dstaddrs: Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_based: Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Authentication rule name.
         :param pulumi.Input[str] protocol: Authentication is required for the selected protocol (default = http). Valid values: `http`, `ftp`, `socks`, `ssh`.
@@ -61,6 +63,8 @@ class RuleArgs:
         """
         if active_auth_method is not None:
             pulumi.set(__self__, "active_auth_method", active_auth_method)
+        if cert_auth_cookie is not None:
+            pulumi.set(__self__, "cert_auth_cookie", cert_auth_cookie)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
         if cors_depth is not None:
@@ -111,6 +115,18 @@ class RuleArgs:
     @active_auth_method.setter
     def active_auth_method(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "active_auth_method", value)
+
+    @property
+    @pulumi.getter(name="certAuthCookie")
+    def cert_auth_cookie(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable to use device certificate as authentication cookie (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cert_auth_cookie")
+
+    @cert_auth_cookie.setter
+    def cert_auth_cookie(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_auth_cookie", value)
 
     @property
     @pulumi.getter
@@ -188,7 +204,7 @@ class RuleArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -345,6 +361,7 @@ class RuleArgs:
 class _RuleState:
     def __init__(__self__, *,
                  active_auth_method: Optional[pulumi.Input[str]] = None,
+                 cert_auth_cookie: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  cors_depth: Optional[pulumi.Input[int]] = None,
                  cors_stateful: Optional[pulumi.Input[str]] = None,
@@ -367,13 +384,14 @@ class _RuleState:
         """
         Input properties used for looking up and filtering Rule resources.
         :param pulumi.Input[str] active_auth_method: Select an active authentication method.
+        :param pulumi.Input[str] cert_auth_cookie: Enable/disable to use device certificate as authentication cookie (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[int] cors_depth: Depth to allow CORS access (default = 3).
         :param pulumi.Input[str] cors_stateful: Enable/disable allowance of CORS access (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['RuleDstaddr6Args']]] dstaddr6s: Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['RuleDstaddrArgs']]] dstaddrs: Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_based: Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Authentication rule name.
         :param pulumi.Input[str] protocol: Authentication is required for the selected protocol (default = http). Valid values: `http`, `ftp`, `socks`, `ssh`.
@@ -389,6 +407,8 @@ class _RuleState:
         """
         if active_auth_method is not None:
             pulumi.set(__self__, "active_auth_method", active_auth_method)
+        if cert_auth_cookie is not None:
+            pulumi.set(__self__, "cert_auth_cookie", cert_auth_cookie)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
         if cors_depth is not None:
@@ -439,6 +459,18 @@ class _RuleState:
     @active_auth_method.setter
     def active_auth_method(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "active_auth_method", value)
+
+    @property
+    @pulumi.getter(name="certAuthCookie")
+    def cert_auth_cookie(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable to use device certificate as authentication cookie (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cert_auth_cookie")
+
+    @cert_auth_cookie.setter
+    def cert_auth_cookie(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_auth_cookie", value)
 
     @property
     @pulumi.getter
@@ -516,7 +548,7 @@ class _RuleState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -675,6 +707,7 @@ class Rule(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  active_auth_method: Optional[pulumi.Input[str]] = None,
+                 cert_auth_cookie: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  cors_depth: Optional[pulumi.Input[int]] = None,
                  cors_stateful: Optional[pulumi.Input[str]] = None,
@@ -700,7 +733,6 @@ class Rule(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -712,7 +744,6 @@ class Rule(pulumi.CustomResource):
             transaction_based="disable",
             web_auth_cookie="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -735,13 +766,14 @@ class Rule(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] active_auth_method: Select an active authentication method.
+        :param pulumi.Input[str] cert_auth_cookie: Enable/disable to use device certificate as authentication cookie (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[int] cors_depth: Depth to allow CORS access (default = 3).
         :param pulumi.Input[str] cors_stateful: Enable/disable allowance of CORS access (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleDstaddr6Args']]]] dstaddr6s: Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleDstaddrArgs']]]] dstaddrs: Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_based: Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Authentication rule name.
         :param pulumi.Input[str] protocol: Authentication is required for the selected protocol (default = http). Valid values: `http`, `ftp`, `socks`, `ssh`.
@@ -766,7 +798,6 @@ class Rule(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -778,7 +809,6 @@ class Rule(pulumi.CustomResource):
             transaction_based="disable",
             web_auth_cookie="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -814,6 +844,7 @@ class Rule(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  active_auth_method: Optional[pulumi.Input[str]] = None,
+                 cert_auth_cookie: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  cors_depth: Optional[pulumi.Input[int]] = None,
                  cors_stateful: Optional[pulumi.Input[str]] = None,
@@ -843,6 +874,7 @@ class Rule(pulumi.CustomResource):
             __props__ = RuleArgs.__new__(RuleArgs)
 
             __props__.__dict__["active_auth_method"] = active_auth_method
+            __props__.__dict__["cert_auth_cookie"] = cert_auth_cookie
             __props__.__dict__["comments"] = comments
             __props__.__dict__["cors_depth"] = cors_depth
             __props__.__dict__["cors_stateful"] = cors_stateful
@@ -873,6 +905,7 @@ class Rule(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             active_auth_method: Optional[pulumi.Input[str]] = None,
+            cert_auth_cookie: Optional[pulumi.Input[str]] = None,
             comments: Optional[pulumi.Input[str]] = None,
             cors_depth: Optional[pulumi.Input[int]] = None,
             cors_stateful: Optional[pulumi.Input[str]] = None,
@@ -900,13 +933,14 @@ class Rule(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] active_auth_method: Select an active authentication method.
+        :param pulumi.Input[str] cert_auth_cookie: Enable/disable to use device certificate as authentication cookie (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[int] cors_depth: Depth to allow CORS access (default = 3).
         :param pulumi.Input[str] cors_stateful: Enable/disable allowance of CORS access (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleDstaddr6Args']]]] dstaddr6s: Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RuleDstaddrArgs']]]] dstaddrs: Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] ip_based: Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Authentication rule name.
         :param pulumi.Input[str] protocol: Authentication is required for the selected protocol (default = http). Valid values: `http`, `ftp`, `socks`, `ssh`.
@@ -925,6 +959,7 @@ class Rule(pulumi.CustomResource):
         __props__ = _RuleState.__new__(_RuleState)
 
         __props__.__dict__["active_auth_method"] = active_auth_method
+        __props__.__dict__["cert_auth_cookie"] = cert_auth_cookie
         __props__.__dict__["comments"] = comments
         __props__.__dict__["cors_depth"] = cors_depth
         __props__.__dict__["cors_stateful"] = cors_stateful
@@ -953,6 +988,14 @@ class Rule(pulumi.CustomResource):
         Select an active authentication method.
         """
         return pulumi.get(self, "active_auth_method")
+
+    @property
+    @pulumi.getter(name="certAuthCookie")
+    def cert_auth_cookie(self) -> pulumi.Output[str]:
+        """
+        Enable/disable to use device certificate as authentication cookie (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cert_auth_cookie")
 
     @property
     @pulumi.getter
@@ -1006,7 +1049,7 @@ class Rule(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1084,7 +1127,7 @@ class Rule(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

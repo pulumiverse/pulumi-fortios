@@ -17,7 +17,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// ## Example
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -42,7 +41,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:system/fortimanager:Fortimanager")]
     public partial class Fortimanager : global::Pulumi.CustomResource
@@ -69,7 +67,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Vdom { get; private set; } = null!;
 
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>

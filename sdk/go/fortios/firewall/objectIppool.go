@@ -19,7 +19,6 @@ import (
 // ## Example Usage
 //
 // ### Overload Ippool
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -47,10 +46,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### One-To-One Ippool
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -78,7 +75,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type ObjectIppool struct {
 	pulumi.CustomResourceState
 

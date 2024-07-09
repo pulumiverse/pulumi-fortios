@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -91,7 +90,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -163,7 +161,7 @@ type Portal struct {
 	ForticlientDownload pulumi.StringOutput `pulumi:"forticlientDownload"`
 	// FortiClient download method. Valid values: `direct`, `ssl-vpn`.
 	ForticlientDownloadMethod pulumi.StringOutput `pulumi:"forticlientDownloadMethod"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Web portal heading message.
 	Heading pulumi.StringOutput `pulumi:"heading"`
@@ -227,7 +225,7 @@ type Portal struct {
 	PreferIpv6Dns pulumi.StringOutput `pulumi:"preferIpv6Dns"`
 	// Client login redirect URL.
 	RedirUrl pulumi.StringPtrOutput `pulumi:"redirUrl"`
-	// Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+	// Rewrite contents for URI contains IP and /ui/ (default = disable). Valid values: `enable`, `disable`.
 	RewriteIpUriUi pulumi.StringOutput `pulumi:"rewriteIpUriUi"`
 	// Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
 	SavePassword pulumi.StringOutput `pulumi:"savePassword"`
@@ -266,7 +264,7 @@ type Portal struct {
 	// Enable to allow web portal users to create bookmarks for all users in the same user group. Valid values: `enable`, `disable`.
 	UserGroupBookmark pulumi.StringOutput `pulumi:"userGroupBookmark"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable SSL VPN web mode. Valid values: `enable`, `disable`.
 	WebMode pulumi.StringOutput `pulumi:"webMode"`
 	// Download URL for Windows FortiClient.
@@ -357,7 +355,7 @@ type portalState struct {
 	ForticlientDownload *string `pulumi:"forticlientDownload"`
 	// FortiClient download method. Valid values: `direct`, `ssl-vpn`.
 	ForticlientDownloadMethod *string `pulumi:"forticlientDownloadMethod"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Web portal heading message.
 	Heading *string `pulumi:"heading"`
@@ -421,7 +419,7 @@ type portalState struct {
 	PreferIpv6Dns *string `pulumi:"preferIpv6Dns"`
 	// Client login redirect URL.
 	RedirUrl *string `pulumi:"redirUrl"`
-	// Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+	// Rewrite contents for URI contains IP and /ui/ (default = disable). Valid values: `enable`, `disable`.
 	RewriteIpUriUi *string `pulumi:"rewriteIpUriUi"`
 	// Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
 	SavePassword *string `pulumi:"savePassword"`
@@ -522,7 +520,7 @@ type PortalState struct {
 	ForticlientDownload pulumi.StringPtrInput
 	// FortiClient download method. Valid values: `direct`, `ssl-vpn`.
 	ForticlientDownloadMethod pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Web portal heading message.
 	Heading pulumi.StringPtrInput
@@ -586,7 +584,7 @@ type PortalState struct {
 	PreferIpv6Dns pulumi.StringPtrInput
 	// Client login redirect URL.
 	RedirUrl pulumi.StringPtrInput
-	// Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+	// Rewrite contents for URI contains IP and /ui/ (default = disable). Valid values: `enable`, `disable`.
 	RewriteIpUriUi pulumi.StringPtrInput
 	// Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
 	SavePassword pulumi.StringPtrInput
@@ -691,7 +689,7 @@ type portalArgs struct {
 	ForticlientDownload *string `pulumi:"forticlientDownload"`
 	// FortiClient download method. Valid values: `direct`, `ssl-vpn`.
 	ForticlientDownloadMethod *string `pulumi:"forticlientDownloadMethod"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Web portal heading message.
 	Heading *string `pulumi:"heading"`
@@ -755,7 +753,7 @@ type portalArgs struct {
 	PreferIpv6Dns *string `pulumi:"preferIpv6Dns"`
 	// Client login redirect URL.
 	RedirUrl *string `pulumi:"redirUrl"`
-	// Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+	// Rewrite contents for URI contains IP and /ui/ (default = disable). Valid values: `enable`, `disable`.
 	RewriteIpUriUi *string `pulumi:"rewriteIpUriUi"`
 	// Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
 	SavePassword *string `pulumi:"savePassword"`
@@ -857,7 +855,7 @@ type PortalArgs struct {
 	ForticlientDownload pulumi.StringPtrInput
 	// FortiClient download method. Valid values: `direct`, `ssl-vpn`.
 	ForticlientDownloadMethod pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Web portal heading message.
 	Heading pulumi.StringPtrInput
@@ -921,7 +919,7 @@ type PortalArgs struct {
 	PreferIpv6Dns pulumi.StringPtrInput
 	// Client login redirect URL.
 	RedirUrl pulumi.StringPtrInput
-	// Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+	// Rewrite contents for URI contains IP and /ui/ (default = disable). Valid values: `enable`, `disable`.
 	RewriteIpUriUi pulumi.StringPtrInput
 	// Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
 	SavePassword pulumi.StringPtrInput
@@ -1183,7 +1181,7 @@ func (o PortalOutput) ForticlientDownloadMethod() pulumi.StringOutput {
 	return o.ApplyT(func(v *Portal) pulumi.StringOutput { return v.ForticlientDownloadMethod }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o PortalOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Portal) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -1345,7 +1343,7 @@ func (o PortalOutput) RedirUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Portal) pulumi.StringPtrOutput { return v.RedirUrl }).(pulumi.StringPtrOutput)
 }
 
-// Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+// Rewrite contents for URI contains IP and /ui/ (default = disable). Valid values: `enable`, `disable`.
 func (o PortalOutput) RewriteIpUriUi() pulumi.StringOutput {
 	return o.ApplyT(func(v *Portal) pulumi.StringOutput { return v.RewriteIpUriUi }).(pulumi.StringOutput)
 }
@@ -1441,8 +1439,8 @@ func (o PortalOutput) UserGroupBookmark() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o PortalOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Portal) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o PortalOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Portal) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable SSL VPN web mode. Valid values: `enable`, `disable`.

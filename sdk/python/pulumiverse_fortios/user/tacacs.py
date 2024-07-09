@@ -25,6 +25,7 @@ class TacacsArgs:
                  secondary_server: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
+                 status_ttl: Optional[pulumi.Input[int]] = None,
                  tertiary_key: Optional[pulumi.Input[str]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -41,6 +42,7 @@ class TacacsArgs:
         :param pulumi.Input[str] secondary_server: Secondary TACACS+ server CN domain name or IP address.
         :param pulumi.Input[str] server: Primary TACACS+ server CN domain name or IP address.
         :param pulumi.Input[str] source_ip: source IP for communications to TACACS+ server.
+        :param pulumi.Input[int] status_ttl: Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
         :param pulumi.Input[str] tertiary_key: Key to access the tertiary server.
         :param pulumi.Input[str] tertiary_server: Tertiary TACACS+ server CN domain name or IP address.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -67,6 +69,8 @@ class TacacsArgs:
             pulumi.set(__self__, "server", server)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
+        if status_ttl is not None:
+            pulumi.set(__self__, "status_ttl", status_ttl)
         if tertiary_key is not None:
             pulumi.set(__self__, "tertiary_key", tertiary_key)
         if tertiary_server is not None:
@@ -205,6 +209,18 @@ class TacacsArgs:
     @source_ip.setter
     def source_ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "source_ip", value)
+
+    @property
+    @pulumi.getter(name="statusTtl")
+    def status_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+        """
+        return pulumi.get(self, "status_ttl")
+
+    @status_ttl.setter
+    def status_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "status_ttl", value)
 
     @property
     @pulumi.getter(name="tertiaryKey")
@@ -257,6 +273,7 @@ class _TacacsState:
                  secondary_server: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
+                 status_ttl: Optional[pulumi.Input[int]] = None,
                  tertiary_key: Optional[pulumi.Input[str]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -273,6 +290,7 @@ class _TacacsState:
         :param pulumi.Input[str] secondary_server: Secondary TACACS+ server CN domain name or IP address.
         :param pulumi.Input[str] server: Primary TACACS+ server CN domain name or IP address.
         :param pulumi.Input[str] source_ip: source IP for communications to TACACS+ server.
+        :param pulumi.Input[int] status_ttl: Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
         :param pulumi.Input[str] tertiary_key: Key to access the tertiary server.
         :param pulumi.Input[str] tertiary_server: Tertiary TACACS+ server CN domain name or IP address.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -299,6 +317,8 @@ class _TacacsState:
             pulumi.set(__self__, "server", server)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
+        if status_ttl is not None:
+            pulumi.set(__self__, "status_ttl", status_ttl)
         if tertiary_key is not None:
             pulumi.set(__self__, "tertiary_key", tertiary_key)
         if tertiary_server is not None:
@@ -437,6 +457,18 @@ class _TacacsState:
     @source_ip.setter
     def source_ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "source_ip", value)
+
+    @property
+    @pulumi.getter(name="statusTtl")
+    def status_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+        """
+        return pulumi.get(self, "status_ttl")
+
+    @status_ttl.setter
+    def status_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "status_ttl", value)
 
     @property
     @pulumi.getter(name="tertiaryKey")
@@ -491,6 +523,7 @@ class Tacacs(pulumi.CustomResource):
                  secondary_server: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
+                 status_ttl: Optional[pulumi.Input[int]] = None,
                  tertiary_key: Optional[pulumi.Input[str]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -500,7 +533,6 @@ class Tacacs(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -511,7 +543,6 @@ class Tacacs(pulumi.CustomResource):
             port=2342,
             server="1.1.1.1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -544,6 +575,7 @@ class Tacacs(pulumi.CustomResource):
         :param pulumi.Input[str] secondary_server: Secondary TACACS+ server CN domain name or IP address.
         :param pulumi.Input[str] server: Primary TACACS+ server CN domain name or IP address.
         :param pulumi.Input[str] source_ip: source IP for communications to TACACS+ server.
+        :param pulumi.Input[int] status_ttl: Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
         :param pulumi.Input[str] tertiary_key: Key to access the tertiary server.
         :param pulumi.Input[str] tertiary_server: Tertiary TACACS+ server CN domain name or IP address.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -559,7 +591,6 @@ class Tacacs(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -570,7 +601,6 @@ class Tacacs(pulumi.CustomResource):
             port=2342,
             server="1.1.1.1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -616,6 +646,7 @@ class Tacacs(pulumi.CustomResource):
                  secondary_server: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
+                 status_ttl: Optional[pulumi.Input[int]] = None,
                  tertiary_key: Optional[pulumi.Input[str]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -639,6 +670,7 @@ class Tacacs(pulumi.CustomResource):
             __props__.__dict__["secondary_server"] = secondary_server
             __props__.__dict__["server"] = server
             __props__.__dict__["source_ip"] = source_ip
+            __props__.__dict__["status_ttl"] = status_ttl
             __props__.__dict__["tertiary_key"] = None if tertiary_key is None else pulumi.Output.secret(tertiary_key)
             __props__.__dict__["tertiary_server"] = tertiary_server
             __props__.__dict__["vdomparam"] = vdomparam
@@ -665,6 +697,7 @@ class Tacacs(pulumi.CustomResource):
             secondary_server: Optional[pulumi.Input[str]] = None,
             server: Optional[pulumi.Input[str]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
+            status_ttl: Optional[pulumi.Input[int]] = None,
             tertiary_key: Optional[pulumi.Input[str]] = None,
             tertiary_server: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'Tacacs':
@@ -686,6 +719,7 @@ class Tacacs(pulumi.CustomResource):
         :param pulumi.Input[str] secondary_server: Secondary TACACS+ server CN domain name or IP address.
         :param pulumi.Input[str] server: Primary TACACS+ server CN domain name or IP address.
         :param pulumi.Input[str] source_ip: source IP for communications to TACACS+ server.
+        :param pulumi.Input[int] status_ttl: Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
         :param pulumi.Input[str] tertiary_key: Key to access the tertiary server.
         :param pulumi.Input[str] tertiary_server: Tertiary TACACS+ server CN domain name or IP address.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -705,6 +739,7 @@ class Tacacs(pulumi.CustomResource):
         __props__.__dict__["secondary_server"] = secondary_server
         __props__.__dict__["server"] = server
         __props__.__dict__["source_ip"] = source_ip
+        __props__.__dict__["status_ttl"] = status_ttl
         __props__.__dict__["tertiary_key"] = tertiary_key
         __props__.__dict__["tertiary_server"] = tertiary_server
         __props__.__dict__["vdomparam"] = vdomparam
@@ -799,6 +834,14 @@ class Tacacs(pulumi.CustomResource):
         return pulumi.get(self, "source_ip")
 
     @property
+    @pulumi.getter(name="statusTtl")
+    def status_ttl(self) -> pulumi.Output[int]:
+        """
+        Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+        """
+        return pulumi.get(self, "status_ttl")
+
+    @property
     @pulumi.getter(name="tertiaryKey")
     def tertiary_key(self) -> pulumi.Output[Optional[str]]:
         """
@@ -816,7 +859,7 @@ class Tacacs(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

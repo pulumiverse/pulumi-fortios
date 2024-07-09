@@ -20,25 +20,25 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Inputs
         public Input<string>? Aeroscout { get; set; }
 
         /// <summary>
-        /// Use BSSID or board MAC address as AP MAC address in the Aeroscout AP message. Valid values: `bssid`, `board-mac`.
+        /// Use BSSID or board MAC address as AP MAC address in AeroScout AP messages (default = bssid). Valid values: `bssid`, `board-mac`.
         /// </summary>
         [Input("aeroscoutApMac")]
         public Input<string>? AeroscoutApMac { get; set; }
 
         /// <summary>
-        /// Enable/disable MU compounded report. Valid values: `enable`, `disable`.
+        /// Enable/disable compounded AeroScout tag and MU report (default = enable). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("aeroscoutMmuReport")]
         public Input<string>? AeroscoutMmuReport { get; set; }
 
         /// <summary>
-        /// Enable/disable AeroScout support. Valid values: `enable`, `disable`.
+        /// Enable/disable AeroScout Mobile Unit (MU) support (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("aeroscoutMu")]
         public Input<string>? AeroscoutMu { get; set; }
 
         /// <summary>
-        /// AeroScout Mobile Unit (MU) mode dilution factor (default = 20).
+        /// eroScout MU mode dilution factor (default = 20).
         /// </summary>
         [Input("aeroscoutMuFactor")]
         public Input<int>? AeroscoutMuFactor { get; set; }
@@ -62,7 +62,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Inputs
         public Input<int>? AeroscoutServerPort { get; set; }
 
         /// <summary>
-        /// Enable/disable Ekahua blink mode (also called AiRISTA Flow Blink Mode) to find the location of devices connected to a wireless LAN (default = disable). Valid values: `enable`, `disable`.
+        /// Enable/disable Ekahau blink mode (now known as AiRISTA Flow) to track and locate WiFi tags (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("ekahauBlinkMode")]
         public Input<string>? EkahauBlinkMode { get; set; }
@@ -74,13 +74,13 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Inputs
         public Input<string>? EkahauTag { get; set; }
 
         /// <summary>
-        /// IP address of Ekahua RTLS Controller (ERC).
+        /// IP address of Ekahau RTLS Controller (ERC).
         /// </summary>
         [Input("ercServerIp")]
         public Input<string>? ErcServerIp { get; set; }
 
         /// <summary>
-        /// Ekahua RTLS Controller (ERC) UDP listening port.
+        /// Ekahau RTLS Controller (ERC) UDP listening port.
         /// </summary>
         [Input("ercServerPort")]
         public Input<int>? ErcServerPort { get; set; }
@@ -104,7 +104,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Inputs
         public Input<int>? FortipresenceFrequency { get; set; }
 
         /// <summary>
-        /// FortiPresence server UDP listening port (default = 3000).
+        /// UDP listening port of FortiPresence server (default = 3000).
         /// </summary>
         [Input("fortipresencePort")]
         public Input<int>? FortipresencePort { get; set; }

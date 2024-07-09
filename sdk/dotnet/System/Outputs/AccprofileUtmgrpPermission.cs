@@ -35,6 +35,10 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? DataLossPrevention;
         /// <summary>
+        /// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+        /// </summary>
+        public readonly string? Dlp;
+        /// <summary>
         /// DNS Filter profiles and settings. Valid values: `none`, `read`, `read-write`.
         /// </summary>
         public readonly string? Dnsfilter;
@@ -95,6 +99,8 @@ namespace Pulumiverse.Fortios.System.Outputs
 
             string? dataLossPrevention,
 
+            string? dlp,
+
             string? dnsfilter,
 
             string? emailfilter,
@@ -124,6 +130,7 @@ namespace Pulumiverse.Fortios.System.Outputs
             Casb = casb;
             DataLeakPrevention = dataLeakPrevention;
             DataLossPrevention = dataLossPrevention;
+            Dlp = dlp;
             Dnsfilter = dnsfilter;
             Emailfilter = emailfilter;
             EndpointControl = endpointControl;

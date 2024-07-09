@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -53,7 +52,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -77,7 +75,7 @@ type Global struct {
 
 	// Configure the number cwAcd daemons for multi-core CPU support (default = 0).
 	AcdProcessCount pulumi.IntOutput `pulumi:"acdProcessCount"`
-	// Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+	// Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
 	ApLogServer pulumi.StringOutput `pulumi:"apLogServer"`
 	// IP address that APs or FortiAPs send log messages to.
 	ApLogServerIp pulumi.StringOutput `pulumi:"apLogServerIp"`
@@ -85,7 +83,7 @@ type Global struct {
 	ApLogServerPort pulumi.IntOutput `pulumi:"apLogServerPort"`
 	// Configure CAPWAP control message data channel offload.
 	ControlMessageOffload pulumi.StringOutput `pulumi:"controlMessageOffload"`
-	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
 	DataEthernetIi pulumi.StringOutput `pulumi:"dataEthernetIi"`
 	// Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
 	DfsLabTest pulumi.StringOutput `pulumi:"dfsLabTest"`
@@ -101,10 +99,22 @@ type Global struct {
 	LinkAggregation pulumi.StringOutput `pulumi:"linkAggregation"`
 	// Description of the location of the wireless controller.
 	Location pulumi.StringOutput `pulumi:"location"`
+	// Maximum number of BLE devices stored on the controller (default = 0).
+	MaxBleDevice pulumi.IntOutput `pulumi:"maxBleDevice"`
 	// Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
 	MaxClients pulumi.IntOutput `pulumi:"maxClients"`
 	// Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
 	MaxRetransmit pulumi.IntOutput `pulumi:"maxRetransmit"`
+	// Maximum number of rogue APs stored on the controller (default = 0).
+	MaxRogueAp pulumi.IntOutput `pulumi:"maxRogueAp"`
+	// Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+	MaxRogueApWtp pulumi.IntOutput `pulumi:"maxRogueApWtp"`
+	// Maximum number of rogue stations stored on the controller (default = 0).
+	MaxRogueSta pulumi.IntOutput `pulumi:"maxRogueSta"`
+	// Maximum number of station cap stored on the controller (default = 0).
+	MaxStaCap pulumi.IntOutput `pulumi:"maxStaCap"`
+	// Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
+	MaxStaCapWtp pulumi.IntOutput `pulumi:"maxStaCapWtp"`
 	// Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
 	MeshEthType pulumi.IntOutput `pulumi:"meshEthType"`
 	// Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
@@ -120,7 +130,7 @@ type Global struct {
 	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
 	TunnelMode pulumi.StringOutput `pulumi:"tunnelMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Wpad daemon process count for multi-core CPU support.
 	WpadProcessCount pulumi.IntOutput `pulumi:"wpadProcessCount"`
 	// Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
@@ -159,7 +169,7 @@ func GetGlobal(ctx *pulumi.Context,
 type globalState struct {
 	// Configure the number cwAcd daemons for multi-core CPU support (default = 0).
 	AcdProcessCount *int `pulumi:"acdProcessCount"`
-	// Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+	// Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
 	ApLogServer *string `pulumi:"apLogServer"`
 	// IP address that APs or FortiAPs send log messages to.
 	ApLogServerIp *string `pulumi:"apLogServerIp"`
@@ -167,7 +177,7 @@ type globalState struct {
 	ApLogServerPort *int `pulumi:"apLogServerPort"`
 	// Configure CAPWAP control message data channel offload.
 	ControlMessageOffload *string `pulumi:"controlMessageOffload"`
-	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
 	DataEthernetIi *string `pulumi:"dataEthernetIi"`
 	// Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
 	DfsLabTest *string `pulumi:"dfsLabTest"`
@@ -183,10 +193,22 @@ type globalState struct {
 	LinkAggregation *string `pulumi:"linkAggregation"`
 	// Description of the location of the wireless controller.
 	Location *string `pulumi:"location"`
+	// Maximum number of BLE devices stored on the controller (default = 0).
+	MaxBleDevice *int `pulumi:"maxBleDevice"`
 	// Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
 	MaxClients *int `pulumi:"maxClients"`
 	// Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
 	MaxRetransmit *int `pulumi:"maxRetransmit"`
+	// Maximum number of rogue APs stored on the controller (default = 0).
+	MaxRogueAp *int `pulumi:"maxRogueAp"`
+	// Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+	MaxRogueApWtp *int `pulumi:"maxRogueApWtp"`
+	// Maximum number of rogue stations stored on the controller (default = 0).
+	MaxRogueSta *int `pulumi:"maxRogueSta"`
+	// Maximum number of station cap stored on the controller (default = 0).
+	MaxStaCap *int `pulumi:"maxStaCap"`
+	// Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
+	MaxStaCapWtp *int `pulumi:"maxStaCapWtp"`
 	// Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
 	MeshEthType *int `pulumi:"meshEthType"`
 	// Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
@@ -212,7 +234,7 @@ type globalState struct {
 type GlobalState struct {
 	// Configure the number cwAcd daemons for multi-core CPU support (default = 0).
 	AcdProcessCount pulumi.IntPtrInput
-	// Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+	// Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
 	ApLogServer pulumi.StringPtrInput
 	// IP address that APs or FortiAPs send log messages to.
 	ApLogServerIp pulumi.StringPtrInput
@@ -220,7 +242,7 @@ type GlobalState struct {
 	ApLogServerPort pulumi.IntPtrInput
 	// Configure CAPWAP control message data channel offload.
 	ControlMessageOffload pulumi.StringPtrInput
-	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
 	DataEthernetIi pulumi.StringPtrInput
 	// Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
 	DfsLabTest pulumi.StringPtrInput
@@ -236,10 +258,22 @@ type GlobalState struct {
 	LinkAggregation pulumi.StringPtrInput
 	// Description of the location of the wireless controller.
 	Location pulumi.StringPtrInput
+	// Maximum number of BLE devices stored on the controller (default = 0).
+	MaxBleDevice pulumi.IntPtrInput
 	// Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
 	MaxClients pulumi.IntPtrInput
 	// Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
 	MaxRetransmit pulumi.IntPtrInput
+	// Maximum number of rogue APs stored on the controller (default = 0).
+	MaxRogueAp pulumi.IntPtrInput
+	// Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+	MaxRogueApWtp pulumi.IntPtrInput
+	// Maximum number of rogue stations stored on the controller (default = 0).
+	MaxRogueSta pulumi.IntPtrInput
+	// Maximum number of station cap stored on the controller (default = 0).
+	MaxStaCap pulumi.IntPtrInput
+	// Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
+	MaxStaCapWtp pulumi.IntPtrInput
 	// Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
 	MeshEthType pulumi.IntPtrInput
 	// Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
@@ -269,7 +303,7 @@ func (GlobalState) ElementType() reflect.Type {
 type globalArgs struct {
 	// Configure the number cwAcd daemons for multi-core CPU support (default = 0).
 	AcdProcessCount *int `pulumi:"acdProcessCount"`
-	// Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+	// Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
 	ApLogServer *string `pulumi:"apLogServer"`
 	// IP address that APs or FortiAPs send log messages to.
 	ApLogServerIp *string `pulumi:"apLogServerIp"`
@@ -277,7 +311,7 @@ type globalArgs struct {
 	ApLogServerPort *int `pulumi:"apLogServerPort"`
 	// Configure CAPWAP control message data channel offload.
 	ControlMessageOffload *string `pulumi:"controlMessageOffload"`
-	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
 	DataEthernetIi *string `pulumi:"dataEthernetIi"`
 	// Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
 	DfsLabTest *string `pulumi:"dfsLabTest"`
@@ -293,10 +327,22 @@ type globalArgs struct {
 	LinkAggregation *string `pulumi:"linkAggregation"`
 	// Description of the location of the wireless controller.
 	Location *string `pulumi:"location"`
+	// Maximum number of BLE devices stored on the controller (default = 0).
+	MaxBleDevice *int `pulumi:"maxBleDevice"`
 	// Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
 	MaxClients *int `pulumi:"maxClients"`
 	// Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
 	MaxRetransmit *int `pulumi:"maxRetransmit"`
+	// Maximum number of rogue APs stored on the controller (default = 0).
+	MaxRogueAp *int `pulumi:"maxRogueAp"`
+	// Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+	MaxRogueApWtp *int `pulumi:"maxRogueApWtp"`
+	// Maximum number of rogue stations stored on the controller (default = 0).
+	MaxRogueSta *int `pulumi:"maxRogueSta"`
+	// Maximum number of station cap stored on the controller (default = 0).
+	MaxStaCap *int `pulumi:"maxStaCap"`
+	// Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
+	MaxStaCapWtp *int `pulumi:"maxStaCapWtp"`
 	// Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
 	MeshEthType *int `pulumi:"meshEthType"`
 	// Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
@@ -323,7 +369,7 @@ type globalArgs struct {
 type GlobalArgs struct {
 	// Configure the number cwAcd daemons for multi-core CPU support (default = 0).
 	AcdProcessCount pulumi.IntPtrInput
-	// Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+	// Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
 	ApLogServer pulumi.StringPtrInput
 	// IP address that APs or FortiAPs send log messages to.
 	ApLogServerIp pulumi.StringPtrInput
@@ -331,7 +377,7 @@ type GlobalArgs struct {
 	ApLogServerPort pulumi.IntPtrInput
 	// Configure CAPWAP control message data channel offload.
 	ControlMessageOffload pulumi.StringPtrInput
-	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
 	DataEthernetIi pulumi.StringPtrInput
 	// Enable/disable DFS certificate lab test mode. Valid values: `enable`, `disable`.
 	DfsLabTest pulumi.StringPtrInput
@@ -347,10 +393,22 @@ type GlobalArgs struct {
 	LinkAggregation pulumi.StringPtrInput
 	// Description of the location of the wireless controller.
 	Location pulumi.StringPtrInput
+	// Maximum number of BLE devices stored on the controller (default = 0).
+	MaxBleDevice pulumi.IntPtrInput
 	// Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
 	MaxClients pulumi.IntPtrInput
 	// Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
 	MaxRetransmit pulumi.IntPtrInput
+	// Maximum number of rogue APs stored on the controller (default = 0).
+	MaxRogueAp pulumi.IntPtrInput
+	// Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+	MaxRogueApWtp pulumi.IntPtrInput
+	// Maximum number of rogue stations stored on the controller (default = 0).
+	MaxRogueSta pulumi.IntPtrInput
+	// Maximum number of station cap stored on the controller (default = 0).
+	MaxStaCap pulumi.IntPtrInput
+	// Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
+	MaxStaCapWtp pulumi.IntPtrInput
 	// Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
 	MeshEthType pulumi.IntPtrInput
 	// Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
@@ -465,7 +523,7 @@ func (o GlobalOutput) AcdProcessCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.AcdProcessCount }).(pulumi.IntOutput)
 }
 
-// Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+// Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
 func (o GlobalOutput) ApLogServer() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.ApLogServer }).(pulumi.StringOutput)
 }
@@ -485,7 +543,7 @@ func (o GlobalOutput) ControlMessageOffload() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.ControlMessageOffload }).(pulumi.StringOutput)
 }
 
-// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
 func (o GlobalOutput) DataEthernetIi() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.DataEthernetIi }).(pulumi.StringOutput)
 }
@@ -525,6 +583,11 @@ func (o GlobalOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
+// Maximum number of BLE devices stored on the controller (default = 0).
+func (o GlobalOutput) MaxBleDevice() pulumi.IntOutput {
+	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.MaxBleDevice }).(pulumi.IntOutput)
+}
+
 // Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
 func (o GlobalOutput) MaxClients() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.MaxClients }).(pulumi.IntOutput)
@@ -533,6 +596,31 @@ func (o GlobalOutput) MaxClients() pulumi.IntOutput {
 // Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
 func (o GlobalOutput) MaxRetransmit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.MaxRetransmit }).(pulumi.IntOutput)
+}
+
+// Maximum number of rogue APs stored on the controller (default = 0).
+func (o GlobalOutput) MaxRogueAp() pulumi.IntOutput {
+	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.MaxRogueAp }).(pulumi.IntOutput)
+}
+
+// Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+func (o GlobalOutput) MaxRogueApWtp() pulumi.IntOutput {
+	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.MaxRogueApWtp }).(pulumi.IntOutput)
+}
+
+// Maximum number of rogue stations stored on the controller (default = 0).
+func (o GlobalOutput) MaxRogueSta() pulumi.IntOutput {
+	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.MaxRogueSta }).(pulumi.IntOutput)
+}
+
+// Maximum number of station cap stored on the controller (default = 0).
+func (o GlobalOutput) MaxStaCap() pulumi.IntOutput {
+	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.MaxStaCap }).(pulumi.IntOutput)
+}
+
+// Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
+func (o GlobalOutput) MaxStaCapWtp() pulumi.IntOutput {
+	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.MaxStaCapWtp }).(pulumi.IntOutput)
 }
 
 // Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
@@ -571,8 +659,8 @@ func (o GlobalOutput) TunnelMode() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o GlobalOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o GlobalOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Wpad daemon process count for multi-core CPU support.

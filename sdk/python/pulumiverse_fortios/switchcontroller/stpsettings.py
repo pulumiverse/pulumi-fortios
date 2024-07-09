@@ -27,7 +27,7 @@ class StpsettingsArgs:
         The set of arguments for constructing a Stpsettings resource.
         :param pulumi.Input[int] forward_time: Period of time a port is in listening and learning state (4 - 30 sec, default = 15).
         :param pulumi.Input[int] hello_time: Period of time between successive STP frame Bridge Protocol Data Units (BPDUs) sent on a port (1 - 10 sec, default = 2).
-        :param pulumi.Input[int] max_age: Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+        :param pulumi.Input[int] max_age: Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
         :param pulumi.Input[int] max_hops: Maximum number of hops between the root bridge and the furthest bridge (1- 40, default = 20).
         :param pulumi.Input[str] name: Name of global STP settings configuration.
         :param pulumi.Input[int] pending_timer: Pending time (1 - 15 sec, default = 4).
@@ -82,7 +82,7 @@ class StpsettingsArgs:
     @pulumi.getter(name="maxAge")
     def max_age(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+        Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
         """
         return pulumi.get(self, "max_age")
 
@@ -179,7 +179,7 @@ class _StpsettingsState:
         Input properties used for looking up and filtering Stpsettings resources.
         :param pulumi.Input[int] forward_time: Period of time a port is in listening and learning state (4 - 30 sec, default = 15).
         :param pulumi.Input[int] hello_time: Period of time between successive STP frame Bridge Protocol Data Units (BPDUs) sent on a port (1 - 10 sec, default = 2).
-        :param pulumi.Input[int] max_age: Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+        :param pulumi.Input[int] max_age: Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
         :param pulumi.Input[int] max_hops: Maximum number of hops between the root bridge and the furthest bridge (1- 40, default = 20).
         :param pulumi.Input[str] name: Name of global STP settings configuration.
         :param pulumi.Input[int] pending_timer: Pending time (1 - 15 sec, default = 4).
@@ -234,7 +234,7 @@ class _StpsettingsState:
     @pulumi.getter(name="maxAge")
     def max_age(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+        Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
         """
         return pulumi.get(self, "max_age")
 
@@ -335,7 +335,6 @@ class Stpsettings(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -349,7 +348,6 @@ class Stpsettings(pulumi.CustomResource):
             revision=0,
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -373,7 +371,7 @@ class Stpsettings(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] forward_time: Period of time a port is in listening and learning state (4 - 30 sec, default = 15).
         :param pulumi.Input[int] hello_time: Period of time between successive STP frame Bridge Protocol Data Units (BPDUs) sent on a port (1 - 10 sec, default = 2).
-        :param pulumi.Input[int] max_age: Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+        :param pulumi.Input[int] max_age: Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
         :param pulumi.Input[int] max_hops: Maximum number of hops between the root bridge and the furthest bridge (1- 40, default = 20).
         :param pulumi.Input[str] name: Name of global STP settings configuration.
         :param pulumi.Input[int] pending_timer: Pending time (1 - 15 sec, default = 4).
@@ -392,7 +390,6 @@ class Stpsettings(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -406,7 +403,6 @@ class Stpsettings(pulumi.CustomResource):
             revision=0,
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -496,7 +492,7 @@ class Stpsettings(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] forward_time: Period of time a port is in listening and learning state (4 - 30 sec, default = 15).
         :param pulumi.Input[int] hello_time: Period of time between successive STP frame Bridge Protocol Data Units (BPDUs) sent on a port (1 - 10 sec, default = 2).
-        :param pulumi.Input[int] max_age: Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+        :param pulumi.Input[int] max_age: Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
         :param pulumi.Input[int] max_hops: Maximum number of hops between the root bridge and the furthest bridge (1- 40, default = 20).
         :param pulumi.Input[str] name: Name of global STP settings configuration.
         :param pulumi.Input[int] pending_timer: Pending time (1 - 15 sec, default = 4).
@@ -539,7 +535,7 @@ class Stpsettings(pulumi.CustomResource):
     @pulumi.getter(name="maxAge")
     def max_age(self) -> pulumi.Output[int]:
         """
-        Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+        Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
         """
         return pulumi.get(self, "max_age")
 
@@ -585,7 +581,7 @@ class Stpsettings(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

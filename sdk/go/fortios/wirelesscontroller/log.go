@@ -54,11 +54,13 @@ type Log struct {
 	// Enable/disable wireless event logging. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Lowest severity level to log WIDS message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
 	WidsLog pulumi.StringOutput `pulumi:"widsLog"`
 	// Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
 	WtpEventLog pulumi.StringOutput `pulumi:"wtpEventLog"`
+	// Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+	WtpFipsEventLog pulumi.StringOutput `pulumi:"wtpFipsEventLog"`
 }
 
 // NewLog registers a new resource with the given unique name, arguments, and options.
@@ -117,6 +119,8 @@ type logState struct {
 	WidsLog *string `pulumi:"widsLog"`
 	// Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
 	WtpEventLog *string `pulumi:"wtpEventLog"`
+	// Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+	WtpFipsEventLog *string `pulumi:"wtpFipsEventLog"`
 }
 
 type LogState struct {
@@ -146,6 +150,8 @@ type LogState struct {
 	WidsLog pulumi.StringPtrInput
 	// Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
 	WtpEventLog pulumi.StringPtrInput
+	// Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+	WtpFipsEventLog pulumi.StringPtrInput
 }
 
 func (LogState) ElementType() reflect.Type {
@@ -179,6 +185,8 @@ type logArgs struct {
 	WidsLog *string `pulumi:"widsLog"`
 	// Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
 	WtpEventLog *string `pulumi:"wtpEventLog"`
+	// Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+	WtpFipsEventLog *string `pulumi:"wtpFipsEventLog"`
 }
 
 // The set of arguments for constructing a Log resource.
@@ -209,6 +217,8 @@ type LogArgs struct {
 	WidsLog pulumi.StringPtrInput
 	// Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
 	WtpEventLog pulumi.StringPtrInput
+	// Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+	WtpFipsEventLog pulumi.StringPtrInput
 }
 
 func (LogArgs) ElementType() reflect.Type {
@@ -349,8 +359,8 @@ func (o LogOutput) Status() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o LogOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Log) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o LogOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Log) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Lowest severity level to log WIDS message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
@@ -361,6 +371,11 @@ func (o LogOutput) WidsLog() pulumi.StringOutput {
 // Lowest severity level to log WTP event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
 func (o LogOutput) WtpEventLog() pulumi.StringOutput {
 	return o.ApplyT(func(v *Log) pulumi.StringOutput { return v.WtpEventLog }).(pulumi.StringOutput)
+}
+
+// Lowest severity level to log FAP fips event message. Valid values: `emergency`, `alert`, `critical`, `error`, `warning`, `notification`, `information`, `debug`.
+func (o LogOutput) WtpFipsEventLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *Log) pulumi.StringOutput { return v.WtpFipsEventLog }).(pulumi.StringOutput)
 }
 
 type LogArrayOutput struct{ *pulumi.OutputState }

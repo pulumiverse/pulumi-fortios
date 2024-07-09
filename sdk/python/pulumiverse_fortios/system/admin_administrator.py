@@ -33,6 +33,7 @@ class AdminAdministratorArgs:
         The set of arguments for constructing a AdminAdministrator resource.
         :param pulumi.Input[str] accprofile: Access profile for this administrator. Access profiles control administrator access to FortiGate features.
         :param pulumi.Input[str] password: Admin user password.
+               * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] name: User name.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] vdoms: Virtual domain(s) that the administrator can access.
@@ -83,6 +84,7 @@ class AdminAdministratorArgs:
     def password(self) -> pulumi.Input[str]:
         """
         Admin user password.
+        * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
         """
         return pulumi.get(self, "password")
 
@@ -241,6 +243,7 @@ class _AdminAdministratorState:
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] name: User name.
         :param pulumi.Input[str] password: Admin user password.
+               * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] vdoms: Virtual domain(s) that the administrator can access.
         """
         if accprofile is not None:
@@ -315,6 +318,7 @@ class _AdminAdministratorState:
     def password(self) -> Optional[pulumi.Input[str]]:
         """
         Admin user password.
+        * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
         """
         return pulumi.get(self, "password")
 
@@ -453,7 +457,6 @@ class AdminAdministrator(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -466,7 +469,6 @@ class AdminAdministrator(pulumi.CustomResource):
             trusthost2="2.2.2.0 255.255.255.0",
             vdoms=["root"])
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -474,6 +476,7 @@ class AdminAdministrator(pulumi.CustomResource):
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] name: User name.
         :param pulumi.Input[str] password: Admin user password.
+               * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] vdoms: Virtual domain(s) that the administrator can access.
         """
         ...
@@ -489,7 +492,6 @@ class AdminAdministrator(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -502,7 +504,6 @@ class AdminAdministrator(pulumi.CustomResource):
             trusthost2="2.2.2.0 255.255.255.0",
             vdoms=["root"])
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param AdminAdministratorArgs args: The arguments to use to populate this resource's properties.
@@ -598,6 +599,7 @@ class AdminAdministrator(pulumi.CustomResource):
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] name: User name.
         :param pulumi.Input[str] password: Admin user password.
+               * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] vdoms: Virtual domain(s) that the administrator can access.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -650,6 +652,7 @@ class AdminAdministrator(pulumi.CustomResource):
     def password(self) -> pulumi.Output[str]:
         """
         Admin user password.
+        * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
         """
         return pulumi.get(self, "password")
 

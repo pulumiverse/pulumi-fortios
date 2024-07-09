@@ -1946,7 +1946,6 @@ def get_neighbor(ip: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -1954,7 +1953,6 @@ def get_neighbor(ip: Optional[str] = None,
     sample1 = fortios.router.bgp.get_neighbor(ip="21.1.1.12")
     pulumi.export("output1", sample1)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str ip: Specify the ip of the desired routerbgp neighbor.
@@ -2137,7 +2135,6 @@ def get_neighbor_output(ip: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -2145,7 +2142,6 @@ def get_neighbor_output(ip: Optional[pulumi.Input[str]] = None,
     sample1 = fortios.router.bgp.get_neighbor(ip="21.1.1.12")
     pulumi.export("output1", sample1)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str ip: Specify the ip of the desired routerbgp neighbor.

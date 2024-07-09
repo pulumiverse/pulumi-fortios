@@ -74,6 +74,18 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
         public Input<string>? Mac { get; set; }
 
         /// <summary>
+        /// Number of days the matched devices will be retained (0 - 120, 0 = always retain).
+        /// </summary>
+        [Input("matchPeriod")]
+        public Input<int>? MatchPeriod { get; set; }
+
+        /// <summary>
+        /// Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+        /// </summary>
+        [Input("matchType")]
+        public Input<string>? MatchType { get; set; }
+
+        /// <summary>
         /// 802.1x security policy to be applied when using this policy.
         /// </summary>
         [Input("n8021x")]

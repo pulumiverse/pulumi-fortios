@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -78,7 +77,6 @@ import * as utilities from "../utilities";
  *     utmStatus: "enable",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -327,7 +325,7 @@ export class Policy extends pulumi.CustomResource {
      */
     public readonly geoipMatch!: pulumi.Output<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -607,6 +605,10 @@ export class Policy extends pulumi.CustomResource {
      */
     public readonly poolnames!: pulumi.Output<outputs.firewall.PolicyPoolname[] | undefined>;
     /**
+     * Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+     */
+    public readonly portPreserve!: pulumi.Output<string>;
+    /**
      * Name of profile group.
      */
     public readonly profileGroup!: pulumi.Output<string | undefined>;
@@ -805,7 +807,7 @@ export class Policy extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Name of an existing VideoFilter profile.
      */
@@ -1048,6 +1050,7 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["policyid"] = state ? state.policyid : undefined;
             resourceInputs["poolname6s"] = state ? state.poolname6s : undefined;
             resourceInputs["poolnames"] = state ? state.poolnames : undefined;
+            resourceInputs["portPreserve"] = state ? state.portPreserve : undefined;
             resourceInputs["profileGroup"] = state ? state.profileGroup : undefined;
             resourceInputs["profileProtocolOptions"] = state ? state.profileProtocolOptions : undefined;
             resourceInputs["profileType"] = state ? state.profileType : undefined;
@@ -1253,6 +1256,7 @@ export class Policy extends pulumi.CustomResource {
             resourceInputs["policyid"] = args ? args.policyid : undefined;
             resourceInputs["poolname6s"] = args ? args.poolname6s : undefined;
             resourceInputs["poolnames"] = args ? args.poolnames : undefined;
+            resourceInputs["portPreserve"] = args ? args.portPreserve : undefined;
             resourceInputs["profileGroup"] = args ? args.profileGroup : undefined;
             resourceInputs["profileProtocolOptions"] = args ? args.profileProtocolOptions : undefined;
             resourceInputs["profileType"] = args ? args.profileType : undefined;
@@ -1541,7 +1545,7 @@ export interface PolicyState {
      */
     geoipMatch?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -1820,6 +1824,10 @@ export interface PolicyState {
      * IP Pool names. The structure of `poolname` block is documented below.
      */
     poolnames?: pulumi.Input<pulumi.Input<inputs.firewall.PolicyPoolname>[]>;
+    /**
+     * Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+     */
+    portPreserve?: pulumi.Input<string>;
     /**
      * Name of profile group.
      */
@@ -2335,7 +2343,7 @@ export interface PolicyArgs {
      */
     geoipMatch?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -2614,6 +2622,10 @@ export interface PolicyArgs {
      * IP Pool names. The structure of `poolname` block is documented below.
      */
     poolnames?: pulumi.Input<pulumi.Input<inputs.firewall.PolicyPoolname>[]>;
+    /**
+     * Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+     */
+    portPreserve?: pulumi.Input<string>;
     /**
      * Name of profile group.
      */

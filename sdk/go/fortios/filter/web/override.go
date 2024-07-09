@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -48,7 +47,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -93,7 +91,7 @@ type Override struct {
 	// Specify the user group for which the override applies.
 	UserGroup pulumi.StringOutput `pulumi:"userGroup"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewOverride registers a new resource with the given unique name, arguments, and options.
@@ -393,8 +391,8 @@ func (o OverrideOutput) UserGroup() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o OverrideOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Override) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o OverrideOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Override) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type OverrideArrayOutput struct{ *pulumi.OutputState }

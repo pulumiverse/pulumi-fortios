@@ -268,7 +268,6 @@ class Ipv6tunnel(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -278,7 +277,6 @@ class Ipv6tunnel(pulumi.CustomResource):
             interface="port3",
             source="2001:db8:85a3::8a2e:370:7334")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -319,7 +317,6 @@ class Ipv6tunnel(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -329,7 +326,6 @@ class Ipv6tunnel(pulumi.CustomResource):
             interface="port3",
             source="2001:db8:85a3::8a2e:370:7334")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -484,7 +480,7 @@ class Ipv6tunnel(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

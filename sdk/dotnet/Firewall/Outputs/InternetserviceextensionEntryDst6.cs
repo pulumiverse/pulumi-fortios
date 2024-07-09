@@ -14,9 +14,6 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
     [OutputType]
     public sealed class InternetserviceextensionEntryDst6
     {
-        /// <summary>
-        /// Select the destination address6 or address group object from available options.
-        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

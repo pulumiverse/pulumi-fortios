@@ -14,9 +14,6 @@ namespace Pulumiverse.Fortios.System.Outputs
     [OutputType]
     public sealed class SdwanServiceSrc6
     {
-        /// <summary>
-        /// Address or address group name.
-        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

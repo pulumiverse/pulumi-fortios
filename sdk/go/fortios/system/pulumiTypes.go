@@ -800,6 +800,8 @@ type AccprofileUtmgrpPermission struct {
 	DataLeakPrevention *string `pulumi:"dataLeakPrevention"`
 	// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
 	DataLossPrevention *string `pulumi:"dataLossPrevention"`
+	// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+	Dlp *string `pulumi:"dlp"`
 	// DNS Filter profiles and settings. Valid values: `none`, `read`, `read-write`.
 	Dnsfilter *string `pulumi:"dnsfilter"`
 	// AntiSpam filter and settings. Valid values: `none`, `read`, `read-write`.
@@ -848,6 +850,8 @@ type AccprofileUtmgrpPermissionArgs struct {
 	DataLeakPrevention pulumi.StringPtrInput `pulumi:"dataLeakPrevention"`
 	// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
 	DataLossPrevention pulumi.StringPtrInput `pulumi:"dataLossPrevention"`
+	// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+	Dlp pulumi.StringPtrInput `pulumi:"dlp"`
 	// DNS Filter profiles and settings. Valid values: `none`, `read`, `read-write`.
 	Dnsfilter pulumi.StringPtrInput `pulumi:"dnsfilter"`
 	// AntiSpam filter and settings. Valid values: `none`, `read`, `read-write`.
@@ -974,6 +978,11 @@ func (o AccprofileUtmgrpPermissionOutput) DataLeakPrevention() pulumi.StringPtrO
 // DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
 func (o AccprofileUtmgrpPermissionOutput) DataLossPrevention() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccprofileUtmgrpPermission) *string { return v.DataLossPrevention }).(pulumi.StringPtrOutput)
+}
+
+// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+func (o AccprofileUtmgrpPermissionOutput) Dlp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AccprofileUtmgrpPermission) *string { return v.Dlp }).(pulumi.StringPtrOutput)
 }
 
 // DNS Filter profiles and settings. Valid values: `none`, `read`, `read-write`.
@@ -1107,6 +1116,16 @@ func (o AccprofileUtmgrpPermissionPtrOutput) DataLossPrevention() pulumi.StringP
 			return nil
 		}
 		return v.DataLossPrevention
+	}).(pulumi.StringPtrOutput)
+}
+
+// DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+func (o AccprofileUtmgrpPermissionPtrOutput) Dlp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AccprofileUtmgrpPermission) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Dlp
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -6000,7 +6019,7 @@ type DnsdatabaseDnsEntry struct {
 	Ip *string `pulumi:"ip"`
 	// IPv6 address of the host.
 	Ipv6 *string `pulumi:"ipv6"`
-	// DNS entry preference, 0 is the highest preference (0 - 65535, default = 10)
+	// DNS entry preference (0 - 65535, highest preference = 0, default = 10).
 	Preference *int `pulumi:"preference"`
 	// Enable/disable resource record status. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
@@ -6032,7 +6051,7 @@ type DnsdatabaseDnsEntryArgs struct {
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
 	// IPv6 address of the host.
 	Ipv6 pulumi.StringPtrInput `pulumi:"ipv6"`
-	// DNS entry preference, 0 is the highest preference (0 - 65535, default = 10)
+	// DNS entry preference (0 - 65535, highest preference = 0, default = 10).
 	Preference pulumi.IntPtrInput `pulumi:"preference"`
 	// Enable/disable resource record status. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
@@ -6118,7 +6137,7 @@ func (o DnsdatabaseDnsEntryOutput) Ipv6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DnsdatabaseDnsEntry) *string { return v.Ipv6 }).(pulumi.StringPtrOutput)
 }
 
-// DNS entry preference, 0 is the highest preference (0 - 65535, default = 10)
+// DNS entry preference (0 - 65535, highest preference = 0, default = 10).
 func (o DnsdatabaseDnsEntryOutput) Preference() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DnsdatabaseDnsEntry) *int { return v.Preference }).(pulumi.IntPtrOutput)
 }
@@ -6796,9 +6815,9 @@ type FederatedupgradeNodeList struct {
 	MaximumMinutes *int `pulumi:"maximumMinutes"`
 	// Serial number of the node to include.
 	Serial *string `pulumi:"serial"`
-	// When the upgrade was configured. Format hh:mm yyyy/mm/dd UTC.
+	// Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
 	SetupTime *string `pulumi:"setupTime"`
-	// Scheduled time for the upgrade. Format hh:mm yyyy/mm/dd UTC.
+	// Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC).
 	Time *string `pulumi:"time"`
 	// Whether the upgrade should be run immediately, or at a scheduled time. Valid values: `immediate`, `scheduled`.
 	Timing *string `pulumi:"timing"`
@@ -6826,9 +6845,9 @@ type FederatedupgradeNodeListArgs struct {
 	MaximumMinutes pulumi.IntPtrInput `pulumi:"maximumMinutes"`
 	// Serial number of the node to include.
 	Serial pulumi.StringPtrInput `pulumi:"serial"`
-	// When the upgrade was configured. Format hh:mm yyyy/mm/dd UTC.
+	// Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
 	SetupTime pulumi.StringPtrInput `pulumi:"setupTime"`
-	// Scheduled time for the upgrade. Format hh:mm yyyy/mm/dd UTC.
+	// Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC).
 	Time pulumi.StringPtrInput `pulumi:"time"`
 	// Whether the upgrade should be run immediately, or at a scheduled time. Valid values: `immediate`, `scheduled`.
 	Timing pulumi.StringPtrInput `pulumi:"timing"`
@@ -6907,12 +6926,12 @@ func (o FederatedupgradeNodeListOutput) Serial() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedupgradeNodeList) *string { return v.Serial }).(pulumi.StringPtrOutput)
 }
 
-// When the upgrade was configured. Format hh:mm yyyy/mm/dd UTC.
+// Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
 func (o FederatedupgradeNodeListOutput) SetupTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedupgradeNodeList) *string { return v.SetupTime }).(pulumi.StringPtrOutput)
 }
 
-// Scheduled time for the upgrade. Format hh:mm yyyy/mm/dd UTC.
+// Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC).
 func (o FederatedupgradeNodeListOutput) Time() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedupgradeNodeList) *string { return v.Time }).(pulumi.StringPtrOutput)
 }
@@ -6948,11 +6967,9 @@ func (o FederatedupgradeNodeListArrayOutput) Index(i pulumi.IntInput) Federatedu
 }
 
 type GeoipoverrideIp6Range struct {
-	// Ending IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
 	EndIp *string `pulumi:"endIp"`
-	// ID of individual entry in the IPv6 range table.
-	Id *int `pulumi:"id"`
-	// Starting IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
+	// an identifier for the resource with format {{name}}.
+	Id      *int    `pulumi:"id"`
 	StartIp *string `pulumi:"startIp"`
 }
 
@@ -6968,11 +6985,9 @@ type GeoipoverrideIp6RangeInput interface {
 }
 
 type GeoipoverrideIp6RangeArgs struct {
-	// Ending IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
 	EndIp pulumi.StringPtrInput `pulumi:"endIp"`
-	// ID of individual entry in the IPv6 range table.
-	Id pulumi.IntPtrInput `pulumi:"id"`
-	// Starting IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
+	// an identifier for the resource with format {{name}}.
+	Id      pulumi.IntPtrInput    `pulumi:"id"`
 	StartIp pulumi.StringPtrInput `pulumi:"startIp"`
 }
 
@@ -7027,17 +7042,15 @@ func (o GeoipoverrideIp6RangeOutput) ToGeoipoverrideIp6RangeOutputWithContext(ct
 	return o
 }
 
-// Ending IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
 func (o GeoipoverrideIp6RangeOutput) EndIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GeoipoverrideIp6Range) *string { return v.EndIp }).(pulumi.StringPtrOutput)
 }
 
-// ID of individual entry in the IPv6 range table.
+// an identifier for the resource with format {{name}}.
 func (o GeoipoverrideIp6RangeOutput) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GeoipoverrideIp6Range) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
-// Starting IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
 func (o GeoipoverrideIp6RangeOutput) StartIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GeoipoverrideIp6Range) *string { return v.StartIp }).(pulumi.StringPtrOutput)
 }
@@ -7410,7 +7423,7 @@ func (o HaHaMgmtInterfaceArrayOutput) Index(i pulumi.IntInput) HaHaMgmtInterface
 type HaSecondaryVcluster struct {
 	// Interfaces to check for port monitoring (or link failure).
 	Monitor *string `pulumi:"monitor"`
-	// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+	// Enable and increase the priority of the unit that should always be primary. Valid values: `enable`, `disable`.
 	Override *string `pulumi:"override"`
 	// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
 	OverrideWaitTime *int `pulumi:"overrideWaitTime"`
@@ -7444,7 +7457,7 @@ type HaSecondaryVclusterInput interface {
 type HaSecondaryVclusterArgs struct {
 	// Interfaces to check for port monitoring (or link failure).
 	Monitor pulumi.StringPtrInput `pulumi:"monitor"`
-	// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+	// Enable and increase the priority of the unit that should always be primary. Valid values: `enable`, `disable`.
 	Override pulumi.StringPtrInput `pulumi:"override"`
 	// Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
 	OverrideWaitTime pulumi.IntPtrInput `pulumi:"overrideWaitTime"`
@@ -7546,7 +7559,7 @@ func (o HaSecondaryVclusterOutput) Monitor() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaSecondaryVcluster) *string { return v.Monitor }).(pulumi.StringPtrOutput)
 }
 
-// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+// Enable and increase the priority of the unit that should always be primary. Valid values: `enable`, `disable`.
 func (o HaSecondaryVclusterOutput) Override() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HaSecondaryVcluster) *string { return v.Override }).(pulumi.StringPtrOutput)
 }
@@ -7625,7 +7638,7 @@ func (o HaSecondaryVclusterPtrOutput) Monitor() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+// Enable and increase the priority of the unit that should always be primary. Valid values: `enable`, `disable`.
 func (o HaSecondaryVclusterPtrOutput) Override() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *HaSecondaryVcluster) *string {
 		if v == nil {
@@ -11417,106 +11430,55 @@ func (o InterfaceFailAlertInterfaceArrayOutput) Index(i pulumi.IntInput) Interfa
 }
 
 type InterfaceIpv6 struct {
-	// Enable/disable address auto config. Valid values: `enable`, `disable`.
-	Autoconf *string `pulumi:"autoconf"`
-	// CLI IPv6 connection status.
-	CliConn6Status *int `pulumi:"cliConn6Status"`
-	// DHCPv6 client options. Valid values: `rapid`, `iapd`, `iana`.
-	Dhcp6ClientOptions *string `pulumi:"dhcp6ClientOptions"`
-	// DHCPv6 IA-PD list The structure of `dhcp6IapdList` block is documented below.
-	Dhcp6IapdLists []InterfaceIpv6Dhcp6IapdList `pulumi:"dhcp6IapdLists"`
-	// Enable/disable DHCPv6 information request. Valid values: `enable`, `disable`.
-	Dhcp6InformationRequest *string `pulumi:"dhcp6InformationRequest"`
-	// Enable/disable DHCPv6 prefix delegation. Valid values: `enable`, `disable`.
-	Dhcp6PrefixDelegation *string `pulumi:"dhcp6PrefixDelegation"`
-	// DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
-	Dhcp6PrefixHint *string `pulumi:"dhcp6PrefixHint"`
-	// DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
-	Dhcp6PrefixHintPlt *int `pulumi:"dhcp6PrefixHintPlt"`
-	// DHCPv6 prefix hint valid life time (sec).
-	Dhcp6PrefixHintVlt *int `pulumi:"dhcp6PrefixHintVlt"`
-	// DHCP6 relay interface ID.
-	Dhcp6RelayInterfaceId *string `pulumi:"dhcp6RelayInterfaceId"`
-	// DHCPv6 relay IP address.
-	Dhcp6RelayIp *string `pulumi:"dhcp6RelayIp"`
-	// Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
-	Dhcp6RelayService *string `pulumi:"dhcp6RelayService"`
-	// Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
-	Dhcp6RelaySourceInterface *string `pulumi:"dhcp6RelaySourceInterface"`
-	// IPv6 address used by the DHCP6 relay as its source IP.
-	Dhcp6RelaySourceIp *string `pulumi:"dhcp6RelaySourceIp"`
-	// DHCPv6 relay type. Valid values: `regular`.
-	Dhcp6RelayType *string `pulumi:"dhcp6RelayType"`
-	// Enable/disable sending of ICMPv6 redirects. Valid values: `enable`, `disable`.
-	Icmp6SendRedirect *string `pulumi:"icmp6SendRedirect"`
-	// IPv6 interface identifier.
-	InterfaceIdentifier *string `pulumi:"interfaceIdentifier"`
-	// Primary IPv6 address prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
-	Ip6Address *string `pulumi:"ip6Address"`
-	// Allow management access to the interface.
-	Ip6Allowaccess *string `pulumi:"ip6Allowaccess"`
-	// Default life (sec).
-	Ip6DefaultLife *int `pulumi:"ip6DefaultLife"`
-	// IAID of obtained delegated-prefix from the upstream interface.
-	Ip6DelegatedPrefixIaid *int `pulumi:"ip6DelegatedPrefixIaid"`
-	// Advertised IPv6 delegated prefix list. The structure of `ip6DelegatedPrefixList` block is documented below.
-	Ip6DelegatedPrefixLists []InterfaceIpv6Ip6DelegatedPrefixList `pulumi:"ip6DelegatedPrefixLists"`
-	// Enable/disable using the DNS server acquired by DHCP. Valid values: `enable`, `disable`.
-	Ip6DnsServerOverride *string `pulumi:"ip6DnsServerOverride"`
-	// Extra IPv6 address prefixes of interface. The structure of `ip6ExtraAddr` block is documented below.
-	Ip6ExtraAddrs []InterfaceIpv6Ip6ExtraAddr `pulumi:"ip6ExtraAddrs"`
-	// Hop limit (0 means unspecified).
-	Ip6HopLimit *int `pulumi:"ip6HopLimit"`
-	// IPv6 link MTU.
-	Ip6LinkMtu *int `pulumi:"ip6LinkMtu"`
-	// Enable/disable the managed flag. Valid values: `enable`, `disable`.
-	Ip6ManageFlag *string `pulumi:"ip6ManageFlag"`
-	// IPv6 maximum interval (4 to 1800 sec).
-	Ip6MaxInterval *int `pulumi:"ip6MaxInterval"`
-	// IPv6 minimum interval (3 to 1350 sec).
-	Ip6MinInterval *int `pulumi:"ip6MinInterval"`
-	// Addressing mode (static, DHCP, delegated). Valid values: `static`, `dhcp`, `pppoe`, `delegated`.
-	Ip6Mode *string `pulumi:"ip6Mode"`
-	// Enable/disable the other IPv6 flag. Valid values: `enable`, `disable`.
-	Ip6OtherFlag *string `pulumi:"ip6OtherFlag"`
-	// Advertised prefix list. The structure of `ip6PrefixList` block is documented below.
-	Ip6PrefixLists []InterfaceIpv6Ip6PrefixList `pulumi:"ip6PrefixLists"`
-	// Assigning a prefix from DHCP or RA. Valid values: `dhcp6`, `ra`.
-	Ip6PrefixMode *string `pulumi:"ip6PrefixMode"`
-	// IPv6 reachable time (milliseconds; 0 means unspecified).
-	Ip6ReachableTime *int `pulumi:"ip6ReachableTime"`
-	// IPv6 retransmit time (milliseconds; 0 means unspecified).
-	Ip6RetransTime *int `pulumi:"ip6RetransTime"`
-	// Enable/disable sending advertisements about the interface. Valid values: `enable`, `disable`.
-	Ip6SendAdv *string `pulumi:"ip6SendAdv"`
-	// Subnet to routing prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
-	Ip6Subnet *string `pulumi:"ip6Subnet"`
-	// Interface name providing delegated information.
-	Ip6UpstreamInterface *string `pulumi:"ip6UpstreamInterface"`
-	// Neighbor discovery certificate.
-	NdCert *string `pulumi:"ndCert"`
-	// Neighbor discovery CGA modifier.
-	NdCgaModifier *string `pulumi:"ndCgaModifier"`
-	// Neighbor discovery mode. Valid values: `basic`, `SEND-compatible`.
-	NdMode *string `pulumi:"ndMode"`
-	// Neighbor discovery security level (0 - 7; 0 = least secure, default = 0).
-	NdSecurityLevel *int `pulumi:"ndSecurityLevel"`
-	// Neighbor discovery timestamp delta value (1 - 3600 sec; default = 300).
-	NdTimestampDelta *int `pulumi:"ndTimestampDelta"`
-	// Neighbor discovery timestamp fuzz factor (1 - 60 sec; default = 1).
-	NdTimestampFuzz *int `pulumi:"ndTimestampFuzz"`
-	// Enable/disable sending link MTU in RA packet. Valid values: `enable`, `disable`.
-	RaSendMtu *string `pulumi:"raSendMtu"`
-	// Enable/disable unique auto config address. Valid values: `enable`, `disable`.
-	UniqueAutoconfAddr *string `pulumi:"uniqueAutoconfAddr"`
-	// Link-local IPv6 address of virtual router.
-	Vrip6LinkLocal *string `pulumi:"vrip6LinkLocal"`
-	// IPv6 VRRP configuration. The structure of `vrrp6` block is documented below.
-	//
-	// The `ip6ExtraAddr` block supports:
-	Vrrp6s []InterfaceIpv6Vrrp6 `pulumi:"vrrp6s"`
-	// Enable/disable virtual MAC for VRRP. Valid values: `enable`, `disable`.
-	VrrpVirtualMac6 *string `pulumi:"vrrpVirtualMac6"`
+	Autoconf                  *string                               `pulumi:"autoconf"`
+	CliConn6Status            *int                                  `pulumi:"cliConn6Status"`
+	Dhcp6ClientOptions        *string                               `pulumi:"dhcp6ClientOptions"`
+	Dhcp6IapdLists            []InterfaceIpv6Dhcp6IapdList          `pulumi:"dhcp6IapdLists"`
+	Dhcp6InformationRequest   *string                               `pulumi:"dhcp6InformationRequest"`
+	Dhcp6PrefixDelegation     *string                               `pulumi:"dhcp6PrefixDelegation"`
+	Dhcp6PrefixHint           *string                               `pulumi:"dhcp6PrefixHint"`
+	Dhcp6PrefixHintPlt        *int                                  `pulumi:"dhcp6PrefixHintPlt"`
+	Dhcp6PrefixHintVlt        *int                                  `pulumi:"dhcp6PrefixHintVlt"`
+	Dhcp6RelayInterfaceId     *string                               `pulumi:"dhcp6RelayInterfaceId"`
+	Dhcp6RelayIp              *string                               `pulumi:"dhcp6RelayIp"`
+	Dhcp6RelayService         *string                               `pulumi:"dhcp6RelayService"`
+	Dhcp6RelaySourceInterface *string                               `pulumi:"dhcp6RelaySourceInterface"`
+	Dhcp6RelaySourceIp        *string                               `pulumi:"dhcp6RelaySourceIp"`
+	Dhcp6RelayType            *string                               `pulumi:"dhcp6RelayType"`
+	Icmp6SendRedirect         *string                               `pulumi:"icmp6SendRedirect"`
+	InterfaceIdentifier       *string                               `pulumi:"interfaceIdentifier"`
+	Ip6Address                *string                               `pulumi:"ip6Address"`
+	Ip6Allowaccess            *string                               `pulumi:"ip6Allowaccess"`
+	Ip6DefaultLife            *int                                  `pulumi:"ip6DefaultLife"`
+	Ip6DelegatedPrefixIaid    *int                                  `pulumi:"ip6DelegatedPrefixIaid"`
+	Ip6DelegatedPrefixLists   []InterfaceIpv6Ip6DelegatedPrefixList `pulumi:"ip6DelegatedPrefixLists"`
+	Ip6DnsServerOverride      *string                               `pulumi:"ip6DnsServerOverride"`
+	Ip6ExtraAddrs             []InterfaceIpv6Ip6ExtraAddr           `pulumi:"ip6ExtraAddrs"`
+	Ip6HopLimit               *int                                  `pulumi:"ip6HopLimit"`
+	Ip6LinkMtu                *int                                  `pulumi:"ip6LinkMtu"`
+	Ip6ManageFlag             *string                               `pulumi:"ip6ManageFlag"`
+	Ip6MaxInterval            *int                                  `pulumi:"ip6MaxInterval"`
+	Ip6MinInterval            *int                                  `pulumi:"ip6MinInterval"`
+	Ip6Mode                   *string                               `pulumi:"ip6Mode"`
+	Ip6OtherFlag              *string                               `pulumi:"ip6OtherFlag"`
+	Ip6PrefixLists            []InterfaceIpv6Ip6PrefixList          `pulumi:"ip6PrefixLists"`
+	Ip6PrefixMode             *string                               `pulumi:"ip6PrefixMode"`
+	Ip6ReachableTime          *int                                  `pulumi:"ip6ReachableTime"`
+	Ip6RetransTime            *int                                  `pulumi:"ip6RetransTime"`
+	Ip6SendAdv                *string                               `pulumi:"ip6SendAdv"`
+	Ip6Subnet                 *string                               `pulumi:"ip6Subnet"`
+	Ip6UpstreamInterface      *string                               `pulumi:"ip6UpstreamInterface"`
+	NdCert                    *string                               `pulumi:"ndCert"`
+	NdCgaModifier             *string                               `pulumi:"ndCgaModifier"`
+	NdMode                    *string                               `pulumi:"ndMode"`
+	NdSecurityLevel           *int                                  `pulumi:"ndSecurityLevel"`
+	NdTimestampDelta          *int                                  `pulumi:"ndTimestampDelta"`
+	NdTimestampFuzz           *int                                  `pulumi:"ndTimestampFuzz"`
+	RaSendMtu                 *string                               `pulumi:"raSendMtu"`
+	UniqueAutoconfAddr        *string                               `pulumi:"uniqueAutoconfAddr"`
+	Vrip6LinkLocal            *string                               `pulumi:"vrip6LinkLocal"`
+	Vrrp6s                    []InterfaceIpv6Vrrp6                  `pulumi:"vrrp6s"`
+	VrrpVirtualMac6           *string                               `pulumi:"vrrpVirtualMac6"`
 }
 
 // InterfaceIpv6Input is an input type that accepts InterfaceIpv6Args and InterfaceIpv6Output values.
@@ -11531,106 +11493,55 @@ type InterfaceIpv6Input interface {
 }
 
 type InterfaceIpv6Args struct {
-	// Enable/disable address auto config. Valid values: `enable`, `disable`.
-	Autoconf pulumi.StringPtrInput `pulumi:"autoconf"`
-	// CLI IPv6 connection status.
-	CliConn6Status pulumi.IntPtrInput `pulumi:"cliConn6Status"`
-	// DHCPv6 client options. Valid values: `rapid`, `iapd`, `iana`.
-	Dhcp6ClientOptions pulumi.StringPtrInput `pulumi:"dhcp6ClientOptions"`
-	// DHCPv6 IA-PD list The structure of `dhcp6IapdList` block is documented below.
-	Dhcp6IapdLists InterfaceIpv6Dhcp6IapdListArrayInput `pulumi:"dhcp6IapdLists"`
-	// Enable/disable DHCPv6 information request. Valid values: `enable`, `disable`.
-	Dhcp6InformationRequest pulumi.StringPtrInput `pulumi:"dhcp6InformationRequest"`
-	// Enable/disable DHCPv6 prefix delegation. Valid values: `enable`, `disable`.
-	Dhcp6PrefixDelegation pulumi.StringPtrInput `pulumi:"dhcp6PrefixDelegation"`
-	// DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
-	Dhcp6PrefixHint pulumi.StringPtrInput `pulumi:"dhcp6PrefixHint"`
-	// DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
-	Dhcp6PrefixHintPlt pulumi.IntPtrInput `pulumi:"dhcp6PrefixHintPlt"`
-	// DHCPv6 prefix hint valid life time (sec).
-	Dhcp6PrefixHintVlt pulumi.IntPtrInput `pulumi:"dhcp6PrefixHintVlt"`
-	// DHCP6 relay interface ID.
-	Dhcp6RelayInterfaceId pulumi.StringPtrInput `pulumi:"dhcp6RelayInterfaceId"`
-	// DHCPv6 relay IP address.
-	Dhcp6RelayIp pulumi.StringPtrInput `pulumi:"dhcp6RelayIp"`
-	// Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
-	Dhcp6RelayService pulumi.StringPtrInput `pulumi:"dhcp6RelayService"`
-	// Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
-	Dhcp6RelaySourceInterface pulumi.StringPtrInput `pulumi:"dhcp6RelaySourceInterface"`
-	// IPv6 address used by the DHCP6 relay as its source IP.
-	Dhcp6RelaySourceIp pulumi.StringPtrInput `pulumi:"dhcp6RelaySourceIp"`
-	// DHCPv6 relay type. Valid values: `regular`.
-	Dhcp6RelayType pulumi.StringPtrInput `pulumi:"dhcp6RelayType"`
-	// Enable/disable sending of ICMPv6 redirects. Valid values: `enable`, `disable`.
-	Icmp6SendRedirect pulumi.StringPtrInput `pulumi:"icmp6SendRedirect"`
-	// IPv6 interface identifier.
-	InterfaceIdentifier pulumi.StringPtrInput `pulumi:"interfaceIdentifier"`
-	// Primary IPv6 address prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
-	Ip6Address pulumi.StringPtrInput `pulumi:"ip6Address"`
-	// Allow management access to the interface.
-	Ip6Allowaccess pulumi.StringPtrInput `pulumi:"ip6Allowaccess"`
-	// Default life (sec).
-	Ip6DefaultLife pulumi.IntPtrInput `pulumi:"ip6DefaultLife"`
-	// IAID of obtained delegated-prefix from the upstream interface.
-	Ip6DelegatedPrefixIaid pulumi.IntPtrInput `pulumi:"ip6DelegatedPrefixIaid"`
-	// Advertised IPv6 delegated prefix list. The structure of `ip6DelegatedPrefixList` block is documented below.
-	Ip6DelegatedPrefixLists InterfaceIpv6Ip6DelegatedPrefixListArrayInput `pulumi:"ip6DelegatedPrefixLists"`
-	// Enable/disable using the DNS server acquired by DHCP. Valid values: `enable`, `disable`.
-	Ip6DnsServerOverride pulumi.StringPtrInput `pulumi:"ip6DnsServerOverride"`
-	// Extra IPv6 address prefixes of interface. The structure of `ip6ExtraAddr` block is documented below.
-	Ip6ExtraAddrs InterfaceIpv6Ip6ExtraAddrArrayInput `pulumi:"ip6ExtraAddrs"`
-	// Hop limit (0 means unspecified).
-	Ip6HopLimit pulumi.IntPtrInput `pulumi:"ip6HopLimit"`
-	// IPv6 link MTU.
-	Ip6LinkMtu pulumi.IntPtrInput `pulumi:"ip6LinkMtu"`
-	// Enable/disable the managed flag. Valid values: `enable`, `disable`.
-	Ip6ManageFlag pulumi.StringPtrInput `pulumi:"ip6ManageFlag"`
-	// IPv6 maximum interval (4 to 1800 sec).
-	Ip6MaxInterval pulumi.IntPtrInput `pulumi:"ip6MaxInterval"`
-	// IPv6 minimum interval (3 to 1350 sec).
-	Ip6MinInterval pulumi.IntPtrInput `pulumi:"ip6MinInterval"`
-	// Addressing mode (static, DHCP, delegated). Valid values: `static`, `dhcp`, `pppoe`, `delegated`.
-	Ip6Mode pulumi.StringPtrInput `pulumi:"ip6Mode"`
-	// Enable/disable the other IPv6 flag. Valid values: `enable`, `disable`.
-	Ip6OtherFlag pulumi.StringPtrInput `pulumi:"ip6OtherFlag"`
-	// Advertised prefix list. The structure of `ip6PrefixList` block is documented below.
-	Ip6PrefixLists InterfaceIpv6Ip6PrefixListArrayInput `pulumi:"ip6PrefixLists"`
-	// Assigning a prefix from DHCP or RA. Valid values: `dhcp6`, `ra`.
-	Ip6PrefixMode pulumi.StringPtrInput `pulumi:"ip6PrefixMode"`
-	// IPv6 reachable time (milliseconds; 0 means unspecified).
-	Ip6ReachableTime pulumi.IntPtrInput `pulumi:"ip6ReachableTime"`
-	// IPv6 retransmit time (milliseconds; 0 means unspecified).
-	Ip6RetransTime pulumi.IntPtrInput `pulumi:"ip6RetransTime"`
-	// Enable/disable sending advertisements about the interface. Valid values: `enable`, `disable`.
-	Ip6SendAdv pulumi.StringPtrInput `pulumi:"ip6SendAdv"`
-	// Subnet to routing prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
-	Ip6Subnet pulumi.StringPtrInput `pulumi:"ip6Subnet"`
-	// Interface name providing delegated information.
-	Ip6UpstreamInterface pulumi.StringPtrInput `pulumi:"ip6UpstreamInterface"`
-	// Neighbor discovery certificate.
-	NdCert pulumi.StringPtrInput `pulumi:"ndCert"`
-	// Neighbor discovery CGA modifier.
-	NdCgaModifier pulumi.StringPtrInput `pulumi:"ndCgaModifier"`
-	// Neighbor discovery mode. Valid values: `basic`, `SEND-compatible`.
-	NdMode pulumi.StringPtrInput `pulumi:"ndMode"`
-	// Neighbor discovery security level (0 - 7; 0 = least secure, default = 0).
-	NdSecurityLevel pulumi.IntPtrInput `pulumi:"ndSecurityLevel"`
-	// Neighbor discovery timestamp delta value (1 - 3600 sec; default = 300).
-	NdTimestampDelta pulumi.IntPtrInput `pulumi:"ndTimestampDelta"`
-	// Neighbor discovery timestamp fuzz factor (1 - 60 sec; default = 1).
-	NdTimestampFuzz pulumi.IntPtrInput `pulumi:"ndTimestampFuzz"`
-	// Enable/disable sending link MTU in RA packet. Valid values: `enable`, `disable`.
-	RaSendMtu pulumi.StringPtrInput `pulumi:"raSendMtu"`
-	// Enable/disable unique auto config address. Valid values: `enable`, `disable`.
-	UniqueAutoconfAddr pulumi.StringPtrInput `pulumi:"uniqueAutoconfAddr"`
-	// Link-local IPv6 address of virtual router.
-	Vrip6LinkLocal pulumi.StringPtrInput `pulumi:"vrip6LinkLocal"`
-	// IPv6 VRRP configuration. The structure of `vrrp6` block is documented below.
-	//
-	// The `ip6ExtraAddr` block supports:
-	Vrrp6s InterfaceIpv6Vrrp6ArrayInput `pulumi:"vrrp6s"`
-	// Enable/disable virtual MAC for VRRP. Valid values: `enable`, `disable`.
-	VrrpVirtualMac6 pulumi.StringPtrInput `pulumi:"vrrpVirtualMac6"`
+	Autoconf                  pulumi.StringPtrInput                         `pulumi:"autoconf"`
+	CliConn6Status            pulumi.IntPtrInput                            `pulumi:"cliConn6Status"`
+	Dhcp6ClientOptions        pulumi.StringPtrInput                         `pulumi:"dhcp6ClientOptions"`
+	Dhcp6IapdLists            InterfaceIpv6Dhcp6IapdListArrayInput          `pulumi:"dhcp6IapdLists"`
+	Dhcp6InformationRequest   pulumi.StringPtrInput                         `pulumi:"dhcp6InformationRequest"`
+	Dhcp6PrefixDelegation     pulumi.StringPtrInput                         `pulumi:"dhcp6PrefixDelegation"`
+	Dhcp6PrefixHint           pulumi.StringPtrInput                         `pulumi:"dhcp6PrefixHint"`
+	Dhcp6PrefixHintPlt        pulumi.IntPtrInput                            `pulumi:"dhcp6PrefixHintPlt"`
+	Dhcp6PrefixHintVlt        pulumi.IntPtrInput                            `pulumi:"dhcp6PrefixHintVlt"`
+	Dhcp6RelayInterfaceId     pulumi.StringPtrInput                         `pulumi:"dhcp6RelayInterfaceId"`
+	Dhcp6RelayIp              pulumi.StringPtrInput                         `pulumi:"dhcp6RelayIp"`
+	Dhcp6RelayService         pulumi.StringPtrInput                         `pulumi:"dhcp6RelayService"`
+	Dhcp6RelaySourceInterface pulumi.StringPtrInput                         `pulumi:"dhcp6RelaySourceInterface"`
+	Dhcp6RelaySourceIp        pulumi.StringPtrInput                         `pulumi:"dhcp6RelaySourceIp"`
+	Dhcp6RelayType            pulumi.StringPtrInput                         `pulumi:"dhcp6RelayType"`
+	Icmp6SendRedirect         pulumi.StringPtrInput                         `pulumi:"icmp6SendRedirect"`
+	InterfaceIdentifier       pulumi.StringPtrInput                         `pulumi:"interfaceIdentifier"`
+	Ip6Address                pulumi.StringPtrInput                         `pulumi:"ip6Address"`
+	Ip6Allowaccess            pulumi.StringPtrInput                         `pulumi:"ip6Allowaccess"`
+	Ip6DefaultLife            pulumi.IntPtrInput                            `pulumi:"ip6DefaultLife"`
+	Ip6DelegatedPrefixIaid    pulumi.IntPtrInput                            `pulumi:"ip6DelegatedPrefixIaid"`
+	Ip6DelegatedPrefixLists   InterfaceIpv6Ip6DelegatedPrefixListArrayInput `pulumi:"ip6DelegatedPrefixLists"`
+	Ip6DnsServerOverride      pulumi.StringPtrInput                         `pulumi:"ip6DnsServerOverride"`
+	Ip6ExtraAddrs             InterfaceIpv6Ip6ExtraAddrArrayInput           `pulumi:"ip6ExtraAddrs"`
+	Ip6HopLimit               pulumi.IntPtrInput                            `pulumi:"ip6HopLimit"`
+	Ip6LinkMtu                pulumi.IntPtrInput                            `pulumi:"ip6LinkMtu"`
+	Ip6ManageFlag             pulumi.StringPtrInput                         `pulumi:"ip6ManageFlag"`
+	Ip6MaxInterval            pulumi.IntPtrInput                            `pulumi:"ip6MaxInterval"`
+	Ip6MinInterval            pulumi.IntPtrInput                            `pulumi:"ip6MinInterval"`
+	Ip6Mode                   pulumi.StringPtrInput                         `pulumi:"ip6Mode"`
+	Ip6OtherFlag              pulumi.StringPtrInput                         `pulumi:"ip6OtherFlag"`
+	Ip6PrefixLists            InterfaceIpv6Ip6PrefixListArrayInput          `pulumi:"ip6PrefixLists"`
+	Ip6PrefixMode             pulumi.StringPtrInput                         `pulumi:"ip6PrefixMode"`
+	Ip6ReachableTime          pulumi.IntPtrInput                            `pulumi:"ip6ReachableTime"`
+	Ip6RetransTime            pulumi.IntPtrInput                            `pulumi:"ip6RetransTime"`
+	Ip6SendAdv                pulumi.StringPtrInput                         `pulumi:"ip6SendAdv"`
+	Ip6Subnet                 pulumi.StringPtrInput                         `pulumi:"ip6Subnet"`
+	Ip6UpstreamInterface      pulumi.StringPtrInput                         `pulumi:"ip6UpstreamInterface"`
+	NdCert                    pulumi.StringPtrInput                         `pulumi:"ndCert"`
+	NdCgaModifier             pulumi.StringPtrInput                         `pulumi:"ndCgaModifier"`
+	NdMode                    pulumi.StringPtrInput                         `pulumi:"ndMode"`
+	NdSecurityLevel           pulumi.IntPtrInput                            `pulumi:"ndSecurityLevel"`
+	NdTimestampDelta          pulumi.IntPtrInput                            `pulumi:"ndTimestampDelta"`
+	NdTimestampFuzz           pulumi.IntPtrInput                            `pulumi:"ndTimestampFuzz"`
+	RaSendMtu                 pulumi.StringPtrInput                         `pulumi:"raSendMtu"`
+	UniqueAutoconfAddr        pulumi.StringPtrInput                         `pulumi:"uniqueAutoconfAddr"`
+	Vrip6LinkLocal            pulumi.StringPtrInput                         `pulumi:"vrip6LinkLocal"`
+	Vrrp6s                    InterfaceIpv6Vrrp6ArrayInput                  `pulumi:"vrrp6s"`
+	VrrpVirtualMac6           pulumi.StringPtrInput                         `pulumi:"vrrpVirtualMac6"`
 }
 
 func (InterfaceIpv6Args) ElementType() reflect.Type {
@@ -11710,249 +11621,198 @@ func (o InterfaceIpv6Output) ToInterfaceIpv6PtrOutputWithContext(ctx context.Con
 	}).(InterfaceIpv6PtrOutput)
 }
 
-// Enable/disable address auto config. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6Output) Autoconf() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Autoconf }).(pulumi.StringPtrOutput)
 }
 
-// CLI IPv6 connection status.
 func (o InterfaceIpv6Output) CliConn6Status() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *int { return v.CliConn6Status }).(pulumi.IntPtrOutput)
 }
 
-// DHCPv6 client options. Valid values: `rapid`, `iapd`, `iana`.
 func (o InterfaceIpv6Output) Dhcp6ClientOptions() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Dhcp6ClientOptions }).(pulumi.StringPtrOutput)
 }
 
-// DHCPv6 IA-PD list The structure of `dhcp6IapdList` block is documented below.
 func (o InterfaceIpv6Output) Dhcp6IapdLists() InterfaceIpv6Dhcp6IapdListArrayOutput {
 	return o.ApplyT(func(v InterfaceIpv6) []InterfaceIpv6Dhcp6IapdList { return v.Dhcp6IapdLists }).(InterfaceIpv6Dhcp6IapdListArrayOutput)
 }
 
-// Enable/disable DHCPv6 information request. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6Output) Dhcp6InformationRequest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Dhcp6InformationRequest }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable DHCPv6 prefix delegation. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6Output) Dhcp6PrefixDelegation() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Dhcp6PrefixDelegation }).(pulumi.StringPtrOutput)
 }
 
-// DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
 func (o InterfaceIpv6Output) Dhcp6PrefixHint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Dhcp6PrefixHint }).(pulumi.StringPtrOutput)
 }
 
-// DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
 func (o InterfaceIpv6Output) Dhcp6PrefixHintPlt() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *int { return v.Dhcp6PrefixHintPlt }).(pulumi.IntPtrOutput)
 }
 
-// DHCPv6 prefix hint valid life time (sec).
 func (o InterfaceIpv6Output) Dhcp6PrefixHintVlt() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *int { return v.Dhcp6PrefixHintVlt }).(pulumi.IntPtrOutput)
 }
 
-// DHCP6 relay interface ID.
 func (o InterfaceIpv6Output) Dhcp6RelayInterfaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Dhcp6RelayInterfaceId }).(pulumi.StringPtrOutput)
 }
 
-// DHCPv6 relay IP address.
 func (o InterfaceIpv6Output) Dhcp6RelayIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Dhcp6RelayIp }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
 func (o InterfaceIpv6Output) Dhcp6RelayService() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Dhcp6RelayService }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
 func (o InterfaceIpv6Output) Dhcp6RelaySourceInterface() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Dhcp6RelaySourceInterface }).(pulumi.StringPtrOutput)
 }
 
-// IPv6 address used by the DHCP6 relay as its source IP.
 func (o InterfaceIpv6Output) Dhcp6RelaySourceIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Dhcp6RelaySourceIp }).(pulumi.StringPtrOutput)
 }
 
-// DHCPv6 relay type. Valid values: `regular`.
 func (o InterfaceIpv6Output) Dhcp6RelayType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Dhcp6RelayType }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sending of ICMPv6 redirects. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6Output) Icmp6SendRedirect() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Icmp6SendRedirect }).(pulumi.StringPtrOutput)
 }
 
-// IPv6 interface identifier.
 func (o InterfaceIpv6Output) InterfaceIdentifier() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.InterfaceIdentifier }).(pulumi.StringPtrOutput)
 }
 
-// Primary IPv6 address prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
 func (o InterfaceIpv6Output) Ip6Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Ip6Address }).(pulumi.StringPtrOutput)
 }
 
-// Allow management access to the interface.
 func (o InterfaceIpv6Output) Ip6Allowaccess() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Ip6Allowaccess }).(pulumi.StringPtrOutput)
 }
 
-// Default life (sec).
 func (o InterfaceIpv6Output) Ip6DefaultLife() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *int { return v.Ip6DefaultLife }).(pulumi.IntPtrOutput)
 }
 
-// IAID of obtained delegated-prefix from the upstream interface.
 func (o InterfaceIpv6Output) Ip6DelegatedPrefixIaid() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *int { return v.Ip6DelegatedPrefixIaid }).(pulumi.IntPtrOutput)
 }
 
-// Advertised IPv6 delegated prefix list. The structure of `ip6DelegatedPrefixList` block is documented below.
 func (o InterfaceIpv6Output) Ip6DelegatedPrefixLists() InterfaceIpv6Ip6DelegatedPrefixListArrayOutput {
 	return o.ApplyT(func(v InterfaceIpv6) []InterfaceIpv6Ip6DelegatedPrefixList { return v.Ip6DelegatedPrefixLists }).(InterfaceIpv6Ip6DelegatedPrefixListArrayOutput)
 }
 
-// Enable/disable using the DNS server acquired by DHCP. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6Output) Ip6DnsServerOverride() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Ip6DnsServerOverride }).(pulumi.StringPtrOutput)
 }
 
-// Extra IPv6 address prefixes of interface. The structure of `ip6ExtraAddr` block is documented below.
 func (o InterfaceIpv6Output) Ip6ExtraAddrs() InterfaceIpv6Ip6ExtraAddrArrayOutput {
 	return o.ApplyT(func(v InterfaceIpv6) []InterfaceIpv6Ip6ExtraAddr { return v.Ip6ExtraAddrs }).(InterfaceIpv6Ip6ExtraAddrArrayOutput)
 }
 
-// Hop limit (0 means unspecified).
 func (o InterfaceIpv6Output) Ip6HopLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *int { return v.Ip6HopLimit }).(pulumi.IntPtrOutput)
 }
 
-// IPv6 link MTU.
 func (o InterfaceIpv6Output) Ip6LinkMtu() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *int { return v.Ip6LinkMtu }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable the managed flag. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6Output) Ip6ManageFlag() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Ip6ManageFlag }).(pulumi.StringPtrOutput)
 }
 
-// IPv6 maximum interval (4 to 1800 sec).
 func (o InterfaceIpv6Output) Ip6MaxInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *int { return v.Ip6MaxInterval }).(pulumi.IntPtrOutput)
 }
 
-// IPv6 minimum interval (3 to 1350 sec).
 func (o InterfaceIpv6Output) Ip6MinInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *int { return v.Ip6MinInterval }).(pulumi.IntPtrOutput)
 }
 
-// Addressing mode (static, DHCP, delegated). Valid values: `static`, `dhcp`, `pppoe`, `delegated`.
 func (o InterfaceIpv6Output) Ip6Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Ip6Mode }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the other IPv6 flag. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6Output) Ip6OtherFlag() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Ip6OtherFlag }).(pulumi.StringPtrOutput)
 }
 
-// Advertised prefix list. The structure of `ip6PrefixList` block is documented below.
 func (o InterfaceIpv6Output) Ip6PrefixLists() InterfaceIpv6Ip6PrefixListArrayOutput {
 	return o.ApplyT(func(v InterfaceIpv6) []InterfaceIpv6Ip6PrefixList { return v.Ip6PrefixLists }).(InterfaceIpv6Ip6PrefixListArrayOutput)
 }
 
-// Assigning a prefix from DHCP or RA. Valid values: `dhcp6`, `ra`.
 func (o InterfaceIpv6Output) Ip6PrefixMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Ip6PrefixMode }).(pulumi.StringPtrOutput)
 }
 
-// IPv6 reachable time (milliseconds; 0 means unspecified).
 func (o InterfaceIpv6Output) Ip6ReachableTime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *int { return v.Ip6ReachableTime }).(pulumi.IntPtrOutput)
 }
 
-// IPv6 retransmit time (milliseconds; 0 means unspecified).
 func (o InterfaceIpv6Output) Ip6RetransTime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *int { return v.Ip6RetransTime }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable sending advertisements about the interface. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6Output) Ip6SendAdv() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Ip6SendAdv }).(pulumi.StringPtrOutput)
 }
 
-// Subnet to routing prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
 func (o InterfaceIpv6Output) Ip6Subnet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Ip6Subnet }).(pulumi.StringPtrOutput)
 }
 
-// Interface name providing delegated information.
 func (o InterfaceIpv6Output) Ip6UpstreamInterface() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Ip6UpstreamInterface }).(pulumi.StringPtrOutput)
 }
 
-// Neighbor discovery certificate.
 func (o InterfaceIpv6Output) NdCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.NdCert }).(pulumi.StringPtrOutput)
 }
 
-// Neighbor discovery CGA modifier.
 func (o InterfaceIpv6Output) NdCgaModifier() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.NdCgaModifier }).(pulumi.StringPtrOutput)
 }
 
-// Neighbor discovery mode. Valid values: `basic`, `SEND-compatible`.
 func (o InterfaceIpv6Output) NdMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.NdMode }).(pulumi.StringPtrOutput)
 }
 
-// Neighbor discovery security level (0 - 7; 0 = least secure, default = 0).
 func (o InterfaceIpv6Output) NdSecurityLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *int { return v.NdSecurityLevel }).(pulumi.IntPtrOutput)
 }
 
-// Neighbor discovery timestamp delta value (1 - 3600 sec; default = 300).
 func (o InterfaceIpv6Output) NdTimestampDelta() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *int { return v.NdTimestampDelta }).(pulumi.IntPtrOutput)
 }
 
-// Neighbor discovery timestamp fuzz factor (1 - 60 sec; default = 1).
 func (o InterfaceIpv6Output) NdTimestampFuzz() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *int { return v.NdTimestampFuzz }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable sending link MTU in RA packet. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6Output) RaSendMtu() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.RaSendMtu }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable unique auto config address. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6Output) UniqueAutoconfAddr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.UniqueAutoconfAddr }).(pulumi.StringPtrOutput)
 }
 
-// Link-local IPv6 address of virtual router.
 func (o InterfaceIpv6Output) Vrip6LinkLocal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.Vrip6LinkLocal }).(pulumi.StringPtrOutput)
 }
 
-// IPv6 VRRP configuration. The structure of `vrrp6` block is documented below.
-//
-// The `ip6ExtraAddr` block supports:
 func (o InterfaceIpv6Output) Vrrp6s() InterfaceIpv6Vrrp6ArrayOutput {
 	return o.ApplyT(func(v InterfaceIpv6) []InterfaceIpv6Vrrp6 { return v.Vrrp6s }).(InterfaceIpv6Vrrp6ArrayOutput)
 }
 
-// Enable/disable virtual MAC for VRRP. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6Output) VrrpVirtualMac6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6) *string { return v.VrrpVirtualMac6 }).(pulumi.StringPtrOutput)
 }
@@ -11981,7 +11841,6 @@ func (o InterfaceIpv6PtrOutput) Elem() InterfaceIpv6Output {
 	}).(InterfaceIpv6Output)
 }
 
-// Enable/disable address auto config. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6PtrOutput) Autoconf() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -11991,7 +11850,6 @@ func (o InterfaceIpv6PtrOutput) Autoconf() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// CLI IPv6 connection status.
 func (o InterfaceIpv6PtrOutput) CliConn6Status() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *int {
 		if v == nil {
@@ -12001,7 +11859,6 @@ func (o InterfaceIpv6PtrOutput) CliConn6Status() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// DHCPv6 client options. Valid values: `rapid`, `iapd`, `iana`.
 func (o InterfaceIpv6PtrOutput) Dhcp6ClientOptions() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12011,7 +11868,6 @@ func (o InterfaceIpv6PtrOutput) Dhcp6ClientOptions() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// DHCPv6 IA-PD list The structure of `dhcp6IapdList` block is documented below.
 func (o InterfaceIpv6PtrOutput) Dhcp6IapdLists() InterfaceIpv6Dhcp6IapdListArrayOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) []InterfaceIpv6Dhcp6IapdList {
 		if v == nil {
@@ -12021,7 +11877,6 @@ func (o InterfaceIpv6PtrOutput) Dhcp6IapdLists() InterfaceIpv6Dhcp6IapdListArray
 	}).(InterfaceIpv6Dhcp6IapdListArrayOutput)
 }
 
-// Enable/disable DHCPv6 information request. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6PtrOutput) Dhcp6InformationRequest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12031,7 +11886,6 @@ func (o InterfaceIpv6PtrOutput) Dhcp6InformationRequest() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable DHCPv6 prefix delegation. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6PtrOutput) Dhcp6PrefixDelegation() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12041,7 +11895,6 @@ func (o InterfaceIpv6PtrOutput) Dhcp6PrefixDelegation() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
 func (o InterfaceIpv6PtrOutput) Dhcp6PrefixHint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12051,7 +11904,6 @@ func (o InterfaceIpv6PtrOutput) Dhcp6PrefixHint() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
 func (o InterfaceIpv6PtrOutput) Dhcp6PrefixHintPlt() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *int {
 		if v == nil {
@@ -12061,7 +11913,6 @@ func (o InterfaceIpv6PtrOutput) Dhcp6PrefixHintPlt() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// DHCPv6 prefix hint valid life time (sec).
 func (o InterfaceIpv6PtrOutput) Dhcp6PrefixHintVlt() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *int {
 		if v == nil {
@@ -12071,7 +11922,6 @@ func (o InterfaceIpv6PtrOutput) Dhcp6PrefixHintVlt() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// DHCP6 relay interface ID.
 func (o InterfaceIpv6PtrOutput) Dhcp6RelayInterfaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12081,7 +11931,6 @@ func (o InterfaceIpv6PtrOutput) Dhcp6RelayInterfaceId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// DHCPv6 relay IP address.
 func (o InterfaceIpv6PtrOutput) Dhcp6RelayIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12091,7 +11940,6 @@ func (o InterfaceIpv6PtrOutput) Dhcp6RelayIp() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
 func (o InterfaceIpv6PtrOutput) Dhcp6RelayService() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12101,7 +11949,6 @@ func (o InterfaceIpv6PtrOutput) Dhcp6RelayService() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
 func (o InterfaceIpv6PtrOutput) Dhcp6RelaySourceInterface() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12111,7 +11958,6 @@ func (o InterfaceIpv6PtrOutput) Dhcp6RelaySourceInterface() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-// IPv6 address used by the DHCP6 relay as its source IP.
 func (o InterfaceIpv6PtrOutput) Dhcp6RelaySourceIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12121,7 +11967,6 @@ func (o InterfaceIpv6PtrOutput) Dhcp6RelaySourceIp() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// DHCPv6 relay type. Valid values: `regular`.
 func (o InterfaceIpv6PtrOutput) Dhcp6RelayType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12131,7 +11976,6 @@ func (o InterfaceIpv6PtrOutput) Dhcp6RelayType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sending of ICMPv6 redirects. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6PtrOutput) Icmp6SendRedirect() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12141,7 +11985,6 @@ func (o InterfaceIpv6PtrOutput) Icmp6SendRedirect() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// IPv6 interface identifier.
 func (o InterfaceIpv6PtrOutput) InterfaceIdentifier() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12151,7 +11994,6 @@ func (o InterfaceIpv6PtrOutput) InterfaceIdentifier() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Primary IPv6 address prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
 func (o InterfaceIpv6PtrOutput) Ip6Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12161,7 +12003,6 @@ func (o InterfaceIpv6PtrOutput) Ip6Address() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Allow management access to the interface.
 func (o InterfaceIpv6PtrOutput) Ip6Allowaccess() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12171,7 +12012,6 @@ func (o InterfaceIpv6PtrOutput) Ip6Allowaccess() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Default life (sec).
 func (o InterfaceIpv6PtrOutput) Ip6DefaultLife() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *int {
 		if v == nil {
@@ -12181,7 +12021,6 @@ func (o InterfaceIpv6PtrOutput) Ip6DefaultLife() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// IAID of obtained delegated-prefix from the upstream interface.
 func (o InterfaceIpv6PtrOutput) Ip6DelegatedPrefixIaid() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *int {
 		if v == nil {
@@ -12191,7 +12030,6 @@ func (o InterfaceIpv6PtrOutput) Ip6DelegatedPrefixIaid() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Advertised IPv6 delegated prefix list. The structure of `ip6DelegatedPrefixList` block is documented below.
 func (o InterfaceIpv6PtrOutput) Ip6DelegatedPrefixLists() InterfaceIpv6Ip6DelegatedPrefixListArrayOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) []InterfaceIpv6Ip6DelegatedPrefixList {
 		if v == nil {
@@ -12201,7 +12039,6 @@ func (o InterfaceIpv6PtrOutput) Ip6DelegatedPrefixLists() InterfaceIpv6Ip6Delega
 	}).(InterfaceIpv6Ip6DelegatedPrefixListArrayOutput)
 }
 
-// Enable/disable using the DNS server acquired by DHCP. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6PtrOutput) Ip6DnsServerOverride() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12211,7 +12048,6 @@ func (o InterfaceIpv6PtrOutput) Ip6DnsServerOverride() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Extra IPv6 address prefixes of interface. The structure of `ip6ExtraAddr` block is documented below.
 func (o InterfaceIpv6PtrOutput) Ip6ExtraAddrs() InterfaceIpv6Ip6ExtraAddrArrayOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) []InterfaceIpv6Ip6ExtraAddr {
 		if v == nil {
@@ -12221,7 +12057,6 @@ func (o InterfaceIpv6PtrOutput) Ip6ExtraAddrs() InterfaceIpv6Ip6ExtraAddrArrayOu
 	}).(InterfaceIpv6Ip6ExtraAddrArrayOutput)
 }
 
-// Hop limit (0 means unspecified).
 func (o InterfaceIpv6PtrOutput) Ip6HopLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *int {
 		if v == nil {
@@ -12231,7 +12066,6 @@ func (o InterfaceIpv6PtrOutput) Ip6HopLimit() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// IPv6 link MTU.
 func (o InterfaceIpv6PtrOutput) Ip6LinkMtu() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *int {
 		if v == nil {
@@ -12241,7 +12075,6 @@ func (o InterfaceIpv6PtrOutput) Ip6LinkMtu() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable the managed flag. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6PtrOutput) Ip6ManageFlag() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12251,7 +12084,6 @@ func (o InterfaceIpv6PtrOutput) Ip6ManageFlag() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// IPv6 maximum interval (4 to 1800 sec).
 func (o InterfaceIpv6PtrOutput) Ip6MaxInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *int {
 		if v == nil {
@@ -12261,7 +12093,6 @@ func (o InterfaceIpv6PtrOutput) Ip6MaxInterval() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// IPv6 minimum interval (3 to 1350 sec).
 func (o InterfaceIpv6PtrOutput) Ip6MinInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *int {
 		if v == nil {
@@ -12271,7 +12102,6 @@ func (o InterfaceIpv6PtrOutput) Ip6MinInterval() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Addressing mode (static, DHCP, delegated). Valid values: `static`, `dhcp`, `pppoe`, `delegated`.
 func (o InterfaceIpv6PtrOutput) Ip6Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12281,7 +12111,6 @@ func (o InterfaceIpv6PtrOutput) Ip6Mode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the other IPv6 flag. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6PtrOutput) Ip6OtherFlag() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12291,7 +12120,6 @@ func (o InterfaceIpv6PtrOutput) Ip6OtherFlag() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Advertised prefix list. The structure of `ip6PrefixList` block is documented below.
 func (o InterfaceIpv6PtrOutput) Ip6PrefixLists() InterfaceIpv6Ip6PrefixListArrayOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) []InterfaceIpv6Ip6PrefixList {
 		if v == nil {
@@ -12301,7 +12129,6 @@ func (o InterfaceIpv6PtrOutput) Ip6PrefixLists() InterfaceIpv6Ip6PrefixListArray
 	}).(InterfaceIpv6Ip6PrefixListArrayOutput)
 }
 
-// Assigning a prefix from DHCP or RA. Valid values: `dhcp6`, `ra`.
 func (o InterfaceIpv6PtrOutput) Ip6PrefixMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12311,7 +12138,6 @@ func (o InterfaceIpv6PtrOutput) Ip6PrefixMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// IPv6 reachable time (milliseconds; 0 means unspecified).
 func (o InterfaceIpv6PtrOutput) Ip6ReachableTime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *int {
 		if v == nil {
@@ -12321,7 +12147,6 @@ func (o InterfaceIpv6PtrOutput) Ip6ReachableTime() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// IPv6 retransmit time (milliseconds; 0 means unspecified).
 func (o InterfaceIpv6PtrOutput) Ip6RetransTime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *int {
 		if v == nil {
@@ -12331,7 +12156,6 @@ func (o InterfaceIpv6PtrOutput) Ip6RetransTime() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable sending advertisements about the interface. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6PtrOutput) Ip6SendAdv() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12341,7 +12165,6 @@ func (o InterfaceIpv6PtrOutput) Ip6SendAdv() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Subnet to routing prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
 func (o InterfaceIpv6PtrOutput) Ip6Subnet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12351,7 +12174,6 @@ func (o InterfaceIpv6PtrOutput) Ip6Subnet() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Interface name providing delegated information.
 func (o InterfaceIpv6PtrOutput) Ip6UpstreamInterface() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12361,7 +12183,6 @@ func (o InterfaceIpv6PtrOutput) Ip6UpstreamInterface() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Neighbor discovery certificate.
 func (o InterfaceIpv6PtrOutput) NdCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12371,7 +12192,6 @@ func (o InterfaceIpv6PtrOutput) NdCert() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Neighbor discovery CGA modifier.
 func (o InterfaceIpv6PtrOutput) NdCgaModifier() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12381,7 +12201,6 @@ func (o InterfaceIpv6PtrOutput) NdCgaModifier() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Neighbor discovery mode. Valid values: `basic`, `SEND-compatible`.
 func (o InterfaceIpv6PtrOutput) NdMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12391,7 +12210,6 @@ func (o InterfaceIpv6PtrOutput) NdMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Neighbor discovery security level (0 - 7; 0 = least secure, default = 0).
 func (o InterfaceIpv6PtrOutput) NdSecurityLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *int {
 		if v == nil {
@@ -12401,7 +12219,6 @@ func (o InterfaceIpv6PtrOutput) NdSecurityLevel() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Neighbor discovery timestamp delta value (1 - 3600 sec; default = 300).
 func (o InterfaceIpv6PtrOutput) NdTimestampDelta() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *int {
 		if v == nil {
@@ -12411,7 +12228,6 @@ func (o InterfaceIpv6PtrOutput) NdTimestampDelta() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Neighbor discovery timestamp fuzz factor (1 - 60 sec; default = 1).
 func (o InterfaceIpv6PtrOutput) NdTimestampFuzz() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *int {
 		if v == nil {
@@ -12421,7 +12237,6 @@ func (o InterfaceIpv6PtrOutput) NdTimestampFuzz() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable sending link MTU in RA packet. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6PtrOutput) RaSendMtu() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12431,7 +12246,6 @@ func (o InterfaceIpv6PtrOutput) RaSendMtu() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable unique auto config address. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6PtrOutput) UniqueAutoconfAddr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12441,7 +12255,6 @@ func (o InterfaceIpv6PtrOutput) UniqueAutoconfAddr() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Link-local IPv6 address of virtual router.
 func (o InterfaceIpv6PtrOutput) Vrip6LinkLocal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12451,9 +12264,6 @@ func (o InterfaceIpv6PtrOutput) Vrip6LinkLocal() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// IPv6 VRRP configuration. The structure of `vrrp6` block is documented below.
-//
-// The `ip6ExtraAddr` block supports:
 func (o InterfaceIpv6PtrOutput) Vrrp6s() InterfaceIpv6Vrrp6ArrayOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) []InterfaceIpv6Vrrp6 {
 		if v == nil {
@@ -12463,7 +12273,6 @@ func (o InterfaceIpv6PtrOutput) Vrrp6s() InterfaceIpv6Vrrp6ArrayOutput {
 	}).(InterfaceIpv6Vrrp6ArrayOutput)
 }
 
-// Enable/disable virtual MAC for VRRP. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6PtrOutput) VrrpVirtualMac6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InterfaceIpv6) *string {
 		if v == nil {
@@ -12474,16 +12283,10 @@ func (o InterfaceIpv6PtrOutput) VrrpVirtualMac6() pulumi.StringPtrOutput {
 }
 
 type InterfaceIpv6Dhcp6IapdList struct {
-	// Identity association identifier.
-	Iaid *int `pulumi:"iaid"`
-	// DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
-	PrefixHint *string `pulumi:"prefixHint"`
-	// DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
-	PrefixHintPlt *int `pulumi:"prefixHintPlt"`
-	// DHCPv6 prefix hint valid life time (sec).
-	//
-	// The `vrrp6` block supports:
-	PrefixHintVlt *int `pulumi:"prefixHintVlt"`
+	Iaid          *int    `pulumi:"iaid"`
+	PrefixHint    *string `pulumi:"prefixHint"`
+	PrefixHintPlt *int    `pulumi:"prefixHintPlt"`
+	PrefixHintVlt *int    `pulumi:"prefixHintVlt"`
 }
 
 // InterfaceIpv6Dhcp6IapdListInput is an input type that accepts InterfaceIpv6Dhcp6IapdListArgs and InterfaceIpv6Dhcp6IapdListOutput values.
@@ -12498,16 +12301,10 @@ type InterfaceIpv6Dhcp6IapdListInput interface {
 }
 
 type InterfaceIpv6Dhcp6IapdListArgs struct {
-	// Identity association identifier.
-	Iaid pulumi.IntPtrInput `pulumi:"iaid"`
-	// DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
-	PrefixHint pulumi.StringPtrInput `pulumi:"prefixHint"`
-	// DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
-	PrefixHintPlt pulumi.IntPtrInput `pulumi:"prefixHintPlt"`
-	// DHCPv6 prefix hint valid life time (sec).
-	//
-	// The `vrrp6` block supports:
-	PrefixHintVlt pulumi.IntPtrInput `pulumi:"prefixHintVlt"`
+	Iaid          pulumi.IntPtrInput    `pulumi:"iaid"`
+	PrefixHint    pulumi.StringPtrInput `pulumi:"prefixHint"`
+	PrefixHintPlt pulumi.IntPtrInput    `pulumi:"prefixHintPlt"`
+	PrefixHintVlt pulumi.IntPtrInput    `pulumi:"prefixHintVlt"`
 }
 
 func (InterfaceIpv6Dhcp6IapdListArgs) ElementType() reflect.Type {
@@ -12561,24 +12358,18 @@ func (o InterfaceIpv6Dhcp6IapdListOutput) ToInterfaceIpv6Dhcp6IapdListOutputWith
 	return o
 }
 
-// Identity association identifier.
 func (o InterfaceIpv6Dhcp6IapdListOutput) Iaid() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Dhcp6IapdList) *int { return v.Iaid }).(pulumi.IntPtrOutput)
 }
 
-// DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
 func (o InterfaceIpv6Dhcp6IapdListOutput) PrefixHint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Dhcp6IapdList) *string { return v.PrefixHint }).(pulumi.StringPtrOutput)
 }
 
-// DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
 func (o InterfaceIpv6Dhcp6IapdListOutput) PrefixHintPlt() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Dhcp6IapdList) *int { return v.PrefixHintPlt }).(pulumi.IntPtrOutput)
 }
 
-// DHCPv6 prefix hint valid life time (sec).
-//
-// The `vrrp6` block supports:
 func (o InterfaceIpv6Dhcp6IapdListOutput) PrefixHintVlt() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Dhcp6IapdList) *int { return v.PrefixHintVlt }).(pulumi.IntPtrOutput)
 }
@@ -12604,24 +12395,14 @@ func (o InterfaceIpv6Dhcp6IapdListArrayOutput) Index(i pulumi.IntInput) Interfac
 }
 
 type InterfaceIpv6Ip6DelegatedPrefixList struct {
-	// Enable/disable the autonomous flag. Valid values: `enable`, `disable`.
-	AutonomousFlag *string `pulumi:"autonomousFlag"`
-	// IAID of obtained delegated-prefix from the upstream interface.
-	DelegatedPrefixIaid *int `pulumi:"delegatedPrefixIaid"`
-	// Enable/disable the onlink flag. Valid values: `enable`, `disable`.
-	OnlinkFlag *string `pulumi:"onlinkFlag"`
-	// Prefix ID.
-	PrefixId *int `pulumi:"prefixId"`
-	// Recursive DNS server option.
-	//
-	// The `dhcp6IapdList` block supports:
-	Rdnss *string `pulumi:"rdnss"`
-	// Recursive DNS service option. Valid values: `delegated`, `default`, `specify`.
-	RdnssService *string `pulumi:"rdnssService"`
-	// Add subnet ID to routing prefix.
-	Subnet *string `pulumi:"subnet"`
-	// Name of the interface that provides delegated information.
-	UpstreamInterface *string `pulumi:"upstreamInterface"`
+	AutonomousFlag      *string `pulumi:"autonomousFlag"`
+	DelegatedPrefixIaid *int    `pulumi:"delegatedPrefixIaid"`
+	OnlinkFlag          *string `pulumi:"onlinkFlag"`
+	PrefixId            *int    `pulumi:"prefixId"`
+	Rdnss               *string `pulumi:"rdnss"`
+	RdnssService        *string `pulumi:"rdnssService"`
+	Subnet              *string `pulumi:"subnet"`
+	UpstreamInterface   *string `pulumi:"upstreamInterface"`
 }
 
 // InterfaceIpv6Ip6DelegatedPrefixListInput is an input type that accepts InterfaceIpv6Ip6DelegatedPrefixListArgs and InterfaceIpv6Ip6DelegatedPrefixListOutput values.
@@ -12636,24 +12417,14 @@ type InterfaceIpv6Ip6DelegatedPrefixListInput interface {
 }
 
 type InterfaceIpv6Ip6DelegatedPrefixListArgs struct {
-	// Enable/disable the autonomous flag. Valid values: `enable`, `disable`.
-	AutonomousFlag pulumi.StringPtrInput `pulumi:"autonomousFlag"`
-	// IAID of obtained delegated-prefix from the upstream interface.
-	DelegatedPrefixIaid pulumi.IntPtrInput `pulumi:"delegatedPrefixIaid"`
-	// Enable/disable the onlink flag. Valid values: `enable`, `disable`.
-	OnlinkFlag pulumi.StringPtrInput `pulumi:"onlinkFlag"`
-	// Prefix ID.
-	PrefixId pulumi.IntPtrInput `pulumi:"prefixId"`
-	// Recursive DNS server option.
-	//
-	// The `dhcp6IapdList` block supports:
-	Rdnss pulumi.StringPtrInput `pulumi:"rdnss"`
-	// Recursive DNS service option. Valid values: `delegated`, `default`, `specify`.
-	RdnssService pulumi.StringPtrInput `pulumi:"rdnssService"`
-	// Add subnet ID to routing prefix.
-	Subnet pulumi.StringPtrInput `pulumi:"subnet"`
-	// Name of the interface that provides delegated information.
-	UpstreamInterface pulumi.StringPtrInput `pulumi:"upstreamInterface"`
+	AutonomousFlag      pulumi.StringPtrInput `pulumi:"autonomousFlag"`
+	DelegatedPrefixIaid pulumi.IntPtrInput    `pulumi:"delegatedPrefixIaid"`
+	OnlinkFlag          pulumi.StringPtrInput `pulumi:"onlinkFlag"`
+	PrefixId            pulumi.IntPtrInput    `pulumi:"prefixId"`
+	Rdnss               pulumi.StringPtrInput `pulumi:"rdnss"`
+	RdnssService        pulumi.StringPtrInput `pulumi:"rdnssService"`
+	Subnet              pulumi.StringPtrInput `pulumi:"subnet"`
+	UpstreamInterface   pulumi.StringPtrInput `pulumi:"upstreamInterface"`
 }
 
 func (InterfaceIpv6Ip6DelegatedPrefixListArgs) ElementType() reflect.Type {
@@ -12707,44 +12478,34 @@ func (o InterfaceIpv6Ip6DelegatedPrefixListOutput) ToInterfaceIpv6Ip6DelegatedPr
 	return o
 }
 
-// Enable/disable the autonomous flag. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6Ip6DelegatedPrefixListOutput) AutonomousFlag() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Ip6DelegatedPrefixList) *string { return v.AutonomousFlag }).(pulumi.StringPtrOutput)
 }
 
-// IAID of obtained delegated-prefix from the upstream interface.
 func (o InterfaceIpv6Ip6DelegatedPrefixListOutput) DelegatedPrefixIaid() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Ip6DelegatedPrefixList) *int { return v.DelegatedPrefixIaid }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable the onlink flag. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6Ip6DelegatedPrefixListOutput) OnlinkFlag() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Ip6DelegatedPrefixList) *string { return v.OnlinkFlag }).(pulumi.StringPtrOutput)
 }
 
-// Prefix ID.
 func (o InterfaceIpv6Ip6DelegatedPrefixListOutput) PrefixId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Ip6DelegatedPrefixList) *int { return v.PrefixId }).(pulumi.IntPtrOutput)
 }
 
-// Recursive DNS server option.
-//
-// The `dhcp6IapdList` block supports:
 func (o InterfaceIpv6Ip6DelegatedPrefixListOutput) Rdnss() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Ip6DelegatedPrefixList) *string { return v.Rdnss }).(pulumi.StringPtrOutput)
 }
 
-// Recursive DNS service option. Valid values: `delegated`, `default`, `specify`.
 func (o InterfaceIpv6Ip6DelegatedPrefixListOutput) RdnssService() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Ip6DelegatedPrefixList) *string { return v.RdnssService }).(pulumi.StringPtrOutput)
 }
 
-// Add subnet ID to routing prefix.
 func (o InterfaceIpv6Ip6DelegatedPrefixListOutput) Subnet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Ip6DelegatedPrefixList) *string { return v.Subnet }).(pulumi.StringPtrOutput)
 }
 
-// Name of the interface that provides delegated information.
 func (o InterfaceIpv6Ip6DelegatedPrefixListOutput) UpstreamInterface() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Ip6DelegatedPrefixList) *string { return v.UpstreamInterface }).(pulumi.StringPtrOutput)
 }
@@ -12770,7 +12531,6 @@ func (o InterfaceIpv6Ip6DelegatedPrefixListArrayOutput) Index(i pulumi.IntInput)
 }
 
 type InterfaceIpv6Ip6ExtraAddr struct {
-	// IPv6 prefix.
 	Prefix *string `pulumi:"prefix"`
 }
 
@@ -12786,7 +12546,6 @@ type InterfaceIpv6Ip6ExtraAddrInput interface {
 }
 
 type InterfaceIpv6Ip6ExtraAddrArgs struct {
-	// IPv6 prefix.
 	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
 }
 
@@ -12841,7 +12600,6 @@ func (o InterfaceIpv6Ip6ExtraAddrOutput) ToInterfaceIpv6Ip6ExtraAddrOutputWithCo
 	return o
 }
 
-// IPv6 prefix.
 func (o InterfaceIpv6Ip6ExtraAddrOutput) Prefix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Ip6ExtraAddr) *string { return v.Prefix }).(pulumi.StringPtrOutput)
 }
@@ -12867,22 +12625,13 @@ func (o InterfaceIpv6Ip6ExtraAddrArrayOutput) Index(i pulumi.IntInput) Interface
 }
 
 type InterfaceIpv6Ip6PrefixList struct {
-	// Enable/disable the autonomous flag. Valid values: `enable`, `disable`.
-	AutonomousFlag *string `pulumi:"autonomousFlag"`
-	// DNS search list option. The structure of `dnssl` block is documented below.
-	Dnssls []InterfaceIpv6Ip6PrefixListDnssl `pulumi:"dnssls"`
-	// Enable/disable the onlink flag. Valid values: `enable`, `disable`.
-	OnlinkFlag *string `pulumi:"onlinkFlag"`
-	// Preferred life time (sec).
-	PreferredLifeTime *int `pulumi:"preferredLifeTime"`
-	// IPv6 prefix.
-	Prefix *string `pulumi:"prefix"`
-	// Recursive DNS server option.
-	//
-	// The `dhcp6IapdList` block supports:
-	Rdnss *string `pulumi:"rdnss"`
-	// Valid life time (sec).
-	ValidLifeTime *int `pulumi:"validLifeTime"`
+	AutonomousFlag    *string                           `pulumi:"autonomousFlag"`
+	Dnssls            []InterfaceIpv6Ip6PrefixListDnssl `pulumi:"dnssls"`
+	OnlinkFlag        *string                           `pulumi:"onlinkFlag"`
+	PreferredLifeTime *int                              `pulumi:"preferredLifeTime"`
+	Prefix            *string                           `pulumi:"prefix"`
+	Rdnss             *string                           `pulumi:"rdnss"`
+	ValidLifeTime     *int                              `pulumi:"validLifeTime"`
 }
 
 // InterfaceIpv6Ip6PrefixListInput is an input type that accepts InterfaceIpv6Ip6PrefixListArgs and InterfaceIpv6Ip6PrefixListOutput values.
@@ -12897,22 +12646,13 @@ type InterfaceIpv6Ip6PrefixListInput interface {
 }
 
 type InterfaceIpv6Ip6PrefixListArgs struct {
-	// Enable/disable the autonomous flag. Valid values: `enable`, `disable`.
-	AutonomousFlag pulumi.StringPtrInput `pulumi:"autonomousFlag"`
-	// DNS search list option. The structure of `dnssl` block is documented below.
-	Dnssls InterfaceIpv6Ip6PrefixListDnsslArrayInput `pulumi:"dnssls"`
-	// Enable/disable the onlink flag. Valid values: `enable`, `disable`.
-	OnlinkFlag pulumi.StringPtrInput `pulumi:"onlinkFlag"`
-	// Preferred life time (sec).
-	PreferredLifeTime pulumi.IntPtrInput `pulumi:"preferredLifeTime"`
-	// IPv6 prefix.
-	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
-	// Recursive DNS server option.
-	//
-	// The `dhcp6IapdList` block supports:
-	Rdnss pulumi.StringPtrInput `pulumi:"rdnss"`
-	// Valid life time (sec).
-	ValidLifeTime pulumi.IntPtrInput `pulumi:"validLifeTime"`
+	AutonomousFlag    pulumi.StringPtrInput                     `pulumi:"autonomousFlag"`
+	Dnssls            InterfaceIpv6Ip6PrefixListDnsslArrayInput `pulumi:"dnssls"`
+	OnlinkFlag        pulumi.StringPtrInput                     `pulumi:"onlinkFlag"`
+	PreferredLifeTime pulumi.IntPtrInput                        `pulumi:"preferredLifeTime"`
+	Prefix            pulumi.StringPtrInput                     `pulumi:"prefix"`
+	Rdnss             pulumi.StringPtrInput                     `pulumi:"rdnss"`
+	ValidLifeTime     pulumi.IntPtrInput                        `pulumi:"validLifeTime"`
 }
 
 func (InterfaceIpv6Ip6PrefixListArgs) ElementType() reflect.Type {
@@ -12966,39 +12706,30 @@ func (o InterfaceIpv6Ip6PrefixListOutput) ToInterfaceIpv6Ip6PrefixListOutputWith
 	return o
 }
 
-// Enable/disable the autonomous flag. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6Ip6PrefixListOutput) AutonomousFlag() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Ip6PrefixList) *string { return v.AutonomousFlag }).(pulumi.StringPtrOutput)
 }
 
-// DNS search list option. The structure of `dnssl` block is documented below.
 func (o InterfaceIpv6Ip6PrefixListOutput) Dnssls() InterfaceIpv6Ip6PrefixListDnsslArrayOutput {
 	return o.ApplyT(func(v InterfaceIpv6Ip6PrefixList) []InterfaceIpv6Ip6PrefixListDnssl { return v.Dnssls }).(InterfaceIpv6Ip6PrefixListDnsslArrayOutput)
 }
 
-// Enable/disable the onlink flag. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6Ip6PrefixListOutput) OnlinkFlag() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Ip6PrefixList) *string { return v.OnlinkFlag }).(pulumi.StringPtrOutput)
 }
 
-// Preferred life time (sec).
 func (o InterfaceIpv6Ip6PrefixListOutput) PreferredLifeTime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Ip6PrefixList) *int { return v.PreferredLifeTime }).(pulumi.IntPtrOutput)
 }
 
-// IPv6 prefix.
 func (o InterfaceIpv6Ip6PrefixListOutput) Prefix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Ip6PrefixList) *string { return v.Prefix }).(pulumi.StringPtrOutput)
 }
 
-// Recursive DNS server option.
-//
-// The `dhcp6IapdList` block supports:
 func (o InterfaceIpv6Ip6PrefixListOutput) Rdnss() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Ip6PrefixList) *string { return v.Rdnss }).(pulumi.StringPtrOutput)
 }
 
-// Valid life time (sec).
 func (o InterfaceIpv6Ip6PrefixListOutput) ValidLifeTime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Ip6PrefixList) *int { return v.ValidLifeTime }).(pulumi.IntPtrOutput)
 }
@@ -13127,28 +12858,19 @@ func (o InterfaceIpv6Ip6PrefixListDnsslArrayOutput) Index(i pulumi.IntInput) Int
 }
 
 type InterfaceIpv6Vrrp6 struct {
-	// Enable/disable accept mode. Valid values: `enable`, `disable`.
-	AcceptMode *string `pulumi:"acceptMode"`
-	// Advertisement interval (1 - 255 seconds).
-	AdvInterval *int `pulumi:"advInterval"`
-	// Enable/disable ignoring of default route when checking destination. Valid values: `enable`, `disable`.
+	AcceptMode         *string `pulumi:"acceptMode"`
+	AdvInterval        *int    `pulumi:"advInterval"`
 	IgnoreDefaultRoute *string `pulumi:"ignoreDefaultRoute"`
-	// Enable/disable preempt mode. Valid values: `enable`, `disable`.
-	Preempt *string `pulumi:"preempt"`
+	Preempt            *string `pulumi:"preempt"`
 	// Priority of learned routes.
-	Priority *int `pulumi:"priority"`
-	// Startup time (1 - 255 seconds).
+	Priority  *int `pulumi:"priority"`
 	StartTime *int `pulumi:"startTime"`
 	// Bring the interface up or shut the interface down. Valid values: `up`, `down`.
 	Status *string `pulumi:"status"`
-	// Monitor the route to this destination.
 	Vrdst6 *string `pulumi:"vrdst6"`
-	// VRRP group ID (1 - 65535).
-	Vrgrp *int `pulumi:"vrgrp"`
-	// Virtual router identifier (1 - 255).
-	Vrid *int `pulumi:"vrid"`
-	// IPv6 address of the virtual router.
-	Vrip6 *string `pulumi:"vrip6"`
+	Vrgrp  *int    `pulumi:"vrgrp"`
+	Vrid   *int    `pulumi:"vrid"`
+	Vrip6  *string `pulumi:"vrip6"`
 }
 
 // InterfaceIpv6Vrrp6Input is an input type that accepts InterfaceIpv6Vrrp6Args and InterfaceIpv6Vrrp6Output values.
@@ -13163,28 +12885,19 @@ type InterfaceIpv6Vrrp6Input interface {
 }
 
 type InterfaceIpv6Vrrp6Args struct {
-	// Enable/disable accept mode. Valid values: `enable`, `disable`.
-	AcceptMode pulumi.StringPtrInput `pulumi:"acceptMode"`
-	// Advertisement interval (1 - 255 seconds).
-	AdvInterval pulumi.IntPtrInput `pulumi:"advInterval"`
-	// Enable/disable ignoring of default route when checking destination. Valid values: `enable`, `disable`.
+	AcceptMode         pulumi.StringPtrInput `pulumi:"acceptMode"`
+	AdvInterval        pulumi.IntPtrInput    `pulumi:"advInterval"`
 	IgnoreDefaultRoute pulumi.StringPtrInput `pulumi:"ignoreDefaultRoute"`
-	// Enable/disable preempt mode. Valid values: `enable`, `disable`.
-	Preempt pulumi.StringPtrInput `pulumi:"preempt"`
+	Preempt            pulumi.StringPtrInput `pulumi:"preempt"`
 	// Priority of learned routes.
-	Priority pulumi.IntPtrInput `pulumi:"priority"`
-	// Startup time (1 - 255 seconds).
+	Priority  pulumi.IntPtrInput `pulumi:"priority"`
 	StartTime pulumi.IntPtrInput `pulumi:"startTime"`
 	// Bring the interface up or shut the interface down. Valid values: `up`, `down`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
-	// Monitor the route to this destination.
 	Vrdst6 pulumi.StringPtrInput `pulumi:"vrdst6"`
-	// VRRP group ID (1 - 65535).
-	Vrgrp pulumi.IntPtrInput `pulumi:"vrgrp"`
-	// Virtual router identifier (1 - 255).
-	Vrid pulumi.IntPtrInput `pulumi:"vrid"`
-	// IPv6 address of the virtual router.
-	Vrip6 pulumi.StringPtrInput `pulumi:"vrip6"`
+	Vrgrp  pulumi.IntPtrInput    `pulumi:"vrgrp"`
+	Vrid   pulumi.IntPtrInput    `pulumi:"vrid"`
+	Vrip6  pulumi.StringPtrInput `pulumi:"vrip6"`
 }
 
 func (InterfaceIpv6Vrrp6Args) ElementType() reflect.Type {
@@ -13238,22 +12951,18 @@ func (o InterfaceIpv6Vrrp6Output) ToInterfaceIpv6Vrrp6OutputWithContext(ctx cont
 	return o
 }
 
-// Enable/disable accept mode. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6Vrrp6Output) AcceptMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Vrrp6) *string { return v.AcceptMode }).(pulumi.StringPtrOutput)
 }
 
-// Advertisement interval (1 - 255 seconds).
 func (o InterfaceIpv6Vrrp6Output) AdvInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Vrrp6) *int { return v.AdvInterval }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable ignoring of default route when checking destination. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6Vrrp6Output) IgnoreDefaultRoute() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Vrrp6) *string { return v.IgnoreDefaultRoute }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable preempt mode. Valid values: `enable`, `disable`.
 func (o InterfaceIpv6Vrrp6Output) Preempt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Vrrp6) *string { return v.Preempt }).(pulumi.StringPtrOutput)
 }
@@ -13263,7 +12972,6 @@ func (o InterfaceIpv6Vrrp6Output) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Vrrp6) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
-// Startup time (1 - 255 seconds).
 func (o InterfaceIpv6Vrrp6Output) StartTime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Vrrp6) *int { return v.StartTime }).(pulumi.IntPtrOutput)
 }
@@ -13273,22 +12981,18 @@ func (o InterfaceIpv6Vrrp6Output) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Vrrp6) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// Monitor the route to this destination.
 func (o InterfaceIpv6Vrrp6Output) Vrdst6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Vrrp6) *string { return v.Vrdst6 }).(pulumi.StringPtrOutput)
 }
 
-// VRRP group ID (1 - 65535).
 func (o InterfaceIpv6Vrrp6Output) Vrgrp() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Vrrp6) *int { return v.Vrgrp }).(pulumi.IntPtrOutput)
 }
 
-// Virtual router identifier (1 - 255).
 func (o InterfaceIpv6Vrrp6Output) Vrid() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Vrrp6) *int { return v.Vrid }).(pulumi.IntPtrOutput)
 }
 
-// IPv6 address of the virtual router.
 func (o InterfaceIpv6Vrrp6Output) Vrip6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InterfaceIpv6Vrrp6) *string { return v.Vrip6 }).(pulumi.StringPtrOutput)
 }
@@ -14314,6 +14018,8 @@ func (o InterfaceVrrpProxyArpArrayOutput) Index(i pulumi.IntInput) InterfaceVrrp
 type IpamPool struct {
 	// Description.
 	Description *string `pulumi:"description"`
+	// Configure pool exclude subnets. The structure of `exclude` block is documented below.
+	Excludes []IpamPoolExclude `pulumi:"excludes"`
 	// IPAM pool name.
 	Name *string `pulumi:"name"`
 	// Configure IPAM pool subnet, Class A - Class B subnet.
@@ -14334,6 +14040,8 @@ type IpamPoolInput interface {
 type IpamPoolArgs struct {
 	// Description.
 	Description pulumi.StringPtrInput `pulumi:"description"`
+	// Configure pool exclude subnets. The structure of `exclude` block is documented below.
+	Excludes IpamPoolExcludeArrayInput `pulumi:"excludes"`
 	// IPAM pool name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Configure IPAM pool subnet, Class A - Class B subnet.
@@ -14396,6 +14104,11 @@ func (o IpamPoolOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpamPool) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Configure pool exclude subnets. The structure of `exclude` block is documented below.
+func (o IpamPoolOutput) Excludes() IpamPoolExcludeArrayOutput {
+	return o.ApplyT(func(v IpamPool) []IpamPoolExclude { return v.Excludes }).(IpamPoolExcludeArrayOutput)
+}
+
 // IPAM pool name.
 func (o IpamPoolOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpamPool) *string { return v.Name }).(pulumi.StringPtrOutput)
@@ -14424,6 +14137,112 @@ func (o IpamPoolArrayOutput) Index(i pulumi.IntInput) IpamPoolOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpamPool {
 		return vs[0].([]IpamPool)[vs[1].(int)]
 	}).(IpamPoolOutput)
+}
+
+type IpamPoolExclude struct {
+	// Configure subnet to exclude from the IPAM pool.
+	ExcludeSubnet *string `pulumi:"excludeSubnet"`
+	// Exclude ID.
+	Id *int `pulumi:"id"`
+}
+
+// IpamPoolExcludeInput is an input type that accepts IpamPoolExcludeArgs and IpamPoolExcludeOutput values.
+// You can construct a concrete instance of `IpamPoolExcludeInput` via:
+//
+//	IpamPoolExcludeArgs{...}
+type IpamPoolExcludeInput interface {
+	pulumi.Input
+
+	ToIpamPoolExcludeOutput() IpamPoolExcludeOutput
+	ToIpamPoolExcludeOutputWithContext(context.Context) IpamPoolExcludeOutput
+}
+
+type IpamPoolExcludeArgs struct {
+	// Configure subnet to exclude from the IPAM pool.
+	ExcludeSubnet pulumi.StringPtrInput `pulumi:"excludeSubnet"`
+	// Exclude ID.
+	Id pulumi.IntPtrInput `pulumi:"id"`
+}
+
+func (IpamPoolExcludeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpamPoolExclude)(nil)).Elem()
+}
+
+func (i IpamPoolExcludeArgs) ToIpamPoolExcludeOutput() IpamPoolExcludeOutput {
+	return i.ToIpamPoolExcludeOutputWithContext(context.Background())
+}
+
+func (i IpamPoolExcludeArgs) ToIpamPoolExcludeOutputWithContext(ctx context.Context) IpamPoolExcludeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpamPoolExcludeOutput)
+}
+
+// IpamPoolExcludeArrayInput is an input type that accepts IpamPoolExcludeArray and IpamPoolExcludeArrayOutput values.
+// You can construct a concrete instance of `IpamPoolExcludeArrayInput` via:
+//
+//	IpamPoolExcludeArray{ IpamPoolExcludeArgs{...} }
+type IpamPoolExcludeArrayInput interface {
+	pulumi.Input
+
+	ToIpamPoolExcludeArrayOutput() IpamPoolExcludeArrayOutput
+	ToIpamPoolExcludeArrayOutputWithContext(context.Context) IpamPoolExcludeArrayOutput
+}
+
+type IpamPoolExcludeArray []IpamPoolExcludeInput
+
+func (IpamPoolExcludeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IpamPoolExclude)(nil)).Elem()
+}
+
+func (i IpamPoolExcludeArray) ToIpamPoolExcludeArrayOutput() IpamPoolExcludeArrayOutput {
+	return i.ToIpamPoolExcludeArrayOutputWithContext(context.Background())
+}
+
+func (i IpamPoolExcludeArray) ToIpamPoolExcludeArrayOutputWithContext(ctx context.Context) IpamPoolExcludeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpamPoolExcludeArrayOutput)
+}
+
+type IpamPoolExcludeOutput struct{ *pulumi.OutputState }
+
+func (IpamPoolExcludeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpamPoolExclude)(nil)).Elem()
+}
+
+func (o IpamPoolExcludeOutput) ToIpamPoolExcludeOutput() IpamPoolExcludeOutput {
+	return o
+}
+
+func (o IpamPoolExcludeOutput) ToIpamPoolExcludeOutputWithContext(ctx context.Context) IpamPoolExcludeOutput {
+	return o
+}
+
+// Configure subnet to exclude from the IPAM pool.
+func (o IpamPoolExcludeOutput) ExcludeSubnet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IpamPoolExclude) *string { return v.ExcludeSubnet }).(pulumi.StringPtrOutput)
+}
+
+// Exclude ID.
+func (o IpamPoolExcludeOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v IpamPoolExclude) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+type IpamPoolExcludeArrayOutput struct{ *pulumi.OutputState }
+
+func (IpamPoolExcludeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IpamPoolExclude)(nil)).Elem()
+}
+
+func (o IpamPoolExcludeArrayOutput) ToIpamPoolExcludeArrayOutput() IpamPoolExcludeArrayOutput {
+	return o
+}
+
+func (o IpamPoolExcludeArrayOutput) ToIpamPoolExcludeArrayOutputWithContext(ctx context.Context) IpamPoolExcludeArrayOutput {
+	return o
+}
+
+func (o IpamPoolExcludeArrayOutput) Index(i pulumi.IntInput) IpamPoolExcludeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpamPoolExclude {
+		return vs[0].([]IpamPoolExclude)[vs[1].(int)]
+	}).(IpamPoolExcludeOutput)
 }
 
 type IpamRule struct {
@@ -16035,10 +15854,12 @@ type NtpNtpserver struct {
 	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
 	// Choose to connect to IPv4 or/and IPv6 NTP server. Valid values: `IPv6`, `IPv4`, `Both`.
 	IpType *string `pulumi:"ipType"`
-	// Key for MD5/SHA1 authentication.
+	// Key for authentication. On FortiOS versions 6.2.0: MD5(NTPv3)/SHA1(NTPv4). On FortiOS versions >= 7.4.4: MD5(NTPv3)/SHA1(NTPv4)/SHA256(NTPv4).
 	Key *string `pulumi:"key"`
 	// Key ID for authentication.
 	KeyId *int `pulumi:"keyId"`
+	// Select NTP authentication type. Valid values: `MD5`, `SHA1`, `SHA256`.
+	KeyType *string `pulumi:"keyType"`
 	// Enable to use NTPv3 instead of NTPv4. Valid values: `enable`, `disable`.
 	Ntpv3 *string `pulumi:"ntpv3"`
 	// IP address or hostname of the NTP Server.
@@ -16067,10 +15888,12 @@ type NtpNtpserverArgs struct {
 	InterfaceSelectMethod pulumi.StringPtrInput `pulumi:"interfaceSelectMethod"`
 	// Choose to connect to IPv4 or/and IPv6 NTP server. Valid values: `IPv6`, `IPv4`, `Both`.
 	IpType pulumi.StringPtrInput `pulumi:"ipType"`
-	// Key for MD5/SHA1 authentication.
+	// Key for authentication. On FortiOS versions 6.2.0: MD5(NTPv3)/SHA1(NTPv4). On FortiOS versions >= 7.4.4: MD5(NTPv3)/SHA1(NTPv4)/SHA256(NTPv4).
 	Key pulumi.StringPtrInput `pulumi:"key"`
 	// Key ID for authentication.
 	KeyId pulumi.IntPtrInput `pulumi:"keyId"`
+	// Select NTP authentication type. Valid values: `MD5`, `SHA1`, `SHA256`.
+	KeyType pulumi.StringPtrInput `pulumi:"keyType"`
 	// Enable to use NTPv3 instead of NTPv4. Valid values: `enable`, `disable`.
 	Ntpv3 pulumi.StringPtrInput `pulumi:"ntpv3"`
 	// IP address or hostname of the NTP Server.
@@ -16153,7 +15976,7 @@ func (o NtpNtpserverOutput) IpType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NtpNtpserver) *string { return v.IpType }).(pulumi.StringPtrOutput)
 }
 
-// Key for MD5/SHA1 authentication.
+// Key for authentication. On FortiOS versions 6.2.0: MD5(NTPv3)/SHA1(NTPv4). On FortiOS versions >= 7.4.4: MD5(NTPv3)/SHA1(NTPv4)/SHA256(NTPv4).
 func (o NtpNtpserverOutput) Key() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NtpNtpserver) *string { return v.Key }).(pulumi.StringPtrOutput)
 }
@@ -16161,6 +15984,11 @@ func (o NtpNtpserverOutput) Key() pulumi.StringPtrOutput {
 // Key ID for authentication.
 func (o NtpNtpserverOutput) KeyId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NtpNtpserver) *int { return v.KeyId }).(pulumi.IntPtrOutput)
+}
+
+// Select NTP authentication type. Valid values: `MD5`, `SHA1`, `SHA256`.
+func (o NtpNtpserverOutput) KeyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NtpNtpserver) *string { return v.KeyType }).(pulumi.StringPtrOutput)
 }
 
 // Enable to use NTPv3 instead of NTPv4. Valid values: `enable`, `disable`.
@@ -21269,7 +21097,6 @@ func (o SdwanDuplicationArrayOutput) Index(i pulumi.IntInput) SdwanDuplicationOu
 }
 
 type SdwanDuplicationDstaddr6 struct {
-	// Address or address group name.
 	Name *string `pulumi:"name"`
 }
 
@@ -21285,7 +21112,6 @@ type SdwanDuplicationDstaddr6Input interface {
 }
 
 type SdwanDuplicationDstaddr6Args struct {
-	// Address or address group name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -21340,7 +21166,6 @@ func (o SdwanDuplicationDstaddr6Output) ToSdwanDuplicationDstaddr6OutputWithCont
 	return o
 }
 
-// Address or address group name.
 func (o SdwanDuplicationDstaddr6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanDuplicationDstaddr6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -21754,7 +21579,6 @@ func (o SdwanDuplicationServiceIdArrayOutput) Index(i pulumi.IntInput) SdwanDupl
 }
 
 type SdwanDuplicationSrcaddr6 struct {
-	// Address or address group name.
 	Name *string `pulumi:"name"`
 }
 
@@ -21770,7 +21594,6 @@ type SdwanDuplicationSrcaddr6Input interface {
 }
 
 type SdwanDuplicationSrcaddr6Args struct {
-	// Address or address group name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -21825,7 +21648,6 @@ func (o SdwanDuplicationSrcaddr6Output) ToSdwanDuplicationSrcaddr6OutputWithCont
 	return o
 }
 
-// Address or address group name.
 func (o SdwanDuplicationSrcaddr6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanDuplicationSrcaddr6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -22170,7 +21992,7 @@ type SdwanHealthCheck struct {
 	HttpGet *string `pulumi:"httpGet"`
 	// Response string expected from the server if the protocol is HTTP.
 	HttpMatch *string `pulumi:"httpMatch"`
-	// Status check interval in milliseconds, or the time between attempting to connect to the server (500 - 3600*1000 msec, default = 500).
+	// Status check interval in milliseconds, or the time between attempting to connect to the server (default = 500). On FortiOS versions 6.4.1-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
 	Interval *int `pulumi:"interval"`
 	// Member sequence number list. The structure of `members` block is documented below.
 	Members []SdwanHealthCheckMember `pulumi:"members"`
@@ -22178,17 +22000,17 @@ type SdwanHealthCheck struct {
 	MosCodec *string `pulumi:"mosCodec"`
 	// Health check name.
 	Name *string `pulumi:"name"`
-	// Packet size of a twamp test session,
+	// Packet size of a TWAMP test session. (124/158 - 1024)
 	PacketSize *int `pulumi:"packetSize"`
 	// Twamp controller password in authentication mode
 	Password *string `pulumi:"password"`
-	// Port number used to communicate with the server over the selected protocol (0-65535, default = 0, auto select. http, twamp: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21).
+	// Port number used to communicate with the server over the selected protocol (0 - 65535, default = 0, auto select. http, tcp-connect: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21, twamp: 862).
 	Port *int `pulumi:"port"`
 	// Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
 	ProbeCount *int `pulumi:"probeCount"`
 	// Enable/disable transmission of probe packets. Valid values: `disable`, `enable`.
 	ProbePackets *string `pulumi:"probePackets"`
-	// Time to wait before a probe packet is considered lost (500 - 3600*1000 msec, default = 500).
+	// Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.4.2-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 6.4.1: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
 	ProbeTimeout *int `pulumi:"probeTimeout"`
 	// Protocol used to determine if the FortiGate can communicate with the server.
 	Protocol *string `pulumi:"protocol"`
@@ -22276,7 +22098,7 @@ type SdwanHealthCheckArgs struct {
 	HttpGet pulumi.StringPtrInput `pulumi:"httpGet"`
 	// Response string expected from the server if the protocol is HTTP.
 	HttpMatch pulumi.StringPtrInput `pulumi:"httpMatch"`
-	// Status check interval in milliseconds, or the time between attempting to connect to the server (500 - 3600*1000 msec, default = 500).
+	// Status check interval in milliseconds, or the time between attempting to connect to the server (default = 500). On FortiOS versions 6.4.1-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
 	Interval pulumi.IntPtrInput `pulumi:"interval"`
 	// Member sequence number list. The structure of `members` block is documented below.
 	Members SdwanHealthCheckMemberArrayInput `pulumi:"members"`
@@ -22284,17 +22106,17 @@ type SdwanHealthCheckArgs struct {
 	MosCodec pulumi.StringPtrInput `pulumi:"mosCodec"`
 	// Health check name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Packet size of a twamp test session,
+	// Packet size of a TWAMP test session. (124/158 - 1024)
 	PacketSize pulumi.IntPtrInput `pulumi:"packetSize"`
 	// Twamp controller password in authentication mode
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// Port number used to communicate with the server over the selected protocol (0-65535, default = 0, auto select. http, twamp: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21).
+	// Port number used to communicate with the server over the selected protocol (0 - 65535, default = 0, auto select. http, tcp-connect: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21, twamp: 862).
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
 	ProbeCount pulumi.IntPtrInput `pulumi:"probeCount"`
 	// Enable/disable transmission of probe packets. Valid values: `disable`, `enable`.
 	ProbePackets pulumi.StringPtrInput `pulumi:"probePackets"`
-	// Time to wait before a probe packet is considered lost (500 - 3600*1000 msec, default = 500).
+	// Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.4.2-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 6.4.1: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
 	ProbeTimeout pulumi.IntPtrInput `pulumi:"probeTimeout"`
 	// Protocol used to determine if the FortiGate can communicate with the server.
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
@@ -22463,7 +22285,7 @@ func (o SdwanHealthCheckOutput) HttpMatch() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanHealthCheck) *string { return v.HttpMatch }).(pulumi.StringPtrOutput)
 }
 
-// Status check interval in milliseconds, or the time between attempting to connect to the server (500 - 3600*1000 msec, default = 500).
+// Status check interval in milliseconds, or the time between attempting to connect to the server (default = 500). On FortiOS versions 6.4.1-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
 func (o SdwanHealthCheckOutput) Interval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanHealthCheck) *int { return v.Interval }).(pulumi.IntPtrOutput)
 }
@@ -22483,7 +22305,7 @@ func (o SdwanHealthCheckOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanHealthCheck) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// Packet size of a twamp test session,
+// Packet size of a TWAMP test session. (124/158 - 1024)
 func (o SdwanHealthCheckOutput) PacketSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanHealthCheck) *int { return v.PacketSize }).(pulumi.IntPtrOutput)
 }
@@ -22493,7 +22315,7 @@ func (o SdwanHealthCheckOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanHealthCheck) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// Port number used to communicate with the server over the selected protocol (0-65535, default = 0, auto select. http, twamp: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21).
+// Port number used to communicate with the server over the selected protocol (0 - 65535, default = 0, auto select. http, tcp-connect: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21, twamp: 862).
 func (o SdwanHealthCheckOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanHealthCheck) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -22508,7 +22330,7 @@ func (o SdwanHealthCheckOutput) ProbePackets() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanHealthCheck) *string { return v.ProbePackets }).(pulumi.StringPtrOutput)
 }
 
-// Time to wait before a probe packet is considered lost (500 - 3600*1000 msec, default = 500).
+// Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.4.2-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 6.4.1: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
 func (o SdwanHealthCheckOutput) ProbeTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanHealthCheck) *int { return v.ProbeTimeout }).(pulumi.IntPtrOutput)
 }
@@ -22915,7 +22737,7 @@ type SdwanMember struct {
 	Interface *string `pulumi:"interface"`
 	// Preferred source of route for this member.
 	PreferredSource *string `pulumi:"preferredSource"`
-	// Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
+	// Priority of the interface for IPv4 . Used for SD-WAN rules or priority rules. On FortiOS versions 6.4.1: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535, default = 1.
 	Priority *int `pulumi:"priority"`
 	// Priority of the interface for IPv6 (1 - 65535, default = 1024). Used for SD-WAN rules or priority rules.
 	Priority6 *int `pulumi:"priority6"`
@@ -22965,7 +22787,7 @@ type SdwanMemberArgs struct {
 	Interface pulumi.StringPtrInput `pulumi:"interface"`
 	// Preferred source of route for this member.
 	PreferredSource pulumi.StringPtrInput `pulumi:"preferredSource"`
-	// Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
+	// Priority of the interface for IPv4 . Used for SD-WAN rules or priority rules. On FortiOS versions 6.4.1: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535, default = 1.
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
 	// Priority of the interface for IPv6 (1 - 65535, default = 1024). Used for SD-WAN rules or priority rules.
 	Priority6 pulumi.IntPtrInput `pulumi:"priority6"`
@@ -23075,7 +22897,7 @@ func (o SdwanMemberOutput) PreferredSource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanMember) *string { return v.PreferredSource }).(pulumi.StringPtrOutput)
 }
 
-// Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
+// Priority of the interface for IPv4 . Used for SD-WAN rules or priority rules. On FortiOS versions 6.4.1: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535, default = 1.
 func (o SdwanMemberOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanMember) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
@@ -23155,9 +22977,9 @@ type SdwanNeighbor struct {
 	HealthCheck *string `pulumi:"healthCheck"`
 	// IP/IPv6 address of neighbor.
 	Ip *string `pulumi:"ip"`
-	// Member sequence number.
+	// Member sequence number. *Due to the data type change of API, for other versions of FortiOS, please check variable `memberBlock`.*
 	Member *int `pulumi:"member"`
-	// Member sequence number list. The structure of `memberBlock` block is documented below.
+	// Member sequence number list. *Due to the data type change of API, for other versions of FortiOS, please check variable `member`.* The structure of `memberBlock` block is documented below.
 	MemberBlocks []SdwanNeighborMemberBlock `pulumi:"memberBlocks"`
 	// Minimum number of members which meet SLA when the neighbor is preferred.
 	MinimumSlaMeetMembers *int `pulumi:"minimumSlaMeetMembers"`
@@ -23187,9 +23009,9 @@ type SdwanNeighborArgs struct {
 	HealthCheck pulumi.StringPtrInput `pulumi:"healthCheck"`
 	// IP/IPv6 address of neighbor.
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
-	// Member sequence number.
+	// Member sequence number. *Due to the data type change of API, for other versions of FortiOS, please check variable `memberBlock`.*
 	Member pulumi.IntPtrInput `pulumi:"member"`
-	// Member sequence number list. The structure of `memberBlock` block is documented below.
+	// Member sequence number list. *Due to the data type change of API, for other versions of FortiOS, please check variable `member`.* The structure of `memberBlock` block is documented below.
 	MemberBlocks SdwanNeighborMemberBlockArrayInput `pulumi:"memberBlocks"`
 	// Minimum number of members which meet SLA when the neighbor is preferred.
 	MinimumSlaMeetMembers pulumi.IntPtrInput `pulumi:"minimumSlaMeetMembers"`
@@ -23264,12 +23086,12 @@ func (o SdwanNeighborOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanNeighbor) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
 
-// Member sequence number.
+// Member sequence number. *Due to the data type change of API, for other versions of FortiOS, please check variable `memberBlock`.*
 func (o SdwanNeighborOutput) Member() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SdwanNeighbor) *int { return v.Member }).(pulumi.IntPtrOutput)
 }
 
-// Member sequence number list. The structure of `memberBlock` block is documented below.
+// Member sequence number list. *Due to the data type change of API, for other versions of FortiOS, please check variable `member`.* The structure of `memberBlock` block is documented below.
 func (o SdwanNeighborOutput) MemberBlocks() SdwanNeighborMemberBlockArrayOutput {
 	return o.ApplyT(func(v SdwanNeighbor) []SdwanNeighborMemberBlock { return v.MemberBlocks }).(SdwanNeighborMemberBlockArrayOutput)
 }
@@ -24092,7 +23914,6 @@ func (o SdwanServiceArrayOutput) Index(i pulumi.IntInput) SdwanServiceOutput {
 }
 
 type SdwanServiceDst6 struct {
-	// Address or address group name.
 	Name *string `pulumi:"name"`
 }
 
@@ -24108,7 +23929,6 @@ type SdwanServiceDst6Input interface {
 }
 
 type SdwanServiceDst6Args struct {
-	// Address or address group name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -24163,7 +23983,6 @@ func (o SdwanServiceDst6Output) ToSdwanServiceDst6OutputWithContext(ctx context.
 	return o
 }
 
-// Address or address group name.
 func (o SdwanServiceDst6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanServiceDst6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -25653,7 +25472,6 @@ func (o SdwanServiceSlaArrayOutput) Index(i pulumi.IntInput) SdwanServiceSlaOutp
 }
 
 type SdwanServiceSrc6 struct {
-	// Address or address group name.
 	Name *string `pulumi:"name"`
 }
 
@@ -25669,7 +25487,6 @@ type SdwanServiceSrc6Input interface {
 }
 
 type SdwanServiceSrc6Args struct {
-	// Address or address group name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -25724,7 +25541,6 @@ func (o SdwanServiceSrc6Output) ToSdwanServiceSrc6OutputWithContext(ctx context.
 	return o
 }
 
-// Address or address group name.
 func (o SdwanServiceSrc6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SdwanServiceSrc6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -28641,7 +28457,7 @@ type VirtualwanlinkHealthCheck struct {
 	HttpGet *string `pulumi:"httpGet"`
 	// Response string expected from the server if the protocol is HTTP.
 	HttpMatch *string `pulumi:"httpMatch"`
-	// Status check interval, or the time between attempting to connect to the server (1 - 3600 sec, default = 5).
+	// Status check interval, or the time between attempting to connect to the server. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-6.4.0: 500 - 3600*1000 msec, default = 500.
 	Interval *int `pulumi:"interval"`
 	// Member sequence number list. The structure of `members` block is documented below.
 	Members []VirtualwanlinkHealthCheckMember `pulumi:"members"`
@@ -28721,7 +28537,7 @@ type VirtualwanlinkHealthCheckArgs struct {
 	HttpGet pulumi.StringPtrInput `pulumi:"httpGet"`
 	// Response string expected from the server if the protocol is HTTP.
 	HttpMatch pulumi.StringPtrInput `pulumi:"httpMatch"`
-	// Status check interval, or the time between attempting to connect to the server (1 - 3600 sec, default = 5).
+	// Status check interval, or the time between attempting to connect to the server. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-6.4.0: 500 - 3600*1000 msec, default = 500.
 	Interval pulumi.IntPtrInput `pulumi:"interval"`
 	// Member sequence number list. The structure of `members` block is documented below.
 	Members VirtualwanlinkHealthCheckMemberArrayInput `pulumi:"members"`
@@ -28864,7 +28680,7 @@ func (o VirtualwanlinkHealthCheckOutput) HttpMatch() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VirtualwanlinkHealthCheck) *string { return v.HttpMatch }).(pulumi.StringPtrOutput)
 }
 
-// Status check interval, or the time between attempting to connect to the server (1 - 3600 sec, default = 5).
+// Status check interval, or the time between attempting to connect to the server. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-6.4.0: 500 - 3600*1000 msec, default = 500.
 func (o VirtualwanlinkHealthCheckOutput) Interval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v VirtualwanlinkHealthCheck) *int { return v.Interval }).(pulumi.IntPtrOutput)
 }
@@ -29264,9 +29080,9 @@ type VirtualwanlinkMember struct {
 	SpilloverThreshold *int `pulumi:"spilloverThreshold"`
 	// Enable/disable this interface in the SD-WAN. Valid values: `disable`, `enable`.
 	Status *string `pulumi:"status"`
-	// Measured volume ratio (this value / sum of all values = percentage of link volume, 0 - 255).
+	// Measured volume ratio (this value / sum of all values = percentage of link volume). On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
 	VolumeRatio *int `pulumi:"volumeRatio"`
-	// Weight of this interface for weighted load balancing. (0 - 255) More traffic is directed to interfaces with higher weights.
+	// Weight of this interface for weighted load balancing. More traffic is directed to interfaces with higher weights. On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
 	Weight *int `pulumi:"weight"`
 }
 
@@ -29306,9 +29122,9 @@ type VirtualwanlinkMemberArgs struct {
 	SpilloverThreshold pulumi.IntPtrInput `pulumi:"spilloverThreshold"`
 	// Enable/disable this interface in the SD-WAN. Valid values: `disable`, `enable`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
-	// Measured volume ratio (this value / sum of all values = percentage of link volume, 0 - 255).
+	// Measured volume ratio (this value / sum of all values = percentage of link volume). On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
 	VolumeRatio pulumi.IntPtrInput `pulumi:"volumeRatio"`
-	// Weight of this interface for weighted load balancing. (0 - 255) More traffic is directed to interfaces with higher weights.
+	// Weight of this interface for weighted load balancing. More traffic is directed to interfaces with higher weights. On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
 	Weight pulumi.IntPtrInput `pulumi:"weight"`
 }
 
@@ -29423,12 +29239,12 @@ func (o VirtualwanlinkMemberOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VirtualwanlinkMember) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// Measured volume ratio (this value / sum of all values = percentage of link volume, 0 - 255).
+// Measured volume ratio (this value / sum of all values = percentage of link volume). On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
 func (o VirtualwanlinkMemberOutput) VolumeRatio() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v VirtualwanlinkMember) *int { return v.VolumeRatio }).(pulumi.IntPtrOutput)
 }
 
-// Weight of this interface for weighted load balancing. (0 - 255) More traffic is directed to interfaces with higher weights.
+// Weight of this interface for weighted load balancing. More traffic is directed to interfaces with higher weights. On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
 func (o VirtualwanlinkMemberOutput) Weight() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v VirtualwanlinkMember) *int { return v.Weight }).(pulumi.IntPtrOutput)
 }
@@ -30159,7 +29975,6 @@ func (o VirtualwanlinkServiceArrayOutput) Index(i pulumi.IntInput) Virtualwanlin
 }
 
 type VirtualwanlinkServiceDst6 struct {
-	// Address or address group name.
 	Name *string `pulumi:"name"`
 }
 
@@ -30175,7 +29990,6 @@ type VirtualwanlinkServiceDst6Input interface {
 }
 
 type VirtualwanlinkServiceDst6Args struct {
-	// Address or address group name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -30230,7 +30044,6 @@ func (o VirtualwanlinkServiceDst6Output) ToVirtualwanlinkServiceDst6OutputWithCo
 	return o
 }
 
-// Address or address group name.
 func (o VirtualwanlinkServiceDst6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VirtualwanlinkServiceDst6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -31623,7 +31436,6 @@ func (o VirtualwanlinkServiceSlaArrayOutput) Index(i pulumi.IntInput) Virtualwan
 }
 
 type VirtualwanlinkServiceSrc6 struct {
-	// Address or address group name.
 	Name *string `pulumi:"name"`
 }
 
@@ -31639,7 +31451,6 @@ type VirtualwanlinkServiceSrc6Input interface {
 }
 
 type VirtualwanlinkServiceSrc6Args struct {
-	// Address or address group name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -31694,7 +31505,6 @@ func (o VirtualwanlinkServiceSrc6Output) ToVirtualwanlinkServiceSrc6OutputWithCo
 	return o
 }
 
-// Address or address group name.
 func (o VirtualwanlinkServiceSrc6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VirtualwanlinkServiceSrc6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -32108,7 +31918,6 @@ func (o VirtualwirepairMemberArrayOutput) Index(i pulumi.IntInput) Virtualwirepa
 }
 
 type VxlanRemoteIp6 struct {
-	// IPv6 address.
 	Ip6 *string `pulumi:"ip6"`
 }
 
@@ -32124,7 +31933,6 @@ type VxlanRemoteIp6Input interface {
 }
 
 type VxlanRemoteIp6Args struct {
-	// IPv6 address.
 	Ip6 pulumi.StringPtrInput `pulumi:"ip6"`
 }
 
@@ -32179,7 +31987,6 @@ func (o VxlanRemoteIp6Output) ToVxlanRemoteIp6OutputWithContext(ctx context.Cont
 	return o
 }
 
-// IPv6 address.
 func (o VxlanRemoteIp6Output) Ip6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VxlanRemoteIp6) *string { return v.Ip6 }).(pulumi.StringPtrOutput)
 }
@@ -33123,6 +32930,8 @@ type GetAccprofileUtmgrpPermission struct {
 	DataLeakPrevention string `pulumi:"dataLeakPrevention"`
 	// DLP profiles and settings.
 	DataLossPrevention string `pulumi:"dataLossPrevention"`
+	// DLP profiles and settings.
+	Dlp string `pulumi:"dlp"`
 	// DNS Filter profiles and settings.
 	Dnsfilter string `pulumi:"dnsfilter"`
 	// AntiSpam filter and settings.
@@ -33171,6 +32980,8 @@ type GetAccprofileUtmgrpPermissionArgs struct {
 	DataLeakPrevention pulumi.StringInput `pulumi:"dataLeakPrevention"`
 	// DLP profiles and settings.
 	DataLossPrevention pulumi.StringInput `pulumi:"dataLossPrevention"`
+	// DLP profiles and settings.
+	Dlp pulumi.StringInput `pulumi:"dlp"`
 	// DNS Filter profiles and settings.
 	Dnsfilter pulumi.StringInput `pulumi:"dnsfilter"`
 	// AntiSpam filter and settings.
@@ -33271,6 +33082,11 @@ func (o GetAccprofileUtmgrpPermissionOutput) DataLeakPrevention() pulumi.StringO
 // DLP profiles and settings.
 func (o GetAccprofileUtmgrpPermissionOutput) DataLossPrevention() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccprofileUtmgrpPermission) string { return v.DataLossPrevention }).(pulumi.StringOutput)
+}
+
+// DLP profiles and settings.
+func (o GetAccprofileUtmgrpPermissionOutput) Dlp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAccprofileUtmgrpPermission) string { return v.Dlp }).(pulumi.StringOutput)
 }
 
 // DNS Filter profiles and settings.
@@ -41538,6 +41354,8 @@ type GetNtpNtpserver struct {
 	Key string `pulumi:"key"`
 	// Key ID for authentication.
 	KeyId int `pulumi:"keyId"`
+	// Select NTP authentication type.
+	KeyType string `pulumi:"keyType"`
 	// Enable to use NTPv3 instead of NTPv4.
 	Ntpv3 string `pulumi:"ntpv3"`
 	// IP address or hostname of the NTP Server.
@@ -41570,6 +41388,8 @@ type GetNtpNtpserverArgs struct {
 	Key pulumi.StringInput `pulumi:"key"`
 	// Key ID for authentication.
 	KeyId pulumi.IntInput `pulumi:"keyId"`
+	// Select NTP authentication type.
+	KeyType pulumi.StringInput `pulumi:"keyType"`
 	// Enable to use NTPv3 instead of NTPv4.
 	Ntpv3 pulumi.StringInput `pulumi:"ntpv3"`
 	// IP address or hostname of the NTP Server.
@@ -41660,6 +41480,11 @@ func (o GetNtpNtpserverOutput) Key() pulumi.StringOutput {
 // Key ID for authentication.
 func (o GetNtpNtpserverOutput) KeyId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetNtpNtpserver) int { return v.KeyId }).(pulumi.IntOutput)
+}
+
+// Select NTP authentication type.
+func (o GetNtpNtpserverOutput) KeyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNtpNtpserver) string { return v.KeyType }).(pulumi.StringOutput)
 }
 
 // Enable to use NTPv3 instead of NTPv4.
@@ -50452,6 +50277,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InterfaceVrrpProxyArpArrayInput)(nil)).Elem(), InterfaceVrrpProxyArpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamPoolInput)(nil)).Elem(), IpamPoolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamPoolArrayInput)(nil)).Elem(), IpamPoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpamPoolExcludeInput)(nil)).Elem(), IpamPoolExcludeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpamPoolExcludeArrayInput)(nil)).Elem(), IpamPoolExcludeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamRuleInput)(nil)).Elem(), IpamRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamRuleArrayInput)(nil)).Elem(), IpamRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamRuleDeviceInput)(nil)).Elem(), IpamRuleDeviceArgs{})
@@ -51216,6 +51043,8 @@ func init() {
 	pulumi.RegisterOutputType(InterfaceVrrpProxyArpArrayOutput{})
 	pulumi.RegisterOutputType(IpamPoolOutput{})
 	pulumi.RegisterOutputType(IpamPoolArrayOutput{})
+	pulumi.RegisterOutputType(IpamPoolExcludeOutput{})
+	pulumi.RegisterOutputType(IpamPoolExcludeArrayOutput{})
 	pulumi.RegisterOutputType(IpamRuleOutput{})
 	pulumi.RegisterOutputType(IpamRuleArrayOutput{})
 	pulumi.RegisterOutputType(IpamRuleDeviceOutput{})

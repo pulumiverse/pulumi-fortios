@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -150,7 +149,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -218,7 +216,7 @@ type Phase2 struct {
 	Keepalive pulumi.StringOutput `pulumi:"keepalive"`
 	// Keylife type. Valid values: `seconds`, `kbs`, `both`.
 	KeylifeType pulumi.StringOutput `pulumi:"keylifeType"`
-	// Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+	// Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
 	Keylifekbs pulumi.IntOutput `pulumi:"keylifekbs"`
 	// Phase2 key life in time in seconds (120 - 172800).
 	Keylifeseconds pulumi.IntOutput `pulumi:"keylifeseconds"`
@@ -265,7 +263,7 @@ type Phase2 struct {
 	// Enable to use the FortiGate public IP as the source selector when outbound NAT is used. Valid values: `enable`, `disable`.
 	UseNatip pulumi.StringOutput `pulumi:"useNatip"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewPhase2 registers a new resource with the given unique name, arguments, and options.
@@ -350,7 +348,7 @@ type phase2State struct {
 	Keepalive *string `pulumi:"keepalive"`
 	// Keylife type. Valid values: `seconds`, `kbs`, `both`.
 	KeylifeType *string `pulumi:"keylifeType"`
-	// Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+	// Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
 	Keylifekbs *int `pulumi:"keylifekbs"`
 	// Phase2 key life in time in seconds (120 - 172800).
 	Keylifeseconds *int `pulumi:"keylifeseconds"`
@@ -447,7 +445,7 @@ type Phase2State struct {
 	Keepalive pulumi.StringPtrInput
 	// Keylife type. Valid values: `seconds`, `kbs`, `both`.
 	KeylifeType pulumi.StringPtrInput
-	// Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+	// Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
 	Keylifekbs pulumi.IntPtrInput
 	// Phase2 key life in time in seconds (120 - 172800).
 	Keylifeseconds pulumi.IntPtrInput
@@ -548,7 +546,7 @@ type phase2Args struct {
 	Keepalive *string `pulumi:"keepalive"`
 	// Keylife type. Valid values: `seconds`, `kbs`, `both`.
 	KeylifeType *string `pulumi:"keylifeType"`
-	// Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+	// Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
 	Keylifekbs *int `pulumi:"keylifekbs"`
 	// Phase2 key life in time in seconds (120 - 172800).
 	Keylifeseconds *int `pulumi:"keylifeseconds"`
@@ -646,7 +644,7 @@ type Phase2Args struct {
 	Keepalive pulumi.StringPtrInput
 	// Keylife type. Valid values: `seconds`, `kbs`, `both`.
 	KeylifeType pulumi.StringPtrInput
-	// Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+	// Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
 	Keylifekbs pulumi.IntPtrInput
 	// Phase2 key life in time in seconds (120 - 172800).
 	Keylifeseconds pulumi.IntPtrInput
@@ -898,7 +896,7 @@ func (o Phase2Output) KeylifeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Phase2) pulumi.StringOutput { return v.KeylifeType }).(pulumi.StringOutput)
 }
 
-// Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+// Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
 func (o Phase2Output) Keylifekbs() pulumi.IntOutput {
 	return o.ApplyT(func(v *Phase2) pulumi.IntOutput { return v.Keylifekbs }).(pulumi.IntOutput)
 }
@@ -1014,8 +1012,8 @@ func (o Phase2Output) UseNatip() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o Phase2Output) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Phase2) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o Phase2Output) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Phase2) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type Phase2ArrayOutput struct{ *pulumi.OutputState }

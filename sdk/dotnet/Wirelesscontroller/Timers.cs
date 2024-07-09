@@ -59,6 +59,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<int> AuthTimeout { get; private set; } = null!;
 
         /// <summary>
+        /// Time period in minutes to keep BLE device after it is gone (default = 60).
+        /// </summary>
+        [Output("bleDeviceCleanup")]
+        public Output<int> BleDeviceCleanup { get; private set; } = null!;
+
+        /// <summary>
         /// Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
         /// </summary>
         [Output("bleScanReportIntv")]
@@ -125,7 +131,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<int> FakeApLog { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -161,6 +167,18 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<int> RogueApLog { get; private set; } = null!;
 
         /// <summary>
+        /// Time period in minutes to keep rogue station after it is gone (default = 0).
+        /// </summary>
+        [Output("rogueStaCleanup")]
+        public Output<int> RogueStaCleanup { get; private set; } = null!;
+
+        /// <summary>
+        /// Time period in minutes to keep station capability data after it is gone (default = 0).
+        /// </summary>
+        [Output("staCapCleanup")]
+        public Output<int> StaCapCleanup { get; private set; } = null!;
+
+        /// <summary>
         /// Time between running station capability reports (1 - 255 sec, default = 30).
         /// </summary>
         [Output("staCapabilityInterval")]
@@ -173,7 +191,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<int> StaLocateTimer { get; private set; } = null!;
 
         /// <summary>
-        /// Time between running client (station) reports (1 - 255 sec, default = 1).
+        /// Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions &gt;= 7.4.2: default = 10.
         /// </summary>
         [Output("staStatsInterval")]
         public Output<int> StaStatsInterval { get; private set; } = null!;
@@ -188,7 +206,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -260,6 +278,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("authTimeout")]
         public Input<int>? AuthTimeout { get; set; }
+
+        /// <summary>
+        /// Time period in minutes to keep BLE device after it is gone (default = 60).
+        /// </summary>
+        [Input("bleDeviceCleanup")]
+        public Input<int>? BleDeviceCleanup { get; set; }
 
         /// <summary>
         /// Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
@@ -334,7 +358,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? FakeApLog { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -370,6 +394,18 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? RogueApLog { get; set; }
 
         /// <summary>
+        /// Time period in minutes to keep rogue station after it is gone (default = 0).
+        /// </summary>
+        [Input("rogueStaCleanup")]
+        public Input<int>? RogueStaCleanup { get; set; }
+
+        /// <summary>
+        /// Time period in minutes to keep station capability data after it is gone (default = 0).
+        /// </summary>
+        [Input("staCapCleanup")]
+        public Input<int>? StaCapCleanup { get; set; }
+
+        /// <summary>
         /// Time between running station capability reports (1 - 255 sec, default = 30).
         /// </summary>
         [Input("staCapabilityInterval")]
@@ -382,7 +418,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? StaLocateTimer { get; set; }
 
         /// <summary>
-        /// Time between running client (station) reports (1 - 255 sec, default = 1).
+        /// Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions &gt;= 7.4.2: default = 10.
         /// </summary>
         [Input("staStatsInterval")]
         public Input<int>? StaStatsInterval { get; set; }
@@ -430,6 +466,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("authTimeout")]
         public Input<int>? AuthTimeout { get; set; }
+
+        /// <summary>
+        /// Time period in minutes to keep BLE device after it is gone (default = 60).
+        /// </summary>
+        [Input("bleDeviceCleanup")]
+        public Input<int>? BleDeviceCleanup { get; set; }
 
         /// <summary>
         /// Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30).
@@ -504,7 +546,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? FakeApLog { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -540,6 +582,18 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? RogueApLog { get; set; }
 
         /// <summary>
+        /// Time period in minutes to keep rogue station after it is gone (default = 0).
+        /// </summary>
+        [Input("rogueStaCleanup")]
+        public Input<int>? RogueStaCleanup { get; set; }
+
+        /// <summary>
+        /// Time period in minutes to keep station capability data after it is gone (default = 0).
+        /// </summary>
+        [Input("staCapCleanup")]
+        public Input<int>? StaCapCleanup { get; set; }
+
+        /// <summary>
         /// Time between running station capability reports (1 - 255 sec, default = 30).
         /// </summary>
         [Input("staCapabilityInterval")]
@@ -552,7 +606,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? StaLocateTimer { get; set; }
 
         /// <summary>
-        /// Time between running client (station) reports (1 - 255 sec, default = 1).
+        /// Time between running client (station) reports (1 - 255 sec). On FortiOS versions 6.2.0-7.4.1: default = 1. On FortiOS versions &gt;= 7.4.2: default = 10.
         /// </summary>
         [Input("staStatsInterval")]
         public Input<int>? StaStatsInterval { get; set; }

@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -32,7 +31,6 @@ import * as utilities from "../utilities";
  *     wtpShare: "disable",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -85,7 +83,7 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly acdProcessCount!: pulumi.Output<number>;
     /**
-     * Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+     * Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
      */
     public readonly apLogServer!: pulumi.Output<string>;
     /**
@@ -101,7 +99,7 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly controlMessageOffload!: pulumi.Output<string>;
     /**
-     * Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+     * Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
      */
     public readonly dataEthernetIi!: pulumi.Output<string>;
     /**
@@ -133,6 +131,10 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly location!: pulumi.Output<string>;
     /**
+     * Maximum number of BLE devices stored on the controller (default = 0).
+     */
+    public readonly maxBleDevice!: pulumi.Output<number>;
+    /**
      * Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
      */
     public readonly maxClients!: pulumi.Output<number>;
@@ -140,6 +142,26 @@ export class Global extends pulumi.CustomResource {
      * Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
      */
     public readonly maxRetransmit!: pulumi.Output<number>;
+    /**
+     * Maximum number of rogue APs stored on the controller (default = 0).
+     */
+    public readonly maxRogueAp!: pulumi.Output<number>;
+    /**
+     * Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+     */
+    public readonly maxRogueApWtp!: pulumi.Output<number>;
+    /**
+     * Maximum number of rogue stations stored on the controller (default = 0).
+     */
+    public readonly maxRogueSta!: pulumi.Output<number>;
+    /**
+     * Maximum number of station cap stored on the controller (default = 0).
+     */
+    public readonly maxStaCap!: pulumi.Output<number>;
+    /**
+     * Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
+     */
+    public readonly maxStaCapWtp!: pulumi.Output<number>;
     /**
      * Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
      */
@@ -171,7 +193,7 @@ export class Global extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Wpad daemon process count for multi-core CPU support.
      */
@@ -207,8 +229,14 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["ipsecBaseIp"] = state ? state.ipsecBaseIp : undefined;
             resourceInputs["linkAggregation"] = state ? state.linkAggregation : undefined;
             resourceInputs["location"] = state ? state.location : undefined;
+            resourceInputs["maxBleDevice"] = state ? state.maxBleDevice : undefined;
             resourceInputs["maxClients"] = state ? state.maxClients : undefined;
             resourceInputs["maxRetransmit"] = state ? state.maxRetransmit : undefined;
+            resourceInputs["maxRogueAp"] = state ? state.maxRogueAp : undefined;
+            resourceInputs["maxRogueApWtp"] = state ? state.maxRogueApWtp : undefined;
+            resourceInputs["maxRogueSta"] = state ? state.maxRogueSta : undefined;
+            resourceInputs["maxStaCap"] = state ? state.maxStaCap : undefined;
+            resourceInputs["maxStaCapWtp"] = state ? state.maxStaCapWtp : undefined;
             resourceInputs["meshEthType"] = state ? state.meshEthType : undefined;
             resourceInputs["nacInterval"] = state ? state.nacInterval : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -234,8 +262,14 @@ export class Global extends pulumi.CustomResource {
             resourceInputs["ipsecBaseIp"] = args ? args.ipsecBaseIp : undefined;
             resourceInputs["linkAggregation"] = args ? args.linkAggregation : undefined;
             resourceInputs["location"] = args ? args.location : undefined;
+            resourceInputs["maxBleDevice"] = args ? args.maxBleDevice : undefined;
             resourceInputs["maxClients"] = args ? args.maxClients : undefined;
             resourceInputs["maxRetransmit"] = args ? args.maxRetransmit : undefined;
+            resourceInputs["maxRogueAp"] = args ? args.maxRogueAp : undefined;
+            resourceInputs["maxRogueApWtp"] = args ? args.maxRogueApWtp : undefined;
+            resourceInputs["maxRogueSta"] = args ? args.maxRogueSta : undefined;
+            resourceInputs["maxStaCap"] = args ? args.maxStaCap : undefined;
+            resourceInputs["maxStaCapWtp"] = args ? args.maxStaCapWtp : undefined;
             resourceInputs["meshEthType"] = args ? args.meshEthType : undefined;
             resourceInputs["nacInterval"] = args ? args.nacInterval : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -261,7 +295,7 @@ export interface GlobalState {
      */
     acdProcessCount?: pulumi.Input<number>;
     /**
-     * Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+     * Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
      */
     apLogServer?: pulumi.Input<string>;
     /**
@@ -277,7 +311,7 @@ export interface GlobalState {
      */
     controlMessageOffload?: pulumi.Input<string>;
     /**
-     * Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+     * Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
      */
     dataEthernetIi?: pulumi.Input<string>;
     /**
@@ -309,6 +343,10 @@ export interface GlobalState {
      */
     location?: pulumi.Input<string>;
     /**
+     * Maximum number of BLE devices stored on the controller (default = 0).
+     */
+    maxBleDevice?: pulumi.Input<number>;
+    /**
      * Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
      */
     maxClients?: pulumi.Input<number>;
@@ -316,6 +354,26 @@ export interface GlobalState {
      * Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
      */
     maxRetransmit?: pulumi.Input<number>;
+    /**
+     * Maximum number of rogue APs stored on the controller (default = 0).
+     */
+    maxRogueAp?: pulumi.Input<number>;
+    /**
+     * Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+     */
+    maxRogueApWtp?: pulumi.Input<number>;
+    /**
+     * Maximum number of rogue stations stored on the controller (default = 0).
+     */
+    maxRogueSta?: pulumi.Input<number>;
+    /**
+     * Maximum number of station cap stored on the controller (default = 0).
+     */
+    maxStaCap?: pulumi.Input<number>;
+    /**
+     * Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
+     */
+    maxStaCapWtp?: pulumi.Input<number>;
     /**
      * Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
      */
@@ -367,7 +425,7 @@ export interface GlobalArgs {
      */
     acdProcessCount?: pulumi.Input<number>;
     /**
-     * Enable/disable configuring APs or FortiAPs to send log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
+     * Enable/disable configuring FortiGate to redirect wireless event log messages or FortiAPs to send UTM log messages to a syslog server (default = disable). Valid values: `enable`, `disable`.
      */
     apLogServer?: pulumi.Input<string>;
     /**
@@ -383,7 +441,7 @@ export interface GlobalArgs {
      */
     controlMessageOffload?: pulumi.Input<string>;
     /**
-     * Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+     * Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = enable). Valid values: `enable`, `disable`.
      */
     dataEthernetIi?: pulumi.Input<string>;
     /**
@@ -415,6 +473,10 @@ export interface GlobalArgs {
      */
     location?: pulumi.Input<string>;
     /**
+     * Maximum number of BLE devices stored on the controller (default = 0).
+     */
+    maxBleDevice?: pulumi.Input<number>;
+    /**
      * Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
      */
     maxClients?: pulumi.Input<number>;
@@ -422,6 +484,26 @@ export interface GlobalArgs {
      * Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
      */
     maxRetransmit?: pulumi.Input<number>;
+    /**
+     * Maximum number of rogue APs stored on the controller (default = 0).
+     */
+    maxRogueAp?: pulumi.Input<number>;
+    /**
+     * Maximum number of rogue AP's wtp info stored on the controller (1 - 16, default = 16).
+     */
+    maxRogueApWtp?: pulumi.Input<number>;
+    /**
+     * Maximum number of rogue stations stored on the controller (default = 0).
+     */
+    maxRogueSta?: pulumi.Input<number>;
+    /**
+     * Maximum number of station cap stored on the controller (default = 0).
+     */
+    maxStaCap?: pulumi.Input<number>;
+    /**
+     * Maximum number of station cap's wtp info stored on the controller (1 - 16, default = 8).
+     */
+    maxStaCapWtp?: pulumi.Input<number>;
     /**
      * Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
      */

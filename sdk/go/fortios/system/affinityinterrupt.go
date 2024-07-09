@@ -34,7 +34,7 @@ import (
 type Affinityinterrupt struct {
 	pulumi.CustomResourceState
 
-	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+	// Affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	AffinityCpumask pulumi.StringOutput `pulumi:"affinityCpumask"`
 	// Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	DefaultAffinityCpumask pulumi.StringOutput `pulumi:"defaultAffinityCpumask"`
@@ -43,7 +43,7 @@ type Affinityinterrupt struct {
 	// Interrupt name.
 	Interrupt pulumi.StringOutput `pulumi:"interrupt"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewAffinityinterrupt registers a new resource with the given unique name, arguments, and options.
@@ -85,7 +85,7 @@ func GetAffinityinterrupt(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Affinityinterrupt resources.
 type affinityinterruptState struct {
-	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+	// Affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	AffinityCpumask *string `pulumi:"affinityCpumask"`
 	// Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	DefaultAffinityCpumask *string `pulumi:"defaultAffinityCpumask"`
@@ -98,7 +98,7 @@ type affinityinterruptState struct {
 }
 
 type AffinityinterruptState struct {
-	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+	// Affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	AffinityCpumask pulumi.StringPtrInput
 	// Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	DefaultAffinityCpumask pulumi.StringPtrInput
@@ -115,7 +115,7 @@ func (AffinityinterruptState) ElementType() reflect.Type {
 }
 
 type affinityinterruptArgs struct {
-	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+	// Affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	AffinityCpumask string `pulumi:"affinityCpumask"`
 	// Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	DefaultAffinityCpumask *string `pulumi:"defaultAffinityCpumask"`
@@ -129,7 +129,7 @@ type affinityinterruptArgs struct {
 
 // The set of arguments for constructing a Affinityinterrupt resource.
 type AffinityinterruptArgs struct {
-	// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+	// Affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	AffinityCpumask pulumi.StringInput
 	// Default affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 	DefaultAffinityCpumask pulumi.StringPtrInput
@@ -228,7 +228,7 @@ func (o AffinityinterruptOutput) ToAffinityinterruptOutputWithContext(ctx contex
 	return o
 }
 
-// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+// Affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
 func (o AffinityinterruptOutput) AffinityCpumask() pulumi.StringOutput {
 	return o.ApplyT(func(v *Affinityinterrupt) pulumi.StringOutput { return v.AffinityCpumask }).(pulumi.StringOutput)
 }
@@ -249,8 +249,8 @@ func (o AffinityinterruptOutput) Interrupt() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o AffinityinterruptOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Affinityinterrupt) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o AffinityinterruptOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Affinityinterrupt) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type AffinityinterruptArrayOutput struct{ *pulumi.OutputState }

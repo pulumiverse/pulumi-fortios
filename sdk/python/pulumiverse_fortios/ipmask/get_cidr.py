@@ -102,7 +102,6 @@ def get_cidr(ipmask: Optional[str] = None,
 
     ### Example1
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -111,11 +110,9 @@ def get_cidr(ipmask: Optional[str] = None,
     trname_cidr = fortios.ipmask.get_cidr(ipmask=trname_interface.ip)
     pulumi.export("output1", trname_cidr.cidr)
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Example2
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -131,7 +128,6 @@ def get_cidr(ipmask: Optional[str] = None,
     pulumi.export("outputConv2", trname_cidr.cidrlists)
     pulumi.export("outputOrignal", trname_interface.ip)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str ipmask: Specify IP/MASK.
@@ -162,7 +158,6 @@ def get_cidr_output(ipmask: Optional[pulumi.Input[Optional[str]]] = None,
 
     ### Example1
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -171,11 +166,9 @@ def get_cidr_output(ipmask: Optional[pulumi.Input[Optional[str]]] = None,
     trname_cidr = fortios.ipmask.get_cidr(ipmask=trname_interface.ip)
     pulumi.export("output1", trname_cidr.cidr)
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Example2
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -191,7 +184,6 @@ def get_cidr_output(ipmask: Optional[pulumi.Input[Optional[str]]] = None,
     pulumi.export("outputConv2", trname_cidr.cidrlists)
     pulumi.export("outputOrignal", trname_interface.ip)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str ipmask: Specify IP/MASK.

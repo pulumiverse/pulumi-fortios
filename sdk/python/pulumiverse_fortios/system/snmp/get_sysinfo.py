@@ -21,7 +21,10 @@ class GetSysinfoResult:
     """
     A collection of values returned by getSysinfo.
     """
-    def __init__(__self__, contact_info=None, description=None, engine_id=None, engine_id_type=None, id=None, location=None, status=None, trap_free_memory_threshold=None, trap_freeable_memory_threshold=None, trap_high_cpu_threshold=None, trap_log_full_threshold=None, trap_low_memory_threshold=None, vdomparam=None):
+    def __init__(__self__, append_index=None, contact_info=None, description=None, engine_id=None, engine_id_type=None, id=None, location=None, status=None, trap_free_memory_threshold=None, trap_freeable_memory_threshold=None, trap_high_cpu_threshold=None, trap_log_full_threshold=None, trap_low_memory_threshold=None, vdomparam=None):
+        if append_index and not isinstance(append_index, str):
+            raise TypeError("Expected argument 'append_index' to be a str")
+        pulumi.set(__self__, "append_index", append_index)
         if contact_info and not isinstance(contact_info, str):
             raise TypeError("Expected argument 'contact_info' to be a str")
         pulumi.set(__self__, "contact_info", contact_info)
@@ -61,6 +64,14 @@ class GetSysinfoResult:
         if vdomparam and not isinstance(vdomparam, str):
             raise TypeError("Expected argument 'vdomparam' to be a str")
         pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="appendIndex")
+    def append_index(self) -> str:
+        """
+        Enable/disable allowance of appending VDOM or interface index in some RFC tables.
+        """
+        return pulumi.get(self, "append_index")
 
     @property
     @pulumi.getter(name="contactInfo")
@@ -170,6 +181,7 @@ class AwaitableGetSysinfoResult(GetSysinfoResult):
         if False:
             yield self
         return GetSysinfoResult(
+            append_index=self.append_index,
             contact_info=self.contact_info,
             description=self.description,
             engine_id=self.engine_id,
@@ -199,6 +211,7 @@ def get_sysinfo(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:system/snmp/getSysinfo:getSysinfo', __args__, opts=opts, typ=GetSysinfoResult).value
 
     return AwaitableGetSysinfoResult(
+        append_index=pulumi.get(__ret__, 'append_index'),
         contact_info=pulumi.get(__ret__, 'contact_info'),
         description=pulumi.get(__ret__, 'description'),
         engine_id=pulumi.get(__ret__, 'engine_id'),

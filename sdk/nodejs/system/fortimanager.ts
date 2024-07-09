@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -29,7 +28,6 @@ import * as utilities from "../utilities";
  *     vdom: "root",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class Fortimanager extends pulumi.CustomResource {
     /**
@@ -66,7 +64,7 @@ export class Fortimanager extends pulumi.CustomResource {
     public readonly ip!: pulumi.Output<string>;
     public readonly ipsec!: pulumi.Output<string>;
     public readonly vdom!: pulumi.Output<string>;
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Fortimanager resource with the given unique name, arguments, and options.

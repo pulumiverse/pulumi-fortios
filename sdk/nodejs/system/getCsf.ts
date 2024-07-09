@@ -121,6 +121,10 @@ export interface GetCsfResult {
      */
     readonly samlConfigurationSync: string;
     /**
+     * Source IP address for communication with the upstream FortiGate.
+     */
+    readonly sourceIp: string;
+    /**
      * Enable/disable Security Fabric.
      */
     readonly status: string;
@@ -136,6 +140,14 @@ export interface GetCsfResult {
      * IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
      */
     readonly upstream: string;
+    /**
+     * Specify outgoing interface to reach server.
+     */
+    readonly upstreamInterface: string;
+    /**
+     * Specify how to select outgoing interface to reach server.
+     */
+    readonly upstreamInterfaceSelectMethod: string;
     /**
      * IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
      */

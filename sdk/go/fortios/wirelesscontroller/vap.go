@@ -37,12 +37,14 @@ type Vap struct {
 	AccessControlList pulumi.StringOutput `pulumi:"accessControlList"`
 	// WiFi RADIUS accounting interim interval (60 - 86400 sec, default = 0).
 	AcctInterimInterval pulumi.IntOutput `pulumi:"acctInterimInterval"`
-	// Additional AKMs. Valid values: `akm6`.
+	// Additional AKMs.
 	AdditionalAkms pulumi.StringOutput `pulumi:"additionalAkms"`
 	// Address group ID.
 	AddressGroup pulumi.StringOutput `pulumi:"addressGroup"`
 	// Configure MAC address filtering policy for MAC addresses that are in the address-group. Valid values: `disable`, `allow`, `deny`.
 	AddressGroupPolicy pulumi.StringOutput `pulumi:"addressGroupPolicy"`
+	// WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
+	Akm24Only pulumi.StringOutput `pulumi:"akm24Only"`
 	// Alias.
 	Alias pulumi.StringOutput `pulumi:"alias"`
 	// AntiVirus profile name.
@@ -65,6 +67,8 @@ type Vap struct {
 	AuthPortalAddr pulumi.StringOutput `pulumi:"authPortalAddr"`
 	// Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
 	BeaconAdvertising pulumi.StringOutput `pulumi:"beaconAdvertising"`
+	// Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
+	BeaconProtection pulumi.StringOutput `pulumi:"beaconProtection"`
 	// Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
 	BroadcastSsid pulumi.StringOutput `pulumi:"broadcastSsid"`
 	// Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
@@ -77,6 +81,8 @@ type Vap struct {
 	BstmLoadBalancingDisassocTimer pulumi.IntOutput `pulumi:"bstmLoadBalancingDisassocTimer"`
 	// Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
 	BstmRssiDisassocTimer pulumi.IntOutput `pulumi:"bstmRssiDisassocTimer"`
+	// Enable/disable captive portal. Valid values: `enable`, `disable`.
+	CaptivePortal pulumi.StringOutput `pulumi:"captivePortal"`
 	// Local-bridging captive portal ac-name.
 	CaptivePortalAcName pulumi.StringOutput `pulumi:"captivePortalAcName"`
 	// Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
@@ -139,11 +145,11 @@ type Vap struct {
 	GasComebackDelay pulumi.IntOutput `pulumi:"gasComebackDelay"`
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit pulumi.IntOutput `pulumi:"gasFragmentationLimit"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
 	GtkRekey pulumi.StringOutput `pulumi:"gtkRekey"`
-	// GTK rekey interval (1800 - 864000 sec, default = 86400).
+	// GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
 	GtkRekeyIntv pulumi.IntOutput `pulumi:"gtkRekeyIntv"`
 	// Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
 	HighEfficiency pulumi.StringOutput `pulumi:"highEfficiency"`
@@ -237,6 +243,8 @@ type Vap struct {
 	NacProfile pulumi.StringOutput `pulumi:"nacProfile"`
 	// Virtual AP name.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
+	NasFilterRule pulumi.StringOutput `pulumi:"nasFilterRule"`
 	// Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
 	NeighborReportDualBand pulumi.StringOutput `pulumi:"neighborReportDualBand"`
 	// Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
@@ -277,7 +285,7 @@ type Vap struct {
 	ProbeRespThreshold pulumi.StringOutput `pulumi:"probeRespThreshold"`
 	// Enable/disable PTK rekey for WPA-Enterprise security. Valid values: `enable`, `disable`.
 	PtkRekey pulumi.StringOutput `pulumi:"ptkRekey"`
-	// PTK rekey interval (1800 - 864000 sec, default = 86400).
+	// PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
 	PtkRekeyIntv pulumi.IntOutput `pulumi:"ptkRekeyIntv"`
 	// Quality of service profile name.
 	QosProfile pulumi.StringOutput `pulumi:"qosProfile"`
@@ -317,6 +325,12 @@ type Vap struct {
 	Rates11axSs12 pulumi.StringOutput `pulumi:"rates11axSs12"`
 	// Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
 	Rates11axSs34 pulumi.StringOutput `pulumi:"rates11axSs34"`
+	// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+	Rates11beMcsMap pulumi.StringOutput `pulumi:"rates11beMcsMap"`
+	// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+	Rates11beMcsMap160 pulumi.StringOutput `pulumi:"rates11beMcsMap160"`
+	// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
+	Rates11beMcsMap320 pulumi.StringOutput `pulumi:"rates11beMcsMap320"`
 	// Allowed data rates for 802.11b/g.
 	Rates11bg pulumi.StringOutput `pulumi:"rates11bg"`
 	// Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
@@ -382,7 +396,7 @@ type Vap struct {
 	// Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
 	UtmStatus pulumi.StringOutput `pulumi:"utmStatus"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
 	VlanAuto pulumi.StringOutput `pulumi:"vlanAuto"`
 	// Table for mapping VLAN name to VLAN ID. The structure of `vlanName` block is documented below.
@@ -456,12 +470,14 @@ type vapState struct {
 	AccessControlList *string `pulumi:"accessControlList"`
 	// WiFi RADIUS accounting interim interval (60 - 86400 sec, default = 0).
 	AcctInterimInterval *int `pulumi:"acctInterimInterval"`
-	// Additional AKMs. Valid values: `akm6`.
+	// Additional AKMs.
 	AdditionalAkms *string `pulumi:"additionalAkms"`
 	// Address group ID.
 	AddressGroup *string `pulumi:"addressGroup"`
 	// Configure MAC address filtering policy for MAC addresses that are in the address-group. Valid values: `disable`, `allow`, `deny`.
 	AddressGroupPolicy *string `pulumi:"addressGroupPolicy"`
+	// WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
+	Akm24Only *string `pulumi:"akm24Only"`
 	// Alias.
 	Alias *string `pulumi:"alias"`
 	// AntiVirus profile name.
@@ -484,6 +500,8 @@ type vapState struct {
 	AuthPortalAddr *string `pulumi:"authPortalAddr"`
 	// Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
 	BeaconAdvertising *string `pulumi:"beaconAdvertising"`
+	// Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
+	BeaconProtection *string `pulumi:"beaconProtection"`
 	// Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
 	BroadcastSsid *string `pulumi:"broadcastSsid"`
 	// Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
@@ -496,6 +514,8 @@ type vapState struct {
 	BstmLoadBalancingDisassocTimer *int `pulumi:"bstmLoadBalancingDisassocTimer"`
 	// Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
 	BstmRssiDisassocTimer *int `pulumi:"bstmRssiDisassocTimer"`
+	// Enable/disable captive portal. Valid values: `enable`, `disable`.
+	CaptivePortal *string `pulumi:"captivePortal"`
 	// Local-bridging captive portal ac-name.
 	CaptivePortalAcName *string `pulumi:"captivePortalAcName"`
 	// Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
@@ -558,11 +578,11 @@ type vapState struct {
 	GasComebackDelay *int `pulumi:"gasComebackDelay"`
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit *int `pulumi:"gasFragmentationLimit"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
 	GtkRekey *string `pulumi:"gtkRekey"`
-	// GTK rekey interval (1800 - 864000 sec, default = 86400).
+	// GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
 	GtkRekeyIntv *int `pulumi:"gtkRekeyIntv"`
 	// Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
 	HighEfficiency *string `pulumi:"highEfficiency"`
@@ -656,6 +676,8 @@ type vapState struct {
 	NacProfile *string `pulumi:"nacProfile"`
 	// Virtual AP name.
 	Name *string `pulumi:"name"`
+	// Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
+	NasFilterRule *string `pulumi:"nasFilterRule"`
 	// Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
 	NeighborReportDualBand *string `pulumi:"neighborReportDualBand"`
 	// Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
@@ -696,7 +718,7 @@ type vapState struct {
 	ProbeRespThreshold *string `pulumi:"probeRespThreshold"`
 	// Enable/disable PTK rekey for WPA-Enterprise security. Valid values: `enable`, `disable`.
 	PtkRekey *string `pulumi:"ptkRekey"`
-	// PTK rekey interval (1800 - 864000 sec, default = 86400).
+	// PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
 	PtkRekeyIntv *int `pulumi:"ptkRekeyIntv"`
 	// Quality of service profile name.
 	QosProfile *string `pulumi:"qosProfile"`
@@ -736,6 +758,12 @@ type vapState struct {
 	Rates11axSs12 *string `pulumi:"rates11axSs12"`
 	// Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
 	Rates11axSs34 *string `pulumi:"rates11axSs34"`
+	// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+	Rates11beMcsMap *string `pulumi:"rates11beMcsMap"`
+	// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+	Rates11beMcsMap160 *string `pulumi:"rates11beMcsMap160"`
+	// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
+	Rates11beMcsMap320 *string `pulumi:"rates11beMcsMap320"`
 	// Allowed data rates for 802.11b/g.
 	Rates11bg *string `pulumi:"rates11bg"`
 	// Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
@@ -823,12 +851,14 @@ type VapState struct {
 	AccessControlList pulumi.StringPtrInput
 	// WiFi RADIUS accounting interim interval (60 - 86400 sec, default = 0).
 	AcctInterimInterval pulumi.IntPtrInput
-	// Additional AKMs. Valid values: `akm6`.
+	// Additional AKMs.
 	AdditionalAkms pulumi.StringPtrInput
 	// Address group ID.
 	AddressGroup pulumi.StringPtrInput
 	// Configure MAC address filtering policy for MAC addresses that are in the address-group. Valid values: `disable`, `allow`, `deny`.
 	AddressGroupPolicy pulumi.StringPtrInput
+	// WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
+	Akm24Only pulumi.StringPtrInput
 	// Alias.
 	Alias pulumi.StringPtrInput
 	// AntiVirus profile name.
@@ -851,6 +881,8 @@ type VapState struct {
 	AuthPortalAddr pulumi.StringPtrInput
 	// Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
 	BeaconAdvertising pulumi.StringPtrInput
+	// Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
+	BeaconProtection pulumi.StringPtrInput
 	// Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
 	BroadcastSsid pulumi.StringPtrInput
 	// Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
@@ -863,6 +895,8 @@ type VapState struct {
 	BstmLoadBalancingDisassocTimer pulumi.IntPtrInput
 	// Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
 	BstmRssiDisassocTimer pulumi.IntPtrInput
+	// Enable/disable captive portal. Valid values: `enable`, `disable`.
+	CaptivePortal pulumi.StringPtrInput
 	// Local-bridging captive portal ac-name.
 	CaptivePortalAcName pulumi.StringPtrInput
 	// Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
@@ -925,11 +959,11 @@ type VapState struct {
 	GasComebackDelay pulumi.IntPtrInput
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
 	GtkRekey pulumi.StringPtrInput
-	// GTK rekey interval (1800 - 864000 sec, default = 86400).
+	// GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
 	GtkRekeyIntv pulumi.IntPtrInput
 	// Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
 	HighEfficiency pulumi.StringPtrInput
@@ -1023,6 +1057,8 @@ type VapState struct {
 	NacProfile pulumi.StringPtrInput
 	// Virtual AP name.
 	Name pulumi.StringPtrInput
+	// Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
+	NasFilterRule pulumi.StringPtrInput
 	// Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
 	NeighborReportDualBand pulumi.StringPtrInput
 	// Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
@@ -1063,7 +1099,7 @@ type VapState struct {
 	ProbeRespThreshold pulumi.StringPtrInput
 	// Enable/disable PTK rekey for WPA-Enterprise security. Valid values: `enable`, `disable`.
 	PtkRekey pulumi.StringPtrInput
-	// PTK rekey interval (1800 - 864000 sec, default = 86400).
+	// PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
 	PtkRekeyIntv pulumi.IntPtrInput
 	// Quality of service profile name.
 	QosProfile pulumi.StringPtrInput
@@ -1103,6 +1139,12 @@ type VapState struct {
 	Rates11axSs12 pulumi.StringPtrInput
 	// Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
 	Rates11axSs34 pulumi.StringPtrInput
+	// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+	Rates11beMcsMap pulumi.StringPtrInput
+	// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+	Rates11beMcsMap160 pulumi.StringPtrInput
+	// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
+	Rates11beMcsMap320 pulumi.StringPtrInput
 	// Allowed data rates for 802.11b/g.
 	Rates11bg pulumi.StringPtrInput
 	// Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
@@ -1194,12 +1236,14 @@ type vapArgs struct {
 	AccessControlList *string `pulumi:"accessControlList"`
 	// WiFi RADIUS accounting interim interval (60 - 86400 sec, default = 0).
 	AcctInterimInterval *int `pulumi:"acctInterimInterval"`
-	// Additional AKMs. Valid values: `akm6`.
+	// Additional AKMs.
 	AdditionalAkms *string `pulumi:"additionalAkms"`
 	// Address group ID.
 	AddressGroup *string `pulumi:"addressGroup"`
 	// Configure MAC address filtering policy for MAC addresses that are in the address-group. Valid values: `disable`, `allow`, `deny`.
 	AddressGroupPolicy *string `pulumi:"addressGroupPolicy"`
+	// WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
+	Akm24Only *string `pulumi:"akm24Only"`
 	// Alias.
 	Alias *string `pulumi:"alias"`
 	// AntiVirus profile name.
@@ -1222,6 +1266,8 @@ type vapArgs struct {
 	AuthPortalAddr *string `pulumi:"authPortalAddr"`
 	// Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
 	BeaconAdvertising *string `pulumi:"beaconAdvertising"`
+	// Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
+	BeaconProtection *string `pulumi:"beaconProtection"`
 	// Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
 	BroadcastSsid *string `pulumi:"broadcastSsid"`
 	// Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
@@ -1234,6 +1280,8 @@ type vapArgs struct {
 	BstmLoadBalancingDisassocTimer *int `pulumi:"bstmLoadBalancingDisassocTimer"`
 	// Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
 	BstmRssiDisassocTimer *int `pulumi:"bstmRssiDisassocTimer"`
+	// Enable/disable captive portal. Valid values: `enable`, `disable`.
+	CaptivePortal *string `pulumi:"captivePortal"`
 	// Local-bridging captive portal ac-name.
 	CaptivePortalAcName *string `pulumi:"captivePortalAcName"`
 	// Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
@@ -1296,11 +1344,11 @@ type vapArgs struct {
 	GasComebackDelay *int `pulumi:"gasComebackDelay"`
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit *int `pulumi:"gasFragmentationLimit"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
 	GtkRekey *string `pulumi:"gtkRekey"`
-	// GTK rekey interval (1800 - 864000 sec, default = 86400).
+	// GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
 	GtkRekeyIntv *int `pulumi:"gtkRekeyIntv"`
 	// Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
 	HighEfficiency *string `pulumi:"highEfficiency"`
@@ -1394,6 +1442,8 @@ type vapArgs struct {
 	NacProfile *string `pulumi:"nacProfile"`
 	// Virtual AP name.
 	Name *string `pulumi:"name"`
+	// Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
+	NasFilterRule *string `pulumi:"nasFilterRule"`
 	// Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
 	NeighborReportDualBand *string `pulumi:"neighborReportDualBand"`
 	// Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
@@ -1434,7 +1484,7 @@ type vapArgs struct {
 	ProbeRespThreshold *string `pulumi:"probeRespThreshold"`
 	// Enable/disable PTK rekey for WPA-Enterprise security. Valid values: `enable`, `disable`.
 	PtkRekey *string `pulumi:"ptkRekey"`
-	// PTK rekey interval (1800 - 864000 sec, default = 86400).
+	// PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
 	PtkRekeyIntv *int `pulumi:"ptkRekeyIntv"`
 	// Quality of service profile name.
 	QosProfile *string `pulumi:"qosProfile"`
@@ -1474,6 +1524,12 @@ type vapArgs struct {
 	Rates11axSs12 *string `pulumi:"rates11axSs12"`
 	// Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
 	Rates11axSs34 *string `pulumi:"rates11axSs34"`
+	// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+	Rates11beMcsMap *string `pulumi:"rates11beMcsMap"`
+	// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+	Rates11beMcsMap160 *string `pulumi:"rates11beMcsMap160"`
+	// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
+	Rates11beMcsMap320 *string `pulumi:"rates11beMcsMap320"`
 	// Allowed data rates for 802.11b/g.
 	Rates11bg *string `pulumi:"rates11bg"`
 	// Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
@@ -1562,12 +1618,14 @@ type VapArgs struct {
 	AccessControlList pulumi.StringPtrInput
 	// WiFi RADIUS accounting interim interval (60 - 86400 sec, default = 0).
 	AcctInterimInterval pulumi.IntPtrInput
-	// Additional AKMs. Valid values: `akm6`.
+	// Additional AKMs.
 	AdditionalAkms pulumi.StringPtrInput
 	// Address group ID.
 	AddressGroup pulumi.StringPtrInput
 	// Configure MAC address filtering policy for MAC addresses that are in the address-group. Valid values: `disable`, `allow`, `deny`.
 	AddressGroupPolicy pulumi.StringPtrInput
+	// WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
+	Akm24Only pulumi.StringPtrInput
 	// Alias.
 	Alias pulumi.StringPtrInput
 	// AntiVirus profile name.
@@ -1590,6 +1648,8 @@ type VapArgs struct {
 	AuthPortalAddr pulumi.StringPtrInput
 	// Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
 	BeaconAdvertising pulumi.StringPtrInput
+	// Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
+	BeaconProtection pulumi.StringPtrInput
 	// Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
 	BroadcastSsid pulumi.StringPtrInput
 	// Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
@@ -1602,6 +1662,8 @@ type VapArgs struct {
 	BstmLoadBalancingDisassocTimer pulumi.IntPtrInput
 	// Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
 	BstmRssiDisassocTimer pulumi.IntPtrInput
+	// Enable/disable captive portal. Valid values: `enable`, `disable`.
+	CaptivePortal pulumi.StringPtrInput
 	// Local-bridging captive portal ac-name.
 	CaptivePortalAcName pulumi.StringPtrInput
 	// Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
@@ -1664,11 +1726,11 @@ type VapArgs struct {
 	GasComebackDelay pulumi.IntPtrInput
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
 	GtkRekey pulumi.StringPtrInput
-	// GTK rekey interval (1800 - 864000 sec, default = 86400).
+	// GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
 	GtkRekeyIntv pulumi.IntPtrInput
 	// Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
 	HighEfficiency pulumi.StringPtrInput
@@ -1762,6 +1824,8 @@ type VapArgs struct {
 	NacProfile pulumi.StringPtrInput
 	// Virtual AP name.
 	Name pulumi.StringPtrInput
+	// Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
+	NasFilterRule pulumi.StringPtrInput
 	// Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
 	NeighborReportDualBand pulumi.StringPtrInput
 	// Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
@@ -1802,7 +1866,7 @@ type VapArgs struct {
 	ProbeRespThreshold pulumi.StringPtrInput
 	// Enable/disable PTK rekey for WPA-Enterprise security. Valid values: `enable`, `disable`.
 	PtkRekey pulumi.StringPtrInput
-	// PTK rekey interval (1800 - 864000 sec, default = 86400).
+	// PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
 	PtkRekeyIntv pulumi.IntPtrInput
 	// Quality of service profile name.
 	QosProfile pulumi.StringPtrInput
@@ -1842,6 +1906,12 @@ type VapArgs struct {
 	Rates11axSs12 pulumi.StringPtrInput
 	// Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
 	Rates11axSs34 pulumi.StringPtrInput
+	// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+	Rates11beMcsMap pulumi.StringPtrInput
+	// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+	Rates11beMcsMap160 pulumi.StringPtrInput
+	// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
+	Rates11beMcsMap320 pulumi.StringPtrInput
 	// Allowed data rates for 802.11b/g.
 	Rates11bg pulumi.StringPtrInput
 	// Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
@@ -2021,7 +2091,7 @@ func (o VapOutput) AcctInterimInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vap) pulumi.IntOutput { return v.AcctInterimInterval }).(pulumi.IntOutput)
 }
 
-// Additional AKMs. Valid values: `akm6`.
+// Additional AKMs.
 func (o VapOutput) AdditionalAkms() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.AdditionalAkms }).(pulumi.StringOutput)
 }
@@ -2034,6 +2104,11 @@ func (o VapOutput) AddressGroup() pulumi.StringOutput {
 // Configure MAC address filtering policy for MAC addresses that are in the address-group. Valid values: `disable`, `allow`, `deny`.
 func (o VapOutput) AddressGroupPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.AddressGroupPolicy }).(pulumi.StringOutput)
+}
+
+// WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
+func (o VapOutput) Akm24Only() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.Akm24Only }).(pulumi.StringOutput)
 }
 
 // Alias.
@@ -2091,6 +2166,11 @@ func (o VapOutput) BeaconAdvertising() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.BeaconAdvertising }).(pulumi.StringOutput)
 }
 
+// Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
+func (o VapOutput) BeaconProtection() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.BeaconProtection }).(pulumi.StringOutput)
+}
+
 // Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
 func (o VapOutput) BroadcastSsid() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.BroadcastSsid }).(pulumi.StringOutput)
@@ -2119,6 +2199,11 @@ func (o VapOutput) BstmLoadBalancingDisassocTimer() pulumi.IntOutput {
 // Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
 func (o VapOutput) BstmRssiDisassocTimer() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vap) pulumi.IntOutput { return v.BstmRssiDisassocTimer }).(pulumi.IntOutput)
+}
+
+// Enable/disable captive portal. Valid values: `enable`, `disable`.
+func (o VapOutput) CaptivePortal() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.CaptivePortal }).(pulumi.StringOutput)
 }
 
 // Local-bridging captive portal ac-name.
@@ -2276,7 +2361,7 @@ func (o VapOutput) GasFragmentationLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vap) pulumi.IntOutput { return v.GasFragmentationLimit }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o VapOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -2286,7 +2371,7 @@ func (o VapOutput) GtkRekey() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.GtkRekey }).(pulumi.StringOutput)
 }
 
-// GTK rekey interval (1800 - 864000 sec, default = 86400).
+// GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
 func (o VapOutput) GtkRekeyIntv() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vap) pulumi.IntOutput { return v.GtkRekeyIntv }).(pulumi.IntOutput)
 }
@@ -2521,6 +2606,11 @@ func (o VapOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
+func (o VapOutput) NasFilterRule() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.NasFilterRule }).(pulumi.StringOutput)
+}
+
 // Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
 func (o VapOutput) NeighborReportDualBand() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.NeighborReportDualBand }).(pulumi.StringOutput)
@@ -2621,7 +2711,7 @@ func (o VapOutput) PtkRekey() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.PtkRekey }).(pulumi.StringOutput)
 }
 
-// PTK rekey interval (1800 - 864000 sec, default = 86400).
+// PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
 func (o VapOutput) PtkRekeyIntv() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vap) pulumi.IntOutput { return v.PtkRekeyIntv }).(pulumi.IntOutput)
 }
@@ -2719,6 +2809,21 @@ func (o VapOutput) Rates11axSs12() pulumi.StringOutput {
 // Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
 func (o VapOutput) Rates11axSs34() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.Rates11axSs34 }).(pulumi.StringOutput)
+}
+
+// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+func (o VapOutput) Rates11beMcsMap() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.Rates11beMcsMap }).(pulumi.StringOutput)
+}
+
+// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+func (o VapOutput) Rates11beMcsMap160() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.Rates11beMcsMap160 }).(pulumi.StringOutput)
+}
+
+// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
+func (o VapOutput) Rates11beMcsMap320() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.Rates11beMcsMap320 }).(pulumi.StringOutput)
 }
 
 // Allowed data rates for 802.11b/g.
@@ -2882,8 +2987,8 @@ func (o VapOutput) UtmStatus() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o VapOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Vap) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o VapOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vap) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.

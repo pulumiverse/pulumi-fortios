@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -57,7 +56,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -83,9 +81,7 @@ type Dnsdatabase struct {
 	AllowTransfer pulumi.StringOutput `pulumi:"allowTransfer"`
 	// Enable/disable authoritative zone. Valid values: `enable`, `disable`.
 	Authoritative pulumi.StringOutput `pulumi:"authoritative"`
-	// Email address of the administrator for this zone.
-	// You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-	// When using a simple username, the domain of the email will be this zone.
+	// Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
 	Contact pulumi.StringOutput `pulumi:"contact"`
 	// DNS entry. The structure of `dnsEntry` block is documented below.
 	DnsEntries DnsdatabaseDnsEntryArrayOutput `pulumi:"dnsEntries"`
@@ -97,7 +93,7 @@ type Dnsdatabase struct {
 	Forwarder pulumi.StringOutput `pulumi:"forwarder"`
 	// Forwarder IPv6 address.
 	Forwarder6 pulumi.StringOutput `pulumi:"forwarder6"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
 	IpMaster pulumi.StringOutput `pulumi:"ipMaster"`
@@ -117,10 +113,10 @@ type Dnsdatabase struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400).
 	Ttl pulumi.IntOutput `pulumi:"ttl"`
-	// Zone type (master to manage entries directly, slave to import entries from other zones).
+	// Zone type (primary to manage entries directly, secondary to import entries from other zones).
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Zone view (public to serve public clients, shadow to serve internal clients).
 	View pulumi.StringOutput `pulumi:"view"`
 }
@@ -174,9 +170,7 @@ type dnsdatabaseState struct {
 	AllowTransfer *string `pulumi:"allowTransfer"`
 	// Enable/disable authoritative zone. Valid values: `enable`, `disable`.
 	Authoritative *string `pulumi:"authoritative"`
-	// Email address of the administrator for this zone.
-	// You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-	// When using a simple username, the domain of the email will be this zone.
+	// Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
 	Contact *string `pulumi:"contact"`
 	// DNS entry. The structure of `dnsEntry` block is documented below.
 	DnsEntries []DnsdatabaseDnsEntry `pulumi:"dnsEntries"`
@@ -188,7 +182,7 @@ type dnsdatabaseState struct {
 	Forwarder *string `pulumi:"forwarder"`
 	// Forwarder IPv6 address.
 	Forwarder6 *string `pulumi:"forwarder6"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
 	IpMaster *string `pulumi:"ipMaster"`
@@ -208,7 +202,7 @@ type dnsdatabaseState struct {
 	Status *string `pulumi:"status"`
 	// Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400).
 	Ttl *int `pulumi:"ttl"`
-	// Zone type (master to manage entries directly, slave to import entries from other zones).
+	// Zone type (primary to manage entries directly, secondary to import entries from other zones).
 	Type *string `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -221,9 +215,7 @@ type DnsdatabaseState struct {
 	AllowTransfer pulumi.StringPtrInput
 	// Enable/disable authoritative zone. Valid values: `enable`, `disable`.
 	Authoritative pulumi.StringPtrInput
-	// Email address of the administrator for this zone.
-	// You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-	// When using a simple username, the domain of the email will be this zone.
+	// Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
 	Contact pulumi.StringPtrInput
 	// DNS entry. The structure of `dnsEntry` block is documented below.
 	DnsEntries DnsdatabaseDnsEntryArrayInput
@@ -235,7 +227,7 @@ type DnsdatabaseState struct {
 	Forwarder pulumi.StringPtrInput
 	// Forwarder IPv6 address.
 	Forwarder6 pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
 	IpMaster pulumi.StringPtrInput
@@ -255,7 +247,7 @@ type DnsdatabaseState struct {
 	Status pulumi.StringPtrInput
 	// Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400).
 	Ttl pulumi.IntPtrInput
-	// Zone type (master to manage entries directly, slave to import entries from other zones).
+	// Zone type (primary to manage entries directly, secondary to import entries from other zones).
 	Type pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -272,9 +264,7 @@ type dnsdatabaseArgs struct {
 	AllowTransfer *string `pulumi:"allowTransfer"`
 	// Enable/disable authoritative zone. Valid values: `enable`, `disable`.
 	Authoritative string `pulumi:"authoritative"`
-	// Email address of the administrator for this zone.
-	// You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-	// When using a simple username, the domain of the email will be this zone.
+	// Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
 	Contact *string `pulumi:"contact"`
 	// DNS entry. The structure of `dnsEntry` block is documented below.
 	DnsEntries []DnsdatabaseDnsEntry `pulumi:"dnsEntries"`
@@ -286,7 +276,7 @@ type dnsdatabaseArgs struct {
 	Forwarder *string `pulumi:"forwarder"`
 	// Forwarder IPv6 address.
 	Forwarder6 *string `pulumi:"forwarder6"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
 	IpMaster *string `pulumi:"ipMaster"`
@@ -306,7 +296,7 @@ type dnsdatabaseArgs struct {
 	Status *string `pulumi:"status"`
 	// Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400).
 	Ttl int `pulumi:"ttl"`
-	// Zone type (master to manage entries directly, slave to import entries from other zones).
+	// Zone type (primary to manage entries directly, secondary to import entries from other zones).
 	Type string `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -320,9 +310,7 @@ type DnsdatabaseArgs struct {
 	AllowTransfer pulumi.StringPtrInput
 	// Enable/disable authoritative zone. Valid values: `enable`, `disable`.
 	Authoritative pulumi.StringInput
-	// Email address of the administrator for this zone.
-	// You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-	// When using a simple username, the domain of the email will be this zone.
+	// Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
 	Contact pulumi.StringPtrInput
 	// DNS entry. The structure of `dnsEntry` block is documented below.
 	DnsEntries DnsdatabaseDnsEntryArrayInput
@@ -334,7 +322,7 @@ type DnsdatabaseArgs struct {
 	Forwarder pulumi.StringPtrInput
 	// Forwarder IPv6 address.
 	Forwarder6 pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// IP address of master DNS server. Entries in this master DNS server and imported into the DNS zone.
 	IpMaster pulumi.StringPtrInput
@@ -354,7 +342,7 @@ type DnsdatabaseArgs struct {
 	Status pulumi.StringPtrInput
 	// Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400).
 	Ttl pulumi.IntInput
-	// Zone type (master to manage entries directly, slave to import entries from other zones).
+	// Zone type (primary to manage entries directly, secondary to import entries from other zones).
 	Type pulumi.StringInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -459,9 +447,7 @@ func (o DnsdatabaseOutput) Authoritative() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dnsdatabase) pulumi.StringOutput { return v.Authoritative }).(pulumi.StringOutput)
 }
 
-// Email address of the administrator for this zone.
-// You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-// When using a simple username, the domain of the email will be this zone.
+// Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
 func (o DnsdatabaseOutput) Contact() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dnsdatabase) pulumi.StringOutput { return v.Contact }).(pulumi.StringOutput)
 }
@@ -491,7 +477,7 @@ func (o DnsdatabaseOutput) Forwarder6() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dnsdatabase) pulumi.StringOutput { return v.Forwarder6 }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o DnsdatabaseOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Dnsdatabase) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -541,14 +527,14 @@ func (o DnsdatabaseOutput) Ttl() pulumi.IntOutput {
 	return o.ApplyT(func(v *Dnsdatabase) pulumi.IntOutput { return v.Ttl }).(pulumi.IntOutput)
 }
 
-// Zone type (master to manage entries directly, slave to import entries from other zones).
+// Zone type (primary to manage entries directly, secondary to import entries from other zones).
 func (o DnsdatabaseOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dnsdatabase) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o DnsdatabaseOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Dnsdatabase) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o DnsdatabaseOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Dnsdatabase) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Zone view (public to serve public clients, shadow to serve internal clients).

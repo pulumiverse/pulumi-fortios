@@ -70,13 +70,13 @@ export class Affinitypacketredistribution extends pulumi.CustomResource {
      */
     public readonly roundRobin!: pulumi.Output<string>;
     /**
-     * ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
+     * ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution (255 = all queues).
      */
     public readonly rxqid!: pulumi.Output<number>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Affinitypacketredistribution resource with the given unique name, arguments, and options.
@@ -144,7 +144,7 @@ export interface AffinitypacketredistributionState {
      */
     roundRobin?: pulumi.Input<string>;
     /**
-     * ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
+     * ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution (255 = all queues).
      */
     rxqid?: pulumi.Input<number>;
     /**
@@ -174,7 +174,7 @@ export interface AffinitypacketredistributionArgs {
      */
     roundRobin?: pulumi.Input<string>;
     /**
-     * ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution.
+     * ID of the receive queue (when the interface has multiple queues) on which to perform packet redistribution (255 = all queues).
      */
     rxqid: pulumi.Input<number>;
     /**

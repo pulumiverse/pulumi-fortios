@@ -80,4 +80,8 @@ The username of the user.
 """
 
 vdom: Optional[str]
+"""
+Vdom name of FortiOS. It will apply to all resources. Specify variable `vdomparam` on each resource will override the
+vdom value on that resource.
+"""
 

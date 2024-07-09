@@ -33,15 +33,15 @@ import (
 type Vdomdns struct {
 	pulumi.CustomResourceState
 
-	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	// Alternate primary DNS server. This is not used as a failover DNS server.
 	AltPrimary pulumi.StringOutput `pulumi:"altPrimary"`
-	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	// Alternate secondary DNS server. This is not used as a failover DNS server.
 	AltSecondary pulumi.StringOutput `pulumi:"altSecondary"`
 	// Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
 	DnsOverTls pulumi.StringOutput `pulumi:"dnsOverTls"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringOutput `pulumi:"interface"`
@@ -68,7 +68,7 @@ type Vdomdns struct {
 	// Enable/disable configuring DNS servers for the current VDOM. Valid values: `enable`, `disable`.
 	VdomDns pulumi.StringOutput `pulumi:"vdomDns"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewVdomdns registers a new resource with the given unique name, arguments, and options.
@@ -101,15 +101,15 @@ func GetVdomdns(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Vdomdns resources.
 type vdomdnsState struct {
-	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	// Alternate primary DNS server. This is not used as a failover DNS server.
 	AltPrimary *string `pulumi:"altPrimary"`
-	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	// Alternate secondary DNS server. This is not used as a failover DNS server.
 	AltSecondary *string `pulumi:"altSecondary"`
 	// Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
 	DnsOverTls *string `pulumi:"dnsOverTls"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
@@ -140,15 +140,15 @@ type vdomdnsState struct {
 }
 
 type VdomdnsState struct {
-	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	// Alternate primary DNS server. This is not used as a failover DNS server.
 	AltPrimary pulumi.StringPtrInput
-	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	// Alternate secondary DNS server. This is not used as a failover DNS server.
 	AltSecondary pulumi.StringPtrInput
 	// Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
 	DnsOverTls pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
@@ -183,15 +183,15 @@ func (VdomdnsState) ElementType() reflect.Type {
 }
 
 type vdomdnsArgs struct {
-	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	// Alternate primary DNS server. This is not used as a failover DNS server.
 	AltPrimary *string `pulumi:"altPrimary"`
-	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	// Alternate secondary DNS server. This is not used as a failover DNS server.
 	AltSecondary *string `pulumi:"altSecondary"`
 	// Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
 	DnsOverTls *string `pulumi:"dnsOverTls"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
@@ -223,15 +223,15 @@ type vdomdnsArgs struct {
 
 // The set of arguments for constructing a Vdomdns resource.
 type VdomdnsArgs struct {
-	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	// Alternate primary DNS server. This is not used as a failover DNS server.
 	AltPrimary pulumi.StringPtrInput
-	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	// Alternate secondary DNS server. This is not used as a failover DNS server.
 	AltSecondary pulumi.StringPtrInput
 	// Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
 	DnsOverTls pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
@@ -348,12 +348,12 @@ func (o VdomdnsOutput) ToVdomdnsOutputWithContext(ctx context.Context) VdomdnsOu
 	return o
 }
 
-// Alternate primary DNS server. (This is not used as a failover DNS server.)
+// Alternate primary DNS server. This is not used as a failover DNS server.
 func (o VdomdnsOutput) AltPrimary() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vdomdns) pulumi.StringOutput { return v.AltPrimary }).(pulumi.StringOutput)
 }
 
-// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+// Alternate secondary DNS server. This is not used as a failover DNS server.
 func (o VdomdnsOutput) AltSecondary() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vdomdns) pulumi.StringOutput { return v.AltSecondary }).(pulumi.StringOutput)
 }
@@ -368,7 +368,7 @@ func (o VdomdnsOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Vdomdns) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o VdomdnsOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Vdomdns) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -434,8 +434,8 @@ func (o VdomdnsOutput) VdomDns() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o VdomdnsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Vdomdns) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o VdomdnsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vdomdns) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type VdomdnsArrayOutput struct{ *pulumi.OutputState }

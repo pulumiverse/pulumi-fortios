@@ -47,7 +47,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<int> AcctInterimInterval { get; private set; } = null!;
 
         /// <summary>
-        /// Additional AKMs. Valid values: `akm6`.
+        /// Additional AKMs.
         /// </summary>
         [Output("additionalAkms")]
         public Output<string> AdditionalAkms { get; private set; } = null!;
@@ -63,6 +63,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Output("addressGroupPolicy")]
         public Output<string> AddressGroupPolicy { get; private set; } = null!;
+
+        /// <summary>
+        /// WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("akm24Only")]
+        public Output<string> Akm24Only { get; private set; } = null!;
 
         /// <summary>
         /// Alias.
@@ -131,6 +137,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> BeaconAdvertising { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Output("beaconProtection")]
+        public Output<string> BeaconProtection { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
         /// </summary>
         [Output("broadcastSsid")]
@@ -165,6 +177,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Output("bstmRssiDisassocTimer")]
         public Output<int> BstmRssiDisassocTimer { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable captive portal. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("captivePortal")]
+        public Output<string> CaptivePortal { get; private set; } = null!;
 
         /// <summary>
         /// Local-bridging captive portal ac-name.
@@ -353,7 +371,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<int> GasFragmentationLimit { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -365,7 +383,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> GtkRekey { get; private set; } = null!;
 
         /// <summary>
-        /// GTK rekey interval (1800 - 864000 sec, default = 86400).
+        /// GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions &gt;= 7.4.4: 600 - 864000 sec.
         /// </summary>
         [Output("gtkRekeyIntv")]
         public Output<int> GtkRekeyIntv { get; private set; } = null!;
@@ -647,6 +665,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("nasFilterRule")]
+        public Output<string> NasFilterRule { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
         /// </summary>
         [Output("neighborReportDualBand")]
@@ -767,7 +791,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string> PtkRekey { get; private set; } = null!;
 
         /// <summary>
-        /// PTK rekey interval (1800 - 864000 sec, default = 86400).
+        /// PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions &gt;= 7.4.4: 600 - 864000 sec.
         /// </summary>
         [Output("ptkRekeyIntv")]
         public Output<int> PtkRekeyIntv { get; private set; } = null!;
@@ -885,6 +909,24 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Output("rates11axSs34")]
         public Output<string> Rates11axSs34 { get; private set; } = null!;
+
+        /// <summary>
+        /// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+        /// </summary>
+        [Output("rates11beMcsMap")]
+        public Output<string> Rates11beMcsMap { get; private set; } = null!;
+
+        /// <summary>
+        /// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+        /// </summary>
+        [Output("rates11beMcsMap160")]
+        public Output<string> Rates11beMcsMap160 { get; private set; } = null!;
+
+        /// <summary>
+        /// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
+        /// </summary>
+        [Output("rates11beMcsMap320")]
+        public Output<string> Rates11beMcsMap320 { get; private set; } = null!;
 
         /// <summary>
         /// Allowed data rates for 802.11b/g.
@@ -1082,7 +1124,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
@@ -1194,7 +1236,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? AcctInterimInterval { get; set; }
 
         /// <summary>
-        /// Additional AKMs. Valid values: `akm6`.
+        /// Additional AKMs.
         /// </summary>
         [Input("additionalAkms")]
         public Input<string>? AdditionalAkms { get; set; }
@@ -1210,6 +1252,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("addressGroupPolicy")]
         public Input<string>? AddressGroupPolicy { get; set; }
+
+        /// <summary>
+        /// WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("akm24Only")]
+        public Input<string>? Akm24Only { get; set; }
 
         /// <summary>
         /// Alias.
@@ -1278,6 +1326,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? BeaconAdvertising { get; set; }
 
         /// <summary>
+        /// Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("beaconProtection")]
+        public Input<string>? BeaconProtection { get; set; }
+
+        /// <summary>
         /// Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("broadcastSsid")]
@@ -1312,6 +1366,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("bstmRssiDisassocTimer")]
         public Input<int>? BstmRssiDisassocTimer { get; set; }
+
+        /// <summary>
+        /// Enable/disable captive portal. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("captivePortal")]
+        public Input<string>? CaptivePortal { get; set; }
 
         /// <summary>
         /// Local-bridging captive portal ac-name.
@@ -1520,7 +1580,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? GasFragmentationLimit { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -1532,7 +1592,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? GtkRekey { get; set; }
 
         /// <summary>
-        /// GTK rekey interval (1800 - 864000 sec, default = 86400).
+        /// GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions &gt;= 7.4.4: 600 - 864000 sec.
         /// </summary>
         [Input("gtkRekeyIntv")]
         public Input<int>? GtkRekeyIntv { get; set; }
@@ -1836,6 +1896,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("nasFilterRule")]
+        public Input<string>? NasFilterRule { get; set; }
+
+        /// <summary>
         /// Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
         /// </summary>
         [Input("neighborReportDualBand")]
@@ -1966,7 +2032,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? PtkRekey { get; set; }
 
         /// <summary>
-        /// PTK rekey interval (1800 - 864000 sec, default = 86400).
+        /// PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions &gt;= 7.4.4: 600 - 864000 sec.
         /// </summary>
         [Input("ptkRekeyIntv")]
         public Input<int>? PtkRekeyIntv { get; set; }
@@ -2090,6 +2156,24 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("rates11axSs34")]
         public Input<string>? Rates11axSs34 { get; set; }
+
+        /// <summary>
+        /// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+        /// </summary>
+        [Input("rates11beMcsMap")]
+        public Input<string>? Rates11beMcsMap { get; set; }
+
+        /// <summary>
+        /// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+        /// </summary>
+        [Input("rates11beMcsMap160")]
+        public Input<string>? Rates11beMcsMap160 { get; set; }
+
+        /// <summary>
+        /// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
+        /// </summary>
+        [Input("rates11beMcsMap320")]
+        public Input<string>? Rates11beMcsMap320 { get; set; }
 
         /// <summary>
         /// Allowed data rates for 802.11b/g.
@@ -2386,7 +2470,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? AcctInterimInterval { get; set; }
 
         /// <summary>
-        /// Additional AKMs. Valid values: `akm6`.
+        /// Additional AKMs.
         /// </summary>
         [Input("additionalAkms")]
         public Input<string>? AdditionalAkms { get; set; }
@@ -2402,6 +2486,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("addressGroupPolicy")]
         public Input<string>? AddressGroupPolicy { get; set; }
+
+        /// <summary>
+        /// WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("akm24Only")]
+        public Input<string>? Akm24Only { get; set; }
 
         /// <summary>
         /// Alias.
@@ -2470,6 +2560,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? BeaconAdvertising { get; set; }
 
         /// <summary>
+        /// Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
+        /// </summary>
+        [Input("beaconProtection")]
+        public Input<string>? BeaconProtection { get; set; }
+
+        /// <summary>
         /// Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("broadcastSsid")]
@@ -2504,6 +2600,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("bstmRssiDisassocTimer")]
         public Input<int>? BstmRssiDisassocTimer { get; set; }
+
+        /// <summary>
+        /// Enable/disable captive portal. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("captivePortal")]
+        public Input<string>? CaptivePortal { get; set; }
 
         /// <summary>
         /// Local-bridging captive portal ac-name.
@@ -2712,7 +2814,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<int>? GasFragmentationLimit { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -2724,7 +2826,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? GtkRekey { get; set; }
 
         /// <summary>
-        /// GTK rekey interval (1800 - 864000 sec, default = 86400).
+        /// GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions &gt;= 7.4.4: 600 - 864000 sec.
         /// </summary>
         [Input("gtkRekeyIntv")]
         public Input<int>? GtkRekeyIntv { get; set; }
@@ -3028,6 +3130,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("nasFilterRule")]
+        public Input<string>? NasFilterRule { get; set; }
+
+        /// <summary>
         /// Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
         /// </summary>
         [Input("neighborReportDualBand")]
@@ -3158,7 +3266,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? PtkRekey { get; set; }
 
         /// <summary>
-        /// PTK rekey interval (1800 - 864000 sec, default = 86400).
+        /// PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions &gt;= 7.4.4: 600 - 864000 sec.
         /// </summary>
         [Input("ptkRekeyIntv")]
         public Input<int>? PtkRekeyIntv { get; set; }
@@ -3282,6 +3390,24 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("rates11axSs34")]
         public Input<string>? Rates11axSs34 { get; set; }
+
+        /// <summary>
+        /// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+        /// </summary>
+        [Input("rates11beMcsMap")]
+        public Input<string>? Rates11beMcsMap { get; set; }
+
+        /// <summary>
+        /// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+        /// </summary>
+        [Input("rates11beMcsMap160")]
+        public Input<string>? Rates11beMcsMap160 { get; set; }
+
+        /// <summary>
+        /// Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
+        /// </summary>
+        [Input("rates11beMcsMap320")]
+        public Input<string>? Rates11beMcsMap320 { get; set; }
 
         /// <summary>
         /// Allowed data rates for 802.11b/g.

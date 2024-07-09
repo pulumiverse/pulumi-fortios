@@ -35,11 +35,11 @@ class NtpArgs:
         The set of arguments for constructing a Ntp resource.
         :param pulumi.Input[str] authentication: Enable/disable authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['NtpInterfaceArgs']]] interfaces: FortiGate interface(s) with NTP server mode enabled. Devices on your network can contact these interfaces for NTP services. The structure of `interface` block is documented below.
         :param pulumi.Input[str] key: Key for authentication.
         :param pulumi.Input[int] key_id: Key ID for authentication.
-        :param pulumi.Input[str] key_type: Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
+        :param pulumi.Input[str] key_type: Key type for authentication. On FortiOS versions 6.2.4-7.4.3: MD5, SHA1. On FortiOS versions >= 7.4.4: MD5, SHA1, SHA256.
         :param pulumi.Input[Sequence[pulumi.Input['NtpNtpserverArgs']]] ntpservers: Configure the FortiGate to connect to any available third-party NTP server. The structure of `ntpserver` block is documented below.
         :param pulumi.Input[str] ntpsync: Enable/disable setting the FortiGate system time by synchronizing with an NTP Server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] server_mode: Enable/disable FortiGate NTP Server Mode. Your FortiGate becomes an NTP server for other devices on your network. The FortiGate relays NTP requests to its configured NTP server. Valid values: `enable`, `disable`.
@@ -108,7 +108,7 @@ class NtpArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -156,7 +156,7 @@ class NtpArgs:
     @pulumi.getter(name="keyType")
     def key_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
+        Key type for authentication. On FortiOS versions 6.2.4-7.4.3: MD5, SHA1. On FortiOS versions >= 7.4.4: MD5, SHA1, SHA256.
         """
         return pulumi.get(self, "key_type")
 
@@ -283,11 +283,11 @@ class _NtpState:
         Input properties used for looking up and filtering Ntp resources.
         :param pulumi.Input[str] authentication: Enable/disable authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['NtpInterfaceArgs']]] interfaces: FortiGate interface(s) with NTP server mode enabled. Devices on your network can contact these interfaces for NTP services. The structure of `interface` block is documented below.
         :param pulumi.Input[str] key: Key for authentication.
         :param pulumi.Input[int] key_id: Key ID for authentication.
-        :param pulumi.Input[str] key_type: Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
+        :param pulumi.Input[str] key_type: Key type for authentication. On FortiOS versions 6.2.4-7.4.3: MD5, SHA1. On FortiOS versions >= 7.4.4: MD5, SHA1, SHA256.
         :param pulumi.Input[Sequence[pulumi.Input['NtpNtpserverArgs']]] ntpservers: Configure the FortiGate to connect to any available third-party NTP server. The structure of `ntpserver` block is documented below.
         :param pulumi.Input[str] ntpsync: Enable/disable setting the FortiGate system time by synchronizing with an NTP Server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] server_mode: Enable/disable FortiGate NTP Server Mode. Your FortiGate becomes an NTP server for other devices on your network. The FortiGate relays NTP requests to its configured NTP server. Valid values: `enable`, `disable`.
@@ -356,7 +356,7 @@ class _NtpState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -404,7 +404,7 @@ class _NtpState:
     @pulumi.getter(name="keyType")
     def key_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
+        Key type for authentication. On FortiOS versions 6.2.4-7.4.3: MD5, SHA1. On FortiOS versions >= 7.4.4: MD5, SHA1, SHA256.
         """
         return pulumi.get(self, "key_type")
 
@@ -535,7 +535,6 @@ class Ntp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -548,7 +547,6 @@ class Ntp(pulumi.CustomResource):
             syncinterval=1,
             type="fortiguard")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -572,11 +570,11 @@ class Ntp(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] authentication: Enable/disable authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NtpInterfaceArgs']]]] interfaces: FortiGate interface(s) with NTP server mode enabled. Devices on your network can contact these interfaces for NTP services. The structure of `interface` block is documented below.
         :param pulumi.Input[str] key: Key for authentication.
         :param pulumi.Input[int] key_id: Key ID for authentication.
-        :param pulumi.Input[str] key_type: Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
+        :param pulumi.Input[str] key_type: Key type for authentication. On FortiOS versions 6.2.4-7.4.3: MD5, SHA1. On FortiOS versions >= 7.4.4: MD5, SHA1, SHA256.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NtpNtpserverArgs']]]] ntpservers: Configure the FortiGate to connect to any available third-party NTP server. The structure of `ntpserver` block is documented below.
         :param pulumi.Input[str] ntpsync: Enable/disable setting the FortiGate system time by synchronizing with an NTP Server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] server_mode: Enable/disable FortiGate NTP Server Mode. Your FortiGate becomes an NTP server for other devices on your network. The FortiGate relays NTP requests to its configured NTP server. Valid values: `enable`, `disable`.
@@ -597,7 +595,6 @@ class Ntp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -610,7 +607,6 @@ class Ntp(pulumi.CustomResource):
             syncinterval=1,
             type="fortiguard")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -720,11 +716,11 @@ class Ntp(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] authentication: Enable/disable authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NtpInterfaceArgs']]]] interfaces: FortiGate interface(s) with NTP server mode enabled. Devices on your network can contact these interfaces for NTP services. The structure of `interface` block is documented below.
         :param pulumi.Input[str] key: Key for authentication.
         :param pulumi.Input[int] key_id: Key ID for authentication.
-        :param pulumi.Input[str] key_type: Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
+        :param pulumi.Input[str] key_type: Key type for authentication. On FortiOS versions 6.2.4-7.4.3: MD5, SHA1. On FortiOS versions >= 7.4.4: MD5, SHA1, SHA256.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NtpNtpserverArgs']]]] ntpservers: Configure the FortiGate to connect to any available third-party NTP server. The structure of `ntpserver` block is documented below.
         :param pulumi.Input[str] ntpsync: Enable/disable setting the FortiGate system time by synchronizing with an NTP Server. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] server_mode: Enable/disable FortiGate NTP Server Mode. Your FortiGate becomes an NTP server for other devices on your network. The FortiGate relays NTP requests to its configured NTP server. Valid values: `enable`, `disable`.
@@ -775,7 +771,7 @@ class Ntp(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -807,7 +803,7 @@ class Ntp(pulumi.CustomResource):
     @pulumi.getter(name="keyType")
     def key_type(self) -> pulumi.Output[str]:
         """
-        Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
+        Key type for authentication. On FortiOS versions 6.2.4-7.4.3: MD5, SHA1. On FortiOS versions >= 7.4.4: MD5, SHA1, SHA256.
         """
         return pulumi.get(self, "key_type")
 
@@ -869,7 +865,7 @@ class Ntp(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

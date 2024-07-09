@@ -536,7 +536,7 @@ namespace Pulumiverse.Fortios.Voip.Inputs
         public Input<string>? PreserveOverride { get; set; }
 
         /// <summary>
-        /// Expiry time for provisional INVITE (10 - 3600 sec).
+        /// Expiry time (10-3600, in seconds) for provisional INVITE.
         /// </summary>
         [Input("provisionalInviteExpiryTime")]
         public Input<int>? ProvisionalInviteExpiryTime { get; set; }

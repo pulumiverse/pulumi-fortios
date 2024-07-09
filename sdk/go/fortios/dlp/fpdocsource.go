@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -54,7 +53,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -111,7 +109,7 @@ type Fpdocsource struct {
 	// Select the VDOM that can communicate with the file server. Valid values: `mgmt`, `current`.
 	Vdom pulumi.StringOutput `pulumi:"vdom"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Day of the week on which to scan the server. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	Weekday pulumi.StringOutput `pulumi:"weekday"`
 }
@@ -503,8 +501,8 @@ func (o FpdocsourceOutput) Vdom() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o FpdocsourceOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Fpdocsource) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o FpdocsourceOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Fpdocsource) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Day of the week on which to scan the server. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.

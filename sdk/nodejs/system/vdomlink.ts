@@ -54,7 +54,7 @@ export class Vdomlink extends pulumi.CustomResource {
     }
 
     /**
-     * VDOM link name (maximum = 8 characters).
+     * VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions >= 6.4.1: maximum = 11 characters.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -68,7 +68,7 @@ export class Vdomlink extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Vdomlink resource with the given unique name, arguments, and options.
@@ -104,7 +104,7 @@ export class Vdomlink extends pulumi.CustomResource {
  */
 export interface VdomlinkState {
     /**
-     * VDOM link name (maximum = 8 characters).
+     * VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions >= 6.4.1: maximum = 11 characters.
      */
     name?: pulumi.Input<string>;
     /**
@@ -126,7 +126,7 @@ export interface VdomlinkState {
  */
 export interface VdomlinkArgs {
     /**
-     * VDOM link name (maximum = 8 characters).
+     * VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions >= 6.4.1: maximum = 11 characters.
      */
     name?: pulumi.Input<string>;
     /**

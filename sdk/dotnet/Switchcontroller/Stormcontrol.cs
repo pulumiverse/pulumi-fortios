@@ -41,7 +41,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Output<string> Broadcast { get; private set; } = null!;
 
         /// <summary>
-        /// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+        /// Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions &gt;= 7.4.0: 0-10000000, drop-all=0.
         /// </summary>
         [Output("rate")]
         public Output<int> Rate { get; private set; } = null!;
@@ -62,7 +62,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<string>? Broadcast { get; set; }
 
         /// <summary>
-        /// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+        /// Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions &gt;= 7.4.0: 0-10000000, drop-all=0.
         /// </summary>
         [Input("rate")]
         public Input<int>? Rate { get; set; }
@@ -156,7 +156,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<string>? Broadcast { get; set; }
 
         /// <summary>
-        /// Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+        /// Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions &gt;= 7.4.0: 0-10000000, drop-all=0.
         /// </summary>
         [Input("rate")]
         public Input<int>? Rate { get; set; }

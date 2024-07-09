@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,7 +30,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:system/licenseVm:LicenseVm")]
     public partial class LicenseVm : global::Pulumi.CustomResource

@@ -28,7 +28,8 @@ class ExtenderprofileArgs:
                  login_password_change: Optional[pulumi.Input[str]] = None,
                  model: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 vdomparam: Optional[pulumi.Input[str]] = None):
+                 vdomparam: Optional[pulumi.Input[str]] = None,
+                 wifi: Optional[pulumi.Input['ExtenderprofileWifiArgs']] = None):
         """
         The set of arguments for constructing a Extenderprofile resource.
         :param pulumi.Input[str] allowaccess: Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
@@ -37,13 +38,14 @@ class ExtenderprofileArgs:
         :param pulumi.Input[str] enforce_bandwidth: Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] extension: Extension option. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[int] fosid: ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ExtenderprofileLanExtensionArgs'] lan_extension: FortiExtender lan extension configuration. The structure of `lan_extension` block is documented below.
         :param pulumi.Input[str] login_password: Set the managed extender's administrator password.
         :param pulumi.Input[str] login_password_change: Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-        :param pulumi.Input[str] model: Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+        :param pulumi.Input[str] model: Model.
         :param pulumi.Input[str] name: FortiExtender profile name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input['ExtenderprofileWifiArgs'] wifi: FortiExtender wifi configuration. The structure of `wifi` block is documented below.
         """
         if allowaccess is not None:
             pulumi.set(__self__, "allowaccess", allowaccess)
@@ -71,6 +73,8 @@ class ExtenderprofileArgs:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if wifi is not None:
+            pulumi.set(__self__, "wifi", wifi)
 
     @property
     @pulumi.getter
@@ -148,7 +152,7 @@ class ExtenderprofileArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -196,7 +200,7 @@ class ExtenderprofileArgs:
     @pulumi.getter
     def model(self) -> Optional[pulumi.Input[str]]:
         """
-        Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+        Model.
         """
         return pulumi.get(self, "model")
 
@@ -227,6 +231,18 @@ class ExtenderprofileArgs:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter
+    def wifi(self) -> Optional[pulumi.Input['ExtenderprofileWifiArgs']]:
+        """
+        FortiExtender wifi configuration. The structure of `wifi` block is documented below.
+        """
+        return pulumi.get(self, "wifi")
+
+    @wifi.setter
+    def wifi(self, value: Optional[pulumi.Input['ExtenderprofileWifiArgs']]):
+        pulumi.set(self, "wifi", value)
 
 
 @pulumi.input_type
@@ -244,7 +260,8 @@ class _ExtenderprofileState:
                  login_password_change: Optional[pulumi.Input[str]] = None,
                  model: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 vdomparam: Optional[pulumi.Input[str]] = None):
+                 vdomparam: Optional[pulumi.Input[str]] = None,
+                 wifi: Optional[pulumi.Input['ExtenderprofileWifiArgs']] = None):
         """
         Input properties used for looking up and filtering Extenderprofile resources.
         :param pulumi.Input[str] allowaccess: Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
@@ -253,13 +270,14 @@ class _ExtenderprofileState:
         :param pulumi.Input[str] enforce_bandwidth: Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] extension: Extension option. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[int] fosid: ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input['ExtenderprofileLanExtensionArgs'] lan_extension: FortiExtender lan extension configuration. The structure of `lan_extension` block is documented below.
         :param pulumi.Input[str] login_password: Set the managed extender's administrator password.
         :param pulumi.Input[str] login_password_change: Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-        :param pulumi.Input[str] model: Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+        :param pulumi.Input[str] model: Model.
         :param pulumi.Input[str] name: FortiExtender profile name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input['ExtenderprofileWifiArgs'] wifi: FortiExtender wifi configuration. The structure of `wifi` block is documented below.
         """
         if allowaccess is not None:
             pulumi.set(__self__, "allowaccess", allowaccess)
@@ -287,6 +305,8 @@ class _ExtenderprofileState:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if wifi is not None:
+            pulumi.set(__self__, "wifi", wifi)
 
     @property
     @pulumi.getter
@@ -364,7 +384,7 @@ class _ExtenderprofileState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -412,7 +432,7 @@ class _ExtenderprofileState:
     @pulumi.getter
     def model(self) -> Optional[pulumi.Input[str]]:
         """
-        Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+        Model.
         """
         return pulumi.get(self, "model")
 
@@ -443,6 +463,18 @@ class _ExtenderprofileState:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter
+    def wifi(self) -> Optional[pulumi.Input['ExtenderprofileWifiArgs']]:
+        """
+        FortiExtender wifi configuration. The structure of `wifi` block is documented below.
+        """
+        return pulumi.get(self, "wifi")
+
+    @wifi.setter
+    def wifi(self, value: Optional[pulumi.Input['ExtenderprofileWifiArgs']]):
+        pulumi.set(self, "wifi", value)
 
 
 class Extenderprofile(pulumi.CustomResource):
@@ -463,6 +495,7 @@ class Extenderprofile(pulumi.CustomResource):
                  model: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 wifi: Optional[pulumi.Input[pulumi.InputType['ExtenderprofileWifiArgs']]] = None,
                  __props__=None):
         """
         FortiExtender extender profile configuration. Applies to FortiOS Version `>= 7.2.1`.
@@ -493,13 +526,14 @@ class Extenderprofile(pulumi.CustomResource):
         :param pulumi.Input[str] enforce_bandwidth: Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] extension: Extension option. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[int] fosid: ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ExtenderprofileLanExtensionArgs']] lan_extension: FortiExtender lan extension configuration. The structure of `lan_extension` block is documented below.
         :param pulumi.Input[str] login_password: Set the managed extender's administrator password.
         :param pulumi.Input[str] login_password_change: Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-        :param pulumi.Input[str] model: Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+        :param pulumi.Input[str] model: Model.
         :param pulumi.Input[str] name: FortiExtender profile name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[pulumi.InputType['ExtenderprofileWifiArgs']] wifi: FortiExtender wifi configuration. The structure of `wifi` block is documented below.
         """
         ...
     @overload
@@ -556,6 +590,7 @@ class Extenderprofile(pulumi.CustomResource):
                  model: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 wifi: Optional[pulumi.Input[pulumi.InputType['ExtenderprofileWifiArgs']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -578,6 +613,7 @@ class Extenderprofile(pulumi.CustomResource):
             __props__.__dict__["model"] = model
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["wifi"] = wifi
         super(Extenderprofile, __self__).__init__(
             'fortios:extensioncontroller/extenderprofile:Extenderprofile',
             resource_name,
@@ -600,7 +636,8 @@ class Extenderprofile(pulumi.CustomResource):
             login_password_change: Optional[pulumi.Input[str]] = None,
             model: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            vdomparam: Optional[pulumi.Input[str]] = None) -> 'Extenderprofile':
+            vdomparam: Optional[pulumi.Input[str]] = None,
+            wifi: Optional[pulumi.Input[pulumi.InputType['ExtenderprofileWifiArgs']]] = None) -> 'Extenderprofile':
         """
         Get an existing Extenderprofile resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -614,13 +651,14 @@ class Extenderprofile(pulumi.CustomResource):
         :param pulumi.Input[str] enforce_bandwidth: Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] extension: Extension option. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[int] fosid: ID.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[pulumi.InputType['ExtenderprofileLanExtensionArgs']] lan_extension: FortiExtender lan extension configuration. The structure of `lan_extension` block is documented below.
         :param pulumi.Input[str] login_password: Set the managed extender's administrator password.
         :param pulumi.Input[str] login_password_change: Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
-        :param pulumi.Input[str] model: Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+        :param pulumi.Input[str] model: Model.
         :param pulumi.Input[str] name: FortiExtender profile name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[pulumi.InputType['ExtenderprofileWifiArgs']] wifi: FortiExtender wifi configuration. The structure of `wifi` block is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -639,6 +677,7 @@ class Extenderprofile(pulumi.CustomResource):
         __props__.__dict__["model"] = model
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
+        __props__.__dict__["wifi"] = wifi
         return Extenderprofile(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -693,7 +732,7 @@ class Extenderprofile(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -725,7 +764,7 @@ class Extenderprofile(pulumi.CustomResource):
     @pulumi.getter
     def model(self) -> pulumi.Output[str]:
         """
-        Model. Valid values: `FX201E`, `FX211E`, `FX200F`, `FXA11F`, `FXE11F`, `FXA21F`, `FXE21F`, `FXA22F`, `FXE22F`, `FX212F`, `FX311F`, `FX312F`, `FX511F`, `FVG21F`, `FVA21F`, `FVG22F`, `FVA22F`, `FX04DA`.
+        Model.
         """
         return pulumi.get(self, "model")
 
@@ -739,9 +778,17 @@ class Extenderprofile(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         return pulumi.get(self, "vdomparam")
+
+    @property
+    @pulumi.getter
+    def wifi(self) -> pulumi.Output['outputs.ExtenderprofileWifi']:
+        """
+        FortiExtender wifi configuration. The structure of `wifi` block is documented below.
+        """
+        return pulumi.get(self, "wifi")
 

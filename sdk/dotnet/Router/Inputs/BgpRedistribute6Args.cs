@@ -13,21 +13,12 @@ namespace Pulumiverse.Fortios.Router.Inputs
 
     public sealed class BgpRedistribute6Args : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Neighbor group name.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// Route map of VRF leaking.
-        /// </summary>
         [Input("routeMap")]
         public Input<string>? RouteMap { get; set; }
 
-        /// <summary>
-        /// Status Valid values: `enable`, `disable`.
-        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 

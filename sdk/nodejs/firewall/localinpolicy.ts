@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -34,7 +33,6 @@ import * as utilities from "../utilities";
  *     status: "enable",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -103,7 +101,7 @@ export class Localinpolicy extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -111,9 +109,37 @@ export class Localinpolicy extends pulumi.CustomResource {
      */
     public readonly haMgmtIntfOnly!: pulumi.Output<string>;
     /**
-     * Incoming interface name from available options.
+     * Enable/disable use of Internet Services in source for this local-in policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
+     */
+    public readonly internetServiceSrc!: pulumi.Output<string>;
+    /**
+     * Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
+     */
+    public readonly internetServiceSrcCustomGroups!: pulumi.Output<outputs.firewall.LocalinpolicyInternetServiceSrcCustomGroup[] | undefined>;
+    /**
+     * Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
+     */
+    public readonly internetServiceSrcCustoms!: pulumi.Output<outputs.firewall.LocalinpolicyInternetServiceSrcCustom[] | undefined>;
+    /**
+     * Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
+     */
+    public readonly internetServiceSrcGroups!: pulumi.Output<outputs.firewall.LocalinpolicyInternetServiceSrcGroup[] | undefined>;
+    /**
+     * Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
+     */
+    public readonly internetServiceSrcNames!: pulumi.Output<outputs.firewall.LocalinpolicyInternetServiceSrcName[] | undefined>;
+    /**
+     * When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+     */
+    public readonly internetServiceSrcNegate!: pulumi.Output<string>;
+    /**
+     * Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intfBlock`.*
      */
     public readonly intf!: pulumi.Output<string>;
+    /**
+     * Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intfBlock` block is documented below.
+     */
+    public readonly intfBlocks!: pulumi.Output<outputs.firewall.LocalinpolicyIntfBlock[] | undefined>;
     /**
      * User defined local in policy ID.
      */
@@ -149,7 +175,7 @@ export class Localinpolicy extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Enable/disable virtual patching. Valid values: `enable`, `disable`.
      */
@@ -175,7 +201,14 @@ export class Localinpolicy extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["haMgmtIntfOnly"] = state ? state.haMgmtIntfOnly : undefined;
+            resourceInputs["internetServiceSrc"] = state ? state.internetServiceSrc : undefined;
+            resourceInputs["internetServiceSrcCustomGroups"] = state ? state.internetServiceSrcCustomGroups : undefined;
+            resourceInputs["internetServiceSrcCustoms"] = state ? state.internetServiceSrcCustoms : undefined;
+            resourceInputs["internetServiceSrcGroups"] = state ? state.internetServiceSrcGroups : undefined;
+            resourceInputs["internetServiceSrcNames"] = state ? state.internetServiceSrcNames : undefined;
+            resourceInputs["internetServiceSrcNegate"] = state ? state.internetServiceSrcNegate : undefined;
             resourceInputs["intf"] = state ? state.intf : undefined;
+            resourceInputs["intfBlocks"] = state ? state.intfBlocks : undefined;
             resourceInputs["policyid"] = state ? state.policyid : undefined;
             resourceInputs["schedule"] = state ? state.schedule : undefined;
             resourceInputs["serviceNegate"] = state ? state.serviceNegate : undefined;
@@ -204,7 +237,14 @@ export class Localinpolicy extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["haMgmtIntfOnly"] = args ? args.haMgmtIntfOnly : undefined;
+            resourceInputs["internetServiceSrc"] = args ? args.internetServiceSrc : undefined;
+            resourceInputs["internetServiceSrcCustomGroups"] = args ? args.internetServiceSrcCustomGroups : undefined;
+            resourceInputs["internetServiceSrcCustoms"] = args ? args.internetServiceSrcCustoms : undefined;
+            resourceInputs["internetServiceSrcGroups"] = args ? args.internetServiceSrcGroups : undefined;
+            resourceInputs["internetServiceSrcNames"] = args ? args.internetServiceSrcNames : undefined;
+            resourceInputs["internetServiceSrcNegate"] = args ? args.internetServiceSrcNegate : undefined;
             resourceInputs["intf"] = args ? args.intf : undefined;
+            resourceInputs["intfBlocks"] = args ? args.intfBlocks : undefined;
             resourceInputs["policyid"] = args ? args.policyid : undefined;
             resourceInputs["schedule"] = args ? args.schedule : undefined;
             resourceInputs["serviceNegate"] = args ? args.serviceNegate : undefined;
@@ -246,7 +286,7 @@ export interface LocalinpolicyState {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -254,9 +294,37 @@ export interface LocalinpolicyState {
      */
     haMgmtIntfOnly?: pulumi.Input<string>;
     /**
-     * Incoming interface name from available options.
+     * Enable/disable use of Internet Services in source for this local-in policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
+     */
+    internetServiceSrc?: pulumi.Input<string>;
+    /**
+     * Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
+     */
+    internetServiceSrcCustomGroups?: pulumi.Input<pulumi.Input<inputs.firewall.LocalinpolicyInternetServiceSrcCustomGroup>[]>;
+    /**
+     * Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
+     */
+    internetServiceSrcCustoms?: pulumi.Input<pulumi.Input<inputs.firewall.LocalinpolicyInternetServiceSrcCustom>[]>;
+    /**
+     * Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
+     */
+    internetServiceSrcGroups?: pulumi.Input<pulumi.Input<inputs.firewall.LocalinpolicyInternetServiceSrcGroup>[]>;
+    /**
+     * Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
+     */
+    internetServiceSrcNames?: pulumi.Input<pulumi.Input<inputs.firewall.LocalinpolicyInternetServiceSrcName>[]>;
+    /**
+     * When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+     */
+    internetServiceSrcNegate?: pulumi.Input<string>;
+    /**
+     * Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intfBlock`.*
      */
     intf?: pulumi.Input<string>;
+    /**
+     * Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intfBlock` block is documented below.
+     */
+    intfBlocks?: pulumi.Input<pulumi.Input<inputs.firewall.LocalinpolicyIntfBlock>[]>;
     /**
      * User defined local in policy ID.
      */
@@ -324,7 +392,7 @@ export interface LocalinpolicyArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -332,9 +400,37 @@ export interface LocalinpolicyArgs {
      */
     haMgmtIntfOnly?: pulumi.Input<string>;
     /**
-     * Incoming interface name from available options.
+     * Enable/disable use of Internet Services in source for this local-in policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
+     */
+    internetServiceSrc?: pulumi.Input<string>;
+    /**
+     * Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
+     */
+    internetServiceSrcCustomGroups?: pulumi.Input<pulumi.Input<inputs.firewall.LocalinpolicyInternetServiceSrcCustomGroup>[]>;
+    /**
+     * Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
+     */
+    internetServiceSrcCustoms?: pulumi.Input<pulumi.Input<inputs.firewall.LocalinpolicyInternetServiceSrcCustom>[]>;
+    /**
+     * Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
+     */
+    internetServiceSrcGroups?: pulumi.Input<pulumi.Input<inputs.firewall.LocalinpolicyInternetServiceSrcGroup>[]>;
+    /**
+     * Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
+     */
+    internetServiceSrcNames?: pulumi.Input<pulumi.Input<inputs.firewall.LocalinpolicyInternetServiceSrcName>[]>;
+    /**
+     * When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+     */
+    internetServiceSrcNegate?: pulumi.Input<string>;
+    /**
+     * Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intfBlock`.*
      */
     intf?: pulumi.Input<string>;
+    /**
+     * Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intfBlock` block is documented below.
+     */
+    intfBlocks?: pulumi.Input<pulumi.Input<inputs.firewall.LocalinpolicyIntfBlock>[]>;
     /**
      * User defined local in policy ID.
      */

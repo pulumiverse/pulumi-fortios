@@ -421,57 +421,27 @@ export namespace antivirus {
     }
 
     export interface ProfilePop3 {
-        /**
-         * Select the archive types to block.
-         */
         archiveBlock: string;
-        /**
-         * Select the archive types to log.
-         */
         archiveLog: string;
-        /**
-         * Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
-         */
         avScan: string;
         /**
          * AV Content Disarm and Reconstruction settings. The structure of `contentDisarm` block is documented below.
          */
         contentDisarm: string;
-        /**
-         * Enable/disable the virus emulator. Valid values: `enable`, `disable`.
-         */
         emulator: string;
-        /**
-         * Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
-         */
         executables: string;
         /**
          * One or more external malware block lists. The structure of `externalBlocklist` block is documented below.
          */
         externalBlocklist: string;
-        /**
-         * Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
-         */
         fortiai: string;
-        /**
-         * Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
-         */
         fortindr: string;
-        /**
-         * Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
-         */
         fortisandbox: string;
-        /**
-         * Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
-         */
         options: string;
         /**
          * Configure Virus Outbreak Prevention settings. The structure of `outbreakPrevention` block is documented below.
          */
         outbreakPrevention: string;
-        /**
-         * Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
-         */
         quarantine: string;
     }
 
@@ -1886,53 +1856,17 @@ export namespace extendercontroller {
     }
 
     export interface Extender1Modem1 {
-        /**
-         * FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
-         */
         autoSwitch: outputs.extendercontroller.Extender1Modem1AutoSwitch;
-        /**
-         * Connection status.
-         */
         connStatus: number;
-        /**
-         * Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-         */
         defaultSim: string;
-        /**
-         * FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-         */
         gps: string;
-        /**
-         * FortiExtender interface name.
-         */
         ifname: string;
-        /**
-         * Preferred carrier.
-         */
         preferredCarrier: string;
-        /**
-         * Redundant interface.
-         */
         redundantIntf: string;
-        /**
-         * FortiExtender mode. Valid values: `disable`, `enable`.
-         */
         redundantMode: string;
-        /**
-         * SIM #1 PIN status. Valid values: `disable`, `enable`.
-         */
         sim1Pin: string;
-        /**
-         * SIM #1 PIN password.
-         */
         sim1PinCode?: string;
-        /**
-         * SIM #2 PIN status. Valid values: `disable`, `enable`.
-         */
         sim2Pin: string;
-        /**
-         * SIM #2 PIN password.
-         */
         sim2PinCode?: string;
     }
 
@@ -1972,53 +1906,17 @@ export namespace extendercontroller {
     }
 
     export interface Extender1Modem2 {
-        /**
-         * FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
-         */
         autoSwitch: outputs.extendercontroller.Extender1Modem2AutoSwitch;
-        /**
-         * Connection status.
-         */
         connStatus: number;
-        /**
-         * Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-         */
         defaultSim: string;
-        /**
-         * FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-         */
         gps: string;
-        /**
-         * FortiExtender interface name.
-         */
         ifname: string;
-        /**
-         * Preferred carrier.
-         */
         preferredCarrier: string;
-        /**
-         * Redundant interface.
-         */
         redundantIntf: string;
-        /**
-         * FortiExtender mode. Valid values: `disable`, `enable`.
-         */
         redundantMode: string;
-        /**
-         * SIM #1 PIN status. Valid values: `disable`, `enable`.
-         */
         sim1Pin: string;
-        /**
-         * SIM #1 PIN password.
-         */
         sim1PinCode?: string;
-        /**
-         * SIM #2 PIN status. Valid values: `disable`, `enable`.
-         */
         sim2Pin: string;
-        /**
-         * SIM #2 PIN password.
-         */
         sim2PinCode?: string;
     }
 
@@ -2075,53 +1973,26 @@ export namespace extendercontroller {
     }
 
     export interface ExtenderModem1 {
-        /**
-         * FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
-         */
         autoSwitch: outputs.extendercontroller.ExtenderModem1AutoSwitch;
         /**
          * Connection status.
          */
         connStatus: number;
-        /**
-         * Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-         */
         defaultSim: string;
-        /**
-         * FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-         */
         gps: string;
         /**
          * FortiExtender interface name.
          */
         ifname: string;
-        /**
-         * Preferred carrier.
-         */
         preferredCarrier: string;
         /**
          * Redundant interface.
          */
         redundantIntf: string;
-        /**
-         * FortiExtender mode. Valid values: `disable`, `enable`.
-         */
         redundantMode: string;
-        /**
-         * SIM #1 PIN status. Valid values: `disable`, `enable`.
-         */
         sim1Pin: string;
-        /**
-         * SIM #1 PIN password.
-         */
         sim1PinCode?: string;
-        /**
-         * SIM #2 PIN status. Valid values: `disable`, `enable`.
-         */
         sim2Pin: string;
-        /**
-         * SIM #2 PIN password.
-         */
         sim2PinCode?: string;
     }
 
@@ -2161,53 +2032,26 @@ export namespace extendercontroller {
     }
 
     export interface ExtenderModem2 {
-        /**
-         * FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
-         */
         autoSwitch: outputs.extendercontroller.ExtenderModem2AutoSwitch;
         /**
          * Connection status.
          */
         connStatus: number;
-        /**
-         * Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-         */
         defaultSim: string;
-        /**
-         * FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-         */
         gps: string;
         /**
          * FortiExtender interface name.
          */
         ifname: string;
-        /**
-         * Preferred carrier.
-         */
         preferredCarrier: string;
         /**
          * Redundant interface.
          */
         redundantIntf: string;
-        /**
-         * FortiExtender mode. Valid values: `disable`, `enable`.
-         */
         redundantMode: string;
-        /**
-         * SIM #1 PIN status. Valid values: `disable`, `enable`.
-         */
         sim1Pin: string;
-        /**
-         * SIM #1 PIN password.
-         */
         sim1PinCode?: string;
-        /**
-         * SIM #2 PIN status. Valid values: `disable`, `enable`.
-         */
         sim2Pin: string;
-        /**
-         * SIM #2 PIN password.
-         */
         sim2PinCode?: string;
     }
 
@@ -2303,49 +2147,16 @@ export namespace extendercontroller {
     }
 
     export interface ExtenderprofileCellularModem1 {
-        /**
-         * FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
-         */
         autoSwitch: outputs.extendercontroller.ExtenderprofileCellularModem1AutoSwitch;
-        /**
-         * Connection status.
-         */
         connStatus: number;
-        /**
-         * Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-         */
         defaultSim: string;
-        /**
-         * FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-         */
         gps: string;
-        /**
-         * Preferred carrier.
-         */
         preferredCarrier: string;
-        /**
-         * Redundant interface.
-         */
         redundantIntf: string;
-        /**
-         * FortiExtender mode. Valid values: `disable`, `enable`.
-         */
         redundantMode: string;
-        /**
-         * SIM #1 PIN status. Valid values: `disable`, `enable`.
-         */
         sim1Pin: string;
-        /**
-         * SIM #1 PIN password.
-         */
         sim1PinCode?: string;
-        /**
-         * SIM #2 PIN status. Valid values: `disable`, `enable`.
-         */
         sim2Pin: string;
-        /**
-         * SIM #2 PIN password.
-         */
         sim2PinCode?: string;
     }
 
@@ -2385,49 +2196,16 @@ export namespace extendercontroller {
     }
 
     export interface ExtenderprofileCellularModem2 {
-        /**
-         * FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
-         */
         autoSwitch: outputs.extendercontroller.ExtenderprofileCellularModem2AutoSwitch;
-        /**
-         * Connection status.
-         */
         connStatus: number;
-        /**
-         * Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-         */
         defaultSim: string;
-        /**
-         * FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-         */
         gps: string;
-        /**
-         * Preferred carrier.
-         */
         preferredCarrier: string;
-        /**
-         * Redundant interface.
-         */
         redundantIntf: string;
-        /**
-         * FortiExtender mode. Valid values: `disable`, `enable`.
-         */
         redundantMode: string;
-        /**
-         * SIM #1 PIN status. Valid values: `disable`, `enable`.
-         */
         sim1Pin: string;
-        /**
-         * SIM #1 PIN password.
-         */
         sim1PinCode?: string;
-        /**
-         * SIM #2 PIN status. Valid values: `disable`, `enable`.
-         */
         sim2Pin: string;
-        /**
-         * SIM #2 PIN password.
-         */
         sim2PinCode?: string;
     }
 
@@ -2635,49 +2413,16 @@ export namespace extensioncontroller {
     }
 
     export interface ExtenderprofileCellularModem1 {
-        /**
-         * FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
-         */
         autoSwitch: outputs.extensioncontroller.ExtenderprofileCellularModem1AutoSwitch;
-        /**
-         * Connection status.
-         */
         connStatus: number;
-        /**
-         * Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-         */
         defaultSim: string;
-        /**
-         * FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-         */
         gps: string;
-        /**
-         * Preferred carrier.
-         */
         preferredCarrier: string;
-        /**
-         * Redundant interface.
-         */
         redundantIntf: string;
-        /**
-         * FortiExtender mode. Valid values: `disable`, `enable`.
-         */
         redundantMode: string;
-        /**
-         * SIM #1 PIN status. Valid values: `disable`, `enable`.
-         */
         sim1Pin: string;
-        /**
-         * SIM #1 PIN password.
-         */
         sim1PinCode?: string;
-        /**
-         * SIM #2 PIN status. Valid values: `disable`, `enable`.
-         */
         sim2Pin: string;
-        /**
-         * SIM #2 PIN password.
-         */
         sim2PinCode?: string;
     }
 
@@ -2717,49 +2462,16 @@ export namespace extensioncontroller {
     }
 
     export interface ExtenderprofileCellularModem2 {
-        /**
-         * FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
-         */
         autoSwitch: outputs.extensioncontroller.ExtenderprofileCellularModem2AutoSwitch;
-        /**
-         * Connection status.
-         */
         connStatus: number;
-        /**
-         * Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-         */
         defaultSim: string;
-        /**
-         * FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-         */
         gps: string;
-        /**
-         * Preferred carrier.
-         */
         preferredCarrier: string;
-        /**
-         * Redundant interface.
-         */
         redundantIntf: string;
-        /**
-         * FortiExtender mode. Valid values: `disable`, `enable`.
-         */
         redundantMode: string;
-        /**
-         * SIM #1 PIN status. Valid values: `disable`, `enable`.
-         */
         sim1Pin: string;
-        /**
-         * SIM #1 PIN password.
-         */
         sim1PinCode?: string;
-        /**
-         * SIM #2 PIN status. Valid values: `disable`, `enable`.
-         */
         sim2Pin: string;
-        /**
-         * SIM #2 PIN password.
-         */
         sim2PinCode?: string;
     }
 
@@ -2905,6 +2617,75 @@ export namespace extensioncontroller {
          * WRR weight parameter.
          */
         weight: number;
+    }
+
+    export interface ExtenderprofileWifi {
+        /**
+         * Country in which this FEX will operate (default = NA). Valid values: `--`, `AF`, `AL`, `DZ`, `AS`, `AO`, `AR`, `AM`, `AU`, `AT`, `AZ`, `BS`, `BH`, `BD`, `BB`, `BY`, `BE`, `BZ`, `BJ`, `BM`, `BT`, `BO`, `BA`, `BW`, `BR`, `BN`, `BG`, `BF`, `KH`, `CM`, `KY`, `CF`, `TD`, `CL`, `CN`, `CX`, `CO`, `CG`, `CD`, `CR`, `HR`, `CY`, `CZ`, `DK`, `DJ`, `DM`, `DO`, `EC`, `EG`, `SV`, `ET`, `EE`, `GF`, `PF`, `FO`, `FJ`, `FI`, `FR`, `GA`, `GE`, `GM`, `DE`, `GH`, `GI`, `GR`, `GL`, `GD`, `GP`, `GU`, `GT`, `GY`, `HT`, `HN`, `HK`, `HU`, `IS`, `IN`, `ID`, `IQ`, `IE`, `IM`, `IL`, `IT`, `CI`, `JM`, `JO`, `KZ`, `KE`, `KR`, `KW`, `LA`, `LV`, `LB`, `LS`, `LR`, `LY`, `LI`, `LT`, `LU`, `MO`, `MK`, `MG`, `MW`, `MY`, `MV`, `ML`, `MT`, `MH`, `MQ`, `MR`, `MU`, `YT`, `MX`, `FM`, `MD`, `MC`, `MN`, `MA`, `MZ`, `MM`, `NA`, `NP`, `NL`, `AN`, `AW`, `NZ`, `NI`, `NE`, `NG`, `NO`, `MP`, `OM`, `PK`, `PW`, `PA`, `PG`, `PY`, `PE`, `PH`, `PL`, `PT`, `PR`, `QA`, `RE`, `RO`, `RU`, `RW`, `BL`, `KN`, `LC`, `MF`, `PM`, `VC`, `SA`, `SN`, `RS`, `ME`, `SL`, `SG`, `SK`, `SI`, `SO`, `ZA`, `ES`, `LK`, `SR`, `SZ`, `SE`, `CH`, `TW`, `TZ`, `TH`, `TG`, `TT`, `TN`, `TR`, `TM`, `AE`, `TC`, `UG`, `UA`, `GB`, `US`, `PS`, `UY`, `UZ`, `VU`, `VE`, `VN`, `VI`, `WF`, `YE`, `ZM`, `ZW`, `JP`, `CA`.
+         */
+        country: string;
+        /**
+         * Radio-1 config for Wi-Fi 2.4GHz The structure of `radio1` block is documented below.
+         */
+        radio1: outputs.extensioncontroller.ExtenderprofileWifiRadio1;
+        /**
+         * Radio-2 config for Wi-Fi 5GHz The structure of `radio2` block is documented below.
+         *
+         * The `radio1` block supports:
+         */
+        radio2: outputs.extensioncontroller.ExtenderprofileWifiRadio2;
+    }
+
+    export interface ExtenderprofileWifiRadio1 {
+        band: string;
+        bandwidth: string;
+        beaconInterval: number;
+        bssColor: number;
+        bssColorMode: string;
+        channel: string;
+        extensionChannel: string;
+        guardInterval: string;
+        lanExtVap: string;
+        localVaps?: outputs.extensioncontroller.ExtenderprofileWifiRadio1LocalVap[];
+        maxClients: number;
+        mode: string;
+        n80211d: string;
+        operatingStandard: string;
+        powerLevel: number;
+        status: string;
+    }
+
+    export interface ExtenderprofileWifiRadio1LocalVap {
+        /**
+         * Wi-Fi local VAP name.
+         */
+        name: string;
+    }
+
+    export interface ExtenderprofileWifiRadio2 {
+        band: string;
+        bandwidth: string;
+        beaconInterval: number;
+        bssColor: number;
+        bssColorMode: string;
+        channel: string;
+        extensionChannel: string;
+        guardInterval: string;
+        lanExtVap: string;
+        localVaps?: outputs.extensioncontroller.ExtenderprofileWifiRadio2LocalVap[];
+        maxClients: number;
+        mode: string;
+        n80211d: string;
+        operatingStandard: string;
+        powerLevel: number;
+        status: string;
+    }
+
+    export interface ExtenderprofileWifiRadio2LocalVap {
+        /**
+         * Wi-Fi local VAP name.
+         */
+        name: string;
     }
 
     export interface FortigateprofileLanExtension {
@@ -3349,25 +3130,10 @@ export namespace filter {
         }
 
         export interface ProfilePop3 {
-            /**
-             * Action taken for matched file. Valid values: `log`, `block`.
-             */
             action: string;
-            /**
-             * Enable/disable file filter logging. Valid values: `enable`, `disable`.
-             */
             log: string;
-            /**
-             * Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-             */
             logAll: string;
-            /**
-             * Subject text or header added to spam email.
-             */
             tagMsg: string;
-            /**
-             * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-             */
             tagType: string;
         }
 
@@ -3667,21 +3433,9 @@ export namespace filter {
         }
 
         export interface ProfilePop3 {
-            /**
-             * Action for spam email. Valid values: `pass`, `tag`.
-             */
             action: string;
-            /**
-             * Enable/disable logging. Valid values: `enable`, `disable`.
-             */
             log: string;
-            /**
-             * Subject text or header added to spam email.
-             */
             tagMsg: string;
-            /**
-             * Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-             */
             tagType: string;
         }
 
@@ -4503,117 +4257,36 @@ export namespace firewall {
     }
 
     export interface Accessproxy6ApiGateway6 {
-        /**
-         * SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
-         */
         applications?: outputs.firewall.Accessproxy6ApiGateway6Application[];
-        /**
-         * HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
-         */
         h2Support: string;
-        /**
-         * HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
-         */
         h3Support: string;
-        /**
-         * Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
-         */
         httpCookieAge: number;
-        /**
-         * Domain that HTTP cookie persistence should apply to.
-         */
         httpCookieDomain: string;
-        /**
-         * Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-         */
         httpCookieDomainFromHost: string;
-        /**
-         * Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-         */
         httpCookieGeneration: number;
-        /**
-         * Limit HTTP cookie persistence to the specified path.
-         */
         httpCookiePath: string;
-        /**
-         * Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-         */
         httpCookieShare: string;
-        /**
-         * Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-         */
         httpsCookieSecure: string;
         /**
-         * API Gateway ID.
+         * an identifier for the resource with format {{name}}.
          */
         id: number;
-        /**
-         * Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
-         */
         ldbMethod: string;
-        /**
-         * Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
-         */
         persistence: string;
-        /**
-         * QUIC setting. The structure of `quic` block is documented below.
-         */
         quic: outputs.firewall.Accessproxy6ApiGateway6Quic;
-        /**
-         * Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
-         */
         realservers?: outputs.firewall.Accessproxy6ApiGateway6Realserver[];
-        /**
-         * Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
-         */
         samlRedirect: string;
-        /**
-         * SAML service provider configuration for VIP authentication.
-         */
         samlServer: string;
-        /**
-         * Service.
-         */
         service: string;
-        /**
-         * Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
-         */
         sslAlgorithm: string;
-        /**
-         * SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslCipherSuites` block is documented below.
-         */
         sslCipherSuites?: outputs.firewall.Accessproxy6ApiGateway6SslCipherSuite[];
-        /**
-         * Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-         */
         sslDhBits: string;
-        /**
-         * Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-         */
         sslMaxVersion: string;
-        /**
-         * Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-         */
         sslMinVersion: string;
-        /**
-         * Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
-         */
         sslRenegotiation: string;
-        /**
-         * SSL-VPN web portal.
-         */
         sslVpnWebPortal: string;
-        /**
-         * URL pattern to match.
-         */
         urlMap: string;
-        /**
-         * Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
-         */
         urlMapType: string;
-        /**
-         * Virtual host.
-         */
         virtualHost: string;
     }
 
@@ -5027,117 +4700,36 @@ export namespace firewall {
     }
 
     export interface AccessproxyApiGateway6 {
-        /**
-         * SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
-         */
         applications?: outputs.firewall.AccessproxyApiGateway6Application[];
-        /**
-         * HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
-         */
         h2Support: string;
-        /**
-         * HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
-         */
         h3Support: string;
-        /**
-         * Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
-         */
         httpCookieAge: number;
-        /**
-         * Domain that HTTP cookie persistence should apply to.
-         */
         httpCookieDomain: string;
-        /**
-         * Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-         */
         httpCookieDomainFromHost: string;
-        /**
-         * Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-         */
         httpCookieGeneration: number;
-        /**
-         * Limit HTTP cookie persistence to the specified path.
-         */
         httpCookiePath: string;
-        /**
-         * Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-         */
         httpCookieShare: string;
-        /**
-         * Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-         */
         httpsCookieSecure: string;
         /**
-         * API Gateway ID.
+         * an identifier for the resource with format {{name}}.
          */
         id: number;
-        /**
-         * Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
-         */
         ldbMethod: string;
-        /**
-         * Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
-         */
         persistence: string;
-        /**
-         * QUIC setting. The structure of `quic` block is documented below.
-         */
         quic: outputs.firewall.AccessproxyApiGateway6Quic;
-        /**
-         * Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
-         */
         realservers?: outputs.firewall.AccessproxyApiGateway6Realserver[];
-        /**
-         * Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
-         */
         samlRedirect: string;
-        /**
-         * SAML service provider configuration for VIP authentication.
-         */
         samlServer: string;
-        /**
-         * Service.
-         */
         service: string;
-        /**
-         * Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
-         */
         sslAlgorithm: string;
-        /**
-         * SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslCipherSuites` block is documented below.
-         */
         sslCipherSuites?: outputs.firewall.AccessproxyApiGateway6SslCipherSuite[];
-        /**
-         * Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-         */
         sslDhBits: string;
-        /**
-         * Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-         */
         sslMaxVersion: string;
-        /**
-         * Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-         */
         sslMinVersion: string;
-        /**
-         * Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
-         */
         sslRenegotiation: string;
-        /**
-         * SSL-VPN web portal.
-         */
         sslVpnWebPortal: string;
-        /**
-         * URL pattern to match.
-         */
         urlMap: string;
-        /**
-         * Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
-         */
         urlMapType: string;
-        /**
-         * Virtual host.
-         */
         virtualHost: string;
     }
 
@@ -5669,9 +5261,6 @@ export namespace firewall {
     }
 
     export interface CentralsnatmapDstAddr6 {
-        /**
-         * Address name.
-         */
         name: string;
     }
 
@@ -5690,9 +5279,6 @@ export namespace firewall {
     }
 
     export interface CentralsnatmapNatIppool6 {
-        /**
-         * Address name.
-         */
         name: string;
     }
 
@@ -5704,9 +5290,6 @@ export namespace firewall {
     }
 
     export interface CentralsnatmapOrigAddr6 {
-        /**
-         * Address name.
-         */
         name: string;
     }
 
@@ -5765,11 +5348,11 @@ export namespace firewall {
          */
         status: string;
         /**
-         * Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+         * Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
          */
         threshold: number;
         /**
-         * Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+         * Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
          */
         thresholddefault: number;
     }
@@ -5825,11 +5408,11 @@ export namespace firewall {
          */
         status: string;
         /**
-         * Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+         * Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
          */
         threshold: number;
         /**
-         * Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+         * Number of detected instances which triggers action (1 - 2147483647, default = 1000). Note that each anomaly has a different threshold value assigned to it. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
          */
         thresholddefault: number;
     }
@@ -8053,17 +7636,11 @@ export namespace firewall {
     }
 
     export interface InternetserviceextensionDisableEntryIp6Range {
-        /**
-         * End IPv6 address.
-         */
         endIp6: string;
         /**
-         * Disable entry ID.
+         * an identifier for the resource with format {{fosid}}.
          */
         id: number;
-        /**
-         * Start IPv6 address.
-         */
         startIp6: string;
     }
 
@@ -8134,9 +7711,6 @@ export namespace firewall {
     }
 
     export interface InternetserviceextensionEntryDst6 {
-        /**
-         * Select the destination address6 or address group object from available options.
-         */
         name: string;
     }
 
@@ -8175,6 +7749,29 @@ export namespace firewall {
 
     export interface Localinpolicy6Dstaddr {
         /**
+         * Custom Internet Service6 group name.
+         */
+        name: string;
+    }
+
+    export interface Localinpolicy6InternetService6SrcCustom {
+        name: string;
+    }
+
+    export interface Localinpolicy6InternetService6SrcCustomGroup {
+        name: string;
+    }
+
+    export interface Localinpolicy6InternetService6SrcGroup {
+        name: string;
+    }
+
+    export interface Localinpolicy6InternetService6SrcName {
+        name: string;
+    }
+
+    export interface Localinpolicy6IntfBlock {
+        /**
          * Address name.
          */
         name: string;
@@ -8195,6 +7792,41 @@ export namespace firewall {
     }
 
     export interface LocalinpolicyDstaddr {
+        /**
+         * Address name.
+         */
+        name: string;
+    }
+
+    export interface LocalinpolicyInternetServiceSrcCustom {
+        /**
+         * Custom Internet Service name.
+         */
+        name: string;
+    }
+
+    export interface LocalinpolicyInternetServiceSrcCustomGroup {
+        /**
+         * Custom Internet Service group name.
+         */
+        name: string;
+    }
+
+    export interface LocalinpolicyInternetServiceSrcGroup {
+        /**
+         * Internet Service group name.
+         */
+        name: string;
+    }
+
+    export interface LocalinpolicyInternetServiceSrcName {
+        /**
+         * Internet Service name.
+         */
+        name: string;
+    }
+
+    export interface LocalinpolicyIntfBlock {
         /**
          * Address name.
          */
@@ -8285,6 +7917,27 @@ export namespace firewall {
          * Source address objects.
          */
         name: string;
+    }
+
+    export interface OndemandsnifferHost {
+        /**
+         * IPv4 or IPv6 host.
+         */
+        host: string;
+    }
+
+    export interface OndemandsnifferPort {
+        /**
+         * Port to filter in this traffic sniffer.
+         */
+        port: number;
+    }
+
+    export interface OndemandsnifferProtocol {
+        /**
+         * Integer value for the protocol type as defined by IANA (0 - 255).
+         */
+        protocol: number;
     }
 
     export interface Policy46Dstaddr {
@@ -9204,45 +8857,15 @@ export namespace firewall {
     }
 
     export interface ProfileprotocoloptionsPop3 {
-        /**
-         * Enable/disable the inspection of all ports for the protocol. Valid values: `enable`, `disable`.
-         */
         inspectAll: string;
-        /**
-         * One or more options that can be applied to the session. Valid values: `oversize`.
-         */
         options: string;
-        /**
-         * Maximum in-memory file size that can be scanned (MB).
-         */
         oversizeLimit: number;
-        /**
-         * Ports to scan for content (1 - 65535, default = 445).
-         */
         ports: number;
-        /**
-         * Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
-         */
         proxyAfterTcpHandshake: string;
-        /**
-         * Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
-         */
         scanBzip2: string;
-        /**
-         * SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
-         */
         sslOffloaded: string;
-        /**
-         * Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
-         */
         status: string;
-        /**
-         * Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
-         */
         uncompressedNestLimit: number;
-        /**
-         * Maximum in-memory uncompressed file size that can be scanned (MB).
-         */
         uncompressedOversizeLimit: number;
     }
 
@@ -10087,7 +9710,7 @@ export namespace firewall {
          */
         status: string;
         /**
-         * Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: packets per second or concurrent session number.
+         * Anomaly threshold. Number of detected instances that triggers the anomaly action. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: packets per minute. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: packets per second or concurrent session number.
          */
         threshold: number;
         /**
@@ -10156,6 +9779,17 @@ export namespace firewall {
          * Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
          */
         untrustedServerCert: string;
+    }
+
+    export interface SslsshprofileEchOuterSni {
+        /**
+         * ClientHelloOuter SNI name.
+         */
+        name: string;
+        /**
+         * ClientHelloOuter SNI to be blocked.
+         */
+        sni: string;
     }
 
     export interface SslsshprofileFtps {
@@ -10246,6 +9880,10 @@ export namespace firewall {
          * Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
          */
         clientCertificate: string;
+        /**
+         * Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
+         */
+        encryptedClientHello: string;
         /**
          * Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
          */
@@ -10372,69 +10010,21 @@ export namespace firewall {
     }
 
     export interface SslsshprofilePop3s {
-        /**
-         * Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
-         */
         certValidationFailure: string;
-        /**
-         * Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
-         */
         certValidationTimeout: string;
-        /**
-         * Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
-         */
         clientCertRequest: string;
-        /**
-         * Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
-         */
         clientCertificate: string;
-        /**
-         * Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
-         */
         expiredServerCert: string;
-        /**
-         * Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
-         */
         invalidServerCert: string;
-        /**
-         * Ports to use for scanning (1 - 65535, default = 443).
-         */
         ports: string;
-        /**
-         * Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
-         */
         proxyAfterTcpHandshake: string;
-        /**
-         * Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
-         */
         revokedServerCert: string;
-        /**
-         * Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
-         */
         sniServerCertCheck: string;
-        /**
-         * Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
-         */
         status: string;
-        /**
-         * Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
-         */
         unsupportedSsl: string;
-        /**
-         * Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
-         */
         unsupportedSslCipher: string;
-        /**
-         * Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
-         */
         unsupportedSslNegotiation: string;
-        /**
-         * Action based on the SSL version used being unsupported.
-         */
         unsupportedSslVersion: string;
-        /**
-         * Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
-         */
         untrustedServerCert: string;
     }
 
@@ -10561,6 +10151,10 @@ export namespace firewall {
          * Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
          */
         clientCertificate: string;
+        /**
+         * Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
+         */
+        encryptedClientHello: string;
         /**
          * Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
          */
@@ -13472,21 +13066,12 @@ export namespace router {
     }
 
     export interface BgpAggregateAddress6 {
-        /**
-         * Enable/disable generate AS set path information. Valid values: `enable`, `disable`.
-         */
         asSet: string;
         /**
-         * ID.
+         * an identifier for the resource.
          */
         id: number;
-        /**
-         * Aggregate IPv6 prefix.
-         */
         prefix6: string;
-        /**
-         * Enable/disable filter more specific routes from updates. Valid values: `enable`, `disable`.
-         */
         summaryOnly: string;
     }
 
@@ -14144,17 +13729,8 @@ export namespace router {
     }
 
     export interface BgpNeighborConditionalAdvertise6 {
-        /**
-         * Name of advertising route map.
-         */
         advertiseRoutemap: string;
-        /**
-         * Name of condition route map.
-         */
         conditionRoutemap: string;
-        /**
-         * Type of condition. Valid values: `exist`, `non-exist`.
-         */
         conditionType: string;
     }
 
@@ -14588,6 +14164,10 @@ export namespace router {
          */
         remoteAs: number;
         /**
+         * BGP filter for remote AS.
+         */
+        remoteAsFilter: string;
+        /**
          * Enable/disable remove private AS number from IPv4 outbound updates. Valid values: `enable`, `disable`.
          */
         removePrivateAs: string;
@@ -14802,20 +14382,14 @@ export namespace router {
 
     export interface BgpNeighborRange6 {
         /**
-         * ID.
+         * an identifier for the resource.
          */
         id: number;
-        /**
-         * Maximum number of neighbors.
-         */
         maxNeighborNum: number;
         /**
          * BGP neighbor group table. The structure of `neighborGroup` block is documented below.
          */
         neighborGroup: string;
-        /**
-         * Aggregate IPv6 prefix.
-         */
         prefix6: string;
     }
 
@@ -14843,25 +14417,16 @@ export namespace router {
     }
 
     export interface BgpNetwork6 {
-        /**
-         * Enable/disable route as backdoor. Valid values: `enable`, `disable`.
-         */
         backdoor: string;
         /**
-         * ID.
+         * an identifier for the resource.
          */
         id: number;
         /**
          * Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
          */
         networkImportCheck: string;
-        /**
-         * Aggregate IPv6 prefix.
-         */
         prefix6: string;
-        /**
-         * Route map of VRF leaking.
-         */
         routeMap: string;
     }
 
@@ -14881,17 +14446,8 @@ export namespace router {
     }
 
     export interface BgpRedistribute6 {
-        /**
-         * Neighbor group name.
-         */
         name: string;
-        /**
-         * Route map of VRF leaking.
-         */
         routeMap?: string;
-        /**
-         * Status Valid values: `enable`, `disable`.
-         */
         status: string;
     }
 
@@ -14927,29 +14483,11 @@ export namespace router {
     }
 
     export interface BgpVrf6 {
-        /**
-         * List of export route target. The structure of `exportRt` block is documented below.
-         */
         exportRts?: outputs.router.BgpVrf6ExportRt[];
-        /**
-         * Import route map.
-         */
         importRouteMap: string;
-        /**
-         * List of import route target. The structure of `importRt` block is documented below.
-         */
         importRts?: outputs.router.BgpVrf6ImportRt[];
-        /**
-         * Target VRF table. The structure of `leakTarget` block is documented below.
-         */
         leakTargets?: outputs.router.BgpVrf6LeakTarget[];
-        /**
-         * Route Distinguisher: AA:NN|A.B.C.D:NN.
-         */
         rd: string;
-        /**
-         * VRF role. Valid values: `standalone`, `ce`, `pe`.
-         */
         role: string;
         /**
          * BGP VRF leaking table. The structure of `vrf` block is documented below.
@@ -15012,9 +14550,6 @@ export namespace router {
     }
 
     export interface BgpVrfLeak6 {
-        /**
-         * Target VRF table. The structure of `target` block is documented below.
-         */
         targets?: outputs.router.BgpVrfLeak6Target[];
         /**
          * BGP VRF leaking table. The structure of `vrf` block is documented below.
@@ -16405,6 +15940,10 @@ export namespace router {
          * AS number of neighbor.
          */
         remoteAs: number;
+        /**
+         * BGP filter for remote AS.
+         */
+        remoteAsFilter: string;
         /**
          * Enable/disable remove private AS number from IPv4 outbound updates.
          */
@@ -19006,29 +18545,11 @@ export namespace router {
     }
 
     export interface IsisRedistribute6 {
-        /**
-         * Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-         */
         level: string;
-        /**
-         * Metric.
-         */
         metric: number;
-        /**
-         * Metric type. Valid values: `external`, `internal`.
-         */
         metricType: string;
-        /**
-         * Protocol name.
-         */
         protocol: string;
-        /**
-         * Route map name.
-         */
         routemap: string;
-        /**
-         * Enable/disable interface for IS-IS. Valid values: `enable`, `disable`.
-         */
         status: string;
     }
 
@@ -19049,16 +18570,10 @@ export namespace router {
 
     export interface IsisSummaryAddress6 {
         /**
-         * isis-net ID.
+         * an identifier for the resource.
          */
         id: number;
-        /**
-         * Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-         */
         level: string;
-        /**
-         * IPv6 prefix.
-         */
         prefix6: string;
     }
 
@@ -19560,85 +19075,28 @@ export namespace router {
     }
 
     export interface Ospf6Ospf6Interface {
-        /**
-         * A.B.C.D, in IPv4 address format.
-         */
         areaId: string;
-        /**
-         * Authentication mode. Valid values: `none`, `ah`, `esp`.
-         */
         authentication: string;
         /**
          * Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `enable`, `disable`.
          */
         bfd: string;
-        /**
-         * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-         */
         cost: number;
-        /**
-         * Dead interval.
-         */
         deadInterval: number;
-        /**
-         * Hello interval.
-         */
         helloInterval: number;
-        /**
-         * Configuration interface name.
-         */
         interface: string;
-        /**
-         * Authentication algorithm. Valid values: `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-         */
         ipsecAuthAlg: string;
-        /**
-         * Encryption algorithm. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`.
-         */
         ipsecEncAlg: string;
-        /**
-         * IPsec authentication and encryption keys. The structure of `ipsecKeys` block is documented below.
-         */
         ipsecKeys?: outputs.router.Ospf6Ospf6InterfaceIpsecKey[];
-        /**
-         * Key roll-over interval.
-         */
         keyRolloverInterval: number;
-        /**
-         * MTU for OSPFv3 packets.
-         */
         mtu: number;
-        /**
-         * Enable/disable ignoring MTU field in DBD packets. Valid values: `enable`, `disable`.
-         */
         mtuIgnore: string;
-        /**
-         * Interface entry name.
-         */
         name: string;
-        /**
-         * OSPFv3 neighbors are used when OSPFv3 runs on non-broadcast media The structure of `neighbor` block is documented below.
-         */
         neighbors?: outputs.router.Ospf6Ospf6InterfaceNeighbor[];
-        /**
-         * Network type. Valid values: `broadcast`, `point-to-point`, `non-broadcast`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-         */
         networkType: string;
-        /**
-         * priority
-         */
         priority: number;
-        /**
-         * Retransmit interval.
-         */
         retransmitInterval: number;
-        /**
-         * Enable/disable OSPF6 routing on this interface. Valid values: `disable`, `enable`.
-         */
         status: string;
-        /**
-         * Transmit delay.
-         */
         transmitDelay: number;
     }
 
@@ -19881,12 +19339,9 @@ export namespace router {
 
     export interface OspfAreaVirtualLinkMd5Key {
         /**
-         * Area entry IP address.
+         * an identifier for the resource.
          */
         id: number;
-        /**
-         * Password for the key.
-         */
         keyString?: string;
     }
 
@@ -20054,12 +19509,9 @@ export namespace router {
 
     export interface OspfOspfInterfaceMd5Key {
         /**
-         * Area entry IP address.
+         * an identifier for the resource.
          */
         id: number;
-        /**
-         * Password for the key.
-         */
         keyString?: string;
     }
 
@@ -20850,17 +20302,8 @@ export namespace router {
         }
 
         export interface NeighborConditionalAdvertise6 {
-            /**
-             * Name of advertising route map.
-             */
             advertiseRoutemap: string;
-            /**
-             * Name of condition route map.
-             */
             conditionRoutemap: string;
-            /**
-             * Type of condition. Valid values: `exist`, `non-exist`.
-             */
             conditionType: string;
         }
 
@@ -21011,6 +20454,14 @@ export namespace switchcontroller {
          * Policy matching MAC address.
          */
         mac: string;
+        /**
+         * Number of days the matched devices will be retained (0 - 120, 0 = always retain).
+         */
+        matchPeriod: number;
+        /**
+         * Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+         */
+        matchType: string;
         /**
          * 802.1x security policy to be applied when using this policy.
          */
@@ -21273,7 +20724,7 @@ export namespace switchcontroller {
          */
         placeType: string;
         /**
-         * Post office box (P.O. box).
+         * Post office box.
          */
         postOfficeBox: string;
         /**
@@ -21340,7 +20791,7 @@ export namespace switchcontroller {
          */
         altitude: string;
         /**
-         * m ( meters), f ( floors). Valid values: `m`, `f`.
+         * Configure the unit for which the altitude is to (m = meters, f = floors of a building). Valid values: `m`, `f`.
          */
         altitudeUnit: string;
         /**
@@ -21348,11 +20799,11 @@ export namespace switchcontroller {
          */
         datum: string;
         /**
-         * Floating point start with ( +/- )  or end with ( N or S ) eg. +/-16.67 or 16.67N.
+         * Floating point starting with +/- or ending with (N or S). For example, +/-16.67 or 16.67N.
          */
         latitude: string;
         /**
-         * Floating point start with ( +/- )  or end with ( E or W ) eg. +/-26.789 or 26.789E.
+         * Floating point starting with +/- or ending with (N or S). For example, +/-26.789 or 26.789E.
          */
         longitude: string;
         /**
@@ -21522,49 +20973,16 @@ export namespace switchcontroller {
     }
 
     export interface ManagedswitchN8021xSettings {
-        /**
-         * Authentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-         */
         linkDownAuth: string;
-        /**
-         * Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
-         */
         localOverride: string;
-        /**
-         * Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
-         */
         mabReauth: string;
-        /**
-         * MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-         */
         macCalledStationDelimiter: string;
-        /**
-         * MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-         */
         macCallingStationDelimiter: string;
-        /**
-         * MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
-         */
         macCase: string;
-        /**
-         * MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-         */
         macPasswordDelimiter: string;
-        /**
-         * MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-         */
         macUsernameDelimiter: string;
-        /**
-         * Maximum number of authentication attempts (0 - 15, default = 3).
-         */
         maxReauthAttempt: number;
-        /**
-         * Reauthentication time interval (1 - 1440 min, default = 60, 0 = disable).
-         */
         reauthPeriod: number;
-        /**
-         * 802.1X Tx period (seconds, default=30).
-         */
         txPeriod: number;
     }
 
@@ -21581,6 +20999,10 @@ export namespace switchcontroller {
          * LACP member select mode. Valid values: `bandwidth`, `count`.
          */
         aggregatorMode: string;
+        /**
+         * Enable/Disable allow ARP monitor. Valid values: `disable`, `enable`.
+         */
+        allowArpMonitor: string;
         /**
          * Configure switch port tagged vlans The structure of `allowedVlans` block is documented below.
          */
@@ -21645,6 +21067,10 @@ export namespace switchcontroller {
          * Switch controller export port to pool-list.
          */
         exportToPoolFlag: number;
+        /**
+         * LACP fallback port.
+         */
+        fallbackPort: string;
         /**
          * FEC capable.
          */
@@ -21830,7 +21256,7 @@ export namespace switchcontroller {
          */
         pauseMeter: number;
         /**
-         * Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
+         * Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
          */
         pauseMeterResume: string;
         /**
@@ -21922,7 +21348,7 @@ export namespace switchcontroller {
          */
         sampleDirection: string;
         /**
-         * sFlow sampler counter polling interval (1 - 255 sec).
+         * sFlow sampling counter polling interval in seconds (0 - 255).
          */
         sflowCounterInterval: number;
         /**
@@ -22010,17 +21436,8 @@ export namespace switchcontroller {
     }
 
     export interface ManagedswitchPortDhcpSnoopOption82Override {
-        /**
-         * Circuit ID string.
-         */
         circuitId: string;
-        /**
-         * Remote ID string.
-         */
         remoteId: string;
-        /**
-         * VLAN name.
-         */
         vlanName: string;
     }
 
@@ -22287,7 +21704,7 @@ export namespace switchcontroller {
          */
         localOverride: string;
         /**
-         * Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+         * Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
          */
         rate: number;
         /**
@@ -22404,7 +21821,7 @@ export namespace switchcontroller {
 
     export interface QuarantineTargetTag {
         /**
-         * Tag string(eg. string1 string2 string3).
+         * Tag string. For example, string1 string2 string3.
          */
         tags: string;
     }
@@ -22633,7 +22050,7 @@ export namespace switchcontroller {
              */
             maxRate: number;
             /**
-             * Maximum rate (%!o(MISSING)f link speed).
+             * Maximum rate (% of link speed).
              */
             maxRatePercent: number;
             /**
@@ -22641,7 +22058,7 @@ export namespace switchcontroller {
              */
             minRate: number;
             /**
-             * Minimum rate (%!o(MISSING)f link speed).
+             * Minimum rate (% of link speed).
              */
             minRatePercent: number;
             /**
@@ -22765,6 +22182,10 @@ export namespace system {
          * DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
          */
         dataLossPrevention: string;
+        /**
+         * DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+         */
+        dlp: string;
         /**
          * DNS Filter profiles and settings. Valid values: `none`, `read`, `read-write`.
          */
@@ -23459,7 +22880,7 @@ export namespace system {
          */
         ipv6: string;
         /**
-         * DNS entry preference, 0 is the highest preference (0 - 65535, default = 10)
+         * DNS entry preference (0 - 65535, highest preference = 0, default = 10).
          */
         preference: number;
         /**
@@ -23593,11 +23014,11 @@ export namespace system {
          */
         serial: string;
         /**
-         * When the upgrade was configured. Format hh:mm yyyy/mm/dd UTC.
+         * Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
          */
         setupTime: string;
         /**
-         * Scheduled time for the upgrade. Format hh:mm yyyy/mm/dd UTC.
+         * Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC).
          */
         time: string;
         /**
@@ -23611,17 +23032,11 @@ export namespace system {
     }
 
     export interface GeoipoverrideIp6Range {
-        /**
-         * Ending IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-         */
         endIp: string;
         /**
-         * ID of individual entry in the IPv6 range table.
+         * an identifier for the resource with format {{name}}.
          */
         id: number;
-        /**
-         * Starting IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-         */
         startIp: string;
     }
 
@@ -23737,6 +23152,10 @@ export namespace system {
          * DLP profiles and settings.
          */
         dataLossPrevention: string;
+        /**
+         * DLP profiles and settings.
+         */
+        dlp: string;
         /**
          * DNS Filter profiles and settings.
          */
@@ -25100,6 +24519,10 @@ export namespace system {
          */
         keyId: number;
         /**
+         * Select NTP authentication type.
+         */
+        keyType: string;
+        /**
          * Enable to use NTPv3 instead of NTPv4.
          */
         ntpv3: string;
@@ -26415,7 +25838,7 @@ export namespace system {
          */
         monitor: string;
         /**
-         * Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+         * Enable and increase the priority of the unit that should always be primary. Valid values: `enable`, `disable`.
          */
         override: string;
         /**
@@ -26814,301 +26237,86 @@ export namespace system {
     }
 
     export interface InterfaceIpv6 {
-        /**
-         * Enable/disable address auto config. Valid values: `enable`, `disable`.
-         */
         autoconf: string;
-        /**
-         * CLI IPv6 connection status.
-         */
         cliConn6Status: number;
-        /**
-         * DHCPv6 client options. Valid values: `rapid`, `iapd`, `iana`.
-         */
         dhcp6ClientOptions: string;
-        /**
-         * DHCPv6 IA-PD list The structure of `dhcp6IapdList` block is documented below.
-         */
         dhcp6IapdLists?: outputs.system.InterfaceIpv6Dhcp6IapdList[];
-        /**
-         * Enable/disable DHCPv6 information request. Valid values: `enable`, `disable`.
-         */
         dhcp6InformationRequest: string;
-        /**
-         * Enable/disable DHCPv6 prefix delegation. Valid values: `enable`, `disable`.
-         */
         dhcp6PrefixDelegation: string;
-        /**
-         * DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
-         */
         dhcp6PrefixHint: string;
-        /**
-         * DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
-         */
         dhcp6PrefixHintPlt: number;
-        /**
-         * DHCPv6 prefix hint valid life time (sec).
-         */
         dhcp6PrefixHintVlt: number;
-        /**
-         * DHCP6 relay interface ID.
-         */
         dhcp6RelayInterfaceId: string;
-        /**
-         * DHCPv6 relay IP address.
-         */
         dhcp6RelayIp: string;
-        /**
-         * Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
-         */
         dhcp6RelayService: string;
-        /**
-         * Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
-         */
         dhcp6RelaySourceInterface: string;
-        /**
-         * IPv6 address used by the DHCP6 relay as its source IP.
-         */
         dhcp6RelaySourceIp: string;
-        /**
-         * DHCPv6 relay type. Valid values: `regular`.
-         */
         dhcp6RelayType: string;
-        /**
-         * Enable/disable sending of ICMPv6 redirects. Valid values: `enable`, `disable`.
-         */
         icmp6SendRedirect: string;
-        /**
-         * IPv6 interface identifier.
-         */
         interfaceIdentifier: string;
-        /**
-         * Primary IPv6 address prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
-         */
         ip6Address: string;
-        /**
-         * Allow management access to the interface.
-         */
         ip6Allowaccess: string;
-        /**
-         * Default life (sec).
-         */
         ip6DefaultLife: number;
-        /**
-         * IAID of obtained delegated-prefix from the upstream interface.
-         */
         ip6DelegatedPrefixIaid: number;
-        /**
-         * Advertised IPv6 delegated prefix list. The structure of `ip6DelegatedPrefixList` block is documented below.
-         */
         ip6DelegatedPrefixLists?: outputs.system.InterfaceIpv6Ip6DelegatedPrefixList[];
-        /**
-         * Enable/disable using the DNS server acquired by DHCP. Valid values: `enable`, `disable`.
-         */
         ip6DnsServerOverride: string;
-        /**
-         * Extra IPv6 address prefixes of interface. The structure of `ip6ExtraAddr` block is documented below.
-         */
         ip6ExtraAddrs?: outputs.system.InterfaceIpv6Ip6ExtraAddr[];
-        /**
-         * Hop limit (0 means unspecified).
-         */
         ip6HopLimit: number;
-        /**
-         * IPv6 link MTU.
-         */
         ip6LinkMtu: number;
-        /**
-         * Enable/disable the managed flag. Valid values: `enable`, `disable`.
-         */
         ip6ManageFlag: string;
-        /**
-         * IPv6 maximum interval (4 to 1800 sec).
-         */
         ip6MaxInterval: number;
-        /**
-         * IPv6 minimum interval (3 to 1350 sec).
-         */
         ip6MinInterval: number;
-        /**
-         * Addressing mode (static, DHCP, delegated). Valid values: `static`, `dhcp`, `pppoe`, `delegated`.
-         */
         ip6Mode: string;
-        /**
-         * Enable/disable the other IPv6 flag. Valid values: `enable`, `disable`.
-         */
         ip6OtherFlag: string;
-        /**
-         * Advertised prefix list. The structure of `ip6PrefixList` block is documented below.
-         */
         ip6PrefixLists?: outputs.system.InterfaceIpv6Ip6PrefixList[];
-        /**
-         * Assigning a prefix from DHCP or RA. Valid values: `dhcp6`, `ra`.
-         */
         ip6PrefixMode: string;
-        /**
-         * IPv6 reachable time (milliseconds; 0 means unspecified).
-         */
         ip6ReachableTime: number;
-        /**
-         * IPv6 retransmit time (milliseconds; 0 means unspecified).
-         */
         ip6RetransTime: number;
-        /**
-         * Enable/disable sending advertisements about the interface. Valid values: `enable`, `disable`.
-         */
         ip6SendAdv: string;
-        /**
-         * Subnet to routing prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
-         */
         ip6Subnet: string;
-        /**
-         * Interface name providing delegated information.
-         */
         ip6UpstreamInterface: string;
-        /**
-         * Neighbor discovery certificate.
-         */
         ndCert: string;
-        /**
-         * Neighbor discovery CGA modifier.
-         */
         ndCgaModifier: string;
-        /**
-         * Neighbor discovery mode. Valid values: `basic`, `SEND-compatible`.
-         */
         ndMode: string;
-        /**
-         * Neighbor discovery security level (0 - 7; 0 = least secure, default = 0).
-         */
         ndSecurityLevel: number;
-        /**
-         * Neighbor discovery timestamp delta value (1 - 3600 sec; default = 300).
-         */
         ndTimestampDelta: number;
-        /**
-         * Neighbor discovery timestamp fuzz factor (1 - 60 sec; default = 1).
-         */
         ndTimestampFuzz: number;
-        /**
-         * Enable/disable sending link MTU in RA packet. Valid values: `enable`, `disable`.
-         */
         raSendMtu: string;
-        /**
-         * Enable/disable unique auto config address. Valid values: `enable`, `disable`.
-         */
         uniqueAutoconfAddr: string;
-        /**
-         * Link-local IPv6 address of virtual router.
-         */
         vrip6LinkLocal: string;
-        /**
-         * IPv6 VRRP configuration. The structure of `vrrp6` block is documented below.
-         *
-         * The `ip6ExtraAddr` block supports:
-         */
         vrrp6s?: outputs.system.InterfaceIpv6Vrrp6[];
-        /**
-         * Enable/disable virtual MAC for VRRP. Valid values: `enable`, `disable`.
-         */
         vrrpVirtualMac6: string;
     }
 
     export interface InterfaceIpv6Dhcp6IapdList {
-        /**
-         * Identity association identifier.
-         */
         iaid: number;
-        /**
-         * DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
-         */
         prefixHint: string;
-        /**
-         * DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
-         */
         prefixHintPlt: number;
-        /**
-         * DHCPv6 prefix hint valid life time (sec).
-         *
-         * The `vrrp6` block supports:
-         */
         prefixHintVlt: number;
     }
 
     export interface InterfaceIpv6Ip6DelegatedPrefixList {
-        /**
-         * Enable/disable the autonomous flag. Valid values: `enable`, `disable`.
-         */
         autonomousFlag: string;
-        /**
-         * IAID of obtained delegated-prefix from the upstream interface.
-         */
         delegatedPrefixIaid: number;
-        /**
-         * Enable/disable the onlink flag. Valid values: `enable`, `disable`.
-         */
         onlinkFlag: string;
-        /**
-         * Prefix ID.
-         */
         prefixId: number;
-        /**
-         * Recursive DNS server option.
-         *
-         * The `dhcp6IapdList` block supports:
-         */
         rdnss: string;
-        /**
-         * Recursive DNS service option. Valid values: `delegated`, `default`, `specify`.
-         */
         rdnssService: string;
-        /**
-         * Add subnet ID to routing prefix.
-         */
         subnet: string;
-        /**
-         * Name of the interface that provides delegated information.
-         */
         upstreamInterface: string;
     }
 
     export interface InterfaceIpv6Ip6ExtraAddr {
-        /**
-         * IPv6 prefix.
-         */
         prefix: string;
     }
 
     export interface InterfaceIpv6Ip6PrefixList {
-        /**
-         * Enable/disable the autonomous flag. Valid values: `enable`, `disable`.
-         */
         autonomousFlag: string;
-        /**
-         * DNS search list option. The structure of `dnssl` block is documented below.
-         */
         dnssls?: outputs.system.InterfaceIpv6Ip6PrefixListDnssl[];
-        /**
-         * Enable/disable the onlink flag. Valid values: `enable`, `disable`.
-         */
         onlinkFlag: string;
-        /**
-         * Preferred life time (sec).
-         */
         preferredLifeTime: number;
-        /**
-         * IPv6 prefix.
-         */
         prefix: string;
-        /**
-         * Recursive DNS server option.
-         *
-         * The `dhcp6IapdList` block supports:
-         */
         rdnss: string;
-        /**
-         * Valid life time (sec).
-         */
         validLifeTime: number;
     }
 
@@ -27122,49 +26330,22 @@ export namespace system {
     }
 
     export interface InterfaceIpv6Vrrp6 {
-        /**
-         * Enable/disable accept mode. Valid values: `enable`, `disable`.
-         */
         acceptMode: string;
-        /**
-         * Advertisement interval (1 - 255 seconds).
-         */
         advInterval: number;
-        /**
-         * Enable/disable ignoring of default route when checking destination. Valid values: `enable`, `disable`.
-         */
         ignoreDefaultRoute: string;
-        /**
-         * Enable/disable preempt mode. Valid values: `enable`, `disable`.
-         */
         preempt: string;
         /**
          * Priority of learned routes.
          */
         priority: number;
-        /**
-         * Startup time (1 - 255 seconds).
-         */
         startTime: number;
         /**
          * Bring the interface up or shut the interface down. Valid values: `up`, `down`.
          */
         status: string;
-        /**
-         * Monitor the route to this destination.
-         */
         vrdst6: string;
-        /**
-         * VRRP group ID (1 - 65535).
-         */
         vrgrp: number;
-        /**
-         * Virtual router identifier (1 - 255).
-         */
         vrid: number;
-        /**
-         * IPv6 address of the virtual router.
-         */
         vrip6: string;
     }
 
@@ -27328,6 +26509,10 @@ export namespace system {
          */
         description: string;
         /**
+         * Configure pool exclude subnets. The structure of `exclude` block is documented below.
+         */
+        excludes?: outputs.system.IpamPoolExclude[];
+        /**
          * IPAM pool name.
          */
         name: string;
@@ -27335,6 +26520,17 @@ export namespace system {
          * Configure IPAM pool subnet, Class A - Class B subnet.
          */
         subnet: string;
+    }
+
+    export interface IpamPoolExclude {
+        /**
+         * Configure subnet to exclude from the IPAM pool.
+         */
+        excludeSubnet: string;
+        /**
+         * Exclude ID.
+         */
+        id: number;
     }
 
     export interface IpamRule {
@@ -27537,13 +26733,17 @@ export namespace system {
          */
         ipType: string;
         /**
-         * Key for MD5/SHA1 authentication.
+         * Key for authentication. On FortiOS versions 6.2.0: MD5(NTPv3)/SHA1(NTPv4). On FortiOS versions >= 7.4.4: MD5(NTPv3)/SHA1(NTPv4)/SHA256(NTPv4).
          */
         key?: string;
         /**
          * Key ID for authentication.
          */
         keyId: number;
+        /**
+         * Select NTP authentication type. Valid values: `MD5`, `SHA1`, `SHA256`.
+         */
+        keyType: string;
         /**
          * Enable to use NTPv3 instead of NTPv4. Valid values: `enable`, `disable`.
          */
@@ -28300,9 +27500,6 @@ export namespace system {
     }
 
     export interface SdwanDuplicationDstaddr6 {
-        /**
-         * Address or address group name.
-         */
         name: string;
     }
 
@@ -28335,9 +27532,6 @@ export namespace system {
     }
 
     export interface SdwanDuplicationSrcaddr6 {
-        /**
-         * Address or address group name.
-         */
         name: string;
     }
 
@@ -28413,7 +27607,7 @@ export namespace system {
          */
         httpMatch: string;
         /**
-         * Status check interval in milliseconds, or the time between attempting to connect to the server (500 - 3600*1000 msec, default = 500).
+         * Status check interval in milliseconds, or the time between attempting to connect to the server (default = 500). On FortiOS versions 6.4.1-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
          */
         interval: number;
         /**
@@ -28429,7 +27623,7 @@ export namespace system {
          */
         name: string;
         /**
-         * Packet size of a twamp test session,
+         * Packet size of a TWAMP test session. (124/158 - 1024)
          */
         packetSize: number;
         /**
@@ -28437,7 +27631,7 @@ export namespace system {
          */
         password?: string;
         /**
-         * Port number used to communicate with the server over the selected protocol (0-65535, default = 0, auto select. http, twamp: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21).
+         * Port number used to communicate with the server over the selected protocol (0 - 65535, default = 0, auto select. http, tcp-connect: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21, twamp: 862).
          */
         port: number;
         /**
@@ -28449,7 +27643,7 @@ export namespace system {
          */
         probePackets: string;
         /**
-         * Time to wait before a probe packet is considered lost (500 - 3600*1000 msec, default = 500).
+         * Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.4.2-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 6.4.1: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
          */
         probeTimeout: number;
         /**
@@ -28614,7 +27808,7 @@ export namespace system {
          */
         preferredSource: string;
         /**
-         * Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
+         * Priority of the interface for IPv4 . Used for SD-WAN rules or priority rules. On FortiOS versions 6.4.1: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535, default = 1.
          */
         priority: number;
         /**
@@ -28669,11 +27863,11 @@ export namespace system {
          */
         ip: string;
         /**
-         * Member sequence number.
+         * Member sequence number. *Due to the data type change of API, for other versions of FortiOS, please check variable `memberBlock`.*
          */
         member: number;
         /**
-         * Member sequence number list. The structure of `memberBlock` block is documented below.
+         * Member sequence number list. *Due to the data type change of API, for other versions of FortiOS, please check variable `member`.* The structure of `memberBlock` block is documented below.
          */
         memberBlocks?: outputs.system.SdwanNeighborMemberBlock[];
         /**
@@ -28976,9 +28170,6 @@ export namespace system {
     }
 
     export interface SdwanServiceDst6 {
-        /**
-         * Address or address group name.
-         */
         name: string;
     }
 
@@ -29092,9 +28283,6 @@ export namespace system {
     }
 
     export interface SdwanServiceSrc6 {
-        /**
-         * Address or address group name.
-         */
         name: string;
     }
 
@@ -29489,7 +28677,7 @@ export namespace system {
          */
         httpMatch: string;
         /**
-         * Status check interval, or the time between attempting to connect to the server (1 - 3600 sec, default = 5).
+         * Status check interval, or the time between attempting to connect to the server. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-6.4.0: 500 - 3600*1000 msec, default = 500.
          */
         interval: number;
         /**
@@ -29670,11 +28858,11 @@ export namespace system {
          */
         status: string;
         /**
-         * Measured volume ratio (this value / sum of all values = percentage of link volume, 0 - 255).
+         * Measured volume ratio (this value / sum of all values = percentage of link volume). On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
          */
         volumeRatio: number;
         /**
-         * Weight of this interface for weighted load balancing. (0 - 255) More traffic is directed to interfaces with higher weights.
+         * Weight of this interface for weighted load balancing. More traffic is directed to interfaces with higher weights. On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
          */
         weight: number;
     }
@@ -29921,9 +29109,6 @@ export namespace system {
     }
 
     export interface VirtualwanlinkServiceDst6 {
-        /**
-         * Address or address group name.
-         */
         name: string;
     }
 
@@ -30030,9 +29215,6 @@ export namespace system {
     }
 
     export interface VirtualwanlinkServiceSrc6 {
-        /**
-         * Address or address group name.
-         */
         name: string;
     }
 
@@ -30067,9 +29249,6 @@ export namespace system {
     }
 
     export interface VxlanRemoteIp6 {
-        /**
-         * IPv6 address.
-         */
         ip6: string;
     }
 
@@ -30954,25 +30133,13 @@ export namespace system {
         }
 
         export interface CommunityHosts6 {
-            /**
-             * Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
-             */
             haDirect: string;
-            /**
-             * Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both. Valid values: `any`, `query`, `trap`.
-             */
             hostType: string;
             /**
-             * Host6 entry ID.
+             * an identifier for the resource with format {{fosid}}.
              */
             id: number;
-            /**
-             * SNMP manager IPv6 address prefix.
-             */
             ipv6: string;
-            /**
-             * Source IPv6 address for SNMP traps.
-             */
             sourceIpv6: string;
         }
 
@@ -31831,7 +30998,7 @@ export namespace voip {
          */
         preserveOverride: string;
         /**
-         * Expiry time for provisional INVITE (10 - 3600 sec).
+         * Expiry time (10-3600, in seconds) for provisional INVITE.
          */
         provisionalInviteExpiryTime: number;
         /**
@@ -32160,32 +31327,20 @@ export namespace vpn {
         }
 
         export interface Phase1Ipv4ExcludeRange {
-            /**
-             * End of IPv6 exclusive range.
-             */
             endIp: string;
             /**
-             * ID.
+             * an identifier for the resource with format {{name}}.
              */
             id: number;
-            /**
-             * Start of IPv6 exclusive range.
-             */
             startIp: string;
         }
 
         export interface Phase1Ipv6ExcludeRange {
-            /**
-             * End of IPv6 exclusive range.
-             */
             endIp: string;
             /**
-             * ID.
+             * an identifier for the resource with format {{name}}.
              */
             id: number;
-            /**
-             * Start of IPv6 exclusive range.
-             */
             startIp: string;
         }
 
@@ -32213,32 +31368,20 @@ export namespace vpn {
         }
 
         export interface Phase1interfaceIpv4ExcludeRange {
-            /**
-             * End of IPv6 exclusive range.
-             */
             endIp: string;
             /**
-             * ID.
+             * an identifier for the resource with format {{name}}.
              */
             id: number;
-            /**
-             * Start of IPv6 exclusive range.
-             */
             startIp: string;
         }
 
         export interface Phase1interfaceIpv6ExcludeRange {
-            /**
-             * End of IPv6 exclusive range.
-             */
             endIp: string;
             /**
-             * ID.
+             * an identifier for the resource with format {{name}}.
              */
             id: number;
-            /**
-             * Start of IPv6 exclusive range.
-             */
             startIp: string;
         }
 
@@ -32448,9 +31591,6 @@ export namespace vpn {
         }
 
         export interface SettingsAuthenticationRuleSourceAddress6 {
-            /**
-             * Group name.
-             */
             name: string;
         }
 
@@ -32476,9 +31616,6 @@ export namespace vpn {
         }
 
         export interface SettingsSourceAddress6 {
-            /**
-             * Group name.
-             */
             name: string;
         }
 
@@ -32497,9 +31634,6 @@ export namespace vpn {
         }
 
         export interface SettingsTunnelIpv6Pool {
-            /**
-             * Group name.
-             */
             name: string;
         }
 
@@ -32535,7 +31669,7 @@ export namespace vpn {
 
             export interface HostchecksoftwareCheckItemListMd5 {
                 /**
-                 * Hex string of MD5 checksum.
+                 * an identifier for the resource with format {{name}}.
                  */
                 id: string;
             }
@@ -32581,7 +31715,7 @@ export namespace vpn {
                  */
                 formDatas?: outputs.vpn.ssl.web.PortalBookmarkGroupBookmarkFormData[];
                 /**
-                 * Screen height (range from 480 - 65535, default = 768).
+                 * Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
                  */
                 height: number;
                 /**
@@ -32621,7 +31755,7 @@ export namespace vpn {
                  */
                 preconnectionBlob?: string;
                 /**
-                 * The numeric ID of the RDP source (0-2147483648).
+                 * The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
                  */
                 preconnectionId: number;
                 /**
@@ -32633,7 +31767,7 @@ export namespace vpn {
                  */
                 restrictedAdmin: string;
                 /**
-                 * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+                 * Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
                  */
                 security: string;
                 /**
@@ -32677,7 +31811,7 @@ export namespace vpn {
                  */
                 vncKeyboardLayout: string;
                 /**
-                 * Screen width (range from 640 - 65535, default = 1024).
+                 * Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
                  */
                 width: number;
             }
@@ -32814,7 +31948,7 @@ export namespace vpn {
                  */
                 dnsServer2: string;
                 /**
-                 * Split DNS domains used for SSL-VPN clients separated by comma(,).
+                 * Split DNS domains used for SSL-VPN clients separated by comma.
                  */
                 domains?: string;
                 /**
@@ -32868,7 +32002,7 @@ export namespace vpn {
                  */
                 formDatas?: outputs.vpn.ssl.web.UserbookmarkBookmarkFormData[];
                 /**
-                 * Screen height (range from 480 - 65535, default = 768).
+                 * Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
                  */
                 height: number;
                 /**
@@ -32908,7 +32042,7 @@ export namespace vpn {
                  */
                 preconnectionBlob?: string;
                 /**
-                 * The numeric ID of the RDP source (0-2147483648).
+                 * The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
                  */
                 preconnectionId: number;
                 /**
@@ -32920,7 +32054,7 @@ export namespace vpn {
                  */
                 restrictedAdmin: string;
                 /**
-                 * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+                 * Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
                  */
                 security: string;
                 /**
@@ -32964,7 +32098,7 @@ export namespace vpn {
                  */
                 vncKeyboardLayout: string;
                 /**
-                 * Screen width (range from 640 - 65535, default = 1024).
+                 * Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
                  */
                 width: number;
             }
@@ -33010,7 +32144,7 @@ export namespace vpn {
                  */
                 formDatas?: outputs.vpn.ssl.web.UsergroupbookmarkBookmarkFormData[];
                 /**
-                 * Screen height (range from 480 - 65535, default = 768).
+                 * Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
                  */
                 height: number;
                 /**
@@ -33050,7 +32184,7 @@ export namespace vpn {
                  */
                 preconnectionBlob?: string;
                 /**
-                 * The numeric ID of the RDP source (0-2147483648).
+                 * The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
                  */
                 preconnectionId: number;
                 /**
@@ -33062,7 +32196,7 @@ export namespace vpn {
                  */
                 restrictedAdmin: string;
                 /**
-                 * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+                 * Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
                  */
                 security: string;
                 /**
@@ -33106,7 +32240,7 @@ export namespace vpn {
                  */
                 vncKeyboardLayout: string;
                 /**
-                 * Screen width (range from 640 - 65535, default = 1024).
+                 * Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
                  */
                 width: number;
             }
@@ -34034,7 +33168,7 @@ export namespace wanopt {
          */
         secureTunnel: string;
         /**
-         * Enable/disable SSL/TLS offloading (hardware acceleration) for HTTPS traffic in this tunnel. Valid values: `enable`, `disable`.
+         * Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `enable`, `disable`.
          */
         ssl: string;
         /**
@@ -34108,7 +33242,7 @@ export namespace wanopt {
          */
         secureTunnel: string;
         /**
-         * Enable/disable SSL/TLS offloading. Valid values: `enable`, `disable`.
+         * Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `enable`, `disable`.
          */
         ssl: string;
         /**
@@ -34178,9 +33312,6 @@ export namespace webproxy {
     }
 
     export interface ExplicitPacPolicySrcaddr6 {
-        /**
-         * Address name.
-         */
         name: string;
     }
 
@@ -34210,9 +33341,6 @@ export namespace webproxy {
     }
 
     export interface GlobalLearnClientIpSrcaddr6 {
-        /**
-         * Address name.
-         */
         name: string;
     }
 
@@ -34454,6 +33582,10 @@ export namespace wirelesscontroller {
          */
         concurrentClients: number;
         /**
+         * Select the type of the key. Valid values: `wpa2-personal`, `wpa3-sae`.
+         */
+        keyType: string;
+        /**
          * MAC address.
          */
         mac: string;
@@ -34469,6 +33601,18 @@ export namespace wirelesscontroller {
          * WPA Pre-shared key.
          */
         passphrase?: string;
+        /**
+         * WPA3 SAE password.
+         */
+        saePassword?: string;
+        /**
+         * Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
+         */
+        saePk: string;
+        /**
+         * Private key used for WPA3 SAE-PK authentication.
+         */
+        saePrivateKey: string;
     }
 
     export interface MpskprofileMpskGroupMpskKeyMpskSchedule {
@@ -34845,81 +33989,24 @@ export namespace wirelesscontroller {
     }
 
     export interface WtpRadio1 {
-        /**
-         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-         */
         autoPowerHigh: number;
-        /**
-         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-         */
         autoPowerLevel: string;
-        /**
-         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-         */
         autoPowerLow: number;
-        /**
-         * The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-         */
         autoPowerTarget: string;
-        /**
-         * WiFi band that Radio 4 operates on.
-         */
         band: string;
-        /**
-         * Selected list of wireless radio channels. The structure of `channel` block is documented below.
-         */
         channels?: outputs.wirelesscontroller.WtpRadio1Channel[];
-        /**
-         * Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-         */
         drmaManualMode: string;
-        /**
-         * Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-         */
         overrideAnalysis: string;
-        /**
-         * Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-         */
         overrideBand: string;
-        /**
-         * Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-         */
         overrideChannel: string;
-        /**
-         * Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-         */
         overrideTxpower: string;
-        /**
-         * Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-         */
         overrideVaps: string;
-        /**
-         * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-         */
         powerLevel: number;
-        /**
-         * Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-         */
         powerMode: string;
-        /**
-         * Radio EIRP power in dBm (1 - 33, default = 27).
-         */
         powerValue: number;
-        /**
-         * radio-id
-         */
         radioId: number;
-        /**
-         * Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-         */
         spectrumAnalysis: string;
-        /**
-         * Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-         */
         vapAll: string;
-        /**
-         * Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-         */
         vaps?: outputs.wirelesscontroller.WtpRadio1Vap[];
     }
 
@@ -34938,81 +34025,24 @@ export namespace wirelesscontroller {
     }
 
     export interface WtpRadio2 {
-        /**
-         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-         */
         autoPowerHigh: number;
-        /**
-         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-         */
         autoPowerLevel: string;
-        /**
-         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-         */
         autoPowerLow: number;
-        /**
-         * The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-         */
         autoPowerTarget: string;
-        /**
-         * WiFi band that Radio 4 operates on.
-         */
         band: string;
-        /**
-         * Selected list of wireless radio channels. The structure of `channel` block is documented below.
-         */
         channels?: outputs.wirelesscontroller.WtpRadio2Channel[];
-        /**
-         * Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-         */
         drmaManualMode: string;
-        /**
-         * Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-         */
         overrideAnalysis: string;
-        /**
-         * Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-         */
         overrideBand: string;
-        /**
-         * Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-         */
         overrideChannel: string;
-        /**
-         * Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-         */
         overrideTxpower: string;
-        /**
-         * Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-         */
         overrideVaps: string;
-        /**
-         * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-         */
         powerLevel: number;
-        /**
-         * Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-         */
         powerMode: string;
-        /**
-         * Radio EIRP power in dBm (1 - 33, default = 27).
-         */
         powerValue: number;
-        /**
-         * radio-id
-         */
         radioId: number;
-        /**
-         * Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-         */
         spectrumAnalysis: string;
-        /**
-         * Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-         */
         vapAll: string;
-        /**
-         * Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-         */
         vaps?: outputs.wirelesscontroller.WtpRadio2Vap[];
     }
 
@@ -35031,77 +34061,23 @@ export namespace wirelesscontroller {
     }
 
     export interface WtpRadio3 {
-        /**
-         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-         */
         autoPowerHigh: number;
-        /**
-         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-         */
         autoPowerLevel: string;
-        /**
-         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-         */
         autoPowerLow: number;
-        /**
-         * The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-         */
         autoPowerTarget: string;
-        /**
-         * WiFi band that Radio 4 operates on.
-         */
         band: string;
-        /**
-         * Selected list of wireless radio channels. The structure of `channel` block is documented below.
-         */
         channels?: outputs.wirelesscontroller.WtpRadio3Channel[];
-        /**
-         * Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-         */
         drmaManualMode: string;
-        /**
-         * Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-         */
         overrideAnalysis: string;
-        /**
-         * Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-         */
         overrideBand: string;
-        /**
-         * Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-         */
         overrideChannel: string;
-        /**
-         * Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-         */
         overrideTxpower: string;
-        /**
-         * Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-         */
         overrideVaps: string;
-        /**
-         * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-         */
         powerLevel: number;
-        /**
-         * Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-         */
         powerMode: string;
-        /**
-         * Radio EIRP power in dBm (1 - 33, default = 27).
-         */
         powerValue: number;
-        /**
-         * Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-         */
         spectrumAnalysis: string;
-        /**
-         * Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-         */
         vapAll: string;
-        /**
-         * Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-         */
         vaps?: outputs.wirelesscontroller.WtpRadio3Vap[];
     }
 
@@ -35120,77 +34096,23 @@ export namespace wirelesscontroller {
     }
 
     export interface WtpRadio4 {
-        /**
-         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-         */
         autoPowerHigh: number;
-        /**
-         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-         */
         autoPowerLevel: string;
-        /**
-         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-         */
         autoPowerLow: number;
-        /**
-         * The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-         */
         autoPowerTarget: string;
-        /**
-         * WiFi band that Radio 4 operates on.
-         */
         band: string;
-        /**
-         * Selected list of wireless radio channels. The structure of `channel` block is documented below.
-         */
         channels?: outputs.wirelesscontroller.WtpRadio4Channel[];
-        /**
-         * Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-         */
         drmaManualMode: string;
-        /**
-         * Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-         */
         overrideAnalysis: string;
-        /**
-         * Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-         */
         overrideBand: string;
-        /**
-         * Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-         */
         overrideChannel: string;
-        /**
-         * Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-         */
         overrideTxpower: string;
-        /**
-         * Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-         */
         overrideVaps: string;
-        /**
-         * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-         */
         powerLevel: number;
-        /**
-         * Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-         */
         powerMode: string;
-        /**
-         * Radio EIRP power in dBm (1 - 33, default = 27).
-         */
         powerValue: number;
-        /**
-         * Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-         */
         spectrumAnalysis: string;
-        /**
-         * Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-         */
         vapAll: string;
-        /**
-         * Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-         */
         vaps?: outputs.wirelesscontroller.WtpRadio4Vap[];
     }
 
@@ -35373,19 +34295,19 @@ export namespace wirelesscontroller {
          */
         aeroscout: string;
         /**
-         * Use BSSID or board MAC address as AP MAC address in the Aeroscout AP message. Valid values: `bssid`, `board-mac`.
+         * Use BSSID or board MAC address as AP MAC address in AeroScout AP messages (default = bssid). Valid values: `bssid`, `board-mac`.
          */
         aeroscoutApMac: string;
         /**
-         * Enable/disable MU compounded report. Valid values: `enable`, `disable`.
+         * Enable/disable compounded AeroScout tag and MU report (default = enable). Valid values: `enable`, `disable`.
          */
         aeroscoutMmuReport: string;
         /**
-         * Enable/disable AeroScout support. Valid values: `enable`, `disable`.
+         * Enable/disable AeroScout Mobile Unit (MU) support (default = disable). Valid values: `enable`, `disable`.
          */
         aeroscoutMu: string;
         /**
-         * AeroScout Mobile Unit (MU) mode dilution factor (default = 20).
+         * eroScout MU mode dilution factor (default = 20).
          */
         aeroscoutMuFactor: number;
         /**
@@ -35401,7 +34323,7 @@ export namespace wirelesscontroller {
          */
         aeroscoutServerPort: number;
         /**
-         * Enable/disable Ekahua blink mode (also called AiRISTA Flow Blink Mode) to find the location of devices connected to a wireless LAN (default = disable). Valid values: `enable`, `disable`.
+         * Enable/disable Ekahau blink mode (now known as AiRISTA Flow) to track and locate WiFi tags (default = disable). Valid values: `enable`, `disable`.
          */
         ekahauBlinkMode: string;
         /**
@@ -35409,11 +34331,11 @@ export namespace wirelesscontroller {
          */
         ekahauTag: string;
         /**
-         * IP address of Ekahua RTLS Controller (ERC).
+         * IP address of Ekahau RTLS Controller (ERC).
          */
         ercServerIp: string;
         /**
-         * Ekahua RTLS Controller (ERC) UDP listening port.
+         * Ekahau RTLS Controller (ERC) UDP listening port.
          */
         ercServerPort: number;
         /**
@@ -35429,7 +34351,7 @@ export namespace wirelesscontroller {
          */
         fortipresenceFrequency: number;
         /**
-         * FortiPresence server UDP listening port (default = 3000).
+         * UDP listening port of FortiPresence server (default = 3000).
          */
         fortipresencePort: number;
         /**
@@ -35541,325 +34463,95 @@ export namespace wirelesscontroller {
     }
 
     export interface WtpprofileRadio1 {
-        /**
-         * Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
-         */
         airtimeFairness: string;
-        /**
-         * Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
-         */
         amsdu: string;
         /**
          * Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
          */
         apHandoff: string;
-        /**
-         * MAC address to monitor.
-         */
         apSnifferAddr: string;
-        /**
-         * Sniffer buffer size (1 - 32 MB, default = 16).
-         */
         apSnifferBufsize: number;
-        /**
-         * Channel on which to operate the sniffer (default = 6).
-         */
         apSnifferChan: number;
-        /**
-         * Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferCtl: string;
-        /**
-         * Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferData: string;
-        /**
-         * Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferMgmtBeacon: string;
-        /**
-         * Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferMgmtOther: string;
-        /**
-         * Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferMgmtProbe: string;
-        /**
-         * Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-         */
         arrpProfile: string;
-        /**
-         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-         */
         autoPowerHigh: number;
-        /**
-         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-         */
         autoPowerLevel: string;
-        /**
-         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-         */
         autoPowerLow: number;
-        /**
-         * The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-         */
         autoPowerTarget: string;
-        /**
-         * WiFi band that Radio 3 operates on.
-         */
         band: string;
-        /**
-         * WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-         */
         band5gType: string;
-        /**
-         * Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-         */
         bandwidthAdmissionControl: string;
-        /**
-         * Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-         */
         bandwidthCapacity: number;
-        /**
-         * Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-         */
         beaconInterval: number;
-        /**
-         * BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-         */
         bssColor: number;
-        /**
-         * BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-         */
         bssColorMode: string;
-        /**
-         * Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-         */
         callAdmissionControl: string;
-        /**
-         * Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-         */
         callCapacity: number;
-        /**
-         * Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-         */
         channelBonding: string;
-        /**
-         * Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-         */
+        channelBondingExt: string;
         channelUtilization: string;
-        /**
-         * Selected list of wireless radio channels. The structure of `channel` block is documented below.
-         */
         channels?: outputs.wirelesscontroller.WtpprofileRadio1Channel[];
-        /**
-         * Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-         */
         coexistence: string;
-        /**
-         * Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-         */
         darrp: string;
-        /**
-         * Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-         */
         drma: string;
-        /**
-         * Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-         */
         drmaSensitivity: string;
-        /**
-         * Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-         */
         dtim: number;
-        /**
-         * Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
-         */
         fragThreshold: number;
         /**
          * Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
          */
         frequencyHandoff: string;
-        /**
-         * Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-         */
         iperfProtocol: string;
-        /**
-         * Iperf service port number.
-         */
         iperfServerPort: number;
         /**
          * Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
          */
         maxClients: number;
-        /**
-         * Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-         */
         maxDistance: number;
-        /**
-         * Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-         */
         mimoMode: string;
-        /**
-         * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-         */
         mode: string;
-        /**
-         * Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-         */
         n80211d: string;
-        /**
-         * Optional antenna used on FAP (default = none).
-         */
         optionalAntenna: string;
-        /**
-         * Optional antenna gain in dBi (0 to 20, default = 0).
-         */
         optionalAntennaGain: string;
-        /**
-         * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-         */
         powerLevel: number;
-        /**
-         * Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-         */
         powerMode: string;
-        /**
-         * Radio EIRP power in dBm (1 - 33, default = 27).
-         */
         powerValue: number;
-        /**
-         * Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-         */
         powersaveOptimize: string;
-        /**
-         * Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-         */
         protectionMode: string;
-        /**
-         * radio-id
-         */
         radioId: number;
-        /**
-         * Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-         */
         rtsThreshold: number;
-        /**
-         * BSSID for WiFi network.
-         */
         samBssid: string;
-        /**
-         * CA certificate for WPA2/WPA3-ENTERPRISE.
-         */
         samCaCertificate: string;
-        /**
-         * Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-         */
         samCaptivePortal: string;
-        /**
-         * Client certificate for WPA2/WPA3-ENTERPRISE.
-         */
         samClientCertificate: string;
-        /**
-         * Failure identification on the page after an incorrect login.
-         */
         samCwpFailureString: string;
-        /**
-         * Identification string from the captive portal login form.
-         */
         samCwpMatchString: string;
-        /**
-         * Password for captive portal authentication.
-         */
         samCwpPassword?: string;
-        /**
-         * Success identification on the page after a successful login.
-         */
         samCwpSuccessString: string;
-        /**
-         * Website the client is trying to access.
-         */
         samCwpTestUrl: string;
-        /**
-         * Username for captive portal authentication.
-         */
         samCwpUsername: string;
-        /**
-         * Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-         */
         samEapMethod: string;
-        /**
-         * Passphrase for WiFi network connection.
-         */
         samPassword?: string;
-        /**
-         * Private key for WPA2/WPA3-ENTERPRISE.
-         */
         samPrivateKey: string;
-        /**
-         * Password for private key file for WPA2/WPA3-ENTERPRISE.
-         */
         samPrivateKeyPassword?: string;
-        /**
-         * SAM report interval (sec), 0 for a one-time report.
-         */
         samReportIntv: number;
-        /**
-         * Select WiFi network security type (default = "wpa-personal").
-         */
         samSecurityType: string;
-        /**
-         * SAM test server domain name.
-         */
         samServerFqdn: string;
-        /**
-         * SAM test server IP address.
-         */
         samServerIp: string;
-        /**
-         * Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-         */
         samServerType: string;
-        /**
-         * SSID for WiFi network.
-         */
         samSsid: string;
-        /**
-         * Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-         */
         samTest: string;
-        /**
-         * Username for WiFi network connection.
-         */
         samUsername: string;
-        /**
-         * Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-         */
         shortGuardInterval: string;
-        /**
-         * Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-         */
         spectrumAnalysis: string;
-        /**
-         * Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-         */
         transmitOptimize: string;
-        /**
-         * Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-         */
         vapAll: string;
-        /**
-         * Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-         */
         vaps?: outputs.wirelesscontroller.WtpprofileRadio1Vap[];
-        /**
-         * Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-         */
         widsProfile: string;
-        /**
-         * Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
-         */
         zeroWaitDfs: string;
     }
 
@@ -35878,325 +34570,95 @@ export namespace wirelesscontroller {
     }
 
     export interface WtpprofileRadio2 {
-        /**
-         * Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
-         */
         airtimeFairness: string;
-        /**
-         * Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
-         */
         amsdu: string;
         /**
          * Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
          */
         apHandoff: string;
-        /**
-         * MAC address to monitor.
-         */
         apSnifferAddr: string;
-        /**
-         * Sniffer buffer size (1 - 32 MB, default = 16).
-         */
         apSnifferBufsize: number;
-        /**
-         * Channel on which to operate the sniffer (default = 6).
-         */
         apSnifferChan: number;
-        /**
-         * Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferCtl: string;
-        /**
-         * Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferData: string;
-        /**
-         * Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferMgmtBeacon: string;
-        /**
-         * Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferMgmtOther: string;
-        /**
-         * Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferMgmtProbe: string;
-        /**
-         * Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-         */
         arrpProfile: string;
-        /**
-         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-         */
         autoPowerHigh: number;
-        /**
-         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-         */
         autoPowerLevel: string;
-        /**
-         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-         */
         autoPowerLow: number;
-        /**
-         * The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-         */
         autoPowerTarget: string;
-        /**
-         * WiFi band that Radio 3 operates on.
-         */
         band: string;
-        /**
-         * WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-         */
         band5gType: string;
-        /**
-         * Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-         */
         bandwidthAdmissionControl: string;
-        /**
-         * Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-         */
         bandwidthCapacity: number;
-        /**
-         * Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-         */
         beaconInterval: number;
-        /**
-         * BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-         */
         bssColor: number;
-        /**
-         * BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-         */
         bssColorMode: string;
-        /**
-         * Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-         */
         callAdmissionControl: string;
-        /**
-         * Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-         */
         callCapacity: number;
-        /**
-         * Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-         */
         channelBonding: string;
-        /**
-         * Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-         */
+        channelBondingExt: string;
         channelUtilization: string;
-        /**
-         * Selected list of wireless radio channels. The structure of `channel` block is documented below.
-         */
         channels?: outputs.wirelesscontroller.WtpprofileRadio2Channel[];
-        /**
-         * Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-         */
         coexistence: string;
-        /**
-         * Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-         */
         darrp: string;
-        /**
-         * Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-         */
         drma: string;
-        /**
-         * Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-         */
         drmaSensitivity: string;
-        /**
-         * Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-         */
         dtim: number;
-        /**
-         * Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
-         */
         fragThreshold: number;
         /**
          * Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
          */
         frequencyHandoff: string;
-        /**
-         * Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-         */
         iperfProtocol: string;
-        /**
-         * Iperf service port number.
-         */
         iperfServerPort: number;
         /**
          * Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
          */
         maxClients: number;
-        /**
-         * Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-         */
         maxDistance: number;
-        /**
-         * Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-         */
         mimoMode: string;
-        /**
-         * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-         */
         mode: string;
-        /**
-         * Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-         */
         n80211d: string;
-        /**
-         * Optional antenna used on FAP (default = none).
-         */
         optionalAntenna: string;
-        /**
-         * Optional antenna gain in dBi (0 to 20, default = 0).
-         */
         optionalAntennaGain: string;
-        /**
-         * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-         */
         powerLevel: number;
-        /**
-         * Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-         */
         powerMode: string;
-        /**
-         * Radio EIRP power in dBm (1 - 33, default = 27).
-         */
         powerValue: number;
-        /**
-         * Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-         */
         powersaveOptimize: string;
-        /**
-         * Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-         */
         protectionMode: string;
-        /**
-         * radio-id
-         */
         radioId: number;
-        /**
-         * Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-         */
         rtsThreshold: number;
-        /**
-         * BSSID for WiFi network.
-         */
         samBssid: string;
-        /**
-         * CA certificate for WPA2/WPA3-ENTERPRISE.
-         */
         samCaCertificate: string;
-        /**
-         * Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-         */
         samCaptivePortal: string;
-        /**
-         * Client certificate for WPA2/WPA3-ENTERPRISE.
-         */
         samClientCertificate: string;
-        /**
-         * Failure identification on the page after an incorrect login.
-         */
         samCwpFailureString: string;
-        /**
-         * Identification string from the captive portal login form.
-         */
         samCwpMatchString: string;
-        /**
-         * Password for captive portal authentication.
-         */
         samCwpPassword?: string;
-        /**
-         * Success identification on the page after a successful login.
-         */
         samCwpSuccessString: string;
-        /**
-         * Website the client is trying to access.
-         */
         samCwpTestUrl: string;
-        /**
-         * Username for captive portal authentication.
-         */
         samCwpUsername: string;
-        /**
-         * Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-         */
         samEapMethod: string;
-        /**
-         * Passphrase for WiFi network connection.
-         */
         samPassword?: string;
-        /**
-         * Private key for WPA2/WPA3-ENTERPRISE.
-         */
         samPrivateKey: string;
-        /**
-         * Password for private key file for WPA2/WPA3-ENTERPRISE.
-         */
         samPrivateKeyPassword?: string;
-        /**
-         * SAM report interval (sec), 0 for a one-time report.
-         */
         samReportIntv: number;
-        /**
-         * Select WiFi network security type (default = "wpa-personal").
-         */
         samSecurityType: string;
-        /**
-         * SAM test server domain name.
-         */
         samServerFqdn: string;
-        /**
-         * SAM test server IP address.
-         */
         samServerIp: string;
-        /**
-         * Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-         */
         samServerType: string;
-        /**
-         * SSID for WiFi network.
-         */
         samSsid: string;
-        /**
-         * Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-         */
         samTest: string;
-        /**
-         * Username for WiFi network connection.
-         */
         samUsername: string;
-        /**
-         * Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-         */
         shortGuardInterval: string;
-        /**
-         * Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-         */
         spectrumAnalysis: string;
-        /**
-         * Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-         */
         transmitOptimize: string;
-        /**
-         * Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-         */
         vapAll: string;
-        /**
-         * Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-         */
         vaps?: outputs.wirelesscontroller.WtpprofileRadio2Vap[];
-        /**
-         * Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-         */
         widsProfile: string;
-        /**
-         * Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
-         */
         zeroWaitDfs: string;
     }
 
@@ -36215,321 +34677,94 @@ export namespace wirelesscontroller {
     }
 
     export interface WtpprofileRadio3 {
-        /**
-         * Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
-         */
         airtimeFairness: string;
-        /**
-         * Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
-         */
         amsdu: string;
         /**
          * Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
          */
         apHandoff: string;
-        /**
-         * MAC address to monitor.
-         */
         apSnifferAddr: string;
-        /**
-         * Sniffer buffer size (1 - 32 MB, default = 16).
-         */
         apSnifferBufsize: number;
-        /**
-         * Channel on which to operate the sniffer (default = 6).
-         */
         apSnifferChan: number;
-        /**
-         * Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferCtl: string;
-        /**
-         * Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferData: string;
-        /**
-         * Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferMgmtBeacon: string;
-        /**
-         * Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferMgmtOther: string;
-        /**
-         * Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferMgmtProbe: string;
-        /**
-         * Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-         */
         arrpProfile: string;
-        /**
-         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-         */
         autoPowerHigh: number;
-        /**
-         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-         */
         autoPowerLevel: string;
-        /**
-         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-         */
         autoPowerLow: number;
-        /**
-         * The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-         */
         autoPowerTarget: string;
-        /**
-         * WiFi band that Radio 3 operates on.
-         */
         band: string;
-        /**
-         * WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-         */
         band5gType: string;
-        /**
-         * Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-         */
         bandwidthAdmissionControl: string;
-        /**
-         * Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-         */
         bandwidthCapacity: number;
-        /**
-         * Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-         */
         beaconInterval: number;
-        /**
-         * BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-         */
         bssColor: number;
-        /**
-         * BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-         */
         bssColorMode: string;
-        /**
-         * Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-         */
         callAdmissionControl: string;
-        /**
-         * Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-         */
         callCapacity: number;
-        /**
-         * Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-         */
         channelBonding: string;
-        /**
-         * Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-         */
+        channelBondingExt: string;
         channelUtilization: string;
-        /**
-         * Selected list of wireless radio channels. The structure of `channel` block is documented below.
-         */
         channels?: outputs.wirelesscontroller.WtpprofileRadio3Channel[];
-        /**
-         * Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-         */
         coexistence: string;
-        /**
-         * Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-         */
         darrp: string;
-        /**
-         * Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-         */
         drma: string;
-        /**
-         * Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-         */
         drmaSensitivity: string;
-        /**
-         * Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-         */
         dtim: number;
-        /**
-         * Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
-         */
         fragThreshold: number;
         /**
          * Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
          */
         frequencyHandoff: string;
-        /**
-         * Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-         */
         iperfProtocol: string;
-        /**
-         * Iperf service port number.
-         */
         iperfServerPort: number;
         /**
          * Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
          */
         maxClients: number;
-        /**
-         * Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-         */
         maxDistance: number;
-        /**
-         * Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-         */
         mimoMode: string;
-        /**
-         * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-         */
         mode: string;
-        /**
-         * Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-         */
         n80211d: string;
-        /**
-         * Optional antenna used on FAP (default = none).
-         */
         optionalAntenna: string;
-        /**
-         * Optional antenna gain in dBi (0 to 20, default = 0).
-         */
         optionalAntennaGain: string;
-        /**
-         * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-         */
         powerLevel: number;
-        /**
-         * Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-         */
         powerMode: string;
-        /**
-         * Radio EIRP power in dBm (1 - 33, default = 27).
-         */
         powerValue: number;
-        /**
-         * Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-         */
         powersaveOptimize: string;
-        /**
-         * Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-         */
         protectionMode: string;
-        /**
-         * Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-         */
         rtsThreshold: number;
-        /**
-         * BSSID for WiFi network.
-         */
         samBssid: string;
-        /**
-         * CA certificate for WPA2/WPA3-ENTERPRISE.
-         */
         samCaCertificate: string;
-        /**
-         * Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-         */
         samCaptivePortal: string;
-        /**
-         * Client certificate for WPA2/WPA3-ENTERPRISE.
-         */
         samClientCertificate: string;
-        /**
-         * Failure identification on the page after an incorrect login.
-         */
         samCwpFailureString: string;
-        /**
-         * Identification string from the captive portal login form.
-         */
         samCwpMatchString: string;
-        /**
-         * Password for captive portal authentication.
-         */
         samCwpPassword?: string;
-        /**
-         * Success identification on the page after a successful login.
-         */
         samCwpSuccessString: string;
-        /**
-         * Website the client is trying to access.
-         */
         samCwpTestUrl: string;
-        /**
-         * Username for captive portal authentication.
-         */
         samCwpUsername: string;
-        /**
-         * Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-         */
         samEapMethod: string;
-        /**
-         * Passphrase for WiFi network connection.
-         */
         samPassword?: string;
-        /**
-         * Private key for WPA2/WPA3-ENTERPRISE.
-         */
         samPrivateKey: string;
-        /**
-         * Password for private key file for WPA2/WPA3-ENTERPRISE.
-         */
         samPrivateKeyPassword?: string;
-        /**
-         * SAM report interval (sec), 0 for a one-time report.
-         */
         samReportIntv: number;
-        /**
-         * Select WiFi network security type (default = "wpa-personal").
-         */
         samSecurityType: string;
-        /**
-         * SAM test server domain name.
-         */
         samServerFqdn: string;
-        /**
-         * SAM test server IP address.
-         */
         samServerIp: string;
-        /**
-         * Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-         */
         samServerType: string;
-        /**
-         * SSID for WiFi network.
-         */
         samSsid: string;
-        /**
-         * Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-         */
         samTest: string;
-        /**
-         * Username for WiFi network connection.
-         */
         samUsername: string;
-        /**
-         * Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-         */
         shortGuardInterval: string;
-        /**
-         * Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-         */
         spectrumAnalysis: string;
-        /**
-         * Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-         */
         transmitOptimize: string;
-        /**
-         * Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-         */
         vapAll: string;
-        /**
-         * Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-         */
         vaps?: outputs.wirelesscontroller.WtpprofileRadio3Vap[];
-        /**
-         * Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-         */
         widsProfile: string;
-        /**
-         * Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
-         */
         zeroWaitDfs: string;
     }
 
@@ -36548,321 +34783,94 @@ export namespace wirelesscontroller {
     }
 
     export interface WtpprofileRadio4 {
-        /**
-         * Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
-         */
         airtimeFairness: string;
-        /**
-         * Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
-         */
         amsdu: string;
         /**
          * Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
          */
         apHandoff: string;
-        /**
-         * MAC address to monitor.
-         */
         apSnifferAddr: string;
-        /**
-         * Sniffer buffer size (1 - 32 MB, default = 16).
-         */
         apSnifferBufsize: number;
-        /**
-         * Channel on which to operate the sniffer (default = 6).
-         */
         apSnifferChan: number;
-        /**
-         * Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferCtl: string;
-        /**
-         * Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferData: string;
-        /**
-         * Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferMgmtBeacon: string;
-        /**
-         * Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferMgmtOther: string;
-        /**
-         * Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-         */
         apSnifferMgmtProbe: string;
-        /**
-         * Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-         */
         arrpProfile: string;
-        /**
-         * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-         */
         autoPowerHigh: number;
-        /**
-         * Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-         */
         autoPowerLevel: string;
-        /**
-         * The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-         */
         autoPowerLow: number;
-        /**
-         * The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-         */
         autoPowerTarget: string;
-        /**
-         * WiFi band that Radio 3 operates on.
-         */
         band: string;
-        /**
-         * WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-         */
         band5gType: string;
-        /**
-         * Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-         */
         bandwidthAdmissionControl: string;
-        /**
-         * Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-         */
         bandwidthCapacity: number;
-        /**
-         * Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-         */
         beaconInterval: number;
-        /**
-         * BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-         */
         bssColor: number;
-        /**
-         * BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-         */
         bssColorMode: string;
-        /**
-         * Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-         */
         callAdmissionControl: string;
-        /**
-         * Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-         */
         callCapacity: number;
-        /**
-         * Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-         */
         channelBonding: string;
-        /**
-         * Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-         */
+        channelBondingExt: string;
         channelUtilization: string;
-        /**
-         * Selected list of wireless radio channels. The structure of `channel` block is documented below.
-         */
         channels?: outputs.wirelesscontroller.WtpprofileRadio4Channel[];
-        /**
-         * Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-         */
         coexistence: string;
-        /**
-         * Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-         */
         darrp: string;
-        /**
-         * Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-         */
         drma: string;
-        /**
-         * Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-         */
         drmaSensitivity: string;
-        /**
-         * Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-         */
         dtim: number;
-        /**
-         * Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
-         */
         fragThreshold: number;
         /**
          * Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
          */
         frequencyHandoff: string;
-        /**
-         * Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-         */
         iperfProtocol: string;
-        /**
-         * Iperf service port number.
-         */
         iperfServerPort: number;
         /**
          * Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
          */
         maxClients: number;
-        /**
-         * Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-         */
         maxDistance: number;
-        /**
-         * Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-         */
         mimoMode: string;
-        /**
-         * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-         */
         mode: string;
-        /**
-         * Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-         */
         n80211d: string;
-        /**
-         * Optional antenna used on FAP (default = none).
-         */
         optionalAntenna: string;
-        /**
-         * Optional antenna gain in dBi (0 to 20, default = 0).
-         */
         optionalAntennaGain: string;
-        /**
-         * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-         */
         powerLevel: number;
-        /**
-         * Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-         */
         powerMode: string;
-        /**
-         * Radio EIRP power in dBm (1 - 33, default = 27).
-         */
         powerValue: number;
-        /**
-         * Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-         */
         powersaveOptimize: string;
-        /**
-         * Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-         */
         protectionMode: string;
-        /**
-         * Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-         */
         rtsThreshold: number;
-        /**
-         * BSSID for WiFi network.
-         */
         samBssid: string;
-        /**
-         * CA certificate for WPA2/WPA3-ENTERPRISE.
-         */
         samCaCertificate: string;
-        /**
-         * Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-         */
         samCaptivePortal: string;
-        /**
-         * Client certificate for WPA2/WPA3-ENTERPRISE.
-         */
         samClientCertificate: string;
-        /**
-         * Failure identification on the page after an incorrect login.
-         */
         samCwpFailureString: string;
-        /**
-         * Identification string from the captive portal login form.
-         */
         samCwpMatchString: string;
-        /**
-         * Password for captive portal authentication.
-         */
         samCwpPassword?: string;
-        /**
-         * Success identification on the page after a successful login.
-         */
         samCwpSuccessString: string;
-        /**
-         * Website the client is trying to access.
-         */
         samCwpTestUrl: string;
-        /**
-         * Username for captive portal authentication.
-         */
         samCwpUsername: string;
-        /**
-         * Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-         */
         samEapMethod: string;
-        /**
-         * Passphrase for WiFi network connection.
-         */
         samPassword?: string;
-        /**
-         * Private key for WPA2/WPA3-ENTERPRISE.
-         */
         samPrivateKey: string;
-        /**
-         * Password for private key file for WPA2/WPA3-ENTERPRISE.
-         */
         samPrivateKeyPassword?: string;
-        /**
-         * SAM report interval (sec), 0 for a one-time report.
-         */
         samReportIntv: number;
-        /**
-         * Select WiFi network security type (default = "wpa-personal").
-         */
         samSecurityType: string;
-        /**
-         * SAM test server domain name.
-         */
         samServerFqdn: string;
-        /**
-         * SAM test server IP address.
-         */
         samServerIp: string;
-        /**
-         * Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-         */
         samServerType: string;
-        /**
-         * SSID for WiFi network.
-         */
         samSsid: string;
-        /**
-         * Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-         */
         samTest: string;
-        /**
-         * Username for WiFi network connection.
-         */
         samUsername: string;
-        /**
-         * Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-         */
         shortGuardInterval: string;
-        /**
-         * Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-         */
         spectrumAnalysis: string;
-        /**
-         * Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-         */
         transmitOptimize: string;
-        /**
-         * Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-         */
         vapAll: string;
-        /**
-         * Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-         */
         vaps?: outputs.wirelesscontroller.WtpprofileRadio4Vap[];
-        /**
-         * Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-         */
         widsProfile: string;
-        /**
-         * Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
-         */
         zeroWaitDfs: string;
     }
 

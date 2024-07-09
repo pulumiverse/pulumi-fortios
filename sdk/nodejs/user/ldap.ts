@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -33,7 +32,6 @@ import * as utilities from "../utilities";
  *     type: "simple",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -82,7 +80,7 @@ export class Ldap extends pulumi.CustomResource {
     }
 
     /**
-     * Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+     * Define subject identity field in certificate for user access right checking.
      */
     public readonly accountKeyCertField!: pulumi.Output<string>;
     /**
@@ -210,6 +208,10 @@ export class Ldap extends pulumi.CustomResource {
      */
     public readonly sslMinProtoVersion!: pulumi.Output<string>;
     /**
+     * Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+     */
+    public readonly statusTtl!: pulumi.Output<number>;
+    /**
      * Tertiary LDAP server CN domain name or IP.
      */
     public readonly tertiaryServer!: pulumi.Output<string>;
@@ -244,7 +246,7 @@ export class Ldap extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Ldap resource with the given unique name, arguments, and options.
@@ -291,6 +293,7 @@ export class Ldap extends pulumi.CustomResource {
             resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
             resourceInputs["sourcePort"] = state ? state.sourcePort : undefined;
             resourceInputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
+            resourceInputs["statusTtl"] = state ? state.statusTtl : undefined;
             resourceInputs["tertiaryServer"] = state ? state.tertiaryServer : undefined;
             resourceInputs["twoFactor"] = state ? state.twoFactor : undefined;
             resourceInputs["twoFactorAuthentication"] = state ? state.twoFactorAuthentication : undefined;
@@ -340,6 +343,7 @@ export class Ldap extends pulumi.CustomResource {
             resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
             resourceInputs["sourcePort"] = args ? args.sourcePort : undefined;
             resourceInputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
+            resourceInputs["statusTtl"] = args ? args.statusTtl : undefined;
             resourceInputs["tertiaryServer"] = args ? args.tertiaryServer : undefined;
             resourceInputs["twoFactor"] = args ? args.twoFactor : undefined;
             resourceInputs["twoFactorAuthentication"] = args ? args.twoFactorAuthentication : undefined;
@@ -362,7 +366,7 @@ export class Ldap extends pulumi.CustomResource {
  */
 export interface LdapState {
     /**
-     * Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+     * Define subject identity field in certificate for user access right checking.
      */
     accountKeyCertField?: pulumi.Input<string>;
     /**
@@ -490,6 +494,10 @@ export interface LdapState {
      */
     sslMinProtoVersion?: pulumi.Input<string>;
     /**
+     * Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+     */
+    statusTtl?: pulumi.Input<number>;
+    /**
      * Tertiary LDAP server CN domain name or IP.
      */
     tertiaryServer?: pulumi.Input<string>;
@@ -532,7 +540,7 @@ export interface LdapState {
  */
 export interface LdapArgs {
     /**
-     * Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+     * Define subject identity field in certificate for user access right checking.
      */
     accountKeyCertField?: pulumi.Input<string>;
     /**
@@ -659,6 +667,10 @@ export interface LdapArgs {
      * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
      */
     sslMinProtoVersion?: pulumi.Input<string>;
+    /**
+     * Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+     */
+    statusTtl?: pulumi.Input<number>;
     /**
      * Tertiary LDAP server CN domain name or IP.
      */

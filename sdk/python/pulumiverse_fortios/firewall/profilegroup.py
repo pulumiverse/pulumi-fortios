@@ -863,7 +863,6 @@ class Profilegroup(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -872,7 +871,6 @@ class Profilegroup(pulumi.CustomResource):
             profile_protocol_options="default",
             ssl_ssh_profile="deep-inspection")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -931,7 +929,6 @@ class Profilegroup(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -940,7 +937,6 @@ class Profilegroup(pulumi.CustomResource):
             profile_protocol_options="default",
             ssl_ssh_profile="deep-inspection")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1287,7 +1283,7 @@ class Profilegroup(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

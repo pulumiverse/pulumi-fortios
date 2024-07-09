@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -55,7 +54,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -105,15 +103,15 @@ type Setting struct {
 	CheckCaChain pulumi.StringOutput `pulumi:"checkCaChain"`
 	// Enable/disable server certificate key usage checking in CMP mode (default = enable). Valid values: `enable`, `disable`.
 	CmpKeyUsageChecking pulumi.StringOutput `pulumi:"cmpKeyUsageChecking"`
-	// Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
+	// Enable/disable saving extra certificates in CMP mode (default = disable). Valid values: `enable`, `disable`.
 	CmpSaveExtraCerts pulumi.StringOutput `pulumi:"cmpSaveExtraCerts"`
-	// When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+	// When searching for a matching certificate, allow multiple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
 	CnAllowMulti pulumi.StringOutput `pulumi:"cnAllowMulti"`
-	// When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+	// When searching for a matching certificate, control how to do CN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
 	CnMatch pulumi.StringOutput `pulumi:"cnMatch"`
 	// CRL verification options. The structure of `crlVerification` block is documented below.
 	CrlVerification SettingCrlVerificationOutput `pulumi:"crlVerification"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringOutput `pulumi:"interface"`
@@ -143,12 +141,12 @@ type Setting struct {
 	StrictCrlCheck pulumi.StringOutput `pulumi:"strictCrlCheck"`
 	// Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
 	StrictOcspCheck pulumi.StringOutput `pulumi:"strictOcspCheck"`
-	// When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+	// When searching for a matching certificate, control how to do RDN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
 	SubjectMatch pulumi.StringOutput `pulumi:"subjectMatch"`
 	// When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
 	SubjectSet pulumi.StringOutput `pulumi:"subjectSet"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewSetting registers a new resource with the given unique name, arguments, and options.
@@ -227,15 +225,15 @@ type settingState struct {
 	CheckCaChain *string `pulumi:"checkCaChain"`
 	// Enable/disable server certificate key usage checking in CMP mode (default = enable). Valid values: `enable`, `disable`.
 	CmpKeyUsageChecking *string `pulumi:"cmpKeyUsageChecking"`
-	// Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
+	// Enable/disable saving extra certificates in CMP mode (default = disable). Valid values: `enable`, `disable`.
 	CmpSaveExtraCerts *string `pulumi:"cmpSaveExtraCerts"`
-	// When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+	// When searching for a matching certificate, allow multiple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
 	CnAllowMulti *string `pulumi:"cnAllowMulti"`
-	// When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+	// When searching for a matching certificate, control how to do CN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
 	CnMatch *string `pulumi:"cnMatch"`
 	// CRL verification options. The structure of `crlVerification` block is documented below.
 	CrlVerification *SettingCrlVerification `pulumi:"crlVerification"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
@@ -265,7 +263,7 @@ type settingState struct {
 	StrictCrlCheck *string `pulumi:"strictCrlCheck"`
 	// Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
 	StrictOcspCheck *string `pulumi:"strictOcspCheck"`
-	// When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+	// When searching for a matching certificate, control how to do RDN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
 	SubjectMatch *string `pulumi:"subjectMatch"`
 	// When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
 	SubjectSet *string `pulumi:"subjectSet"`
@@ -302,15 +300,15 @@ type SettingState struct {
 	CheckCaChain pulumi.StringPtrInput
 	// Enable/disable server certificate key usage checking in CMP mode (default = enable). Valid values: `enable`, `disable`.
 	CmpKeyUsageChecking pulumi.StringPtrInput
-	// Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
+	// Enable/disable saving extra certificates in CMP mode (default = disable). Valid values: `enable`, `disable`.
 	CmpSaveExtraCerts pulumi.StringPtrInput
-	// When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+	// When searching for a matching certificate, allow multiple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
 	CnAllowMulti pulumi.StringPtrInput
-	// When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+	// When searching for a matching certificate, control how to do CN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
 	CnMatch pulumi.StringPtrInput
 	// CRL verification options. The structure of `crlVerification` block is documented below.
 	CrlVerification SettingCrlVerificationPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
@@ -340,7 +338,7 @@ type SettingState struct {
 	StrictCrlCheck pulumi.StringPtrInput
 	// Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
 	StrictOcspCheck pulumi.StringPtrInput
-	// When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+	// When searching for a matching certificate, control how to do RDN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
 	SubjectMatch pulumi.StringPtrInput
 	// When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
 	SubjectSet pulumi.StringPtrInput
@@ -381,15 +379,15 @@ type settingArgs struct {
 	CheckCaChain *string `pulumi:"checkCaChain"`
 	// Enable/disable server certificate key usage checking in CMP mode (default = enable). Valid values: `enable`, `disable`.
 	CmpKeyUsageChecking *string `pulumi:"cmpKeyUsageChecking"`
-	// Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
+	// Enable/disable saving extra certificates in CMP mode (default = disable). Valid values: `enable`, `disable`.
 	CmpSaveExtraCerts *string `pulumi:"cmpSaveExtraCerts"`
-	// When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+	// When searching for a matching certificate, allow multiple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
 	CnAllowMulti *string `pulumi:"cnAllowMulti"`
-	// When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+	// When searching for a matching certificate, control how to do CN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
 	CnMatch *string `pulumi:"cnMatch"`
 	// CRL verification options. The structure of `crlVerification` block is documented below.
 	CrlVerification *SettingCrlVerification `pulumi:"crlVerification"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
@@ -419,7 +417,7 @@ type settingArgs struct {
 	StrictCrlCheck *string `pulumi:"strictCrlCheck"`
 	// Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
 	StrictOcspCheck *string `pulumi:"strictOcspCheck"`
-	// When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+	// When searching for a matching certificate, control how to do RDN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
 	SubjectMatch *string `pulumi:"subjectMatch"`
 	// When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
 	SubjectSet *string `pulumi:"subjectSet"`
@@ -457,15 +455,15 @@ type SettingArgs struct {
 	CheckCaChain pulumi.StringPtrInput
 	// Enable/disable server certificate key usage checking in CMP mode (default = enable). Valid values: `enable`, `disable`.
 	CmpKeyUsageChecking pulumi.StringPtrInput
-	// Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
+	// Enable/disable saving extra certificates in CMP mode (default = disable). Valid values: `enable`, `disable`.
 	CmpSaveExtraCerts pulumi.StringPtrInput
-	// When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+	// When searching for a matching certificate, allow multiple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
 	CnAllowMulti pulumi.StringPtrInput
-	// When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+	// When searching for a matching certificate, control how to do CN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
 	CnMatch pulumi.StringPtrInput
 	// CRL verification options. The structure of `crlVerification` block is documented below.
 	CrlVerification SettingCrlVerificationPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
@@ -495,7 +493,7 @@ type SettingArgs struct {
 	StrictCrlCheck pulumi.StringPtrInput
 	// Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
 	StrictOcspCheck pulumi.StringPtrInput
-	// When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+	// When searching for a matching certificate, control how to do RDN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
 	SubjectMatch pulumi.StringPtrInput
 	// When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
 	SubjectSet pulumi.StringPtrInput
@@ -660,17 +658,17 @@ func (o SettingOutput) CmpKeyUsageChecking() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.CmpKeyUsageChecking }).(pulumi.StringOutput)
 }
 
-// Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
+// Enable/disable saving extra certificates in CMP mode (default = disable). Valid values: `enable`, `disable`.
 func (o SettingOutput) CmpSaveExtraCerts() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.CmpSaveExtraCerts }).(pulumi.StringOutput)
 }
 
-// When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+// When searching for a matching certificate, allow multiple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
 func (o SettingOutput) CnAllowMulti() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.CnAllowMulti }).(pulumi.StringOutput)
 }
 
-// When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+// When searching for a matching certificate, control how to do CN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
 func (o SettingOutput) CnMatch() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.CnMatch }).(pulumi.StringOutput)
 }
@@ -680,7 +678,7 @@ func (o SettingOutput) CrlVerification() SettingCrlVerificationOutput {
 	return o.ApplyT(func(v *Setting) SettingCrlVerificationOutput { return v.CrlVerification }).(SettingCrlVerificationOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o SettingOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -755,7 +753,7 @@ func (o SettingOutput) StrictOcspCheck() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.StrictOcspCheck }).(pulumi.StringOutput)
 }
 
-// When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+// When searching for a matching certificate, control how to do RDN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
 func (o SettingOutput) SubjectMatch() pulumi.StringOutput {
 	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.SubjectMatch }).(pulumi.StringOutput)
 }
@@ -766,8 +764,8 @@ func (o SettingOutput) SubjectSet() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SettingOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Setting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SettingOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type SettingArrayOutput struct{ *pulumi.OutputState }

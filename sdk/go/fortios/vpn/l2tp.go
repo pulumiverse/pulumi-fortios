@@ -53,7 +53,7 @@ type L2tp struct {
 	// User group.
 	Usrgrp pulumi.StringOutput `pulumi:"usrgrp"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewL2tp registers a new resource with the given unique name, arguments, and options.
@@ -318,8 +318,8 @@ func (o L2tpOutput) Usrgrp() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o L2tpOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *L2tp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o L2tpOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *L2tp) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type L2tpArrayOutput struct{ *pulumi.OutputState }

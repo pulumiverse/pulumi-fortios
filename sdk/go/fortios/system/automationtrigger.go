@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,7 +44,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -85,15 +83,15 @@ type Automationtrigger struct {
 	FazEventTags pulumi.StringPtrOutput `pulumi:"fazEventTags"`
 	// Customized trigger field settings. The structure of `fields` block is documented below.
 	Fields AutomationtriggerFieldArrayOutput `pulumi:"fields"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// IOC threat level. Valid values: `medium`, `high`.
 	IocLevel pulumi.StringOutput `pulumi:"iocLevel"`
 	// License type.
 	LicenseType pulumi.StringOutput `pulumi:"licenseType"`
-	// Log ID to trigger event.
+	// Log ID to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logidBlock`.*
 	Logid pulumi.IntOutput `pulumi:"logid"`
-	// Log IDs to trigger event. The structure of `logidBlock` block is documented below.
+	// Log IDs to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid`.* The structure of `logidBlock` block is documented below.
 	LogidBlocks AutomationtriggerLogidBlockArrayOutput `pulumi:"logidBlocks"`
 	// Name.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -109,14 +107,14 @@ type Automationtrigger struct {
 	TriggerFrequency pulumi.StringOutput `pulumi:"triggerFrequency"`
 	// Hour of the day on which to trigger (0 - 23, default = 1).
 	TriggerHour pulumi.IntOutput `pulumi:"triggerHour"`
-	// Minute of the hour on which to trigger (0 - 59, 60 to randomize).
+	// Minute of the hour on which to trigger (0 - 59, default = 0).
 	TriggerMinute pulumi.IntOutput `pulumi:"triggerMinute"`
 	// Trigger type. Valid values: `event-based`, `scheduled`.
 	TriggerType pulumi.StringOutput `pulumi:"triggerType"`
 	// Day of week for trigger. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 	TriggerWeekday pulumi.StringOutput `pulumi:"triggerWeekday"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Virtual domain(s) that this trigger is valid for. The structure of `vdom` block is documented below.
 	Vdoms AutomationtriggerVdomArrayOutput `pulumi:"vdoms"`
 }
@@ -169,15 +167,15 @@ type automationtriggerState struct {
 	FazEventTags *string `pulumi:"fazEventTags"`
 	// Customized trigger field settings. The structure of `fields` block is documented below.
 	Fields []AutomationtriggerField `pulumi:"fields"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// IOC threat level. Valid values: `medium`, `high`.
 	IocLevel *string `pulumi:"iocLevel"`
 	// License type.
 	LicenseType *string `pulumi:"licenseType"`
-	// Log ID to trigger event.
+	// Log ID to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logidBlock`.*
 	Logid *int `pulumi:"logid"`
-	// Log IDs to trigger event. The structure of `logidBlock` block is documented below.
+	// Log IDs to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid`.* The structure of `logidBlock` block is documented below.
 	LogidBlocks []AutomationtriggerLogidBlock `pulumi:"logidBlocks"`
 	// Name.
 	Name *string `pulumi:"name"`
@@ -193,7 +191,7 @@ type automationtriggerState struct {
 	TriggerFrequency *string `pulumi:"triggerFrequency"`
 	// Hour of the day on which to trigger (0 - 23, default = 1).
 	TriggerHour *int `pulumi:"triggerHour"`
-	// Minute of the hour on which to trigger (0 - 59, 60 to randomize).
+	// Minute of the hour on which to trigger (0 - 59, default = 0).
 	TriggerMinute *int `pulumi:"triggerMinute"`
 	// Trigger type. Valid values: `event-based`, `scheduled`.
 	TriggerType *string `pulumi:"triggerType"`
@@ -224,15 +222,15 @@ type AutomationtriggerState struct {
 	FazEventTags pulumi.StringPtrInput
 	// Customized trigger field settings. The structure of `fields` block is documented below.
 	Fields AutomationtriggerFieldArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// IOC threat level. Valid values: `medium`, `high`.
 	IocLevel pulumi.StringPtrInput
 	// License type.
 	LicenseType pulumi.StringPtrInput
-	// Log ID to trigger event.
+	// Log ID to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logidBlock`.*
 	Logid pulumi.IntPtrInput
-	// Log IDs to trigger event. The structure of `logidBlock` block is documented below.
+	// Log IDs to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid`.* The structure of `logidBlock` block is documented below.
 	LogidBlocks AutomationtriggerLogidBlockArrayInput
 	// Name.
 	Name pulumi.StringPtrInput
@@ -248,7 +246,7 @@ type AutomationtriggerState struct {
 	TriggerFrequency pulumi.StringPtrInput
 	// Hour of the day on which to trigger (0 - 23, default = 1).
 	TriggerHour pulumi.IntPtrInput
-	// Minute of the hour on which to trigger (0 - 59, 60 to randomize).
+	// Minute of the hour on which to trigger (0 - 59, default = 0).
 	TriggerMinute pulumi.IntPtrInput
 	// Trigger type. Valid values: `event-based`, `scheduled`.
 	TriggerType pulumi.StringPtrInput
@@ -283,15 +281,15 @@ type automationtriggerArgs struct {
 	FazEventTags *string `pulumi:"fazEventTags"`
 	// Customized trigger field settings. The structure of `fields` block is documented below.
 	Fields []AutomationtriggerField `pulumi:"fields"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// IOC threat level. Valid values: `medium`, `high`.
 	IocLevel *string `pulumi:"iocLevel"`
 	// License type.
 	LicenseType *string `pulumi:"licenseType"`
-	// Log ID to trigger event.
+	// Log ID to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logidBlock`.*
 	Logid *int `pulumi:"logid"`
-	// Log IDs to trigger event. The structure of `logidBlock` block is documented below.
+	// Log IDs to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid`.* The structure of `logidBlock` block is documented below.
 	LogidBlocks []AutomationtriggerLogidBlock `pulumi:"logidBlocks"`
 	// Name.
 	Name *string `pulumi:"name"`
@@ -307,7 +305,7 @@ type automationtriggerArgs struct {
 	TriggerFrequency *string `pulumi:"triggerFrequency"`
 	// Hour of the day on which to trigger (0 - 23, default = 1).
 	TriggerHour *int `pulumi:"triggerHour"`
-	// Minute of the hour on which to trigger (0 - 59, 60 to randomize).
+	// Minute of the hour on which to trigger (0 - 59, default = 0).
 	TriggerMinute *int `pulumi:"triggerMinute"`
 	// Trigger type. Valid values: `event-based`, `scheduled`.
 	TriggerType *string `pulumi:"triggerType"`
@@ -339,15 +337,15 @@ type AutomationtriggerArgs struct {
 	FazEventTags pulumi.StringPtrInput
 	// Customized trigger field settings. The structure of `fields` block is documented below.
 	Fields AutomationtriggerFieldArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// IOC threat level. Valid values: `medium`, `high`.
 	IocLevel pulumi.StringPtrInput
 	// License type.
 	LicenseType pulumi.StringPtrInput
-	// Log ID to trigger event.
+	// Log ID to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logidBlock`.*
 	Logid pulumi.IntPtrInput
-	// Log IDs to trigger event. The structure of `logidBlock` block is documented below.
+	// Log IDs to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid`.* The structure of `logidBlock` block is documented below.
 	LogidBlocks AutomationtriggerLogidBlockArrayInput
 	// Name.
 	Name pulumi.StringPtrInput
@@ -363,7 +361,7 @@ type AutomationtriggerArgs struct {
 	TriggerFrequency pulumi.StringPtrInput
 	// Hour of the day on which to trigger (0 - 23, default = 1).
 	TriggerHour pulumi.IntPtrInput
-	// Minute of the hour on which to trigger (0 - 59, 60 to randomize).
+	// Minute of the hour on which to trigger (0 - 59, default = 0).
 	TriggerMinute pulumi.IntPtrInput
 	// Trigger type. Valid values: `event-based`, `scheduled`.
 	TriggerType pulumi.StringPtrInput
@@ -507,7 +505,7 @@ func (o AutomationtriggerOutput) Fields() AutomationtriggerFieldArrayOutput {
 	return o.ApplyT(func(v *Automationtrigger) AutomationtriggerFieldArrayOutput { return v.Fields }).(AutomationtriggerFieldArrayOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o AutomationtriggerOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Automationtrigger) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -522,12 +520,12 @@ func (o AutomationtriggerOutput) LicenseType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Automationtrigger) pulumi.StringOutput { return v.LicenseType }).(pulumi.StringOutput)
 }
 
-// Log ID to trigger event.
+// Log ID to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logidBlock`.*
 func (o AutomationtriggerOutput) Logid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Automationtrigger) pulumi.IntOutput { return v.Logid }).(pulumi.IntOutput)
 }
 
-// Log IDs to trigger event. The structure of `logidBlock` block is documented below.
+// Log IDs to trigger event. *Due to the data type change of API, for other versions of FortiOS, please check variable `logid`.* The structure of `logidBlock` block is documented below.
 func (o AutomationtriggerOutput) LogidBlocks() AutomationtriggerLogidBlockArrayOutput {
 	return o.ApplyT(func(v *Automationtrigger) AutomationtriggerLogidBlockArrayOutput { return v.LogidBlocks }).(AutomationtriggerLogidBlockArrayOutput)
 }
@@ -567,7 +565,7 @@ func (o AutomationtriggerOutput) TriggerHour() pulumi.IntOutput {
 	return o.ApplyT(func(v *Automationtrigger) pulumi.IntOutput { return v.TriggerHour }).(pulumi.IntOutput)
 }
 
-// Minute of the hour on which to trigger (0 - 59, 60 to randomize).
+// Minute of the hour on which to trigger (0 - 59, default = 0).
 func (o AutomationtriggerOutput) TriggerMinute() pulumi.IntOutput {
 	return o.ApplyT(func(v *Automationtrigger) pulumi.IntOutput { return v.TriggerMinute }).(pulumi.IntOutput)
 }
@@ -583,8 +581,8 @@ func (o AutomationtriggerOutput) TriggerWeekday() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o AutomationtriggerOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Automationtrigger) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o AutomationtriggerOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Automationtrigger) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Virtual domain(s) that this trigger is valid for. The structure of `vdom` block is documented below.

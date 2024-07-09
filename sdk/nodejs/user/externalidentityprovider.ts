@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Configure external identity provider. Applies to FortiOS Version `>= 7.4.2`.
+ * Configure external identity provider. Applies to FortiOS Version `7.2.8,7.4.2,7.4.3,7.4.4`.
  *
  * ## Import
  *
@@ -100,7 +100,7 @@ export class Externalidentityprovider extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * External identity API version. Valid values: `v1.0`, `beta`.
      */

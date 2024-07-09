@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.Fmg
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -47,7 +46,6 @@ namespace Pulumiverse.Fortios.Fmg
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:fmg/firewallObjectVip:FirewallObjectVip")]
     public partial class FirewallObjectVip : global::Pulumi.CustomResource

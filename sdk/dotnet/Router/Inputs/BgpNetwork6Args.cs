@@ -13,14 +13,11 @@ namespace Pulumiverse.Fortios.Router.Inputs
 
     public sealed class BgpNetwork6Args : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Enable/disable route as backdoor. Valid values: `enable`, `disable`.
-        /// </summary>
         [Input("backdoor")]
         public Input<string>? Backdoor { get; set; }
 
         /// <summary>
-        /// ID.
+        /// an identifier for the resource.
         /// </summary>
         [Input("id")]
         public Input<int>? Id { get; set; }
@@ -31,15 +28,9 @@ namespace Pulumiverse.Fortios.Router.Inputs
         [Input("networkImportCheck")]
         public Input<string>? NetworkImportCheck { get; set; }
 
-        /// <summary>
-        /// Aggregate IPv6 prefix.
-        /// </summary>
         [Input("prefix6")]
         public Input<string>? Prefix6 { get; set; }
 
-        /// <summary>
-        /// Route map of VRF leaking.
-        /// </summary>
         [Input("routeMap")]
         public Input<string>? RouteMap { get; set; }
 

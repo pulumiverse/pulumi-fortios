@@ -1014,8 +1014,37 @@ class Local(pulumi.CustomResource):
 
         ## Example
 
+        ### Import Certificate:
+
+        **Step1: Prepare certificate**
+
+        The following key is a randomly generated example key for testing. In actual use, please replace it with your own key.
+
+        **Step2: Prepare TF file with json.GenericApi resource**
+
+        ```python
+        import pulumi
+        import pulumi_local as local
+        import pulumiverse_fortios as fortios
+
+        key_file = local.get_file(filename="./test.key")
+        crt_file = local.get_file(filename="./test.crt")
+        genericapi1 = fortios.json.GenericApi("genericapi1",
+            json=f\"\"\"{{
+            "type": "regular",
+            "certname": "testcer",
+            "password": "",
+            "key_file_content": "{key_file.content_base64}",
+            "file_content": "{crt_file.content_base64}"
+        }}
+
+        \"\"\",
+            method="POST",
+            path="/api/v2/monitor/vpn-certificate/local/import")
+        ```
+
+        **Step3: Apply**
         ### Delete Certificate:
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1031,7 +1060,6 @@ class Local(pulumi.CustomResource):
         \"\"\",
             start="auto")
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1049,8 +1077,37 @@ class Local(pulumi.CustomResource):
 
         ## Example
 
+        ### Import Certificate:
+
+        **Step1: Prepare certificate**
+
+        The following key is a randomly generated example key for testing. In actual use, please replace it with your own key.
+
+        **Step2: Prepare TF file with json.GenericApi resource**
+
+        ```python
+        import pulumi
+        import pulumi_local as local
+        import pulumiverse_fortios as fortios
+
+        key_file = local.get_file(filename="./test.key")
+        crt_file = local.get_file(filename="./test.crt")
+        genericapi1 = fortios.json.GenericApi("genericapi1",
+            json=f\"\"\"{{
+            "type": "regular",
+            "certname": "testcer",
+            "password": "",
+            "key_file_content": "{key_file.content_base64}",
+            "file_content": "{crt_file.content_base64}"
+        }}
+
+        \"\"\",
+            method="POST",
+            path="/api/v2/monitor/vpn-certificate/local/import")
+        ```
+
+        **Step3: Apply**
         ### Delete Certificate:
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1066,7 +1123,6 @@ class Local(pulumi.CustomResource):
         \"\"\",
             start="auto")
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param LocalArgs args: The arguments to use to populate this resource's properties.
@@ -1468,6 +1524,6 @@ class Local(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         return pulumi.get(self, "vdomparam")
 

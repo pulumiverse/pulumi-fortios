@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -95,7 +94,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -139,7 +137,7 @@ type Vip struct {
 	Extport pulumi.StringOutput `pulumi:"extport"`
 	// Custom defined ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
 	GratuitousArpInterval pulumi.IntOutput `pulumi:"gratuitousArpInterval"`
@@ -229,6 +227,8 @@ type Vip struct {
 	Services VipServiceArrayOutput `pulumi:"services"`
 	// Source address filter. Each address must be either an IP/subnet (x.x.x.x/n) or a range (x.x.x.x-y.y.y.y). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
 	SrcFilters VipSrcFilterArrayOutput `pulumi:"srcFilters"`
+	// Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+	SrcVipFilter pulumi.StringOutput `pulumi:"srcVipFilter"`
 	// Interfaces to which the VIP applies. Separate the names with spaces. The structure of `srcintfFilter` block is documented below.
 	SrcintfFilters VipSrcintfFilterArrayOutput `pulumi:"srcintfFilters"`
 	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
@@ -308,7 +308,7 @@ type Vip struct {
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.
 	WeblogicServer pulumi.StringOutput `pulumi:"weblogicServer"`
 	// Enable to add an HTTP header to indicate SSL offloading for a WebSphere server. Valid values: `disable`, `enable`.
@@ -367,7 +367,7 @@ type vipState struct {
 	Extport *string `pulumi:"extport"`
 	// Custom defined ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
 	GratuitousArpInterval *int `pulumi:"gratuitousArpInterval"`
@@ -457,6 +457,8 @@ type vipState struct {
 	Services []VipService `pulumi:"services"`
 	// Source address filter. Each address must be either an IP/subnet (x.x.x.x/n) or a range (x.x.x.x-y.y.y.y). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
 	SrcFilters []VipSrcFilter `pulumi:"srcFilters"`
+	// Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+	SrcVipFilter *string `pulumi:"srcVipFilter"`
 	// Interfaces to which the VIP applies. Separate the names with spaces. The structure of `srcintfFilter` block is documented below.
 	SrcintfFilters []VipSrcintfFilter `pulumi:"srcintfFilters"`
 	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
@@ -566,7 +568,7 @@ type VipState struct {
 	Extport pulumi.StringPtrInput
 	// Custom defined ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
 	GratuitousArpInterval pulumi.IntPtrInput
@@ -656,6 +658,8 @@ type VipState struct {
 	Services VipServiceArrayInput
 	// Source address filter. Each address must be either an IP/subnet (x.x.x.x/n) or a range (x.x.x.x-y.y.y.y). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
 	SrcFilters VipSrcFilterArrayInput
+	// Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+	SrcVipFilter pulumi.StringPtrInput
 	// Interfaces to which the VIP applies. Separate the names with spaces. The structure of `srcintfFilter` block is documented below.
 	SrcintfFilters VipSrcintfFilterArrayInput
 	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
@@ -769,7 +773,7 @@ type vipArgs struct {
 	Extport *string `pulumi:"extport"`
 	// Custom defined ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
 	GratuitousArpInterval *int `pulumi:"gratuitousArpInterval"`
@@ -859,6 +863,8 @@ type vipArgs struct {
 	Services []VipService `pulumi:"services"`
 	// Source address filter. Each address must be either an IP/subnet (x.x.x.x/n) or a range (x.x.x.x-y.y.y.y). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
 	SrcFilters []VipSrcFilter `pulumi:"srcFilters"`
+	// Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+	SrcVipFilter *string `pulumi:"srcVipFilter"`
 	// Interfaces to which the VIP applies. Separate the names with spaces. The structure of `srcintfFilter` block is documented below.
 	SrcintfFilters []VipSrcintfFilter `pulumi:"srcintfFilters"`
 	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
@@ -969,7 +975,7 @@ type VipArgs struct {
 	Extport pulumi.StringPtrInput
 	// Custom defined ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
 	GratuitousArpInterval pulumi.IntPtrInput
@@ -1059,6 +1065,8 @@ type VipArgs struct {
 	Services VipServiceArrayInput
 	// Source address filter. Each address must be either an IP/subnet (x.x.x.x/n) or a range (x.x.x.x-y.y.y.y). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
 	SrcFilters VipSrcFilterArrayInput
+	// Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+	SrcVipFilter pulumi.StringPtrInput
 	// Interfaces to which the VIP applies. Separate the names with spaces. The structure of `srcintfFilter` block is documented below.
 	SrcintfFilters VipSrcintfFilterArrayInput
 	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
@@ -1287,7 +1295,7 @@ func (o VipOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Vip) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o VipOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Vip) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -1512,6 +1520,11 @@ func (o VipOutput) SrcFilters() VipSrcFilterArrayOutput {
 	return o.ApplyT(func(v *Vip) VipSrcFilterArrayOutput { return v.SrcFilters }).(VipSrcFilterArrayOutput)
 }
 
+// Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+func (o VipOutput) SrcVipFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vip) pulumi.StringOutput { return v.SrcVipFilter }).(pulumi.StringOutput)
+}
+
 // Interfaces to which the VIP applies. Separate the names with spaces. The structure of `srcintfFilter` block is documented below.
 func (o VipOutput) SrcintfFilters() VipSrcintfFilterArrayOutput {
 	return o.ApplyT(func(v *Vip) VipSrcintfFilterArrayOutput { return v.SrcintfFilters }).(VipSrcintfFilterArrayOutput)
@@ -1708,8 +1721,8 @@ func (o VipOutput) Uuid() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o VipOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Vip) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o VipOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vip) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.

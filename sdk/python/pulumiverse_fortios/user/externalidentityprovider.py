@@ -463,7 +463,7 @@ class Externalidentityprovider(pulumi.CustomResource):
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Configure external identity provider. Applies to FortiOS Version `>= 7.4.2`.
+        Configure external identity provider. Applies to FortiOS Version `7.2.8,7.4.2,7.4.3,7.4.4`.
 
         ## Import
 
@@ -506,7 +506,7 @@ class Externalidentityprovider(pulumi.CustomResource):
                  args: Optional[ExternalidentityproviderArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure external identity provider. Applies to FortiOS Version `>= 7.4.2`.
+        Configure external identity provider. Applies to FortiOS Version `7.2.8,7.4.2,7.4.3,7.4.4`.
 
         ## Import
 
@@ -729,7 +729,7 @@ class Externalidentityprovider(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,7 +42,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -82,7 +80,7 @@ type Onetime struct {
 	// Schedule start date and time, in epoch format.
 	StartUtc pulumi.StringOutput `pulumi:"startUtc"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewOnetime registers a new resource with the given unique name, arguments, and options.
@@ -337,8 +335,8 @@ func (o OnetimeOutput) StartUtc() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o OnetimeOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Onetime) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o OnetimeOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Onetime) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type OnetimeArrayOutput struct{ *pulumi.OutputState }

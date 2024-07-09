@@ -39,14 +39,14 @@ type Keyword struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Keyword matching logic. Valid values: `or`, `and`.
 	Match pulumi.StringOutput `pulumi:"match"`
 	// Name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// List of keywords. The structure of `word` block is documented below.
 	Words KeywordWordArrayOutput `pulumi:"words"`
 }
@@ -87,7 +87,7 @@ type keywordState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Keyword matching logic. Valid values: `or`, `and`.
 	Match *string `pulumi:"match"`
@@ -106,7 +106,7 @@ type KeywordState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Keyword matching logic. Valid values: `or`, `and`.
 	Match pulumi.StringPtrInput
@@ -129,7 +129,7 @@ type keywordArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Keyword matching logic. Valid values: `or`, `and`.
 	Match *string `pulumi:"match"`
@@ -149,7 +149,7 @@ type KeywordArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Keyword matching logic. Valid values: `or`, `and`.
 	Match pulumi.StringPtrInput
@@ -263,7 +263,7 @@ func (o KeywordOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Keyword) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o KeywordOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Keyword) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -279,8 +279,8 @@ func (o KeywordOutput) Name() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o KeywordOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Keyword) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o KeywordOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Keyword) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // List of keywords. The structure of `word` block is documented below.

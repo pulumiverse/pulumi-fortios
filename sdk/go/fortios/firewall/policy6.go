@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -99,7 +98,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -177,7 +175,7 @@ type Policy6 struct {
 	Fixedport pulumi.StringOutput `pulumi:"fixedport"`
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups Policy6FssoGroupArrayOutput `pulumi:"fssoGroups"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel pulumi.StringOutput `pulumi:"globalLabel"`
@@ -284,7 +282,7 @@ type Policy6 struct {
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest
 	VlanCosFwd pulumi.IntOutput `pulumi:"vlanCosFwd"`
 	// VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest
@@ -410,7 +408,7 @@ type policy6State struct {
 	Fixedport *string `pulumi:"fixedport"`
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups []Policy6FssoGroup `pulumi:"fssoGroups"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel *string `pulumi:"globalLabel"`
@@ -599,7 +597,7 @@ type Policy6State struct {
 	Fixedport pulumi.StringPtrInput
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups Policy6FssoGroupArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel pulumi.StringPtrInput
@@ -792,7 +790,7 @@ type policy6Args struct {
 	Fixedport *string `pulumi:"fixedport"`
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups []Policy6FssoGroup `pulumi:"fssoGroups"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel *string `pulumi:"globalLabel"`
@@ -982,7 +980,7 @@ type Policy6Args struct {
 	Fixedport pulumi.StringPtrInput
 	// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
 	FssoGroups Policy6FssoGroupArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Label for the policy that appears when the GUI is in Global View mode.
 	GlobalLabel pulumi.StringPtrInput
@@ -1341,7 +1339,7 @@ func (o Policy6Output) FssoGroups() Policy6FssoGroupArrayOutput {
 	return o.ApplyT(func(v *Policy6) Policy6FssoGroupArrayOutput { return v.FssoGroups }).(Policy6FssoGroupArrayOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o Policy6Output) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Policy6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -1607,8 +1605,8 @@ func (o Policy6Output) Uuid() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o Policy6Output) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Policy6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o Policy6Output) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Policy6) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest

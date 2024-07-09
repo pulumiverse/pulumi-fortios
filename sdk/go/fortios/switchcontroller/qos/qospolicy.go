@@ -45,7 +45,7 @@ type Qospolicy struct {
 	// QoS trust ip dscp map.
 	TrustIpDscpMap pulumi.StringOutput `pulumi:"trustIpDscpMap"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewQospolicy registers a new resource with the given unique name, arguments, and options.
@@ -258,8 +258,8 @@ func (o QospolicyOutput) TrustIpDscpMap() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o QospolicyOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Qospolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o QospolicyOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Qospolicy) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type QospolicyArrayOutput struct{ *pulumi.OutputState }

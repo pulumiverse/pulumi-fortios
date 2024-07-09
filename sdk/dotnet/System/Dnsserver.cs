@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -32,7 +31,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -62,7 +60,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> DnsfilterProfile { get; private set; } = null!;
 
         /// <summary>
-        /// DNS over HTTPS. Valid values: `enable`, `disable`.
+        /// Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         [Output("doh")]
         public Output<string> Doh { get; private set; } = null!;
@@ -95,7 +93,7 @@ namespace Pulumiverse.Fortios.System
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -151,7 +149,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? DnsfilterProfile { get; set; }
 
         /// <summary>
-        /// DNS over HTTPS. Valid values: `enable`, `disable`.
+        /// Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("doh")]
         public Input<string>? Doh { get; set; }
@@ -201,7 +199,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? DnsfilterProfile { get; set; }
 
         /// <summary>
-        /// DNS over HTTPS. Valid values: `enable`, `disable`.
+        /// Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("doh")]
         public Input<string>? Doh { get; set; }

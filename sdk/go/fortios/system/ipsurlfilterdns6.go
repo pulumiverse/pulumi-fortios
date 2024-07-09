@@ -38,7 +38,7 @@ type Ipsurlfilterdns6 struct {
 	// Enable/disable this server for IPv6 DNS queries. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewIpsurlfilterdns6 registers a new resource with the given unique name, arguments, and options.
@@ -209,8 +209,8 @@ func (o Ipsurlfilterdns6Output) Status() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o Ipsurlfilterdns6Output) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Ipsurlfilterdns6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o Ipsurlfilterdns6Output) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ipsurlfilterdns6) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type Ipsurlfilterdns6ArrayOutput struct{ *pulumi.OutputState }

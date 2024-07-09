@@ -20,6 +20,11 @@ export type Extenderprofile = import("./extenderprofile").Extenderprofile;
 export const Extenderprofile: typeof import("./extenderprofile").Extenderprofile = null as any;
 utilities.lazyLoad(exports, ["Extenderprofile"], () => require("./extenderprofile"));
 
+export { ExtendervapArgs, ExtendervapState } from "./extendervap";
+export type Extendervap = import("./extendervap").Extendervap;
+export const Extendervap: typeof import("./extendervap").Extendervap = null as any;
+utilities.lazyLoad(exports, ["Extendervap"], () => require("./extendervap"));
+
 export { FortigateArgs, FortigateState } from "./fortigate";
 export type Fortigate = import("./fortigate").Fortigate;
 export const Fortigate: typeof import("./fortigate").Fortigate = null as any;
@@ -41,6 +46,8 @@ const _module = {
                 return new Extender(name, <any>undefined, { urn })
             case "fortios:extensioncontroller/extenderprofile:Extenderprofile":
                 return new Extenderprofile(name, <any>undefined, { urn })
+            case "fortios:extensioncontroller/extendervap:Extendervap":
+                return new Extendervap(name, <any>undefined, { urn })
             case "fortios:extensioncontroller/fortigate:Fortigate":
                 return new Fortigate(name, <any>undefined, { urn })
             case "fortios:extensioncontroller/fortigateprofile:Fortigateprofile":
@@ -53,5 +60,6 @@ const _module = {
 pulumi.runtime.registerResourceModule("fortios", "extensioncontroller/dataplan", _module)
 pulumi.runtime.registerResourceModule("fortios", "extensioncontroller/extender", _module)
 pulumi.runtime.registerResourceModule("fortios", "extensioncontroller/extenderprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "extensioncontroller/extendervap", _module)
 pulumi.runtime.registerResourceModule("fortios", "extensioncontroller/fortigate", _module)
 pulumi.runtime.registerResourceModule("fortios", "extensioncontroller/fortigateprofile", _module)

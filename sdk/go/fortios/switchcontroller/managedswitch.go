@@ -70,7 +70,7 @@ type Managedswitch struct {
 	FswWan2Admin pulumi.StringOutput `pulumi:"fswWan2Admin"`
 	// FortiSwitch WAN2 peer port.
 	FswWan2Peer pulumi.StringOutput `pulumi:"fswWan2Peer"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Configure FortiSwitch IGMP snooping global settings. The structure of `igmpSnooping` block is documented below.
 	IgmpSnooping ManagedswitchIgmpSnoopingOutput `pulumi:"igmpSnooping"`
@@ -171,7 +171,7 @@ type Managedswitch struct {
 	// Indication of switch type, physical or virtual. Valid values: `virtual`, `physical`.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// FortiSwitch version.
 	Version pulumi.IntOutput `pulumi:"version"`
 	// Configure VLAN assignment priority. The structure of `vlan` block is documented below.
@@ -250,7 +250,7 @@ type managedswitchState struct {
 	FswWan2Admin *string `pulumi:"fswWan2Admin"`
 	// FortiSwitch WAN2 peer port.
 	FswWan2Peer *string `pulumi:"fswWan2Peer"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure FortiSwitch IGMP snooping global settings. The structure of `igmpSnooping` block is documented below.
 	IgmpSnooping *ManagedswitchIgmpSnooping `pulumi:"igmpSnooping"`
@@ -395,7 +395,7 @@ type ManagedswitchState struct {
 	FswWan2Admin pulumi.StringPtrInput
 	// FortiSwitch WAN2 peer port.
 	FswWan2Peer pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Configure FortiSwitch IGMP snooping global settings. The structure of `igmpSnooping` block is documented below.
 	IgmpSnooping ManagedswitchIgmpSnoopingPtrInput
@@ -544,7 +544,7 @@ type managedswitchArgs struct {
 	FswWan2Admin *string `pulumi:"fswWan2Admin"`
 	// FortiSwitch WAN2 peer port.
 	FswWan2Peer *string `pulumi:"fswWan2Peer"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure FortiSwitch IGMP snooping global settings. The structure of `igmpSnooping` block is documented below.
 	IgmpSnooping *ManagedswitchIgmpSnooping `pulumi:"igmpSnooping"`
@@ -690,7 +690,7 @@ type ManagedswitchArgs struct {
 	FswWan2Admin pulumi.StringPtrInput
 	// FortiSwitch WAN2 peer port.
 	FswWan2Peer pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Configure FortiSwitch IGMP snooping global settings. The structure of `igmpSnooping` block is documented below.
 	IgmpSnooping ManagedswitchIgmpSnoopingPtrInput
@@ -977,7 +977,7 @@ func (o ManagedswitchOutput) FswWan2Peer() pulumi.StringOutput {
 	return o.ApplyT(func(v *Managedswitch) pulumi.StringOutput { return v.FswWan2Peer }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ManagedswitchOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Managedswitch) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -1228,8 +1228,8 @@ func (o ManagedswitchOutput) Type() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ManagedswitchOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Managedswitch) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ManagedswitchOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Managedswitch) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // FortiSwitch version.

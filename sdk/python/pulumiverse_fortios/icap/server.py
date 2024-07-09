@@ -467,7 +467,6 @@ class Server(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -479,7 +478,6 @@ class Server(pulumi.CustomResource):
             max_connections=100,
             port=22)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -526,7 +524,6 @@ class Server(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -538,7 +535,6 @@ class Server(pulumi.CustomResource):
             max_connections=100,
             port=22)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -769,7 +765,7 @@ class Server(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

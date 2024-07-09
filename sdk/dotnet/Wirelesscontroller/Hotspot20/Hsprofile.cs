@@ -113,7 +113,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Hotspot20
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
 
         /// <summary>
-        /// GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
+        /// GAS comeback delay (default = 500). On FortiOS versions 6.2.0-7.0.0: 0 or 100 - 4000 milliseconds. On FortiOS versions &gt;= 7.0.1: 0 or 100 - 10000 milliseconds.
         /// </summary>
         [Output("gasComebackDelay")]
         public Output<int> GasComebackDelay { get; private set; } = null!;
@@ -125,7 +125,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Hotspot20
         public Output<int> GasFragmentationLimit { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -242,7 +242,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Hotspot20
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
@@ -406,7 +406,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Hotspot20
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
-        /// GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
+        /// GAS comeback delay (default = 500). On FortiOS versions 6.2.0-7.0.0: 0 or 100 - 4000 milliseconds. On FortiOS versions &gt;= 7.0.1: 0 or 100 - 10000 milliseconds.
         /// </summary>
         [Input("gasComebackDelay")]
         public Input<int>? GasComebackDelay { get; set; }
@@ -418,7 +418,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Hotspot20
         public Input<int>? GasFragmentationLimit { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -666,7 +666,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Hotspot20
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
-        /// GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
+        /// GAS comeback delay (default = 500). On FortiOS versions 6.2.0-7.0.0: 0 or 100 - 4000 milliseconds. On FortiOS versions &gt;= 7.0.1: 0 or 100 - 10000 milliseconds.
         /// </summary>
         [Input("gasComebackDelay")]
         public Input<int>? GasComebackDelay { get; set; }
@@ -678,7 +678,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Hotspot20
         public Input<int>? GasFragmentationLimit { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }

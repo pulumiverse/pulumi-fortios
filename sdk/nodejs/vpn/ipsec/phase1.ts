@@ -11,7 +11,6 @@ import * as utilities from "../../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -90,7 +89,6 @@ import * as utilities from "../../utilities";
  *     xauthtype: "disable",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -199,6 +197,14 @@ export class Phase1 extends pulumi.CustomResource {
      */
     public readonly certIdValidation!: pulumi.Output<string>;
     /**
+     * Enable/disable domain stripping on certificate identity. Valid values: `disable`, `enable`.
+     */
+    public readonly certPeerUsernameStrip!: pulumi.Output<string>;
+    /**
+     * Enable/disable cross validation of peer username and the identity in the peer's certificate. Valid values: `none`, `othername`, `rfc822name`, `cn`.
+     */
+    public readonly certPeerUsernameValidation!: pulumi.Output<string>;
+    /**
      * CA certificate trust store. Valid values: `local`, `ems`.
      */
     public readonly certTrustStore!: pulumi.Output<string>;
@@ -218,6 +224,14 @@ export class Phase1 extends pulumi.CustomResource {
      * Enable/disable allowing the VPN client to keep the tunnel up when there is no traffic. Valid values: `disable`, `enable`.
      */
     public readonly clientKeepAlive!: pulumi.Output<string>;
+    /**
+     * Enable/disable resumption of offline FortiClient sessions.  When a FortiClient enabled laptop is closed or enters sleep/hibernate mode, enabling this feature allows FortiClient to keep the tunnel during this period, and allows users to immediately resume using the IPsec tunnel when the device wakes up. Valid values: `enable`, `disable`.
+     */
+    public readonly clientResume!: pulumi.Output<string>;
+    /**
+     * Maximum time in seconds during which a VPN client may resume using a tunnel after a client PC has entered sleep mode or temporarily lost its network connection (120 - 172800, default = 1800).
+     */
+    public readonly clientResumeInterval!: pulumi.Output<number>;
     /**
      * Comment.
      */
@@ -311,15 +325,15 @@ export class Phase1 extends pulumi.CustomResource {
      */
     public readonly fallbackTcpThreshold!: pulumi.Output<number>;
     /**
-     * Number of base Forward Error Correction packets (1 - 100).
+     * Number of base Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 100. On FortiOS versions >= 7.0.2: 1 - 20.
      */
     public readonly fecBase!: pulumi.Output<number>;
     /**
-     * ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
+     * ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor). *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec_string`.*
      */
     public readonly fecCodec!: pulumi.Output<number>;
     /**
-     * Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+     * Forward Error Correction encoding/decoding algorithm. *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec`.* Valid values: `rs`, `xor`.
      */
     public readonly fecCodecString!: pulumi.Output<string>;
     /**
@@ -339,11 +353,11 @@ export class Phase1 extends pulumi.CustomResource {
      */
     public readonly fecMappingProfile!: pulumi.Output<string>;
     /**
-     * Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
+     * Timeout in milliseconds before dropping Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 10000. On FortiOS versions >= 7.0.2: 1 - 1000.
      */
     public readonly fecReceiveTimeout!: pulumi.Output<number>;
     /**
-     * Number of redundant Forward Error Correction packets (1 - 100).
+     * Number of redundant Forward Error Correction packets. On FortiOS versions 6.2.4-6.2.6: 0 - 100,  when fec-codec is reed-solomon  or 1 when fec-codec is xor. On FortiOS versions >= 7.0.2: 1 - 5 for reed-solomon, 1 for xor.
      */
     public readonly fecRedundant!: pulumi.Output<number>;
     /**
@@ -371,7 +385,7 @@ export class Phase1 extends pulumi.CustomResource {
      */
     public readonly fragmentationMtu!: pulumi.Output<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -379,7 +393,7 @@ export class Phase1 extends pulumi.CustomResource {
      */
     public readonly groupAuthentication!: pulumi.Output<string>;
     /**
-     * Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
+     * Password for IKEv2 ID group authentication. ASCII string or hexadecimal indicated by a leading 0x.
      */
     public readonly groupAuthenticationSecret!: pulumi.Output<string | undefined>;
     /**
@@ -607,7 +621,7 @@ export class Phase1 extends pulumi.CustomResource {
      */
     public readonly ppkSecret!: pulumi.Output<string | undefined>;
     /**
-     * Priority for routes added by IKE (0 - 4294967295).
+     * Priority for routes added by IKE. On FortiOS versions 6.2.0-7.0.3: 0 - 4294967295. On FortiOS versions >= 7.0.4: 1 - 65535.
      */
     public readonly priority!: pulumi.Output<number>;
     /**
@@ -643,7 +657,47 @@ export class Phase1 extends pulumi.CustomResource {
      */
     public readonly remoteGw!: pulumi.Output<string>;
     /**
-     * Domain name of remote gateway (eg. name.DDNS.com).
+     * IPv6 addresses associated to a specific country.
+     */
+    public readonly remoteGw6Country!: pulumi.Output<string>;
+    /**
+     * Last IPv6 address in the range.
+     */
+    public readonly remoteGw6EndIp!: pulumi.Output<string>;
+    /**
+     * Set type of IPv6 remote gateway address matching. Valid values: `any`, `ipprefix`, `iprange`, `geography`.
+     */
+    public readonly remoteGw6Match!: pulumi.Output<string>;
+    /**
+     * First IPv6 address in the range.
+     */
+    public readonly remoteGw6StartIp!: pulumi.Output<string>;
+    /**
+     * IPv6 address and prefix.
+     */
+    public readonly remoteGw6Subnet!: pulumi.Output<string>;
+    /**
+     * IPv4 addresses associated to a specific country.
+     */
+    public readonly remoteGwCountry!: pulumi.Output<string>;
+    /**
+     * Last IPv4 address in the range.
+     */
+    public readonly remoteGwEndIp!: pulumi.Output<string>;
+    /**
+     * Set type of IPv4 remote gateway address matching. Valid values: `any`, `ipmask`, `iprange`, `geography`.
+     */
+    public readonly remoteGwMatch!: pulumi.Output<string>;
+    /**
+     * First IPv4 address in the range.
+     */
+    public readonly remoteGwStartIp!: pulumi.Output<string>;
+    /**
+     * IPv4 address and subnet mask.
+     */
+    public readonly remoteGwSubnet!: pulumi.Output<string>;
+    /**
+     * Domain name of remote gateway. For example, name.ddns.com.
      */
     public readonly remotegwDdns!: pulumi.Output<string>;
     /**
@@ -693,7 +747,7 @@ export class Phase1 extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * GUI VPN Wizard Type.
      */
@@ -731,11 +785,15 @@ export class Phase1 extends pulumi.CustomResource {
             resourceInputs["backupGateways"] = state ? state.backupGateways : undefined;
             resourceInputs["banner"] = state ? state.banner : undefined;
             resourceInputs["certIdValidation"] = state ? state.certIdValidation : undefined;
+            resourceInputs["certPeerUsernameStrip"] = state ? state.certPeerUsernameStrip : undefined;
+            resourceInputs["certPeerUsernameValidation"] = state ? state.certPeerUsernameValidation : undefined;
             resourceInputs["certTrustStore"] = state ? state.certTrustStore : undefined;
             resourceInputs["certificates"] = state ? state.certificates : undefined;
             resourceInputs["childlessIke"] = state ? state.childlessIke : undefined;
             resourceInputs["clientAutoNegotiate"] = state ? state.clientAutoNegotiate : undefined;
             resourceInputs["clientKeepAlive"] = state ? state.clientKeepAlive : undefined;
+            resourceInputs["clientResume"] = state ? state.clientResume : undefined;
+            resourceInputs["clientResumeInterval"] = state ? state.clientResumeInterval : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["devId"] = state ? state.devId : undefined;
             resourceInputs["devIdNotification"] = state ? state.devIdNotification : undefined;
@@ -842,6 +900,16 @@ export class Phase1 extends pulumi.CustomResource {
             resourceInputs["reauth"] = state ? state.reauth : undefined;
             resourceInputs["rekey"] = state ? state.rekey : undefined;
             resourceInputs["remoteGw"] = state ? state.remoteGw : undefined;
+            resourceInputs["remoteGw6Country"] = state ? state.remoteGw6Country : undefined;
+            resourceInputs["remoteGw6EndIp"] = state ? state.remoteGw6EndIp : undefined;
+            resourceInputs["remoteGw6Match"] = state ? state.remoteGw6Match : undefined;
+            resourceInputs["remoteGw6StartIp"] = state ? state.remoteGw6StartIp : undefined;
+            resourceInputs["remoteGw6Subnet"] = state ? state.remoteGw6Subnet : undefined;
+            resourceInputs["remoteGwCountry"] = state ? state.remoteGwCountry : undefined;
+            resourceInputs["remoteGwEndIp"] = state ? state.remoteGwEndIp : undefined;
+            resourceInputs["remoteGwMatch"] = state ? state.remoteGwMatch : undefined;
+            resourceInputs["remoteGwStartIp"] = state ? state.remoteGwStartIp : undefined;
+            resourceInputs["remoteGwSubnet"] = state ? state.remoteGwSubnet : undefined;
             resourceInputs["remotegwDdns"] = state ? state.remotegwDdns : undefined;
             resourceInputs["rsaSignatureFormat"] = state ? state.rsaSignatureFormat : undefined;
             resourceInputs["rsaSignatureHashOverride"] = state ? state.rsaSignatureHashOverride : undefined;
@@ -883,11 +951,15 @@ export class Phase1 extends pulumi.CustomResource {
             resourceInputs["backupGateways"] = args ? args.backupGateways : undefined;
             resourceInputs["banner"] = args ? args.banner : undefined;
             resourceInputs["certIdValidation"] = args ? args.certIdValidation : undefined;
+            resourceInputs["certPeerUsernameStrip"] = args ? args.certPeerUsernameStrip : undefined;
+            resourceInputs["certPeerUsernameValidation"] = args ? args.certPeerUsernameValidation : undefined;
             resourceInputs["certTrustStore"] = args ? args.certTrustStore : undefined;
             resourceInputs["certificates"] = args ? args.certificates : undefined;
             resourceInputs["childlessIke"] = args ? args.childlessIke : undefined;
             resourceInputs["clientAutoNegotiate"] = args ? args.clientAutoNegotiate : undefined;
             resourceInputs["clientKeepAlive"] = args ? args.clientKeepAlive : undefined;
+            resourceInputs["clientResume"] = args ? args.clientResume : undefined;
+            resourceInputs["clientResumeInterval"] = args ? args.clientResumeInterval : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["devId"] = args ? args.devId : undefined;
             resourceInputs["devIdNotification"] = args ? args.devIdNotification : undefined;
@@ -994,6 +1066,16 @@ export class Phase1 extends pulumi.CustomResource {
             resourceInputs["reauth"] = args ? args.reauth : undefined;
             resourceInputs["rekey"] = args ? args.rekey : undefined;
             resourceInputs["remoteGw"] = args ? args.remoteGw : undefined;
+            resourceInputs["remoteGw6Country"] = args ? args.remoteGw6Country : undefined;
+            resourceInputs["remoteGw6EndIp"] = args ? args.remoteGw6EndIp : undefined;
+            resourceInputs["remoteGw6Match"] = args ? args.remoteGw6Match : undefined;
+            resourceInputs["remoteGw6StartIp"] = args ? args.remoteGw6StartIp : undefined;
+            resourceInputs["remoteGw6Subnet"] = args ? args.remoteGw6Subnet : undefined;
+            resourceInputs["remoteGwCountry"] = args ? args.remoteGwCountry : undefined;
+            resourceInputs["remoteGwEndIp"] = args ? args.remoteGwEndIp : undefined;
+            resourceInputs["remoteGwMatch"] = args ? args.remoteGwMatch : undefined;
+            resourceInputs["remoteGwStartIp"] = args ? args.remoteGwStartIp : undefined;
+            resourceInputs["remoteGwSubnet"] = args ? args.remoteGwSubnet : undefined;
             resourceInputs["remotegwDdns"] = args ? args.remotegwDdns : undefined;
             resourceInputs["rsaSignatureFormat"] = args ? args.rsaSignatureFormat : undefined;
             resourceInputs["rsaSignatureHashOverride"] = args ? args.rsaSignatureHashOverride : undefined;
@@ -1082,6 +1164,14 @@ export interface Phase1State {
      */
     certIdValidation?: pulumi.Input<string>;
     /**
+     * Enable/disable domain stripping on certificate identity. Valid values: `disable`, `enable`.
+     */
+    certPeerUsernameStrip?: pulumi.Input<string>;
+    /**
+     * Enable/disable cross validation of peer username and the identity in the peer's certificate. Valid values: `none`, `othername`, `rfc822name`, `cn`.
+     */
+    certPeerUsernameValidation?: pulumi.Input<string>;
+    /**
      * CA certificate trust store. Valid values: `local`, `ems`.
      */
     certTrustStore?: pulumi.Input<string>;
@@ -1101,6 +1191,14 @@ export interface Phase1State {
      * Enable/disable allowing the VPN client to keep the tunnel up when there is no traffic. Valid values: `disable`, `enable`.
      */
     clientKeepAlive?: pulumi.Input<string>;
+    /**
+     * Enable/disable resumption of offline FortiClient sessions.  When a FortiClient enabled laptop is closed or enters sleep/hibernate mode, enabling this feature allows FortiClient to keep the tunnel during this period, and allows users to immediately resume using the IPsec tunnel when the device wakes up. Valid values: `enable`, `disable`.
+     */
+    clientResume?: pulumi.Input<string>;
+    /**
+     * Maximum time in seconds during which a VPN client may resume using a tunnel after a client PC has entered sleep mode or temporarily lost its network connection (120 - 172800, default = 1800).
+     */
+    clientResumeInterval?: pulumi.Input<number>;
     /**
      * Comment.
      */
@@ -1194,15 +1292,15 @@ export interface Phase1State {
      */
     fallbackTcpThreshold?: pulumi.Input<number>;
     /**
-     * Number of base Forward Error Correction packets (1 - 100).
+     * Number of base Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 100. On FortiOS versions >= 7.0.2: 1 - 20.
      */
     fecBase?: pulumi.Input<number>;
     /**
-     * ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
+     * ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor). *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec_string`.*
      */
     fecCodec?: pulumi.Input<number>;
     /**
-     * Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+     * Forward Error Correction encoding/decoding algorithm. *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec`.* Valid values: `rs`, `xor`.
      */
     fecCodecString?: pulumi.Input<string>;
     /**
@@ -1222,11 +1320,11 @@ export interface Phase1State {
      */
     fecMappingProfile?: pulumi.Input<string>;
     /**
-     * Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
+     * Timeout in milliseconds before dropping Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 10000. On FortiOS versions >= 7.0.2: 1 - 1000.
      */
     fecReceiveTimeout?: pulumi.Input<number>;
     /**
-     * Number of redundant Forward Error Correction packets (1 - 100).
+     * Number of redundant Forward Error Correction packets. On FortiOS versions 6.2.4-6.2.6: 0 - 100,  when fec-codec is reed-solomon  or 1 when fec-codec is xor. On FortiOS versions >= 7.0.2: 1 - 5 for reed-solomon, 1 for xor.
      */
     fecRedundant?: pulumi.Input<number>;
     /**
@@ -1254,7 +1352,7 @@ export interface Phase1State {
      */
     fragmentationMtu?: pulumi.Input<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -1262,7 +1360,7 @@ export interface Phase1State {
      */
     groupAuthentication?: pulumi.Input<string>;
     /**
-     * Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
+     * Password for IKEv2 ID group authentication. ASCII string or hexadecimal indicated by a leading 0x.
      */
     groupAuthenticationSecret?: pulumi.Input<string>;
     /**
@@ -1490,7 +1588,7 @@ export interface Phase1State {
      */
     ppkSecret?: pulumi.Input<string>;
     /**
-     * Priority for routes added by IKE (0 - 4294967295).
+     * Priority for routes added by IKE. On FortiOS versions 6.2.0-7.0.3: 0 - 4294967295. On FortiOS versions >= 7.0.4: 1 - 65535.
      */
     priority?: pulumi.Input<number>;
     /**
@@ -1526,7 +1624,47 @@ export interface Phase1State {
      */
     remoteGw?: pulumi.Input<string>;
     /**
-     * Domain name of remote gateway (eg. name.DDNS.com).
+     * IPv6 addresses associated to a specific country.
+     */
+    remoteGw6Country?: pulumi.Input<string>;
+    /**
+     * Last IPv6 address in the range.
+     */
+    remoteGw6EndIp?: pulumi.Input<string>;
+    /**
+     * Set type of IPv6 remote gateway address matching. Valid values: `any`, `ipprefix`, `iprange`, `geography`.
+     */
+    remoteGw6Match?: pulumi.Input<string>;
+    /**
+     * First IPv6 address in the range.
+     */
+    remoteGw6StartIp?: pulumi.Input<string>;
+    /**
+     * IPv6 address and prefix.
+     */
+    remoteGw6Subnet?: pulumi.Input<string>;
+    /**
+     * IPv4 addresses associated to a specific country.
+     */
+    remoteGwCountry?: pulumi.Input<string>;
+    /**
+     * Last IPv4 address in the range.
+     */
+    remoteGwEndIp?: pulumi.Input<string>;
+    /**
+     * Set type of IPv4 remote gateway address matching. Valid values: `any`, `ipmask`, `iprange`, `geography`.
+     */
+    remoteGwMatch?: pulumi.Input<string>;
+    /**
+     * First IPv4 address in the range.
+     */
+    remoteGwStartIp?: pulumi.Input<string>;
+    /**
+     * IPv4 address and subnet mask.
+     */
+    remoteGwSubnet?: pulumi.Input<string>;
+    /**
+     * Domain name of remote gateway. For example, name.ddns.com.
      */
     remotegwDdns?: pulumi.Input<string>;
     /**
@@ -1652,6 +1790,14 @@ export interface Phase1Args {
      */
     certIdValidation?: pulumi.Input<string>;
     /**
+     * Enable/disable domain stripping on certificate identity. Valid values: `disable`, `enable`.
+     */
+    certPeerUsernameStrip?: pulumi.Input<string>;
+    /**
+     * Enable/disable cross validation of peer username and the identity in the peer's certificate. Valid values: `none`, `othername`, `rfc822name`, `cn`.
+     */
+    certPeerUsernameValidation?: pulumi.Input<string>;
+    /**
      * CA certificate trust store. Valid values: `local`, `ems`.
      */
     certTrustStore?: pulumi.Input<string>;
@@ -1671,6 +1817,14 @@ export interface Phase1Args {
      * Enable/disable allowing the VPN client to keep the tunnel up when there is no traffic. Valid values: `disable`, `enable`.
      */
     clientKeepAlive?: pulumi.Input<string>;
+    /**
+     * Enable/disable resumption of offline FortiClient sessions.  When a FortiClient enabled laptop is closed or enters sleep/hibernate mode, enabling this feature allows FortiClient to keep the tunnel during this period, and allows users to immediately resume using the IPsec tunnel when the device wakes up. Valid values: `enable`, `disable`.
+     */
+    clientResume?: pulumi.Input<string>;
+    /**
+     * Maximum time in seconds during which a VPN client may resume using a tunnel after a client PC has entered sleep mode or temporarily lost its network connection (120 - 172800, default = 1800).
+     */
+    clientResumeInterval?: pulumi.Input<number>;
     /**
      * Comment.
      */
@@ -1764,15 +1918,15 @@ export interface Phase1Args {
      */
     fallbackTcpThreshold?: pulumi.Input<number>;
     /**
-     * Number of base Forward Error Correction packets (1 - 100).
+     * Number of base Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 100. On FortiOS versions >= 7.0.2: 1 - 20.
      */
     fecBase?: pulumi.Input<number>;
     /**
-     * ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
+     * ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor). *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec_string`.*
      */
     fecCodec?: pulumi.Input<number>;
     /**
-     * Forward Error Correction encoding/decoding algorithm. Valid values: `rs`, `xor`.
+     * Forward Error Correction encoding/decoding algorithm. *Due to the data type change of API, for other versions of FortiOS, please check variable `fec-codec`.* Valid values: `rs`, `xor`.
      */
     fecCodecString?: pulumi.Input<string>;
     /**
@@ -1792,11 +1946,11 @@ export interface Phase1Args {
      */
     fecMappingProfile?: pulumi.Input<string>;
     /**
-     * Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
+     * Timeout in milliseconds before dropping Forward Error Correction packets. On FortiOS versions 6.2.4-7.0.1: 1 - 10000. On FortiOS versions >= 7.0.2: 1 - 1000.
      */
     fecReceiveTimeout?: pulumi.Input<number>;
     /**
-     * Number of redundant Forward Error Correction packets (1 - 100).
+     * Number of redundant Forward Error Correction packets. On FortiOS versions 6.2.4-6.2.6: 0 - 100,  when fec-codec is reed-solomon  or 1 when fec-codec is xor. On FortiOS versions >= 7.0.2: 1 - 5 for reed-solomon, 1 for xor.
      */
     fecRedundant?: pulumi.Input<number>;
     /**
@@ -1824,7 +1978,7 @@ export interface Phase1Args {
      */
     fragmentationMtu?: pulumi.Input<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -1832,7 +1986,7 @@ export interface Phase1Args {
      */
     groupAuthentication?: pulumi.Input<string>;
     /**
-     * Password for IKEv2 IDi group authentication.  (ASCII string or hexadecimal indicated by a leading 0x.)
+     * Password for IKEv2 ID group authentication. ASCII string or hexadecimal indicated by a leading 0x.
      */
     groupAuthenticationSecret?: pulumi.Input<string>;
     /**
@@ -2060,7 +2214,7 @@ export interface Phase1Args {
      */
     ppkSecret?: pulumi.Input<string>;
     /**
-     * Priority for routes added by IKE (0 - 4294967295).
+     * Priority for routes added by IKE. On FortiOS versions 6.2.0-7.0.3: 0 - 4294967295. On FortiOS versions >= 7.0.4: 1 - 65535.
      */
     priority?: pulumi.Input<number>;
     /**
@@ -2096,7 +2250,47 @@ export interface Phase1Args {
      */
     remoteGw?: pulumi.Input<string>;
     /**
-     * Domain name of remote gateway (eg. name.DDNS.com).
+     * IPv6 addresses associated to a specific country.
+     */
+    remoteGw6Country?: pulumi.Input<string>;
+    /**
+     * Last IPv6 address in the range.
+     */
+    remoteGw6EndIp?: pulumi.Input<string>;
+    /**
+     * Set type of IPv6 remote gateway address matching. Valid values: `any`, `ipprefix`, `iprange`, `geography`.
+     */
+    remoteGw6Match?: pulumi.Input<string>;
+    /**
+     * First IPv6 address in the range.
+     */
+    remoteGw6StartIp?: pulumi.Input<string>;
+    /**
+     * IPv6 address and prefix.
+     */
+    remoteGw6Subnet?: pulumi.Input<string>;
+    /**
+     * IPv4 addresses associated to a specific country.
+     */
+    remoteGwCountry?: pulumi.Input<string>;
+    /**
+     * Last IPv4 address in the range.
+     */
+    remoteGwEndIp?: pulumi.Input<string>;
+    /**
+     * Set type of IPv4 remote gateway address matching. Valid values: `any`, `ipmask`, `iprange`, `geography`.
+     */
+    remoteGwMatch?: pulumi.Input<string>;
+    /**
+     * First IPv4 address in the range.
+     */
+    remoteGwStartIp?: pulumi.Input<string>;
+    /**
+     * IPv4 address and subnet mask.
+     */
+    remoteGwSubnet?: pulumi.Input<string>;
+    /**
+     * Domain name of remote gateway. For example, name.ddns.com.
      */
     remotegwDdns?: pulumi.Input<string>;
     /**

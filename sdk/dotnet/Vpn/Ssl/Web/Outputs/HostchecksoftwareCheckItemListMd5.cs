@@ -15,7 +15,7 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web.Outputs
     public sealed class HostchecksoftwareCheckItemListMd5
     {
         /// <summary>
-        /// Hex string of MD5 checksum.
+        /// an identifier for the resource with format {{name}}.
         /// </summary>
         public readonly string? Id;
 

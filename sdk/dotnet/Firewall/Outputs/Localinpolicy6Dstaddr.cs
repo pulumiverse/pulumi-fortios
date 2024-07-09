@@ -15,7 +15,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
     public sealed class Localinpolicy6Dstaddr
     {
         /// <summary>
-        /// Address name.
+        /// Custom Internet Service6 group name.
         /// </summary>
         public readonly string? Name;
 

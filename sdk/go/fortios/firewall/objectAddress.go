@@ -19,7 +19,6 @@ import (
 // ## Example Usage
 //
 // ### Iprange Address
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -46,10 +45,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Geography Address
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -75,10 +72,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Fqdn Address
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -107,10 +102,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Ipmask Address
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -136,7 +129,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type ObjectAddress struct {
 	pulumi.CustomResourceState
 

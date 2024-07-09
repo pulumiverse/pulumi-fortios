@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,14 +38,12 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Note
 //
 // The feature can only be correctly supported when FortiOS Version >= 6.2.4, for FortiOS Version < 6.2.4, please use the following resource configuration as an alternative.
 //
 // ### Example
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -86,7 +83,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -116,7 +112,7 @@ type Accesslist struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Rule. The structure of `rule` block is documented below.
 	Rules     AccesslistRuleArrayOutput `pulumi:"rules"`
-	Vdomparam pulumi.StringPtrOutput    `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput       `pulumi:"vdomparam"`
 }
 
 // NewAccesslist registers a new resource with the given unique name, arguments, and options.
@@ -311,8 +307,8 @@ func (o AccesslistOutput) Rules() AccesslistRuleArrayOutput {
 	return o.ApplyT(func(v *Accesslist) AccesslistRuleArrayOutput { return v.Rules }).(AccesslistRuleArrayOutput)
 }
 
-func (o AccesslistOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Accesslist) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o AccesslistOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Accesslist) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type AccesslistArrayOutput struct{ *pulumi.OutputState }

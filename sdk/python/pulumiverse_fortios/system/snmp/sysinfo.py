@@ -14,6 +14,7 @@ __all__ = ['SysinfoArgs', 'Sysinfo']
 @pulumi.input_type
 class SysinfoArgs:
     def __init__(__self__, *,
+                 append_index: Optional[pulumi.Input[str]] = None,
                  contact_info: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  engine_id: Optional[pulumi.Input[str]] = None,
@@ -28,9 +29,10 @@ class SysinfoArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Sysinfo resource.
+        :param pulumi.Input[str] append_index: Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] contact_info: Contact information.
         :param pulumi.Input[str] description: System description.
-        :param pulumi.Input[str] engine_id: Local SNMP engineID string (maximum 24 characters).
+        :param pulumi.Input[str] engine_id: Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions >= 7.0.1: maximum 27 characters.
         :param pulumi.Input[str] engine_id_type: Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
         :param pulumi.Input[str] location: System location.
         :param pulumi.Input[str] status: Enable/disable SNMP. Valid values: `enable`, `disable`.
@@ -41,6 +43,8 @@ class SysinfoArgs:
         :param pulumi.Input[int] trap_low_memory_threshold: Memory usage when trap is sent.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if append_index is not None:
+            pulumi.set(__self__, "append_index", append_index)
         if contact_info is not None:
             pulumi.set(__self__, "contact_info", contact_info)
         if description is not None:
@@ -65,6 +69,18 @@ class SysinfoArgs:
             pulumi.set(__self__, "trap_low_memory_threshold", trap_low_memory_threshold)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="appendIndex")
+    def append_index(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "append_index")
+
+    @append_index.setter
+    def append_index(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "append_index", value)
 
     @property
     @pulumi.getter(name="contactInfo")
@@ -94,7 +110,7 @@ class SysinfoArgs:
     @pulumi.getter(name="engineId")
     def engine_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Local SNMP engineID string (maximum 24 characters).
+        Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions >= 7.0.1: maximum 27 characters.
         """
         return pulumi.get(self, "engine_id")
 
@@ -214,6 +230,7 @@ class SysinfoArgs:
 @pulumi.input_type
 class _SysinfoState:
     def __init__(__self__, *,
+                 append_index: Optional[pulumi.Input[str]] = None,
                  contact_info: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  engine_id: Optional[pulumi.Input[str]] = None,
@@ -228,9 +245,10 @@ class _SysinfoState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Sysinfo resources.
+        :param pulumi.Input[str] append_index: Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] contact_info: Contact information.
         :param pulumi.Input[str] description: System description.
-        :param pulumi.Input[str] engine_id: Local SNMP engineID string (maximum 24 characters).
+        :param pulumi.Input[str] engine_id: Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions >= 7.0.1: maximum 27 characters.
         :param pulumi.Input[str] engine_id_type: Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
         :param pulumi.Input[str] location: System location.
         :param pulumi.Input[str] status: Enable/disable SNMP. Valid values: `enable`, `disable`.
@@ -241,6 +259,8 @@ class _SysinfoState:
         :param pulumi.Input[int] trap_low_memory_threshold: Memory usage when trap is sent.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if append_index is not None:
+            pulumi.set(__self__, "append_index", append_index)
         if contact_info is not None:
             pulumi.set(__self__, "contact_info", contact_info)
         if description is not None:
@@ -265,6 +285,18 @@ class _SysinfoState:
             pulumi.set(__self__, "trap_low_memory_threshold", trap_low_memory_threshold)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="appendIndex")
+    def append_index(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "append_index")
+
+    @append_index.setter
+    def append_index(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "append_index", value)
 
     @property
     @pulumi.getter(name="contactInfo")
@@ -294,7 +326,7 @@ class _SysinfoState:
     @pulumi.getter(name="engineId")
     def engine_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Local SNMP engineID string (maximum 24 characters).
+        Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions >= 7.0.1: maximum 27 characters.
         """
         return pulumi.get(self, "engine_id")
 
@@ -416,6 +448,7 @@ class Sysinfo(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 append_index: Optional[pulumi.Input[str]] = None,
                  contact_info: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  engine_id: Optional[pulumi.Input[str]] = None,
@@ -434,7 +467,6 @@ class Sysinfo(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -445,7 +477,6 @@ class Sysinfo(pulumi.CustomResource):
             trap_log_full_threshold=90,
             trap_low_memory_threshold=80)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -467,9 +498,10 @@ class Sysinfo(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] append_index: Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] contact_info: Contact information.
         :param pulumi.Input[str] description: System description.
-        :param pulumi.Input[str] engine_id: Local SNMP engineID string (maximum 24 characters).
+        :param pulumi.Input[str] engine_id: Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions >= 7.0.1: maximum 27 characters.
         :param pulumi.Input[str] engine_id_type: Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
         :param pulumi.Input[str] location: System location.
         :param pulumi.Input[str] status: Enable/disable SNMP. Valid values: `enable`, `disable`.
@@ -491,7 +523,6 @@ class Sysinfo(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -502,7 +533,6 @@ class Sysinfo(pulumi.CustomResource):
             trap_log_full_threshold=90,
             trap_low_memory_threshold=80)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -537,6 +567,7 @@ class Sysinfo(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 append_index: Optional[pulumi.Input[str]] = None,
                  contact_info: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  engine_id: Optional[pulumi.Input[str]] = None,
@@ -558,6 +589,7 @@ class Sysinfo(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SysinfoArgs.__new__(SysinfoArgs)
 
+            __props__.__dict__["append_index"] = append_index
             __props__.__dict__["contact_info"] = contact_info
             __props__.__dict__["description"] = description
             __props__.__dict__["engine_id"] = engine_id
@@ -580,6 +612,7 @@ class Sysinfo(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            append_index: Optional[pulumi.Input[str]] = None,
             contact_info: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             engine_id: Optional[pulumi.Input[str]] = None,
@@ -599,9 +632,10 @@ class Sysinfo(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] append_index: Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] contact_info: Contact information.
         :param pulumi.Input[str] description: System description.
-        :param pulumi.Input[str] engine_id: Local SNMP engineID string (maximum 24 characters).
+        :param pulumi.Input[str] engine_id: Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions >= 7.0.1: maximum 27 characters.
         :param pulumi.Input[str] engine_id_type: Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
         :param pulumi.Input[str] location: System location.
         :param pulumi.Input[str] status: Enable/disable SNMP. Valid values: `enable`, `disable`.
@@ -616,6 +650,7 @@ class Sysinfo(pulumi.CustomResource):
 
         __props__ = _SysinfoState.__new__(_SysinfoState)
 
+        __props__.__dict__["append_index"] = append_index
         __props__.__dict__["contact_info"] = contact_info
         __props__.__dict__["description"] = description
         __props__.__dict__["engine_id"] = engine_id
@@ -629,6 +664,14 @@ class Sysinfo(pulumi.CustomResource):
         __props__.__dict__["trap_low_memory_threshold"] = trap_low_memory_threshold
         __props__.__dict__["vdomparam"] = vdomparam
         return Sysinfo(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="appendIndex")
+    def append_index(self) -> pulumi.Output[str]:
+        """
+        Enable/disable allowance of appending VDOM or interface index in some RFC tables. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "append_index")
 
     @property
     @pulumi.getter(name="contactInfo")
@@ -650,7 +693,7 @@ class Sysinfo(pulumi.CustomResource):
     @pulumi.getter(name="engineId")
     def engine_id(self) -> pulumi.Output[str]:
         """
-        Local SNMP engineID string (maximum 24 characters).
+        Local SNMP engineID string. On FortiOS versions 6.2.0-7.0.0: maximum 24 characters. On FortiOS versions >= 7.0.1: maximum 27 characters.
         """
         return pulumi.get(self, "engine_id")
 
@@ -720,7 +763,7 @@ class Sysinfo(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

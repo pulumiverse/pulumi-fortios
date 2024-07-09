@@ -13,9 +13,6 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Inputs
 
     public sealed class SettingsSourceAddress6Args : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Group name.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

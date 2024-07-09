@@ -9,7 +9,6 @@ import * as utilities from "../../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -28,7 +27,6 @@ import * as utilities from "../../utilities";
  *     warnAuthHttps: "enable",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -77,7 +75,7 @@ export class Fortiguard extends pulumi.CustomResource {
     }
 
     /**
-     * Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+     * Maximum percentage of available memory allocated to caching (1 - 15).
      */
     public readonly cacheMemPercent!: pulumi.Output<number>;
     /**
@@ -131,7 +129,7 @@ export class Fortiguard extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Enable/disable use of HTTPS for warning and authentication. Valid values: `enable`, `disable`.
      */
@@ -193,7 +191,7 @@ export class Fortiguard extends pulumi.CustomResource {
  */
 export interface FortiguardState {
     /**
-     * Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+     * Maximum percentage of available memory allocated to caching (1 - 15).
      */
     cacheMemPercent?: pulumi.Input<number>;
     /**
@@ -259,7 +257,7 @@ export interface FortiguardState {
  */
 export interface FortiguardArgs {
     /**
-     * Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+     * Maximum percentage of available memory allocated to caching (1 - 15).
      */
     cacheMemPercent?: pulumi.Input<number>;
     /**

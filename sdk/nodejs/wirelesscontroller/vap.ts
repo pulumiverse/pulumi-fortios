@@ -64,7 +64,7 @@ export class Vap extends pulumi.CustomResource {
      */
     public readonly acctInterimInterval!: pulumi.Output<number>;
     /**
-     * Additional AKMs. Valid values: `akm6`.
+     * Additional AKMs.
      */
     public readonly additionalAkms!: pulumi.Output<string>;
     /**
@@ -75,6 +75,10 @@ export class Vap extends pulumi.CustomResource {
      * Configure MAC address filtering policy for MAC addresses that are in the address-group. Valid values: `disable`, `allow`, `deny`.
      */
     public readonly addressGroupPolicy!: pulumi.Output<string>;
+    /**
+     * WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
+     */
+    public readonly akm24Only!: pulumi.Output<string>;
     /**
      * Alias.
      */
@@ -120,6 +124,10 @@ export class Vap extends pulumi.CustomResource {
      */
     public readonly beaconAdvertising!: pulumi.Output<string>;
     /**
+     * Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
+     */
+    public readonly beaconProtection!: pulumi.Output<string>;
+    /**
      * Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
      */
     public readonly broadcastSsid!: pulumi.Output<string>;
@@ -143,6 +151,10 @@ export class Vap extends pulumi.CustomResource {
      * Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
      */
     public readonly bstmRssiDisassocTimer!: pulumi.Output<number>;
+    /**
+     * Enable/disable captive portal. Valid values: `enable`, `disable`.
+     */
+    public readonly captivePortal!: pulumi.Output<string>;
     /**
      * Local-bridging captive portal ac-name.
      */
@@ -268,7 +280,7 @@ export class Vap extends pulumi.CustomResource {
      */
     public readonly gasFragmentationLimit!: pulumi.Output<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -276,7 +288,7 @@ export class Vap extends pulumi.CustomResource {
      */
     public readonly gtkRekey!: pulumi.Output<string>;
     /**
-     * GTK rekey interval (1800 - 864000 sec, default = 86400).
+     * GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
      */
     public readonly gtkRekeyIntv!: pulumi.Output<number>;
     /**
@@ -464,6 +476,10 @@ export class Vap extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly nasFilterRule!: pulumi.Output<string>;
+    /**
      * Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
      */
     public readonly neighborReportDualBand!: pulumi.Output<string>;
@@ -544,7 +560,7 @@ export class Vap extends pulumi.CustomResource {
      */
     public readonly ptkRekey!: pulumi.Output<string>;
     /**
-     * PTK rekey interval (1800 - 864000 sec, default = 86400).
+     * PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
      */
     public readonly ptkRekeyIntv!: pulumi.Output<number>;
     /**
@@ -623,6 +639,18 @@ export class Vap extends pulumi.CustomResource {
      * Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
      */
     public readonly rates11axSs34!: pulumi.Output<string>;
+    /**
+     * Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+     */
+    public readonly rates11beMcsMap!: pulumi.Output<string>;
+    /**
+     * Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+     */
+    public readonly rates11beMcsMap160!: pulumi.Output<string>;
+    /**
+     * Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
+     */
+    public readonly rates11beMcsMap320!: pulumi.Output<string>;
     /**
      * Allowed data rates for 802.11b/g.
      */
@@ -754,7 +782,7 @@ export class Vap extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
      */
@@ -802,6 +830,7 @@ export class Vap extends pulumi.CustomResource {
             resourceInputs["additionalAkms"] = state ? state.additionalAkms : undefined;
             resourceInputs["addressGroup"] = state ? state.addressGroup : undefined;
             resourceInputs["addressGroupPolicy"] = state ? state.addressGroupPolicy : undefined;
+            resourceInputs["akm24Only"] = state ? state.akm24Only : undefined;
             resourceInputs["alias"] = state ? state.alias : undefined;
             resourceInputs["antivirusProfile"] = state ? state.antivirusProfile : undefined;
             resourceInputs["applicationDetectionEngine"] = state ? state.applicationDetectionEngine : undefined;
@@ -813,12 +842,14 @@ export class Vap extends pulumi.CustomResource {
             resourceInputs["authCert"] = state ? state.authCert : undefined;
             resourceInputs["authPortalAddr"] = state ? state.authPortalAddr : undefined;
             resourceInputs["beaconAdvertising"] = state ? state.beaconAdvertising : undefined;
+            resourceInputs["beaconProtection"] = state ? state.beaconProtection : undefined;
             resourceInputs["broadcastSsid"] = state ? state.broadcastSsid : undefined;
             resourceInputs["broadcastSuppression"] = state ? state.broadcastSuppression : undefined;
             resourceInputs["bssColorPartial"] = state ? state.bssColorPartial : undefined;
             resourceInputs["bstmDisassociationImminent"] = state ? state.bstmDisassociationImminent : undefined;
             resourceInputs["bstmLoadBalancingDisassocTimer"] = state ? state.bstmLoadBalancingDisassocTimer : undefined;
             resourceInputs["bstmRssiDisassocTimer"] = state ? state.bstmRssiDisassocTimer : undefined;
+            resourceInputs["captivePortal"] = state ? state.captivePortal : undefined;
             resourceInputs["captivePortalAcName"] = state ? state.captivePortalAcName : undefined;
             resourceInputs["captivePortalAuthTimeout"] = state ? state.captivePortalAuthTimeout : undefined;
             resourceInputs["captivePortalFwAccounting"] = state ? state.captivePortalFwAccounting : undefined;
@@ -899,6 +930,7 @@ export class Vap extends pulumi.CustomResource {
             resourceInputs["nac"] = state ? state.nac : undefined;
             resourceInputs["nacProfile"] = state ? state.nacProfile : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nasFilterRule"] = state ? state.nasFilterRule : undefined;
             resourceInputs["neighborReportDualBand"] = state ? state.neighborReportDualBand : undefined;
             resourceInputs["okc"] = state ? state.okc : undefined;
             resourceInputs["osen"] = state ? state.osen : undefined;
@@ -939,6 +971,9 @@ export class Vap extends pulumi.CustomResource {
             resourceInputs["rates11axMcsMap"] = state ? state.rates11axMcsMap : undefined;
             resourceInputs["rates11axSs12"] = state ? state.rates11axSs12 : undefined;
             resourceInputs["rates11axSs34"] = state ? state.rates11axSs34 : undefined;
+            resourceInputs["rates11beMcsMap"] = state ? state.rates11beMcsMap : undefined;
+            resourceInputs["rates11beMcsMap160"] = state ? state.rates11beMcsMap160 : undefined;
+            resourceInputs["rates11beMcsMap320"] = state ? state.rates11beMcsMap320 : undefined;
             resourceInputs["rates11bg"] = state ? state.rates11bg : undefined;
             resourceInputs["rates11nSs12"] = state ? state.rates11nSs12 : undefined;
             resourceInputs["rates11nSs34"] = state ? state.rates11nSs34 : undefined;
@@ -986,6 +1021,7 @@ export class Vap extends pulumi.CustomResource {
             resourceInputs["additionalAkms"] = args ? args.additionalAkms : undefined;
             resourceInputs["addressGroup"] = args ? args.addressGroup : undefined;
             resourceInputs["addressGroupPolicy"] = args ? args.addressGroupPolicy : undefined;
+            resourceInputs["akm24Only"] = args ? args.akm24Only : undefined;
             resourceInputs["alias"] = args ? args.alias : undefined;
             resourceInputs["antivirusProfile"] = args ? args.antivirusProfile : undefined;
             resourceInputs["applicationDetectionEngine"] = args ? args.applicationDetectionEngine : undefined;
@@ -997,12 +1033,14 @@ export class Vap extends pulumi.CustomResource {
             resourceInputs["authCert"] = args ? args.authCert : undefined;
             resourceInputs["authPortalAddr"] = args ? args.authPortalAddr : undefined;
             resourceInputs["beaconAdvertising"] = args ? args.beaconAdvertising : undefined;
+            resourceInputs["beaconProtection"] = args ? args.beaconProtection : undefined;
             resourceInputs["broadcastSsid"] = args ? args.broadcastSsid : undefined;
             resourceInputs["broadcastSuppression"] = args ? args.broadcastSuppression : undefined;
             resourceInputs["bssColorPartial"] = args ? args.bssColorPartial : undefined;
             resourceInputs["bstmDisassociationImminent"] = args ? args.bstmDisassociationImminent : undefined;
             resourceInputs["bstmLoadBalancingDisassocTimer"] = args ? args.bstmLoadBalancingDisassocTimer : undefined;
             resourceInputs["bstmRssiDisassocTimer"] = args ? args.bstmRssiDisassocTimer : undefined;
+            resourceInputs["captivePortal"] = args ? args.captivePortal : undefined;
             resourceInputs["captivePortalAcName"] = args ? args.captivePortalAcName : undefined;
             resourceInputs["captivePortalAuthTimeout"] = args ? args.captivePortalAuthTimeout : undefined;
             resourceInputs["captivePortalFwAccounting"] = args ? args.captivePortalFwAccounting : undefined;
@@ -1083,6 +1121,7 @@ export class Vap extends pulumi.CustomResource {
             resourceInputs["nac"] = args ? args.nac : undefined;
             resourceInputs["nacProfile"] = args ? args.nacProfile : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["nasFilterRule"] = args ? args.nasFilterRule : undefined;
             resourceInputs["neighborReportDualBand"] = args ? args.neighborReportDualBand : undefined;
             resourceInputs["okc"] = args ? args.okc : undefined;
             resourceInputs["osen"] = args ? args.osen : undefined;
@@ -1123,6 +1162,9 @@ export class Vap extends pulumi.CustomResource {
             resourceInputs["rates11axMcsMap"] = args ? args.rates11axMcsMap : undefined;
             resourceInputs["rates11axSs12"] = args ? args.rates11axSs12 : undefined;
             resourceInputs["rates11axSs34"] = args ? args.rates11axSs34 : undefined;
+            resourceInputs["rates11beMcsMap"] = args ? args.rates11beMcsMap : undefined;
+            resourceInputs["rates11beMcsMap160"] = args ? args.rates11beMcsMap160 : undefined;
+            resourceInputs["rates11beMcsMap320"] = args ? args.rates11beMcsMap320 : undefined;
             resourceInputs["rates11bg"] = args ? args.rates11bg : undefined;
             resourceInputs["rates11nSs12"] = args ? args.rates11nSs12 : undefined;
             resourceInputs["rates11nSs34"] = args ? args.rates11nSs34 : undefined;
@@ -1184,7 +1226,7 @@ export interface VapState {
      */
     acctInterimInterval?: pulumi.Input<number>;
     /**
-     * Additional AKMs. Valid values: `akm6`.
+     * Additional AKMs.
      */
     additionalAkms?: pulumi.Input<string>;
     /**
@@ -1195,6 +1237,10 @@ export interface VapState {
      * Configure MAC address filtering policy for MAC addresses that are in the address-group. Valid values: `disable`, `allow`, `deny`.
      */
     addressGroupPolicy?: pulumi.Input<string>;
+    /**
+     * WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
+     */
+    akm24Only?: pulumi.Input<string>;
     /**
      * Alias.
      */
@@ -1240,6 +1286,10 @@ export interface VapState {
      */
     beaconAdvertising?: pulumi.Input<string>;
     /**
+     * Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
+     */
+    beaconProtection?: pulumi.Input<string>;
+    /**
      * Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
      */
     broadcastSsid?: pulumi.Input<string>;
@@ -1263,6 +1313,10 @@ export interface VapState {
      * Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
      */
     bstmRssiDisassocTimer?: pulumi.Input<number>;
+    /**
+     * Enable/disable captive portal. Valid values: `enable`, `disable`.
+     */
+    captivePortal?: pulumi.Input<string>;
     /**
      * Local-bridging captive portal ac-name.
      */
@@ -1388,7 +1442,7 @@ export interface VapState {
      */
     gasFragmentationLimit?: pulumi.Input<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -1396,7 +1450,7 @@ export interface VapState {
      */
     gtkRekey?: pulumi.Input<string>;
     /**
-     * GTK rekey interval (1800 - 864000 sec, default = 86400).
+     * GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
      */
     gtkRekeyIntv?: pulumi.Input<number>;
     /**
@@ -1584,6 +1638,10 @@ export interface VapState {
      */
     name?: pulumi.Input<string>;
     /**
+     * Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
+     */
+    nasFilterRule?: pulumi.Input<string>;
+    /**
      * Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
      */
     neighborReportDualBand?: pulumi.Input<string>;
@@ -1664,7 +1722,7 @@ export interface VapState {
      */
     ptkRekey?: pulumi.Input<string>;
     /**
-     * PTK rekey interval (1800 - 864000 sec, default = 86400).
+     * PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
      */
     ptkRekeyIntv?: pulumi.Input<number>;
     /**
@@ -1743,6 +1801,18 @@ export interface VapState {
      * Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
      */
     rates11axSs34?: pulumi.Input<string>;
+    /**
+     * Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+     */
+    rates11beMcsMap?: pulumi.Input<string>;
+    /**
+     * Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+     */
+    rates11beMcsMap160?: pulumi.Input<string>;
+    /**
+     * Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
+     */
+    rates11beMcsMap320?: pulumi.Input<string>;
     /**
      * Allowed data rates for 802.11b/g.
      */
@@ -1918,7 +1988,7 @@ export interface VapArgs {
      */
     acctInterimInterval?: pulumi.Input<number>;
     /**
-     * Additional AKMs. Valid values: `akm6`.
+     * Additional AKMs.
      */
     additionalAkms?: pulumi.Input<string>;
     /**
@@ -1929,6 +1999,10 @@ export interface VapArgs {
      * Configure MAC address filtering policy for MAC addresses that are in the address-group. Valid values: `disable`, `allow`, `deny`.
      */
     addressGroupPolicy?: pulumi.Input<string>;
+    /**
+     * WPA3 SAE using group-dependent hash only (default = disable). Valid values: `disable`, `enable`.
+     */
+    akm24Only?: pulumi.Input<string>;
     /**
      * Alias.
      */
@@ -1974,6 +2048,10 @@ export interface VapArgs {
      */
     beaconAdvertising?: pulumi.Input<string>;
     /**
+     * Enable/disable beacon protection support (default = disable). Valid values: `disable`, `enable`.
+     */
+    beaconProtection?: pulumi.Input<string>;
+    /**
      * Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
      */
     broadcastSsid?: pulumi.Input<string>;
@@ -1997,6 +2075,10 @@ export interface VapArgs {
      * Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
      */
     bstmRssiDisassocTimer?: pulumi.Input<number>;
+    /**
+     * Enable/disable captive portal. Valid values: `enable`, `disable`.
+     */
+    captivePortal?: pulumi.Input<string>;
     /**
      * Local-bridging captive portal ac-name.
      */
@@ -2122,7 +2204,7 @@ export interface VapArgs {
      */
     gasFragmentationLimit?: pulumi.Input<number>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -2130,7 +2212,7 @@ export interface VapArgs {
      */
     gtkRekey?: pulumi.Input<string>;
     /**
-     * GTK rekey interval (1800 - 864000 sec, default = 86400).
+     * GTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
      */
     gtkRekeyIntv?: pulumi.Input<number>;
     /**
@@ -2318,6 +2400,10 @@ export interface VapArgs {
      */
     name?: pulumi.Input<string>;
     /**
+     * Enable/disable NAS filter rule support (default = disable). Valid values: `enable`, `disable`.
+     */
+    nasFilterRule?: pulumi.Input<string>;
+    /**
      * Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
      */
     neighborReportDualBand?: pulumi.Input<string>;
@@ -2398,7 +2484,7 @@ export interface VapArgs {
      */
     ptkRekey?: pulumi.Input<string>;
     /**
-     * PTK rekey interval (1800 - 864000 sec, default = 86400).
+     * PTK rekey interval (default = 86400). On FortiOS versions 6.2.0-7.4.3: 1800 - 864000 sec. On FortiOS versions >= 7.4.4: 600 - 864000 sec.
      */
     ptkRekeyIntv?: pulumi.Input<number>;
     /**
@@ -2477,6 +2563,18 @@ export interface VapArgs {
      * Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
      */
     rates11axSs34?: pulumi.Input<string>;
+    /**
+     * Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+     */
+    rates11beMcsMap?: pulumi.Input<string>;
+    /**
+     * Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth.
+     */
+    rates11beMcsMap160?: pulumi.Input<string>;
+    /**
+     * Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth.
+     */
+    rates11beMcsMap320?: pulumi.Input<string>;
     /**
      * Allowed data rates for 802.11b/g.
      */

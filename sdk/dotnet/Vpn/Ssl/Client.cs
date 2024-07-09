@@ -95,7 +95,7 @@ namespace Pulumiverse.Fortios.Vpn.Ssl
         public Output<int> Port { get; private set; } = null!;
 
         /// <summary>
-        /// Priority for routes added by SSL-VPN (0 - 4294967295).
+        /// Priority for routes added by SSL-VPN. On FortiOS versions 7.0.1-7.0.3: 0 - 4294967295. On FortiOS versions &gt;= 7.0.4: 1 - 65535.
         /// </summary>
         [Output("priority")]
         public Output<int> Priority { get; private set; } = null!;
@@ -140,7 +140,7 @@ namespace Pulumiverse.Fortios.Vpn.Ssl
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -250,7 +250,7 @@ namespace Pulumiverse.Fortios.Vpn.Ssl
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// Priority for routes added by SSL-VPN (0 - 4294967295).
+        /// Priority for routes added by SSL-VPN. On FortiOS versions 7.0.1-7.0.3: 0 - 4294967295. On FortiOS versions &gt;= 7.0.4: 1 - 65535.
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
@@ -366,7 +366,7 @@ namespace Pulumiverse.Fortios.Vpn.Ssl
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// Priority for routes added by SSL-VPN (0 - 4294967295).
+        /// Priority for routes added by SSL-VPN. On FortiOS versions 7.0.1-7.0.3: 0 - 4294967295. On FortiOS versions &gt;= 7.0.4: 1 - 65535.
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }

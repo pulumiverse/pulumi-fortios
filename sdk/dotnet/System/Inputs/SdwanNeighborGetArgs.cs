@@ -26,7 +26,7 @@ namespace Pulumiverse.Fortios.System.Inputs
         public Input<string>? Ip { get; set; }
 
         /// <summary>
-        /// Member sequence number.
+        /// Member sequence number. *Due to the data type change of API, for other versions of FortiOS, please check variable `member_block`.*
         /// </summary>
         [Input("member")]
         public Input<int>? Member { get; set; }
@@ -35,7 +35,7 @@ namespace Pulumiverse.Fortios.System.Inputs
         private InputList<Inputs.SdwanNeighborMemberBlockGetArgs>? _memberBlocks;
 
         /// <summary>
-        /// Member sequence number list. The structure of `member_block` block is documented below.
+        /// Member sequence number list. *Due to the data type change of API, for other versions of FortiOS, please check variable `member`.* The structure of `member_block` block is documented below.
         /// </summary>
         public InputList<Inputs.SdwanNeighborMemberBlockGetArgs> MemberBlocks
         {

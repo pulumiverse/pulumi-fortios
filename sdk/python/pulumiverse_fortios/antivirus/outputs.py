@@ -1520,19 +1520,9 @@ class ProfilePop3(dict):
                  outbreak_prevention: Optional[str] = None,
                  quarantine: Optional[str] = None):
         """
-        :param str archive_block: Select the archive types to block.
-        :param str archive_log: Select the archive types to log.
-        :param str av_scan: Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
         :param str content_disarm: AV Content Disarm and Reconstruction settings. The structure of `content_disarm` block is documented below.
-        :param str emulator: Enable/disable the virus emulator. Valid values: `enable`, `disable`.
-        :param str executables: Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
         :param str external_blocklist: One or more external malware block lists. The structure of `external_blocklist` block is documented below.
-        :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
-        :param str fortindr: Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
-        :param str fortisandbox: Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
-        :param str options: Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Configure Virus Outbreak Prevention settings. The structure of `outbreak_prevention` block is documented below.
-        :param str quarantine: Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
         """
         if archive_block is not None:
             pulumi.set(__self__, "archive_block", archive_block)
@@ -1564,25 +1554,16 @@ class ProfilePop3(dict):
     @property
     @pulumi.getter(name="archiveBlock")
     def archive_block(self) -> Optional[str]:
-        """
-        Select the archive types to block.
-        """
         return pulumi.get(self, "archive_block")
 
     @property
     @pulumi.getter(name="archiveLog")
     def archive_log(self) -> Optional[str]:
-        """
-        Select the archive types to log.
-        """
         return pulumi.get(self, "archive_log")
 
     @property
     @pulumi.getter(name="avScan")
     def av_scan(self) -> Optional[str]:
-        """
-        Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
-        """
         return pulumi.get(self, "av_scan")
 
     @property
@@ -1596,17 +1577,11 @@ class ProfilePop3(dict):
     @property
     @pulumi.getter
     def emulator(self) -> Optional[str]:
-        """
-        Enable/disable the virus emulator. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "emulator")
 
     @property
     @pulumi.getter
     def executables(self) -> Optional[str]:
-        """
-        Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
-        """
         return pulumi.get(self, "executables")
 
     @property
@@ -1620,33 +1595,21 @@ class ProfilePop3(dict):
     @property
     @pulumi.getter
     def fortiai(self) -> Optional[str]:
-        """
-        Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
-        """
         return pulumi.get(self, "fortiai")
 
     @property
     @pulumi.getter
     def fortindr(self) -> Optional[str]:
-        """
-        Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
-        """
         return pulumi.get(self, "fortindr")
 
     @property
     @pulumi.getter
     def fortisandbox(self) -> Optional[str]:
-        """
-        Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
-        """
         return pulumi.get(self, "fortisandbox")
 
     @property
     @pulumi.getter
     def options(self) -> Optional[str]:
-        """
-        Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
-        """
         return pulumi.get(self, "options")
 
     @property
@@ -1660,9 +1623,6 @@ class ProfilePop3(dict):
     @property
     @pulumi.getter
     def quarantine(self) -> Optional[str]:
-        """
-        Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "quarantine")
 
 

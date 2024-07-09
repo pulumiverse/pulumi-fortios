@@ -1191,13 +1191,6 @@ class ProfilePop3Args:
                  log_all: Optional[pulumi.Input[str]] = None,
                  tag_msg: Optional[pulumi.Input[str]] = None,
                  tag_type: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] action: Action taken for matched file. Valid values: `log`, `block`.
-        :param pulumi.Input[str] log: Enable/disable file filter logging. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] log_all: Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] tag_msg: Subject text or header added to spam email.
-        :param pulumi.Input[str] tag_type: Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-        """
         if action is not None:
             pulumi.set(__self__, "action", action)
         if log is not None:
@@ -1212,9 +1205,6 @@ class ProfilePop3Args:
     @property
     @pulumi.getter
     def action(self) -> Optional[pulumi.Input[str]]:
-        """
-        Action taken for matched file. Valid values: `log`, `block`.
-        """
         return pulumi.get(self, "action")
 
     @action.setter
@@ -1224,9 +1214,6 @@ class ProfilePop3Args:
     @property
     @pulumi.getter
     def log(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable file filter logging. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "log")
 
     @log.setter
@@ -1236,9 +1223,6 @@ class ProfilePop3Args:
     @property
     @pulumi.getter(name="logAll")
     def log_all(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "log_all")
 
     @log_all.setter
@@ -1248,9 +1232,6 @@ class ProfilePop3Args:
     @property
     @pulumi.getter(name="tagMsg")
     def tag_msg(self) -> Optional[pulumi.Input[str]]:
-        """
-        Subject text or header added to spam email.
-        """
         return pulumi.get(self, "tag_msg")
 
     @tag_msg.setter
@@ -1260,9 +1241,6 @@ class ProfilePop3Args:
     @property
     @pulumi.getter(name="tagType")
     def tag_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-        """
         return pulumi.get(self, "tag_type")
 
     @tag_type.setter

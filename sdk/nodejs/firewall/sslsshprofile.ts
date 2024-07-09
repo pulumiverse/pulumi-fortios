@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -45,7 +44,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -122,11 +120,15 @@ export class Sslsshprofile extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * ClientHelloOuter SNIs to be blocked. The structure of `echOuterSni` block is documented below.
+     */
+    public readonly echOuterSnis!: pulumi.Output<outputs.firewall.SslsshprofileEchOuterSni[] | undefined>;
+    /**
      * Configure FTPS options. The structure of `ftps` block is documented below.
      */
     public readonly ftps!: pulumi.Output<outputs.firewall.SslsshprofileFtps>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -228,7 +230,7 @@ export class Sslsshprofile extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Enable/disable exempting servers by FortiGuard whitelist. Valid values: `enable`, `disable`.
      */
@@ -254,6 +256,7 @@ export class Sslsshprofile extends pulumi.CustomResource {
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dot"] = state ? state.dot : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["echOuterSnis"] = state ? state.echOuterSnis : undefined;
             resourceInputs["ftps"] = state ? state.ftps : undefined;
             resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["https"] = state ? state.https : undefined;
@@ -291,6 +294,7 @@ export class Sslsshprofile extends pulumi.CustomResource {
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dot"] = args ? args.dot : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["echOuterSnis"] = args ? args.echOuterSnis : undefined;
             resourceInputs["ftps"] = args ? args.ftps : undefined;
             resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["https"] = args ? args.https : undefined;
@@ -358,11 +362,15 @@ export interface SslsshprofileState {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * ClientHelloOuter SNIs to be blocked. The structure of `echOuterSni` block is documented below.
+     */
+    echOuterSnis?: pulumi.Input<pulumi.Input<inputs.firewall.SslsshprofileEchOuterSni>[]>;
+    /**
      * Configure FTPS options. The structure of `ftps` block is documented below.
      */
     ftps?: pulumi.Input<inputs.firewall.SslsshprofileFtps>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -504,11 +512,15 @@ export interface SslsshprofileArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * ClientHelloOuter SNIs to be blocked. The structure of `echOuterSni` block is documented below.
+     */
+    echOuterSnis?: pulumi.Input<pulumi.Input<inputs.firewall.SslsshprofileEchOuterSni>[]>;
+    /**
      * Configure FTPS options. The structure of `ftps` block is documented below.
      */
     ftps?: pulumi.Input<inputs.firewall.SslsshprofileFtps>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**

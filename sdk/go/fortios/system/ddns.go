@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -57,7 +56,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -87,7 +85,7 @@ type Ddns struct {
 	ClearText pulumi.StringOutput `pulumi:"clearText"`
 	// Enable/disable TSIG authentication for your DDNS server. Valid values: `disable`, `tsig`.
 	DdnsAuth pulumi.StringOutput `pulumi:"ddnsAuth"`
-	// Your fully qualified domain name (for example, yourname.DDNS.com).
+	// Your fully qualified domain name. For example, yourname.ddns.com.
 	DdnsDomain pulumi.StringOutput `pulumi:"ddnsDomain"`
 	// DDNS update key (base 64 encoding).
 	DdnsKey pulumi.StringOutput `pulumi:"ddnsKey"`
@@ -113,7 +111,7 @@ type Ddns struct {
 	Ddnsid pulumi.IntOutput `pulumi:"ddnsid"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Monitored interface. The structure of `monitorInterface` block is documented below.
 	MonitorInterfaces DdnsMonitorInterfaceArrayOutput `pulumi:"monitorInterfaces"`
@@ -121,12 +119,12 @@ type Ddns struct {
 	ServerType pulumi.StringOutput `pulumi:"serverType"`
 	// Name of local certificate for SSL connections.
 	SslCertificate pulumi.StringOutput `pulumi:"sslCertificate"`
-	// DDNS update interval (60 - 2592000 sec, default = 300).
+	// DDNS update interval, 60 - 2592000 sec. On FortiOS versions 6.2.0-7.0.3: default = 300. On FortiOS versions >= 7.0.4: 0 means default.
 	UpdateInterval pulumi.IntOutput `pulumi:"updateInterval"`
 	// Enable/disable use of public IP address. Valid values: `disable`, `enable`.
 	UsePublicIp pulumi.StringOutput `pulumi:"usePublicIp"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewDdns registers a new resource with the given unique name, arguments, and options.
@@ -184,7 +182,7 @@ type ddnsState struct {
 	ClearText *string `pulumi:"clearText"`
 	// Enable/disable TSIG authentication for your DDNS server. Valid values: `disable`, `tsig`.
 	DdnsAuth *string `pulumi:"ddnsAuth"`
-	// Your fully qualified domain name (for example, yourname.DDNS.com).
+	// Your fully qualified domain name. For example, yourname.ddns.com.
 	DdnsDomain *string `pulumi:"ddnsDomain"`
 	// DDNS update key (base 64 encoding).
 	DdnsKey *string `pulumi:"ddnsKey"`
@@ -210,7 +208,7 @@ type ddnsState struct {
 	Ddnsid *int `pulumi:"ddnsid"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Monitored interface. The structure of `monitorInterface` block is documented below.
 	MonitorInterfaces []DdnsMonitorInterface `pulumi:"monitorInterfaces"`
@@ -218,7 +216,7 @@ type ddnsState struct {
 	ServerType *string `pulumi:"serverType"`
 	// Name of local certificate for SSL connections.
 	SslCertificate *string `pulumi:"sslCertificate"`
-	// DDNS update interval (60 - 2592000 sec, default = 300).
+	// DDNS update interval, 60 - 2592000 sec. On FortiOS versions 6.2.0-7.0.3: default = 300. On FortiOS versions >= 7.0.4: 0 means default.
 	UpdateInterval *int `pulumi:"updateInterval"`
 	// Enable/disable use of public IP address. Valid values: `disable`, `enable`.
 	UsePublicIp *string `pulumi:"usePublicIp"`
@@ -235,7 +233,7 @@ type DdnsState struct {
 	ClearText pulumi.StringPtrInput
 	// Enable/disable TSIG authentication for your DDNS server. Valid values: `disable`, `tsig`.
 	DdnsAuth pulumi.StringPtrInput
-	// Your fully qualified domain name (for example, yourname.DDNS.com).
+	// Your fully qualified domain name. For example, yourname.ddns.com.
 	DdnsDomain pulumi.StringPtrInput
 	// DDNS update key (base 64 encoding).
 	DdnsKey pulumi.StringPtrInput
@@ -261,7 +259,7 @@ type DdnsState struct {
 	Ddnsid pulumi.IntPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Monitored interface. The structure of `monitorInterface` block is documented below.
 	MonitorInterfaces DdnsMonitorInterfaceArrayInput
@@ -269,7 +267,7 @@ type DdnsState struct {
 	ServerType pulumi.StringPtrInput
 	// Name of local certificate for SSL connections.
 	SslCertificate pulumi.StringPtrInput
-	// DDNS update interval (60 - 2592000 sec, default = 300).
+	// DDNS update interval, 60 - 2592000 sec. On FortiOS versions 6.2.0-7.0.3: default = 300. On FortiOS versions >= 7.0.4: 0 means default.
 	UpdateInterval pulumi.IntPtrInput
 	// Enable/disable use of public IP address. Valid values: `disable`, `enable`.
 	UsePublicIp pulumi.StringPtrInput
@@ -290,7 +288,7 @@ type ddnsArgs struct {
 	ClearText *string `pulumi:"clearText"`
 	// Enable/disable TSIG authentication for your DDNS server. Valid values: `disable`, `tsig`.
 	DdnsAuth *string `pulumi:"ddnsAuth"`
-	// Your fully qualified domain name (for example, yourname.DDNS.com).
+	// Your fully qualified domain name. For example, yourname.ddns.com.
 	DdnsDomain *string `pulumi:"ddnsDomain"`
 	// DDNS update key (base 64 encoding).
 	DdnsKey *string `pulumi:"ddnsKey"`
@@ -316,7 +314,7 @@ type ddnsArgs struct {
 	Ddnsid *int `pulumi:"ddnsid"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Monitored interface. The structure of `monitorInterface` block is documented below.
 	MonitorInterfaces []DdnsMonitorInterface `pulumi:"monitorInterfaces"`
@@ -324,7 +322,7 @@ type ddnsArgs struct {
 	ServerType *string `pulumi:"serverType"`
 	// Name of local certificate for SSL connections.
 	SslCertificate *string `pulumi:"sslCertificate"`
-	// DDNS update interval (60 - 2592000 sec, default = 300).
+	// DDNS update interval, 60 - 2592000 sec. On FortiOS versions 6.2.0-7.0.3: default = 300. On FortiOS versions >= 7.0.4: 0 means default.
 	UpdateInterval *int `pulumi:"updateInterval"`
 	// Enable/disable use of public IP address. Valid values: `disable`, `enable`.
 	UsePublicIp *string `pulumi:"usePublicIp"`
@@ -342,7 +340,7 @@ type DdnsArgs struct {
 	ClearText pulumi.StringPtrInput
 	// Enable/disable TSIG authentication for your DDNS server. Valid values: `disable`, `tsig`.
 	DdnsAuth pulumi.StringPtrInput
-	// Your fully qualified domain name (for example, yourname.DDNS.com).
+	// Your fully qualified domain name. For example, yourname.ddns.com.
 	DdnsDomain pulumi.StringPtrInput
 	// DDNS update key (base 64 encoding).
 	DdnsKey pulumi.StringPtrInput
@@ -368,7 +366,7 @@ type DdnsArgs struct {
 	Ddnsid pulumi.IntPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Monitored interface. The structure of `monitorInterface` block is documented below.
 	MonitorInterfaces DdnsMonitorInterfaceArrayInput
@@ -376,7 +374,7 @@ type DdnsArgs struct {
 	ServerType pulumi.StringPtrInput
 	// Name of local certificate for SSL connections.
 	SslCertificate pulumi.StringPtrInput
-	// DDNS update interval (60 - 2592000 sec, default = 300).
+	// DDNS update interval, 60 - 2592000 sec. On FortiOS versions 6.2.0-7.0.3: default = 300. On FortiOS versions >= 7.0.4: 0 means default.
 	UpdateInterval pulumi.IntPtrInput
 	// Enable/disable use of public IP address. Valid values: `disable`, `enable`.
 	UsePublicIp pulumi.StringPtrInput
@@ -491,7 +489,7 @@ func (o DdnsOutput) DdnsAuth() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ddns) pulumi.StringOutput { return v.DdnsAuth }).(pulumi.StringOutput)
 }
 
-// Your fully qualified domain name (for example, yourname.DDNS.com).
+// Your fully qualified domain name. For example, yourname.ddns.com.
 func (o DdnsOutput) DdnsDomain() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ddns) pulumi.StringOutput { return v.DdnsDomain }).(pulumi.StringOutput)
 }
@@ -556,7 +554,7 @@ func (o DdnsOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Ddns) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o DdnsOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Ddns) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -576,7 +574,7 @@ func (o DdnsOutput) SslCertificate() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ddns) pulumi.StringOutput { return v.SslCertificate }).(pulumi.StringOutput)
 }
 
-// DDNS update interval (60 - 2592000 sec, default = 300).
+// DDNS update interval, 60 - 2592000 sec. On FortiOS versions 6.2.0-7.0.3: default = 300. On FortiOS versions >= 7.0.4: 0 means default.
 func (o DdnsOutput) UpdateInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ddns) pulumi.IntOutput { return v.UpdateInterval }).(pulumi.IntOutput)
 }
@@ -587,8 +585,8 @@ func (o DdnsOutput) UsePublicIp() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o DdnsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Ddns) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o DdnsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ddns) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type DdnsArrayOutput struct{ *pulumi.OutputState }

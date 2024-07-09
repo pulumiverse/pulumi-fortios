@@ -155,11 +155,11 @@ type QueuepolicyCosQueue struct {
 	Ecn *string `pulumi:"ecn"`
 	// Maximum rate (0 - 4294967295 kbps, 0 to disable).
 	MaxRate *int `pulumi:"maxRate"`
-	// Maximum rate (%!o(MISSING)f link speed).
+	// Maximum rate (% of link speed).
 	MaxRatePercent *int `pulumi:"maxRatePercent"`
 	// Minimum rate (0 - 4294967295 kbps, 0 to disable).
 	MinRate *int `pulumi:"minRate"`
-	// Minimum rate (%!o(MISSING)f link speed).
+	// Minimum rate (% of link speed).
 	MinRatePercent *int `pulumi:"minRatePercent"`
 	// Cos queue ID.
 	Name *string `pulumi:"name"`
@@ -187,11 +187,11 @@ type QueuepolicyCosQueueArgs struct {
 	Ecn pulumi.StringPtrInput `pulumi:"ecn"`
 	// Maximum rate (0 - 4294967295 kbps, 0 to disable).
 	MaxRate pulumi.IntPtrInput `pulumi:"maxRate"`
-	// Maximum rate (%!o(MISSING)f link speed).
+	// Maximum rate (% of link speed).
 	MaxRatePercent pulumi.IntPtrInput `pulumi:"maxRatePercent"`
 	// Minimum rate (0 - 4294967295 kbps, 0 to disable).
 	MinRate pulumi.IntPtrInput `pulumi:"minRate"`
-	// Minimum rate (%!o(MISSING)f link speed).
+	// Minimum rate (% of link speed).
 	MinRatePercent pulumi.IntPtrInput `pulumi:"minRatePercent"`
 	// Cos queue ID.
 	Name pulumi.StringPtrInput `pulumi:"name"`
@@ -270,7 +270,7 @@ func (o QueuepolicyCosQueueOutput) MaxRate() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v QueuepolicyCosQueue) *int { return v.MaxRate }).(pulumi.IntPtrOutput)
 }
 
-// Maximum rate (%!o(MISSING)f link speed).
+// Maximum rate (% of link speed).
 func (o QueuepolicyCosQueueOutput) MaxRatePercent() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v QueuepolicyCosQueue) *int { return v.MaxRatePercent }).(pulumi.IntPtrOutput)
 }
@@ -280,7 +280,7 @@ func (o QueuepolicyCosQueueOutput) MinRate() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v QueuepolicyCosQueue) *int { return v.MinRate }).(pulumi.IntPtrOutput)
 }
 
-// Minimum rate (%!o(MISSING)f link speed).
+// Minimum rate (% of link speed).
 func (o QueuepolicyCosQueueOutput) MinRatePercent() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v QueuepolicyCosQueue) *int { return v.MinRatePercent }).(pulumi.IntPtrOutput)
 }

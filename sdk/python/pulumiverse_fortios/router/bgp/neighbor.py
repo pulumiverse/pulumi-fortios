@@ -248,7 +248,7 @@ class NeighborArgs:
         :param pulumi.Input[str] filter_list_out6: BGP filter for IPv6 outbound routes.
         :param pulumi.Input[str] filter_list_out_vpnv4: BGP filter for VPNv4 outbound routes.
         :param pulumi.Input[str] filter_list_out_vpnv6: BGP filter for VPNv6 outbound routes.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] holdtime_timer: Interval (sec) before peer considered dead.
         :param pulumi.Input[str] interface: Interface
         :param pulumi.Input[int] keep_alive_timer: Keep alive timer interval (sec).
@@ -1503,7 +1503,7 @@ class NeighborArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2814,7 +2814,7 @@ class _NeighborState:
         :param pulumi.Input[str] filter_list_out6: BGP filter for IPv6 outbound routes.
         :param pulumi.Input[str] filter_list_out_vpnv4: BGP filter for VPNv4 outbound routes.
         :param pulumi.Input[str] filter_list_out_vpnv6: BGP filter for VPNv6 outbound routes.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] holdtime_timer: Interval (sec) before peer considered dead.
         :param pulumi.Input[str] interface: Interface
         :param pulumi.Input[str] ip: IP/IPv6 address of neighbor.
@@ -4059,7 +4059,7 @@ class _NeighborState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -5408,7 +5408,7 @@ class Neighbor(pulumi.CustomResource):
         :param pulumi.Input[str] filter_list_out6: BGP filter for IPv6 outbound routes.
         :param pulumi.Input[str] filter_list_out_vpnv4: BGP filter for VPNv4 outbound routes.
         :param pulumi.Input[str] filter_list_out_vpnv6: BGP filter for VPNv6 outbound routes.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] holdtime_timer: Interval (sec) before peer considered dead.
         :param pulumi.Input[str] interface: Interface
         :param pulumi.Input[str] ip: IP/IPv6 address of neighbor.
@@ -6123,7 +6123,7 @@ class Neighbor(pulumi.CustomResource):
         :param pulumi.Input[str] filter_list_out6: BGP filter for IPv6 outbound routes.
         :param pulumi.Input[str] filter_list_out_vpnv4: BGP filter for VPNv4 outbound routes.
         :param pulumi.Input[str] filter_list_out_vpnv6: BGP filter for VPNv6 outbound routes.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[int] holdtime_timer: Interval (sec) before peer considered dead.
         :param pulumi.Input[str] interface: Interface
         :param pulumi.Input[str] ip: IP/IPv6 address of neighbor.
@@ -6937,7 +6937,7 @@ class Neighbor(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -7647,7 +7647,7 @@ class Neighbor(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

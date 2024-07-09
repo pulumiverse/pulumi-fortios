@@ -118,9 +118,9 @@ class QueuepolicyCosQueueArgs:
         :param pulumi.Input[str] drop_policy: COS queue drop policy. Valid values: `taildrop`, `weighted-random-early-detection`.
         :param pulumi.Input[str] ecn: Enable/disable ECN packet marking to drop eligible packets. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] max_rate: Maximum rate (0 - 4294967295 kbps, 0 to disable).
-        :param pulumi.Input[int] max_rate_percent: Maximum rate (%!o(MISSING)f link speed).
+        :param pulumi.Input[int] max_rate_percent: Maximum rate (% of link speed).
         :param pulumi.Input[int] min_rate: Minimum rate (0 - 4294967295 kbps, 0 to disable).
-        :param pulumi.Input[int] min_rate_percent: Minimum rate (%!o(MISSING)f link speed).
+        :param pulumi.Input[int] min_rate_percent: Minimum rate (% of link speed).
         :param pulumi.Input[str] name: Cos queue ID.
         :param pulumi.Input[int] weight: Weight of weighted round robin scheduling.
         """
@@ -195,7 +195,7 @@ class QueuepolicyCosQueueArgs:
     @pulumi.getter(name="maxRatePercent")
     def max_rate_percent(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum rate (%!o(MISSING)f link speed).
+        Maximum rate (% of link speed).
         """
         return pulumi.get(self, "max_rate_percent")
 
@@ -219,7 +219,7 @@ class QueuepolicyCosQueueArgs:
     @pulumi.getter(name="minRatePercent")
     def min_rate_percent(self) -> Optional[pulumi.Input[int]]:
         """
-        Minimum rate (%!o(MISSING)f link speed).
+        Minimum rate (% of link speed).
         """
         return pulumi.get(self, "min_rate_percent")
 

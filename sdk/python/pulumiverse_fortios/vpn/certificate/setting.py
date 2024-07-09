@@ -68,11 +68,11 @@ class SettingArgs:
         :param pulumi.Input[str] check_ca_cert: Enable/disable verification of the user certificate and pass authentication if any CA in the chain is trusted (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] check_ca_chain: Enable/disable verification of the entire certificate chain and pass authentication only if the chain is complete and all of the CAs in the chain are trusted (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cmp_key_usage_checking: Enable/disable server certificate key usage checking in CMP mode (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] cmp_save_extra_certs: Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] cn_allow_multi: When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] cn_match: When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+        :param pulumi.Input[str] cmp_save_extra_certs: Enable/disable saving extra certificates in CMP mode (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cn_allow_multi: When searching for a matching certificate, allow multiple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] cn_match: When searching for a matching certificate, control how to do CN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         :param pulumi.Input['SettingCrlVerificationArgs'] crl_verification: CRL verification options. The structure of `crl_verification` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ocsp_default_server: Default OCSP server.
@@ -87,7 +87,7 @@ class SettingArgs:
         :param pulumi.Input[str] ssl_ocsp_source_ip: Source IP address to use to communicate with the OCSP server.
         :param pulumi.Input[str] strict_crl_check: Enable/disable strict mode CRL checking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_ocsp_check: Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] subject_match: When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+        :param pulumi.Input[str] subject_match: When searching for a matching certificate, control how to do RDN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         :param pulumi.Input[str] subject_set: When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -330,7 +330,7 @@ class SettingArgs:
     @pulumi.getter(name="cmpSaveExtraCerts")
     def cmp_save_extra_certs(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
+        Enable/disable saving extra certificates in CMP mode (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "cmp_save_extra_certs")
 
@@ -342,7 +342,7 @@ class SettingArgs:
     @pulumi.getter(name="cnAllowMulti")
     def cn_allow_multi(self) -> Optional[pulumi.Input[str]]:
         """
-        When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+        When searching for a matching certificate, allow multiple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "cn_allow_multi")
 
@@ -354,7 +354,7 @@ class SettingArgs:
     @pulumi.getter(name="cnMatch")
     def cn_match(self) -> Optional[pulumi.Input[str]]:
         """
-        When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+        When searching for a matching certificate, control how to do CN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         """
         return pulumi.get(self, "cn_match")
 
@@ -378,7 +378,7 @@ class SettingArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -558,7 +558,7 @@ class SettingArgs:
     @pulumi.getter(name="subjectMatch")
     def subject_match(self) -> Optional[pulumi.Input[str]]:
         """
-        When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+        When searching for a matching certificate, control how to do RDN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         """
         return pulumi.get(self, "subject_match")
 
@@ -646,11 +646,11 @@ class _SettingState:
         :param pulumi.Input[str] check_ca_cert: Enable/disable verification of the user certificate and pass authentication if any CA in the chain is trusted (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] check_ca_chain: Enable/disable verification of the entire certificate chain and pass authentication only if the chain is complete and all of the CAs in the chain are trusted (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cmp_key_usage_checking: Enable/disable server certificate key usage checking in CMP mode (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] cmp_save_extra_certs: Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] cn_allow_multi: When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] cn_match: When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+        :param pulumi.Input[str] cmp_save_extra_certs: Enable/disable saving extra certificates in CMP mode (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cn_allow_multi: When searching for a matching certificate, allow multiple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] cn_match: When searching for a matching certificate, control how to do CN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         :param pulumi.Input['SettingCrlVerificationArgs'] crl_verification: CRL verification options. The structure of `crl_verification` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ocsp_default_server: Default OCSP server.
@@ -665,7 +665,7 @@ class _SettingState:
         :param pulumi.Input[str] ssl_ocsp_source_ip: Source IP address to use to communicate with the OCSP server.
         :param pulumi.Input[str] strict_crl_check: Enable/disable strict mode CRL checking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_ocsp_check: Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] subject_match: When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+        :param pulumi.Input[str] subject_match: When searching for a matching certificate, control how to do RDN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         :param pulumi.Input[str] subject_set: When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -914,7 +914,7 @@ class _SettingState:
     @pulumi.getter(name="cmpSaveExtraCerts")
     def cmp_save_extra_certs(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
+        Enable/disable saving extra certificates in CMP mode (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "cmp_save_extra_certs")
 
@@ -926,7 +926,7 @@ class _SettingState:
     @pulumi.getter(name="cnAllowMulti")
     def cn_allow_multi(self) -> Optional[pulumi.Input[str]]:
         """
-        When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+        When searching for a matching certificate, allow multiple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "cn_allow_multi")
 
@@ -938,7 +938,7 @@ class _SettingState:
     @pulumi.getter(name="cnMatch")
     def cn_match(self) -> Optional[pulumi.Input[str]]:
         """
-        When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+        When searching for a matching certificate, control how to do CN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         """
         return pulumi.get(self, "cn_match")
 
@@ -962,7 +962,7 @@ class _SettingState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1142,7 +1142,7 @@ class _SettingState:
     @pulumi.getter(name="subjectMatch")
     def subject_match(self) -> Optional[pulumi.Input[str]]:
         """
-        When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+        When searching for a matching certificate, control how to do RDN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         """
         return pulumi.get(self, "subject_match")
 
@@ -1222,7 +1222,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1245,7 +1244,6 @@ class Setting(pulumi.CustomResource):
             strict_ocsp_check="disable",
             subject_match="substring")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1281,11 +1279,11 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] check_ca_cert: Enable/disable verification of the user certificate and pass authentication if any CA in the chain is trusted (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] check_ca_chain: Enable/disable verification of the entire certificate chain and pass authentication only if the chain is complete and all of the CAs in the chain are trusted (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cmp_key_usage_checking: Enable/disable server certificate key usage checking in CMP mode (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] cmp_save_extra_certs: Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] cn_allow_multi: When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] cn_match: When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+        :param pulumi.Input[str] cmp_save_extra_certs: Enable/disable saving extra certificates in CMP mode (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cn_allow_multi: When searching for a matching certificate, allow multiple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] cn_match: When searching for a matching certificate, control how to do CN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         :param pulumi.Input[pulumi.InputType['SettingCrlVerificationArgs']] crl_verification: CRL verification options. The structure of `crl_verification` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ocsp_default_server: Default OCSP server.
@@ -1300,7 +1298,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] ssl_ocsp_source_ip: Source IP address to use to communicate with the OCSP server.
         :param pulumi.Input[str] strict_crl_check: Enable/disable strict mode CRL checking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_ocsp_check: Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] subject_match: When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+        :param pulumi.Input[str] subject_match: When searching for a matching certificate, control how to do RDN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         :param pulumi.Input[str] subject_set: When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -1315,7 +1313,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1338,7 +1335,6 @@ class Setting(pulumi.CustomResource):
             strict_ocsp_check="disable",
             subject_match="substring")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1533,11 +1529,11 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] check_ca_cert: Enable/disable verification of the user certificate and pass authentication if any CA in the chain is trusted (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] check_ca_chain: Enable/disable verification of the entire certificate chain and pass authentication only if the chain is complete and all of the CAs in the chain are trusted (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cmp_key_usage_checking: Enable/disable server certificate key usage checking in CMP mode (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] cmp_save_extra_certs: Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] cn_allow_multi: When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] cn_match: When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+        :param pulumi.Input[str] cmp_save_extra_certs: Enable/disable saving extra certificates in CMP mode (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cn_allow_multi: When searching for a matching certificate, allow multiple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] cn_match: When searching for a matching certificate, control how to do CN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         :param pulumi.Input[pulumi.InputType['SettingCrlVerificationArgs']] crl_verification: CRL verification options. The structure of `crl_verification` block is documented below.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ocsp_default_server: Default OCSP server.
@@ -1552,7 +1548,7 @@ class Setting(pulumi.CustomResource):
         :param pulumi.Input[str] ssl_ocsp_source_ip: Source IP address to use to communicate with the OCSP server.
         :param pulumi.Input[str] strict_crl_check: Enable/disable strict mode CRL checking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_ocsp_check: Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] subject_match: When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+        :param pulumi.Input[str] subject_match: When searching for a matching certificate, control how to do RDN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         :param pulumi.Input[str] subject_set: When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -1714,7 +1710,7 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter(name="cmpSaveExtraCerts")
     def cmp_save_extra_certs(self) -> pulumi.Output[str]:
         """
-        Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
+        Enable/disable saving extra certificates in CMP mode (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "cmp_save_extra_certs")
 
@@ -1722,7 +1718,7 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter(name="cnAllowMulti")
     def cn_allow_multi(self) -> pulumi.Output[str]:
         """
-        When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+        When searching for a matching certificate, allow multiple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "cn_allow_multi")
 
@@ -1730,7 +1726,7 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter(name="cnMatch")
     def cn_match(self) -> pulumi.Output[str]:
         """
-        When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+        When searching for a matching certificate, control how to do CN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         """
         return pulumi.get(self, "cn_match")
 
@@ -1746,7 +1742,7 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1866,7 +1862,7 @@ class Setting(pulumi.CustomResource):
     @pulumi.getter(name="subjectMatch")
     def subject_match(self) -> pulumi.Output[str]:
         """
-        When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+        When searching for a matching certificate, control how to do RDN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         """
         return pulumi.get(self, "subject_match")
 
@@ -1880,7 +1876,7 @@ class Setting(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

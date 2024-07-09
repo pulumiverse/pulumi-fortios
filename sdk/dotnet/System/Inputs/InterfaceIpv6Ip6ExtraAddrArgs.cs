@@ -13,9 +13,6 @@ namespace Pulumiverse.Fortios.System.Inputs
 
     public sealed class InterfaceIpv6Ip6ExtraAddrArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// IPv6 prefix.
-        /// </summary>
         [Input("prefix")]
         public Input<string>? Prefix { get; set; }
 

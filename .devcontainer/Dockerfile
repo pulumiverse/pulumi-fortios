@@ -1,26 +1,28 @@
-ARG UBUNTU_VERSION=latest
-FROM ubuntu:${UBUNTU_VERSION}
+ARG UBUNTU_VERSION=22.04
+FROM mcr.microsoft.com/devcontainers/base:ubuntu-${UBUNTU_VERSION}
 
 # Update apt-get and install various needed utilities
-RUN apt-get update && \
-    apt-get install -y curl && \
-    apt-get install -y wget && \
-    apt-get install -y xz-utils && \
-    apt-get install -y make && \
-    apt-get install -y gcc && \
-    apt-get install -y git
+RUN set -ex \
+    apt-get update \
+    && apt-get install --no-install-recommends -y curl \
+        wget \
+        xz-utils \
+        make \
+        gcc \
+        git
 
 # Install bridged provider prerequisites
 # See README.md
 
 # Install go
-ARG GO_VERSION=1.21.7
-RUN rm -rf /usr/local/go && \
-    wget -O- https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz | \
-    tar -C /usr/local -xzf -
-
-ENV GOPATH=/root/go
+ARG GO_VERSION=1.21.12
 ENV PATH=$PATH:/usr/local/go/bin
+RUN set -ex \
+    rm -rf /usr/local/go \
+    && export arch=$(uname -m | awk '{ if ($1 == "x86_64") print "amd64"; else if ($1 == "aarch64" || $1 == "arm64") print "arm64"; else print "unknown" }') \
+    && curl -L "https://go.dev/dl/go${GO_VERSION}.linux-${arch}.tar.gz" | tar -C /usr/local/ -xzvf - \
+    && which go \
+    && go version
 
 # Install go linter
 RUN mkdir -p $GOPATH/bin && \
@@ -29,39 +31,78 @@ RUN mkdir -p $GOPATH/bin && \
 ENV PATH=$PATH:$GOPATH/bin
 
 # Install pulumictl
-ARG PULUMICTL_VERSION=v0.0.46
-RUN rm -rf /usr/local/bin/pulumictl && \
-    wget -O- https://github.com/pulumi/pulumictl/releases/download/${PULUMICTL_VERSION}/pulumictl-${PULUMICTL_VERSION}-linux-amd64.tar.gz | \
-    tar -C /usr/local/bin -xzf -
+RUN set -ex \
+    && export arch=$(uname -m | awk '{ if ($1 == "x86_64") print "amd64"; else if ($1 == "aarch64" || $1 == "arm64") print "arm64"; else print "unknown" }') \
+    && export urlPulumiRelease="https://api.github.com/repos/pulumi/pulumictl/releases/latest" \
+    && export urlPulumiVersion=$(curl -s ${urlPulumiRelease} | awk -F '["v,]' '/tag_name/{print $5}') \
+    && export urlPulumiBase="https://github.com/pulumi/pulumictl/releases/download" \
+    && export urlPulumiBin="pulumictl-v${urlPulumiVersion}-linux-${arch}.tar.gz" \
+    && export urlPulumi="${urlPulumiBase}/v${urlPulumiVersion}/${urlPulumiBin}" \
+    && curl -L ${urlPulumi} | tar xzvf - --directory /tmp \
+    && chmod +x /tmp/pulumictl \
+    && mv /tmp/pulumictl /usr/local/bin/ \
+    && which pulumictl \
+    && pulumictl version \
+    && rm -rf /tmp/* \
+    && true
 
 # Install nodejs
-ARG NODEJS_VERSION=v16.16.0
-ARG NODEJS_PKG=node-${NODEJS_VERSION}-linux-x64
-ARG NODEJS_TARBALL=${NODEJS_PKG}.tar.xz
-RUN rm -rf /usr/local/node && \
-    wget -O ${NODEJS_TARBALL} https://nodejs.org/dist/${NODEJS_VERSION}/${NODEJS_TARBALL} && \
-    tar -C /usr/local -xf ${NODEJS_TARBALL} && \
-    mv /usr/local/${NODEJS_PKG} /usr/local/node
-
-ENV PATH=$PATH:/usr/local/node/bin
-
-# Install yarn
-RUN npm install --global yarn
+RUN set -ex \
+    && export NODE_MAJOR=18 \
+    && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key \
+        | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
+    && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" \
+        | tee /etc/apt/sources.list.d/nodesource.list \
+    && apt-get update \
+    && apt-get install --no-install-recommends nodejs \
+    && apt-get clean \
+    && apt-get autoremove -y \
+    && apt-get purge -y --auto-remove \
+    && rm -rf \
+        /var/lib/{apt,dpkg,cache,log} \
+        /usr/share/{doc,man,locale} \
+        /var/cache/apt \
+        /root/.cache \
+        /var/tmp/* \
+        /tmp/* \
+    && node --version \
+    && npm --version \
+    && npm install --global yarn \
+    && yarn --version \
+    && true
 
 # Install python and related items
-RUN apt-get install -y python3 && \
-    apt-get install -y python3-setuptools
+RUN apt-get install -y --no-install-recommends python3 && \
+    apt-get install -y --no-install-recommends python3-setuptools python3-venv python3-pip
 
 # Install .NET
-RUN wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
-    dpkg -i packages-microsoft-prod.deb && \
-    rm packages-microsoft-prod.deb
+RUN set -ex \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends dotnet-sdk-6.0 dotnet-runtime-6.0 \
+    && apt-get clean \
+    && apt-get autoremove -y \
+    && apt-get purge -y --auto-remove \
+    && rm -rf \
+        /var/lib/{apt,dpkg,cache,log} \
+        /usr/share/{doc,man,locale} \
+        /var/cache/apt \
+        /root/.cache \
+        /var/tmp/* \
+        /tmp/* \
+    && true
 
-RUN apt-get update && \
-    apt-get install -y apt-transport-https && \
-    apt-get update && \
-    apt-get install -y dotnet-sdk-6.0
-
-# Install Pulumi
-RUN curl -fsSL https://get.pulumi.com | sh
-ENV PATH=$PATH:/root/.pulumi/bin
+# Install pulumi
+RUN set -ex \
+    && export arch=$(uname -m | awk '{ if ($1 == "x86_64") print "x64"; else if ($1 == "aarch64" || $1 == "arm64") print "arm64"; else print "unknown" }') \
+    && export urlPulumiRelease="https://api.github.com/repos/pulumi/pulumi/releases/latest" \
+    && export urlPulumiVersion=$(curl -s ${urlPulumiRelease} | awk -F '["v,]' '/tag_name/{print $5}') \
+    && export urlPulumiBase="https://github.com/pulumi/pulumi/releases/download" \
+    && export urlPulumiBin="pulumi-v${urlPulumiVersion}-linux-${arch}.tar.gz" \
+    && export urlPulumi="${urlPulumiBase}/v${urlPulumiVersion}/${urlPulumiBin}" \
+    && curl -L ${urlPulumi} | tar xzvf - --directory /tmp \
+    && chmod +x /tmp/pulumi/* \
+    && mv /tmp/pulumi/* /usr/local/bin/ \
+    && which pulumi \
+    && pulumi version \
+    && rm -rf /tmp/* \
+    && true

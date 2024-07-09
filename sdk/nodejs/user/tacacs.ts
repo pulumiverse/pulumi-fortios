@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -21,7 +20,6 @@ import * as utilities from "../utilities";
  *     server: "1.1.1.1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -114,6 +112,10 @@ export class Tacacs extends pulumi.CustomResource {
      */
     public readonly sourceIp!: pulumi.Output<string>;
     /**
+     * Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+     */
+    public readonly statusTtl!: pulumi.Output<number>;
+    /**
      * Key to access the tertiary server.
      */
     public readonly tertiaryKey!: pulumi.Output<string | undefined>;
@@ -124,7 +126,7 @@ export class Tacacs extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Tacacs resource with the given unique name, arguments, and options.
@@ -150,6 +152,7 @@ export class Tacacs extends pulumi.CustomResource {
             resourceInputs["secondaryServer"] = state ? state.secondaryServer : undefined;
             resourceInputs["server"] = state ? state.server : undefined;
             resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["statusTtl"] = state ? state.statusTtl : undefined;
             resourceInputs["tertiaryKey"] = state ? state.tertiaryKey : undefined;
             resourceInputs["tertiaryServer"] = state ? state.tertiaryServer : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -166,6 +169,7 @@ export class Tacacs extends pulumi.CustomResource {
             resourceInputs["secondaryServer"] = args ? args.secondaryServer : undefined;
             resourceInputs["server"] = args ? args.server : undefined;
             resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["statusTtl"] = args ? args.statusTtl : undefined;
             resourceInputs["tertiaryKey"] = args?.tertiaryKey ? pulumi.secret(args.tertiaryKey) : undefined;
             resourceInputs["tertiaryServer"] = args ? args.tertiaryServer : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -225,6 +229,10 @@ export interface TacacsState {
      * source IP for communications to TACACS+ server.
      */
     sourceIp?: pulumi.Input<string>;
+    /**
+     * Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+     */
+    statusTtl?: pulumi.Input<number>;
     /**
      * Key to access the tertiary server.
      */
@@ -287,6 +295,10 @@ export interface TacacsArgs {
      * source IP for communications to TACACS+ server.
      */
     sourceIp?: pulumi.Input<string>;
+    /**
+     * Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+     */
+    statusTtl?: pulumi.Input<number>;
     /**
      * Key to access the tertiary server.
      */

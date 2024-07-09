@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,7 +40,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -63,14 +61,14 @@ import (
 type Customcommand struct {
 	pulumi.CustomResourceState
 
-	// String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
+	// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
 	Command pulumi.StringOutput `pulumi:"command"`
 	// Command name called by the FortiGate switch controller in the execute command.
 	CommandName pulumi.StringOutput `pulumi:"commandName"`
 	// Description.
 	Description pulumi.StringOutput `pulumi:"description"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewCustomcommand registers a new resource with the given unique name, arguments, and options.
@@ -106,7 +104,7 @@ func GetCustomcommand(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Customcommand resources.
 type customcommandState struct {
-	// String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
+	// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
 	Command *string `pulumi:"command"`
 	// Command name called by the FortiGate switch controller in the execute command.
 	CommandName *string `pulumi:"commandName"`
@@ -117,7 +115,7 @@ type customcommandState struct {
 }
 
 type CustomcommandState struct {
-	// String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
+	// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
 	Command pulumi.StringPtrInput
 	// Command name called by the FortiGate switch controller in the execute command.
 	CommandName pulumi.StringPtrInput
@@ -132,7 +130,7 @@ func (CustomcommandState) ElementType() reflect.Type {
 }
 
 type customcommandArgs struct {
-	// String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
+	// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
 	Command string `pulumi:"command"`
 	// Command name called by the FortiGate switch controller in the execute command.
 	CommandName *string `pulumi:"commandName"`
@@ -144,7 +142,7 @@ type customcommandArgs struct {
 
 // The set of arguments for constructing a Customcommand resource.
 type CustomcommandArgs struct {
-	// String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
+	// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
 	Command pulumi.StringInput
 	// Command name called by the FortiGate switch controller in the execute command.
 	CommandName pulumi.StringPtrInput
@@ -241,7 +239,7 @@ func (o CustomcommandOutput) ToCustomcommandOutputWithContext(ctx context.Contex
 	return o
 }
 
-// String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
+// String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
 func (o CustomcommandOutput) Command() pulumi.StringOutput {
 	return o.ApplyT(func(v *Customcommand) pulumi.StringOutput { return v.Command }).(pulumi.StringOutput)
 }
@@ -257,8 +255,8 @@ func (o CustomcommandOutput) Description() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o CustomcommandOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Customcommand) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o CustomcommandOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Customcommand) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type CustomcommandArrayOutput struct{ *pulumi.OutputState }

@@ -14,29 +14,11 @@ namespace Pulumiverse.Fortios.Router.Outputs
     [OutputType]
     public sealed class IsisRedistribute6
     {
-        /// <summary>
-        /// Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-        /// </summary>
         public readonly string? Level;
-        /// <summary>
-        /// Metric.
-        /// </summary>
         public readonly int? Metric;
-        /// <summary>
-        /// Metric type. Valid values: `external`, `internal`.
-        /// </summary>
         public readonly string? MetricType;
-        /// <summary>
-        /// Protocol name.
-        /// </summary>
         public readonly string? Protocol;
-        /// <summary>
-        /// Route map name.
-        /// </summary>
         public readonly string? Routemap;
-        /// <summary>
-        /// Enable/disable interface for IS-IS. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? Status;
 
         [OutputConstructor]

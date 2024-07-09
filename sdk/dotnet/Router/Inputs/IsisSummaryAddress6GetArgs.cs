@@ -14,20 +14,14 @@ namespace Pulumiverse.Fortios.Router.Inputs
     public sealed class IsisSummaryAddress6GetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// isis-net ID.
+        /// an identifier for the resource.
         /// </summary>
         [Input("id")]
         public Input<int>? Id { get; set; }
 
-        /// <summary>
-        /// Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-        /// </summary>
         [Input("level")]
         public Input<string>? Level { get; set; }
 
-        /// <summary>
-        /// IPv6 prefix.
-        /// </summary>
         [Input("prefix6")]
         public Input<string>? Prefix6 { get; set; }
 

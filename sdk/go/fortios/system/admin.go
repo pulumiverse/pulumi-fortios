@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -56,7 +55,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -94,7 +92,7 @@ type Admin struct {
 	ForcePasswordChange pulumi.StringOutput `pulumi:"forcePasswordChange"`
 	// This administrator's FortiToken serial number.
 	Fortitoken pulumi.StringOutput `pulumi:"fortitoken"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable guest authentication. Valid values: `disable`, `enable`.
 	GuestAuth pulumi.StringOutput `pulumi:"guestAuth"`
@@ -199,7 +197,7 @@ type Admin struct {
 	// Enable to use the names of VDOMs provided by the remote authentication server to control the VDOMs that this administrator can access. Valid values: `enable`, `disable`.
 	VdomOverride pulumi.StringOutput `pulumi:"vdomOverride"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.
 	Vdoms AdminVdomArrayOutput `pulumi:"vdoms"`
 	// Enable/disable wildcard RADIUS authentication. Valid values: `enable`, `disable`.
@@ -279,7 +277,7 @@ type adminState struct {
 	ForcePasswordChange *string `pulumi:"forcePasswordChange"`
 	// This administrator's FortiToken serial number.
 	Fortitoken *string `pulumi:"fortitoken"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable guest authentication. Valid values: `disable`, `enable`.
 	GuestAuth *string `pulumi:"guestAuth"`
@@ -408,7 +406,7 @@ type AdminState struct {
 	ForcePasswordChange pulumi.StringPtrInput
 	// This administrator's FortiToken serial number.
 	Fortitoken pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable guest authentication. Valid values: `disable`, `enable`.
 	GuestAuth pulumi.StringPtrInput
@@ -541,7 +539,7 @@ type adminArgs struct {
 	ForcePasswordChange *string `pulumi:"forcePasswordChange"`
 	// This administrator's FortiToken serial number.
 	Fortitoken *string `pulumi:"fortitoken"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable guest authentication. Valid values: `disable`, `enable`.
 	GuestAuth *string `pulumi:"guestAuth"`
@@ -671,7 +669,7 @@ type AdminArgs struct {
 	ForcePasswordChange pulumi.StringPtrInput
 	// This administrator's FortiToken serial number.
 	Fortitoken pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable guest authentication. Valid values: `disable`, `enable`.
 	GuestAuth pulumi.StringPtrInput
@@ -910,7 +908,7 @@ func (o AdminOutput) Fortitoken() pulumi.StringOutput {
 	return o.ApplyT(func(v *Admin) pulumi.StringOutput { return v.Fortitoken }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o AdminOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Admin) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -1171,8 +1169,8 @@ func (o AdminOutput) VdomOverride() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o AdminOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Admin) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o AdminOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Admin) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Virtual domain(s) that the administrator can access. The structure of `vdom` block is documented below.

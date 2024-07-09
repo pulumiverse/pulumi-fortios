@@ -14,9 +14,6 @@ namespace Pulumiverse.Fortios.Router.Outputs
     [OutputType]
     public sealed class BgpVrfLeak6
     {
-        /// <summary>
-        /// Target VRF table. The structure of `target` block is documented below.
-        /// </summary>
         public readonly ImmutableArray<Outputs.BgpVrfLeak6Target> Targets;
         /// <summary>
         /// BGP VRF leaking table. The structure of `vrf` block is documented below.

@@ -47,7 +47,7 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? HttpMatch;
         /// <summary>
-        /// Status check interval, or the time between attempting to connect to the server (1 - 3600 sec, default = 5).
+        /// Status check interval, or the time between attempting to connect to the server. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-6.4.0: 500 - 3600*1000 msec, default = 500.
         /// </summary>
         public readonly int? Interval;
         /// <summary>

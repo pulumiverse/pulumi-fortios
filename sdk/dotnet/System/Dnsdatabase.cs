@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -50,7 +49,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -86,9 +84,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Authoritative { get; private set; } = null!;
 
         /// <summary>
-        /// Email address of the administrator for this zone.
-        /// You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-        /// When using a simple username, the domain of the email will be this zone.
+        /// Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
         /// </summary>
         [Output("contact")]
         public Output<string> Contact { get; private set; } = null!;
@@ -124,7 +120,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Forwarder6 { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -184,7 +180,7 @@ namespace Pulumiverse.Fortios.System
         public Output<int> Ttl { get; private set; } = null!;
 
         /// <summary>
-        /// Zone type (master to manage entries directly, slave to import entries from other zones).
+        /// Zone type (primary to manage entries directly, secondary to import entries from other zones).
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -193,7 +189,7 @@ namespace Pulumiverse.Fortios.System
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Zone view (public to serve public clients, shadow to serve internal clients).
@@ -261,9 +257,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string> Authoritative { get; set; } = null!;
 
         /// <summary>
-        /// Email address of the administrator for this zone.
-        /// You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-        /// When using a simple username, the domain of the email will be this zone.
+        /// Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
         /// </summary>
         [Input("contact")]
         public Input<string>? Contact { get; set; }
@@ -305,7 +299,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Forwarder6 { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -365,7 +359,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int> Ttl { get; set; } = null!;
 
         /// <summary>
-        /// Zone type (master to manage entries directly, slave to import entries from other zones).
+        /// Zone type (primary to manage entries directly, secondary to import entries from other zones).
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -403,9 +397,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Authoritative { get; set; }
 
         /// <summary>
-        /// Email address of the administrator for this zone.
-        /// You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-        /// When using a simple username, the domain of the email will be this zone.
+        /// Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
         /// </summary>
         [Input("contact")]
         public Input<string>? Contact { get; set; }
@@ -447,7 +439,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Forwarder6 { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -507,7 +499,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? Ttl { get; set; }
 
         /// <summary>
-        /// Zone type (master to manage entries directly, slave to import entries from other zones).
+        /// Zone type (primary to manage entries directly, secondary to import entries from other zones).
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

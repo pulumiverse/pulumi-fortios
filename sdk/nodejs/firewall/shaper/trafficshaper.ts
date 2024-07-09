@@ -9,7 +9,6 @@ import * as utilities from "../../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -24,7 +23,6 @@ import * as utilities from "../../utilities";
  *     priority: "low",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -117,11 +115,11 @@ export class Trafficshaper extends pulumi.CustomResource {
      */
     public readonly exceedDscp!: pulumi.Output<string>;
     /**
-     * Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+     * Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
      */
     public readonly guaranteedBandwidth!: pulumi.Output<number>;
     /**
-     * Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+     * Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
      */
     public readonly maximumBandwidth!: pulumi.Output<number>;
     /**
@@ -151,7 +149,7 @@ export class Trafficshaper extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Trafficshaper resource with the given unique name, arguments, and options.
@@ -263,11 +261,11 @@ export interface TrafficshaperState {
      */
     exceedDscp?: pulumi.Input<string>;
     /**
-     * Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+     * Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
      */
     guaranteedBandwidth?: pulumi.Input<number>;
     /**
-     * Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+     * Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
      */
     maximumBandwidth?: pulumi.Input<number>;
     /**
@@ -349,11 +347,11 @@ export interface TrafficshaperArgs {
      */
     exceedDscp?: pulumi.Input<string>;
     /**
-     * Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+     * Amount of bandwidth guaranteed for this shaper. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
      */
     guaranteedBandwidth?: pulumi.Input<number>;
     /**
-     * Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.14, 7.0.6-7.0.13, >= 7.2.1: 0 - 80000000.
+     * Upper bandwidth limit enforced by this shaper. 0 means no limit. Units depend on the bandwidth-unit setting. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 0 - 16776000. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15, >= 7.2.1: 0 - 80000000.
      */
     maximumBandwidth?: pulumi.Input<number>;
     /**

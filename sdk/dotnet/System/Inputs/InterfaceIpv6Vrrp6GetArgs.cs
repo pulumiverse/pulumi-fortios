@@ -13,27 +13,15 @@ namespace Pulumiverse.Fortios.System.Inputs
 
     public sealed class InterfaceIpv6Vrrp6GetArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Enable/disable accept mode. Valid values: `enable`, `disable`.
-        /// </summary>
         [Input("acceptMode")]
         public Input<string>? AcceptMode { get; set; }
 
-        /// <summary>
-        /// Advertisement interval (1 - 255 seconds).
-        /// </summary>
         [Input("advInterval")]
         public Input<int>? AdvInterval { get; set; }
 
-        /// <summary>
-        /// Enable/disable ignoring of default route when checking destination. Valid values: `enable`, `disable`.
-        /// </summary>
         [Input("ignoreDefaultRoute")]
         public Input<string>? IgnoreDefaultRoute { get; set; }
 
-        /// <summary>
-        /// Enable/disable preempt mode. Valid values: `enable`, `disable`.
-        /// </summary>
         [Input("preempt")]
         public Input<string>? Preempt { get; set; }
 
@@ -43,9 +31,6 @@ namespace Pulumiverse.Fortios.System.Inputs
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
-        /// <summary>
-        /// Startup time (1 - 255 seconds).
-        /// </summary>
         [Input("startTime")]
         public Input<int>? StartTime { get; set; }
 
@@ -55,27 +40,15 @@ namespace Pulumiverse.Fortios.System.Inputs
         [Input("status")]
         public Input<string>? Status { get; set; }
 
-        /// <summary>
-        /// Monitor the route to this destination.
-        /// </summary>
         [Input("vrdst6")]
         public Input<string>? Vrdst6 { get; set; }
 
-        /// <summary>
-        /// VRRP group ID (1 - 65535).
-        /// </summary>
         [Input("vrgrp")]
         public Input<int>? Vrgrp { get; set; }
 
-        /// <summary>
-        /// Virtual router identifier (1 - 255).
-        /// </summary>
         [Input("vrid")]
         public Input<int>? Vrid { get; set; }
 
-        /// <summary>
-        /// IPv6 address of the virtual router.
-        /// </summary>
         [Input("vrip6")]
         public Input<string>? Vrip6 { get; set; }
 

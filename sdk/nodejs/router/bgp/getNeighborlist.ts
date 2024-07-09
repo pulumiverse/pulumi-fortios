@@ -9,7 +9,6 @@ import * as utilities from "../../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
@@ -17,7 +16,6 @@ import * as utilities from "../../utilities";
  * const sample1 = fortios.router.bgp.getNeighborlist({});
  * export const output1 = sample1.then(sample1 => sample1.iplists);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNeighborlist(args?: GetNeighborlistArgs, opts?: pulumi.InvokeOptions): Promise<GetNeighborlistResult> {
     args = args || {};
@@ -63,7 +61,6 @@ export interface GetNeighborlistResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
@@ -71,7 +68,6 @@ export interface GetNeighborlistResult {
  * const sample1 = fortios.router.bgp.getNeighborlist({});
  * export const output1 = sample1.then(sample1 => sample1.iplists);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNeighborlistOutput(args?: GetNeighborlistOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNeighborlistResult> {
     return pulumi.output(args).apply((a: any) => getNeighborlist(a, opts))

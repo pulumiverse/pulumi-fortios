@@ -59,11 +59,11 @@ type Hsprofile struct {
 	DomainName pulumi.StringOutput `pulumi:"domainName"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
+	// GAS comeback delay (default = 500). On FortiOS versions 6.2.0-7.0.0: 0 or 100 - 4000 milliseconds. On FortiOS versions >= 7.0.1: 0 or 100 - 10000 milliseconds.
 	GasComebackDelay pulumi.IntOutput `pulumi:"gasComebackDelay"`
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit pulumi.IntOutput `pulumi:"gasFragmentationLimit"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Homogeneous extended service set identifier (HESSID).
 	Hessid pulumi.StringOutput `pulumi:"hessid"`
@@ -102,7 +102,7 @@ type Hsprofile struct {
 	// Terms and conditions.
 	TermsAndConditions pulumi.StringOutput `pulumi:"termsAndConditions"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
 	VenueGroup pulumi.StringOutput `pulumi:"venueGroup"`
 	// Venue name.
@@ -173,11 +173,11 @@ type hsprofileState struct {
 	DomainName *string `pulumi:"domainName"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
+	// GAS comeback delay (default = 500). On FortiOS versions 6.2.0-7.0.0: 0 or 100 - 4000 milliseconds. On FortiOS versions >= 7.0.1: 0 or 100 - 10000 milliseconds.
 	GasComebackDelay *int `pulumi:"gasComebackDelay"`
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit *int `pulumi:"gasFragmentationLimit"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Homogeneous extended service set identifier (HESSID).
 	Hessid *string `pulumi:"hessid"`
@@ -258,11 +258,11 @@ type HsprofileState struct {
 	DomainName pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
+	// GAS comeback delay (default = 500). On FortiOS versions 6.2.0-7.0.0: 0 or 100 - 4000 milliseconds. On FortiOS versions >= 7.0.1: 0 or 100 - 10000 milliseconds.
 	GasComebackDelay pulumi.IntPtrInput
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Homogeneous extended service set identifier (HESSID).
 	Hessid pulumi.StringPtrInput
@@ -347,11 +347,11 @@ type hsprofileArgs struct {
 	DomainName *string `pulumi:"domainName"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
+	// GAS comeback delay (default = 500). On FortiOS versions 6.2.0-7.0.0: 0 or 100 - 4000 milliseconds. On FortiOS versions >= 7.0.1: 0 or 100 - 10000 milliseconds.
 	GasComebackDelay *int `pulumi:"gasComebackDelay"`
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit *int `pulumi:"gasFragmentationLimit"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Homogeneous extended service set identifier (HESSID).
 	Hessid *string `pulumi:"hessid"`
@@ -433,11 +433,11 @@ type HsprofileArgs struct {
 	DomainName pulumi.StringPtrInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
+	// GAS comeback delay (default = 500). On FortiOS versions 6.2.0-7.0.0: 0 or 100 - 4000 milliseconds. On FortiOS versions >= 7.0.1: 0 or 100 - 10000 milliseconds.
 	GasComebackDelay pulumi.IntPtrInput
 	// GAS fragmentation limit (512 - 4096, default = 1024).
 	GasFragmentationLimit pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Homogeneous extended service set identifier (HESSID).
 	Hessid pulumi.StringPtrInput
@@ -643,7 +643,7 @@ func (o HsprofileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Hsprofile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
-// GAS comeback delay (0 or 100 - 4000 milliseconds, default = 500).
+// GAS comeback delay (default = 500). On FortiOS versions 6.2.0-7.0.0: 0 or 100 - 4000 milliseconds. On FortiOS versions >= 7.0.1: 0 or 100 - 10000 milliseconds.
 func (o HsprofileOutput) GasComebackDelay() pulumi.IntOutput {
 	return o.ApplyT(func(v *Hsprofile) pulumi.IntOutput { return v.GasComebackDelay }).(pulumi.IntOutput)
 }
@@ -653,7 +653,7 @@ func (o HsprofileOutput) GasFragmentationLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Hsprofile) pulumi.IntOutput { return v.GasFragmentationLimit }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o HsprofileOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Hsprofile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -749,8 +749,8 @@ func (o HsprofileOutput) TermsAndConditions() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o HsprofileOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Hsprofile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o HsprofileOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Hsprofile) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.

@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,7 +41,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -73,7 +71,7 @@ type Dnstranslation struct {
 	// IPv4 address or subnet on the internal network to compare with the resolved address in DNS query replies. If the resolved address matches, the resolved address is substituted with dst.
 	Src pulumi.StringOutput `pulumi:"src"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewDnstranslation registers a new resource with the given unique name, arguments, and options.
@@ -270,8 +268,8 @@ func (o DnstranslationOutput) Src() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o DnstranslationOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Dnstranslation) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o DnstranslationOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Dnstranslation) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type DnstranslationArrayOutput struct{ *pulumi.OutputState }

@@ -44,7 +44,7 @@ namespace Pulumiverse.Fortios.System.Inputs
         public Input<string>? Ipv6 { get; set; }
 
         /// <summary>
-        /// DNS entry preference, 0 is the highest preference (0 - 65535, default = 10)
+        /// DNS entry preference (0 - 65535, highest preference = 0, default = 10).
         /// </summary>
         [Input("preference")]
         public Input<int>? Preference { get; set; }

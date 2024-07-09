@@ -84,7 +84,7 @@ export class Wtpprofile extends pulumi.CustomResource {
      */
     public readonly comment!: pulumi.Output<string | undefined>;
     /**
-     * Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+     * Enable/disable FortiAP console login access (default = enable). Valid values: `enable`, `disable`.
      */
     public readonly consoleLogin!: pulumi.Output<string>;
     /**
@@ -124,7 +124,7 @@ export class Wtpprofile extends pulumi.CustomResource {
      */
     public readonly frequencyHandoff!: pulumi.Output<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -144,7 +144,7 @@ export class Wtpprofile extends pulumi.CustomResource {
      */
     public readonly indoorOutdoorDeployment!: pulumi.Output<string>;
     /**
-     * Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+     * Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
      */
     public readonly ipFragmentPreventing!: pulumi.Output<string>;
     /**
@@ -164,7 +164,7 @@ export class Wtpprofile extends pulumi.CustomResource {
      */
     public readonly ledState!: pulumi.Output<string>;
     /**
-     * Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = disable). Valid values: `enable`, `disable`.
+     * Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP. On FortiOS versions 6.2.0: default = disable. On FortiOS versions >= 6.2.4: default = enable. Valid values: `enable`, `disable`.
      */
     public readonly lldp!: pulumi.Output<string>;
     /**
@@ -224,11 +224,11 @@ export class Wtpprofile extends pulumi.CustomResource {
      */
     public readonly syslogProfile!: pulumi.Output<string>;
     /**
-     * Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+     * The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
      */
     public readonly tunMtuDownlink!: pulumi.Output<number>;
     /**
-     * Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+     * The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
      */
     public readonly tunMtuUplink!: pulumi.Output<number>;
     /**
@@ -236,9 +236,13 @@ export class Wtpprofile extends pulumi.CustomResource {
      */
     public readonly unii45ghzBand!: pulumi.Output<string>;
     /**
+     * Enable/disable USB port of the WTP (default = enable). Valid values: `enable`, `disable`.
+     */
+    public readonly usbPort!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
      */
@@ -322,6 +326,7 @@ export class Wtpprofile extends pulumi.CustomResource {
             resourceInputs["tunMtuDownlink"] = state ? state.tunMtuDownlink : undefined;
             resourceInputs["tunMtuUplink"] = state ? state.tunMtuUplink : undefined;
             resourceInputs["unii45ghzBand"] = state ? state.unii45ghzBand : undefined;
+            resourceInputs["usbPort"] = state ? state.usbPort : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["wanPortAuth"] = state ? state.wanPortAuth : undefined;
             resourceInputs["wanPortAuthMacsec"] = state ? state.wanPortAuthMacsec : undefined;
@@ -376,6 +381,7 @@ export class Wtpprofile extends pulumi.CustomResource {
             resourceInputs["tunMtuDownlink"] = args ? args.tunMtuDownlink : undefined;
             resourceInputs["tunMtuUplink"] = args ? args.tunMtuUplink : undefined;
             resourceInputs["unii45ghzBand"] = args ? args.unii45ghzBand : undefined;
+            resourceInputs["usbPort"] = args ? args.usbPort : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["wanPortAuth"] = args ? args.wanPortAuth : undefined;
             resourceInputs["wanPortAuthMacsec"] = args ? args.wanPortAuthMacsec : undefined;
@@ -424,7 +430,7 @@ export interface WtpprofileState {
      */
     comment?: pulumi.Input<string>;
     /**
-     * Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+     * Enable/disable FortiAP console login access (default = enable). Valid values: `enable`, `disable`.
      */
     consoleLogin?: pulumi.Input<string>;
     /**
@@ -464,7 +470,7 @@ export interface WtpprofileState {
      */
     frequencyHandoff?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -484,7 +490,7 @@ export interface WtpprofileState {
      */
     indoorOutdoorDeployment?: pulumi.Input<string>;
     /**
-     * Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+     * Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
      */
     ipFragmentPreventing?: pulumi.Input<string>;
     /**
@@ -504,7 +510,7 @@ export interface WtpprofileState {
      */
     ledState?: pulumi.Input<string>;
     /**
-     * Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = disable). Valid values: `enable`, `disable`.
+     * Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP. On FortiOS versions 6.2.0: default = disable. On FortiOS versions >= 6.2.4: default = enable. Valid values: `enable`, `disable`.
      */
     lldp?: pulumi.Input<string>;
     /**
@@ -564,17 +570,21 @@ export interface WtpprofileState {
      */
     syslogProfile?: pulumi.Input<string>;
     /**
-     * Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+     * The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
      */
     tunMtuDownlink?: pulumi.Input<number>;
     /**
-     * Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+     * The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
      */
     tunMtuUplink?: pulumi.Input<number>;
     /**
      * Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
      */
     unii45ghzBand?: pulumi.Input<string>;
+    /**
+     * Enable/disable USB port of the WTP (default = enable). Valid values: `enable`, `disable`.
+     */
+    usbPort?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -638,7 +648,7 @@ export interface WtpprofileArgs {
      */
     comment?: pulumi.Input<string>;
     /**
-     * Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+     * Enable/disable FortiAP console login access (default = enable). Valid values: `enable`, `disable`.
      */
     consoleLogin?: pulumi.Input<string>;
     /**
@@ -678,7 +688,7 @@ export interface WtpprofileArgs {
      */
     frequencyHandoff?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -698,7 +708,7 @@ export interface WtpprofileArgs {
      */
     indoorOutdoorDeployment?: pulumi.Input<string>;
     /**
-     * Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+     * Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
      */
     ipFragmentPreventing?: pulumi.Input<string>;
     /**
@@ -718,7 +728,7 @@ export interface WtpprofileArgs {
      */
     ledState?: pulumi.Input<string>;
     /**
-     * Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = disable). Valid values: `enable`, `disable`.
+     * Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP. On FortiOS versions 6.2.0: default = disable. On FortiOS versions >= 6.2.4: default = enable. Valid values: `enable`, `disable`.
      */
     lldp?: pulumi.Input<string>;
     /**
@@ -778,17 +788,21 @@ export interface WtpprofileArgs {
      */
     syslogProfile?: pulumi.Input<string>;
     /**
-     * Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+     * The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
      */
     tunMtuDownlink?: pulumi.Input<number>;
     /**
-     * Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+     * The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
      */
     tunMtuUplink?: pulumi.Input<number>;
     /**
      * Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
      */
     unii45ghzBand?: pulumi.Input<string>;
+    /**
+     * Enable/disable USB port of the WTP (default = enable). Valid values: `enable`, `disable`.
+     */
+    usbPort?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

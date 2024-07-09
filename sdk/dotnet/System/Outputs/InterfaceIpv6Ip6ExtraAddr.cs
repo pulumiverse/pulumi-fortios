@@ -14,9 +14,6 @@ namespace Pulumiverse.Fortios.System.Outputs
     [OutputType]
     public sealed class InterfaceIpv6Ip6ExtraAddr
     {
-        /// <summary>
-        /// IPv6 prefix.
-        /// </summary>
         public readonly string? Prefix;
 
         [OutputConstructor]

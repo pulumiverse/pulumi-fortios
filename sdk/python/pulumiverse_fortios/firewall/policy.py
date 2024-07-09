@@ -137,6 +137,7 @@ class PolicyArgs:
                  policyid: Optional[pulumi.Input[int]] = None,
                  poolname6s: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyPoolname6Args']]]] = None,
                  poolnames: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyPoolnameArgs']]]] = None,
+                 port_preserve: Optional[pulumi.Input[str]] = None,
                  profile_group: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
                  profile_type: Optional[pulumi.Input[str]] = None,
@@ -266,7 +267,7 @@ class PolicyArgs:
         :param pulumi.Input[Sequence[pulumi.Input['PolicyFssoGroupArgs']]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
         :param pulumi.Input[str] geoip_anycast: Enable/disable recognition of anycast IP addresses using the geography IP database. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] geoip_match: Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] global_label: Label for the policy that appears when the GUI is in Global View mode.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyGroupArgs']]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_policy_redirect: Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
@@ -336,6 +337,7 @@ class PolicyArgs:
         :param pulumi.Input[int] policyid: Policy ID.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyPoolname6Args']]] poolname6s: IPv6 pool names. The structure of `poolname6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyPoolnameArgs']]] poolnames: IP Pool names. The structure of `poolname` block is documented below.
+        :param pulumi.Input[str] port_preserve: Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] profile_group: Name of profile group.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
         :param pulumi.Input[str] profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
@@ -653,6 +655,8 @@ class PolicyArgs:
             pulumi.set(__self__, "poolname6s", poolname6s)
         if poolnames is not None:
             pulumi.set(__self__, "poolnames", poolnames)
+        if port_preserve is not None:
+            pulumi.set(__self__, "port_preserve", port_preserve)
         if profile_group is not None:
             pulumi.set(__self__, "profile_group", profile_group)
         if profile_protocol_options is not None:
@@ -1422,7 +1426,7 @@ class PolicyArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2257,6 +2261,18 @@ class PolicyArgs:
     @poolnames.setter
     def poolnames(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyPoolnameArgs']]]]):
         pulumi.set(self, "poolnames", value)
+
+    @property
+    @pulumi.getter(name="portPreserve")
+    def port_preserve(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "port_preserve")
+
+    @port_preserve.setter
+    def port_preserve(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "port_preserve", value)
 
     @property
     @pulumi.getter(name="profileGroup")
@@ -3294,6 +3310,7 @@ class _PolicyState:
                  policyid: Optional[pulumi.Input[int]] = None,
                  poolname6s: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyPoolname6Args']]]] = None,
                  poolnames: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyPoolnameArgs']]]] = None,
+                 port_preserve: Optional[pulumi.Input[str]] = None,
                  profile_group: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
                  profile_type: Optional[pulumi.Input[str]] = None,
@@ -3423,7 +3440,7 @@ class _PolicyState:
         :param pulumi.Input[Sequence[pulumi.Input['PolicyFssoGroupArgs']]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
         :param pulumi.Input[str] geoip_anycast: Enable/disable recognition of anycast IP addresses using the geography IP database. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] geoip_match: Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] global_label: Label for the policy that appears when the GUI is in Global View mode.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyGroupArgs']]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_policy_redirect: Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
@@ -3493,6 +3510,7 @@ class _PolicyState:
         :param pulumi.Input[int] policyid: Policy ID.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyPoolname6Args']]] poolname6s: IPv6 pool names. The structure of `poolname6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['PolicyPoolnameArgs']]] poolnames: IP Pool names. The structure of `poolname` block is documented below.
+        :param pulumi.Input[str] port_preserve: Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] profile_group: Name of profile group.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
         :param pulumi.Input[str] profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
@@ -3811,6 +3829,8 @@ class _PolicyState:
             pulumi.set(__self__, "poolname6s", poolname6s)
         if poolnames is not None:
             pulumi.set(__self__, "poolnames", poolnames)
+        if port_preserve is not None:
+            pulumi.set(__self__, "port_preserve", port_preserve)
         if profile_group is not None:
             pulumi.set(__self__, "profile_group", profile_group)
         if profile_protocol_options is not None:
@@ -4570,7 +4590,7 @@ class _PolicyState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -5405,6 +5425,18 @@ class _PolicyState:
     @poolnames.setter
     def poolnames(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PolicyPoolnameArgs']]]]):
         pulumi.set(self, "poolnames", value)
+
+    @property
+    @pulumi.getter(name="portPreserve")
+    def port_preserve(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "port_preserve")
+
+    @port_preserve.setter
+    def port_preserve(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "port_preserve", value)
 
     @property
     @pulumi.getter(name="profileGroup")
@@ -6456,6 +6488,7 @@ class Policy(pulumi.CustomResource):
                  policyid: Optional[pulumi.Input[int]] = None,
                  poolname6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolname6Args']]]]] = None,
                  poolnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolnameArgs']]]]] = None,
+                 port_preserve: Optional[pulumi.Input[str]] = None,
                  profile_group: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
                  profile_type: Optional[pulumi.Input[str]] = None,
@@ -6539,7 +6572,6 @@ class Policy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -6604,7 +6636,6 @@ class Policy(pulumi.CustomResource):
             status="enable",
             utm_status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -6676,7 +6707,7 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyFssoGroupArgs']]]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
         :param pulumi.Input[str] geoip_anycast: Enable/disable recognition of anycast IP addresses using the geography IP database. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] geoip_match: Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] global_label: Label for the policy that appears when the GUI is in Global View mode.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyGroupArgs']]]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_policy_redirect: Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
@@ -6746,6 +6777,7 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[int] policyid: Policy ID.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolname6Args']]]] poolname6s: IPv6 pool names. The structure of `poolname6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolnameArgs']]]] poolnames: IP Pool names. The structure of `poolname` block is documented below.
+        :param pulumi.Input[str] port_preserve: Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] profile_group: Name of profile group.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
         :param pulumi.Input[str] profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
@@ -6835,7 +6867,6 @@ class Policy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -6900,7 +6931,6 @@ class Policy(pulumi.CustomResource):
             status="enable",
             utm_status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -7055,6 +7085,7 @@ class Policy(pulumi.CustomResource):
                  policyid: Optional[pulumi.Input[int]] = None,
                  poolname6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolname6Args']]]]] = None,
                  poolnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolnameArgs']]]]] = None,
+                 port_preserve: Optional[pulumi.Input[str]] = None,
                  profile_group: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
                  profile_type: Optional[pulumi.Input[str]] = None,
@@ -7263,6 +7294,7 @@ class Policy(pulumi.CustomResource):
             __props__.__dict__["policyid"] = policyid
             __props__.__dict__["poolname6s"] = poolname6s
             __props__.__dict__["poolnames"] = poolnames
+            __props__.__dict__["port_preserve"] = port_preserve
             __props__.__dict__["profile_group"] = profile_group
             __props__.__dict__["profile_protocol_options"] = profile_protocol_options
             __props__.__dict__["profile_type"] = profile_type
@@ -7472,6 +7504,7 @@ class Policy(pulumi.CustomResource):
             policyid: Optional[pulumi.Input[int]] = None,
             poolname6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolname6Args']]]]] = None,
             poolnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolnameArgs']]]]] = None,
+            port_preserve: Optional[pulumi.Input[str]] = None,
             profile_group: Optional[pulumi.Input[str]] = None,
             profile_protocol_options: Optional[pulumi.Input[str]] = None,
             profile_type: Optional[pulumi.Input[str]] = None,
@@ -7606,7 +7639,7 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyFssoGroupArgs']]]] fsso_groups: Names of FSSO groups. The structure of `fsso_groups` block is documented below.
         :param pulumi.Input[str] geoip_anycast: Enable/disable recognition of anycast IP addresses using the geography IP database. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] geoip_match: Match geography address based either on its physical location or registered location. Valid values: `physical-location`, `registered-location`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] global_label: Label for the policy that appears when the GUI is in Global View mode.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyGroupArgs']]]] groups: Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
         :param pulumi.Input[str] http_policy_redirect: Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `enable`, `disable`.
@@ -7676,6 +7709,7 @@ class Policy(pulumi.CustomResource):
         :param pulumi.Input[int] policyid: Policy ID.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolname6Args']]]] poolname6s: IPv6 pool names. The structure of `poolname6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PolicyPoolnameArgs']]]] poolnames: IP Pool names. The structure of `poolname` block is documented below.
+        :param pulumi.Input[str] port_preserve: Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] profile_group: Name of profile group.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
         :param pulumi.Input[str] profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
@@ -7878,6 +7912,7 @@ class Policy(pulumi.CustomResource):
         __props__.__dict__["policyid"] = policyid
         __props__.__dict__["poolname6s"] = poolname6s
         __props__.__dict__["poolnames"] = poolnames
+        __props__.__dict__["port_preserve"] = port_preserve
         __props__.__dict__["profile_group"] = profile_group
         __props__.__dict__["profile_protocol_options"] = profile_protocol_options
         __props__.__dict__["profile_type"] = profile_type
@@ -8361,7 +8396,7 @@ class Policy(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -8918,6 +8953,14 @@ class Policy(pulumi.CustomResource):
         return pulumi.get(self, "poolnames")
 
     @property
+    @pulumi.getter(name="portPreserve")
+    def port_preserve(self) -> pulumi.Output[str]:
+        """
+        Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "port_preserve")
+
+    @property
     @pulumi.getter(name="profileGroup")
     def profile_group(self) -> pulumi.Output[Optional[str]]:
         """
@@ -9311,7 +9354,7 @@ class Policy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

@@ -45,7 +45,9 @@ type Provider struct {
 	Token    pulumi.StringPtrOutput `pulumi:"token"`
 	// The username of the user.
 	Username pulumi.StringPtrOutput `pulumi:"username"`
-	Vdom     pulumi.StringPtrOutput `pulumi:"vdom"`
+	// Vdom name of FortiOS. It will apply to all resources. Specify variable `vdomparam` on each resource will override the
+	// vdom value on that resource.
+	Vdom pulumi.StringPtrOutput `pulumi:"vdom"`
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
@@ -189,7 +191,9 @@ type providerArgs struct {
 	Token    *string `pulumi:"token"`
 	// The username of the user.
 	Username *string `pulumi:"username"`
-	Vdom     *string `pulumi:"vdom"`
+	// Vdom name of FortiOS. It will apply to all resources. Specify variable `vdomparam` on each resource will override the
+	// vdom value on that resource.
+	Vdom *string `pulumi:"vdom"`
 }
 
 // The set of arguments for constructing a Provider resource.
@@ -223,7 +227,9 @@ type ProviderArgs struct {
 	Token    pulumi.StringPtrInput
 	// The username of the user.
 	Username pulumi.StringPtrInput
-	Vdom     pulumi.StringPtrInput
+	// Vdom name of FortiOS. It will apply to all resources. Specify variable `vdomparam` on each resource will override the
+	// vdom value on that resource.
+	Vdom pulumi.StringPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
@@ -335,6 +341,8 @@ func (o ProviderOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Username }).(pulumi.StringPtrOutput)
 }
 
+// Vdom name of FortiOS. It will apply to all resources. Specify variable `vdomparam` on each resource will override the
+// vdom value on that resource.
 func (o ProviderOutput) Vdom() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Vdom }).(pulumi.StringPtrOutput)
 }

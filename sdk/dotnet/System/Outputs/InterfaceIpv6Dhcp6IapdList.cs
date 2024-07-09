@@ -14,23 +14,9 @@ namespace Pulumiverse.Fortios.System.Outputs
     [OutputType]
     public sealed class InterfaceIpv6Dhcp6IapdList
     {
-        /// <summary>
-        /// Identity association identifier.
-        /// </summary>
         public readonly int? Iaid;
-        /// <summary>
-        /// DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
-        /// </summary>
         public readonly string? PrefixHint;
-        /// <summary>
-        /// DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
-        /// </summary>
         public readonly int? PrefixHintPlt;
-        /// <summary>
-        /// DHCPv6 prefix hint valid life time (sec).
-        /// 
-        /// The `vrrp6` block supports:
-        /// </summary>
         public readonly int? PrefixHintVlt;
 
         [OutputConstructor]

@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -73,7 +72,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -113,15 +111,15 @@ type Ha struct {
 	FailoverHoldTime pulumi.IntOutput `pulumi:"failoverHoldTime"`
 	// Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
 	FtpProxyThreshold pulumi.StringOutput `pulumi:"ftpProxyThreshold"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
 	GratuitousArps pulumi.StringOutput `pulumi:"gratuitousArps"`
-	// Cluster group ID  (0 - 255). Must be the same for all members.
+	// HA group ID. Must be the same for all members. On FortiOS versions 6.2.0-6.2.6: 0 - 255. On FortiOS versions 7.0.2-7.0.15: 0 - 1023. On FortiOS versions 7.2.0: 0 - 1023;  or 0 - 7 when there are more than 2 vclusters.
 	GroupId pulumi.IntOutput `pulumi:"groupId"`
 	// Cluster group name. Must be the same for all members.
 	GroupName pulumi.StringOutput `pulumi:"groupName"`
-	// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+	// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, FortiSandbox, sFlow, and Netflow. Valid values: `enable`, `disable`.
 	HaDirect pulumi.StringOutput `pulumi:"haDirect"`
 	// HA heartbeat packet Ethertype (4-digit hex).
 	HaEthType pulumi.StringOutput `pulumi:"haEthType"`
@@ -131,7 +129,7 @@ type Ha struct {
 	HaMgmtStatus pulumi.StringOutput `pulumi:"haMgmtStatus"`
 	// Normally you would only reduce this value for failover testing.
 	HaUptimeDiffMargin pulumi.IntOutput `pulumi:"haUptimeDiffMargin"`
-	// Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+	// Time between sending heartbeat packets (1 - 20). Increase to reduce false positives.
 	HbInterval pulumi.IntOutput `pulumi:"hbInterval"`
 	// Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
 	HbIntervalInMilliseconds pulumi.StringOutput `pulumi:"hbIntervalInMilliseconds"`
@@ -179,7 +177,7 @@ type Ha struct {
 	Mode pulumi.StringOutput `pulumi:"mode"`
 	// Interfaces to check for port monitoring (or link failure).
 	Monitor pulumi.StringOutput `pulumi:"monitor"`
-	// HA multicast TTL on master (5 - 3600 sec).
+	// HA multicast TTL on primary (5 - 3600 sec).
 	MulticastTtl pulumi.IntOutput `pulumi:"multicastTtl"`
 	// Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
 	NntpProxyThreshold pulumi.StringOutput `pulumi:"nntpProxyThreshold"`
@@ -249,7 +247,7 @@ type Ha struct {
 	UnicastPeers HaUnicastPeerArrayOutput `pulumi:"unicastPeers"`
 	// Enable/disable unicast connection. Valid values: `enable`, `disable`.
 	UnicastStatus pulumi.StringOutput `pulumi:"unicastStatus"`
-	// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+	// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (default = 30). On FortiOS versions 6.4.10-6.4.15, 7.0.2-7.0.5: 1 - 300. On FortiOS versions >= 7.0.6: 15 - 300.
 	UninterruptiblePrimaryWait pulumi.IntOutput `pulumi:"uninterruptiblePrimaryWait"`
 	// Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
 	UninterruptibleUpgrade pulumi.StringOutput `pulumi:"uninterruptibleUpgrade"`
@@ -266,7 +264,7 @@ type Ha struct {
 	// VDOMs in virtual cluster 1.
 	Vdom pulumi.StringOutput `pulumi:"vdom"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
 	Weight pulumi.StringOutput `pulumi:"weight"`
 }
@@ -330,15 +328,15 @@ type haState struct {
 	FailoverHoldTime *int `pulumi:"failoverHoldTime"`
 	// Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
 	FtpProxyThreshold *string `pulumi:"ftpProxyThreshold"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
 	GratuitousArps *string `pulumi:"gratuitousArps"`
-	// Cluster group ID  (0 - 255). Must be the same for all members.
+	// HA group ID. Must be the same for all members. On FortiOS versions 6.2.0-6.2.6: 0 - 255. On FortiOS versions 7.0.2-7.0.15: 0 - 1023. On FortiOS versions 7.2.0: 0 - 1023;  or 0 - 7 when there are more than 2 vclusters.
 	GroupId *int `pulumi:"groupId"`
 	// Cluster group name. Must be the same for all members.
 	GroupName *string `pulumi:"groupName"`
-	// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+	// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, FortiSandbox, sFlow, and Netflow. Valid values: `enable`, `disable`.
 	HaDirect *string `pulumi:"haDirect"`
 	// HA heartbeat packet Ethertype (4-digit hex).
 	HaEthType *string `pulumi:"haEthType"`
@@ -348,7 +346,7 @@ type haState struct {
 	HaMgmtStatus *string `pulumi:"haMgmtStatus"`
 	// Normally you would only reduce this value for failover testing.
 	HaUptimeDiffMargin *int `pulumi:"haUptimeDiffMargin"`
-	// Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+	// Time between sending heartbeat packets (1 - 20). Increase to reduce false positives.
 	HbInterval *int `pulumi:"hbInterval"`
 	// Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
 	HbIntervalInMilliseconds *string `pulumi:"hbIntervalInMilliseconds"`
@@ -396,7 +394,7 @@ type haState struct {
 	Mode *string `pulumi:"mode"`
 	// Interfaces to check for port monitoring (or link failure).
 	Monitor *string `pulumi:"monitor"`
-	// HA multicast TTL on master (5 - 3600 sec).
+	// HA multicast TTL on primary (5 - 3600 sec).
 	MulticastTtl *int `pulumi:"multicastTtl"`
 	// Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
 	NntpProxyThreshold *string `pulumi:"nntpProxyThreshold"`
@@ -466,7 +464,7 @@ type haState struct {
 	UnicastPeers []HaUnicastPeer `pulumi:"unicastPeers"`
 	// Enable/disable unicast connection. Valid values: `enable`, `disable`.
 	UnicastStatus *string `pulumi:"unicastStatus"`
-	// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+	// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (default = 30). On FortiOS versions 6.4.10-6.4.15, 7.0.2-7.0.5: 1 - 300. On FortiOS versions >= 7.0.6: 15 - 300.
 	UninterruptiblePrimaryWait *int `pulumi:"uninterruptiblePrimaryWait"`
 	// Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
 	UninterruptibleUpgrade *string `pulumi:"uninterruptibleUpgrade"`
@@ -507,15 +505,15 @@ type HaState struct {
 	FailoverHoldTime pulumi.IntPtrInput
 	// Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
 	FtpProxyThreshold pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
 	GratuitousArps pulumi.StringPtrInput
-	// Cluster group ID  (0 - 255). Must be the same for all members.
+	// HA group ID. Must be the same for all members. On FortiOS versions 6.2.0-6.2.6: 0 - 255. On FortiOS versions 7.0.2-7.0.15: 0 - 1023. On FortiOS versions 7.2.0: 0 - 1023;  or 0 - 7 when there are more than 2 vclusters.
 	GroupId pulumi.IntPtrInput
 	// Cluster group name. Must be the same for all members.
 	GroupName pulumi.StringPtrInput
-	// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+	// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, FortiSandbox, sFlow, and Netflow. Valid values: `enable`, `disable`.
 	HaDirect pulumi.StringPtrInput
 	// HA heartbeat packet Ethertype (4-digit hex).
 	HaEthType pulumi.StringPtrInput
@@ -525,7 +523,7 @@ type HaState struct {
 	HaMgmtStatus pulumi.StringPtrInput
 	// Normally you would only reduce this value for failover testing.
 	HaUptimeDiffMargin pulumi.IntPtrInput
-	// Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+	// Time between sending heartbeat packets (1 - 20). Increase to reduce false positives.
 	HbInterval pulumi.IntPtrInput
 	// Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
 	HbIntervalInMilliseconds pulumi.StringPtrInput
@@ -573,7 +571,7 @@ type HaState struct {
 	Mode pulumi.StringPtrInput
 	// Interfaces to check for port monitoring (or link failure).
 	Monitor pulumi.StringPtrInput
-	// HA multicast TTL on master (5 - 3600 sec).
+	// HA multicast TTL on primary (5 - 3600 sec).
 	MulticastTtl pulumi.IntPtrInput
 	// Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
 	NntpProxyThreshold pulumi.StringPtrInput
@@ -643,7 +641,7 @@ type HaState struct {
 	UnicastPeers HaUnicastPeerArrayInput
 	// Enable/disable unicast connection. Valid values: `enable`, `disable`.
 	UnicastStatus pulumi.StringPtrInput
-	// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+	// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (default = 30). On FortiOS versions 6.4.10-6.4.15, 7.0.2-7.0.5: 1 - 300. On FortiOS versions >= 7.0.6: 15 - 300.
 	UninterruptiblePrimaryWait pulumi.IntPtrInput
 	// Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
 	UninterruptibleUpgrade pulumi.StringPtrInput
@@ -688,15 +686,15 @@ type haArgs struct {
 	FailoverHoldTime *int `pulumi:"failoverHoldTime"`
 	// Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
 	FtpProxyThreshold *string `pulumi:"ftpProxyThreshold"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
 	GratuitousArps *string `pulumi:"gratuitousArps"`
-	// Cluster group ID  (0 - 255). Must be the same for all members.
+	// HA group ID. Must be the same for all members. On FortiOS versions 6.2.0-6.2.6: 0 - 255. On FortiOS versions 7.0.2-7.0.15: 0 - 1023. On FortiOS versions 7.2.0: 0 - 1023;  or 0 - 7 when there are more than 2 vclusters.
 	GroupId *int `pulumi:"groupId"`
 	// Cluster group name. Must be the same for all members.
 	GroupName *string `pulumi:"groupName"`
-	// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+	// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, FortiSandbox, sFlow, and Netflow. Valid values: `enable`, `disable`.
 	HaDirect *string `pulumi:"haDirect"`
 	// HA heartbeat packet Ethertype (4-digit hex).
 	HaEthType *string `pulumi:"haEthType"`
@@ -706,7 +704,7 @@ type haArgs struct {
 	HaMgmtStatus *string `pulumi:"haMgmtStatus"`
 	// Normally you would only reduce this value for failover testing.
 	HaUptimeDiffMargin *int `pulumi:"haUptimeDiffMargin"`
-	// Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+	// Time between sending heartbeat packets (1 - 20). Increase to reduce false positives.
 	HbInterval *int `pulumi:"hbInterval"`
 	// Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
 	HbIntervalInMilliseconds *string `pulumi:"hbIntervalInMilliseconds"`
@@ -754,7 +752,7 @@ type haArgs struct {
 	Mode *string `pulumi:"mode"`
 	// Interfaces to check for port monitoring (or link failure).
 	Monitor *string `pulumi:"monitor"`
-	// HA multicast TTL on master (5 - 3600 sec).
+	// HA multicast TTL on primary (5 - 3600 sec).
 	MulticastTtl *int `pulumi:"multicastTtl"`
 	// Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
 	NntpProxyThreshold *string `pulumi:"nntpProxyThreshold"`
@@ -824,7 +822,7 @@ type haArgs struct {
 	UnicastPeers []HaUnicastPeer `pulumi:"unicastPeers"`
 	// Enable/disable unicast connection. Valid values: `enable`, `disable`.
 	UnicastStatus *string `pulumi:"unicastStatus"`
-	// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+	// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (default = 30). On FortiOS versions 6.4.10-6.4.15, 7.0.2-7.0.5: 1 - 300. On FortiOS versions >= 7.0.6: 15 - 300.
 	UninterruptiblePrimaryWait *int `pulumi:"uninterruptiblePrimaryWait"`
 	// Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
 	UninterruptibleUpgrade *string `pulumi:"uninterruptibleUpgrade"`
@@ -866,15 +864,15 @@ type HaArgs struct {
 	FailoverHoldTime pulumi.IntPtrInput
 	// Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
 	FtpProxyThreshold pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. Valid values: `enable`, `disable`.
 	GratuitousArps pulumi.StringPtrInput
-	// Cluster group ID  (0 - 255). Must be the same for all members.
+	// HA group ID. Must be the same for all members. On FortiOS versions 6.2.0-6.2.6: 0 - 255. On FortiOS versions 7.0.2-7.0.15: 0 - 1023. On FortiOS versions 7.2.0: 0 - 1023;  or 0 - 7 when there are more than 2 vclusters.
 	GroupId pulumi.IntPtrInput
 	// Cluster group name. Must be the same for all members.
 	GroupName pulumi.StringPtrInput
-	// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+	// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, FortiSandbox, sFlow, and Netflow. Valid values: `enable`, `disable`.
 	HaDirect pulumi.StringPtrInput
 	// HA heartbeat packet Ethertype (4-digit hex).
 	HaEthType pulumi.StringPtrInput
@@ -884,7 +882,7 @@ type HaArgs struct {
 	HaMgmtStatus pulumi.StringPtrInput
 	// Normally you would only reduce this value for failover testing.
 	HaUptimeDiffMargin pulumi.IntPtrInput
-	// Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+	// Time between sending heartbeat packets (1 - 20). Increase to reduce false positives.
 	HbInterval pulumi.IntPtrInput
 	// Number of milliseconds for each heartbeat interval: 100ms or 10ms. Valid values: `100ms`, `10ms`.
 	HbIntervalInMilliseconds pulumi.StringPtrInput
@@ -932,7 +930,7 @@ type HaArgs struct {
 	Mode pulumi.StringPtrInput
 	// Interfaces to check for port monitoring (or link failure).
 	Monitor pulumi.StringPtrInput
-	// HA multicast TTL on master (5 - 3600 sec).
+	// HA multicast TTL on primary (5 - 3600 sec).
 	MulticastTtl pulumi.IntPtrInput
 	// Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions.
 	NntpProxyThreshold pulumi.StringPtrInput
@@ -1002,7 +1000,7 @@ type HaArgs struct {
 	UnicastPeers HaUnicastPeerArrayInput
 	// Enable/disable unicast connection. Valid values: `enable`, `disable`.
 	UnicastStatus pulumi.StringPtrInput
-	// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+	// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (default = 30). On FortiOS versions 6.4.10-6.4.15, 7.0.2-7.0.5: 1 - 300. On FortiOS versions >= 7.0.6: 15 - 300.
 	UninterruptiblePrimaryWait pulumi.IntPtrInput
 	// Enable to upgrade a cluster without blocking network traffic. Valid values: `enable`, `disable`.
 	UninterruptibleUpgrade pulumi.StringPtrInput
@@ -1156,7 +1154,7 @@ func (o HaOutput) FtpProxyThreshold() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.FtpProxyThreshold }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o HaOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -1166,7 +1164,7 @@ func (o HaOutput) GratuitousArps() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.GratuitousArps }).(pulumi.StringOutput)
 }
 
-// Cluster group ID  (0 - 255). Must be the same for all members.
+// HA group ID. Must be the same for all members. On FortiOS versions 6.2.0-6.2.6: 0 - 255. On FortiOS versions 7.0.2-7.0.15: 0 - 1023. On FortiOS versions 7.2.0: 0 - 1023;  or 0 - 7 when there are more than 2 vclusters.
 func (o HaOutput) GroupId() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.GroupId }).(pulumi.IntOutput)
 }
@@ -1176,7 +1174,7 @@ func (o HaOutput) GroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.GroupName }).(pulumi.StringOutput)
 }
 
-// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, and FortiSandbox. Valid values: `enable`, `disable`.
+// Enable/disable using ha-mgmt interface for syslog, SNMP, remote authentication (RADIUS), FortiAnalyzer, FortiSandbox, sFlow, and Netflow. Valid values: `enable`, `disable`.
 func (o HaOutput) HaDirect() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.HaDirect }).(pulumi.StringOutput)
 }
@@ -1201,7 +1199,7 @@ func (o HaOutput) HaUptimeDiffMargin() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.HaUptimeDiffMargin }).(pulumi.IntOutput)
 }
 
-// Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
+// Time between sending heartbeat packets (1 - 20). Increase to reduce false positives.
 func (o HaOutput) HbInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.HbInterval }).(pulumi.IntOutput)
 }
@@ -1321,7 +1319,7 @@ func (o HaOutput) Monitor() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.Monitor }).(pulumi.StringOutput)
 }
 
-// HA multicast TTL on master (5 - 3600 sec).
+// HA multicast TTL on primary (5 - 3600 sec).
 func (o HaOutput) MulticastTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.MulticastTtl }).(pulumi.IntOutput)
 }
@@ -1496,7 +1494,7 @@ func (o HaOutput) UnicastStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.UnicastStatus }).(pulumi.StringOutput)
 }
 
-// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+// Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (default = 30). On FortiOS versions 6.4.10-6.4.15, 7.0.2-7.0.5: 1 - 300. On FortiOS versions >= 7.0.6: 15 - 300.
 func (o HaOutput) UninterruptiblePrimaryWait() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ha) pulumi.IntOutput { return v.UninterruptiblePrimaryWait }).(pulumi.IntOutput)
 }
@@ -1537,8 +1535,8 @@ func (o HaOutput) Vdom() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o HaOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Ha) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o HaOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ha) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.

@@ -35,13 +35,13 @@ type Arrpprofile struct {
 
 	// Comment.
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
-	// Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+	// Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
 	DarrpOptimize pulumi.IntOutput `pulumi:"darrpOptimize"`
 	// Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
 	DarrpOptimizeSchedules ArrpprofileDarrpOptimizeScheduleArrayOutput `pulumi:"darrpOptimizeSchedules"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
 	IncludeDfsChannel pulumi.StringOutput `pulumi:"includeDfsChannel"`
@@ -68,7 +68,7 @@ type Arrpprofile struct {
 	// Threshold in percentage for transmit retries to trigger channel reselection in DARRP monitor stage (0 - 1000, default = 300).
 	ThresholdTxRetries pulumi.IntOutput `pulumi:"thresholdTxRetries"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Weight in DARRP channel score calculation for channel load (0 - 2000, default = 20).
 	WeightChannelLoad pulumi.IntOutput `pulumi:"weightChannelLoad"`
 	// Weight in DARRP channel score calculation for DFS channel (0 - 2000, default = 500).
@@ -117,13 +117,13 @@ func GetArrpprofile(ctx *pulumi.Context,
 type arrpprofileState struct {
 	// Comment.
 	Comment *string `pulumi:"comment"`
-	// Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+	// Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
 	DarrpOptimize *int `pulumi:"darrpOptimize"`
 	// Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
 	DarrpOptimizeSchedules []ArrpprofileDarrpOptimizeSchedule `pulumi:"darrpOptimizeSchedules"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
 	IncludeDfsChannel *string `pulumi:"includeDfsChannel"`
@@ -170,13 +170,13 @@ type arrpprofileState struct {
 type ArrpprofileState struct {
 	// Comment.
 	Comment pulumi.StringPtrInput
-	// Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+	// Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
 	DarrpOptimize pulumi.IntPtrInput
 	// Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
 	DarrpOptimizeSchedules ArrpprofileDarrpOptimizeScheduleArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
 	IncludeDfsChannel pulumi.StringPtrInput
@@ -227,13 +227,13 @@ func (ArrpprofileState) ElementType() reflect.Type {
 type arrpprofileArgs struct {
 	// Comment.
 	Comment *string `pulumi:"comment"`
-	// Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+	// Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
 	DarrpOptimize *int `pulumi:"darrpOptimize"`
 	// Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
 	DarrpOptimizeSchedules []ArrpprofileDarrpOptimizeSchedule `pulumi:"darrpOptimizeSchedules"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
 	IncludeDfsChannel *string `pulumi:"includeDfsChannel"`
@@ -281,13 +281,13 @@ type arrpprofileArgs struct {
 type ArrpprofileArgs struct {
 	// Comment.
 	Comment pulumi.StringPtrInput
-	// Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+	// Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
 	DarrpOptimize pulumi.IntPtrInput
 	// Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
 	DarrpOptimizeSchedules ArrpprofileDarrpOptimizeScheduleArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
 	IncludeDfsChannel pulumi.StringPtrInput
@@ -423,7 +423,7 @@ func (o ArrpprofileOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Arrpprofile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
-// Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+// Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
 func (o ArrpprofileOutput) DarrpOptimize() pulumi.IntOutput {
 	return o.ApplyT(func(v *Arrpprofile) pulumi.IntOutput { return v.DarrpOptimize }).(pulumi.IntOutput)
 }
@@ -438,7 +438,7 @@ func (o ArrpprofileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Arrpprofile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ArrpprofileOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Arrpprofile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -504,8 +504,8 @@ func (o ArrpprofileOutput) ThresholdTxRetries() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ArrpprofileOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Arrpprofile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ArrpprofileOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Arrpprofile) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Weight in DARRP channel score calculation for channel load (0 - 2000, default = 20).

@@ -889,7 +889,6 @@ def get_bgp(vdomparam: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -897,7 +896,6 @@ def get_bgp(vdomparam: Optional[str] = None,
     sample1 = fortios.router.get_bgp()
     pulumi.export("output1", sample1.neighbors)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -989,7 +987,6 @@ def get_bgp_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -997,7 +994,6 @@ def get_bgp_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
     sample1 = fortios.router.get_bgp()
     pulumi.export("output1", sample1.neighbors)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

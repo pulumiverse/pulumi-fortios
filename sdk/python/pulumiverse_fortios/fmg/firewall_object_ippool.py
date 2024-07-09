@@ -333,7 +333,6 @@ class FirewallObjectIppool(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -347,7 +346,6 @@ class FirewallObjectIppool(pulumi.CustomResource):
             startip="1.1.10.1",
             type="one-to-one")
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -372,7 +370,6 @@ class FirewallObjectIppool(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -386,7 +383,6 @@ class FirewallObjectIppool(pulumi.CustomResource):
             startip="1.1.10.1",
             type="one-to-one")
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param FirewallObjectIppoolArgs args: The arguments to use to populate this resource's properties.

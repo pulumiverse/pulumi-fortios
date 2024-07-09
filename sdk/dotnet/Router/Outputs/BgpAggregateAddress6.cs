@@ -14,21 +14,12 @@ namespace Pulumiverse.Fortios.Router.Outputs
     [OutputType]
     public sealed class BgpAggregateAddress6
     {
-        /// <summary>
-        /// Enable/disable generate AS set path information. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? AsSet;
         /// <summary>
-        /// ID.
+        /// an identifier for the resource.
         /// </summary>
         public readonly int? Id;
-        /// <summary>
-        /// Aggregate IPv6 prefix.
-        /// </summary>
         public readonly string? Prefix6;
-        /// <summary>
-        /// Enable/disable filter more specific routes from updates. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? SummaryOnly;
 
         [OutputConstructor]

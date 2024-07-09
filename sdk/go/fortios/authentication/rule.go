@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,7 +42,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -67,6 +65,8 @@ type Rule struct {
 
 	// Select an active authentication method.
 	ActiveAuthMethod pulumi.StringOutput `pulumi:"activeAuthMethod"`
+	// Enable/disable to use device certificate as authentication cookie (default = enable). Valid values: `enable`, `disable`.
+	CertAuthCookie pulumi.StringOutput `pulumi:"certAuthCookie"`
 	// Comment.
 	Comments pulumi.StringPtrOutput `pulumi:"comments"`
 	// Depth to allow CORS access (default = 3).
@@ -79,7 +79,7 @@ type Rule struct {
 	Dstaddrs RuleDstaddrArrayOutput `pulumi:"dstaddrs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
 	IpBased pulumi.StringOutput `pulumi:"ipBased"`
@@ -100,7 +100,7 @@ type Rule struct {
 	// Enable/disable transaction based authentication (default = disable). Valid values: `enable`, `disable`.
 	TransactionBased pulumi.StringOutput `pulumi:"transactionBased"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable Web authentication cookies (default = disable). Valid values: `enable`, `disable`.
 	WebAuthCookie pulumi.StringOutput `pulumi:"webAuthCookie"`
 	// Enable/disable web portal for proxy transparent policy (default = enable). Valid values: `enable`, `disable`.
@@ -139,6 +139,8 @@ func GetRule(ctx *pulumi.Context,
 type ruleState struct {
 	// Select an active authentication method.
 	ActiveAuthMethod *string `pulumi:"activeAuthMethod"`
+	// Enable/disable to use device certificate as authentication cookie (default = enable). Valid values: `enable`, `disable`.
+	CertAuthCookie *string `pulumi:"certAuthCookie"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
 	// Depth to allow CORS access (default = 3).
@@ -151,7 +153,7 @@ type ruleState struct {
 	Dstaddrs []RuleDstaddr `pulumi:"dstaddrs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
 	IpBased *string `pulumi:"ipBased"`
@@ -182,6 +184,8 @@ type ruleState struct {
 type RuleState struct {
 	// Select an active authentication method.
 	ActiveAuthMethod pulumi.StringPtrInput
+	// Enable/disable to use device certificate as authentication cookie (default = enable). Valid values: `enable`, `disable`.
+	CertAuthCookie pulumi.StringPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
 	// Depth to allow CORS access (default = 3).
@@ -194,7 +198,7 @@ type RuleState struct {
 	Dstaddrs RuleDstaddrArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
 	IpBased pulumi.StringPtrInput
@@ -229,6 +233,8 @@ func (RuleState) ElementType() reflect.Type {
 type ruleArgs struct {
 	// Select an active authentication method.
 	ActiveAuthMethod *string `pulumi:"activeAuthMethod"`
+	// Enable/disable to use device certificate as authentication cookie (default = enable). Valid values: `enable`, `disable`.
+	CertAuthCookie *string `pulumi:"certAuthCookie"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
 	// Depth to allow CORS access (default = 3).
@@ -241,7 +247,7 @@ type ruleArgs struct {
 	Dstaddrs []RuleDstaddr `pulumi:"dstaddrs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
 	IpBased *string `pulumi:"ipBased"`
@@ -273,6 +279,8 @@ type ruleArgs struct {
 type RuleArgs struct {
 	// Select an active authentication method.
 	ActiveAuthMethod pulumi.StringPtrInput
+	// Enable/disable to use device certificate as authentication cookie (default = enable). Valid values: `enable`, `disable`.
+	CertAuthCookie pulumi.StringPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
 	// Depth to allow CORS access (default = 3).
@@ -285,7 +293,7 @@ type RuleArgs struct {
 	Dstaddrs RuleDstaddrArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
 	IpBased pulumi.StringPtrInput
@@ -405,6 +413,11 @@ func (o RuleOutput) ActiveAuthMethod() pulumi.StringOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringOutput { return v.ActiveAuthMethod }).(pulumi.StringOutput)
 }
 
+// Enable/disable to use device certificate as authentication cookie (default = enable). Valid values: `enable`, `disable`.
+func (o RuleOutput) CertAuthCookie() pulumi.StringOutput {
+	return o.ApplyT(func(v *Rule) pulumi.StringOutput { return v.CertAuthCookie }).(pulumi.StringOutput)
+}
+
 // Comment.
 func (o RuleOutput) Comments() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
@@ -435,7 +448,7 @@ func (o RuleOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o RuleOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Rule) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -486,8 +499,8 @@ func (o RuleOutput) TransactionBased() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o RuleOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Rule) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o RuleOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Rule) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable Web authentication cookies (default = disable). Valid values: `enable`, `disable`.

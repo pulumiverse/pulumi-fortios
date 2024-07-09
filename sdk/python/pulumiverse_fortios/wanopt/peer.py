@@ -137,7 +137,6 @@ class Peer(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -146,7 +145,6 @@ class Peer(pulumi.CustomResource):
             ip="1.1.1.1",
             peer_host_id="1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -183,7 +181,6 @@ class Peer(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -192,7 +189,6 @@ class Peer(pulumi.CustomResource):
             ip="1.1.1.1",
             peer_host_id="1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -293,7 +289,7 @@ class Peer(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

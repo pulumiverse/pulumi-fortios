@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -55,7 +54,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -83,7 +81,7 @@ type Ttlpolicy struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Schedule object from available options.
 	Schedule pulumi.StringOutput `pulumi:"schedule"`
@@ -98,7 +96,7 @@ type Ttlpolicy struct {
 	// Value/range to match against the packet's Time to Live value (format: ttl[ - ttlHigh], 1 - 255).
 	Ttl pulumi.StringOutput `pulumi:"ttl"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewTtlpolicy registers a new resource with the given unique name, arguments, and options.
@@ -155,7 +153,7 @@ type ttlpolicyState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Schedule object from available options.
 	Schedule *string `pulumi:"schedule"`
@@ -180,7 +178,7 @@ type TtlpolicyState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Schedule object from available options.
 	Schedule pulumi.StringPtrInput
@@ -209,7 +207,7 @@ type ttlpolicyArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// ID.
 	Fosid int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Schedule object from available options.
 	Schedule string `pulumi:"schedule"`
@@ -235,7 +233,7 @@ type TtlpolicyArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// ID.
 	Fosid pulumi.IntInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Schedule object from available options.
 	Schedule pulumi.StringInput
@@ -355,7 +353,7 @@ func (o TtlpolicyOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Ttlpolicy) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o TtlpolicyOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Ttlpolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -391,8 +389,8 @@ func (o TtlpolicyOutput) Ttl() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o TtlpolicyOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Ttlpolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o TtlpolicyOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ttlpolicy) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type TtlpolicyArrayOutput struct{ *pulumi.OutputState }

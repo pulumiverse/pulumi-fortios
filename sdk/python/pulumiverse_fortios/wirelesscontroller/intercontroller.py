@@ -31,7 +31,7 @@ class IntercontrollerArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fast_failover_max: Maximum number of retransmissions for fast failover HA messages between peer wireless controllers (3 - 64, default = 10).
         :param pulumi.Input[int] fast_failover_wait: Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] inter_controller_key: Secret key for inter-controller communications.
         :param pulumi.Input[str] inter_controller_mode: Configure inter-controller mode (disable, l2-roaming, 1+1, default = disable). Valid values: `disable`, `l2-roaming`, `1+1`.
         :param pulumi.Input[Sequence[pulumi.Input['IntercontrollerInterControllerPeerArgs']]] inter_controller_peers: Fast failover peer wireless controller list. The structure of `inter_controller_peer` block is documented below.
@@ -100,7 +100,7 @@ class IntercontrollerArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -199,7 +199,7 @@ class _IntercontrollerState:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fast_failover_max: Maximum number of retransmissions for fast failover HA messages between peer wireless controllers (3 - 64, default = 10).
         :param pulumi.Input[int] fast_failover_wait: Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] inter_controller_key: Secret key for inter-controller communications.
         :param pulumi.Input[str] inter_controller_mode: Configure inter-controller mode (disable, l2-roaming, 1+1, default = disable). Valid values: `disable`, `l2-roaming`, `1+1`.
         :param pulumi.Input[Sequence[pulumi.Input['IntercontrollerInterControllerPeerArgs']]] inter_controller_peers: Fast failover peer wireless controller list. The structure of `inter_controller_peer` block is documented below.
@@ -268,7 +268,7 @@ class _IntercontrollerState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -370,7 +370,6 @@ class Intercontroller(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -382,7 +381,6 @@ class Intercontroller(pulumi.CustomResource):
             inter_controller_mode="disable",
             inter_controller_pri="primary")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -407,7 +405,7 @@ class Intercontroller(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fast_failover_max: Maximum number of retransmissions for fast failover HA messages between peer wireless controllers (3 - 64, default = 10).
         :param pulumi.Input[int] fast_failover_wait: Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] inter_controller_key: Secret key for inter-controller communications.
         :param pulumi.Input[str] inter_controller_mode: Configure inter-controller mode (disable, l2-roaming, 1+1, default = disable). Valid values: `disable`, `l2-roaming`, `1+1`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IntercontrollerInterControllerPeerArgs']]]] inter_controller_peers: Fast failover peer wireless controller list. The structure of `inter_controller_peer` block is documented below.
@@ -426,7 +424,6 @@ class Intercontroller(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -438,7 +435,6 @@ class Intercontroller(pulumi.CustomResource):
             inter_controller_mode="disable",
             inter_controller_pri="primary")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -534,7 +530,7 @@ class Intercontroller(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[int] fast_failover_max: Maximum number of retransmissions for fast failover HA messages between peer wireless controllers (3 - 64, default = 10).
         :param pulumi.Input[int] fast_failover_wait: Minimum wait time before an AP transitions from secondary controller to primary controller (10 - 86400 sec, default = 10).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] inter_controller_key: Secret key for inter-controller communications.
         :param pulumi.Input[str] inter_controller_mode: Configure inter-controller mode (disable, l2-roaming, 1+1, default = disable). Valid values: `disable`, `l2-roaming`, `1+1`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IntercontrollerInterControllerPeerArgs']]]] inter_controller_peers: Fast failover peer wireless controller list. The structure of `inter_controller_peer` block is documented below.
@@ -586,7 +582,7 @@ class Intercontroller(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -632,7 +628,7 @@ class Intercontroller(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

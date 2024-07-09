@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -50,7 +49,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -92,7 +90,7 @@ type Setting struct {
 	EmergencyInterval pulumi.IntOutput `pulumi:"emergencyInterval"`
 	// Error alert interval in minutes.
 	ErrorInterval pulumi.IntOutput `pulumi:"errorInterval"`
-	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.8: default = 15.
 	FdsLicenseExpiringDays pulumi.IntOutput `pulumi:"fdsLicenseExpiringDays"`
 	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
 	FdsLicenseExpiringWarning pulumi.StringOutput `pulumi:"fdsLicenseExpiringWarning"`
@@ -139,7 +137,7 @@ type Setting struct {
 	// Name that appears in the From: field of alert emails. On FortiOS versions 6.2.0-6.4.0: max. 36 characters. On FortiOS versions >= 6.4.1: max. 63 characters.
 	Username pulumi.StringOutput `pulumi:"username"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable violation traffic logs in alert email. Valid values: `enable`, `disable`.
 	ViolationTrafficLogs pulumi.StringOutput `pulumi:"violationTrafficLogs"`
 	// Warning alert interval in minutes.
@@ -198,7 +196,7 @@ type settingState struct {
 	EmergencyInterval *int `pulumi:"emergencyInterval"`
 	// Error alert interval in minutes.
 	ErrorInterval *int `pulumi:"errorInterval"`
-	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.8: default = 15.
 	FdsLicenseExpiringDays *int `pulumi:"fdsLicenseExpiringDays"`
 	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
 	FdsLicenseExpiringWarning *string `pulumi:"fdsLicenseExpiringWarning"`
@@ -275,7 +273,7 @@ type SettingState struct {
 	EmergencyInterval pulumi.IntPtrInput
 	// Error alert interval in minutes.
 	ErrorInterval pulumi.IntPtrInput
-	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.8: default = 15.
 	FdsLicenseExpiringDays pulumi.IntPtrInput
 	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
 	FdsLicenseExpiringWarning pulumi.StringPtrInput
@@ -356,7 +354,7 @@ type settingArgs struct {
 	EmergencyInterval *int `pulumi:"emergencyInterval"`
 	// Error alert interval in minutes.
 	ErrorInterval *int `pulumi:"errorInterval"`
-	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.8: default = 15.
 	FdsLicenseExpiringDays *int `pulumi:"fdsLicenseExpiringDays"`
 	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
 	FdsLicenseExpiringWarning *string `pulumi:"fdsLicenseExpiringWarning"`
@@ -434,7 +432,7 @@ type SettingArgs struct {
 	EmergencyInterval pulumi.IntPtrInput
 	// Error alert interval in minutes.
 	ErrorInterval pulumi.IntPtrInput
-	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
+	// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.8: default = 15.
 	FdsLicenseExpiringDays pulumi.IntPtrInput
 	// Enable/disable FortiGuard license expiration warnings in alert email. Valid values: `enable`, `disable`.
 	FdsLicenseExpiringWarning pulumi.StringPtrInput
@@ -627,7 +625,7 @@ func (o SettingOutput) ErrorInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Setting) pulumi.IntOutput { return v.ErrorInterval }).(pulumi.IntOutput)
 }
 
-// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.6: default = 15.
+// Number of days to send alert email prior to FortiGuard license expiration (1 - 100 days). On FortiOS versions 6.2.0-7.2.0: default = 100. On FortiOS versions 7.2.1-7.2.8: default = 15.
 func (o SettingOutput) FdsLicenseExpiringDays() pulumi.IntOutput {
 	return o.ApplyT(func(v *Setting) pulumi.IntOutput { return v.FdsLicenseExpiringDays }).(pulumi.IntOutput)
 }
@@ -743,8 +741,8 @@ func (o SettingOutput) Username() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SettingOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Setting) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SettingOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Setting) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable violation traffic logs in alert email. Valid values: `enable`, `disable`.

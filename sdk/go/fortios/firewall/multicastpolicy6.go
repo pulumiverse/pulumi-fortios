@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -58,7 +57,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -96,7 +94,7 @@ type Multicastpolicy6 struct {
 	EndPort pulumi.IntOutput `pulumi:"endPort"`
 	// Policy ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Name of an existing IPS sensor.
 	IpsSensor pulumi.StringOutput `pulumi:"ipsSensor"`
@@ -119,7 +117,7 @@ type Multicastpolicy6 struct {
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewMulticastpolicy6 registers a new resource with the given unique name, arguments, and options.
@@ -180,7 +178,7 @@ type multicastpolicy6State struct {
 	EndPort *int `pulumi:"endPort"`
 	// Policy ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Name of an existing IPS sensor.
 	IpsSensor *string `pulumi:"ipsSensor"`
@@ -223,7 +221,7 @@ type Multicastpolicy6State struct {
 	EndPort pulumi.IntPtrInput
 	// Policy ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Name of an existing IPS sensor.
 	IpsSensor pulumi.StringPtrInput
@@ -270,7 +268,7 @@ type multicastpolicy6Args struct {
 	EndPort *int `pulumi:"endPort"`
 	// Policy ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Name of an existing IPS sensor.
 	IpsSensor *string `pulumi:"ipsSensor"`
@@ -314,7 +312,7 @@ type Multicastpolicy6Args struct {
 	EndPort pulumi.IntPtrInput
 	// Policy ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Name of an existing IPS sensor.
 	IpsSensor pulumi.StringPtrInput
@@ -467,7 +465,7 @@ func (o Multicastpolicy6Output) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Multicastpolicy6) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o Multicastpolicy6Output) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Multicastpolicy6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -523,8 +521,8 @@ func (o Multicastpolicy6Output) Uuid() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o Multicastpolicy6Output) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Multicastpolicy6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o Multicastpolicy6Output) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Multicastpolicy6) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type Multicastpolicy6ArrayOutput struct{ *pulumi.OutputState }

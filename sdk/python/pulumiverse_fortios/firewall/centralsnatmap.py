@@ -35,6 +35,7 @@ class CentralsnatmapArgs:
                  nat_port: Optional[pulumi.Input[str]] = None,
                  orig_addr6s: Optional[pulumi.Input[Sequence[pulumi.Input['CentralsnatmapOrigAddr6Args']]]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
+                 port_preserve: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
@@ -52,7 +53,7 @@ class CentralsnatmapArgs:
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapDstAddr6Args']]] dst_addr6s: IPv6 Destination address. The structure of `dst_addr6` block is documented below.
         :param pulumi.Input[str] dst_port: Destination port or port range (1 to 65535, 0 means any port).
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapNatIppool6Args']]] nat_ippool6s: IPv6 pools to be used for source NAT. The structure of `nat_ippool6` block is documented below.
@@ -60,6 +61,7 @@ class CentralsnatmapArgs:
         :param pulumi.Input[str] nat_port: Translated port or port range (0 to 65535, 0 means any port).
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapOrigAddr6Args']]] orig_addr6s: IPv6 Original address. The structure of `orig_addr6` block is documented below.
         :param pulumi.Input[int] policyid: Policy ID.
+        :param pulumi.Input[str] port_preserve: Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] status: Enable/disable the active status of this policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] type: IPv4/IPv6 source NAT. Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -96,6 +98,8 @@ class CentralsnatmapArgs:
             pulumi.set(__self__, "orig_addr6s", orig_addr6s)
         if policyid is not None:
             pulumi.set(__self__, "policyid", policyid)
+        if port_preserve is not None:
+            pulumi.set(__self__, "port_preserve", port_preserve)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if type is not None:
@@ -241,7 +245,7 @@ class CentralsnatmapArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -334,6 +338,18 @@ class CentralsnatmapArgs:
         pulumi.set(self, "policyid", value)
 
     @property
+    @pulumi.getter(name="portPreserve")
+    def port_preserve(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "port_preserve")
+
+    @port_preserve.setter
+    def port_preserve(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "port_preserve", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
@@ -402,6 +418,7 @@ class _CentralsnatmapState:
                  orig_addrs: Optional[pulumi.Input[Sequence[pulumi.Input['CentralsnatmapOrigAddrArgs']]]] = None,
                  orig_port: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
+                 port_preserve: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[int]] = None,
                  srcintfs: Optional[pulumi.Input[Sequence[pulumi.Input['CentralsnatmapSrcintfArgs']]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -416,7 +433,7 @@ class _CentralsnatmapState:
         :param pulumi.Input[str] dst_port: Destination port or port range (1 to 65535, 0 means any port).
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapDstintfArgs']]] dstintfs: Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] nat: Enable/disable source NAT. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
@@ -427,6 +444,7 @@ class _CentralsnatmapState:
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapOrigAddrArgs']]] orig_addrs: Original address. The structure of `orig_addr` block is documented below.
         :param pulumi.Input[str] orig_port: Original TCP port (1 to 65535, 0 means any port).
         :param pulumi.Input[int] policyid: Policy ID.
+        :param pulumi.Input[str] port_preserve: Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] protocol: Integer value for the protocol type (0 - 255).
         :param pulumi.Input[Sequence[pulumi.Input['CentralsnatmapSrcintfArgs']]] srcintfs: Source interface name from available interfaces. The structure of `srcintf` block is documented below.
         :param pulumi.Input[str] status: Enable/disable the active status of this policy. Valid values: `enable`, `disable`.
@@ -468,6 +486,8 @@ class _CentralsnatmapState:
             pulumi.set(__self__, "orig_port", orig_port)
         if policyid is not None:
             pulumi.set(__self__, "policyid", policyid)
+        if port_preserve is not None:
+            pulumi.set(__self__, "port_preserve", port_preserve)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
         if srcintfs is not None:
@@ -557,7 +577,7 @@ class _CentralsnatmapState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -686,6 +706,18 @@ class _CentralsnatmapState:
         pulumi.set(self, "policyid", value)
 
     @property
+    @pulumi.getter(name="portPreserve")
+    def port_preserve(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "port_preserve")
+
+    @port_preserve.setter
+    def port_preserve(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "port_preserve", value)
+
+    @property
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[int]]:
         """
@@ -780,6 +812,7 @@ class Centralsnatmap(pulumi.CustomResource):
                  orig_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapOrigAddrArgs']]]]] = None,
                  orig_port: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
+                 port_preserve: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[int]] = None,
                  srcintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapSrcintfArgs']]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -792,7 +825,6 @@ class Centralsnatmap(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -817,7 +849,6 @@ class Centralsnatmap(pulumi.CustomResource):
             )],
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -845,7 +876,7 @@ class Centralsnatmap(pulumi.CustomResource):
         :param pulumi.Input[str] dst_port: Destination port or port range (1 to 65535, 0 means any port).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapDstintfArgs']]]] dstintfs: Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] nat: Enable/disable source NAT. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
@@ -856,6 +887,7 @@ class Centralsnatmap(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapOrigAddrArgs']]]] orig_addrs: Original address. The structure of `orig_addr` block is documented below.
         :param pulumi.Input[str] orig_port: Original TCP port (1 to 65535, 0 means any port).
         :param pulumi.Input[int] policyid: Policy ID.
+        :param pulumi.Input[str] port_preserve: Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] protocol: Integer value for the protocol type (0 - 255).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapSrcintfArgs']]]] srcintfs: Source interface name from available interfaces. The structure of `srcintf` block is documented below.
         :param pulumi.Input[str] status: Enable/disable the active status of this policy. Valid values: `enable`, `disable`.
@@ -874,7 +906,6 @@ class Centralsnatmap(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -899,7 +930,6 @@ class Centralsnatmap(pulumi.CustomResource):
             )],
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -951,6 +981,7 @@ class Centralsnatmap(pulumi.CustomResource):
                  orig_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapOrigAddrArgs']]]]] = None,
                  orig_port: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
+                 port_preserve: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[int]] = None,
                  srcintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapSrcintfArgs']]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -993,6 +1024,7 @@ class Centralsnatmap(pulumi.CustomResource):
                 raise TypeError("Missing required property 'orig_port'")
             __props__.__dict__["orig_port"] = orig_port
             __props__.__dict__["policyid"] = policyid
+            __props__.__dict__["port_preserve"] = port_preserve
             if protocol is None and not opts.urn:
                 raise TypeError("Missing required property 'protocol'")
             __props__.__dict__["protocol"] = protocol
@@ -1030,6 +1062,7 @@ class Centralsnatmap(pulumi.CustomResource):
             orig_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapOrigAddrArgs']]]]] = None,
             orig_port: Optional[pulumi.Input[str]] = None,
             policyid: Optional[pulumi.Input[int]] = None,
+            port_preserve: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[int]] = None,
             srcintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapSrcintfArgs']]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -1049,7 +1082,7 @@ class Centralsnatmap(pulumi.CustomResource):
         :param pulumi.Input[str] dst_port: Destination port or port range (1 to 65535, 0 means any port).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapDstintfArgs']]]] dstintfs: Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] nat: Enable/disable source NAT. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
@@ -1060,6 +1093,7 @@ class Centralsnatmap(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapOrigAddrArgs']]]] orig_addrs: Original address. The structure of `orig_addr` block is documented below.
         :param pulumi.Input[str] orig_port: Original TCP port (1 to 65535, 0 means any port).
         :param pulumi.Input[int] policyid: Policy ID.
+        :param pulumi.Input[str] port_preserve: Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] protocol: Integer value for the protocol type (0 - 255).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CentralsnatmapSrcintfArgs']]]] srcintfs: Source interface name from available interfaces. The structure of `srcintf` block is documented below.
         :param pulumi.Input[str] status: Enable/disable the active status of this policy. Valid values: `enable`, `disable`.
@@ -1088,6 +1122,7 @@ class Centralsnatmap(pulumi.CustomResource):
         __props__.__dict__["orig_addrs"] = orig_addrs
         __props__.__dict__["orig_port"] = orig_port
         __props__.__dict__["policyid"] = policyid
+        __props__.__dict__["port_preserve"] = port_preserve
         __props__.__dict__["protocol"] = protocol
         __props__.__dict__["srcintfs"] = srcintfs
         __props__.__dict__["status"] = status
@@ -1148,7 +1183,7 @@ class Centralsnatmap(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1233,6 +1268,14 @@ class Centralsnatmap(pulumi.CustomResource):
         return pulumi.get(self, "policyid")
 
     @property
+    @pulumi.getter(name="portPreserve")
+    def port_preserve(self) -> pulumi.Output[str]:
+        """
+        Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "port_preserve")
+
+    @property
     @pulumi.getter
     def protocol(self) -> pulumi.Output[int]:
         """
@@ -1274,7 +1317,7 @@ class Centralsnatmap(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

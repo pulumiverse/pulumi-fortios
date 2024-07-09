@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -48,7 +47,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -78,12 +76,12 @@ type Dnsbl struct {
 	Entries DnsblEntryArrayOutput `pulumi:"entries"`
 	// ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Name of table.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewDnsbl registers a new resource with the given unique name, arguments, and options.
@@ -127,7 +125,7 @@ type dnsblState struct {
 	Entries []DnsblEntry `pulumi:"entries"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Name of table.
 	Name *string `pulumi:"name"`
@@ -144,7 +142,7 @@ type DnsblState struct {
 	Entries DnsblEntryArrayInput
 	// ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Name of table.
 	Name pulumi.StringPtrInput
@@ -165,7 +163,7 @@ type dnsblArgs struct {
 	Entries []DnsblEntry `pulumi:"entries"`
 	// ID.
 	Fosid int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Name of table.
 	Name *string `pulumi:"name"`
@@ -183,7 +181,7 @@ type DnsblArgs struct {
 	Entries DnsblEntryArrayInput
 	// ID.
 	Fosid pulumi.IntInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Name of table.
 	Name pulumi.StringPtrInput
@@ -298,7 +296,7 @@ func (o DnsblOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Dnsbl) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o DnsblOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Dnsbl) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -309,8 +307,8 @@ func (o DnsblOutput) Name() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o DnsblOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Dnsbl) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o DnsblOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Dnsbl) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type DnsblArrayOutput struct{ *pulumi.OutputState }

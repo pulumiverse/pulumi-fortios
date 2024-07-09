@@ -74,6 +74,8 @@ type LookupCsfResult struct {
 	ManagementPort int `pulumi:"managementPort"`
 	// SAML setting configuration synchronization.
 	SamlConfigurationSync string `pulumi:"samlConfigurationSync"`
+	// Source IP address for communication with the upstream FortiGate.
+	SourceIp string `pulumi:"sourceIp"`
 	// Enable/disable Security Fabric.
 	Status string `pulumi:"status"`
 	// Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
@@ -82,6 +84,10 @@ type LookupCsfResult struct {
 	Uid string `pulumi:"uid"`
 	// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
 	Upstream string `pulumi:"upstream"`
+	// Specify outgoing interface to reach server.
+	UpstreamInterface string `pulumi:"upstreamInterface"`
+	// Specify how to select outgoing interface to reach server.
+	UpstreamInterfaceSelectMethod string `pulumi:"upstreamInterfaceSelectMethod"`
 	// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
 	UpstreamIp string `pulumi:"upstreamIp"`
 	// The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
@@ -237,6 +243,11 @@ func (o LookupCsfResultOutput) SamlConfigurationSync() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCsfResult) string { return v.SamlConfigurationSync }).(pulumi.StringOutput)
 }
 
+// Source IP address for communication with the upstream FortiGate.
+func (o LookupCsfResultOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCsfResult) string { return v.SourceIp }).(pulumi.StringOutput)
+}
+
 // Enable/disable Security Fabric.
 func (o LookupCsfResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCsfResult) string { return v.Status }).(pulumi.StringOutput)
@@ -255,6 +266,16 @@ func (o LookupCsfResultOutput) Uid() pulumi.StringOutput {
 // IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
 func (o LookupCsfResultOutput) Upstream() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCsfResult) string { return v.Upstream }).(pulumi.StringOutput)
+}
+
+// Specify outgoing interface to reach server.
+func (o LookupCsfResultOutput) UpstreamInterface() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCsfResult) string { return v.UpstreamInterface }).(pulumi.StringOutput)
+}
+
+// Specify how to select outgoing interface to reach server.
+func (o LookupCsfResultOutput) UpstreamInterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCsfResult) string { return v.UpstreamInterfaceSelectMethod }).(pulumi.StringOutput)
 }
 
 // IP address of the FortiGate upstream from this FortiGate in the Security Fabric.

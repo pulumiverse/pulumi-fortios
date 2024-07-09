@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -25,7 +24,6 @@ import * as utilities from "../utilities";
  *     syncId: 1,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -82,15 +80,15 @@ export class Clustersync extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
-     * Heartbeat interval (1 - 10 sec).
+     * Heartbeat interval. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10 sec. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 20 (100*ms).
      */
     public readonly hbInterval!: pulumi.Output<number>;
     /**
-     * Lost heartbeat threshold (1 - 10).
+     * Lost heartbeat threshold. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 60.
      */
     public readonly hbLostThreshold!: pulumi.Output<number>;
     /**
@@ -140,7 +138,7 @@ export class Clustersync extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Clustersync resource with the given unique name, arguments, and options.
@@ -210,15 +208,15 @@ export interface ClustersyncState {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
-     * Heartbeat interval (1 - 10 sec).
+     * Heartbeat interval. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10 sec. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 20 (100*ms).
      */
     hbInterval?: pulumi.Input<number>;
     /**
-     * Lost heartbeat threshold (1 - 10).
+     * Lost heartbeat threshold. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 60.
      */
     hbLostThreshold?: pulumi.Input<number>;
     /**
@@ -284,15 +282,15 @@ export interface ClustersyncArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
-     * Heartbeat interval (1 - 10 sec).
+     * Heartbeat interval. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10 sec. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 20 (100*ms).
      */
     hbInterval?: pulumi.Input<number>;
     /**
-     * Lost heartbeat threshold (1 - 10).
+     * Lost heartbeat threshold. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 60.
      */
     hbLostThreshold?: pulumi.Input<number>;
     /**

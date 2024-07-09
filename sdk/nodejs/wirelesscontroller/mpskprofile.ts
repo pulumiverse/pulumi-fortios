@@ -60,7 +60,7 @@ export class Mpskprofile extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -68,9 +68,21 @@ export class Mpskprofile extends pulumi.CustomResource {
      */
     public readonly mpskConcurrentClients!: pulumi.Output<number>;
     /**
+     * RADIUS server to be used to authenticate MPSK users.
+     */
+    public readonly mpskExternalServer!: pulumi.Output<string>;
+    /**
+     * Enable/Disable MPSK external server authentication (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly mpskExternalServerAuth!: pulumi.Output<string>;
+    /**
      * List of multiple PSK groups. The structure of `mpskGroup` block is documented below.
      */
     public readonly mpskGroups!: pulumi.Output<outputs.wirelesscontroller.MpskprofileMpskGroup[] | undefined>;
+    /**
+     * Select the security type of keys for this profile. Valid values: `wpa2-personal`, `wpa3-sae`, `wpa3-sae-transition`.
+     */
+    public readonly mpskType!: pulumi.Output<string>;
     /**
      * MPSK profile name.
      */
@@ -78,7 +90,7 @@ export class Mpskprofile extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Mpskprofile resource with the given unique name, arguments, and options.
@@ -96,7 +108,10 @@ export class Mpskprofile extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["mpskConcurrentClients"] = state ? state.mpskConcurrentClients : undefined;
+            resourceInputs["mpskExternalServer"] = state ? state.mpskExternalServer : undefined;
+            resourceInputs["mpskExternalServerAuth"] = state ? state.mpskExternalServerAuth : undefined;
             resourceInputs["mpskGroups"] = state ? state.mpskGroups : undefined;
+            resourceInputs["mpskType"] = state ? state.mpskType : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -104,7 +119,10 @@ export class Mpskprofile extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["mpskConcurrentClients"] = args ? args.mpskConcurrentClients : undefined;
+            resourceInputs["mpskExternalServer"] = args ? args.mpskExternalServer : undefined;
+            resourceInputs["mpskExternalServerAuth"] = args ? args.mpskExternalServerAuth : undefined;
             resourceInputs["mpskGroups"] = args ? args.mpskGroups : undefined;
+            resourceInputs["mpskType"] = args ? args.mpskType : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -122,7 +140,7 @@ export interface MpskprofileState {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -130,9 +148,21 @@ export interface MpskprofileState {
      */
     mpskConcurrentClients?: pulumi.Input<number>;
     /**
+     * RADIUS server to be used to authenticate MPSK users.
+     */
+    mpskExternalServer?: pulumi.Input<string>;
+    /**
+     * Enable/Disable MPSK external server authentication (default = disable). Valid values: `enable`, `disable`.
+     */
+    mpskExternalServerAuth?: pulumi.Input<string>;
+    /**
      * List of multiple PSK groups. The structure of `mpskGroup` block is documented below.
      */
     mpskGroups?: pulumi.Input<pulumi.Input<inputs.wirelesscontroller.MpskprofileMpskGroup>[]>;
+    /**
+     * Select the security type of keys for this profile. Valid values: `wpa2-personal`, `wpa3-sae`, `wpa3-sae-transition`.
+     */
+    mpskType?: pulumi.Input<string>;
     /**
      * MPSK profile name.
      */
@@ -152,7 +182,7 @@ export interface MpskprofileArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -160,9 +190,21 @@ export interface MpskprofileArgs {
      */
     mpskConcurrentClients?: pulumi.Input<number>;
     /**
+     * RADIUS server to be used to authenticate MPSK users.
+     */
+    mpskExternalServer?: pulumi.Input<string>;
+    /**
+     * Enable/Disable MPSK external server authentication (default = disable). Valid values: `enable`, `disable`.
+     */
+    mpskExternalServerAuth?: pulumi.Input<string>;
+    /**
      * List of multiple PSK groups. The structure of `mpskGroup` block is documented below.
      */
     mpskGroups?: pulumi.Input<pulumi.Input<inputs.wirelesscontroller.MpskprofileMpskGroup>[]>;
+    /**
+     * Select the security type of keys for this profile. Valid values: `wpa2-personal`, `wpa3-sae`, `wpa3-sae-transition`.
+     */
+    mpskType?: pulumi.Input<string>;
     /**
      * MPSK profile name.
      */

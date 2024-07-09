@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -65,7 +64,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -99,7 +97,7 @@ type Centralsnatmap struct {
 	Dstintfs CentralsnatmapDstintfArrayOutput `pulumi:"dstintfs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable source NAT. Valid values: `disable`, `enable`.
 	Nat pulumi.StringOutput `pulumi:"nat"`
@@ -121,6 +119,8 @@ type Centralsnatmap struct {
 	OrigPort pulumi.StringOutput `pulumi:"origPort"`
 	// Policy ID.
 	Policyid pulumi.IntOutput `pulumi:"policyid"`
+	// Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+	PortPreserve pulumi.StringOutput `pulumi:"portPreserve"`
 	// Integer value for the protocol type (0 - 255).
 	Protocol pulumi.IntOutput `pulumi:"protocol"`
 	// Source interface name from available interfaces. The structure of `srcintf` block is documented below.
@@ -132,7 +132,7 @@ type Centralsnatmap struct {
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewCentralsnatmap registers a new resource with the given unique name, arguments, and options.
@@ -198,7 +198,7 @@ type centralsnatmapState struct {
 	Dstintfs []CentralsnatmapDstintf `pulumi:"dstintfs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable source NAT. Valid values: `disable`, `enable`.
 	Nat *string `pulumi:"nat"`
@@ -220,6 +220,8 @@ type centralsnatmapState struct {
 	OrigPort *string `pulumi:"origPort"`
 	// Policy ID.
 	Policyid *int `pulumi:"policyid"`
+	// Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+	PortPreserve *string `pulumi:"portPreserve"`
 	// Integer value for the protocol type (0 - 255).
 	Protocol *int `pulumi:"protocol"`
 	// Source interface name from available interfaces. The structure of `srcintf` block is documented below.
@@ -247,7 +249,7 @@ type CentralsnatmapState struct {
 	Dstintfs CentralsnatmapDstintfArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable source NAT. Valid values: `disable`, `enable`.
 	Nat pulumi.StringPtrInput
@@ -269,6 +271,8 @@ type CentralsnatmapState struct {
 	OrigPort pulumi.StringPtrInput
 	// Policy ID.
 	Policyid pulumi.IntPtrInput
+	// Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+	PortPreserve pulumi.StringPtrInput
 	// Integer value for the protocol type (0 - 255).
 	Protocol pulumi.IntPtrInput
 	// Source interface name from available interfaces. The structure of `srcintf` block is documented below.
@@ -300,7 +304,7 @@ type centralsnatmapArgs struct {
 	Dstintfs []CentralsnatmapDstintf `pulumi:"dstintfs"`
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable source NAT. Valid values: `disable`, `enable`.
 	Nat string `pulumi:"nat"`
@@ -322,6 +326,8 @@ type centralsnatmapArgs struct {
 	OrigPort string `pulumi:"origPort"`
 	// Policy ID.
 	Policyid *int `pulumi:"policyid"`
+	// Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+	PortPreserve *string `pulumi:"portPreserve"`
 	// Integer value for the protocol type (0 - 255).
 	Protocol int `pulumi:"protocol"`
 	// Source interface name from available interfaces. The structure of `srcintf` block is documented below.
@@ -350,7 +356,7 @@ type CentralsnatmapArgs struct {
 	Dstintfs CentralsnatmapDstintfArrayInput
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable source NAT. Valid values: `disable`, `enable`.
 	Nat pulumi.StringInput
@@ -372,6 +378,8 @@ type CentralsnatmapArgs struct {
 	OrigPort pulumi.StringInput
 	// Policy ID.
 	Policyid pulumi.IntPtrInput
+	// Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+	PortPreserve pulumi.StringPtrInput
 	// Integer value for the protocol type (0 - 255).
 	Protocol pulumi.IntInput
 	// Source interface name from available interfaces. The structure of `srcintf` block is documented below.
@@ -503,7 +511,7 @@ func (o CentralsnatmapOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Centralsnatmap) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o CentralsnatmapOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Centralsnatmap) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -558,6 +566,11 @@ func (o CentralsnatmapOutput) Policyid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Centralsnatmap) pulumi.IntOutput { return v.Policyid }).(pulumi.IntOutput)
 }
 
+// Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `enable`, `disable`.
+func (o CentralsnatmapOutput) PortPreserve() pulumi.StringOutput {
+	return o.ApplyT(func(v *Centralsnatmap) pulumi.StringOutput { return v.PortPreserve }).(pulumi.StringOutput)
+}
+
 // Integer value for the protocol type (0 - 255).
 func (o CentralsnatmapOutput) Protocol() pulumi.IntOutput {
 	return o.ApplyT(func(v *Centralsnatmap) pulumi.IntOutput { return v.Protocol }).(pulumi.IntOutput)
@@ -584,8 +597,8 @@ func (o CentralsnatmapOutput) Uuid() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o CentralsnatmapOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Centralsnatmap) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o CentralsnatmapOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Centralsnatmap) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type CentralsnatmapArrayOutput struct{ *pulumi.OutputState }

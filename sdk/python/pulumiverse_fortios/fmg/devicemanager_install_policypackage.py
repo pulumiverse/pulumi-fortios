@@ -136,7 +136,6 @@ class DevicemanagerInstallPolicypackage(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -145,7 +144,6 @@ class DevicemanagerInstallPolicypackage(pulumi.CustomResource):
             package_name="test-pkg1",
             timeout=5)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -164,7 +162,6 @@ class DevicemanagerInstallPolicypackage(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -173,7 +170,6 @@ class DevicemanagerInstallPolicypackage(pulumi.CustomResource):
             package_name="test-pkg1",
             timeout=5)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param DevicemanagerInstallPolicypackageArgs args: The arguments to use to populate this resource's properties.

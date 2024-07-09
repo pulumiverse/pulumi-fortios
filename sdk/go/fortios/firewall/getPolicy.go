@@ -270,6 +270,8 @@ type LookupPolicyResult struct {
 	Poolname6s []GetPolicyPoolname6 `pulumi:"poolname6s"`
 	// IP Pool names. The structure of `poolname` block is documented below.
 	Poolnames []GetPolicyPoolname `pulumi:"poolnames"`
+	// Enable/disable preservation of the original source port from source NAT if it has not been used.
+	PortPreserve string `pulumi:"portPreserve"`
 	// Name of profile group.
 	ProfileGroup string `pulumi:"profileGroup"`
 	// Name of an existing Protocol options profile.
@@ -1064,6 +1066,11 @@ func (o LookupPolicyResultOutput) Poolname6s() GetPolicyPoolname6ArrayOutput {
 // IP Pool names. The structure of `poolname` block is documented below.
 func (o LookupPolicyResultOutput) Poolnames() GetPolicyPoolnameArrayOutput {
 	return o.ApplyT(func(v LookupPolicyResult) []GetPolicyPoolname { return v.Poolnames }).(GetPolicyPoolnameArrayOutput)
+}
+
+// Enable/disable preservation of the original source port from source NAT if it has not been used.
+func (o LookupPolicyResultOutput) PortPreserve() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPolicyResult) string { return v.PortPreserve }).(pulumi.StringOutput)
 }
 
 // Name of profile group.

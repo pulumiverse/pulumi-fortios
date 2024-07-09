@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.Switchcontroller
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -37,7 +36,6 @@ namespace Pulumiverse.Fortios.Switchcontroller
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -73,7 +71,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Output<int> HelloTime { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+        /// Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
         /// </summary>
         [Output("maxAge")]
         public Output<int> MaxAge { get; private set; } = null!;
@@ -112,7 +110,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -174,7 +172,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<int>? HelloTime { get; set; }
 
         /// <summary>
-        /// Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+        /// Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
         /// </summary>
         [Input("maxAge")]
         public Input<int>? MaxAge { get; set; }
@@ -236,7 +234,7 @@ namespace Pulumiverse.Fortios.Switchcontroller
         public Input<int>? HelloTime { get; set; }
 
         /// <summary>
-        /// Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+        /// Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
         /// </summary>
         [Input("maxAge")]
         public Input<int>? MaxAge { get; set; }

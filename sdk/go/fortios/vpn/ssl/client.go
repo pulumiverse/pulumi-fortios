@@ -53,7 +53,7 @@ type Client struct {
 	Peer pulumi.StringOutput `pulumi:"peer"`
 	// SSL-VPN server port.
 	Port pulumi.IntOutput `pulumi:"port"`
-	// Priority for routes added by SSL-VPN (0 - 4294967295).
+	// Priority for routes added by SSL-VPN. On FortiOS versions 7.0.1-7.0.3: 0 - 4294967295. On FortiOS versions >= 7.0.4: 1 - 65535.
 	Priority pulumi.IntOutput `pulumi:"priority"`
 	// Pre-shared secret to authenticate with the server (ASCII string or hexadecimal encoded with a leading 0x).
 	Psk pulumi.StringPtrOutput `pulumi:"psk"`
@@ -68,7 +68,7 @@ type Client struct {
 	// Username to offer to the peer to authenticate the client.
 	User pulumi.StringOutput `pulumi:"user"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewClient registers a new resource with the given unique name, arguments, and options.
@@ -121,7 +121,7 @@ type clientState struct {
 	Peer *string `pulumi:"peer"`
 	// SSL-VPN server port.
 	Port *int `pulumi:"port"`
-	// Priority for routes added by SSL-VPN (0 - 4294967295).
+	// Priority for routes added by SSL-VPN. On FortiOS versions 7.0.1-7.0.3: 0 - 4294967295. On FortiOS versions >= 7.0.4: 1 - 65535.
 	Priority *int `pulumi:"priority"`
 	// Pre-shared secret to authenticate with the server (ASCII string or hexadecimal encoded with a leading 0x).
 	Psk *string `pulumi:"psk"`
@@ -160,7 +160,7 @@ type ClientState struct {
 	Peer pulumi.StringPtrInput
 	// SSL-VPN server port.
 	Port pulumi.IntPtrInput
-	// Priority for routes added by SSL-VPN (0 - 4294967295).
+	// Priority for routes added by SSL-VPN. On FortiOS versions 7.0.1-7.0.3: 0 - 4294967295. On FortiOS versions >= 7.0.4: 1 - 65535.
 	Priority pulumi.IntPtrInput
 	// Pre-shared secret to authenticate with the server (ASCII string or hexadecimal encoded with a leading 0x).
 	Psk pulumi.StringPtrInput
@@ -203,7 +203,7 @@ type clientArgs struct {
 	Peer *string `pulumi:"peer"`
 	// SSL-VPN server port.
 	Port *int `pulumi:"port"`
-	// Priority for routes added by SSL-VPN (0 - 4294967295).
+	// Priority for routes added by SSL-VPN. On FortiOS versions 7.0.1-7.0.3: 0 - 4294967295. On FortiOS versions >= 7.0.4: 1 - 65535.
 	Priority *int `pulumi:"priority"`
 	// Pre-shared secret to authenticate with the server (ASCII string or hexadecimal encoded with a leading 0x).
 	Psk *string `pulumi:"psk"`
@@ -243,7 +243,7 @@ type ClientArgs struct {
 	Peer pulumi.StringPtrInput
 	// SSL-VPN server port.
 	Port pulumi.IntPtrInput
-	// Priority for routes added by SSL-VPN (0 - 4294967295).
+	// Priority for routes added by SSL-VPN. On FortiOS versions 7.0.1-7.0.3: 0 - 4294967295. On FortiOS versions >= 7.0.4: 1 - 65535.
 	Priority pulumi.IntPtrInput
 	// Pre-shared secret to authenticate with the server (ASCII string or hexadecimal encoded with a leading 0x).
 	Psk pulumi.StringPtrInput
@@ -398,7 +398,7 @@ func (o ClientOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v *Client) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
 }
 
-// Priority for routes added by SSL-VPN (0 - 4294967295).
+// Priority for routes added by SSL-VPN. On FortiOS versions 7.0.1-7.0.3: 0 - 4294967295. On FortiOS versions >= 7.0.4: 1 - 65535.
 func (o ClientOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v *Client) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
 }
@@ -434,8 +434,8 @@ func (o ClientOutput) User() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ClientOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ClientOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ClientArrayOutput struct{ *pulumi.OutputState }

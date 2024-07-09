@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -51,7 +50,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -85,13 +83,13 @@ type Group struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable the guest user email address field. Valid values: `disable`, `enable`.
 	Email pulumi.StringOutput `pulumi:"email"`
-	// Time in seconds before guest user accounts expire. (1 - 31536000 sec)
+	// Time in seconds before guest user accounts expire (1 - 31536000).
 	Expire pulumi.IntOutput `pulumi:"expire"`
 	// Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
 	ExpireType pulumi.StringOutput `pulumi:"expireType"`
 	// Group ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
 	GroupType pulumi.StringOutput `pulumi:"groupType"`
@@ -126,7 +124,7 @@ type Group struct {
 	// Enable/disable the guest user name entry. Valid values: `disable`, `enable`.
 	UserName pulumi.StringOutput `pulumi:"userName"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewGroup registers a new resource with the given unique name, arguments, and options.
@@ -171,13 +169,13 @@ type groupState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable the guest user email address field. Valid values: `disable`, `enable`.
 	Email *string `pulumi:"email"`
-	// Time in seconds before guest user accounts expire. (1 - 31536000 sec)
+	// Time in seconds before guest user accounts expire (1 - 31536000).
 	Expire *int `pulumi:"expire"`
 	// Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
 	ExpireType *string `pulumi:"expireType"`
 	// Group ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
 	GroupType *string `pulumi:"groupType"`
@@ -228,13 +226,13 @@ type GroupState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable the guest user email address field. Valid values: `disable`, `enable`.
 	Email pulumi.StringPtrInput
-	// Time in seconds before guest user accounts expire. (1 - 31536000 sec)
+	// Time in seconds before guest user accounts expire (1 - 31536000).
 	Expire pulumi.IntPtrInput
 	// Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
 	ExpireType pulumi.StringPtrInput
 	// Group ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
 	GroupType pulumi.StringPtrInput
@@ -289,13 +287,13 @@ type groupArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable the guest user email address field. Valid values: `disable`, `enable`.
 	Email *string `pulumi:"email"`
-	// Time in seconds before guest user accounts expire. (1 - 31536000 sec)
+	// Time in seconds before guest user accounts expire (1 - 31536000).
 	Expire *int `pulumi:"expire"`
 	// Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
 	ExpireType *string `pulumi:"expireType"`
 	// Group ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
 	GroupType *string `pulumi:"groupType"`
@@ -347,13 +345,13 @@ type GroupArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable the guest user email address field. Valid values: `disable`, `enable`.
 	Email pulumi.StringPtrInput
-	// Time in seconds before guest user accounts expire. (1 - 31536000 sec)
+	// Time in seconds before guest user accounts expire (1 - 31536000).
 	Expire pulumi.IntPtrInput
 	// Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
 	ExpireType pulumi.StringPtrInput
 	// Group ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `fsso-service`, `rsso`, `guest`.
 	GroupType pulumi.StringPtrInput
@@ -508,7 +506,7 @@ func (o GroupOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.Email }).(pulumi.StringOutput)
 }
 
-// Time in seconds before guest user accounts expire. (1 - 31536000 sec)
+// Time in seconds before guest user accounts expire (1 - 31536000).
 func (o GroupOutput) Expire() pulumi.IntOutput {
 	return o.ApplyT(func(v *Group) pulumi.IntOutput { return v.Expire }).(pulumi.IntOutput)
 }
@@ -523,7 +521,7 @@ func (o GroupOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Group) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o GroupOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -609,8 +607,8 @@ func (o GroupOutput) UserName() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o GroupOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Group) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o GroupOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type GroupArrayOutput struct{ *pulumi.OutputState }

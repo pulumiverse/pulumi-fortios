@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -72,7 +71,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -126,7 +124,7 @@ type Shapingpolicy struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Shaping policy ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
 	Groups ShapingpolicyGroupArrayOutput `pulumi:"groups"`
@@ -191,7 +189,7 @@ type Shapingpolicy struct {
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewShapingpolicy registers a new resource with the given unique name, arguments, and options.
@@ -262,7 +260,7 @@ type shapingpolicyState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Shaping policy ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
 	Groups []ShapingpolicyGroup `pulumi:"groups"`
@@ -363,7 +361,7 @@ type ShapingpolicyState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Shaping policy ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
 	Groups ShapingpolicyGroupArrayInput
@@ -468,7 +466,7 @@ type shapingpolicyArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Shaping policy ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
 	Groups []ShapingpolicyGroup `pulumi:"groups"`
@@ -570,7 +568,7 @@ type ShapingpolicyArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Shaping policy ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Apply this traffic shaping policy to user groups that have authenticated with the FortiGate. The structure of `groups` block is documented below.
 	Groups ShapingpolicyGroupArrayInput
@@ -805,7 +803,7 @@ func (o ShapingpolicyOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Shapingpolicy) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ShapingpolicyOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Shapingpolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -976,8 +974,8 @@ func (o ShapingpolicyOutput) Uuid() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ShapingpolicyOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Shapingpolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ShapingpolicyOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Shapingpolicy) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ShapingpolicyArrayOutput struct{ *pulumi.OutputState }

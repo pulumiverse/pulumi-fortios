@@ -33,14 +33,14 @@ import (
 type Vdomlink struct {
 	pulumi.CustomResourceState
 
-	// VDOM link name (maximum = 8 characters).
+	// VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions >= 6.4.1: maximum = 11 characters.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// VDOM link type: PPP or Ethernet.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Virtual cluster. Valid values: `vcluster1`, `vcluster2`.
 	Vcluster pulumi.StringOutput `pulumi:"vcluster"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewVdomlink registers a new resource with the given unique name, arguments, and options.
@@ -73,7 +73,7 @@ func GetVdomlink(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Vdomlink resources.
 type vdomlinkState struct {
-	// VDOM link name (maximum = 8 characters).
+	// VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions >= 6.4.1: maximum = 11 characters.
 	Name *string `pulumi:"name"`
 	// VDOM link type: PPP or Ethernet.
 	Type *string `pulumi:"type"`
@@ -84,7 +84,7 @@ type vdomlinkState struct {
 }
 
 type VdomlinkState struct {
-	// VDOM link name (maximum = 8 characters).
+	// VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions >= 6.4.1: maximum = 11 characters.
 	Name pulumi.StringPtrInput
 	// VDOM link type: PPP or Ethernet.
 	Type pulumi.StringPtrInput
@@ -99,7 +99,7 @@ func (VdomlinkState) ElementType() reflect.Type {
 }
 
 type vdomlinkArgs struct {
-	// VDOM link name (maximum = 8 characters).
+	// VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions >= 6.4.1: maximum = 11 characters.
 	Name *string `pulumi:"name"`
 	// VDOM link type: PPP or Ethernet.
 	Type *string `pulumi:"type"`
@@ -111,7 +111,7 @@ type vdomlinkArgs struct {
 
 // The set of arguments for constructing a Vdomlink resource.
 type VdomlinkArgs struct {
-	// VDOM link name (maximum = 8 characters).
+	// VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions >= 6.4.1: maximum = 11 characters.
 	Name pulumi.StringPtrInput
 	// VDOM link type: PPP or Ethernet.
 	Type pulumi.StringPtrInput
@@ -208,7 +208,7 @@ func (o VdomlinkOutput) ToVdomlinkOutputWithContext(ctx context.Context) Vdomlin
 	return o
 }
 
-// VDOM link name (maximum = 8 characters).
+// VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions >= 6.4.1: maximum = 11 characters.
 func (o VdomlinkOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vdomlink) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -224,8 +224,8 @@ func (o VdomlinkOutput) Vcluster() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o VdomlinkOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Vdomlink) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o VdomlinkOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vdomlink) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type VdomlinkArrayOutput struct{ *pulumi.OutputState }

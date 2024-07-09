@@ -8,6 +8,7 @@ import typing
 from .dataplan import *
 from .extender import *
 from .extenderprofile import *
+from .extendervap import *
 from .fortigate import *
 from .fortigateprofile import *
 from ._inputs import *

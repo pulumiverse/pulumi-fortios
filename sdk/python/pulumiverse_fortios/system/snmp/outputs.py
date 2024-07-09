@@ -138,11 +138,7 @@ class CommunityHosts6(dict):
                  ipv6: Optional[str] = None,
                  source_ipv6: Optional[str] = None):
         """
-        :param str ha_direct: Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
-        :param str host_type: Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both. Valid values: `any`, `query`, `trap`.
-        :param int id: Host6 entry ID.
-        :param str ipv6: SNMP manager IPv6 address prefix.
-        :param str source_ipv6: Source IPv6 address for SNMP traps.
+        :param int id: an identifier for the resource with format {{fosid}}.
         """
         if ha_direct is not None:
             pulumi.set(__self__, "ha_direct", ha_direct)
@@ -158,41 +154,29 @@ class CommunityHosts6(dict):
     @property
     @pulumi.getter(name="haDirect")
     def ha_direct(self) -> Optional[str]:
-        """
-        Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ha_direct")
 
     @property
     @pulumi.getter(name="hostType")
     def host_type(self) -> Optional[str]:
-        """
-        Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both. Valid values: `any`, `query`, `trap`.
-        """
         return pulumi.get(self, "host_type")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        Host6 entry ID.
+        an identifier for the resource with format {{fosid}}.
         """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def ipv6(self) -> Optional[str]:
-        """
-        SNMP manager IPv6 address prefix.
-        """
         return pulumi.get(self, "ipv6")
 
     @property
     @pulumi.getter(name="sourceIpv6")
     def source_ipv6(self) -> Optional[str]:
-        """
-        Source IPv6 address for SNMP traps.
-        """
         return pulumi.get(self, "source_ipv6")
 
 

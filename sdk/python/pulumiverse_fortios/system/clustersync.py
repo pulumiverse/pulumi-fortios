@@ -37,9 +37,9 @@ class ClustersyncArgs:
         The set of arguments for constructing a Clustersync resource.
         :param pulumi.Input[Sequence[pulumi.Input['ClustersyncDownIntfsBeforeSessSyncArgs']]] down_intfs_before_sess_syncs: List of interfaces to be turned down before session synchronization is complete. The structure of `down_intfs_before_sess_sync` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
-        :param pulumi.Input[int] hb_interval: Heartbeat interval (1 - 10 sec).
-        :param pulumi.Input[int] hb_lost_threshold: Lost heartbeat threshold (1 - 10).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[int] hb_interval: Heartbeat interval. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10 sec. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 20 (100*ms).
+        :param pulumi.Input[int] hb_lost_threshold: Lost heartbeat threshold. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 60.
         :param pulumi.Input[int] ike_heartbeat_interval: IKE heartbeat interval (1 - 60 secs).
         :param pulumi.Input[str] ike_monitor: Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ike_monitor_interval: IKE HA monitor interval (10 - 300 secs).
@@ -116,7 +116,7 @@ class ClustersyncArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -128,7 +128,7 @@ class ClustersyncArgs:
     @pulumi.getter(name="hbInterval")
     def hb_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        Heartbeat interval (1 - 10 sec).
+        Heartbeat interval. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10 sec. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 20 (100*ms).
         """
         return pulumi.get(self, "hb_interval")
 
@@ -140,7 +140,7 @@ class ClustersyncArgs:
     @pulumi.getter(name="hbLostThreshold")
     def hb_lost_threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        Lost heartbeat threshold (1 - 10).
+        Lost heartbeat threshold. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 60.
         """
         return pulumi.get(self, "hb_lost_threshold")
 
@@ -317,9 +317,9 @@ class _ClustersyncState:
         Input properties used for looking up and filtering Clustersync resources.
         :param pulumi.Input[Sequence[pulumi.Input['ClustersyncDownIntfsBeforeSessSyncArgs']]] down_intfs_before_sess_syncs: List of interfaces to be turned down before session synchronization is complete. The structure of `down_intfs_before_sess_sync` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
-        :param pulumi.Input[int] hb_interval: Heartbeat interval (1 - 10 sec).
-        :param pulumi.Input[int] hb_lost_threshold: Lost heartbeat threshold (1 - 10).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[int] hb_interval: Heartbeat interval. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10 sec. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 20 (100*ms).
+        :param pulumi.Input[int] hb_lost_threshold: Lost heartbeat threshold. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 60.
         :param pulumi.Input[int] ike_heartbeat_interval: IKE heartbeat interval (1 - 60 secs).
         :param pulumi.Input[str] ike_monitor: Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ike_monitor_interval: IKE HA monitor interval (10 - 300 secs).
@@ -396,7 +396,7 @@ class _ClustersyncState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -408,7 +408,7 @@ class _ClustersyncState:
     @pulumi.getter(name="hbInterval")
     def hb_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        Heartbeat interval (1 - 10 sec).
+        Heartbeat interval. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10 sec. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 20 (100*ms).
         """
         return pulumi.get(self, "hb_interval")
 
@@ -420,7 +420,7 @@ class _ClustersyncState:
     @pulumi.getter(name="hbLostThreshold")
     def hb_lost_threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        Lost heartbeat threshold (1 - 10).
+        Lost heartbeat threshold. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 60.
         """
         return pulumi.get(self, "hb_lost_threshold")
 
@@ -601,7 +601,6 @@ class Clustersync(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -614,7 +613,6 @@ class Clustersync(pulumi.CustomResource):
             slave_add_ike_routes="enable",
             sync_id=1)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -638,9 +636,9 @@ class Clustersync(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClustersyncDownIntfsBeforeSessSyncArgs']]]] down_intfs_before_sess_syncs: List of interfaces to be turned down before session synchronization is complete. The structure of `down_intfs_before_sess_sync` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
-        :param pulumi.Input[int] hb_interval: Heartbeat interval (1 - 10 sec).
-        :param pulumi.Input[int] hb_lost_threshold: Lost heartbeat threshold (1 - 10).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[int] hb_interval: Heartbeat interval. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10 sec. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 20 (100*ms).
+        :param pulumi.Input[int] hb_lost_threshold: Lost heartbeat threshold. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 60.
         :param pulumi.Input[int] ike_heartbeat_interval: IKE heartbeat interval (1 - 60 secs).
         :param pulumi.Input[str] ike_monitor: Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ike_monitor_interval: IKE HA monitor interval (10 - 300 secs).
@@ -665,7 +663,6 @@ class Clustersync(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -678,7 +675,6 @@ class Clustersync(pulumi.CustomResource):
             slave_add_ike_routes="enable",
             sync_id=1)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -792,9 +788,9 @@ class Clustersync(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClustersyncDownIntfsBeforeSessSyncArgs']]]] down_intfs_before_sess_syncs: List of interfaces to be turned down before session synchronization is complete. The structure of `down_intfs_before_sess_sync` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
-        :param pulumi.Input[int] hb_interval: Heartbeat interval (1 - 10 sec).
-        :param pulumi.Input[int] hb_lost_threshold: Lost heartbeat threshold (1 - 10).
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[int] hb_interval: Heartbeat interval. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10 sec. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 20 (100*ms).
+        :param pulumi.Input[int] hb_lost_threshold: Lost heartbeat threshold. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 60.
         :param pulumi.Input[int] ike_heartbeat_interval: IKE heartbeat interval (1 - 60 secs).
         :param pulumi.Input[str] ike_monitor: Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ike_monitor_interval: IKE HA monitor interval (10 - 300 secs).
@@ -851,7 +847,7 @@ class Clustersync(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -859,7 +855,7 @@ class Clustersync(pulumi.CustomResource):
     @pulumi.getter(name="hbInterval")
     def hb_interval(self) -> pulumi.Output[int]:
         """
-        Heartbeat interval (1 - 10 sec).
+        Heartbeat interval. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10 sec. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 20 (100*ms).
         """
         return pulumi.get(self, "hb_interval")
 
@@ -867,7 +863,7 @@ class Clustersync(pulumi.CustomResource):
     @pulumi.getter(name="hbLostThreshold")
     def hb_lost_threshold(self) -> pulumi.Output[int]:
         """
-        Lost heartbeat threshold (1 - 10).
+        Lost heartbeat threshold. Increase to reduce false positives. On FortiOS versions 6.2.0-6.4.2, 7.0.0-7.0.5, 7.2.0: 1 - 10. On FortiOS versions 6.4.10-6.4.15, 7.0.6-7.0.15: 1 - 60.
         """
         return pulumi.get(self, "hb_lost_threshold")
 
@@ -961,7 +957,7 @@ class Clustersync(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

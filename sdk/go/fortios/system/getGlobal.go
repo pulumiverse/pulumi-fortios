@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,7 +37,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupGlobal(ctx *pulumi.Context, args *LookupGlobalArgs, opts ...pulumi.InvokeOption) (*LookupGlobalResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupGlobalResult
@@ -173,7 +171,7 @@ type LookupGlobalResult struct {
 	ComplianceCheck string `pulumi:"complianceCheck"`
 	// Time of day to run scheduled PCI DSS compliance checks.
 	ComplianceCheckTime string `pulumi:"complianceCheckTime"`
-	// Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+	// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
 	CpuUseThreshold int `pulumi:"cpuUseThreshold"`
 	// Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute.
 	CsrCaAttribute string `pulumi:"csrCaAttribute"`
@@ -187,6 +185,8 @@ type LookupGlobalResult struct {
 	DeviceIdleTimeout int `pulumi:"deviceIdleTimeout"`
 	// Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols.
 	DhParams string `pulumi:"dhParams"`
+	// DHCP leases backup interval in seconds (10 - 3600, default = 60).
+	DhcpLeaseBackupInterval int `pulumi:"dhcpLeaseBackupInterval"`
 	// DNS proxy worker count.
 	DnsproxyWorkerCount int `pulumi:"dnsproxyWorkerCount"`
 	// Enable/disable daylight saving time.
@@ -325,6 +325,8 @@ type LookupGlobalResult struct {
 	IpsecHaSeqjumpRate int `pulumi:"ipsecHaSeqjumpRate"`
 	// Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN.
 	IpsecHmacOffload string `pulumi:"ipsecHmacOffload"`
+	// Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption.
+	IpsecQatOffload string `pulumi:"ipsecQatOffload"`
 	// Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic.
 	IpsecRoundRobin string `pulumi:"ipsecRoundRobin"`
 	// Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic.
@@ -333,6 +335,8 @@ type LookupGlobalResult struct {
 	Ipv6AcceptDad int `pulumi:"ipv6AcceptDad"`
 	// Enable/disable IPv6 address probe through Anycast.
 	Ipv6AllowAnycastProbe string `pulumi:"ipv6AllowAnycastProbe"`
+	// Enable/disable silent drop of IPv6 local-in traffic.
+	Ipv6AllowLocalInSilentDrop string `pulumi:"ipv6AllowLocalInSilentDrop"`
 	// Enable/disable silent drop of IPv6 local-in traffic.
 	Ipv6AllowLocalInSlientDrop string `pulumi:"ipv6AllowLocalInSlientDrop"`
 	// Enable/disable IPv6 address probe through Multicast.
@@ -375,11 +379,11 @@ type LookupGlobalResult struct {
 	MaxRouteCacheSize int `pulumi:"maxRouteCacheSize"`
 	// Enable/disable no modification of multicast TTL.
 	McTtlNotchange string `pulumi:"mcTtlNotchange"`
-	// Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+	// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
 	MemoryUseThresholdExtreme int `pulumi:"memoryUseThresholdExtreme"`
-	// Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+	// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
 	MemoryUseThresholdGreen int `pulumi:"memoryUseThresholdGreen"`
-	// Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+	// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
 	MemoryUseThresholdRed int `pulumi:"memoryUseThresholdRed"`
 	// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
 	MiglogAffinity string `pulumi:"miglogAffinity"`
@@ -391,6 +395,8 @@ type LookupGlobalResult struct {
 	MulticastForward string `pulumi:"multicastForward"`
 	// Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
 	NdpMaxEntry int `pulumi:"ndpMaxEntry"`
+	// Enable/disable sending of probing packets to update neighbors for offloaded sessions.
+	NpuNeighborUpdate string `pulumi:"npuNeighborUpdate"`
 	// Enable/disable per-user block/allow list filter.
 	PerUserBal string `pulumi:"perUserBal"`
 	// Enable/disable per-user black/white list filter.
@@ -958,7 +964,7 @@ func (o LookupGlobalResultOutput) ComplianceCheckTime() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.ComplianceCheckTime }).(pulumi.StringOutput)
 }
 
-// Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
 func (o LookupGlobalResultOutput) CpuUseThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupGlobalResult) int { return v.CpuUseThreshold }).(pulumi.IntOutput)
 }
@@ -991,6 +997,11 @@ func (o LookupGlobalResultOutput) DeviceIdleTimeout() pulumi.IntOutput {
 // Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols.
 func (o LookupGlobalResultOutput) DhParams() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.DhParams }).(pulumi.StringOutput)
+}
+
+// DHCP leases backup interval in seconds (10 - 3600, default = 60).
+func (o LookupGlobalResultOutput) DhcpLeaseBackupInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupGlobalResult) int { return v.DhcpLeaseBackupInterval }).(pulumi.IntOutput)
 }
 
 // DNS proxy worker count.
@@ -1340,6 +1351,11 @@ func (o LookupGlobalResultOutput) IpsecHmacOffload() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.IpsecHmacOffload }).(pulumi.StringOutput)
 }
 
+// Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption.
+func (o LookupGlobalResultOutput) IpsecQatOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.IpsecQatOffload }).(pulumi.StringOutput)
+}
+
 // Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic.
 func (o LookupGlobalResultOutput) IpsecRoundRobin() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.IpsecRoundRobin }).(pulumi.StringOutput)
@@ -1358,6 +1374,11 @@ func (o LookupGlobalResultOutput) Ipv6AcceptDad() pulumi.IntOutput {
 // Enable/disable IPv6 address probe through Anycast.
 func (o LookupGlobalResultOutput) Ipv6AllowAnycastProbe() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.Ipv6AllowAnycastProbe }).(pulumi.StringOutput)
+}
+
+// Enable/disable silent drop of IPv6 local-in traffic.
+func (o LookupGlobalResultOutput) Ipv6AllowLocalInSilentDrop() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.Ipv6AllowLocalInSilentDrop }).(pulumi.StringOutput)
 }
 
 // Enable/disable silent drop of IPv6 local-in traffic.
@@ -1465,17 +1486,17 @@ func (o LookupGlobalResultOutput) McTtlNotchange() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.McTtlNotchange }).(pulumi.StringOutput)
 }
 
-// Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
 func (o LookupGlobalResultOutput) MemoryUseThresholdExtreme() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupGlobalResult) int { return v.MemoryUseThresholdExtreme }).(pulumi.IntOutput)
 }
 
-// Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
 func (o LookupGlobalResultOutput) MemoryUseThresholdGreen() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupGlobalResult) int { return v.MemoryUseThresholdGreen }).(pulumi.IntOutput)
 }
 
-// Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
 func (o LookupGlobalResultOutput) MemoryUseThresholdRed() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupGlobalResult) int { return v.MemoryUseThresholdRed }).(pulumi.IntOutput)
 }
@@ -1503,6 +1524,11 @@ func (o LookupGlobalResultOutput) MulticastForward() pulumi.StringOutput {
 // Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
 func (o LookupGlobalResultOutput) NdpMaxEntry() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupGlobalResult) int { return v.NdpMaxEntry }).(pulumi.IntOutput)
+}
+
+// Enable/disable sending of probing packets to update neighbors for offloaded sessions.
+func (o LookupGlobalResultOutput) NpuNeighborUpdate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalResult) string { return v.NpuNeighborUpdate }).(pulumi.StringOutput)
 }
 
 // Enable/disable per-user block/allow list filter.

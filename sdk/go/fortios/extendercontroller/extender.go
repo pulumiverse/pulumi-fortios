@@ -17,7 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -59,7 +58,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -123,7 +121,7 @@ type Extender struct {
 	ExtensionType pulumi.StringOutput `pulumi:"extensionType"`
 	// FortiExtender serial number.
 	Fosid pulumi.StringOutput `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// HA shared secret.
 	HaSharedSecret pulumi.StringPtrOutput `pulumi:"haSharedSecret"`
@@ -184,7 +182,7 @@ type Extender struct {
 	// VDOM
 	Vdom pulumi.IntOutput `pulumi:"vdom"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// FortiExtender wan extension configuration. The structure of `wanExtension` block is documented below.
 	WanExtension ExtenderWanExtensionOutput `pulumi:"wanExtension"`
 	// WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
@@ -299,7 +297,7 @@ type extenderState struct {
 	ExtensionType *string `pulumi:"extensionType"`
 	// FortiExtender serial number.
 	Fosid *string `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// HA shared secret.
 	HaSharedSecret *string `pulumi:"haSharedSecret"`
@@ -414,7 +412,7 @@ type ExtenderState struct {
 	ExtensionType pulumi.StringPtrInput
 	// FortiExtender serial number.
 	Fosid pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// HA shared secret.
 	HaSharedSecret pulumi.StringPtrInput
@@ -533,7 +531,7 @@ type extenderArgs struct {
 	ExtensionType *string `pulumi:"extensionType"`
 	// FortiExtender serial number.
 	Fosid string `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// HA shared secret.
 	HaSharedSecret *string `pulumi:"haSharedSecret"`
@@ -649,7 +647,7 @@ type ExtenderArgs struct {
 	ExtensionType pulumi.StringPtrInput
 	// FortiExtender serial number.
 	Fosid pulumi.StringInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// HA shared secret.
 	HaSharedSecret pulumi.StringPtrInput
@@ -913,7 +911,7 @@ func (o ExtenderOutput) Fosid() pulumi.StringOutput {
 	return o.ApplyT(func(v *Extender) pulumi.StringOutput { return v.Fosid }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ExtenderOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Extender) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -1064,8 +1062,8 @@ func (o ExtenderOutput) Vdom() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ExtenderOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Extender) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ExtenderOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Extender) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // FortiExtender wan extension configuration. The structure of `wanExtension` block is documented below.

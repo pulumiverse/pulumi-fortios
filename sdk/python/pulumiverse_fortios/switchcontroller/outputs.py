@@ -87,6 +87,10 @@ class DynamicportpolicyPolicy(dict):
             suggest = "interface_tags"
         elif key == "lldpProfile":
             suggest = "lldp_profile"
+        elif key == "matchPeriod":
+            suggest = "match_period"
+        elif key == "matchType":
+            suggest = "match_type"
         elif key == "qosPolicy":
             suggest = "qos_policy"
         elif key == "vlanPolicy":
@@ -113,6 +117,8 @@ class DynamicportpolicyPolicy(dict):
                  interface_tags: Optional[Sequence['outputs.DynamicportpolicyPolicyInterfaceTag']] = None,
                  lldp_profile: Optional[str] = None,
                  mac: Optional[str] = None,
+                 match_period: Optional[int] = None,
+                 match_type: Optional[str] = None,
                  n8021x: Optional[str] = None,
                  name: Optional[str] = None,
                  qos_policy: Optional[str] = None,
@@ -129,6 +135,8 @@ class DynamicportpolicyPolicy(dict):
         :param Sequence['DynamicportpolicyPolicyInterfaceTagArgs'] interface_tags: Policy matching the FortiSwitch interface object tags. The structure of `interface_tags` block is documented below.
         :param str lldp_profile: LLDP profile to be applied when using this policy.
         :param str mac: Policy matching MAC address.
+        :param int match_period: Number of days the matched devices will be retained (0 - 120, 0 = always retain).
+        :param str match_type: Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
         :param str n8021x: 802.1x security policy to be applied when using this policy.
         :param str name: Policy name.
         :param str qos_policy: QoS policy to be applied when using this policy.
@@ -154,6 +162,10 @@ class DynamicportpolicyPolicy(dict):
             pulumi.set(__self__, "lldp_profile", lldp_profile)
         if mac is not None:
             pulumi.set(__self__, "mac", mac)
+        if match_period is not None:
+            pulumi.set(__self__, "match_period", match_period)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
         if n8021x is not None:
             pulumi.set(__self__, "n8021x", n8021x)
         if name is not None:
@@ -238,6 +250,22 @@ class DynamicportpolicyPolicy(dict):
         Policy matching MAC address.
         """
         return pulumi.get(self, "mac")
+
+    @property
+    @pulumi.getter(name="matchPeriod")
+    def match_period(self) -> Optional[int]:
+        """
+        Number of days the matched devices will be retained (0 - 120, 0 = always retain).
+        """
+        return pulumi.get(self, "match_period")
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[str]:
+        """
+        Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+        """
+        return pulumi.get(self, "match_type")
 
     @property
     @pulumi.getter
@@ -981,7 +1009,7 @@ class LocationAddressCivic(dict):
         :param str number_suffix: House number suffix.
         :param str parent_key: Parent key name.
         :param str place_type: Placetype.
-        :param str post_office_box: Post office box (P.O. box).
+        :param str post_office_box: Post office box.
         :param str postal_community: Postal community name.
         :param str primary_road: Primary road name.
         :param str road_section: Road section.
@@ -1222,7 +1250,7 @@ class LocationAddressCivic(dict):
     @pulumi.getter(name="postOfficeBox")
     def post_office_box(self) -> Optional[str]:
         """
-        Post office box (P.O. box).
+        Post office box.
         """
         return pulumi.get(self, "post_office_box")
 
@@ -1369,10 +1397,10 @@ class LocationCoordinates(dict):
                  parent_key: Optional[str] = None):
         """
         :param str altitude: +/- Floating point no. eg. 117.47.
-        :param str altitude_unit: m ( meters), f ( floors). Valid values: `m`, `f`.
+        :param str altitude_unit: Configure the unit for which the altitude is to (m = meters, f = floors of a building). Valid values: `m`, `f`.
         :param str datum: WGS84, NAD83, NAD83/MLLW. Valid values: `WGS84`, `NAD83`, `NAD83/MLLW`.
-        :param str latitude: Floating point start with ( +/- )  or end with ( N or S ) eg. +/-16.67 or 16.67N.
-        :param str longitude: Floating point start with ( +/- )  or end with ( E or W ) eg. +/-26.789 or 26.789E.
+        :param str latitude: Floating point starting with +/- or ending with (N or S). For example, +/-16.67 or 16.67N.
+        :param str longitude: Floating point starting with +/- or ending with (N or S). For example, +/-26.789 or 26.789E.
         :param str parent_key: Parent key name.
         """
         if altitude is not None:
@@ -1400,7 +1428,7 @@ class LocationCoordinates(dict):
     @pulumi.getter(name="altitudeUnit")
     def altitude_unit(self) -> Optional[str]:
         """
-        m ( meters), f ( floors). Valid values: `m`, `f`.
+        Configure the unit for which the altitude is to (m = meters, f = floors of a building). Valid values: `m`, `f`.
         """
         return pulumi.get(self, "altitude_unit")
 
@@ -1416,7 +1444,7 @@ class LocationCoordinates(dict):
     @pulumi.getter
     def latitude(self) -> Optional[str]:
         """
-        Floating point start with ( +/- )  or end with ( N or S ) eg. +/-16.67 or 16.67N.
+        Floating point starting with +/- or ending with (N or S). For example, +/-16.67 or 16.67N.
         """
         return pulumi.get(self, "latitude")
 
@@ -1424,7 +1452,7 @@ class LocationCoordinates(dict):
     @pulumi.getter
     def longitude(self) -> Optional[str]:
         """
-        Floating point start with ( +/- )  or end with ( E or W ) eg. +/-26.789 or 26.789E.
+        Floating point starting with +/- or ending with (N or S). For example, +/-26.789 or 26.789E.
         """
         return pulumi.get(self, "longitude")
 
@@ -2079,19 +2107,6 @@ class ManagedswitchN8021xSettings(dict):
                  max_reauth_attempt: Optional[int] = None,
                  reauth_period: Optional[int] = None,
                  tx_period: Optional[int] = None):
-        """
-        :param str link_down_auth: Authentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-        :param str local_override: Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
-        :param str mab_reauth: Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
-        :param str mac_called_station_delimiter: MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        :param str mac_calling_station_delimiter: MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        :param str mac_case: MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
-        :param str mac_password_delimiter: MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        :param str mac_username_delimiter: MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        :param int max_reauth_attempt: Maximum number of authentication attempts (0 - 15, default = 3).
-        :param int reauth_period: Reauthentication time interval (1 - 1440 min, default = 60, 0 = disable).
-        :param int tx_period: 802.1X Tx period (seconds, default=30).
-        """
         if link_down_auth is not None:
             pulumi.set(__self__, "link_down_auth", link_down_auth)
         if local_override is not None:
@@ -2118,89 +2133,56 @@ class ManagedswitchN8021xSettings(dict):
     @property
     @pulumi.getter(name="linkDownAuth")
     def link_down_auth(self) -> Optional[str]:
-        """
-        Authentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-        """
         return pulumi.get(self, "link_down_auth")
 
     @property
     @pulumi.getter(name="localOverride")
     def local_override(self) -> Optional[str]:
-        """
-        Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "local_override")
 
     @property
     @pulumi.getter(name="mabReauth")
     def mab_reauth(self) -> Optional[str]:
-        """
-        Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "mab_reauth")
 
     @property
     @pulumi.getter(name="macCalledStationDelimiter")
     def mac_called_station_delimiter(self) -> Optional[str]:
-        """
-        MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        """
         return pulumi.get(self, "mac_called_station_delimiter")
 
     @property
     @pulumi.getter(name="macCallingStationDelimiter")
     def mac_calling_station_delimiter(self) -> Optional[str]:
-        """
-        MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        """
         return pulumi.get(self, "mac_calling_station_delimiter")
 
     @property
     @pulumi.getter(name="macCase")
     def mac_case(self) -> Optional[str]:
-        """
-        MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
-        """
         return pulumi.get(self, "mac_case")
 
     @property
     @pulumi.getter(name="macPasswordDelimiter")
     def mac_password_delimiter(self) -> Optional[str]:
-        """
-        MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        """
         return pulumi.get(self, "mac_password_delimiter")
 
     @property
     @pulumi.getter(name="macUsernameDelimiter")
     def mac_username_delimiter(self) -> Optional[str]:
-        """
-        MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        """
         return pulumi.get(self, "mac_username_delimiter")
 
     @property
     @pulumi.getter(name="maxReauthAttempt")
     def max_reauth_attempt(self) -> Optional[int]:
-        """
-        Maximum number of authentication attempts (0 - 15, default = 3).
-        """
         return pulumi.get(self, "max_reauth_attempt")
 
     @property
     @pulumi.getter(name="reauthPeriod")
     def reauth_period(self) -> Optional[int]:
-        """
-        Reauthentication time interval (1 - 1440 min, default = 60, 0 = disable).
-        """
         return pulumi.get(self, "reauth_period")
 
     @property
     @pulumi.getter(name="txPeriod")
     def tx_period(self) -> Optional[int]:
-        """
-        802.1X Tx period (seconds, default=30).
-        """
         return pulumi.get(self, "tx_period")
 
 
@@ -2215,6 +2197,8 @@ class ManagedswitchPort(dict):
             suggest = "acl_groups"
         elif key == "aggregatorMode":
             suggest = "aggregator_mode"
+        elif key == "allowArpMonitor":
+            suggest = "allow_arp_monitor"
         elif key == "allowedVlans":
             suggest = "allowed_vlans"
         elif key == "allowedVlansAll":
@@ -2243,6 +2227,8 @@ class ManagedswitchPort(dict):
             suggest = "export_to_pool"
         elif key == "exportToPoolFlag":
             suggest = "export_to_pool_flag"
+        elif key == "fallbackPort":
+            suggest = "fallback_port"
         elif key == "fecCapable":
             suggest = "fec_capable"
         elif key == "fecState":
@@ -2415,6 +2401,7 @@ class ManagedswitchPort(dict):
                  access_mode: Optional[str] = None,
                  acl_groups: Optional[Sequence['outputs.ManagedswitchPortAclGroup']] = None,
                  aggregator_mode: Optional[str] = None,
+                 allow_arp_monitor: Optional[str] = None,
                  allowed_vlans: Optional[Sequence['outputs.ManagedswitchPortAllowedVlan']] = None,
                  allowed_vlans_all: Optional[str] = None,
                  arp_inspection_trust: Optional[str] = None,
@@ -2431,6 +2418,7 @@ class ManagedswitchPort(dict):
                  export_to: Optional[str] = None,
                  export_to_pool: Optional[str] = None,
                  export_to_pool_flag: Optional[int] = None,
+                 fallback_port: Optional[str] = None,
                  fec_capable: Optional[int] = None,
                  fec_state: Optional[str] = None,
                  fgt_peer_device_name: Optional[str] = None,
@@ -2522,6 +2510,7 @@ class ManagedswitchPort(dict):
         :param str access_mode: Access mode of the port.
         :param Sequence['ManagedswitchPortAclGroupArgs'] acl_groups: ACL groups on this port. The structure of `acl_group` block is documented below.
         :param str aggregator_mode: LACP member select mode. Valid values: `bandwidth`, `count`.
+        :param str allow_arp_monitor: Enable/Disable allow ARP monitor. Valid values: `disable`, `enable`.
         :param Sequence['ManagedswitchPortAllowedVlanArgs'] allowed_vlans: Configure switch port tagged vlans The structure of `allowed_vlans` block is documented below.
         :param str allowed_vlans_all: Enable/disable all defined vlans on this port. Valid values: `enable`, `disable`.
         :param str arp_inspection_trust: Trusted or untrusted dynamic ARP inspection. Valid values: `untrusted`, `trusted`.
@@ -2538,6 +2527,7 @@ class ManagedswitchPort(dict):
         :param str export_to: Export managed-switch port to a tenant VDOM.
         :param str export_to_pool: Switch controller export port to pool-list.
         :param int export_to_pool_flag: Switch controller export port to pool-list.
+        :param str fallback_port: LACP fallback port.
         :param int fec_capable: FEC capable.
         :param str fec_state: State of forward error correction.
         :param str fgt_peer_device_name: FGT peer device name.
@@ -2584,7 +2574,7 @@ class ManagedswitchPort(dict):
         :param int packet_sample_rate: Packet sampling rate (0 - 99999 p/sec).
         :param str packet_sampler: Enable/disable packet sampling on this interface. Valid values: `enabled`, `disabled`.
         :param int pause_meter: Configure ingress pause metering rate, in kbps (default = 0, disabled).
-        :param str pause_meter_resume: Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
+        :param str pause_meter_resume: Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
         :param int poe_capable: PoE capable.
         :param str poe_max_power: PoE maximum power.
         :param int poe_mode_bt_cabable: PoE mode IEEE 802.3BT capable.
@@ -2607,7 +2597,7 @@ class ManagedswitchPort(dict):
         :param int restricted_auth_port: Peer to Peer Restricted Authenticated port.
         :param str rpvst_port: Enable/disable inter-operability with rapid PVST on this interface. Valid values: `disabled`, `enabled`.
         :param str sample_direction: sFlow sample direction. Valid values: `tx`, `rx`, `both`.
-        :param int sflow_counter_interval: sFlow sampler counter polling interval (1 - 255 sec).
+        :param int sflow_counter_interval: sFlow sampling counter polling interval in seconds (0 - 255).
         :param int sflow_sample_rate: sFlow sampler sample rate (0 - 99999 p/sec).
         :param str sflow_sampler: Enable/disable sFlow protocol on this interface. Valid values: `enabled`, `disabled`.
         :param str speed: Switch port speed; default and available settings depend on hardware.
@@ -2632,6 +2622,8 @@ class ManagedswitchPort(dict):
             pulumi.set(__self__, "acl_groups", acl_groups)
         if aggregator_mode is not None:
             pulumi.set(__self__, "aggregator_mode", aggregator_mode)
+        if allow_arp_monitor is not None:
+            pulumi.set(__self__, "allow_arp_monitor", allow_arp_monitor)
         if allowed_vlans is not None:
             pulumi.set(__self__, "allowed_vlans", allowed_vlans)
         if allowed_vlans_all is not None:
@@ -2664,6 +2656,8 @@ class ManagedswitchPort(dict):
             pulumi.set(__self__, "export_to_pool", export_to_pool)
         if export_to_pool_flag is not None:
             pulumi.set(__self__, "export_to_pool_flag", export_to_pool_flag)
+        if fallback_port is not None:
+            pulumi.set(__self__, "fallback_port", fallback_port)
         if fec_capable is not None:
             pulumi.set(__self__, "fec_capable", fec_capable)
         if fec_state is not None:
@@ -2864,6 +2858,14 @@ class ManagedswitchPort(dict):
         return pulumi.get(self, "aggregator_mode")
 
     @property
+    @pulumi.getter(name="allowArpMonitor")
+    def allow_arp_monitor(self) -> Optional[str]:
+        """
+        Enable/Disable allow ARP monitor. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "allow_arp_monitor")
+
+    @property
     @pulumi.getter(name="allowedVlans")
     def allowed_vlans(self) -> Optional[Sequence['outputs.ManagedswitchPortAllowedVlan']]:
         """
@@ -2990,6 +2992,14 @@ class ManagedswitchPort(dict):
         Switch controller export port to pool-list.
         """
         return pulumi.get(self, "export_to_pool_flag")
+
+    @property
+    @pulumi.getter(name="fallbackPort")
+    def fallback_port(self) -> Optional[str]:
+        """
+        LACP fallback port.
+        """
+        return pulumi.get(self, "fallback_port")
 
     @property
     @pulumi.getter(name="fecCapable")
@@ -3363,7 +3373,7 @@ class ManagedswitchPort(dict):
     @pulumi.getter(name="pauseMeterResume")
     def pause_meter_resume(self) -> Optional[str]:
         """
-        Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
+        Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
         """
         return pulumi.get(self, "pause_meter_resume")
 
@@ -3547,7 +3557,7 @@ class ManagedswitchPort(dict):
     @pulumi.getter(name="sflowCounterInterval")
     def sflow_counter_interval(self) -> Optional[int]:
         """
-        sFlow sampler counter polling interval (1 - 255 sec).
+        sFlow sampling counter polling interval in seconds (0 - 255).
         """
         return pulumi.get(self, "sflow_counter_interval")
 
@@ -3770,11 +3780,6 @@ class ManagedswitchPortDhcpSnoopOption82Override(dict):
                  circuit_id: Optional[str] = None,
                  remote_id: Optional[str] = None,
                  vlan_name: Optional[str] = None):
-        """
-        :param str circuit_id: Circuit ID string.
-        :param str remote_id: Remote ID string.
-        :param str vlan_name: VLAN name.
-        """
         if circuit_id is not None:
             pulumi.set(__self__, "circuit_id", circuit_id)
         if remote_id is not None:
@@ -3785,25 +3790,16 @@ class ManagedswitchPortDhcpSnoopOption82Override(dict):
     @property
     @pulumi.getter(name="circuitId")
     def circuit_id(self) -> Optional[str]:
-        """
-        Circuit ID string.
-        """
         return pulumi.get(self, "circuit_id")
 
     @property
     @pulumi.getter(name="remoteId")
     def remote_id(self) -> Optional[str]:
-        """
-        Remote ID string.
-        """
         return pulumi.get(self, "remote_id")
 
     @property
     @pulumi.getter(name="vlanName")
     def vlan_name(self) -> Optional[str]:
-        """
-        VLAN name.
-        """
         return pulumi.get(self, "vlan_name")
 
 
@@ -4759,7 +4755,7 @@ class ManagedswitchStormControl(dict):
         """
         :param str broadcast: Enable/disable storm control to drop broadcast traffic. Valid values: `enable`, `disable`.
         :param str local_override: Enable to override global FortiSwitch storm control settings for this FortiSwitch. Valid values: `enable`, `disable`.
-        :param int rate: Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+        :param int rate: Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
         :param str unknown_multicast: Enable/disable storm control to drop unknown multicast traffic. Valid values: `enable`, `disable`.
         :param str unknown_unicast: Enable/disable storm control to drop unknown unicast traffic. Valid values: `enable`, `disable`.
         """
@@ -4794,7 +4790,7 @@ class ManagedswitchStormControl(dict):
     @pulumi.getter
     def rate(self) -> Optional[int]:
         """
-        Rate in packets per second at which storm traffic is controlled (1 - 10000000, default = 500). Storm control drops excess traffic data rates beyond this threshold.
+        Rate in packets per second at which storm control drops excess traffic, default=500. On FortiOS versions 6.2.0-7.2.8: 1 - 10000000. On FortiOS versions >= 7.4.0: 0-10000000, drop-all=0.
         """
         return pulumi.get(self, "rate")
 
@@ -5194,7 +5190,7 @@ class QuarantineTargetTag(dict):
     def __init__(__self__, *,
                  tags: Optional[str] = None):
         """
-        :param str tags: Tag string(eg. string1 string2 string3).
+        :param str tags: Tag string. For example, string1 string2 string3.
         """
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
@@ -5203,7 +5199,7 @@ class QuarantineTargetTag(dict):
     @pulumi.getter
     def tags(self) -> Optional[str]:
         """
-        Tag string(eg. string1 string2 string3).
+        Tag string. For example, string1 string2 string3.
         """
         return pulumi.get(self, "tags")
 

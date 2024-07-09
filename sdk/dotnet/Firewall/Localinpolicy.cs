@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -57,7 +56,6 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -111,7 +109,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -123,10 +121,52 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<string> HaMgmtIntfOnly { get; private set; } = null!;
 
         /// <summary>
-        /// Incoming interface name from available options.
+        /// Enable/disable use of Internet Services in source for this local-in policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("internetServiceSrc")]
+        public Output<string> InternetServiceSrc { get; private set; } = null!;
+
+        /// <summary>
+        /// Custom Internet Service source group name. The structure of `internet_service_src_custom_group` block is documented below.
+        /// </summary>
+        [Output("internetServiceSrcCustomGroups")]
+        public Output<ImmutableArray<Outputs.LocalinpolicyInternetServiceSrcCustomGroup>> InternetServiceSrcCustomGroups { get; private set; } = null!;
+
+        /// <summary>
+        /// Custom Internet Service source name. The structure of `internet_service_src_custom` block is documented below.
+        /// </summary>
+        [Output("internetServiceSrcCustoms")]
+        public Output<ImmutableArray<Outputs.LocalinpolicyInternetServiceSrcCustom>> InternetServiceSrcCustoms { get; private set; } = null!;
+
+        /// <summary>
+        /// Internet Service source group name. The structure of `internet_service_src_group` block is documented below.
+        /// </summary>
+        [Output("internetServiceSrcGroups")]
+        public Output<ImmutableArray<Outputs.LocalinpolicyInternetServiceSrcGroup>> InternetServiceSrcGroups { get; private set; } = null!;
+
+        /// <summary>
+        /// Internet Service source name. The structure of `internet_service_src_name` block is documented below.
+        /// </summary>
+        [Output("internetServiceSrcNames")]
+        public Output<ImmutableArray<Outputs.LocalinpolicyInternetServiceSrcName>> InternetServiceSrcNames { get; private set; } = null!;
+
+        /// <summary>
+        /// When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("internetServiceSrcNegate")]
+        public Output<string> InternetServiceSrcNegate { get; private set; } = null!;
+
+        /// <summary>
+        /// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf_block`.*
         /// </summary>
         [Output("intf")]
         public Output<string> Intf { get; private set; } = null!;
+
+        /// <summary>
+        /// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intf_block` block is documented below.
+        /// </summary>
+        [Output("intfBlocks")]
+        public Output<ImmutableArray<Outputs.LocalinpolicyIntfBlock>> IntfBlocks { get; private set; } = null!;
 
         /// <summary>
         /// User defined local in policy ID.
@@ -180,7 +220,7 @@ namespace Pulumiverse.Fortios.Firewall
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable virtual patching. Valid values: `enable`, `disable`.
@@ -272,7 +312,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -284,10 +324,82 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? HaMgmtIntfOnly { get; set; }
 
         /// <summary>
-        /// Incoming interface name from available options.
+        /// Enable/disable use of Internet Services in source for this local-in policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("internetServiceSrc")]
+        public Input<string>? InternetServiceSrc { get; set; }
+
+        [Input("internetServiceSrcCustomGroups")]
+        private InputList<Inputs.LocalinpolicyInternetServiceSrcCustomGroupArgs>? _internetServiceSrcCustomGroups;
+
+        /// <summary>
+        /// Custom Internet Service source group name. The structure of `internet_service_src_custom_group` block is documented below.
+        /// </summary>
+        public InputList<Inputs.LocalinpolicyInternetServiceSrcCustomGroupArgs> InternetServiceSrcCustomGroups
+        {
+            get => _internetServiceSrcCustomGroups ?? (_internetServiceSrcCustomGroups = new InputList<Inputs.LocalinpolicyInternetServiceSrcCustomGroupArgs>());
+            set => _internetServiceSrcCustomGroups = value;
+        }
+
+        [Input("internetServiceSrcCustoms")]
+        private InputList<Inputs.LocalinpolicyInternetServiceSrcCustomArgs>? _internetServiceSrcCustoms;
+
+        /// <summary>
+        /// Custom Internet Service source name. The structure of `internet_service_src_custom` block is documented below.
+        /// </summary>
+        public InputList<Inputs.LocalinpolicyInternetServiceSrcCustomArgs> InternetServiceSrcCustoms
+        {
+            get => _internetServiceSrcCustoms ?? (_internetServiceSrcCustoms = new InputList<Inputs.LocalinpolicyInternetServiceSrcCustomArgs>());
+            set => _internetServiceSrcCustoms = value;
+        }
+
+        [Input("internetServiceSrcGroups")]
+        private InputList<Inputs.LocalinpolicyInternetServiceSrcGroupArgs>? _internetServiceSrcGroups;
+
+        /// <summary>
+        /// Internet Service source group name. The structure of `internet_service_src_group` block is documented below.
+        /// </summary>
+        public InputList<Inputs.LocalinpolicyInternetServiceSrcGroupArgs> InternetServiceSrcGroups
+        {
+            get => _internetServiceSrcGroups ?? (_internetServiceSrcGroups = new InputList<Inputs.LocalinpolicyInternetServiceSrcGroupArgs>());
+            set => _internetServiceSrcGroups = value;
+        }
+
+        [Input("internetServiceSrcNames")]
+        private InputList<Inputs.LocalinpolicyInternetServiceSrcNameArgs>? _internetServiceSrcNames;
+
+        /// <summary>
+        /// Internet Service source name. The structure of `internet_service_src_name` block is documented below.
+        /// </summary>
+        public InputList<Inputs.LocalinpolicyInternetServiceSrcNameArgs> InternetServiceSrcNames
+        {
+            get => _internetServiceSrcNames ?? (_internetServiceSrcNames = new InputList<Inputs.LocalinpolicyInternetServiceSrcNameArgs>());
+            set => _internetServiceSrcNames = value;
+        }
+
+        /// <summary>
+        /// When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("internetServiceSrcNegate")]
+        public Input<string>? InternetServiceSrcNegate { get; set; }
+
+        /// <summary>
+        /// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf_block`.*
         /// </summary>
         [Input("intf")]
         public Input<string>? Intf { get; set; }
+
+        [Input("intfBlocks")]
+        private InputList<Inputs.LocalinpolicyIntfBlockArgs>? _intfBlocks;
+
+        /// <summary>
+        /// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intf_block` block is documented below.
+        /// </summary>
+        public InputList<Inputs.LocalinpolicyIntfBlockArgs> IntfBlocks
+        {
+            get => _intfBlocks ?? (_intfBlocks = new InputList<Inputs.LocalinpolicyIntfBlockArgs>());
+            set => _intfBlocks = value;
+        }
 
         /// <summary>
         /// User defined local in policy ID.
@@ -406,7 +518,7 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -418,10 +530,82 @@ namespace Pulumiverse.Fortios.Firewall
         public Input<string>? HaMgmtIntfOnly { get; set; }
 
         /// <summary>
-        /// Incoming interface name from available options.
+        /// Enable/disable use of Internet Services in source for this local-in policy. If enabled, source address is not used. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("internetServiceSrc")]
+        public Input<string>? InternetServiceSrc { get; set; }
+
+        [Input("internetServiceSrcCustomGroups")]
+        private InputList<Inputs.LocalinpolicyInternetServiceSrcCustomGroupGetArgs>? _internetServiceSrcCustomGroups;
+
+        /// <summary>
+        /// Custom Internet Service source group name. The structure of `internet_service_src_custom_group` block is documented below.
+        /// </summary>
+        public InputList<Inputs.LocalinpolicyInternetServiceSrcCustomGroupGetArgs> InternetServiceSrcCustomGroups
+        {
+            get => _internetServiceSrcCustomGroups ?? (_internetServiceSrcCustomGroups = new InputList<Inputs.LocalinpolicyInternetServiceSrcCustomGroupGetArgs>());
+            set => _internetServiceSrcCustomGroups = value;
+        }
+
+        [Input("internetServiceSrcCustoms")]
+        private InputList<Inputs.LocalinpolicyInternetServiceSrcCustomGetArgs>? _internetServiceSrcCustoms;
+
+        /// <summary>
+        /// Custom Internet Service source name. The structure of `internet_service_src_custom` block is documented below.
+        /// </summary>
+        public InputList<Inputs.LocalinpolicyInternetServiceSrcCustomGetArgs> InternetServiceSrcCustoms
+        {
+            get => _internetServiceSrcCustoms ?? (_internetServiceSrcCustoms = new InputList<Inputs.LocalinpolicyInternetServiceSrcCustomGetArgs>());
+            set => _internetServiceSrcCustoms = value;
+        }
+
+        [Input("internetServiceSrcGroups")]
+        private InputList<Inputs.LocalinpolicyInternetServiceSrcGroupGetArgs>? _internetServiceSrcGroups;
+
+        /// <summary>
+        /// Internet Service source group name. The structure of `internet_service_src_group` block is documented below.
+        /// </summary>
+        public InputList<Inputs.LocalinpolicyInternetServiceSrcGroupGetArgs> InternetServiceSrcGroups
+        {
+            get => _internetServiceSrcGroups ?? (_internetServiceSrcGroups = new InputList<Inputs.LocalinpolicyInternetServiceSrcGroupGetArgs>());
+            set => _internetServiceSrcGroups = value;
+        }
+
+        [Input("internetServiceSrcNames")]
+        private InputList<Inputs.LocalinpolicyInternetServiceSrcNameGetArgs>? _internetServiceSrcNames;
+
+        /// <summary>
+        /// Internet Service source name. The structure of `internet_service_src_name` block is documented below.
+        /// </summary>
+        public InputList<Inputs.LocalinpolicyInternetServiceSrcNameGetArgs> InternetServiceSrcNames
+        {
+            get => _internetServiceSrcNames ?? (_internetServiceSrcNames = new InputList<Inputs.LocalinpolicyInternetServiceSrcNameGetArgs>());
+            set => _internetServiceSrcNames = value;
+        }
+
+        /// <summary>
+        /// When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("internetServiceSrcNegate")]
+        public Input<string>? InternetServiceSrcNegate { get; set; }
+
+        /// <summary>
+        /// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf_block`.*
         /// </summary>
         [Input("intf")]
         public Input<string>? Intf { get; set; }
+
+        [Input("intfBlocks")]
+        private InputList<Inputs.LocalinpolicyIntfBlockGetArgs>? _intfBlocks;
+
+        /// <summary>
+        /// Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intf_block` block is documented below.
+        /// </summary>
+        public InputList<Inputs.LocalinpolicyIntfBlockGetArgs> IntfBlocks
+        {
+            get => _intfBlocks ?? (_intfBlocks = new InputList<Inputs.LocalinpolicyIntfBlockGetArgs>());
+            set => _intfBlocks = value;
+        }
 
         /// <summary>
         /// User defined local in policy ID.

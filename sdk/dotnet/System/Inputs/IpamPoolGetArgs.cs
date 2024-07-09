@@ -19,6 +19,18 @@ namespace Pulumiverse.Fortios.System.Inputs
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        [Input("excludes")]
+        private InputList<Inputs.IpamPoolExcludeGetArgs>? _excludes;
+
+        /// <summary>
+        /// Configure pool exclude subnets. The structure of `exclude` block is documented below.
+        /// </summary>
+        public InputList<Inputs.IpamPoolExcludeGetArgs> Excludes
+        {
+            get => _excludes ?? (_excludes = new InputList<Inputs.IpamPoolExcludeGetArgs>());
+            set => _excludes = value;
+        }
+
         /// <summary>
         /// IPAM pool name.
         /// </summary>

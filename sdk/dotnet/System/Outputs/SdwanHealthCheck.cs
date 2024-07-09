@@ -71,7 +71,7 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? HttpMatch;
         /// <summary>
-        /// Status check interval in milliseconds, or the time between attempting to connect to the server (500 - 3600*1000 msec, default = 500).
+        /// Status check interval in milliseconds, or the time between attempting to connect to the server (default = 500). On FortiOS versions 6.4.1-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 7.0.11-7.0.15, &gt;= 7.2.6: 20 - 3600*1000 msec.
         /// </summary>
         public readonly int? Interval;
         /// <summary>
@@ -87,7 +87,7 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// Packet size of a twamp test session,
+        /// Packet size of a TWAMP test session. (124/158 - 1024)
         /// </summary>
         public readonly int? PacketSize;
         /// <summary>
@@ -95,7 +95,7 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? Password;
         /// <summary>
-        /// Port number used to communicate with the server over the selected protocol (0-65535, default = 0, auto select. http, twamp: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21).
+        /// Port number used to communicate with the server over the selected protocol (0 - 65535, default = 0, auto select. http, tcp-connect: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21, twamp: 862).
         /// </summary>
         public readonly int? Port;
         /// <summary>
@@ -107,7 +107,7 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? ProbePackets;
         /// <summary>
-        /// Time to wait before a probe packet is considered lost (500 - 3600*1000 msec, default = 500).
+        /// Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.4.2-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 6.4.1: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, &gt;= 7.2.6: 20 - 3600*1000 msec.
         /// </summary>
         public readonly int? ProbeTimeout;
         /// <summary>

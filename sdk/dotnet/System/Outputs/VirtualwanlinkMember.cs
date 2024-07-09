@@ -63,11 +63,11 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? Status;
         /// <summary>
-        /// Measured volume ratio (this value / sum of all values = percentage of link volume, 0 - 255).
+        /// Measured volume ratio (this value / sum of all values = percentage of link volume). On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
         /// </summary>
         public readonly int? VolumeRatio;
         /// <summary>
-        /// Weight of this interface for weighted load balancing. (0 - 255) More traffic is directed to interfaces with higher weights.
+        /// Weight of this interface for weighted load balancing. More traffic is directed to interfaces with higher weights. On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
         /// </summary>
         public readonly int? Weight;
 

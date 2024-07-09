@@ -835,6 +835,11 @@ export type LicenseForticare = import("./licenseForticare").LicenseForticare;
 export const LicenseForticare: typeof import("./licenseForticare").LicenseForticare = null as any;
 utilities.lazyLoad(exports, ["LicenseForticare"], () => require("./licenseForticare"));
 
+export { LicenseFortiflexArgs, LicenseFortiflexState } from "./licenseFortiflex";
+export type LicenseFortiflex = import("./licenseFortiflex").LicenseFortiflex;
+export const LicenseFortiflex: typeof import("./licenseFortiflex").LicenseFortiflex = null as any;
+utilities.lazyLoad(exports, ["LicenseFortiflex"], () => require("./licenseFortiflex"));
+
 export { LicenseVdomArgs, LicenseVdomState } from "./licenseVdom";
 export type LicenseVdom = import("./licenseVdom").LicenseVdom;
 export const LicenseVdom: typeof import("./licenseVdom").LicenseVdom = null as any;
@@ -1044,6 +1049,11 @@ export { SpeedtestsettingArgs, SpeedtestsettingState } from "./speedtestsetting"
 export type Speedtestsetting = import("./speedtestsetting").Speedtestsetting;
 export const Speedtestsetting: typeof import("./speedtestsetting").Speedtestsetting = null as any;
 utilities.lazyLoad(exports, ["Speedtestsetting"], () => require("./speedtestsetting"));
+
+export { SshconfigArgs, SshconfigState } from "./sshconfig";
+export type Sshconfig = import("./sshconfig").Sshconfig;
+export const Sshconfig: typeof import("./sshconfig").Sshconfig = null as any;
+utilities.lazyLoad(exports, ["Sshconfig"], () => require("./sshconfig"));
 
 export { SsoadminArgs, SsoadminState } from "./ssoadmin";
 export type Ssoadmin = import("./ssoadmin").Ssoadmin;
@@ -1315,6 +1325,8 @@ const _module = {
                 return new Ipv6tunnel(name, <any>undefined, { urn })
             case "fortios:system/licenseForticare:LicenseForticare":
                 return new LicenseForticare(name, <any>undefined, { urn })
+            case "fortios:system/licenseFortiflex:LicenseFortiflex":
+                return new LicenseFortiflex(name, <any>undefined, { urn })
             case "fortios:system/licenseVdom:LicenseVdom":
                 return new LicenseVdom(name, <any>undefined, { urn })
             case "fortios:system/licenseVm:LicenseVm":
@@ -1399,6 +1411,8 @@ const _module = {
                 return new Speedtestserver(name, <any>undefined, { urn })
             case "fortios:system/speedtestsetting:Speedtestsetting":
                 return new Speedtestsetting(name, <any>undefined, { urn })
+            case "fortios:system/sshconfig:Sshconfig":
+                return new Sshconfig(name, <any>undefined, { urn })
             case "fortios:system/ssoadmin:Ssoadmin":
                 return new Ssoadmin(name, <any>undefined, { urn })
             case "fortios:system/ssoforticloudadmin:Ssoforticloudadmin":
@@ -1515,6 +1529,7 @@ pulumi.runtime.registerResourceModule("fortios", "system/ipsurlfilterdns6", _mod
 pulumi.runtime.registerResourceModule("fortios", "system/ipv6neighborcache", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/ipv6tunnel", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/licenseForticare", _module)
+pulumi.runtime.registerResourceModule("fortios", "system/licenseFortiflex", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/licenseVdom", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/licenseVm", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/linkmonitor", _module)
@@ -1557,6 +1572,7 @@ pulumi.runtime.registerResourceModule("fortios", "system/smsserver", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/speedtestschedule", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/speedtestserver", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/speedtestsetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "system/sshconfig", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/ssoadmin", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/ssoforticloudadmin", _module)
 pulumi.runtime.registerResourceModule("fortios", "system/ssofortigatecloudadmin", _module)

@@ -235,7 +235,6 @@ class DevicemanagerScriptExecute(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -245,7 +244,6 @@ class DevicemanagerScriptExecute(pulumi.CustomResource):
             target_devname="devname",
             timeout=5)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -267,7 +265,6 @@ class DevicemanagerScriptExecute(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -277,7 +274,6 @@ class DevicemanagerScriptExecute(pulumi.CustomResource):
             target_devname="devname",
             timeout=5)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param DevicemanagerScriptExecuteArgs args: The arguments to use to populate this resource's properties.

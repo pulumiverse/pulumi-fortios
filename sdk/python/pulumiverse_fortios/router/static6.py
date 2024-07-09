@@ -51,9 +51,9 @@ class Static6Args:
         :param pulumi.Input[str] dynamic_gateway: Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] gateway: IPv6 address of the gateway.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] link_monitor_exempt: Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] priority: Administrative priority (0 - 4294967295).
+        :param pulumi.Input[int] priority: Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions >= 6.4.2: 1 - 65535.
         :param pulumi.Input[str] sdwan: Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['Static6SdwanZoneArgs']]] sdwan_zones: Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
         :param pulumi.Input[int] seq_num: Sequence number.
@@ -243,7 +243,7 @@ class Static6Args:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -267,7 +267,7 @@ class Static6Args:
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
         """
-        Administrative priority (0 - 4294967295).
+        Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions >= 6.4.2: 1 - 65535.
         """
         return pulumi.get(self, "priority")
 
@@ -410,9 +410,9 @@ class _Static6State:
         :param pulumi.Input[str] dynamic_gateway: Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] gateway: IPv6 address of the gateway.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] link_monitor_exempt: Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] priority: Administrative priority (0 - 4294967295).
+        :param pulumi.Input[int] priority: Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions >= 6.4.2: 1 - 65535.
         :param pulumi.Input[str] sdwan: Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['Static6SdwanZoneArgs']]] sdwan_zones: Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
         :param pulumi.Input[int] seq_num: Sequence number.
@@ -603,7 +603,7 @@ class _Static6State:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -627,7 +627,7 @@ class _Static6State:
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
         """
-        Administrative priority (0 - 4294967295).
+        Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions >= 6.4.2: 1 - 65535.
         """
         return pulumi.get(self, "priority")
 
@@ -765,7 +765,6 @@ class Static6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -783,7 +782,6 @@ class Static6(pulumi.CustomResource):
             status="enable",
             virtual_wan_link="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -816,9 +814,9 @@ class Static6(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_gateway: Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] gateway: IPv6 address of the gateway.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] link_monitor_exempt: Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] priority: Administrative priority (0 - 4294967295).
+        :param pulumi.Input[int] priority: Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions >= 6.4.2: 1 - 65535.
         :param pulumi.Input[str] sdwan: Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Static6SdwanZoneArgs']]]] sdwan_zones: Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
         :param pulumi.Input[int] seq_num: Sequence number.
@@ -839,7 +837,6 @@ class Static6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -857,7 +854,6 @@ class Static6(pulumi.CustomResource):
             status="enable",
             virtual_wan_link="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -997,9 +993,9 @@ class Static6(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_gateway: Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] gateway: IPv6 address of the gateway.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] link_monitor_exempt: Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] priority: Administrative priority (0 - 4294967295).
+        :param pulumi.Input[int] priority: Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions >= 6.4.2: 1 - 65535.
         :param pulumi.Input[str] sdwan: Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Static6SdwanZoneArgs']]]] sdwan_zones: Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
         :param pulumi.Input[int] seq_num: Sequence number.
@@ -1129,7 +1125,7 @@ class Static6(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1145,7 +1141,7 @@ class Static6(pulumi.CustomResource):
     @pulumi.getter
     def priority(self) -> pulumi.Output[int]:
         """
-        Administrative priority (0 - 4294967295).
+        Administrative priority. On FortiOS versions 6.2.0-6.4.1: 0 - 4294967295. On FortiOS versions >= 6.4.2: 1 - 65535.
         """
         return pulumi.get(self, "priority")
 
@@ -1183,7 +1179,7 @@ class Static6(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -24,7 +23,6 @@ import * as utilities from "../utilities";
  *     status: "enable",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -81,7 +79,7 @@ export class Stpsettings extends pulumi.CustomResource {
      */
     public readonly helloTime!: pulumi.Output<number>;
     /**
-     * Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+     * Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
      */
     public readonly maxAge!: pulumi.Output<number>;
     /**
@@ -107,7 +105,7 @@ export class Stpsettings extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Stpsettings resource with the given unique name, arguments, and options.
@@ -161,7 +159,7 @@ export interface StpsettingsState {
      */
     helloTime?: pulumi.Input<number>;
     /**
-     * Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+     * Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
      */
     maxAge?: pulumi.Input<number>;
     /**
@@ -203,7 +201,7 @@ export interface StpsettingsArgs {
      */
     helloTime?: pulumi.Input<number>;
     /**
-     * Maximum time before a bridge port saves its configuration BPDU information (6 - 40 sec, default = 20).
+     * Maximum time before a bridge port expires its configuration BPDU information (6 - 40 sec, default = 20).
      */
     maxAge?: pulumi.Input<number>;
     /**

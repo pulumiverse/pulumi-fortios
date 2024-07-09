@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.Router
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,14 +30,12 @@ namespace Pulumiverse.Fortios.Router
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Note
     /// 
     /// The feature can only be correctly supported when FortiOS Version &gt;= 6.2.4, for FortiOS Version &lt; 6.2.4, please use the following resource configuration as an alternative.
     /// 
     /// ### Example
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -68,7 +65,6 @@ namespace Pulumiverse.Fortios.Router
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -116,7 +112,7 @@ namespace Pulumiverse.Fortios.Router
         public Output<ImmutableArray<Outputs.AccesslistRule>> Rules { get; private set; } = null!;
 
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>

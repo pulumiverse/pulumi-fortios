@@ -50,7 +50,7 @@ namespace Pulumiverse.Fortios.Wanopt.Inputs
         public Input<string>? SecureTunnel { get; set; }
 
         /// <summary>
-        /// Enable/disable SSL/TLS offloading (hardware acceleration) for HTTPS traffic in this tunnel. Valid values: `enable`, `disable`.
+        /// Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("ssl")]
         public Input<string>? Ssl { get; set; }

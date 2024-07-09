@@ -395,7 +395,7 @@ class ProfileSipArgs:
         :param pulumi.Input[int] prack_rate: PRACK request rate limit (per second, per policy).
         :param pulumi.Input[str] prack_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         :param pulumi.Input[str] preserve_override: Override i line to preserve original IPS (default: append). Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] provisional_invite_expiry_time: Expiry time for provisional INVITE (10 - 3600 sec).
+        :param pulumi.Input[int] provisional_invite_expiry_time: Expiry time (10-3600, in seconds) for provisional INVITE.
         :param pulumi.Input[int] publish_rate: PUBLISH request rate limit (per second, per policy).
         :param pulumi.Input[str] publish_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         :param pulumi.Input[int] refer_rate: REFER request rate limit (per second, per policy).
@@ -1703,7 +1703,7 @@ class ProfileSipArgs:
     @pulumi.getter(name="provisionalInviteExpiryTime")
     def provisional_invite_expiry_time(self) -> Optional[pulumi.Input[int]]:
         """
-        Expiry time for provisional INVITE (10 - 3600 sec).
+        Expiry time (10-3600, in seconds) for provisional INVITE.
         """
         return pulumi.get(self, "provisional_invite_expiry_time")
 

@@ -35,7 +35,7 @@ namespace Pulumiverse.Fortios.System
     public partial class Vdomlink : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// VDOM link name (maximum = 8 characters).
+        /// VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions &gt;= 6.4.1: maximum = 11 characters.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -56,7 +56,7 @@ namespace Pulumiverse.Fortios.System
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace Pulumiverse.Fortios.System
     public sealed class VdomlinkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// VDOM link name (maximum = 8 characters).
+        /// VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions &gt;= 6.4.1: maximum = 11 characters.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -138,7 +138,7 @@ namespace Pulumiverse.Fortios.System
     public sealed class VdomlinkState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// VDOM link name (maximum = 8 characters).
+        /// VDOM link name. On FortiOS versions 6.2.0-6.4.0: maximum = 8 characters. On FortiOS versions &gt;= 6.4.1: maximum = 11 characters.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

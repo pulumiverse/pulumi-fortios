@@ -55,7 +55,7 @@ class CentralmanagementArgs:
         :param pulumi.Input[str] fmg_source_ip6: IPv6 source address that this FortiGate uses when communicating with FortiManager.
         :param pulumi.Input[str] fmg_update_port: Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
         :param pulumi.Input[str] fortigate_cloud_sso_default_profile: Override access profile.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] include_default_servers: Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -268,7 +268,7 @@ class CentralmanagementArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -463,7 +463,7 @@ class _CentralmanagementState:
         :param pulumi.Input[str] fmg_source_ip6: IPv6 source address that this FortiGate uses when communicating with FortiManager.
         :param pulumi.Input[str] fmg_update_port: Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
         :param pulumi.Input[str] fortigate_cloud_sso_default_profile: Override access profile.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] include_default_servers: Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -676,7 +676,7 @@ class _CentralmanagementState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -865,7 +865,6 @@ class Centralmanagement(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -896,7 +895,6 @@ class Centralmanagement(pulumi.CustomResource):
             type="fortimanager",
             vdom="root")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -930,7 +928,7 @@ class Centralmanagement(pulumi.CustomResource):
         :param pulumi.Input[str] fmg_source_ip6: IPv6 source address that this FortiGate uses when communicating with FortiManager.
         :param pulumi.Input[str] fmg_update_port: Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
         :param pulumi.Input[str] fortigate_cloud_sso_default_profile: Override access profile.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] include_default_servers: Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -955,7 +953,6 @@ class Centralmanagement(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -986,7 +983,6 @@ class Centralmanagement(pulumi.CustomResource):
             type="fortimanager",
             vdom="root")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1134,7 +1130,7 @@ class Centralmanagement(pulumi.CustomResource):
         :param pulumi.Input[str] fmg_source_ip6: IPv6 source address that this FortiGate uses when communicating with FortiManager.
         :param pulumi.Input[str] fmg_update_port: Port used to communicate with FortiManager that is acting as a FortiGuard update server. Valid values: `8890`, `443`.
         :param pulumi.Input[str] fortigate_cloud_sso_default_profile: Override access profile.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] include_default_servers: Enable/disable inclusion of public FortiGuard servers in the override server list. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -1279,7 +1275,7 @@ class Centralmanagement(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1373,7 +1369,7 @@ class Centralmanagement(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

@@ -23,6 +23,11 @@ __all__ = [
     'ExtenderprofileCellularSmsNotificationReceiverArgs',
     'ExtenderprofileLanExtensionArgs',
     'ExtenderprofileLanExtensionBackhaulArgs',
+    'ExtenderprofileWifiArgs',
+    'ExtenderprofileWifiRadio1Args',
+    'ExtenderprofileWifiRadio1LocalVapArgs',
+    'ExtenderprofileWifiRadio2Args',
+    'ExtenderprofileWifiRadio2LocalVapArgs',
     'FortigateprofileLanExtensionArgs',
 ]
 
@@ -244,19 +249,6 @@ class ExtenderprofileCellularModem1Args:
                  sim1_pin_code: Optional[pulumi.Input[str]] = None,
                  sim2_pin: Optional[pulumi.Input[str]] = None,
                  sim2_pin_code: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input['ExtenderprofileCellularModem1AutoSwitchArgs'] auto_switch: FortiExtender auto switch configuration. The structure of `auto_switch` block is documented below.
-        :param pulumi.Input[int] conn_status: Connection status.
-        :param pulumi.Input[str] default_sim: Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-        :param pulumi.Input[str] gps: FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] preferred_carrier: Preferred carrier.
-        :param pulumi.Input[str] redundant_intf: Redundant interface.
-        :param pulumi.Input[str] redundant_mode: FortiExtender mode. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] sim1_pin: SIM #1 PIN status. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] sim1_pin_code: SIM #1 PIN password.
-        :param pulumi.Input[str] sim2_pin: SIM #2 PIN status. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] sim2_pin_code: SIM #2 PIN password.
-        """
         if auto_switch is not None:
             pulumi.set(__self__, "auto_switch", auto_switch)
         if conn_status is not None:
@@ -283,9 +275,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="autoSwitch")
     def auto_switch(self) -> Optional[pulumi.Input['ExtenderprofileCellularModem1AutoSwitchArgs']]:
-        """
-        FortiExtender auto switch configuration. The structure of `auto_switch` block is documented below.
-        """
         return pulumi.get(self, "auto_switch")
 
     @auto_switch.setter
@@ -295,9 +284,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="connStatus")
     def conn_status(self) -> Optional[pulumi.Input[int]]:
-        """
-        Connection status.
-        """
         return pulumi.get(self, "conn_status")
 
     @conn_status.setter
@@ -307,9 +293,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="defaultSim")
     def default_sim(self) -> Optional[pulumi.Input[str]]:
-        """
-        Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-        """
         return pulumi.get(self, "default_sim")
 
     @default_sim.setter
@@ -319,9 +302,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter
     def gps(self) -> Optional[pulumi.Input[str]]:
-        """
-        FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "gps")
 
     @gps.setter
@@ -331,9 +311,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="preferredCarrier")
     def preferred_carrier(self) -> Optional[pulumi.Input[str]]:
-        """
-        Preferred carrier.
-        """
         return pulumi.get(self, "preferred_carrier")
 
     @preferred_carrier.setter
@@ -343,9 +320,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="redundantIntf")
     def redundant_intf(self) -> Optional[pulumi.Input[str]]:
-        """
-        Redundant interface.
-        """
         return pulumi.get(self, "redundant_intf")
 
     @redundant_intf.setter
@@ -355,9 +329,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="redundantMode")
     def redundant_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        FortiExtender mode. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "redundant_mode")
 
     @redundant_mode.setter
@@ -367,9 +338,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="sim1Pin")
     def sim1_pin(self) -> Optional[pulumi.Input[str]]:
-        """
-        SIM #1 PIN status. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "sim1_pin")
 
     @sim1_pin.setter
@@ -379,9 +347,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="sim1PinCode")
     def sim1_pin_code(self) -> Optional[pulumi.Input[str]]:
-        """
-        SIM #1 PIN password.
-        """
         return pulumi.get(self, "sim1_pin_code")
 
     @sim1_pin_code.setter
@@ -391,9 +356,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="sim2Pin")
     def sim2_pin(self) -> Optional[pulumi.Input[str]]:
-        """
-        SIM #2 PIN status. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "sim2_pin")
 
     @sim2_pin.setter
@@ -403,9 +365,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="sim2PinCode")
     def sim2_pin_code(self) -> Optional[pulumi.Input[str]]:
-        """
-        SIM #2 PIN password.
-        """
         return pulumi.get(self, "sim2_pin_code")
 
     @sim2_pin_code.setter
@@ -562,19 +521,6 @@ class ExtenderprofileCellularModem2Args:
                  sim1_pin_code: Optional[pulumi.Input[str]] = None,
                  sim2_pin: Optional[pulumi.Input[str]] = None,
                  sim2_pin_code: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input['ExtenderprofileCellularModem2AutoSwitchArgs'] auto_switch: FortiExtender auto switch configuration. The structure of `auto_switch` block is documented below.
-        :param pulumi.Input[int] conn_status: Connection status.
-        :param pulumi.Input[str] default_sim: Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-        :param pulumi.Input[str] gps: FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] preferred_carrier: Preferred carrier.
-        :param pulumi.Input[str] redundant_intf: Redundant interface.
-        :param pulumi.Input[str] redundant_mode: FortiExtender mode. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] sim1_pin: SIM #1 PIN status. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] sim1_pin_code: SIM #1 PIN password.
-        :param pulumi.Input[str] sim2_pin: SIM #2 PIN status. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] sim2_pin_code: SIM #2 PIN password.
-        """
         if auto_switch is not None:
             pulumi.set(__self__, "auto_switch", auto_switch)
         if conn_status is not None:
@@ -601,9 +547,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="autoSwitch")
     def auto_switch(self) -> Optional[pulumi.Input['ExtenderprofileCellularModem2AutoSwitchArgs']]:
-        """
-        FortiExtender auto switch configuration. The structure of `auto_switch` block is documented below.
-        """
         return pulumi.get(self, "auto_switch")
 
     @auto_switch.setter
@@ -613,9 +556,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="connStatus")
     def conn_status(self) -> Optional[pulumi.Input[int]]:
-        """
-        Connection status.
-        """
         return pulumi.get(self, "conn_status")
 
     @conn_status.setter
@@ -625,9 +565,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="defaultSim")
     def default_sim(self) -> Optional[pulumi.Input[str]]:
-        """
-        Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-        """
         return pulumi.get(self, "default_sim")
 
     @default_sim.setter
@@ -637,9 +574,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter
     def gps(self) -> Optional[pulumi.Input[str]]:
-        """
-        FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "gps")
 
     @gps.setter
@@ -649,9 +583,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="preferredCarrier")
     def preferred_carrier(self) -> Optional[pulumi.Input[str]]:
-        """
-        Preferred carrier.
-        """
         return pulumi.get(self, "preferred_carrier")
 
     @preferred_carrier.setter
@@ -661,9 +592,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="redundantIntf")
     def redundant_intf(self) -> Optional[pulumi.Input[str]]:
-        """
-        Redundant interface.
-        """
         return pulumi.get(self, "redundant_intf")
 
     @redundant_intf.setter
@@ -673,9 +601,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="redundantMode")
     def redundant_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        FortiExtender mode. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "redundant_mode")
 
     @redundant_mode.setter
@@ -685,9 +610,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="sim1Pin")
     def sim1_pin(self) -> Optional[pulumi.Input[str]]:
-        """
-        SIM #1 PIN status. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "sim1_pin")
 
     @sim1_pin.setter
@@ -697,9 +619,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="sim1PinCode")
     def sim1_pin_code(self) -> Optional[pulumi.Input[str]]:
-        """
-        SIM #1 PIN password.
-        """
         return pulumi.get(self, "sim1_pin_code")
 
     @sim1_pin_code.setter
@@ -709,9 +628,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="sim2Pin")
     def sim2_pin(self) -> Optional[pulumi.Input[str]]:
-        """
-        SIM #2 PIN status. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "sim2_pin")
 
     @sim2_pin.setter
@@ -721,9 +637,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="sim2PinCode")
     def sim2_pin_code(self) -> Optional[pulumi.Input[str]]:
-        """
-        SIM #2 PIN password.
-        """
         return pulumi.get(self, "sim2_pin_code")
 
     @sim2_pin_code.setter
@@ -1271,6 +1184,505 @@ class ExtenderprofileLanExtensionBackhaulArgs:
     @weight.setter
     def weight(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "weight", value)
+
+
+@pulumi.input_type
+class ExtenderprofileWifiArgs:
+    def __init__(__self__, *,
+                 country: Optional[pulumi.Input[str]] = None,
+                 radio1: Optional[pulumi.Input['ExtenderprofileWifiRadio1Args']] = None,
+                 radio2: Optional[pulumi.Input['ExtenderprofileWifiRadio2Args']] = None):
+        """
+        :param pulumi.Input[str] country: Country in which this FEX will operate (default = NA). Valid values: `--`, `AF`, `AL`, `DZ`, `AS`, `AO`, `AR`, `AM`, `AU`, `AT`, `AZ`, `BS`, `BH`, `BD`, `BB`, `BY`, `BE`, `BZ`, `BJ`, `BM`, `BT`, `BO`, `BA`, `BW`, `BR`, `BN`, `BG`, `BF`, `KH`, `CM`, `KY`, `CF`, `TD`, `CL`, `CN`, `CX`, `CO`, `CG`, `CD`, `CR`, `HR`, `CY`, `CZ`, `DK`, `DJ`, `DM`, `DO`, `EC`, `EG`, `SV`, `ET`, `EE`, `GF`, `PF`, `FO`, `FJ`, `FI`, `FR`, `GA`, `GE`, `GM`, `DE`, `GH`, `GI`, `GR`, `GL`, `GD`, `GP`, `GU`, `GT`, `GY`, `HT`, `HN`, `HK`, `HU`, `IS`, `IN`, `ID`, `IQ`, `IE`, `IM`, `IL`, `IT`, `CI`, `JM`, `JO`, `KZ`, `KE`, `KR`, `KW`, `LA`, `LV`, `LB`, `LS`, `LR`, `LY`, `LI`, `LT`, `LU`, `MO`, `MK`, `MG`, `MW`, `MY`, `MV`, `ML`, `MT`, `MH`, `MQ`, `MR`, `MU`, `YT`, `MX`, `FM`, `MD`, `MC`, `MN`, `MA`, `MZ`, `MM`, `NA`, `NP`, `NL`, `AN`, `AW`, `NZ`, `NI`, `NE`, `NG`, `NO`, `MP`, `OM`, `PK`, `PW`, `PA`, `PG`, `PY`, `PE`, `PH`, `PL`, `PT`, `PR`, `QA`, `RE`, `RO`, `RU`, `RW`, `BL`, `KN`, `LC`, `MF`, `PM`, `VC`, `SA`, `SN`, `RS`, `ME`, `SL`, `SG`, `SK`, `SI`, `SO`, `ZA`, `ES`, `LK`, `SR`, `SZ`, `SE`, `CH`, `TW`, `TZ`, `TH`, `TG`, `TT`, `TN`, `TR`, `TM`, `AE`, `TC`, `UG`, `UA`, `GB`, `US`, `PS`, `UY`, `UZ`, `VU`, `VE`, `VN`, `VI`, `WF`, `YE`, `ZM`, `ZW`, `JP`, `CA`.
+        :param pulumi.Input['ExtenderprofileWifiRadio1Args'] radio1: Radio-1 config for Wi-Fi 2.4GHz The structure of `radio_1` block is documented below.
+        :param pulumi.Input['ExtenderprofileWifiRadio2Args'] radio2: Radio-2 config for Wi-Fi 5GHz The structure of `radio_2` block is documented below.
+               
+               The `radio_1` block supports:
+        """
+        if country is not None:
+            pulumi.set(__self__, "country", country)
+        if radio1 is not None:
+            pulumi.set(__self__, "radio1", radio1)
+        if radio2 is not None:
+            pulumi.set(__self__, "radio2", radio2)
+
+    @property
+    @pulumi.getter
+    def country(self) -> Optional[pulumi.Input[str]]:
+        """
+        Country in which this FEX will operate (default = NA). Valid values: `--`, `AF`, `AL`, `DZ`, `AS`, `AO`, `AR`, `AM`, `AU`, `AT`, `AZ`, `BS`, `BH`, `BD`, `BB`, `BY`, `BE`, `BZ`, `BJ`, `BM`, `BT`, `BO`, `BA`, `BW`, `BR`, `BN`, `BG`, `BF`, `KH`, `CM`, `KY`, `CF`, `TD`, `CL`, `CN`, `CX`, `CO`, `CG`, `CD`, `CR`, `HR`, `CY`, `CZ`, `DK`, `DJ`, `DM`, `DO`, `EC`, `EG`, `SV`, `ET`, `EE`, `GF`, `PF`, `FO`, `FJ`, `FI`, `FR`, `GA`, `GE`, `GM`, `DE`, `GH`, `GI`, `GR`, `GL`, `GD`, `GP`, `GU`, `GT`, `GY`, `HT`, `HN`, `HK`, `HU`, `IS`, `IN`, `ID`, `IQ`, `IE`, `IM`, `IL`, `IT`, `CI`, `JM`, `JO`, `KZ`, `KE`, `KR`, `KW`, `LA`, `LV`, `LB`, `LS`, `LR`, `LY`, `LI`, `LT`, `LU`, `MO`, `MK`, `MG`, `MW`, `MY`, `MV`, `ML`, `MT`, `MH`, `MQ`, `MR`, `MU`, `YT`, `MX`, `FM`, `MD`, `MC`, `MN`, `MA`, `MZ`, `MM`, `NA`, `NP`, `NL`, `AN`, `AW`, `NZ`, `NI`, `NE`, `NG`, `NO`, `MP`, `OM`, `PK`, `PW`, `PA`, `PG`, `PY`, `PE`, `PH`, `PL`, `PT`, `PR`, `QA`, `RE`, `RO`, `RU`, `RW`, `BL`, `KN`, `LC`, `MF`, `PM`, `VC`, `SA`, `SN`, `RS`, `ME`, `SL`, `SG`, `SK`, `SI`, `SO`, `ZA`, `ES`, `LK`, `SR`, `SZ`, `SE`, `CH`, `TW`, `TZ`, `TH`, `TG`, `TT`, `TN`, `TR`, `TM`, `AE`, `TC`, `UG`, `UA`, `GB`, `US`, `PS`, `UY`, `UZ`, `VU`, `VE`, `VN`, `VI`, `WF`, `YE`, `ZM`, `ZW`, `JP`, `CA`.
+        """
+        return pulumi.get(self, "country")
+
+    @country.setter
+    def country(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "country", value)
+
+    @property
+    @pulumi.getter
+    def radio1(self) -> Optional[pulumi.Input['ExtenderprofileWifiRadio1Args']]:
+        """
+        Radio-1 config for Wi-Fi 2.4GHz The structure of `radio_1` block is documented below.
+        """
+        return pulumi.get(self, "radio1")
+
+    @radio1.setter
+    def radio1(self, value: Optional[pulumi.Input['ExtenderprofileWifiRadio1Args']]):
+        pulumi.set(self, "radio1", value)
+
+    @property
+    @pulumi.getter
+    def radio2(self) -> Optional[pulumi.Input['ExtenderprofileWifiRadio2Args']]:
+        """
+        Radio-2 config for Wi-Fi 5GHz The structure of `radio_2` block is documented below.
+
+        The `radio_1` block supports:
+        """
+        return pulumi.get(self, "radio2")
+
+    @radio2.setter
+    def radio2(self, value: Optional[pulumi.Input['ExtenderprofileWifiRadio2Args']]):
+        pulumi.set(self, "radio2", value)
+
+
+@pulumi.input_type
+class ExtenderprofileWifiRadio1Args:
+    def __init__(__self__, *,
+                 band: Optional[pulumi.Input[str]] = None,
+                 bandwidth: Optional[pulumi.Input[str]] = None,
+                 beacon_interval: Optional[pulumi.Input[int]] = None,
+                 bss_color: Optional[pulumi.Input[int]] = None,
+                 bss_color_mode: Optional[pulumi.Input[str]] = None,
+                 channel: Optional[pulumi.Input[str]] = None,
+                 extension_channel: Optional[pulumi.Input[str]] = None,
+                 guard_interval: Optional[pulumi.Input[str]] = None,
+                 lan_ext_vap: Optional[pulumi.Input[str]] = None,
+                 local_vaps: Optional[pulumi.Input[Sequence[pulumi.Input['ExtenderprofileWifiRadio1LocalVapArgs']]]] = None,
+                 max_clients: Optional[pulumi.Input[int]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
+                 n80211d: Optional[pulumi.Input[str]] = None,
+                 operating_standard: Optional[pulumi.Input[str]] = None,
+                 power_level: Optional[pulumi.Input[int]] = None,
+                 status: Optional[pulumi.Input[str]] = None):
+        if band is not None:
+            pulumi.set(__self__, "band", band)
+        if bandwidth is not None:
+            pulumi.set(__self__, "bandwidth", bandwidth)
+        if beacon_interval is not None:
+            pulumi.set(__self__, "beacon_interval", beacon_interval)
+        if bss_color is not None:
+            pulumi.set(__self__, "bss_color", bss_color)
+        if bss_color_mode is not None:
+            pulumi.set(__self__, "bss_color_mode", bss_color_mode)
+        if channel is not None:
+            pulumi.set(__self__, "channel", channel)
+        if extension_channel is not None:
+            pulumi.set(__self__, "extension_channel", extension_channel)
+        if guard_interval is not None:
+            pulumi.set(__self__, "guard_interval", guard_interval)
+        if lan_ext_vap is not None:
+            pulumi.set(__self__, "lan_ext_vap", lan_ext_vap)
+        if local_vaps is not None:
+            pulumi.set(__self__, "local_vaps", local_vaps)
+        if max_clients is not None:
+            pulumi.set(__self__, "max_clients", max_clients)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if n80211d is not None:
+            pulumi.set(__self__, "n80211d", n80211d)
+        if operating_standard is not None:
+            pulumi.set(__self__, "operating_standard", operating_standard)
+        if power_level is not None:
+            pulumi.set(__self__, "power_level", power_level)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def band(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "band")
+
+    @band.setter
+    def band(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "band", value)
+
+    @property
+    @pulumi.getter
+    def bandwidth(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "bandwidth")
+
+    @bandwidth.setter
+    def bandwidth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bandwidth", value)
+
+    @property
+    @pulumi.getter(name="beaconInterval")
+    def beacon_interval(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "beacon_interval")
+
+    @beacon_interval.setter
+    def beacon_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "beacon_interval", value)
+
+    @property
+    @pulumi.getter(name="bssColor")
+    def bss_color(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "bss_color")
+
+    @bss_color.setter
+    def bss_color(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "bss_color", value)
+
+    @property
+    @pulumi.getter(name="bssColorMode")
+    def bss_color_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "bss_color_mode")
+
+    @bss_color_mode.setter
+    def bss_color_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bss_color_mode", value)
+
+    @property
+    @pulumi.getter
+    def channel(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "channel")
+
+    @channel.setter
+    def channel(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "channel", value)
+
+    @property
+    @pulumi.getter(name="extensionChannel")
+    def extension_channel(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "extension_channel")
+
+    @extension_channel.setter
+    def extension_channel(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "extension_channel", value)
+
+    @property
+    @pulumi.getter(name="guardInterval")
+    def guard_interval(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "guard_interval")
+
+    @guard_interval.setter
+    def guard_interval(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "guard_interval", value)
+
+    @property
+    @pulumi.getter(name="lanExtVap")
+    def lan_ext_vap(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "lan_ext_vap")
+
+    @lan_ext_vap.setter
+    def lan_ext_vap(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "lan_ext_vap", value)
+
+    @property
+    @pulumi.getter(name="localVaps")
+    def local_vaps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ExtenderprofileWifiRadio1LocalVapArgs']]]]:
+        return pulumi.get(self, "local_vaps")
+
+    @local_vaps.setter
+    def local_vaps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ExtenderprofileWifiRadio1LocalVapArgs']]]]):
+        pulumi.set(self, "local_vaps", value)
+
+    @property
+    @pulumi.getter(name="maxClients")
+    def max_clients(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "max_clients")
+
+    @max_clients.setter
+    def max_clients(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_clients", value)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mode", value)
+
+    @property
+    @pulumi.getter
+    def n80211d(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "n80211d")
+
+    @n80211d.setter
+    def n80211d(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "n80211d", value)
+
+    @property
+    @pulumi.getter(name="operatingStandard")
+    def operating_standard(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "operating_standard")
+
+    @operating_standard.setter
+    def operating_standard(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "operating_standard", value)
+
+    @property
+    @pulumi.getter(name="powerLevel")
+    def power_level(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "power_level")
+
+    @power_level.setter
+    def power_level(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "power_level", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+
+@pulumi.input_type
+class ExtenderprofileWifiRadio1LocalVapArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Wi-Fi local VAP name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Wi-Fi local VAP name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class ExtenderprofileWifiRadio2Args:
+    def __init__(__self__, *,
+                 band: Optional[pulumi.Input[str]] = None,
+                 bandwidth: Optional[pulumi.Input[str]] = None,
+                 beacon_interval: Optional[pulumi.Input[int]] = None,
+                 bss_color: Optional[pulumi.Input[int]] = None,
+                 bss_color_mode: Optional[pulumi.Input[str]] = None,
+                 channel: Optional[pulumi.Input[str]] = None,
+                 extension_channel: Optional[pulumi.Input[str]] = None,
+                 guard_interval: Optional[pulumi.Input[str]] = None,
+                 lan_ext_vap: Optional[pulumi.Input[str]] = None,
+                 local_vaps: Optional[pulumi.Input[Sequence[pulumi.Input['ExtenderprofileWifiRadio2LocalVapArgs']]]] = None,
+                 max_clients: Optional[pulumi.Input[int]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
+                 n80211d: Optional[pulumi.Input[str]] = None,
+                 operating_standard: Optional[pulumi.Input[str]] = None,
+                 power_level: Optional[pulumi.Input[int]] = None,
+                 status: Optional[pulumi.Input[str]] = None):
+        if band is not None:
+            pulumi.set(__self__, "band", band)
+        if bandwidth is not None:
+            pulumi.set(__self__, "bandwidth", bandwidth)
+        if beacon_interval is not None:
+            pulumi.set(__self__, "beacon_interval", beacon_interval)
+        if bss_color is not None:
+            pulumi.set(__self__, "bss_color", bss_color)
+        if bss_color_mode is not None:
+            pulumi.set(__self__, "bss_color_mode", bss_color_mode)
+        if channel is not None:
+            pulumi.set(__self__, "channel", channel)
+        if extension_channel is not None:
+            pulumi.set(__self__, "extension_channel", extension_channel)
+        if guard_interval is not None:
+            pulumi.set(__self__, "guard_interval", guard_interval)
+        if lan_ext_vap is not None:
+            pulumi.set(__self__, "lan_ext_vap", lan_ext_vap)
+        if local_vaps is not None:
+            pulumi.set(__self__, "local_vaps", local_vaps)
+        if max_clients is not None:
+            pulumi.set(__self__, "max_clients", max_clients)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if n80211d is not None:
+            pulumi.set(__self__, "n80211d", n80211d)
+        if operating_standard is not None:
+            pulumi.set(__self__, "operating_standard", operating_standard)
+        if power_level is not None:
+            pulumi.set(__self__, "power_level", power_level)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def band(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "band")
+
+    @band.setter
+    def band(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "band", value)
+
+    @property
+    @pulumi.getter
+    def bandwidth(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "bandwidth")
+
+    @bandwidth.setter
+    def bandwidth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bandwidth", value)
+
+    @property
+    @pulumi.getter(name="beaconInterval")
+    def beacon_interval(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "beacon_interval")
+
+    @beacon_interval.setter
+    def beacon_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "beacon_interval", value)
+
+    @property
+    @pulumi.getter(name="bssColor")
+    def bss_color(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "bss_color")
+
+    @bss_color.setter
+    def bss_color(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "bss_color", value)
+
+    @property
+    @pulumi.getter(name="bssColorMode")
+    def bss_color_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "bss_color_mode")
+
+    @bss_color_mode.setter
+    def bss_color_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bss_color_mode", value)
+
+    @property
+    @pulumi.getter
+    def channel(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "channel")
+
+    @channel.setter
+    def channel(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "channel", value)
+
+    @property
+    @pulumi.getter(name="extensionChannel")
+    def extension_channel(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "extension_channel")
+
+    @extension_channel.setter
+    def extension_channel(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "extension_channel", value)
+
+    @property
+    @pulumi.getter(name="guardInterval")
+    def guard_interval(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "guard_interval")
+
+    @guard_interval.setter
+    def guard_interval(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "guard_interval", value)
+
+    @property
+    @pulumi.getter(name="lanExtVap")
+    def lan_ext_vap(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "lan_ext_vap")
+
+    @lan_ext_vap.setter
+    def lan_ext_vap(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "lan_ext_vap", value)
+
+    @property
+    @pulumi.getter(name="localVaps")
+    def local_vaps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ExtenderprofileWifiRadio2LocalVapArgs']]]]:
+        return pulumi.get(self, "local_vaps")
+
+    @local_vaps.setter
+    def local_vaps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ExtenderprofileWifiRadio2LocalVapArgs']]]]):
+        pulumi.set(self, "local_vaps", value)
+
+    @property
+    @pulumi.getter(name="maxClients")
+    def max_clients(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "max_clients")
+
+    @max_clients.setter
+    def max_clients(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_clients", value)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mode", value)
+
+    @property
+    @pulumi.getter
+    def n80211d(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "n80211d")
+
+    @n80211d.setter
+    def n80211d(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "n80211d", value)
+
+    @property
+    @pulumi.getter(name="operatingStandard")
+    def operating_standard(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "operating_standard")
+
+    @operating_standard.setter
+    def operating_standard(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "operating_standard", value)
+
+    @property
+    @pulumi.getter(name="powerLevel")
+    def power_level(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "power_level")
+
+    @power_level.setter
+    def power_level(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "power_level", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+
+@pulumi.input_type
+class ExtenderprofileWifiRadio2LocalVapArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Wi-Fi local VAP name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Wi-Fi local VAP name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type

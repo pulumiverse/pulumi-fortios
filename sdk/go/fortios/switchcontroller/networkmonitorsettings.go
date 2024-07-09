@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,7 +38,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -64,7 +62,7 @@ type Networkmonitorsettings struct {
 	// Enable/disable passive gathering of information by FortiSwitch units concerning other network devices. Valid values: `enable`, `disable`.
 	NetworkMonitoring pulumi.StringOutput `pulumi:"networkMonitoring"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewNetworkmonitorsettings registers a new resource with the given unique name, arguments, and options.
@@ -222,8 +220,8 @@ func (o NetworkmonitorsettingsOutput) NetworkMonitoring() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o NetworkmonitorsettingsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Networkmonitorsettings) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o NetworkmonitorsettingsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Networkmonitorsettings) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type NetworkmonitorsettingsArrayOutput struct{ *pulumi.OutputState }

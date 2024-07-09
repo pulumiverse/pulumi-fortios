@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
-// FortiExtender extender profile configuration. Applies to FortiOS Version `7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.0.7,7.0.8,7.0.9,7.0.10,7.0.11,7.0.12,7.0.13,7.2.0`.
+// FortiExtender extender profile configuration. Applies to FortiOS Version `7.0.2,7.0.3,7.0.4,7.0.5,7.0.6,7.0.7,7.0.8,7.0.9,7.0.10,7.0.11,7.0.12,7.0.13,7.0.14,7.0.15,7.2.0`.
 //
 // ## Import
 //
@@ -45,7 +45,7 @@ type Extenderprofile struct {
 	Extension pulumi.StringOutput `pulumi:"extension"`
 	// id
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension ExtenderprofileLanExtensionOutput `pulumi:"lanExtension"`
@@ -58,7 +58,7 @@ type Extenderprofile struct {
 	// FortiExtender profile name
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewExtenderprofile registers a new resource with the given unique name, arguments, and options.
@@ -103,7 +103,7 @@ type extenderprofileState struct {
 	Extension *string `pulumi:"extension"`
 	// id
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension *ExtenderprofileLanExtension `pulumi:"lanExtension"`
@@ -132,7 +132,7 @@ type ExtenderprofileState struct {
 	Extension pulumi.StringPtrInput
 	// id
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension ExtenderprofileLanExtensionPtrInput
@@ -165,7 +165,7 @@ type extenderprofileArgs struct {
 	Extension *string `pulumi:"extension"`
 	// id
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension *ExtenderprofileLanExtension `pulumi:"lanExtension"`
@@ -195,7 +195,7 @@ type ExtenderprofileArgs struct {
 	Extension pulumi.StringPtrInput
 	// id
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// FortiExtender lan extension configuration. The structure of `lanExtension` block is documented below.
 	LanExtension ExtenderprofileLanExtensionPtrInput
@@ -328,7 +328,7 @@ func (o ExtenderprofileOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Extenderprofile) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o ExtenderprofileOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Extenderprofile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -359,8 +359,8 @@ func (o ExtenderprofileOutput) Name() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ExtenderprofileOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Extenderprofile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ExtenderprofileOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Extenderprofile) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ExtenderprofileArrayOutput struct{ *pulumi.OutputState }

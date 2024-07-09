@@ -31,7 +31,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Qos.Outputs
         /// </summary>
         public readonly int? MaxRate;
         /// <summary>
-        /// Maximum rate (%!o(MISSING)f link speed).
+        /// Maximum rate (% of link speed).
         /// </summary>
         public readonly int? MaxRatePercent;
         /// <summary>
@@ -39,7 +39,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Qos.Outputs
         /// </summary>
         public readonly int? MinRate;
         /// <summary>
-        /// Minimum rate (%!o(MISSING)f link speed).
+        /// Minimum rate (% of link speed).
         /// </summary>
         public readonly int? MinRatePercent;
         /// <summary>

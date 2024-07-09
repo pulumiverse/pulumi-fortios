@@ -62,6 +62,10 @@ export class Fctemsoverride extends pulumi.CustomResource {
      */
     public readonly capabilities!: pulumi.Output<string>;
     /**
+     * FortiClient EMS Cloud multitenancy access key
+     */
+    public readonly cloudAuthenticationAccessKey!: pulumi.Output<string>;
+    /**
      * Cloud server type. Valid values: `production`, `alpha`, `beta`.
      */
     public readonly cloudServerType!: pulumi.Output<string>;
@@ -152,7 +156,7 @@ export class Fctemsoverride extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Lowest CA cert on Fortigate in verified EMS cert chain.
      */
@@ -177,6 +181,7 @@ export class Fctemsoverride extends pulumi.CustomResource {
             const state = argsOrState as FctemsoverrideState | undefined;
             resourceInputs["callTimeout"] = state ? state.callTimeout : undefined;
             resourceInputs["capabilities"] = state ? state.capabilities : undefined;
+            resourceInputs["cloudAuthenticationAccessKey"] = state ? state.cloudAuthenticationAccessKey : undefined;
             resourceInputs["cloudServerType"] = state ? state.cloudServerType : undefined;
             resourceInputs["dirtyReason"] = state ? state.dirtyReason : undefined;
             resourceInputs["emsId"] = state ? state.emsId : undefined;
@@ -206,6 +211,7 @@ export class Fctemsoverride extends pulumi.CustomResource {
             const args = argsOrState as FctemsoverrideArgs | undefined;
             resourceInputs["callTimeout"] = args ? args.callTimeout : undefined;
             resourceInputs["capabilities"] = args ? args.capabilities : undefined;
+            resourceInputs["cloudAuthenticationAccessKey"] = args ? args.cloudAuthenticationAccessKey : undefined;
             resourceInputs["cloudServerType"] = args ? args.cloudServerType : undefined;
             resourceInputs["dirtyReason"] = args ? args.dirtyReason : undefined;
             resourceInputs["emsId"] = args ? args.emsId : undefined;
@@ -249,6 +255,10 @@ export interface FctemsoverrideState {
      * List of EMS capabilities.
      */
     capabilities?: pulumi.Input<string>;
+    /**
+     * FortiClient EMS Cloud multitenancy access key
+     */
+    cloudAuthenticationAccessKey?: pulumi.Input<string>;
     /**
      * Cloud server type. Valid values: `production`, `alpha`, `beta`.
      */
@@ -363,6 +373,10 @@ export interface FctemsoverrideArgs {
      * List of EMS capabilities.
      */
     capabilities?: pulumi.Input<string>;
+    /**
+     * FortiClient EMS Cloud multitenancy access key
+     */
+    cloudAuthenticationAccessKey?: pulumi.Input<string>;
     /**
      * Cloud server type. Valid values: `production`, `alpha`, `beta`.
      */

@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,7 +42,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -85,7 +83,7 @@ type Sensor struct {
 	FlowBased pulumi.StringOutput `pulumi:"flowBased"`
 	// Protocols to always content archive.
 	FullArchiveProto pulumi.StringOutput `pulumi:"fullArchiveProto"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
 	MatchType pulumi.StringOutput `pulumi:"matchType"`
@@ -100,7 +98,7 @@ type Sensor struct {
 	// Protocols to always log summary.
 	SummaryProto pulumi.StringOutput `pulumi:"summaryProto"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewSensor registers a new resource with the given unique name, arguments, and options.
@@ -153,7 +151,7 @@ type sensorState struct {
 	FlowBased *string `pulumi:"flowBased"`
 	// Protocols to always content archive.
 	FullArchiveProto *string `pulumi:"fullArchiveProto"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
 	MatchType *string `pulumi:"matchType"`
@@ -192,7 +190,7 @@ type SensorState struct {
 	FlowBased pulumi.StringPtrInput
 	// Protocols to always content archive.
 	FullArchiveProto pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
 	MatchType pulumi.StringPtrInput
@@ -235,7 +233,7 @@ type sensorArgs struct {
 	FlowBased *string `pulumi:"flowBased"`
 	// Protocols to always content archive.
 	FullArchiveProto *string `pulumi:"fullArchiveProto"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
 	MatchType *string `pulumi:"matchType"`
@@ -275,7 +273,7 @@ type SensorArgs struct {
 	FlowBased pulumi.StringPtrInput
 	// Protocols to always content archive.
 	FullArchiveProto pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
 	MatchType pulumi.StringPtrInput
@@ -430,7 +428,7 @@ func (o SensorOutput) FullArchiveProto() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sensor) pulumi.StringOutput { return v.FullArchiveProto }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o SensorOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Sensor) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -466,8 +464,8 @@ func (o SensorOutput) SummaryProto() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SensorOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Sensor) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SensorOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Sensor) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type SensorArrayOutput struct{ *pulumi.OutputState }

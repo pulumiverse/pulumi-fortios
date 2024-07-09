@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -19,7 +18,6 @@ import * as utilities from "../utilities";
  *     mode: "forward-only",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -72,7 +70,7 @@ export class Dnsserver extends pulumi.CustomResource {
      */
     public readonly dnsfilterProfile!: pulumi.Output<string>;
     /**
-     * DNS over HTTPS. Valid values: `enable`, `disable`.
+     * Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
      */
     public readonly doh!: pulumi.Output<string>;
     /**
@@ -94,7 +92,7 @@ export class Dnsserver extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Dnsserver resource with the given unique name, arguments, and options.
@@ -140,7 +138,7 @@ export interface DnsserverState {
      */
     dnsfilterProfile?: pulumi.Input<string>;
     /**
-     * DNS over HTTPS. Valid values: `enable`, `disable`.
+     * Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
      */
     doh?: pulumi.Input<string>;
     /**
@@ -174,7 +172,7 @@ export interface DnsserverArgs {
      */
     dnsfilterProfile?: pulumi.Input<string>;
     /**
-     * DNS over HTTPS. Valid values: `enable`, `disable`.
+     * Enable/disable DNS over HTTPS/443 (default = disable). Valid values: `enable`, `disable`.
      */
     doh?: pulumi.Input<string>;
     /**

@@ -20,7 +20,7 @@ namespace Pulumiverse.Fortios.System.Inputs
         public Input<string>? Monitor { get; set; }
 
         /// <summary>
-        /// Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        /// Enable and increase the priority of the unit that should always be primary. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("override")]
         public Input<string>? Override { get; set; }

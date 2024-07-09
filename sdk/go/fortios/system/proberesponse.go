@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,7 +43,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -81,7 +79,7 @@ type Proberesponse struct {
 	// Mode for TWAMP packet TTL modification. Valid values: `reinit`, `decrease`, `retain`.
 	TtlMode pulumi.StringOutput `pulumi:"ttlMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewProberesponse registers a new resource with the given unique name, arguments, and options.
@@ -324,8 +322,8 @@ func (o ProberesponseOutput) TtlMode() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ProberesponseOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Proberesponse) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ProberesponseOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Proberesponse) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ProberesponseArrayOutput struct{ *pulumi.OutputState }

@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -56,7 +55,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -110,7 +108,7 @@ namespace Pulumiverse.Fortios.System
         public Output<int> FailWeight { get; private set; } = null!;
 
         /// <summary>
-        /// Number of retry attempts before the server is considered down (1 - 10, default = 5)
+        /// Number of retry attempts before the server is considered down (default = 5). On FortiOS versions 6.2.0-7.0.5: 1 - 10. On FortiOS versions &gt;= 7.0.6: 1 - 3600.
         /// </summary>
         [Output("failtime")]
         public Output<int> Failtime { get; private set; } = null!;
@@ -128,7 +126,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> GatewayIp6 { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -158,7 +156,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> HttpMatch { get; private set; } = null!;
 
         /// <summary>
-        /// Detection interval (1 - 3600 sec, default = 5).
+        /// Detection interval. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-7.0.10, 7.2.0-7.2.4: 500 - 3600 * 1000 msec, default = 500. On FortiOS versions 7.0.11-7.0.15, &gt;= 7.2.6: 20 - 3600 * 1000 msec, default = 500.
         /// </summary>
         [Output("interval")]
         public Output<int> Interval { get; private set; } = null!;
@@ -170,7 +168,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Packet size of a twamp test session,
+        /// Packet size of a TWAMP test session.
         /// </summary>
         [Output("packetSize")]
         public Output<int> PacketSize { get; private set; } = null!;
@@ -194,7 +192,7 @@ namespace Pulumiverse.Fortios.System
         public Output<int> ProbeCount { get; private set; } = null!;
 
         /// <summary>
-        /// Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
+        /// Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.2.4-7.0.10, 7.2.0-7.2.4: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, &gt;= 7.2.6: 20 - 5000 msec.
         /// </summary>
         [Output("probeTimeout")]
         public Output<int> ProbeTimeout { get; private set; } = null!;
@@ -206,7 +204,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> Protocol { get; private set; } = null!;
 
         /// <summary>
-        /// Number of successful responses received before server is considered recovered (1 - 10, default = 5).
+        /// Number of successful responses received before server is considered recovered (default = 5). On FortiOS versions 6.2.0-7.0.5: 1 - 10. On FortiOS versions &gt;= 7.0.6: 1 - 3600.
         /// </summary>
         [Output("recoverytime")]
         public Output<int> Recoverytime { get; private set; } = null!;
@@ -299,7 +297,7 @@ namespace Pulumiverse.Fortios.System
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -383,7 +381,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? FailWeight { get; set; }
 
         /// <summary>
-        /// Number of retry attempts before the server is considered down (1 - 10, default = 5)
+        /// Number of retry attempts before the server is considered down (default = 5). On FortiOS versions 6.2.0-7.0.5: 1 - 10. On FortiOS versions &gt;= 7.0.6: 1 - 3600.
         /// </summary>
         [Input("failtime")]
         public Input<int>? Failtime { get; set; }
@@ -401,7 +399,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? GatewayIp6 { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -431,7 +429,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? HttpMatch { get; set; }
 
         /// <summary>
-        /// Detection interval (1 - 3600 sec, default = 5).
+        /// Detection interval. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-7.0.10, 7.2.0-7.2.4: 500 - 3600 * 1000 msec, default = 500. On FortiOS versions 7.0.11-7.0.15, &gt;= 7.2.6: 20 - 3600 * 1000 msec, default = 500.
         /// </summary>
         [Input("interval")]
         public Input<int>? Interval { get; set; }
@@ -443,7 +441,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Packet size of a twamp test session,
+        /// Packet size of a TWAMP test session.
         /// </summary>
         [Input("packetSize")]
         public Input<int>? PacketSize { get; set; }
@@ -477,7 +475,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? ProbeCount { get; set; }
 
         /// <summary>
-        /// Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
+        /// Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.2.4-7.0.10, 7.2.0-7.2.4: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, &gt;= 7.2.6: 20 - 5000 msec.
         /// </summary>
         [Input("probeTimeout")]
         public Input<int>? ProbeTimeout { get; set; }
@@ -489,7 +487,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
-        /// Number of successful responses received before server is considered recovered (1 - 10, default = 5).
+        /// Number of successful responses received before server is considered recovered (default = 5). On FortiOS versions 6.2.0-7.0.5: 1 - 10. On FortiOS versions &gt;= 7.0.6: 1 - 3600.
         /// </summary>
         [Input("recoverytime")]
         public Input<int>? Recoverytime { get; set; }
@@ -641,7 +639,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? FailWeight { get; set; }
 
         /// <summary>
-        /// Number of retry attempts before the server is considered down (1 - 10, default = 5)
+        /// Number of retry attempts before the server is considered down (default = 5). On FortiOS versions 6.2.0-7.0.5: 1 - 10. On FortiOS versions &gt;= 7.0.6: 1 - 3600.
         /// </summary>
         [Input("failtime")]
         public Input<int>? Failtime { get; set; }
@@ -659,7 +657,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? GatewayIp6 { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -689,7 +687,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? HttpMatch { get; set; }
 
         /// <summary>
-        /// Detection interval (1 - 3600 sec, default = 5).
+        /// Detection interval. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-7.0.10, 7.2.0-7.2.4: 500 - 3600 * 1000 msec, default = 500. On FortiOS versions 7.0.11-7.0.15, &gt;= 7.2.6: 20 - 3600 * 1000 msec, default = 500.
         /// </summary>
         [Input("interval")]
         public Input<int>? Interval { get; set; }
@@ -701,7 +699,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Packet size of a twamp test session,
+        /// Packet size of a TWAMP test session.
         /// </summary>
         [Input("packetSize")]
         public Input<int>? PacketSize { get; set; }
@@ -735,7 +733,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? ProbeCount { get; set; }
 
         /// <summary>
-        /// Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
+        /// Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.2.4-7.0.10, 7.2.0-7.2.4: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, &gt;= 7.2.6: 20 - 5000 msec.
         /// </summary>
         [Input("probeTimeout")]
         public Input<int>? ProbeTimeout { get; set; }
@@ -747,7 +745,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
-        /// Number of successful responses received before server is considered recovered (1 - 10, default = 5).
+        /// Number of successful responses received before server is considered recovered (default = 5). On FortiOS versions 6.2.0-7.0.5: 1 - 10. On FortiOS versions &gt;= 7.0.6: 1 - 3600.
         /// </summary>
         [Input("recoverytime")]
         public Input<int>? Recoverytime { get; set; }

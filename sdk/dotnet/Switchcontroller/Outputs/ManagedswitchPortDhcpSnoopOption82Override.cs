@@ -14,17 +14,8 @@ namespace Pulumiverse.Fortios.Switchcontroller.Outputs
     [OutputType]
     public sealed class ManagedswitchPortDhcpSnoopOption82Override
     {
-        /// <summary>
-        /// Circuit ID string.
-        /// </summary>
         public readonly string? CircuitId;
-        /// <summary>
-        /// Remote ID string.
-        /// </summary>
         public readonly string? RemoteId;
-        /// <summary>
-        /// VLAN name.
-        /// </summary>
         public readonly string? VlanName;
 
         [OutputConstructor]

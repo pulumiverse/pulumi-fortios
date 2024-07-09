@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -55,7 +54,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -81,7 +79,7 @@ type Address6template struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// IPv6 address prefix.
 	Ip6 pulumi.StringOutput `pulumi:"ip6"`
@@ -92,7 +90,7 @@ type Address6template struct {
 	// IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
 	SubnetSegments Address6templateSubnetSegmentArrayOutput `pulumi:"subnetSegments"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewAddress6template registers a new resource with the given unique name, arguments, and options.
@@ -135,7 +133,7 @@ type address6templateState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject *string `pulumi:"fabricObject"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// IPv6 address prefix.
 	Ip6 *string `pulumi:"ip6"`
@@ -154,7 +152,7 @@ type Address6templateState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// IPv6 address prefix.
 	Ip6 pulumi.StringPtrInput
@@ -177,7 +175,7 @@ type address6templateArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject *string `pulumi:"fabricObject"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// IPv6 address prefix.
 	Ip6 string `pulumi:"ip6"`
@@ -197,7 +195,7 @@ type Address6templateArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Security Fabric global object setting. Valid values: `enable`, `disable`.
 	FabricObject pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// IPv6 address prefix.
 	Ip6 pulumi.StringInput
@@ -308,7 +306,7 @@ func (o Address6templateOutput) FabricObject() pulumi.StringOutput {
 	return o.ApplyT(func(v *Address6template) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o Address6templateOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Address6template) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -334,8 +332,8 @@ func (o Address6templateOutput) SubnetSegments() Address6templateSubnetSegmentAr
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o Address6templateOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Address6template) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o Address6templateOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Address6template) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type Address6templateArrayOutput struct{ *pulumi.OutputState }

@@ -17,8 +17,58 @@ namespace Pulumiverse.Fortios.Certificate
     /// 
     /// ## Example
     /// 
+    /// ### Import Certificate:
+    /// 
+    /// **Step1: Prepare certificate**
+    /// 
+    /// The following key is a randomly generated example key for testing. In actual use, please replace it with your own key.
+    /// 
+    /// **Step2: Prepare TF file with fortios.json.GenericApi resource**
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fortios = Pulumiverse.Fortios;
+    /// using Local = Pulumi.Local;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var keyFile = Local.GetFile.Invoke(new()
+    ///     {
+    ///         Filename = "./test.key",
+    ///     });
+    /// 
+    ///     var crtFile = Local.GetFile.Invoke(new()
+    ///     {
+    ///         Filename = "./test.crt",
+    ///     });
+    /// 
+    ///     var genericapi1 = new Fortios.Json.GenericApi("genericapi1", new()
+    ///     {
+    ///         Json = Output.Tuple(keyFile, crtFile).Apply(values =&gt;
+    ///         {
+    ///             var keyFile = values.Item1;
+    ///             var crtFile = values.Item2;
+    ///             return @$"{{
+    ///     ""type"": ""regular"",
+    ///     ""certname"": ""testcer"",
+    ///     ""password"": """",
+    ///     ""key_file_content"": ""{keyFile.Apply(getFileResult =&gt; getFileResult.ContentBase64)}"",
+    ///     ""file_content"": ""{crtFile.Apply(getFileResult =&gt; getFileResult.ContentBase64)}""
+    /// }}
+    /// 
+    /// ";
+    ///         }),
+    ///         Method = "POST",
+    ///         Path = "/api/v2/monitor/vpn-certificate/local/import",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// **Step3: Apply**
     /// ### Delete Certificate:
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -42,7 +92,6 @@ namespace Pulumiverse.Fortios.Certificate
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:certificate/local:Local")]
     public partial class Local : global::Pulumi.CustomResource
@@ -162,7 +211,7 @@ namespace Pulumiverse.Fortios.Certificate
         public Output<string> State { get; private set; } = null!;
 
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>

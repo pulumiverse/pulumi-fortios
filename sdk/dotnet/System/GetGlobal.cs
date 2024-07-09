@@ -17,7 +17,6 @@ namespace Pulumiverse.Fortios.System
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,7 +33,6 @@ namespace Pulumiverse.Fortios.System
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetGlobalResult> InvokeAsync(GetGlobalArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetGlobalResult>("fortios:system/getGlobal:getGlobal", args ?? new GetGlobalArgs(), options.WithDefaults());
@@ -44,7 +42,6 @@ namespace Pulumiverse.Fortios.System
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -61,7 +58,6 @@ namespace Pulumiverse.Fortios.System
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetGlobalResult> Invoke(GetGlobalInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetGlobalResult>("fortios:system/getGlobal:getGlobal", args ?? new GetGlobalInvokeArgs(), options.WithDefaults());
@@ -333,7 +329,7 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string ComplianceCheckTime;
         /// <summary>
-        /// Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        /// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         /// </summary>
         public readonly int CpuUseThreshold;
         /// <summary>
@@ -360,6 +356,10 @@ namespace Pulumiverse.Fortios.System
         /// Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols.
         /// </summary>
         public readonly string DhParams;
+        /// <summary>
+        /// DHCP leases backup interval in seconds (10 - 3600, default = 60).
+        /// </summary>
+        public readonly int DhcpLeaseBackupInterval;
         /// <summary>
         /// DNS proxy worker count.
         /// </summary>
@@ -637,6 +637,10 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string IpsecHmacOffload;
         /// <summary>
+        /// Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption.
+        /// </summary>
+        public readonly string IpsecQatOffload;
+        /// <summary>
         /// Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic.
         /// </summary>
         public readonly string IpsecRoundRobin;
@@ -652,6 +656,10 @@ namespace Pulumiverse.Fortios.System
         /// Enable/disable IPv6 address probe through Anycast.
         /// </summary>
         public readonly string Ipv6AllowAnycastProbe;
+        /// <summary>
+        /// Enable/disable silent drop of IPv6 local-in traffic.
+        /// </summary>
+        public readonly string Ipv6AllowLocalInSilentDrop;
         /// <summary>
         /// Enable/disable silent drop of IPv6 local-in traffic.
         /// </summary>
@@ -737,15 +745,15 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string McTtlNotchange;
         /// <summary>
-        /// Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+        /// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
         /// </summary>
         public readonly int MemoryUseThresholdExtreme;
         /// <summary>
-        /// Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+        /// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
         /// </summary>
         public readonly int MemoryUseThresholdGreen;
         /// <summary>
-        /// Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+        /// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
         /// </summary>
         public readonly int MemoryUseThresholdRed;
         /// <summary>
@@ -768,6 +776,10 @@ namespace Pulumiverse.Fortios.System
         /// Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
         /// </summary>
         public readonly int NdpMaxEntry;
+        /// <summary>
+        /// Enable/disable sending of probing packets to update neighbors for offloaded sessions.
+        /// </summary>
+        public readonly string NpuNeighborUpdate;
         /// <summary>
         /// Enable/disable per-user block/allow list filter.
         /// </summary>
@@ -1374,6 +1386,8 @@ namespace Pulumiverse.Fortios.System
 
             string dhParams,
 
+            int dhcpLeaseBackupInterval,
+
             int dnsproxyWorkerCount,
 
             string dst,
@@ -1512,6 +1526,8 @@ namespace Pulumiverse.Fortios.System
 
             string ipsecHmacOffload,
 
+            string ipsecQatOffload,
+
             string ipsecRoundRobin,
 
             string ipsecSoftDecAsync,
@@ -1519,6 +1535,8 @@ namespace Pulumiverse.Fortios.System
             int ipv6AcceptDad,
 
             string ipv6AllowAnycastProbe,
+
+            string ipv6AllowLocalInSilentDrop,
 
             string ipv6AllowLocalInSlientDrop,
 
@@ -1577,6 +1595,8 @@ namespace Pulumiverse.Fortios.System
             string multicastForward,
 
             int ndpMaxEntry,
+
+            string npuNeighborUpdate,
 
             string perUserBal,
 
@@ -1881,6 +1901,7 @@ namespace Pulumiverse.Fortios.System
             DeviceIdentificationActiveScanDelay = deviceIdentificationActiveScanDelay;
             DeviceIdleTimeout = deviceIdleTimeout;
             DhParams = dhParams;
+            DhcpLeaseBackupInterval = dhcpLeaseBackupInterval;
             DnsproxyWorkerCount = dnsproxyWorkerCount;
             Dst = dst;
             EarlyTcpNpuSession = earlyTcpNpuSession;
@@ -1950,10 +1971,12 @@ namespace Pulumiverse.Fortios.System
             IpsecAsicOffload = ipsecAsicOffload;
             IpsecHaSeqjumpRate = ipsecHaSeqjumpRate;
             IpsecHmacOffload = ipsecHmacOffload;
+            IpsecQatOffload = ipsecQatOffload;
             IpsecRoundRobin = ipsecRoundRobin;
             IpsecSoftDecAsync = ipsecSoftDecAsync;
             Ipv6AcceptDad = ipv6AcceptDad;
             Ipv6AllowAnycastProbe = ipv6AllowAnycastProbe;
+            Ipv6AllowLocalInSilentDrop = ipv6AllowLocalInSilentDrop;
             Ipv6AllowLocalInSlientDrop = ipv6AllowLocalInSlientDrop;
             Ipv6AllowMulticastProbe = ipv6AllowMulticastProbe;
             Ipv6AllowTrafficRedirect = ipv6AllowTrafficRedirect;
@@ -1983,6 +2006,7 @@ namespace Pulumiverse.Fortios.System
             MultiFactorAuthentication = multiFactorAuthentication;
             MulticastForward = multicastForward;
             NdpMaxEntry = ndpMaxEntry;
+            NpuNeighborUpdate = npuNeighborUpdate;
             PerUserBal = perUserBal;
             PerUserBwl = perUserBwl;
             PmtuDiscovery = pmtuDiscovery;

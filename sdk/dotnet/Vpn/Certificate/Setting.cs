@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -46,7 +45,6 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -154,19 +152,19 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Output<string> CmpKeyUsageChecking { get; private set; } = null!;
 
         /// <summary>
-        /// Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
+        /// Enable/disable saving extra certificates in CMP mode (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         [Output("cmpSaveExtraCerts")]
         public Output<string> CmpSaveExtraCerts { get; private set; } = null!;
 
         /// <summary>
-        /// When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+        /// When searching for a matching certificate, allow multiple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
         /// </summary>
         [Output("cnAllowMulti")]
         public Output<string> CnAllowMulti { get; private set; } = null!;
 
         /// <summary>
-        /// When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+        /// When searching for a matching certificate, control how to do CN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         /// </summary>
         [Output("cnMatch")]
         public Output<string> CnMatch { get; private set; } = null!;
@@ -178,7 +176,7 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Output<Outputs.SettingCrlVerification> CrlVerification { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -268,7 +266,7 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Output<string> StrictOcspCheck { get; private set; } = null!;
 
         /// <summary>
-        /// When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+        /// When searching for a matching certificate, control how to do RDN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         /// </summary>
         [Output("subjectMatch")]
         public Output<string> SubjectMatch { get; private set; } = null!;
@@ -283,7 +281,7 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -417,19 +415,19 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Input<string>? CmpKeyUsageChecking { get; set; }
 
         /// <summary>
-        /// Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
+        /// Enable/disable saving extra certificates in CMP mode (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("cmpSaveExtraCerts")]
         public Input<string>? CmpSaveExtraCerts { get; set; }
 
         /// <summary>
-        /// When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+        /// When searching for a matching certificate, allow multiple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
         /// </summary>
         [Input("cnAllowMulti")]
         public Input<string>? CnAllowMulti { get; set; }
 
         /// <summary>
-        /// When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+        /// When searching for a matching certificate, control how to do CN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         /// </summary>
         [Input("cnMatch")]
         public Input<string>? CnMatch { get; set; }
@@ -441,7 +439,7 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Input<Inputs.SettingCrlVerificationArgs>? CrlVerification { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -531,7 +529,7 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Input<string>? StrictOcspCheck { get; set; }
 
         /// <summary>
-        /// When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+        /// When searching for a matching certificate, control how to do RDN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         /// </summary>
         [Input("subjectMatch")]
         public Input<string>? SubjectMatch { get; set; }
@@ -641,19 +639,19 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Input<string>? CmpKeyUsageChecking { get; set; }
 
         /// <summary>
-        /// Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
+        /// Enable/disable saving extra certificates in CMP mode (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         [Input("cmpSaveExtraCerts")]
         public Input<string>? CmpSaveExtraCerts { get; set; }
 
         /// <summary>
-        /// When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+        /// When searching for a matching certificate, allow multiple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
         /// </summary>
         [Input("cnAllowMulti")]
         public Input<string>? CnAllowMulti { get; set; }
 
         /// <summary>
-        /// When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+        /// When searching for a matching certificate, control how to do CN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         /// </summary>
         [Input("cnMatch")]
         public Input<string>? CnMatch { get; set; }
@@ -665,7 +663,7 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Input<Inputs.SettingCrlVerificationGetArgs>? CrlVerification { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -755,7 +753,7 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Input<string>? StrictOcspCheck { get; set; }
 
         /// <summary>
-        /// When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+        /// When searching for a matching certificate, control how to do RDN value matching with certificate subject name (default = substring). Valid values: `substring`, `value`.
         /// </summary>
         [Input("subjectMatch")]
         public Input<string>? SubjectMatch { get; set; }

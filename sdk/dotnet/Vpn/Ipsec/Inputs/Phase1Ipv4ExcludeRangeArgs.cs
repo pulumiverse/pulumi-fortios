@@ -13,21 +13,15 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec.Inputs
 
     public sealed class Phase1Ipv4ExcludeRangeArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// End of IPv6 exclusive range.
-        /// </summary>
         [Input("endIp")]
         public Input<string>? EndIp { get; set; }
 
         /// <summary>
-        /// ID.
+        /// an identifier for the resource with format {{name}}.
         /// </summary>
         [Input("id")]
         public Input<int>? Id { get; set; }
 
-        /// <summary>
-        /// Start of IPv6 exclusive range.
-        /// </summary>
         [Input("startIp")]
         public Input<string>? StartIp { get; set; }
 

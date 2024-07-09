@@ -39,7 +39,7 @@ type System struct {
 	CaputpMaxRetransmit pulumi.IntOutput `pulumi:"caputpMaxRetransmit"`
 	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
 	DataSyncInterval pulumi.IntOutput `pulumi:"dataSyncInterval"`
-	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+	// Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
 	DynamicPeriodicInterval pulumi.IntOutput `pulumi:"dynamicPeriodicInterval"`
 	// MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
 	IotHoldoff pulumi.IntOutput `pulumi:"iotHoldoff"`
@@ -49,7 +49,7 @@ type System struct {
 	IotScanInterval pulumi.IntOutput `pulumi:"iotScanInterval"`
 	// MAC entry's confidence value. Value is re-queried when below this value (default = 1, 0 = disable).
 	IotWeightThreshold pulumi.IntOutput `pulumi:"iotWeightThreshold"`
-	// Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+	// Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
 	NacPeriodicInterval pulumi.IntOutput `pulumi:"nacPeriodicInterval"`
 	// Maximum number of parallel processes (1 - 300, default = 1).
 	ParallelProcess pulumi.IntOutput `pulumi:"parallelProcess"`
@@ -58,7 +58,7 @@ type System struct {
 	// Compatible/strict tunnel mode.
 	TunnelMode pulumi.StringOutput `pulumi:"tunnelMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewSystem registers a new resource with the given unique name, arguments, and options.
@@ -97,7 +97,7 @@ type systemState struct {
 	CaputpMaxRetransmit *int `pulumi:"caputpMaxRetransmit"`
 	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
 	DataSyncInterval *int `pulumi:"dataSyncInterval"`
-	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+	// Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
 	DynamicPeriodicInterval *int `pulumi:"dynamicPeriodicInterval"`
 	// MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
 	IotHoldoff *int `pulumi:"iotHoldoff"`
@@ -107,7 +107,7 @@ type systemState struct {
 	IotScanInterval *int `pulumi:"iotScanInterval"`
 	// MAC entry's confidence value. Value is re-queried when below this value (default = 1, 0 = disable).
 	IotWeightThreshold *int `pulumi:"iotWeightThreshold"`
-	// Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+	// Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
 	NacPeriodicInterval *int `pulumi:"nacPeriodicInterval"`
 	// Maximum number of parallel processes (1 - 300, default = 1).
 	ParallelProcess *int `pulumi:"parallelProcess"`
@@ -126,7 +126,7 @@ type SystemState struct {
 	CaputpMaxRetransmit pulumi.IntPtrInput
 	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
 	DataSyncInterval pulumi.IntPtrInput
-	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+	// Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
 	DynamicPeriodicInterval pulumi.IntPtrInput
 	// MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
 	IotHoldoff pulumi.IntPtrInput
@@ -136,7 +136,7 @@ type SystemState struct {
 	IotScanInterval pulumi.IntPtrInput
 	// MAC entry's confidence value. Value is re-queried when below this value (default = 1, 0 = disable).
 	IotWeightThreshold pulumi.IntPtrInput
-	// Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+	// Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
 	NacPeriodicInterval pulumi.IntPtrInput
 	// Maximum number of parallel processes (1 - 300, default = 1).
 	ParallelProcess pulumi.IntPtrInput
@@ -159,7 +159,7 @@ type systemArgs struct {
 	CaputpMaxRetransmit *int `pulumi:"caputpMaxRetransmit"`
 	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
 	DataSyncInterval *int `pulumi:"dataSyncInterval"`
-	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+	// Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
 	DynamicPeriodicInterval *int `pulumi:"dynamicPeriodicInterval"`
 	// MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
 	IotHoldoff *int `pulumi:"iotHoldoff"`
@@ -169,7 +169,7 @@ type systemArgs struct {
 	IotScanInterval *int `pulumi:"iotScanInterval"`
 	// MAC entry's confidence value. Value is re-queried when below this value (default = 1, 0 = disable).
 	IotWeightThreshold *int `pulumi:"iotWeightThreshold"`
-	// Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+	// Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
 	NacPeriodicInterval *int `pulumi:"nacPeriodicInterval"`
 	// Maximum number of parallel processes (1 - 300, default = 1).
 	ParallelProcess *int `pulumi:"parallelProcess"`
@@ -189,7 +189,7 @@ type SystemArgs struct {
 	CaputpMaxRetransmit pulumi.IntPtrInput
 	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
 	DataSyncInterval pulumi.IntPtrInput
-	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+	// Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
 	DynamicPeriodicInterval pulumi.IntPtrInput
 	// MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
 	IotHoldoff pulumi.IntPtrInput
@@ -199,7 +199,7 @@ type SystemArgs struct {
 	IotScanInterval pulumi.IntPtrInput
 	// MAC entry's confidence value. Value is re-queried when below this value (default = 1, 0 = disable).
 	IotWeightThreshold pulumi.IntPtrInput
-	// Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+	// Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
 	NacPeriodicInterval pulumi.IntPtrInput
 	// Maximum number of parallel processes (1 - 300, default = 1).
 	ParallelProcess pulumi.IntPtrInput
@@ -313,7 +313,7 @@ func (o SystemOutput) DataSyncInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *System) pulumi.IntOutput { return v.DataSyncInterval }).(pulumi.IntOutput)
 }
 
-// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+// Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
 func (o SystemOutput) DynamicPeriodicInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *System) pulumi.IntOutput { return v.DynamicPeriodicInterval }).(pulumi.IntOutput)
 }
@@ -338,7 +338,7 @@ func (o SystemOutput) IotWeightThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v *System) pulumi.IntOutput { return v.IotWeightThreshold }).(pulumi.IntOutput)
 }
 
-// Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+// Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
 func (o SystemOutput) NacPeriodicInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *System) pulumi.IntOutput { return v.NacPeriodicInterval }).(pulumi.IntOutput)
 }
@@ -359,8 +359,8 @@ func (o SystemOutput) TunnelMode() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SystemOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *System) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SystemOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *System) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type SystemArrayOutput struct{ *pulumi.OutputState }

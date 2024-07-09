@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,7 +44,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -80,7 +78,7 @@ type Pptp struct {
 	// User group.
 	Usrgrp pulumi.StringOutput `pulumi:"usrgrp"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewPptp registers a new resource with the given unique name, arguments, and options.
@@ -306,8 +304,8 @@ func (o PptpOutput) Usrgrp() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o PptpOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Pptp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o PptpOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Pptp) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type PptpArrayOutput struct{ *pulumi.OutputState }

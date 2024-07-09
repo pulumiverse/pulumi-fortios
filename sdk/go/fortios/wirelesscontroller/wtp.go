@@ -56,13 +56,13 @@ type Wtp struct {
 	FirmwareProvision pulumi.StringOutput `pulumi:"firmwareProvision"`
 	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
 	FirmwareProvisionLatest pulumi.StringOutput `pulumi:"firmwareProvisionLatest"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable WTP image download. Valid values: `enable`, `disable`.
 	ImageDownload pulumi.StringOutput `pulumi:"imageDownload"`
 	// Index (0 - 4294967295).
 	Index pulumi.IntOutput `pulumi:"index"`
-	// Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+	// Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
 	IpFragmentPreventing pulumi.StringOutput `pulumi:"ipFragmentPreventing"`
 	// WTP LAN port mapping. The structure of `lan` block is documented below.
 	Lan WtpLanOutput `pulumi:"lan"`
@@ -114,14 +114,14 @@ type Wtp struct {
 	SplitTunnelingAclPath pulumi.StringOutput `pulumi:"splitTunnelingAclPath"`
 	// Split tunneling ACL filter list. The structure of `splitTunnelingAcl` block is documented below.
 	SplitTunnelingAcls WtpSplitTunnelingAclArrayOutput `pulumi:"splitTunnelingAcls"`
-	// Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
+	// The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
 	TunMtuDownlink pulumi.IntOutput `pulumi:"tunMtuDownlink"`
-	// Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
+	// The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
 	TunMtuUplink pulumi.IntOutput `pulumi:"tunMtuUplink"`
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable using the FortiAP WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
 	WanPortMode pulumi.StringOutput `pulumi:"wanPortMode"`
 	// WTP ID.
@@ -194,13 +194,13 @@ type wtpState struct {
 	FirmwareProvision *string `pulumi:"firmwareProvision"`
 	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
 	FirmwareProvisionLatest *string `pulumi:"firmwareProvisionLatest"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable WTP image download. Valid values: `enable`, `disable`.
 	ImageDownload *string `pulumi:"imageDownload"`
 	// Index (0 - 4294967295).
 	Index *int `pulumi:"index"`
-	// Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+	// Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
 	IpFragmentPreventing *string `pulumi:"ipFragmentPreventing"`
 	// WTP LAN port mapping. The structure of `lan` block is documented below.
 	Lan *WtpLan `pulumi:"lan"`
@@ -252,9 +252,9 @@ type wtpState struct {
 	SplitTunnelingAclPath *string `pulumi:"splitTunnelingAclPath"`
 	// Split tunneling ACL filter list. The structure of `splitTunnelingAcl` block is documented below.
 	SplitTunnelingAcls []WtpSplitTunnelingAcl `pulumi:"splitTunnelingAcls"`
-	// Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
+	// The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
 	TunMtuDownlink *int `pulumi:"tunMtuDownlink"`
-	// Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
+	// The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
 	TunMtuUplink *int `pulumi:"tunMtuUplink"`
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid *string `pulumi:"uuid"`
@@ -293,13 +293,13 @@ type WtpState struct {
 	FirmwareProvision pulumi.StringPtrInput
 	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
 	FirmwareProvisionLatest pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable WTP image download. Valid values: `enable`, `disable`.
 	ImageDownload pulumi.StringPtrInput
 	// Index (0 - 4294967295).
 	Index pulumi.IntPtrInput
-	// Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+	// Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
 	IpFragmentPreventing pulumi.StringPtrInput
 	// WTP LAN port mapping. The structure of `lan` block is documented below.
 	Lan WtpLanPtrInput
@@ -351,9 +351,9 @@ type WtpState struct {
 	SplitTunnelingAclPath pulumi.StringPtrInput
 	// Split tunneling ACL filter list. The structure of `splitTunnelingAcl` block is documented below.
 	SplitTunnelingAcls WtpSplitTunnelingAclArrayInput
-	// Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
+	// The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
 	TunMtuDownlink pulumi.IntPtrInput
-	// Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
+	// The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
 	TunMtuUplink pulumi.IntPtrInput
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringPtrInput
@@ -396,13 +396,13 @@ type wtpArgs struct {
 	FirmwareProvision *string `pulumi:"firmwareProvision"`
 	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
 	FirmwareProvisionLatest *string `pulumi:"firmwareProvisionLatest"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable WTP image download. Valid values: `enable`, `disable`.
 	ImageDownload *string `pulumi:"imageDownload"`
 	// Index (0 - 4294967295).
 	Index *int `pulumi:"index"`
-	// Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+	// Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
 	IpFragmentPreventing *string `pulumi:"ipFragmentPreventing"`
 	// WTP LAN port mapping. The structure of `lan` block is documented below.
 	Lan *WtpLan `pulumi:"lan"`
@@ -454,9 +454,9 @@ type wtpArgs struct {
 	SplitTunnelingAclPath *string `pulumi:"splitTunnelingAclPath"`
 	// Split tunneling ACL filter list. The structure of `splitTunnelingAcl` block is documented below.
 	SplitTunnelingAcls []WtpSplitTunnelingAcl `pulumi:"splitTunnelingAcls"`
-	// Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
+	// The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
 	TunMtuDownlink *int `pulumi:"tunMtuDownlink"`
-	// Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
+	// The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
 	TunMtuUplink *int `pulumi:"tunMtuUplink"`
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid *string `pulumi:"uuid"`
@@ -496,13 +496,13 @@ type WtpArgs struct {
 	FirmwareProvision pulumi.StringPtrInput
 	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
 	FirmwareProvisionLatest pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable WTP image download. Valid values: `enable`, `disable`.
 	ImageDownload pulumi.StringPtrInput
 	// Index (0 - 4294967295).
 	Index pulumi.IntPtrInput
-	// Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+	// Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
 	IpFragmentPreventing pulumi.StringPtrInput
 	// WTP LAN port mapping. The structure of `lan` block is documented below.
 	Lan WtpLanPtrInput
@@ -554,9 +554,9 @@ type WtpArgs struct {
 	SplitTunnelingAclPath pulumi.StringPtrInput
 	// Split tunneling ACL filter list. The structure of `splitTunnelingAcl` block is documented below.
 	SplitTunnelingAcls WtpSplitTunnelingAclArrayInput
-	// Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
+	// The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
 	TunMtuDownlink pulumi.IntPtrInput
-	// Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
+	// The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
 	TunMtuUplink pulumi.IntPtrInput
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringPtrInput
@@ -714,7 +714,7 @@ func (o WtpOutput) FirmwareProvisionLatest() pulumi.StringOutput {
 	return o.ApplyT(func(v *Wtp) pulumi.StringOutput { return v.FirmwareProvisionLatest }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o WtpOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Wtp) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -729,7 +729,7 @@ func (o WtpOutput) Index() pulumi.IntOutput {
 	return o.ApplyT(func(v *Wtp) pulumi.IntOutput { return v.Index }).(pulumi.IntOutput)
 }
 
-// Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+// Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
 func (o WtpOutput) IpFragmentPreventing() pulumi.StringOutput {
 	return o.ApplyT(func(v *Wtp) pulumi.StringOutput { return v.IpFragmentPreventing }).(pulumi.StringOutput)
 }
@@ -859,12 +859,12 @@ func (o WtpOutput) SplitTunnelingAcls() WtpSplitTunnelingAclArrayOutput {
 	return o.ApplyT(func(v *Wtp) WtpSplitTunnelingAclArrayOutput { return v.SplitTunnelingAcls }).(WtpSplitTunnelingAclArrayOutput)
 }
 
-// Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
+// The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
 func (o WtpOutput) TunMtuDownlink() pulumi.IntOutput {
 	return o.ApplyT(func(v *Wtp) pulumi.IntOutput { return v.TunMtuDownlink }).(pulumi.IntOutput)
 }
 
-// Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
+// The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
 func (o WtpOutput) TunMtuUplink() pulumi.IntOutput {
 	return o.ApplyT(func(v *Wtp) pulumi.IntOutput { return v.TunMtuUplink }).(pulumi.IntOutput)
 }
@@ -875,8 +875,8 @@ func (o WtpOutput) Uuid() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o WtpOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Wtp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o WtpOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Wtp) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable using the FortiAP WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.

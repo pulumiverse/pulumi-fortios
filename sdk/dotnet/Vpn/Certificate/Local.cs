@@ -101,7 +101,7 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Output<string> CmpRegenerationMethod { get; private set; } = null!;
 
         /// <summary>
-        /// 'ADDRESS:PORT' for CMP server.
+        /// Address and port for CMP server (format = address:port).
         /// </summary>
         [Output("cmpServer")]
         public Output<string> CmpServer { get; private set; } = null!;
@@ -266,7 +266,7 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -399,7 +399,7 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Input<string>? CmpRegenerationMethod { get; set; }
 
         /// <summary>
-        /// 'ADDRESS:PORT' for CMP server.
+        /// Address and port for CMP server (format = address:port).
         /// </summary>
         [Input("cmpServer")]
         public Input<string>? CmpServer { get; set; }
@@ -681,7 +681,7 @@ namespace Pulumiverse.Fortios.Vpn.Certificate
         public Input<string>? CmpRegenerationMethod { get; set; }
 
         /// <summary>
-        /// 'ADDRESS:PORT' for CMP server.
+        /// Address and port for CMP server (format = address:port).
         /// </summary>
         [Input("cmpServer")]
         public Input<string>? CmpServer { get; set; }

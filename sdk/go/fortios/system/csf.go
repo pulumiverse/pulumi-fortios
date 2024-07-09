@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -46,7 +45,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -100,7 +98,7 @@ type Csf struct {
 	FixedKey pulumi.StringPtrOutput `pulumi:"fixedKey"`
 	// Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
 	ForticloudAccountEnforcement pulumi.StringOutput `pulumi:"forticloudAccountEnforcement"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
 	GroupName pulumi.StringOutput `pulumi:"groupName"`
@@ -114,6 +112,8 @@ type Csf struct {
 	ManagementPort pulumi.IntOutput `pulumi:"managementPort"`
 	// SAML setting configuration synchronization. Valid values: `default`, `local`.
 	SamlConfigurationSync pulumi.StringOutput `pulumi:"samlConfigurationSync"`
+	// Source IP address for communication with the upstream FortiGate.
+	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
 	// Enable/disable Security Fabric. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
@@ -122,12 +122,16 @@ type Csf struct {
 	Uid pulumi.StringOutput `pulumi:"uid"`
 	// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
 	Upstream pulumi.StringOutput `pulumi:"upstream"`
+	// Specify outgoing interface to reach server.
+	UpstreamInterface pulumi.StringOutput `pulumi:"upstreamInterface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	UpstreamInterfaceSelectMethod pulumi.StringOutput `pulumi:"upstreamInterfaceSelectMethod"`
 	// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
 	UpstreamIp pulumi.StringOutput `pulumi:"upstreamIp"`
 	// The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
 	UpstreamPort pulumi.IntOutput `pulumi:"upstreamPort"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewCsf registers a new resource with the given unique name, arguments, and options.
@@ -206,7 +210,7 @@ type csfState struct {
 	FixedKey *string `pulumi:"fixedKey"`
 	// Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
 	ForticloudAccountEnforcement *string `pulumi:"forticloudAccountEnforcement"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
 	GroupName *string `pulumi:"groupName"`
@@ -220,6 +224,8 @@ type csfState struct {
 	ManagementPort *int `pulumi:"managementPort"`
 	// SAML setting configuration synchronization. Valid values: `default`, `local`.
 	SamlConfigurationSync *string `pulumi:"samlConfigurationSync"`
+	// Source IP address for communication with the upstream FortiGate.
+	SourceIp *string `pulumi:"sourceIp"`
 	// Enable/disable Security Fabric. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
 	// Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
@@ -228,6 +234,10 @@ type csfState struct {
 	Uid *string `pulumi:"uid"`
 	// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
 	Upstream *string `pulumi:"upstream"`
+	// Specify outgoing interface to reach server.
+	UpstreamInterface *string `pulumi:"upstreamInterface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	UpstreamInterfaceSelectMethod *string `pulumi:"upstreamInterfaceSelectMethod"`
 	// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
 	UpstreamIp *string `pulumi:"upstreamIp"`
 	// The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
@@ -269,7 +279,7 @@ type CsfState struct {
 	FixedKey pulumi.StringPtrInput
 	// Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
 	ForticloudAccountEnforcement pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
 	GroupName pulumi.StringPtrInput
@@ -283,6 +293,8 @@ type CsfState struct {
 	ManagementPort pulumi.IntPtrInput
 	// SAML setting configuration synchronization. Valid values: `default`, `local`.
 	SamlConfigurationSync pulumi.StringPtrInput
+	// Source IP address for communication with the upstream FortiGate.
+	SourceIp pulumi.StringPtrInput
 	// Enable/disable Security Fabric. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
 	// Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
@@ -291,6 +303,10 @@ type CsfState struct {
 	Uid pulumi.StringPtrInput
 	// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
 	Upstream pulumi.StringPtrInput
+	// Specify outgoing interface to reach server.
+	UpstreamInterface pulumi.StringPtrInput
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	UpstreamInterfaceSelectMethod pulumi.StringPtrInput
 	// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
 	UpstreamIp pulumi.StringPtrInput
 	// The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
@@ -336,7 +352,7 @@ type csfArgs struct {
 	FixedKey *string `pulumi:"fixedKey"`
 	// Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
 	ForticloudAccountEnforcement *string `pulumi:"forticloudAccountEnforcement"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
 	GroupName *string `pulumi:"groupName"`
@@ -350,6 +366,8 @@ type csfArgs struct {
 	ManagementPort *int `pulumi:"managementPort"`
 	// SAML setting configuration synchronization. Valid values: `default`, `local`.
 	SamlConfigurationSync *string `pulumi:"samlConfigurationSync"`
+	// Source IP address for communication with the upstream FortiGate.
+	SourceIp *string `pulumi:"sourceIp"`
 	// Enable/disable Security Fabric. Valid values: `enable`, `disable`.
 	Status string `pulumi:"status"`
 	// Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
@@ -358,6 +376,10 @@ type csfArgs struct {
 	Uid *string `pulumi:"uid"`
 	// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
 	Upstream *string `pulumi:"upstream"`
+	// Specify outgoing interface to reach server.
+	UpstreamInterface *string `pulumi:"upstreamInterface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	UpstreamInterfaceSelectMethod *string `pulumi:"upstreamInterfaceSelectMethod"`
 	// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
 	UpstreamIp *string `pulumi:"upstreamIp"`
 	// The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
@@ -400,7 +422,7 @@ type CsfArgs struct {
 	FixedKey pulumi.StringPtrInput
 	// Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
 	ForticloudAccountEnforcement pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
 	GroupName pulumi.StringPtrInput
@@ -414,6 +436,8 @@ type CsfArgs struct {
 	ManagementPort pulumi.IntPtrInput
 	// SAML setting configuration synchronization. Valid values: `default`, `local`.
 	SamlConfigurationSync pulumi.StringPtrInput
+	// Source IP address for communication with the upstream FortiGate.
+	SourceIp pulumi.StringPtrInput
 	// Enable/disable Security Fabric. Valid values: `enable`, `disable`.
 	Status pulumi.StringInput
 	// Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
@@ -422,6 +446,10 @@ type CsfArgs struct {
 	Uid pulumi.StringPtrInput
 	// IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
 	Upstream pulumi.StringPtrInput
+	// Specify outgoing interface to reach server.
+	UpstreamInterface pulumi.StringPtrInput
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	UpstreamInterfaceSelectMethod pulumi.StringPtrInput
 	// IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
 	UpstreamIp pulumi.StringPtrInput
 	// The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
@@ -597,7 +625,7 @@ func (o CsfOutput) ForticloudAccountEnforcement() pulumi.StringOutput {
 	return o.ApplyT(func(v *Csf) pulumi.StringOutput { return v.ForticloudAccountEnforcement }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o CsfOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Csf) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -632,6 +660,11 @@ func (o CsfOutput) SamlConfigurationSync() pulumi.StringOutput {
 	return o.ApplyT(func(v *Csf) pulumi.StringOutput { return v.SamlConfigurationSync }).(pulumi.StringOutput)
 }
 
+// Source IP address for communication with the upstream FortiGate.
+func (o CsfOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *Csf) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
 // Enable/disable Security Fabric. Valid values: `enable`, `disable`.
 func (o CsfOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Csf) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
@@ -652,6 +685,16 @@ func (o CsfOutput) Upstream() pulumi.StringOutput {
 	return o.ApplyT(func(v *Csf) pulumi.StringOutput { return v.Upstream }).(pulumi.StringOutput)
 }
 
+// Specify outgoing interface to reach server.
+func (o CsfOutput) UpstreamInterface() pulumi.StringOutput {
+	return o.ApplyT(func(v *Csf) pulumi.StringOutput { return v.UpstreamInterface }).(pulumi.StringOutput)
+}
+
+// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+func (o CsfOutput) UpstreamInterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *Csf) pulumi.StringOutput { return v.UpstreamInterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
 // IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
 func (o CsfOutput) UpstreamIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Csf) pulumi.StringOutput { return v.UpstreamIp }).(pulumi.StringOutput)
@@ -663,8 +706,8 @@ func (o CsfOutput) UpstreamPort() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o CsfOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Csf) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o CsfOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Csf) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type CsfArrayOutput struct{ *pulumi.OutputState }

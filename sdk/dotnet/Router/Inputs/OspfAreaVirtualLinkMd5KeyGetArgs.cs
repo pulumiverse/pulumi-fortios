@@ -14,17 +14,13 @@ namespace Pulumiverse.Fortios.Router.Inputs
     public sealed class OspfAreaVirtualLinkMd5KeyGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Area entry IP address.
+        /// an identifier for the resource.
         /// </summary>
         [Input("id")]
         public Input<int>? Id { get; set; }
 
         [Input("keyString")]
         private Input<string>? _keyString;
-
-        /// <summary>
-        /// Password for the key.
-        /// </summary>
         public Input<string>? KeyString
         {
             get => _keyString;

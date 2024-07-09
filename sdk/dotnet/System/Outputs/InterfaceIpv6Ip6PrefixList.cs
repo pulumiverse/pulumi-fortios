@@ -14,35 +14,12 @@ namespace Pulumiverse.Fortios.System.Outputs
     [OutputType]
     public sealed class InterfaceIpv6Ip6PrefixList
     {
-        /// <summary>
-        /// Enable/disable the autonomous flag. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? AutonomousFlag;
-        /// <summary>
-        /// DNS search list option. The structure of `dnssl` block is documented below.
-        /// </summary>
         public readonly ImmutableArray<Outputs.InterfaceIpv6Ip6PrefixListDnssl> Dnssls;
-        /// <summary>
-        /// Enable/disable the onlink flag. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? OnlinkFlag;
-        /// <summary>
-        /// Preferred life time (sec).
-        /// </summary>
         public readonly int? PreferredLifeTime;
-        /// <summary>
-        /// IPv6 prefix.
-        /// </summary>
         public readonly string? Prefix;
-        /// <summary>
-        /// Recursive DNS server option.
-        /// 
-        /// The `dhcp6_iapd_list` block supports:
-        /// </summary>
         public readonly string? Rdnss;
-        /// <summary>
-        /// Valid life time (sec).
-        /// </summary>
         public readonly int? ValidLifeTime;
 
         [OutputConstructor]

@@ -14,9 +14,6 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Outputs
     [OutputType]
     public sealed class SettingsTunnelIpv6Pool
     {
-        /// <summary>
-        /// Group name.
-        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

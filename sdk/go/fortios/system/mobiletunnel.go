@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -52,7 +51,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -76,7 +74,7 @@ type Mobiletunnel struct {
 
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
 	HashAlgorithm pulumi.StringOutput `pulumi:"hashAlgorithm"`
@@ -100,16 +98,16 @@ type Mobiletunnel struct {
 	RegInterval pulumi.IntOutput `pulumi:"regInterval"`
 	// Maximum number of NMMO HA registration retries (1 to 30, default = 3).
 	RegRetry pulumi.IntOutput `pulumi:"regRetry"`
-	// Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
+	// Time before lifetime expiration to send NMMO HA re-registration (5 - 60, default = 60).
 	RenewInterval pulumi.IntOutput `pulumi:"renewInterval"`
 	// Select the associated interface name from available options.
 	RoamingInterface pulumi.StringOutput `pulumi:"roamingInterface"`
 	// Enable/disable this mobile tunnel. Valid values: `disable`, `enable`.
 	Status pulumi.StringOutput `pulumi:"status"`
-	// NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
+	// NEMO tunnel mode (GRE tunnel). Valid values: `gre`.
 	TunnelMode pulumi.StringOutput `pulumi:"tunnelMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewMobiletunnel registers a new resource with the given unique name, arguments, and options.
@@ -181,7 +179,7 @@ func GetMobiletunnel(ctx *pulumi.Context,
 type mobiletunnelState struct {
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
 	HashAlgorithm *string `pulumi:"hashAlgorithm"`
@@ -205,13 +203,13 @@ type mobiletunnelState struct {
 	RegInterval *int `pulumi:"regInterval"`
 	// Maximum number of NMMO HA registration retries (1 to 30, default = 3).
 	RegRetry *int `pulumi:"regRetry"`
-	// Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
+	// Time before lifetime expiration to send NMMO HA re-registration (5 - 60, default = 60).
 	RenewInterval *int `pulumi:"renewInterval"`
 	// Select the associated interface name from available options.
 	RoamingInterface *string `pulumi:"roamingInterface"`
 	// Enable/disable this mobile tunnel. Valid values: `disable`, `enable`.
 	Status *string `pulumi:"status"`
-	// NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
+	// NEMO tunnel mode (GRE tunnel). Valid values: `gre`.
 	TunnelMode *string `pulumi:"tunnelMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -220,7 +218,7 @@ type mobiletunnelState struct {
 type MobiletunnelState struct {
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
 	HashAlgorithm pulumi.StringPtrInput
@@ -244,13 +242,13 @@ type MobiletunnelState struct {
 	RegInterval pulumi.IntPtrInput
 	// Maximum number of NMMO HA registration retries (1 to 30, default = 3).
 	RegRetry pulumi.IntPtrInput
-	// Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
+	// Time before lifetime expiration to send NMMO HA re-registration (5 - 60, default = 60).
 	RenewInterval pulumi.IntPtrInput
 	// Select the associated interface name from available options.
 	RoamingInterface pulumi.StringPtrInput
 	// Enable/disable this mobile tunnel. Valid values: `disable`, `enable`.
 	Status pulumi.StringPtrInput
-	// NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
+	// NEMO tunnel mode (GRE tunnel). Valid values: `gre`.
 	TunnelMode pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -263,7 +261,7 @@ func (MobiletunnelState) ElementType() reflect.Type {
 type mobiletunnelArgs struct {
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
 	HashAlgorithm string `pulumi:"hashAlgorithm"`
@@ -287,13 +285,13 @@ type mobiletunnelArgs struct {
 	RegInterval int `pulumi:"regInterval"`
 	// Maximum number of NMMO HA registration retries (1 to 30, default = 3).
 	RegRetry int `pulumi:"regRetry"`
-	// Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
+	// Time before lifetime expiration to send NMMO HA re-registration (5 - 60, default = 60).
 	RenewInterval int `pulumi:"renewInterval"`
 	// Select the associated interface name from available options.
 	RoamingInterface string `pulumi:"roamingInterface"`
 	// Enable/disable this mobile tunnel. Valid values: `disable`, `enable`.
 	Status *string `pulumi:"status"`
-	// NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
+	// NEMO tunnel mode (GRE tunnel). Valid values: `gre`.
 	TunnelMode string `pulumi:"tunnelMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -303,7 +301,7 @@ type mobiletunnelArgs struct {
 type MobiletunnelArgs struct {
 	// Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
 	DynamicSortSubtable pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Hash Algorithm (Keyed MD5). Valid values: `hmac-md5`.
 	HashAlgorithm pulumi.StringInput
@@ -327,13 +325,13 @@ type MobiletunnelArgs struct {
 	RegInterval pulumi.IntInput
 	// Maximum number of NMMO HA registration retries (1 to 30, default = 3).
 	RegRetry pulumi.IntInput
-	// Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
+	// Time before lifetime expiration to send NMMO HA re-registration (5 - 60, default = 60).
 	RenewInterval pulumi.IntInput
 	// Select the associated interface name from available options.
 	RoamingInterface pulumi.StringInput
 	// Enable/disable this mobile tunnel. Valid values: `disable`, `enable`.
 	Status pulumi.StringPtrInput
-	// NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
+	// NEMO tunnel mode (GRE tunnel). Valid values: `gre`.
 	TunnelMode pulumi.StringInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -431,7 +429,7 @@ func (o MobiletunnelOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Mobiletunnel) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o MobiletunnelOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Mobiletunnel) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -491,7 +489,7 @@ func (o MobiletunnelOutput) RegRetry() pulumi.IntOutput {
 	return o.ApplyT(func(v *Mobiletunnel) pulumi.IntOutput { return v.RegRetry }).(pulumi.IntOutput)
 }
 
-// Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
+// Time before lifetime expiration to send NMMO HA re-registration (5 - 60, default = 60).
 func (o MobiletunnelOutput) RenewInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Mobiletunnel) pulumi.IntOutput { return v.RenewInterval }).(pulumi.IntOutput)
 }
@@ -506,14 +504,14 @@ func (o MobiletunnelOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Mobiletunnel) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// NEMO tunnnel mode (GRE tunnel). Valid values: `gre`.
+// NEMO tunnel mode (GRE tunnel). Valid values: `gre`.
 func (o MobiletunnelOutput) TunnelMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Mobiletunnel) pulumi.StringOutput { return v.TunnelMode }).(pulumi.StringOutput)
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o MobiletunnelOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Mobiletunnel) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o MobiletunnelOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Mobiletunnel) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type MobiletunnelArrayOutput struct{ *pulumi.OutputState }

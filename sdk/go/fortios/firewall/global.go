@@ -36,7 +36,7 @@ type Global struct {
 	// Persistency of banned IPs across power cycling. Valid values: `disabled`, `permanent-only`, `all`.
 	BannedIpPersistency pulumi.StringOutput `pulumi:"bannedIpPersistency"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewGlobal registers a new resource with the given unique name, arguments, and options.
@@ -194,8 +194,8 @@ func (o GlobalOutput) BannedIpPersistency() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o GlobalOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Global) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o GlobalOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type GlobalArrayOutput struct{ *pulumi.OutputState }

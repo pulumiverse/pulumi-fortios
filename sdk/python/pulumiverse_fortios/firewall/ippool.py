@@ -26,6 +26,7 @@ class IppoolArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  nat64: Optional[pulumi.Input[str]] = None,
                  num_blocks_per_user: Optional[pulumi.Input[int]] = None,
+                 pba_interim_log: Optional[pulumi.Input[int]] = None,
                  pba_timeout: Optional[pulumi.Input[int]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
                  port_per_user: Optional[pulumi.Input[int]] = None,
@@ -49,6 +50,7 @@ class IppoolArgs:
         :param pulumi.Input[str] name: IP pool name.
         :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] num_blocks_per_user: Number of addresses blocks that can be used by a user (1 to 128, default = 8).
+        :param pulumi.Input[int] pba_interim_log: Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
         :param pulumi.Input[int] pba_timeout: Port block allocation timeout (seconds).
         :param pulumi.Input[str] permit_any_host: Enable/disable full cone NAT. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] port_per_user: Number of port for each user (32 - 60416, default = 0, which is auto).
@@ -81,6 +83,8 @@ class IppoolArgs:
             pulumi.set(__self__, "nat64", nat64)
         if num_blocks_per_user is not None:
             pulumi.set(__self__, "num_blocks_per_user", num_blocks_per_user)
+        if pba_interim_log is not None:
+            pulumi.set(__self__, "pba_interim_log", pba_interim_log)
         if pba_timeout is not None:
             pulumi.set(__self__, "pba_timeout", pba_timeout)
         if permit_any_host is not None:
@@ -245,6 +249,18 @@ class IppoolArgs:
         pulumi.set(self, "num_blocks_per_user", value)
 
     @property
+    @pulumi.getter(name="pbaInterimLog")
+    def pba_interim_log(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
+        """
+        return pulumi.get(self, "pba_interim_log")
+
+    @pba_interim_log.setter
+    def pba_interim_log(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "pba_interim_log", value)
+
+    @property
     @pulumi.getter(name="pbaTimeout")
     def pba_timeout(self) -> Optional[pulumi.Input[int]]:
         """
@@ -367,6 +383,7 @@ class _IppoolState:
                  name: Optional[pulumi.Input[str]] = None,
                  nat64: Optional[pulumi.Input[str]] = None,
                  num_blocks_per_user: Optional[pulumi.Input[int]] = None,
+                 pba_interim_log: Optional[pulumi.Input[int]] = None,
                  pba_timeout: Optional[pulumi.Input[int]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
                  port_per_user: Optional[pulumi.Input[int]] = None,
@@ -390,6 +407,7 @@ class _IppoolState:
         :param pulumi.Input[str] name: IP pool name.
         :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] num_blocks_per_user: Number of addresses blocks that can be used by a user (1 to 128, default = 8).
+        :param pulumi.Input[int] pba_interim_log: Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
         :param pulumi.Input[int] pba_timeout: Port block allocation timeout (seconds).
         :param pulumi.Input[str] permit_any_host: Enable/disable full cone NAT. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] port_per_user: Number of port for each user (32 - 60416, default = 0, which is auto).
@@ -423,6 +441,8 @@ class _IppoolState:
             pulumi.set(__self__, "nat64", nat64)
         if num_blocks_per_user is not None:
             pulumi.set(__self__, "num_blocks_per_user", num_blocks_per_user)
+        if pba_interim_log is not None:
+            pulumi.set(__self__, "pba_interim_log", pba_interim_log)
         if pba_timeout is not None:
             pulumi.set(__self__, "pba_timeout", pba_timeout)
         if permit_any_host is not None:
@@ -577,6 +597,18 @@ class _IppoolState:
         pulumi.set(self, "num_blocks_per_user", value)
 
     @property
+    @pulumi.getter(name="pbaInterimLog")
+    def pba_interim_log(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
+        """
+        return pulumi.get(self, "pba_interim_log")
+
+    @pba_interim_log.setter
+    def pba_interim_log(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "pba_interim_log", value)
+
+    @property
     @pulumi.getter(name="pbaTimeout")
     def pba_timeout(self) -> Optional[pulumi.Input[int]]:
         """
@@ -713,6 +745,7 @@ class Ippool(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  nat64: Optional[pulumi.Input[str]] = None,
                  num_blocks_per_user: Optional[pulumi.Input[int]] = None,
+                 pba_interim_log: Optional[pulumi.Input[int]] = None,
                  pba_timeout: Optional[pulumi.Input[int]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
                  port_per_user: Optional[pulumi.Input[int]] = None,
@@ -729,7 +762,6 @@ class Ippool(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -746,7 +778,6 @@ class Ippool(pulumi.CustomResource):
             startip="1.0.0.0",
             type="overload")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -779,6 +810,7 @@ class Ippool(pulumi.CustomResource):
         :param pulumi.Input[str] name: IP pool name.
         :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] num_blocks_per_user: Number of addresses blocks that can be used by a user (1 to 128, default = 8).
+        :param pulumi.Input[int] pba_interim_log: Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
         :param pulumi.Input[int] pba_timeout: Port block allocation timeout (seconds).
         :param pulumi.Input[str] permit_any_host: Enable/disable full cone NAT. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] port_per_user: Number of port for each user (32 - 60416, default = 0, which is auto).
@@ -801,7 +833,6 @@ class Ippool(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -818,7 +849,6 @@ class Ippool(pulumi.CustomResource):
             startip="1.0.0.0",
             type="overload")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -864,6 +894,7 @@ class Ippool(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  nat64: Optional[pulumi.Input[str]] = None,
                  num_blocks_per_user: Optional[pulumi.Input[int]] = None,
+                 pba_interim_log: Optional[pulumi.Input[int]] = None,
                  pba_timeout: Optional[pulumi.Input[int]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
                  port_per_user: Optional[pulumi.Input[int]] = None,
@@ -896,6 +927,7 @@ class Ippool(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["nat64"] = nat64
             __props__.__dict__["num_blocks_per_user"] = num_blocks_per_user
+            __props__.__dict__["pba_interim_log"] = pba_interim_log
             __props__.__dict__["pba_timeout"] = pba_timeout
             __props__.__dict__["permit_any_host"] = permit_any_host
             __props__.__dict__["port_per_user"] = port_per_user
@@ -929,6 +961,7 @@ class Ippool(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             nat64: Optional[pulumi.Input[str]] = None,
             num_blocks_per_user: Optional[pulumi.Input[int]] = None,
+            pba_interim_log: Optional[pulumi.Input[int]] = None,
             pba_timeout: Optional[pulumi.Input[int]] = None,
             permit_any_host: Optional[pulumi.Input[str]] = None,
             port_per_user: Optional[pulumi.Input[int]] = None,
@@ -957,6 +990,7 @@ class Ippool(pulumi.CustomResource):
         :param pulumi.Input[str] name: IP pool name.
         :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] num_blocks_per_user: Number of addresses blocks that can be used by a user (1 to 128, default = 8).
+        :param pulumi.Input[int] pba_interim_log: Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
         :param pulumi.Input[int] pba_timeout: Port block allocation timeout (seconds).
         :param pulumi.Input[str] permit_any_host: Enable/disable full cone NAT. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] port_per_user: Number of port for each user (32 - 60416, default = 0, which is auto).
@@ -983,6 +1017,7 @@ class Ippool(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["nat64"] = nat64
         __props__.__dict__["num_blocks_per_user"] = num_blocks_per_user
+        __props__.__dict__["pba_interim_log"] = pba_interim_log
         __props__.__dict__["pba_timeout"] = pba_timeout
         __props__.__dict__["permit_any_host"] = permit_any_host
         __props__.__dict__["port_per_user"] = port_per_user
@@ -1084,6 +1119,14 @@ class Ippool(pulumi.CustomResource):
         return pulumi.get(self, "num_blocks_per_user")
 
     @property
+    @pulumi.getter(name="pbaInterimLog")
+    def pba_interim_log(self) -> pulumi.Output[int]:
+        """
+        Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
+        """
+        return pulumi.get(self, "pba_interim_log")
+
+    @property
     @pulumi.getter(name="pbaTimeout")
     def pba_timeout(self) -> pulumi.Output[int]:
         """
@@ -1157,7 +1200,7 @@ class Ippool(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

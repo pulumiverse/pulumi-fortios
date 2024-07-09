@@ -39,7 +39,7 @@ type Snmpcommunity struct {
 	Events pulumi.StringOutput `pulumi:"events"`
 	// SNMP community ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
 	Hosts SnmpcommunityHostArrayOutput `pulumi:"hosts"`
@@ -68,7 +68,7 @@ type Snmpcommunity struct {
 	// Enable/disable SNMP v2c traps. Valid values: `disable`, `enable`.
 	TrapV2cStatus pulumi.StringOutput `pulumi:"trapV2cStatus"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewSnmpcommunity registers a new resource with the given unique name, arguments, and options.
@@ -107,7 +107,7 @@ type snmpcommunityState struct {
 	Events *string `pulumi:"events"`
 	// SNMP community ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
 	Hosts []SnmpcommunityHost `pulumi:"hosts"`
@@ -146,7 +146,7 @@ type SnmpcommunityState struct {
 	Events pulumi.StringPtrInput
 	// SNMP community ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
 	Hosts SnmpcommunityHostArrayInput
@@ -189,7 +189,7 @@ type snmpcommunityArgs struct {
 	Events *string `pulumi:"events"`
 	// SNMP community ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
 	Hosts []SnmpcommunityHost `pulumi:"hosts"`
@@ -229,7 +229,7 @@ type SnmpcommunityArgs struct {
 	Events pulumi.StringPtrInput
 	// SNMP community ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Configure IPv4 SNMP managers (hosts). The structure of `hosts` block is documented below.
 	Hosts SnmpcommunityHostArrayInput
@@ -363,7 +363,7 @@ func (o SnmpcommunityOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Snmpcommunity) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o SnmpcommunityOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Snmpcommunity) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -434,8 +434,8 @@ func (o SnmpcommunityOutput) TrapV2cStatus() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SnmpcommunityOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Snmpcommunity) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SnmpcommunityOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Snmpcommunity) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type SnmpcommunityArrayOutput struct{ *pulumi.OutputState }

@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,7 +40,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -76,7 +74,7 @@ type Ippool6 struct {
 	// First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
 	Startip pulumi.StringOutput `pulumi:"startip"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewIppool6 registers a new resource with the given unique name, arguments, and options.
@@ -305,8 +303,8 @@ func (o Ippool6Output) Startip() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o Ippool6Output) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Ippool6) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o Ippool6Output) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ippool6) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type Ippool6ArrayOutput struct{ *pulumi.OutputState }

@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -55,7 +54,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -77,7 +75,7 @@ import (
 type Ldap struct {
 	pulumi.CustomResourceState
 
-	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	// Define subject identity field in certificate for user access right checking.
 	AccountKeyCertField pulumi.StringOutput `pulumi:"accountKeyCertField"`
 	// Account key filter, using the UPN as the search filter.
 	AccountKeyFilter pulumi.StringOutput `pulumi:"accountKeyFilter"`
@@ -141,6 +139,8 @@ type Ldap struct {
 	SourcePort pulumi.IntOutput `pulumi:"sourcePort"`
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringOutput `pulumi:"sslMinProtoVersion"`
+	// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+	StatusTtl pulumi.IntOutput `pulumi:"statusTtl"`
 	// Tertiary LDAP server CN domain name or IP.
 	TertiaryServer pulumi.StringOutput `pulumi:"tertiaryServer"`
 	// Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
@@ -158,7 +158,7 @@ type Ldap struct {
 	// Username (full DN) for initial binding.
 	Username pulumi.StringOutput `pulumi:"username"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewLdap registers a new resource with the given unique name, arguments, and options.
@@ -204,7 +204,7 @@ func GetLdap(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Ldap resources.
 type ldapState struct {
-	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	// Define subject identity field in certificate for user access right checking.
 	AccountKeyCertField *string `pulumi:"accountKeyCertField"`
 	// Account key filter, using the UPN as the search filter.
 	AccountKeyFilter *string `pulumi:"accountKeyFilter"`
@@ -268,6 +268,8 @@ type ldapState struct {
 	SourcePort *int `pulumi:"sourcePort"`
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
+	// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+	StatusTtl *int `pulumi:"statusTtl"`
 	// Tertiary LDAP server CN domain name or IP.
 	TertiaryServer *string `pulumi:"tertiaryServer"`
 	// Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
@@ -289,7 +291,7 @@ type ldapState struct {
 }
 
 type LdapState struct {
-	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	// Define subject identity field in certificate for user access right checking.
 	AccountKeyCertField pulumi.StringPtrInput
 	// Account key filter, using the UPN as the search filter.
 	AccountKeyFilter pulumi.StringPtrInput
@@ -353,6 +355,8 @@ type LdapState struct {
 	SourcePort pulumi.IntPtrInput
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringPtrInput
+	// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+	StatusTtl pulumi.IntPtrInput
 	// Tertiary LDAP server CN domain name or IP.
 	TertiaryServer pulumi.StringPtrInput
 	// Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
@@ -378,7 +382,7 @@ func (LdapState) ElementType() reflect.Type {
 }
 
 type ldapArgs struct {
-	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	// Define subject identity field in certificate for user access right checking.
 	AccountKeyCertField *string `pulumi:"accountKeyCertField"`
 	// Account key filter, using the UPN as the search filter.
 	AccountKeyFilter *string `pulumi:"accountKeyFilter"`
@@ -442,6 +446,8 @@ type ldapArgs struct {
 	SourcePort *int `pulumi:"sourcePort"`
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
+	// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+	StatusTtl *int `pulumi:"statusTtl"`
 	// Tertiary LDAP server CN domain name or IP.
 	TertiaryServer *string `pulumi:"tertiaryServer"`
 	// Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
@@ -464,7 +470,7 @@ type ldapArgs struct {
 
 // The set of arguments for constructing a Ldap resource.
 type LdapArgs struct {
-	// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+	// Define subject identity field in certificate for user access right checking.
 	AccountKeyCertField pulumi.StringPtrInput
 	// Account key filter, using the UPN as the search filter.
 	AccountKeyFilter pulumi.StringPtrInput
@@ -528,6 +534,8 @@ type LdapArgs struct {
 	SourcePort pulumi.IntPtrInput
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
 	SslMinProtoVersion pulumi.StringPtrInput
+	// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+	StatusTtl pulumi.IntPtrInput
 	// Tertiary LDAP server CN domain name or IP.
 	TertiaryServer pulumi.StringPtrInput
 	// Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
@@ -635,7 +643,7 @@ func (o LdapOutput) ToLdapOutputWithContext(ctx context.Context) LdapOutput {
 	return o
 }
 
-// Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+// Define subject identity field in certificate for user access right checking.
 func (o LdapOutput) AccountKeyCertField() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ldap) pulumi.StringOutput { return v.AccountKeyCertField }).(pulumi.StringOutput)
 }
@@ -795,6 +803,11 @@ func (o LdapOutput) SslMinProtoVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ldap) pulumi.StringOutput { return v.SslMinProtoVersion }).(pulumi.StringOutput)
 }
 
+// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+func (o LdapOutput) StatusTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *Ldap) pulumi.IntOutput { return v.StatusTtl }).(pulumi.IntOutput)
+}
+
 // Tertiary LDAP server CN domain name or IP.
 func (o LdapOutput) TertiaryServer() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ldap) pulumi.StringOutput { return v.TertiaryServer }).(pulumi.StringOutput)
@@ -836,8 +849,8 @@ func (o LdapOutput) Username() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o LdapOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Ldap) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o LdapOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ldap) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type LdapArrayOutput struct{ *pulumi.OutputState }

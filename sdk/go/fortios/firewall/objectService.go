@@ -19,7 +19,6 @@ import (
 // ## Example Usage
 //
 // ### Fqdn Service
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -46,10 +45,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Iprange Service
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -79,10 +76,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### ICMP Service
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -111,7 +106,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type ObjectService struct {
 	pulumi.CustomResourceState
 

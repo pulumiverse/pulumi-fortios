@@ -78,10 +78,10 @@ class WtpArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] firmware_provision: Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
         :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] image_download: Enable/disable WTP image download. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] index: Index (0 - 4294967295).
-        :param pulumi.Input[str] ip_fragment_preventing: Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        :param pulumi.Input[str] ip_fragment_preventing: Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         :param pulumi.Input['WtpLanArgs'] lan: WTP LAN port mapping. The structure of `lan` block is documented below.
         :param pulumi.Input[str] led_state: Enable to allow the FortiAPs LEDs to light. Disable to keep the LEDs off. You may want to keep the LEDs off so they are not distracting in low light areas etc. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] location: Field for describing the physical location of the WTP, AP or FortiAP.
@@ -107,8 +107,8 @@ class WtpArgs:
         :param pulumi.Input[str] split_tunneling_acl_local_ap_subnet: Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] split_tunneling_acl_path: Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
         :param pulumi.Input[Sequence[pulumi.Input['WtpSplitTunnelingAclArgs']]] split_tunneling_acls: Split tunneling ACL filter list. The structure of `split_tunneling_acl` block is documented below.
-        :param pulumi.Input[int] tun_mtu_downlink: Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
-        :param pulumi.Input[int] tun_mtu_uplink: Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
+        :param pulumi.Input[int] tun_mtu_downlink: The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
+        :param pulumi.Input[int] tun_mtu_uplink: The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wan_port_mode: Enable/disable using the FortiAP WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
@@ -359,7 +359,7 @@ class WtpArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -395,7 +395,7 @@ class WtpArgs:
     @pulumi.getter(name="ipFragmentPreventing")
     def ip_fragment_preventing(self) -> Optional[pulumi.Input[str]]:
         """
-        Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         """
         return pulumi.get(self, "ip_fragment_preventing")
 
@@ -707,7 +707,7 @@ class WtpArgs:
     @pulumi.getter(name="tunMtuDownlink")
     def tun_mtu_downlink(self) -> Optional[pulumi.Input[int]]:
         """
-        Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
+        The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         """
         return pulumi.get(self, "tun_mtu_downlink")
 
@@ -719,7 +719,7 @@ class WtpArgs:
     @pulumi.getter(name="tunMtuUplink")
     def tun_mtu_uplink(self) -> Optional[pulumi.Input[int]]:
         """
-        Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
+        The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         """
         return pulumi.get(self, "tun_mtu_uplink")
 
@@ -852,10 +852,10 @@ class _WtpState:
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] firmware_provision: Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
         :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] image_download: Enable/disable WTP image download. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] index: Index (0 - 4294967295).
-        :param pulumi.Input[str] ip_fragment_preventing: Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        :param pulumi.Input[str] ip_fragment_preventing: Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         :param pulumi.Input['WtpLanArgs'] lan: WTP LAN port mapping. The structure of `lan` block is documented below.
         :param pulumi.Input[str] led_state: Enable to allow the FortiAPs LEDs to light. Disable to keep the LEDs off. You may want to keep the LEDs off so they are not distracting in low light areas etc. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] location: Field for describing the physical location of the WTP, AP or FortiAP.
@@ -881,8 +881,8 @@ class _WtpState:
         :param pulumi.Input[str] split_tunneling_acl_local_ap_subnet: Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] split_tunneling_acl_path: Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
         :param pulumi.Input[Sequence[pulumi.Input['WtpSplitTunnelingAclArgs']]] split_tunneling_acls: Split tunneling ACL filter list. The structure of `split_tunneling_acl` block is documented below.
-        :param pulumi.Input[int] tun_mtu_downlink: Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
-        :param pulumi.Input[int] tun_mtu_uplink: Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
+        :param pulumi.Input[int] tun_mtu_downlink: The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
+        :param pulumi.Input[int] tun_mtu_uplink: The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wan_port_mode: Enable/disable using the FortiAP WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
@@ -1123,7 +1123,7 @@ class _WtpState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1159,7 +1159,7 @@ class _WtpState:
     @pulumi.getter(name="ipFragmentPreventing")
     def ip_fragment_preventing(self) -> Optional[pulumi.Input[str]]:
         """
-        Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         """
         return pulumi.get(self, "ip_fragment_preventing")
 
@@ -1471,7 +1471,7 @@ class _WtpState:
     @pulumi.getter(name="tunMtuDownlink")
     def tun_mtu_downlink(self) -> Optional[pulumi.Input[int]]:
         """
-        Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
+        The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         """
         return pulumi.get(self, "tun_mtu_downlink")
 
@@ -1483,7 +1483,7 @@ class _WtpState:
     @pulumi.getter(name="tunMtuUplink")
     def tun_mtu_uplink(self) -> Optional[pulumi.Input[int]]:
         """
-        Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
+        The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         """
         return pulumi.get(self, "tun_mtu_uplink")
 
@@ -1652,10 +1652,10 @@ class Wtp(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] firmware_provision: Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
         :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] image_download: Enable/disable WTP image download. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] index: Index (0 - 4294967295).
-        :param pulumi.Input[str] ip_fragment_preventing: Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        :param pulumi.Input[str] ip_fragment_preventing: Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         :param pulumi.Input[pulumi.InputType['WtpLanArgs']] lan: WTP LAN port mapping. The structure of `lan` block is documented below.
         :param pulumi.Input[str] led_state: Enable to allow the FortiAPs LEDs to light. Disable to keep the LEDs off. You may want to keep the LEDs off so they are not distracting in low light areas etc. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] location: Field for describing the physical location of the WTP, AP or FortiAP.
@@ -1681,8 +1681,8 @@ class Wtp(pulumi.CustomResource):
         :param pulumi.Input[str] split_tunneling_acl_local_ap_subnet: Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] split_tunneling_acl_path: Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WtpSplitTunnelingAclArgs']]]] split_tunneling_acls: Split tunneling ACL filter list. The structure of `split_tunneling_acl` block is documented below.
-        :param pulumi.Input[int] tun_mtu_downlink: Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
-        :param pulumi.Input[int] tun_mtu_uplink: Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
+        :param pulumi.Input[int] tun_mtu_downlink: The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
+        :param pulumi.Input[int] tun_mtu_uplink: The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wan_port_mode: Enable/disable using the FortiAP WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
@@ -1917,10 +1917,10 @@ class Wtp(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
         :param pulumi.Input[str] firmware_provision: Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
         :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] image_download: Enable/disable WTP image download. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] index: Index (0 - 4294967295).
-        :param pulumi.Input[str] ip_fragment_preventing: Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        :param pulumi.Input[str] ip_fragment_preventing: Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         :param pulumi.Input[pulumi.InputType['WtpLanArgs']] lan: WTP LAN port mapping. The structure of `lan` block is documented below.
         :param pulumi.Input[str] led_state: Enable to allow the FortiAPs LEDs to light. Disable to keep the LEDs off. You may want to keep the LEDs off so they are not distracting in low light areas etc. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] location: Field for describing the physical location of the WTP, AP or FortiAP.
@@ -1946,8 +1946,8 @@ class Wtp(pulumi.CustomResource):
         :param pulumi.Input[str] split_tunneling_acl_local_ap_subnet: Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] split_tunneling_acl_path: Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WtpSplitTunnelingAclArgs']]]] split_tunneling_acls: Split tunneling ACL filter list. The structure of `split_tunneling_acl` block is documented below.
-        :param pulumi.Input[int] tun_mtu_downlink: Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
-        :param pulumi.Input[int] tun_mtu_uplink: Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
+        :param pulumi.Input[int] tun_mtu_downlink: The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
+        :param pulumi.Input[int] tun_mtu_uplink: The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wan_port_mode: Enable/disable using the FortiAP WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
@@ -2101,7 +2101,7 @@ class Wtp(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2125,7 +2125,7 @@ class Wtp(pulumi.CustomResource):
     @pulumi.getter(name="ipFragmentPreventing")
     def ip_fragment_preventing(self) -> pulumi.Output[str]:
         """
-        Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         """
         return pulumi.get(self, "ip_fragment_preventing")
 
@@ -2333,7 +2333,7 @@ class Wtp(pulumi.CustomResource):
     @pulumi.getter(name="tunMtuDownlink")
     def tun_mtu_downlink(self) -> pulumi.Output[int]:
         """
-        Downlink tunnel MTU in octets. Set the value to either 0 (by default), 576, or 1500.
+        The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         """
         return pulumi.get(self, "tun_mtu_downlink")
 
@@ -2341,7 +2341,7 @@ class Wtp(pulumi.CustomResource):
     @pulumi.getter(name="tunMtuUplink")
     def tun_mtu_uplink(self) -> pulumi.Output[int]:
         """
-        Uplink tunnel maximum transmission unit (MTU) in octets (eight-bit bytes). Set the value to either 0 (by default), 576, or 1500.
+        The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         """
         return pulumi.get(self, "tun_mtu_uplink")
 
@@ -2355,7 +2355,7 @@ class Wtp(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

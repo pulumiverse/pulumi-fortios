@@ -74,6 +74,10 @@ export class Ca extends pulumi.CustomResource {
      */
     public readonly estUrl!: pulumi.Output<string>;
     /**
+     * Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
+     */
+    public readonly fabricCa!: pulumi.Output<string>;
+    /**
      * Time at which CA was last updated.
      */
     public readonly lastUpdated!: pulumi.Output<number>;
@@ -112,7 +116,7 @@ export class Ca extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Ca resource with the given unique name, arguments, and options.
@@ -132,6 +136,7 @@ export class Ca extends pulumi.CustomResource {
             resourceInputs["ca"] = state ? state.ca : undefined;
             resourceInputs["caIdentifier"] = state ? state.caIdentifier : undefined;
             resourceInputs["estUrl"] = state ? state.estUrl : undefined;
+            resourceInputs["fabricCa"] = state ? state.fabricCa : undefined;
             resourceInputs["lastUpdated"] = state ? state.lastUpdated : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["obsolete"] = state ? state.obsolete : undefined;
@@ -152,6 +157,7 @@ export class Ca extends pulumi.CustomResource {
             resourceInputs["ca"] = args?.ca ? pulumi.secret(args.ca) : undefined;
             resourceInputs["caIdentifier"] = args ? args.caIdentifier : undefined;
             resourceInputs["estUrl"] = args ? args.estUrl : undefined;
+            resourceInputs["fabricCa"] = args ? args.fabricCa : undefined;
             resourceInputs["lastUpdated"] = args ? args.lastUpdated : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["obsolete"] = args ? args.obsolete : undefined;
@@ -194,6 +200,10 @@ export interface CaState {
      * URL of the EST server.
      */
     estUrl?: pulumi.Input<string>;
+    /**
+     * Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
+     */
+    fabricCa?: pulumi.Input<string>;
     /**
      * Time at which CA was last updated.
      */
@@ -260,6 +270,10 @@ export interface CaArgs {
      * URL of the EST server.
      */
     estUrl?: pulumi.Input<string>;
+    /**
+     * Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
+     */
+    fabricCa?: pulumi.Input<string>;
     /**
      * Time at which CA was last updated.
      */

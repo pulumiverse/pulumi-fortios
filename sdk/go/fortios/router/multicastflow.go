@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,7 +43,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -72,12 +70,12 @@ type Multicastflow struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Multicast-flow entries. The structure of `flows` block is documented below.
 	Flows MulticastflowFlowArrayOutput `pulumi:"flows"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewMulticastflow registers a new resource with the given unique name, arguments, and options.
@@ -116,7 +114,7 @@ type multicastflowState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Multicast-flow entries. The structure of `flows` block is documented below.
 	Flows []MulticastflowFlow `pulumi:"flows"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Name.
 	Name *string `pulumi:"name"`
@@ -131,7 +129,7 @@ type MulticastflowState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Multicast-flow entries. The structure of `flows` block is documented below.
 	Flows MulticastflowFlowArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Name.
 	Name pulumi.StringPtrInput
@@ -150,7 +148,7 @@ type multicastflowArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Multicast-flow entries. The structure of `flows` block is documented below.
 	Flows []MulticastflowFlow `pulumi:"flows"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Name.
 	Name *string `pulumi:"name"`
@@ -166,7 +164,7 @@ type MulticastflowArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Multicast-flow entries. The structure of `flows` block is documented below.
 	Flows MulticastflowFlowArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Name.
 	Name pulumi.StringPtrInput
@@ -276,7 +274,7 @@ func (o MulticastflowOutput) Flows() MulticastflowFlowArrayOutput {
 	return o.ApplyT(func(v *Multicastflow) MulticastflowFlowArrayOutput { return v.Flows }).(MulticastflowFlowArrayOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o MulticastflowOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Multicastflow) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -287,8 +285,8 @@ func (o MulticastflowOutput) Name() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o MulticastflowOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Multicastflow) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o MulticastflowOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Multicastflow) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type MulticastflowArrayOutput struct{ *pulumi.OutputState }

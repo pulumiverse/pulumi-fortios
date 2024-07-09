@@ -35,7 +35,7 @@ namespace Pulumiverse.Fortios.System
     public partial class Affinityinterrupt : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+        /// Affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
         /// </summary>
         [Output("affinityCpumask")]
         public Output<string> AffinityCpumask { get; private set; } = null!;
@@ -62,7 +62,7 @@ namespace Pulumiverse.Fortios.System
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace Pulumiverse.Fortios.System
     public sealed class AffinityinterruptArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+        /// Affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
         /// </summary>
         [Input("affinityCpumask", required: true)]
         public Input<string> AffinityCpumask { get; set; } = null!;
@@ -150,7 +150,7 @@ namespace Pulumiverse.Fortios.System
     public sealed class AffinityinterruptState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+        /// Affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
         /// </summary>
         [Input("affinityCpumask")]
         public Input<string>? AffinityCpumask { get; set; }

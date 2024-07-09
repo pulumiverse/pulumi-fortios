@@ -26,7 +26,7 @@ class NacsettingsArgs:
         The set of arguments for constructing a Nacsettings resource.
         :param pulumi.Input[str] auto_auth: Enable/disable NAC device auto authorization when discovered and nac-policy matched. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] bounce_nac_port: Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] inactive_timer: Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
+        :param pulumi.Input[int] inactive_timer: Time interval(minutes, 0 = no expiry) to be included in the inactive NAC devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
         :param pulumi.Input[str] link_down_flush: Clear NAC devices on switch ports on link down event. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] mode: Set NAC mode to be used on the FortiSwitch ports. Valid values: `local`, `global`.
         :param pulumi.Input[str] name: NAC settings name.
@@ -78,7 +78,7 @@ class NacsettingsArgs:
     @pulumi.getter(name="inactiveTimer")
     def inactive_timer(self) -> Optional[pulumi.Input[int]]:
         """
-        Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
+        Time interval(minutes, 0 = no expiry) to be included in the inactive NAC devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
         """
         return pulumi.get(self, "inactive_timer")
 
@@ -162,7 +162,7 @@ class _NacsettingsState:
         Input properties used for looking up and filtering Nacsettings resources.
         :param pulumi.Input[str] auto_auth: Enable/disable NAC device auto authorization when discovered and nac-policy matched. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] bounce_nac_port: Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] inactive_timer: Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
+        :param pulumi.Input[int] inactive_timer: Time interval(minutes, 0 = no expiry) to be included in the inactive NAC devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
         :param pulumi.Input[str] link_down_flush: Clear NAC devices on switch ports on link down event. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] mode: Set NAC mode to be used on the FortiSwitch ports. Valid values: `local`, `global`.
         :param pulumi.Input[str] name: NAC settings name.
@@ -214,7 +214,7 @@ class _NacsettingsState:
     @pulumi.getter(name="inactiveTimer")
     def inactive_timer(self) -> Optional[pulumi.Input[int]]:
         """
-        Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
+        Time interval(minutes, 0 = no expiry) to be included in the inactive NAC devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
         """
         return pulumi.get(self, "inactive_timer")
 
@@ -298,7 +298,7 @@ class Nacsettings(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,7.0.0`.
+        Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,6.4.15,7.0.0`.
 
         ## Import
 
@@ -322,7 +322,7 @@ class Nacsettings(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] auto_auth: Enable/disable NAC device auto authorization when discovered and nac-policy matched. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] bounce_nac_port: Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] inactive_timer: Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
+        :param pulumi.Input[int] inactive_timer: Time interval(minutes, 0 = no expiry) to be included in the inactive NAC devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
         :param pulumi.Input[str] link_down_flush: Clear NAC devices on switch ports on link down event. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] mode: Set NAC mode to be used on the FortiSwitch ports. Valid values: `local`, `global`.
         :param pulumi.Input[str] name: NAC settings name.
@@ -336,7 +336,7 @@ class Nacsettings(pulumi.CustomResource):
                  args: Optional[NacsettingsArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,7.0.0`.
+        Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,6.4.15,7.0.0`.
 
         ## Import
 
@@ -423,7 +423,7 @@ class Nacsettings(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] auto_auth: Enable/disable NAC device auto authorization when discovered and nac-policy matched. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] bounce_nac_port: Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
-        :param pulumi.Input[int] inactive_timer: Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
+        :param pulumi.Input[int] inactive_timer: Time interval(minutes, 0 = no expiry) to be included in the inactive NAC devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
         :param pulumi.Input[str] link_down_flush: Clear NAC devices on switch ports on link down event. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] mode: Set NAC mode to be used on the FortiSwitch ports. Valid values: `local`, `global`.
         :param pulumi.Input[str] name: NAC settings name.
@@ -464,7 +464,7 @@ class Nacsettings(pulumi.CustomResource):
     @pulumi.getter(name="inactiveTimer")
     def inactive_timer(self) -> pulumi.Output[int]:
         """
-        Time interval after which inactive NAC devices will be expired (in minutes, 0 means no expiry).
+        Time interval(minutes, 0 = no expiry) to be included in the inactive NAC devices expiry calculation (mac age-out + inactive-time + periodic scan interval).
         """
         return pulumi.get(self, "inactive_timer")
 
@@ -502,7 +502,7 @@ class Nacsettings(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

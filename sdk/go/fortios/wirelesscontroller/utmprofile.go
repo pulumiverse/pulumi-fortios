@@ -48,7 +48,7 @@ type Utmprofile struct {
 	// Enable/disable UTM logging. Valid values: `enable`, `disable`.
 	UtmLog pulumi.StringOutput `pulumi:"utmLog"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// WebFilter profile name.
 	WebfilterProfile pulumi.StringOutput `pulumi:"webfilterProfile"`
 }
@@ -294,8 +294,8 @@ func (o UtmprofileOutput) UtmLog() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o UtmprofileOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Utmprofile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o UtmprofileOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Utmprofile) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // WebFilter profile name.

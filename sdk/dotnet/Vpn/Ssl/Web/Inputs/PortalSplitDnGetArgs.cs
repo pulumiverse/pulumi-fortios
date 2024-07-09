@@ -26,7 +26,7 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web.Inputs
         public Input<string>? DnsServer2 { get; set; }
 
         /// <summary>
-        /// Split DNS domains used for SSL-VPN clients separated by comma(,).
+        /// Split DNS domains used for SSL-VPN clients separated by comma.
         /// </summary>
         [Input("domains")]
         public Input<string>? Domains { get; set; }

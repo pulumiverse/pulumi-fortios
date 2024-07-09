@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,7 +41,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -86,12 +84,14 @@ type Tacacs struct {
 	Server pulumi.StringOutput `pulumi:"server"`
 	// source IP for communications to TACACS+ server.
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
+	// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+	StatusTtl pulumi.IntOutput `pulumi:"statusTtl"`
 	// Key to access the tertiary server.
 	TertiaryKey pulumi.StringPtrOutput `pulumi:"tertiaryKey"`
 	// Tertiary TACACS+ server CN domain name or IP address.
 	TertiaryServer pulumi.StringOutput `pulumi:"tertiaryServer"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewTacacs registers a new resource with the given unique name, arguments, and options.
@@ -161,6 +161,8 @@ type tacacsState struct {
 	Server *string `pulumi:"server"`
 	// source IP for communications to TACACS+ server.
 	SourceIp *string `pulumi:"sourceIp"`
+	// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+	StatusTtl *int `pulumi:"statusTtl"`
 	// Key to access the tertiary server.
 	TertiaryKey *string `pulumi:"tertiaryKey"`
 	// Tertiary TACACS+ server CN domain name or IP address.
@@ -192,6 +194,8 @@ type TacacsState struct {
 	Server pulumi.StringPtrInput
 	// source IP for communications to TACACS+ server.
 	SourceIp pulumi.StringPtrInput
+	// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+	StatusTtl pulumi.IntPtrInput
 	// Key to access the tertiary server.
 	TertiaryKey pulumi.StringPtrInput
 	// Tertiary TACACS+ server CN domain name or IP address.
@@ -227,6 +231,8 @@ type tacacsArgs struct {
 	Server *string `pulumi:"server"`
 	// source IP for communications to TACACS+ server.
 	SourceIp *string `pulumi:"sourceIp"`
+	// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+	StatusTtl *int `pulumi:"statusTtl"`
 	// Key to access the tertiary server.
 	TertiaryKey *string `pulumi:"tertiaryKey"`
 	// Tertiary TACACS+ server CN domain name or IP address.
@@ -259,6 +265,8 @@ type TacacsArgs struct {
 	Server pulumi.StringPtrInput
 	// source IP for communications to TACACS+ server.
 	SourceIp pulumi.StringPtrInput
+	// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+	StatusTtl pulumi.IntPtrInput
 	// Key to access the tertiary server.
 	TertiaryKey pulumi.StringPtrInput
 	// Tertiary TACACS+ server CN domain name or IP address.
@@ -409,6 +417,11 @@ func (o TacacsOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Tacacs) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
 }
 
+// Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
+func (o TacacsOutput) StatusTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *Tacacs) pulumi.IntOutput { return v.StatusTtl }).(pulumi.IntOutput)
+}
+
 // Key to access the tertiary server.
 func (o TacacsOutput) TertiaryKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Tacacs) pulumi.StringPtrOutput { return v.TertiaryKey }).(pulumi.StringPtrOutput)
@@ -420,8 +433,8 @@ func (o TacacsOutput) TertiaryServer() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o TacacsOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Tacacs) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o TacacsOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Tacacs) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type TacacsArrayOutput struct{ *pulumi.OutputState }

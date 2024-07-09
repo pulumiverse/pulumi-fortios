@@ -79,7 +79,7 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly int KeyId;
         /// <summary>
-        /// Key type for authentication (MD5, SHA1).
+        /// Select NTP authentication type.
         /// </summary>
         public readonly string KeyType;
         /// <summary>

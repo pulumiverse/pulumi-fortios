@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -69,7 +68,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -146,7 +144,7 @@ type Local struct {
 	// Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
 	UsernameSensitivity pulumi.StringOutput `pulumi:"usernameSensitivity"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation.
 	Workstation pulumi.StringOutput `pulumi:"workstation"`
 }
@@ -669,8 +667,8 @@ func (o LocalOutput) UsernameSensitivity() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o LocalOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Local) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o LocalOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation.

@@ -110,7 +110,7 @@ class GetNtpResult:
     @pulumi.getter(name="keyType")
     def key_type(self) -> str:
         """
-        Key type for authentication (MD5, SHA1).
+        Select NTP authentication type.
         """
         return pulumi.get(self, "key_type")
 

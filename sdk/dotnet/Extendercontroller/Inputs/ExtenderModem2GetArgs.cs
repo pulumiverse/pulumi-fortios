@@ -13,9 +13,6 @@ namespace Pulumiverse.Fortios.Extendercontroller.Inputs
 
     public sealed class ExtenderModem2GetArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// FortiExtender auto switch configuration. The structure of `auto_switch` block is documented below.
-        /// </summary>
         [Input("autoSwitch")]
         public Input<Inputs.ExtenderModem2AutoSwitchGetArgs>? AutoSwitch { get; set; }
 
@@ -25,15 +22,9 @@ namespace Pulumiverse.Fortios.Extendercontroller.Inputs
         [Input("connStatus")]
         public Input<int>? ConnStatus { get; set; }
 
-        /// <summary>
-        /// Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-        /// </summary>
         [Input("defaultSim")]
         public Input<string>? DefaultSim { get; set; }
 
-        /// <summary>
-        /// FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-        /// </summary>
         [Input("gps")]
         public Input<string>? Gps { get; set; }
 
@@ -43,9 +34,6 @@ namespace Pulumiverse.Fortios.Extendercontroller.Inputs
         [Input("ifname")]
         public Input<string>? Ifname { get; set; }
 
-        /// <summary>
-        /// Preferred carrier.
-        /// </summary>
         [Input("preferredCarrier")]
         public Input<string>? PreferredCarrier { get; set; }
 
@@ -55,33 +43,18 @@ namespace Pulumiverse.Fortios.Extendercontroller.Inputs
         [Input("redundantIntf")]
         public Input<string>? RedundantIntf { get; set; }
 
-        /// <summary>
-        /// FortiExtender mode. Valid values: `disable`, `enable`.
-        /// </summary>
         [Input("redundantMode")]
         public Input<string>? RedundantMode { get; set; }
 
-        /// <summary>
-        /// SIM #1 PIN status. Valid values: `disable`, `enable`.
-        /// </summary>
         [Input("sim1Pin")]
         public Input<string>? Sim1Pin { get; set; }
 
-        /// <summary>
-        /// SIM #1 PIN password.
-        /// </summary>
         [Input("sim1PinCode")]
         public Input<string>? Sim1PinCode { get; set; }
 
-        /// <summary>
-        /// SIM #2 PIN status. Valid values: `disable`, `enable`.
-        /// </summary>
         [Input("sim2Pin")]
         public Input<string>? Sim2Pin { get; set; }
 
-        /// <summary>
-        /// SIM #2 PIN password.
-        /// </summary>
         [Input("sim2PinCode")]
         public Input<string>? Sim2PinCode { get; set; }
 

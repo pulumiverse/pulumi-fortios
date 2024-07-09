@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,7 +40,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -84,7 +82,7 @@ type Settings8021X struct {
 	// 802.1X Tx period (seconds, default=30).
 	TxPeriod pulumi.IntOutput `pulumi:"txPeriod"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewSettings8021X registers a new resource with the given unique name, arguments, and options.
@@ -359,8 +357,8 @@ func (o Settings8021XOutput) TxPeriod() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o Settings8021XOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Settings8021X) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o Settings8021XOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Settings8021X) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type Settings8021XArrayOutput struct{ *pulumi.OutputState }

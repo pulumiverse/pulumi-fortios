@@ -22,11 +22,14 @@ class NacpolicyArgs:
                  ems_tag: Optional[pulumi.Input[str]] = None,
                  family: Optional[pulumi.Input[str]] = None,
                  firewall_address: Optional[pulumi.Input[str]] = None,
+                 fortivoice_tag: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  hw_vendor: Optional[pulumi.Input[str]] = None,
                  hw_version: Optional[pulumi.Input[str]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
+                 match_period: Optional[pulumi.Input[int]] = None,
+                 match_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  os: Optional[pulumi.Input[str]] = None,
                  severities: Optional[pulumi.Input[Sequence[pulumi.Input['NacpolicySeverityArgs']]]] = None,
@@ -52,11 +55,14 @@ class NacpolicyArgs:
         :param pulumi.Input[str] ems_tag: NAC policy matching EMS tag.
         :param pulumi.Input[str] family: NAC policy matching family.
         :param pulumi.Input[str] firewall_address: Dynamic firewall address to associate MAC which match this policy.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] fortivoice_tag: NAC policy matching FortiVoice tag.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: NAC policy matching host.
         :param pulumi.Input[str] hw_vendor: NAC policy matching hardware vendor.
         :param pulumi.Input[str] hw_version: NAC policy matching hardware version.
         :param pulumi.Input[str] mac: NAC policy matching MAC address.
+        :param pulumi.Input[int] match_period: Number of days the matched devices will be retained (0 - always retain)
+        :param pulumi.Input[str] match_type: Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
         :param pulumi.Input[str] name: NAC policy name.
         :param pulumi.Input[str] os: NAC policy matching operating system.
         :param pulumi.Input[Sequence[pulumi.Input['NacpolicySeverityArgs']]] severities: NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
@@ -87,6 +93,8 @@ class NacpolicyArgs:
             pulumi.set(__self__, "family", family)
         if firewall_address is not None:
             pulumi.set(__self__, "firewall_address", firewall_address)
+        if fortivoice_tag is not None:
+            pulumi.set(__self__, "fortivoice_tag", fortivoice_tag)
         if get_all_tables is not None:
             pulumi.set(__self__, "get_all_tables", get_all_tables)
         if host is not None:
@@ -97,6 +105,10 @@ class NacpolicyArgs:
             pulumi.set(__self__, "hw_version", hw_version)
         if mac is not None:
             pulumi.set(__self__, "mac", mac)
+        if match_period is not None:
+            pulumi.set(__self__, "match_period", match_period)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if os is not None:
@@ -205,10 +217,22 @@ class NacpolicyArgs:
         pulumi.set(self, "firewall_address", value)
 
     @property
+    @pulumi.getter(name="fortivoiceTag")
+    def fortivoice_tag(self) -> Optional[pulumi.Input[str]]:
+        """
+        NAC policy matching FortiVoice tag.
+        """
+        return pulumi.get(self, "fortivoice_tag")
+
+    @fortivoice_tag.setter
+    def fortivoice_tag(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fortivoice_tag", value)
+
+    @property
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -263,6 +287,30 @@ class NacpolicyArgs:
     @mac.setter
     def mac(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mac", value)
+
+    @property
+    @pulumi.getter(name="matchPeriod")
+    def match_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of days the matched devices will be retained (0 - always retain)
+        """
+        return pulumi.get(self, "match_period")
+
+    @match_period.setter
+    def match_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "match_period", value)
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+        """
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_type", value)
 
     @property
     @pulumi.getter
@@ -478,11 +526,14 @@ class _NacpolicyState:
                  ems_tag: Optional[pulumi.Input[str]] = None,
                  family: Optional[pulumi.Input[str]] = None,
                  firewall_address: Optional[pulumi.Input[str]] = None,
+                 fortivoice_tag: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  hw_vendor: Optional[pulumi.Input[str]] = None,
                  hw_version: Optional[pulumi.Input[str]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
+                 match_period: Optional[pulumi.Input[int]] = None,
+                 match_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  os: Optional[pulumi.Input[str]] = None,
                  severities: Optional[pulumi.Input[Sequence[pulumi.Input['NacpolicySeverityArgs']]]] = None,
@@ -508,11 +559,14 @@ class _NacpolicyState:
         :param pulumi.Input[str] ems_tag: NAC policy matching EMS tag.
         :param pulumi.Input[str] family: NAC policy matching family.
         :param pulumi.Input[str] firewall_address: Dynamic firewall address to associate MAC which match this policy.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] fortivoice_tag: NAC policy matching FortiVoice tag.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: NAC policy matching host.
         :param pulumi.Input[str] hw_vendor: NAC policy matching hardware vendor.
         :param pulumi.Input[str] hw_version: NAC policy matching hardware version.
         :param pulumi.Input[str] mac: NAC policy matching MAC address.
+        :param pulumi.Input[int] match_period: Number of days the matched devices will be retained (0 - always retain)
+        :param pulumi.Input[str] match_type: Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
         :param pulumi.Input[str] name: NAC policy name.
         :param pulumi.Input[str] os: NAC policy matching operating system.
         :param pulumi.Input[Sequence[pulumi.Input['NacpolicySeverityArgs']]] severities: NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
@@ -543,6 +597,8 @@ class _NacpolicyState:
             pulumi.set(__self__, "family", family)
         if firewall_address is not None:
             pulumi.set(__self__, "firewall_address", firewall_address)
+        if fortivoice_tag is not None:
+            pulumi.set(__self__, "fortivoice_tag", fortivoice_tag)
         if get_all_tables is not None:
             pulumi.set(__self__, "get_all_tables", get_all_tables)
         if host is not None:
@@ -553,6 +609,10 @@ class _NacpolicyState:
             pulumi.set(__self__, "hw_version", hw_version)
         if mac is not None:
             pulumi.set(__self__, "mac", mac)
+        if match_period is not None:
+            pulumi.set(__self__, "match_period", match_period)
+        if match_type is not None:
+            pulumi.set(__self__, "match_type", match_type)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if os is not None:
@@ -661,10 +721,22 @@ class _NacpolicyState:
         pulumi.set(self, "firewall_address", value)
 
     @property
+    @pulumi.getter(name="fortivoiceTag")
+    def fortivoice_tag(self) -> Optional[pulumi.Input[str]]:
+        """
+        NAC policy matching FortiVoice tag.
+        """
+        return pulumi.get(self, "fortivoice_tag")
+
+    @fortivoice_tag.setter
+    def fortivoice_tag(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fortivoice_tag", value)
+
+    @property
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -719,6 +791,30 @@ class _NacpolicyState:
     @mac.setter
     def mac(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mac", value)
+
+    @property
+    @pulumi.getter(name="matchPeriod")
+    def match_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of days the matched devices will be retained (0 - always retain)
+        """
+        return pulumi.get(self, "match_period")
+
+    @match_period.setter
+    def match_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "match_period", value)
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+        """
+        return pulumi.get(self, "match_type")
+
+    @match_type.setter
+    def match_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_type", value)
 
     @property
     @pulumi.getter
@@ -936,11 +1032,14 @@ class Nacpolicy(pulumi.CustomResource):
                  ems_tag: Optional[pulumi.Input[str]] = None,
                  family: Optional[pulumi.Input[str]] = None,
                  firewall_address: Optional[pulumi.Input[str]] = None,
+                 fortivoice_tag: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  hw_vendor: Optional[pulumi.Input[str]] = None,
                  hw_version: Optional[pulumi.Input[str]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
+                 match_period: Optional[pulumi.Input[int]] = None,
+                 match_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  os: Optional[pulumi.Input[str]] = None,
                  severities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NacpolicySeverityArgs']]]]] = None,
@@ -988,11 +1087,14 @@ class Nacpolicy(pulumi.CustomResource):
         :param pulumi.Input[str] ems_tag: NAC policy matching EMS tag.
         :param pulumi.Input[str] family: NAC policy matching family.
         :param pulumi.Input[str] firewall_address: Dynamic firewall address to associate MAC which match this policy.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] fortivoice_tag: NAC policy matching FortiVoice tag.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: NAC policy matching host.
         :param pulumi.Input[str] hw_vendor: NAC policy matching hardware vendor.
         :param pulumi.Input[str] hw_version: NAC policy matching hardware version.
         :param pulumi.Input[str] mac: NAC policy matching MAC address.
+        :param pulumi.Input[int] match_period: Number of days the matched devices will be retained (0 - always retain)
+        :param pulumi.Input[str] match_type: Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
         :param pulumi.Input[str] name: NAC policy name.
         :param pulumi.Input[str] os: NAC policy matching operating system.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NacpolicySeverityArgs']]]] severities: NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
@@ -1059,11 +1161,14 @@ class Nacpolicy(pulumi.CustomResource):
                  ems_tag: Optional[pulumi.Input[str]] = None,
                  family: Optional[pulumi.Input[str]] = None,
                  firewall_address: Optional[pulumi.Input[str]] = None,
+                 fortivoice_tag: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  hw_vendor: Optional[pulumi.Input[str]] = None,
                  hw_version: Optional[pulumi.Input[str]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
+                 match_period: Optional[pulumi.Input[int]] = None,
+                 match_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  os: Optional[pulumi.Input[str]] = None,
                  severities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NacpolicySeverityArgs']]]]] = None,
@@ -1096,11 +1201,14 @@ class Nacpolicy(pulumi.CustomResource):
             __props__.__dict__["ems_tag"] = ems_tag
             __props__.__dict__["family"] = family
             __props__.__dict__["firewall_address"] = firewall_address
+            __props__.__dict__["fortivoice_tag"] = fortivoice_tag
             __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["host"] = host
             __props__.__dict__["hw_vendor"] = hw_vendor
             __props__.__dict__["hw_version"] = hw_version
             __props__.__dict__["mac"] = mac
+            __props__.__dict__["match_period"] = match_period
+            __props__.__dict__["match_type"] = match_type
             __props__.__dict__["name"] = name
             __props__.__dict__["os"] = os
             __props__.__dict__["severities"] = severities
@@ -1134,11 +1242,14 @@ class Nacpolicy(pulumi.CustomResource):
             ems_tag: Optional[pulumi.Input[str]] = None,
             family: Optional[pulumi.Input[str]] = None,
             firewall_address: Optional[pulumi.Input[str]] = None,
+            fortivoice_tag: Optional[pulumi.Input[str]] = None,
             get_all_tables: Optional[pulumi.Input[str]] = None,
             host: Optional[pulumi.Input[str]] = None,
             hw_vendor: Optional[pulumi.Input[str]] = None,
             hw_version: Optional[pulumi.Input[str]] = None,
             mac: Optional[pulumi.Input[str]] = None,
+            match_period: Optional[pulumi.Input[int]] = None,
+            match_type: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             os: Optional[pulumi.Input[str]] = None,
             severities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NacpolicySeverityArgs']]]]] = None,
@@ -1169,11 +1280,14 @@ class Nacpolicy(pulumi.CustomResource):
         :param pulumi.Input[str] ems_tag: NAC policy matching EMS tag.
         :param pulumi.Input[str] family: NAC policy matching family.
         :param pulumi.Input[str] firewall_address: Dynamic firewall address to associate MAC which match this policy.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] fortivoice_tag: NAC policy matching FortiVoice tag.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] host: NAC policy matching host.
         :param pulumi.Input[str] hw_vendor: NAC policy matching hardware vendor.
         :param pulumi.Input[str] hw_version: NAC policy matching hardware version.
         :param pulumi.Input[str] mac: NAC policy matching MAC address.
+        :param pulumi.Input[int] match_period: Number of days the matched devices will be retained (0 - always retain)
+        :param pulumi.Input[str] match_type: Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
         :param pulumi.Input[str] name: NAC policy name.
         :param pulumi.Input[str] os: NAC policy matching operating system.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NacpolicySeverityArgs']]]] severities: NAC policy matching devices vulnerability severity lists. The structure of `severity` block is documented below.
@@ -1202,11 +1316,14 @@ class Nacpolicy(pulumi.CustomResource):
         __props__.__dict__["ems_tag"] = ems_tag
         __props__.__dict__["family"] = family
         __props__.__dict__["firewall_address"] = firewall_address
+        __props__.__dict__["fortivoice_tag"] = fortivoice_tag
         __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["host"] = host
         __props__.__dict__["hw_vendor"] = hw_vendor
         __props__.__dict__["hw_version"] = hw_version
         __props__.__dict__["mac"] = mac
+        __props__.__dict__["match_period"] = match_period
+        __props__.__dict__["match_type"] = match_type
         __props__.__dict__["name"] = name
         __props__.__dict__["os"] = os
         __props__.__dict__["severities"] = severities
@@ -1275,10 +1392,18 @@ class Nacpolicy(pulumi.CustomResource):
         return pulumi.get(self, "firewall_address")
 
     @property
+    @pulumi.getter(name="fortivoiceTag")
+    def fortivoice_tag(self) -> pulumi.Output[str]:
+        """
+        NAC policy matching FortiVoice tag.
+        """
+        return pulumi.get(self, "fortivoice_tag")
+
+    @property
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1313,6 +1438,22 @@ class Nacpolicy(pulumi.CustomResource):
         NAC policy matching MAC address.
         """
         return pulumi.get(self, "mac")
+
+    @property
+    @pulumi.getter(name="matchPeriod")
+    def match_period(self) -> pulumi.Output[int]:
+        """
+        Number of days the matched devices will be retained (0 - always retain)
+        """
+        return pulumi.get(self, "match_period")
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> pulumi.Output[str]:
+        """
+        Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+        """
+        return pulumi.get(self, "match_type")
 
     @property
     @pulumi.getter
@@ -1444,7 +1585,7 @@ class Nacpolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

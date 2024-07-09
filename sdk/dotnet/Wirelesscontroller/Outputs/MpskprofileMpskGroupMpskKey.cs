@@ -27,6 +27,10 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
         /// </summary>
         public readonly int? ConcurrentClients;
         /// <summary>
+        /// Select the type of the key. Valid values: `wpa2-personal`, `wpa3-sae`.
+        /// </summary>
+        public readonly string? KeyType;
+        /// <summary>
         /// MAC address.
         /// </summary>
         public readonly string? Mac;
@@ -42,6 +46,18 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
         /// WPA Pre-shared key.
         /// </summary>
         public readonly string? Passphrase;
+        /// <summary>
+        /// WPA3 SAE password.
+        /// </summary>
+        public readonly string? SaePassword;
+        /// <summary>
+        /// Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        public readonly string? SaePk;
+        /// <summary>
+        /// Private key used for WPA3 SAE-PK authentication.
+        /// </summary>
+        public readonly string? SaePrivateKey;
 
         [OutputConstructor]
         private MpskprofileMpskGroupMpskKey(
@@ -51,21 +67,33 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
 
             int? concurrentClients,
 
+            string? keyType,
+
             string? mac,
 
             ImmutableArray<Outputs.MpskprofileMpskGroupMpskKeyMpskSchedule> mpskSchedules,
 
             string? name,
 
-            string? passphrase)
+            string? passphrase,
+
+            string? saePassword,
+
+            string? saePk,
+
+            string? saePrivateKey)
         {
             Comment = comment;
             ConcurrentClientLimitType = concurrentClientLimitType;
             ConcurrentClients = concurrentClients;
+            KeyType = keyType;
             Mac = mac;
             MpskSchedules = mpskSchedules;
             Name = name;
             Passphrase = passphrase;
+            SaePassword = saePassword;
+            SaePk = saePk;
+            SaePrivateKey = saePrivateKey;
         }
     }
 }

@@ -107,6 +107,7 @@ __all__ = [
     'InterfaceVrrp',
     'InterfaceVrrpProxyArp',
     'IpamPool',
+    'IpamPoolExclude',
     'IpamRule',
     'IpamRuleDevice',
     'IpamRuleInterface',
@@ -690,6 +691,7 @@ class AccprofileUtmgrpPermission(dict):
                  casb: Optional[str] = None,
                  data_leak_prevention: Optional[str] = None,
                  data_loss_prevention: Optional[str] = None,
+                 dlp: Optional[str] = None,
                  dnsfilter: Optional[str] = None,
                  emailfilter: Optional[str] = None,
                  endpoint_control: Optional[str] = None,
@@ -708,6 +710,7 @@ class AccprofileUtmgrpPermission(dict):
         :param str casb: Inline CASB filter profile and settings Valid values: `none`, `read`, `read-write`.
         :param str data_leak_prevention: DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
         :param str data_loss_prevention: DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+        :param str dlp: DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
         :param str dnsfilter: DNS Filter profiles and settings. Valid values: `none`, `read`, `read-write`.
         :param str emailfilter: AntiSpam filter and settings. Valid values: `none`, `read`, `read-write`.
         :param str endpoint_control: FortiClient Profiles. Valid values: `none`, `read`, `read-write`.
@@ -731,6 +734,8 @@ class AccprofileUtmgrpPermission(dict):
             pulumi.set(__self__, "data_leak_prevention", data_leak_prevention)
         if data_loss_prevention is not None:
             pulumi.set(__self__, "data_loss_prevention", data_loss_prevention)
+        if dlp is not None:
+            pulumi.set(__self__, "dlp", dlp)
         if dnsfilter is not None:
             pulumi.set(__self__, "dnsfilter", dnsfilter)
         if emailfilter is not None:
@@ -795,6 +800,14 @@ class AccprofileUtmgrpPermission(dict):
         DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
         """
         return pulumi.get(self, "data_loss_prevention")
+
+    @property
+    @pulumi.getter
+    def dlp(self) -> Optional[str]:
+        """
+        DLP profiles and settings. Valid values: `none`, `read`, `read-write`.
+        """
+        return pulumi.get(self, "dlp")
 
     @property
     @pulumi.getter
@@ -3052,7 +3065,7 @@ class DnsdatabaseDnsEntry(dict):
         :param int id: DNS entry ID.
         :param str ip: IPv4 address of the host.
         :param str ipv6: IPv6 address of the host.
-        :param int preference: DNS entry preference, 0 is the highest preference (0 - 65535, default = 10)
+        :param int preference: DNS entry preference (0 - 65535, highest preference = 0, default = 10).
         :param str status: Enable/disable resource record status. Valid values: `enable`, `disable`.
         :param int ttl: Time-to-live for this entry (0 to 2147483647 sec, default = 0).
         :param str type: Resource record type. Valid values: `A`, `NS`, `CNAME`, `MX`, `AAAA`, `PTR`, `PTR_V6`.
@@ -3120,7 +3133,7 @@ class DnsdatabaseDnsEntry(dict):
     @pulumi.getter
     def preference(self) -> Optional[int]:
         """
-        DNS entry preference, 0 is the highest preference (0 - 65535, default = 10)
+        DNS entry preference (0 - 65535, highest preference = 0, default = 10).
         """
         return pulumi.get(self, "preference")
 
@@ -3565,8 +3578,8 @@ class FederatedupgradeNodeList(dict):
         :param str device_type: What type of device this node represents.
         :param int maximum_minutes: Maximum number of minutes to allow for immediate upgrade preparation.
         :param str serial: Serial number of the node to include.
-        :param str setup_time: When the upgrade was configured. Format hh:mm yyyy/mm/dd UTC.
-        :param str time: Scheduled time for the upgrade. Format hh:mm yyyy/mm/dd UTC.
+        :param str setup_time: Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
+        :param str time: Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC).
         :param str timing: Whether the upgrade should be run immediately, or at a scheduled time. Valid values: `immediate`, `scheduled`.
         :param str upgrade_path: Image IDs to upgrade through.
         """
@@ -3623,7 +3636,7 @@ class FederatedupgradeNodeList(dict):
     @pulumi.getter(name="setupTime")
     def setup_time(self) -> Optional[str]:
         """
-        When the upgrade was configured. Format hh:mm yyyy/mm/dd UTC.
+        Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
         """
         return pulumi.get(self, "setup_time")
 
@@ -3631,7 +3644,7 @@ class FederatedupgradeNodeList(dict):
     @pulumi.getter
     def time(self) -> Optional[str]:
         """
-        Scheduled time for the upgrade. Format hh:mm yyyy/mm/dd UTC.
+        Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC).
         """
         return pulumi.get(self, "time")
 
@@ -3678,9 +3691,7 @@ class GeoipoverrideIp6Range(dict):
                  id: Optional[int] = None,
                  start_ip: Optional[str] = None):
         """
-        :param str end_ip: Ending IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-        :param int id: ID of individual entry in the IPv6 range table.
-        :param str start_ip: Starting IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
+        :param int id: an identifier for the resource with format {{name}}.
         """
         if end_ip is not None:
             pulumi.set(__self__, "end_ip", end_ip)
@@ -3692,25 +3703,19 @@ class GeoipoverrideIp6Range(dict):
     @property
     @pulumi.getter(name="endIp")
     def end_ip(self) -> Optional[str]:
-        """
-        Ending IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-        """
         return pulumi.get(self, "end_ip")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        ID of individual entry in the IPv6 range table.
+        an identifier for the resource with format {{name}}.
         """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="startIp")
     def start_ip(self) -> Optional[str]:
-        """
-        Starting IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-        """
         return pulumi.get(self, "start_ip")
 
 
@@ -3904,7 +3909,7 @@ class HaSecondaryVcluster(dict):
                  vdom: Optional[str] = None):
         """
         :param str monitor: Interfaces to check for port monitoring (or link failure).
-        :param str override: Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        :param str override: Enable and increase the priority of the unit that should always be primary. Valid values: `enable`, `disable`.
         :param int override_wait_time: Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates.
         :param int pingserver_failover_threshold: Remote IP monitoring failover threshold (0 - 50).
         :param str pingserver_monitor_interface: Interfaces to check for remote IP monitoring.
@@ -3947,7 +3952,7 @@ class HaSecondaryVcluster(dict):
     @pulumi.getter
     def override(self) -> Optional[str]:
         """
-        Enable and increase the priority of the unit that should always be primary (master). Valid values: `enable`, `disable`.
+        Enable and increase the priority of the unit that should always be primary. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "override")
 
@@ -5600,59 +5605,6 @@ class InterfaceIpv6(dict):
                  vrip6_link_local: Optional[str] = None,
                  vrrp6s: Optional[Sequence['outputs.InterfaceIpv6Vrrp6']] = None,
                  vrrp_virtual_mac6: Optional[str] = None):
-        """
-        :param str autoconf: Enable/disable address auto config. Valid values: `enable`, `disable`.
-        :param int cli_conn6_status: CLI IPv6 connection status.
-        :param str dhcp6_client_options: DHCPv6 client options. Valid values: `rapid`, `iapd`, `iana`.
-        :param Sequence['InterfaceIpv6Dhcp6IapdListArgs'] dhcp6_iapd_lists: DHCPv6 IA-PD list The structure of `dhcp6_iapd_list` block is documented below.
-        :param str dhcp6_information_request: Enable/disable DHCPv6 information request. Valid values: `enable`, `disable`.
-        :param str dhcp6_prefix_delegation: Enable/disable DHCPv6 prefix delegation. Valid values: `enable`, `disable`.
-        :param str dhcp6_prefix_hint: DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
-        :param int dhcp6_prefix_hint_plt: DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
-        :param int dhcp6_prefix_hint_vlt: DHCPv6 prefix hint valid life time (sec).
-        :param str dhcp6_relay_interface_id: DHCP6 relay interface ID.
-        :param str dhcp6_relay_ip: DHCPv6 relay IP address.
-        :param str dhcp6_relay_service: Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
-        :param str dhcp6_relay_source_interface: Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
-        :param str dhcp6_relay_source_ip: IPv6 address used by the DHCP6 relay as its source IP.
-        :param str dhcp6_relay_type: DHCPv6 relay type. Valid values: `regular`.
-        :param str icmp6_send_redirect: Enable/disable sending of ICMPv6 redirects. Valid values: `enable`, `disable`.
-        :param str interface_identifier: IPv6 interface identifier.
-        :param str ip6_address: Primary IPv6 address prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
-        :param str ip6_allowaccess: Allow management access to the interface.
-        :param int ip6_default_life: Default life (sec).
-        :param int ip6_delegated_prefix_iaid: IAID of obtained delegated-prefix from the upstream interface.
-        :param Sequence['InterfaceIpv6Ip6DelegatedPrefixListArgs'] ip6_delegated_prefix_lists: Advertised IPv6 delegated prefix list. The structure of `ip6_delegated_prefix_list` block is documented below.
-        :param str ip6_dns_server_override: Enable/disable using the DNS server acquired by DHCP. Valid values: `enable`, `disable`.
-        :param Sequence['InterfaceIpv6Ip6ExtraAddrArgs'] ip6_extra_addrs: Extra IPv6 address prefixes of interface. The structure of `ip6_extra_addr` block is documented below.
-        :param int ip6_hop_limit: Hop limit (0 means unspecified).
-        :param int ip6_link_mtu: IPv6 link MTU.
-        :param str ip6_manage_flag: Enable/disable the managed flag. Valid values: `enable`, `disable`.
-        :param int ip6_max_interval: IPv6 maximum interval (4 to 1800 sec).
-        :param int ip6_min_interval: IPv6 minimum interval (3 to 1350 sec).
-        :param str ip6_mode: Addressing mode (static, DHCP, delegated). Valid values: `static`, `dhcp`, `pppoe`, `delegated`.
-        :param str ip6_other_flag: Enable/disable the other IPv6 flag. Valid values: `enable`, `disable`.
-        :param Sequence['InterfaceIpv6Ip6PrefixListArgs'] ip6_prefix_lists: Advertised prefix list. The structure of `ip6_prefix_list` block is documented below.
-        :param str ip6_prefix_mode: Assigning a prefix from DHCP or RA. Valid values: `dhcp6`, `ra`.
-        :param int ip6_reachable_time: IPv6 reachable time (milliseconds; 0 means unspecified).
-        :param int ip6_retrans_time: IPv6 retransmit time (milliseconds; 0 means unspecified).
-        :param str ip6_send_adv: Enable/disable sending advertisements about the interface. Valid values: `enable`, `disable`.
-        :param str ip6_subnet: Subnet to routing prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
-        :param str ip6_upstream_interface: Interface name providing delegated information.
-        :param str nd_cert: Neighbor discovery certificate.
-        :param str nd_cga_modifier: Neighbor discovery CGA modifier.
-        :param str nd_mode: Neighbor discovery mode. Valid values: `basic`, `SEND-compatible`.
-        :param int nd_security_level: Neighbor discovery security level (0 - 7; 0 = least secure, default = 0).
-        :param int nd_timestamp_delta: Neighbor discovery timestamp delta value (1 - 3600 sec; default = 300).
-        :param int nd_timestamp_fuzz: Neighbor discovery timestamp fuzz factor (1 - 60 sec; default = 1).
-        :param str ra_send_mtu: Enable/disable sending link MTU in RA packet. Valid values: `enable`, `disable`.
-        :param str unique_autoconf_addr: Enable/disable unique auto config address. Valid values: `enable`, `disable`.
-        :param str vrip6_link_local: Link-local IPv6 address of virtual router.
-        :param Sequence['InterfaceIpv6Vrrp6Args'] vrrp6s: IPv6 VRRP configuration. The structure of `vrrp6` block is documented below.
-               
-               The `ip6_extra_addr` block supports:
-        :param str vrrp_virtual_mac6: Enable/disable virtual MAC for VRRP. Valid values: `enable`, `disable`.
-        """
         if autoconf is not None:
             pulumi.set(__self__, "autoconf", autoconf)
         if cli_conn6_status is not None:
@@ -5755,395 +5707,246 @@ class InterfaceIpv6(dict):
     @property
     @pulumi.getter
     def autoconf(self) -> Optional[str]:
-        """
-        Enable/disable address auto config. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "autoconf")
 
     @property
     @pulumi.getter(name="cliConn6Status")
     def cli_conn6_status(self) -> Optional[int]:
-        """
-        CLI IPv6 connection status.
-        """
         return pulumi.get(self, "cli_conn6_status")
 
     @property
     @pulumi.getter(name="dhcp6ClientOptions")
     def dhcp6_client_options(self) -> Optional[str]:
-        """
-        DHCPv6 client options. Valid values: `rapid`, `iapd`, `iana`.
-        """
         return pulumi.get(self, "dhcp6_client_options")
 
     @property
     @pulumi.getter(name="dhcp6IapdLists")
     def dhcp6_iapd_lists(self) -> Optional[Sequence['outputs.InterfaceIpv6Dhcp6IapdList']]:
-        """
-        DHCPv6 IA-PD list The structure of `dhcp6_iapd_list` block is documented below.
-        """
         return pulumi.get(self, "dhcp6_iapd_lists")
 
     @property
     @pulumi.getter(name="dhcp6InformationRequest")
     def dhcp6_information_request(self) -> Optional[str]:
-        """
-        Enable/disable DHCPv6 information request. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "dhcp6_information_request")
 
     @property
     @pulumi.getter(name="dhcp6PrefixDelegation")
     def dhcp6_prefix_delegation(self) -> Optional[str]:
-        """
-        Enable/disable DHCPv6 prefix delegation. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "dhcp6_prefix_delegation")
 
     @property
     @pulumi.getter(name="dhcp6PrefixHint")
     def dhcp6_prefix_hint(self) -> Optional[str]:
-        """
-        DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
-        """
         return pulumi.get(self, "dhcp6_prefix_hint")
 
     @property
     @pulumi.getter(name="dhcp6PrefixHintPlt")
     def dhcp6_prefix_hint_plt(self) -> Optional[int]:
-        """
-        DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
-        """
         return pulumi.get(self, "dhcp6_prefix_hint_plt")
 
     @property
     @pulumi.getter(name="dhcp6PrefixHintVlt")
     def dhcp6_prefix_hint_vlt(self) -> Optional[int]:
-        """
-        DHCPv6 prefix hint valid life time (sec).
-        """
         return pulumi.get(self, "dhcp6_prefix_hint_vlt")
 
     @property
     @pulumi.getter(name="dhcp6RelayInterfaceId")
     def dhcp6_relay_interface_id(self) -> Optional[str]:
-        """
-        DHCP6 relay interface ID.
-        """
         return pulumi.get(self, "dhcp6_relay_interface_id")
 
     @property
     @pulumi.getter(name="dhcp6RelayIp")
     def dhcp6_relay_ip(self) -> Optional[str]:
-        """
-        DHCPv6 relay IP address.
-        """
         return pulumi.get(self, "dhcp6_relay_ip")
 
     @property
     @pulumi.getter(name="dhcp6RelayService")
     def dhcp6_relay_service(self) -> Optional[str]:
-        """
-        Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "dhcp6_relay_service")
 
     @property
     @pulumi.getter(name="dhcp6RelaySourceInterface")
     def dhcp6_relay_source_interface(self) -> Optional[str]:
-        """
-        Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "dhcp6_relay_source_interface")
 
     @property
     @pulumi.getter(name="dhcp6RelaySourceIp")
     def dhcp6_relay_source_ip(self) -> Optional[str]:
-        """
-        IPv6 address used by the DHCP6 relay as its source IP.
-        """
         return pulumi.get(self, "dhcp6_relay_source_ip")
 
     @property
     @pulumi.getter(name="dhcp6RelayType")
     def dhcp6_relay_type(self) -> Optional[str]:
-        """
-        DHCPv6 relay type. Valid values: `regular`.
-        """
         return pulumi.get(self, "dhcp6_relay_type")
 
     @property
     @pulumi.getter(name="icmp6SendRedirect")
     def icmp6_send_redirect(self) -> Optional[str]:
-        """
-        Enable/disable sending of ICMPv6 redirects. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "icmp6_send_redirect")
 
     @property
     @pulumi.getter(name="interfaceIdentifier")
     def interface_identifier(self) -> Optional[str]:
-        """
-        IPv6 interface identifier.
-        """
         return pulumi.get(self, "interface_identifier")
 
     @property
     @pulumi.getter(name="ip6Address")
     def ip6_address(self) -> Optional[str]:
-        """
-        Primary IPv6 address prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
-        """
         return pulumi.get(self, "ip6_address")
 
     @property
     @pulumi.getter(name="ip6Allowaccess")
     def ip6_allowaccess(self) -> Optional[str]:
-        """
-        Allow management access to the interface.
-        """
         return pulumi.get(self, "ip6_allowaccess")
 
     @property
     @pulumi.getter(name="ip6DefaultLife")
     def ip6_default_life(self) -> Optional[int]:
-        """
-        Default life (sec).
-        """
         return pulumi.get(self, "ip6_default_life")
 
     @property
     @pulumi.getter(name="ip6DelegatedPrefixIaid")
     def ip6_delegated_prefix_iaid(self) -> Optional[int]:
-        """
-        IAID of obtained delegated-prefix from the upstream interface.
-        """
         return pulumi.get(self, "ip6_delegated_prefix_iaid")
 
     @property
     @pulumi.getter(name="ip6DelegatedPrefixLists")
     def ip6_delegated_prefix_lists(self) -> Optional[Sequence['outputs.InterfaceIpv6Ip6DelegatedPrefixList']]:
-        """
-        Advertised IPv6 delegated prefix list. The structure of `ip6_delegated_prefix_list` block is documented below.
-        """
         return pulumi.get(self, "ip6_delegated_prefix_lists")
 
     @property
     @pulumi.getter(name="ip6DnsServerOverride")
     def ip6_dns_server_override(self) -> Optional[str]:
-        """
-        Enable/disable using the DNS server acquired by DHCP. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ip6_dns_server_override")
 
     @property
     @pulumi.getter(name="ip6ExtraAddrs")
     def ip6_extra_addrs(self) -> Optional[Sequence['outputs.InterfaceIpv6Ip6ExtraAddr']]:
-        """
-        Extra IPv6 address prefixes of interface. The structure of `ip6_extra_addr` block is documented below.
-        """
         return pulumi.get(self, "ip6_extra_addrs")
 
     @property
     @pulumi.getter(name="ip6HopLimit")
     def ip6_hop_limit(self) -> Optional[int]:
-        """
-        Hop limit (0 means unspecified).
-        """
         return pulumi.get(self, "ip6_hop_limit")
 
     @property
     @pulumi.getter(name="ip6LinkMtu")
     def ip6_link_mtu(self) -> Optional[int]:
-        """
-        IPv6 link MTU.
-        """
         return pulumi.get(self, "ip6_link_mtu")
 
     @property
     @pulumi.getter(name="ip6ManageFlag")
     def ip6_manage_flag(self) -> Optional[str]:
-        """
-        Enable/disable the managed flag. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ip6_manage_flag")
 
     @property
     @pulumi.getter(name="ip6MaxInterval")
     def ip6_max_interval(self) -> Optional[int]:
-        """
-        IPv6 maximum interval (4 to 1800 sec).
-        """
         return pulumi.get(self, "ip6_max_interval")
 
     @property
     @pulumi.getter(name="ip6MinInterval")
     def ip6_min_interval(self) -> Optional[int]:
-        """
-        IPv6 minimum interval (3 to 1350 sec).
-        """
         return pulumi.get(self, "ip6_min_interval")
 
     @property
     @pulumi.getter(name="ip6Mode")
     def ip6_mode(self) -> Optional[str]:
-        """
-        Addressing mode (static, DHCP, delegated). Valid values: `static`, `dhcp`, `pppoe`, `delegated`.
-        """
         return pulumi.get(self, "ip6_mode")
 
     @property
     @pulumi.getter(name="ip6OtherFlag")
     def ip6_other_flag(self) -> Optional[str]:
-        """
-        Enable/disable the other IPv6 flag. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ip6_other_flag")
 
     @property
     @pulumi.getter(name="ip6PrefixLists")
     def ip6_prefix_lists(self) -> Optional[Sequence['outputs.InterfaceIpv6Ip6PrefixList']]:
-        """
-        Advertised prefix list. The structure of `ip6_prefix_list` block is documented below.
-        """
         return pulumi.get(self, "ip6_prefix_lists")
 
     @property
     @pulumi.getter(name="ip6PrefixMode")
     def ip6_prefix_mode(self) -> Optional[str]:
-        """
-        Assigning a prefix from DHCP or RA. Valid values: `dhcp6`, `ra`.
-        """
         return pulumi.get(self, "ip6_prefix_mode")
 
     @property
     @pulumi.getter(name="ip6ReachableTime")
     def ip6_reachable_time(self) -> Optional[int]:
-        """
-        IPv6 reachable time (milliseconds; 0 means unspecified).
-        """
         return pulumi.get(self, "ip6_reachable_time")
 
     @property
     @pulumi.getter(name="ip6RetransTime")
     def ip6_retrans_time(self) -> Optional[int]:
-        """
-        IPv6 retransmit time (milliseconds; 0 means unspecified).
-        """
         return pulumi.get(self, "ip6_retrans_time")
 
     @property
     @pulumi.getter(name="ip6SendAdv")
     def ip6_send_adv(self) -> Optional[str]:
-        """
-        Enable/disable sending advertisements about the interface. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ip6_send_adv")
 
     @property
     @pulumi.getter(name="ip6Subnet")
     def ip6_subnet(self) -> Optional[str]:
-        """
-        Subnet to routing prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
-        """
         return pulumi.get(self, "ip6_subnet")
 
     @property
     @pulumi.getter(name="ip6UpstreamInterface")
     def ip6_upstream_interface(self) -> Optional[str]:
-        """
-        Interface name providing delegated information.
-        """
         return pulumi.get(self, "ip6_upstream_interface")
 
     @property
     @pulumi.getter(name="ndCert")
     def nd_cert(self) -> Optional[str]:
-        """
-        Neighbor discovery certificate.
-        """
         return pulumi.get(self, "nd_cert")
 
     @property
     @pulumi.getter(name="ndCgaModifier")
     def nd_cga_modifier(self) -> Optional[str]:
-        """
-        Neighbor discovery CGA modifier.
-        """
         return pulumi.get(self, "nd_cga_modifier")
 
     @property
     @pulumi.getter(name="ndMode")
     def nd_mode(self) -> Optional[str]:
-        """
-        Neighbor discovery mode. Valid values: `basic`, `SEND-compatible`.
-        """
         return pulumi.get(self, "nd_mode")
 
     @property
     @pulumi.getter(name="ndSecurityLevel")
     def nd_security_level(self) -> Optional[int]:
-        """
-        Neighbor discovery security level (0 - 7; 0 = least secure, default = 0).
-        """
         return pulumi.get(self, "nd_security_level")
 
     @property
     @pulumi.getter(name="ndTimestampDelta")
     def nd_timestamp_delta(self) -> Optional[int]:
-        """
-        Neighbor discovery timestamp delta value (1 - 3600 sec; default = 300).
-        """
         return pulumi.get(self, "nd_timestamp_delta")
 
     @property
     @pulumi.getter(name="ndTimestampFuzz")
     def nd_timestamp_fuzz(self) -> Optional[int]:
-        """
-        Neighbor discovery timestamp fuzz factor (1 - 60 sec; default = 1).
-        """
         return pulumi.get(self, "nd_timestamp_fuzz")
 
     @property
     @pulumi.getter(name="raSendMtu")
     def ra_send_mtu(self) -> Optional[str]:
-        """
-        Enable/disable sending link MTU in RA packet. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ra_send_mtu")
 
     @property
     @pulumi.getter(name="uniqueAutoconfAddr")
     def unique_autoconf_addr(self) -> Optional[str]:
-        """
-        Enable/disable unique auto config address. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "unique_autoconf_addr")
 
     @property
     @pulumi.getter(name="vrip6LinkLocal")
     def vrip6_link_local(self) -> Optional[str]:
-        """
-        Link-local IPv6 address of virtual router.
-        """
         return pulumi.get(self, "vrip6_link_local")
 
     @property
     @pulumi.getter
     def vrrp6s(self) -> Optional[Sequence['outputs.InterfaceIpv6Vrrp6']]:
-        """
-        IPv6 VRRP configuration. The structure of `vrrp6` block is documented below.
-
-        The `ip6_extra_addr` block supports:
-        """
         return pulumi.get(self, "vrrp6s")
 
     @property
     @pulumi.getter(name="vrrpVirtualMac6")
     def vrrp_virtual_mac6(self) -> Optional[str]:
-        """
-        Enable/disable virtual MAC for VRRP. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "vrrp_virtual_mac6")
 
 
@@ -6175,14 +5978,6 @@ class InterfaceIpv6Dhcp6IapdList(dict):
                  prefix_hint: Optional[str] = None,
                  prefix_hint_plt: Optional[int] = None,
                  prefix_hint_vlt: Optional[int] = None):
-        """
-        :param int iaid: Identity association identifier.
-        :param str prefix_hint: DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
-        :param int prefix_hint_plt: DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
-        :param int prefix_hint_vlt: DHCPv6 prefix hint valid life time (sec).
-               
-               The `vrrp6` block supports:
-        """
         if iaid is not None:
             pulumi.set(__self__, "iaid", iaid)
         if prefix_hint is not None:
@@ -6195,35 +5990,21 @@ class InterfaceIpv6Dhcp6IapdList(dict):
     @property
     @pulumi.getter
     def iaid(self) -> Optional[int]:
-        """
-        Identity association identifier.
-        """
         return pulumi.get(self, "iaid")
 
     @property
     @pulumi.getter(name="prefixHint")
     def prefix_hint(self) -> Optional[str]:
-        """
-        DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
-        """
         return pulumi.get(self, "prefix_hint")
 
     @property
     @pulumi.getter(name="prefixHintPlt")
     def prefix_hint_plt(self) -> Optional[int]:
-        """
-        DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
-        """
         return pulumi.get(self, "prefix_hint_plt")
 
     @property
     @pulumi.getter(name="prefixHintVlt")
     def prefix_hint_vlt(self) -> Optional[int]:
-        """
-        DHCPv6 prefix hint valid life time (sec).
-
-        The `vrrp6` block supports:
-        """
         return pulumi.get(self, "prefix_hint_vlt")
 
 
@@ -6265,18 +6046,6 @@ class InterfaceIpv6Ip6DelegatedPrefixList(dict):
                  rdnss_service: Optional[str] = None,
                  subnet: Optional[str] = None,
                  upstream_interface: Optional[str] = None):
-        """
-        :param str autonomous_flag: Enable/disable the autonomous flag. Valid values: `enable`, `disable`.
-        :param int delegated_prefix_iaid: IAID of obtained delegated-prefix from the upstream interface.
-        :param str onlink_flag: Enable/disable the onlink flag. Valid values: `enable`, `disable`.
-        :param int prefix_id: Prefix ID.
-        :param str rdnss: Recursive DNS server option.
-               
-               The `dhcp6_iapd_list` block supports:
-        :param str rdnss_service: Recursive DNS service option. Valid values: `delegated`, `default`, `specify`.
-        :param str subnet: Add subnet ID to routing prefix.
-        :param str upstream_interface: Name of the interface that provides delegated information.
-        """
         if autonomous_flag is not None:
             pulumi.set(__self__, "autonomous_flag", autonomous_flag)
         if delegated_prefix_iaid is not None:
@@ -6297,67 +6066,41 @@ class InterfaceIpv6Ip6DelegatedPrefixList(dict):
     @property
     @pulumi.getter(name="autonomousFlag")
     def autonomous_flag(self) -> Optional[str]:
-        """
-        Enable/disable the autonomous flag. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "autonomous_flag")
 
     @property
     @pulumi.getter(name="delegatedPrefixIaid")
     def delegated_prefix_iaid(self) -> Optional[int]:
-        """
-        IAID of obtained delegated-prefix from the upstream interface.
-        """
         return pulumi.get(self, "delegated_prefix_iaid")
 
     @property
     @pulumi.getter(name="onlinkFlag")
     def onlink_flag(self) -> Optional[str]:
-        """
-        Enable/disable the onlink flag. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "onlink_flag")
 
     @property
     @pulumi.getter(name="prefixId")
     def prefix_id(self) -> Optional[int]:
-        """
-        Prefix ID.
-        """
         return pulumi.get(self, "prefix_id")
 
     @property
     @pulumi.getter
     def rdnss(self) -> Optional[str]:
-        """
-        Recursive DNS server option.
-
-        The `dhcp6_iapd_list` block supports:
-        """
         return pulumi.get(self, "rdnss")
 
     @property
     @pulumi.getter(name="rdnssService")
     def rdnss_service(self) -> Optional[str]:
-        """
-        Recursive DNS service option. Valid values: `delegated`, `default`, `specify`.
-        """
         return pulumi.get(self, "rdnss_service")
 
     @property
     @pulumi.getter
     def subnet(self) -> Optional[str]:
-        """
-        Add subnet ID to routing prefix.
-        """
         return pulumi.get(self, "subnet")
 
     @property
     @pulumi.getter(name="upstreamInterface")
     def upstream_interface(self) -> Optional[str]:
-        """
-        Name of the interface that provides delegated information.
-        """
         return pulumi.get(self, "upstream_interface")
 
 
@@ -6365,18 +6108,12 @@ class InterfaceIpv6Ip6DelegatedPrefixList(dict):
 class InterfaceIpv6Ip6ExtraAddr(dict):
     def __init__(__self__, *,
                  prefix: Optional[str] = None):
-        """
-        :param str prefix: IPv6 prefix.
-        """
         if prefix is not None:
             pulumi.set(__self__, "prefix", prefix)
 
     @property
     @pulumi.getter
     def prefix(self) -> Optional[str]:
-        """
-        IPv6 prefix.
-        """
         return pulumi.get(self, "prefix")
 
 
@@ -6413,17 +6150,6 @@ class InterfaceIpv6Ip6PrefixList(dict):
                  prefix: Optional[str] = None,
                  rdnss: Optional[str] = None,
                  valid_life_time: Optional[int] = None):
-        """
-        :param str autonomous_flag: Enable/disable the autonomous flag. Valid values: `enable`, `disable`.
-        :param Sequence['InterfaceIpv6Ip6PrefixListDnsslArgs'] dnssls: DNS search list option. The structure of `dnssl` block is documented below.
-        :param str onlink_flag: Enable/disable the onlink flag. Valid values: `enable`, `disable`.
-        :param int preferred_life_time: Preferred life time (sec).
-        :param str prefix: IPv6 prefix.
-        :param str rdnss: Recursive DNS server option.
-               
-               The `dhcp6_iapd_list` block supports:
-        :param int valid_life_time: Valid life time (sec).
-        """
         if autonomous_flag is not None:
             pulumi.set(__self__, "autonomous_flag", autonomous_flag)
         if dnssls is not None:
@@ -6442,59 +6168,36 @@ class InterfaceIpv6Ip6PrefixList(dict):
     @property
     @pulumi.getter(name="autonomousFlag")
     def autonomous_flag(self) -> Optional[str]:
-        """
-        Enable/disable the autonomous flag. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "autonomous_flag")
 
     @property
     @pulumi.getter
     def dnssls(self) -> Optional[Sequence['outputs.InterfaceIpv6Ip6PrefixListDnssl']]:
-        """
-        DNS search list option. The structure of `dnssl` block is documented below.
-        """
         return pulumi.get(self, "dnssls")
 
     @property
     @pulumi.getter(name="onlinkFlag")
     def onlink_flag(self) -> Optional[str]:
-        """
-        Enable/disable the onlink flag. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "onlink_flag")
 
     @property
     @pulumi.getter(name="preferredLifeTime")
     def preferred_life_time(self) -> Optional[int]:
-        """
-        Preferred life time (sec).
-        """
         return pulumi.get(self, "preferred_life_time")
 
     @property
     @pulumi.getter
     def prefix(self) -> Optional[str]:
-        """
-        IPv6 prefix.
-        """
         return pulumi.get(self, "prefix")
 
     @property
     @pulumi.getter
     def rdnss(self) -> Optional[str]:
-        """
-        Recursive DNS server option.
-
-        The `dhcp6_iapd_list` block supports:
-        """
         return pulumi.get(self, "rdnss")
 
     @property
     @pulumi.getter(name="validLifeTime")
     def valid_life_time(self) -> Optional[int]:
-        """
-        Valid life time (sec).
-        """
         return pulumi.get(self, "valid_life_time")
 
 
@@ -6559,17 +6262,8 @@ class InterfaceIpv6Vrrp6(dict):
                  vrid: Optional[int] = None,
                  vrip6: Optional[str] = None):
         """
-        :param str accept_mode: Enable/disable accept mode. Valid values: `enable`, `disable`.
-        :param int adv_interval: Advertisement interval (1 - 255 seconds).
-        :param str ignore_default_route: Enable/disable ignoring of default route when checking destination. Valid values: `enable`, `disable`.
-        :param str preempt: Enable/disable preempt mode. Valid values: `enable`, `disable`.
         :param int priority: Priority of learned routes.
-        :param int start_time: Startup time (1 - 255 seconds).
         :param str status: Bring the interface up or shut the interface down. Valid values: `up`, `down`.
-        :param str vrdst6: Monitor the route to this destination.
-        :param int vrgrp: VRRP group ID (1 - 65535).
-        :param int vrid: Virtual router identifier (1 - 255).
-        :param str vrip6: IPv6 address of the virtual router.
         """
         if accept_mode is not None:
             pulumi.set(__self__, "accept_mode", accept_mode)
@@ -6597,33 +6291,21 @@ class InterfaceIpv6Vrrp6(dict):
     @property
     @pulumi.getter(name="acceptMode")
     def accept_mode(self) -> Optional[str]:
-        """
-        Enable/disable accept mode. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "accept_mode")
 
     @property
     @pulumi.getter(name="advInterval")
     def adv_interval(self) -> Optional[int]:
-        """
-        Advertisement interval (1 - 255 seconds).
-        """
         return pulumi.get(self, "adv_interval")
 
     @property
     @pulumi.getter(name="ignoreDefaultRoute")
     def ignore_default_route(self) -> Optional[str]:
-        """
-        Enable/disable ignoring of default route when checking destination. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ignore_default_route")
 
     @property
     @pulumi.getter
     def preempt(self) -> Optional[str]:
-        """
-        Enable/disable preempt mode. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "preempt")
 
     @property
@@ -6637,9 +6319,6 @@ class InterfaceIpv6Vrrp6(dict):
     @property
     @pulumi.getter(name="startTime")
     def start_time(self) -> Optional[int]:
-        """
-        Startup time (1 - 255 seconds).
-        """
         return pulumi.get(self, "start_time")
 
     @property
@@ -6653,33 +6332,21 @@ class InterfaceIpv6Vrrp6(dict):
     @property
     @pulumi.getter
     def vrdst6(self) -> Optional[str]:
-        """
-        Monitor the route to this destination.
-        """
         return pulumi.get(self, "vrdst6")
 
     @property
     @pulumi.getter
     def vrgrp(self) -> Optional[int]:
-        """
-        VRRP group ID (1 - 65535).
-        """
         return pulumi.get(self, "vrgrp")
 
     @property
     @pulumi.getter
     def vrid(self) -> Optional[int]:
-        """
-        Virtual router identifier (1 - 255).
-        """
         return pulumi.get(self, "vrid")
 
     @property
     @pulumi.getter
     def vrip6(self) -> Optional[str]:
-        """
-        IPv6 address of the virtual router.
-        """
         return pulumi.get(self, "vrip6")
 
 
@@ -7196,15 +6863,19 @@ class InterfaceVrrpProxyArp(dict):
 class IpamPool(dict):
     def __init__(__self__, *,
                  description: Optional[str] = None,
+                 excludes: Optional[Sequence['outputs.IpamPoolExclude']] = None,
                  name: Optional[str] = None,
                  subnet: Optional[str] = None):
         """
         :param str description: Description.
+        :param Sequence['IpamPoolExcludeArgs'] excludes: Configure pool exclude subnets. The structure of `exclude` block is documented below.
         :param str name: IPAM pool name.
         :param str subnet: Configure IPAM pool subnet, Class A - Class B subnet.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if excludes is not None:
+            pulumi.set(__self__, "excludes", excludes)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if subnet is not None:
@@ -7217,6 +6888,14 @@ class IpamPool(dict):
         Description.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def excludes(self) -> Optional[Sequence['outputs.IpamPoolExclude']]:
+        """
+        Configure pool exclude subnets. The structure of `exclude` block is documented below.
+        """
+        return pulumi.get(self, "excludes")
 
     @property
     @pulumi.getter
@@ -7233,6 +6912,54 @@ class IpamPool(dict):
         Configure IPAM pool subnet, Class A - Class B subnet.
         """
         return pulumi.get(self, "subnet")
+
+
+@pulumi.output_type
+class IpamPoolExclude(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "excludeSubnet":
+            suggest = "exclude_subnet"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IpamPoolExclude. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IpamPoolExclude.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IpamPoolExclude.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 exclude_subnet: Optional[str] = None,
+                 id: Optional[int] = None):
+        """
+        :param str exclude_subnet: Configure subnet to exclude from the IPAM pool.
+        :param int id: Exclude ID.
+        """
+        if exclude_subnet is not None:
+            pulumi.set(__self__, "exclude_subnet", exclude_subnet)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="excludeSubnet")
+    def exclude_subnet(self) -> Optional[str]:
+        """
+        Configure subnet to exclude from the IPAM pool.
+        """
+        return pulumi.get(self, "exclude_subnet")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        Exclude ID.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -7843,6 +7570,8 @@ class NtpNtpserver(dict):
             suggest = "ip_type"
         elif key == "keyId":
             suggest = "key_id"
+        elif key == "keyType":
+            suggest = "key_type"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in NtpNtpserver. Access the value via the '{suggest}' property getter instead.")
@@ -7863,6 +7592,7 @@ class NtpNtpserver(dict):
                  ip_type: Optional[str] = None,
                  key: Optional[str] = None,
                  key_id: Optional[int] = None,
+                 key_type: Optional[str] = None,
                  ntpv3: Optional[str] = None,
                  server: Optional[str] = None):
         """
@@ -7871,8 +7601,9 @@ class NtpNtpserver(dict):
         :param str interface: Specify outgoing interface to reach server.
         :param str interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param str ip_type: Choose to connect to IPv4 or/and IPv6 NTP server. Valid values: `IPv6`, `IPv4`, `Both`.
-        :param str key: Key for MD5/SHA1 authentication.
+        :param str key: Key for authentication. On FortiOS versions 6.2.0: MD5(NTPv3)/SHA1(NTPv4). On FortiOS versions >= 7.4.4: MD5(NTPv3)/SHA1(NTPv4)/SHA256(NTPv4).
         :param int key_id: Key ID for authentication.
+        :param str key_type: Select NTP authentication type. Valid values: `MD5`, `SHA1`, `SHA256`.
         :param str ntpv3: Enable to use NTPv3 instead of NTPv4. Valid values: `enable`, `disable`.
         :param str server: IP address or hostname of the NTP Server.
         """
@@ -7890,6 +7621,8 @@ class NtpNtpserver(dict):
             pulumi.set(__self__, "key", key)
         if key_id is not None:
             pulumi.set(__self__, "key_id", key_id)
+        if key_type is not None:
+            pulumi.set(__self__, "key_type", key_type)
         if ntpv3 is not None:
             pulumi.set(__self__, "ntpv3", ntpv3)
         if server is not None:
@@ -7939,7 +7672,7 @@ class NtpNtpserver(dict):
     @pulumi.getter
     def key(self) -> Optional[str]:
         """
-        Key for MD5/SHA1 authentication.
+        Key for authentication. On FortiOS versions 6.2.0: MD5(NTPv3)/SHA1(NTPv4). On FortiOS versions >= 7.4.4: MD5(NTPv3)/SHA1(NTPv4)/SHA256(NTPv4).
         """
         return pulumi.get(self, "key")
 
@@ -7950,6 +7683,14 @@ class NtpNtpserver(dict):
         Key ID for authentication.
         """
         return pulumi.get(self, "key_id")
+
+    @property
+    @pulumi.getter(name="keyType")
+    def key_type(self) -> Optional[str]:
+        """
+        Select NTP authentication type. Valid values: `MD5`, `SHA1`, `SHA256`.
+        """
+        return pulumi.get(self, "key_type")
 
     @property
     @pulumi.getter
@@ -10689,18 +10430,12 @@ class SdwanDuplication(dict):
 class SdwanDuplicationDstaddr6(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
-        """
-        :param str name: Address or address group name.
-        """
         if name is not None:
             pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        Address or address group name.
-        """
         return pulumi.get(self, "name")
 
 
@@ -10784,18 +10519,12 @@ class SdwanDuplicationServiceId(dict):
 class SdwanDuplicationSrcaddr6(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
-        """
-        :param str name: Address or address group name.
-        """
         if name is not None:
             pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        Address or address group name.
-        """
         return pulumi.get(self, "name")
 
 
@@ -10997,16 +10726,16 @@ class SdwanHealthCheck(dict):
         :param str http_agent: String in the http-agent field in the HTTP header.
         :param str http_get: URL used to communicate with the server if the protocol if the protocol is HTTP.
         :param str http_match: Response string expected from the server if the protocol is HTTP.
-        :param int interval: Status check interval in milliseconds, or the time between attempting to connect to the server (500 - 3600*1000 msec, default = 500).
+        :param int interval: Status check interval in milliseconds, or the time between attempting to connect to the server (default = 500). On FortiOS versions 6.4.1-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
         :param Sequence['SdwanHealthCheckMemberArgs'] members: Member sequence number list. The structure of `members` block is documented below.
         :param str mos_codec: Codec to use for MOS calculation (default = g711). Valid values: `g711`, `g722`, `g729`.
         :param str name: Health check name.
-        :param int packet_size: Packet size of a twamp test session,
+        :param int packet_size: Packet size of a TWAMP test session. (124/158 - 1024)
         :param str password: Twamp controller password in authentication mode
-        :param int port: Port number used to communicate with the server over the selected protocol (0-65535, default = 0, auto select. http, twamp: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21).
+        :param int port: Port number used to communicate with the server over the selected protocol (0 - 65535, default = 0, auto select. http, tcp-connect: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21, twamp: 862).
         :param int probe_count: Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
         :param str probe_packets: Enable/disable transmission of probe packets. Valid values: `disable`, `enable`.
-        :param int probe_timeout: Time to wait before a probe packet is considered lost (500 - 3600*1000 msec, default = 500).
+        :param int probe_timeout: Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.4.2-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 6.4.1: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
         :param str protocol: Protocol used to determine if the FortiGate can communicate with the server.
         :param str quality_measured_method: Method to measure the quality of tcp-connect. Valid values: `half-open`, `half-close`.
         :param int recoverytime: Number of successful responses received before server is considered recovered (1 - 3600, default = 5).
@@ -11239,7 +10968,7 @@ class SdwanHealthCheck(dict):
     @pulumi.getter
     def interval(self) -> Optional[int]:
         """
-        Status check interval in milliseconds, or the time between attempting to connect to the server (500 - 3600*1000 msec, default = 500).
+        Status check interval in milliseconds, or the time between attempting to connect to the server (default = 500). On FortiOS versions 6.4.1-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
         """
         return pulumi.get(self, "interval")
 
@@ -11271,7 +11000,7 @@ class SdwanHealthCheck(dict):
     @pulumi.getter(name="packetSize")
     def packet_size(self) -> Optional[int]:
         """
-        Packet size of a twamp test session,
+        Packet size of a TWAMP test session. (124/158 - 1024)
         """
         return pulumi.get(self, "packet_size")
 
@@ -11287,7 +11016,7 @@ class SdwanHealthCheck(dict):
     @pulumi.getter
     def port(self) -> Optional[int]:
         """
-        Port number used to communicate with the server over the selected protocol (0-65535, default = 0, auto select. http, twamp: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21).
+        Port number used to communicate with the server over the selected protocol (0 - 65535, default = 0, auto select. http, tcp-connect: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21, twamp: 862).
         """
         return pulumi.get(self, "port")
 
@@ -11311,7 +11040,7 @@ class SdwanHealthCheck(dict):
     @pulumi.getter(name="probeTimeout")
     def probe_timeout(self) -> Optional[int]:
         """
-        Time to wait before a probe packet is considered lost (500 - 3600*1000 msec, default = 500).
+        Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.4.2-7.0.10, 7.2.0-7.2.4: 500 - 3600*1000 msec. On FortiOS versions 6.4.1: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600*1000 msec.
         """
         return pulumi.get(self, "probe_timeout")
 
@@ -11716,7 +11445,7 @@ class SdwanMember(dict):
         :param int ingress_spillover_threshold: Ingress spillover threshold for this interface (0 - 16776000 kbit/s). When this traffic volume threshold is reached, new sessions spill over to other interfaces in the SD-WAN.
         :param str interface: Interface name.
         :param str preferred_source: Preferred source of route for this member.
-        :param int priority: Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
+        :param int priority: Priority of the interface for IPv4 . Used for SD-WAN rules or priority rules. On FortiOS versions 6.4.1: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535, default = 1.
         :param int priority6: Priority of the interface for IPv6 (1 - 65535, default = 1024). Used for SD-WAN rules or priority rules.
         :param int seq_num: Member sequence number.
         :param str source: Source IP address used in the health-check packet to the server.
@@ -11825,7 +11554,7 @@ class SdwanMember(dict):
     @pulumi.getter
     def priority(self) -> Optional[int]:
         """
-        Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
+        Priority of the interface for IPv4 . Used for SD-WAN rules or priority rules. On FortiOS versions 6.4.1: 0 - 65535. On FortiOS versions >= 7.0.4: 1 - 65535, default = 1.
         """
         return pulumi.get(self, "priority")
 
@@ -11950,8 +11679,8 @@ class SdwanNeighbor(dict):
         """
         :param str health_check: SD-WAN health-check name.
         :param str ip: IP/IPv6 address of neighbor.
-        :param int member: Member sequence number.
-        :param Sequence['SdwanNeighborMemberBlockArgs'] member_blocks: Member sequence number list. The structure of `member_block` block is documented below.
+        :param int member: Member sequence number. *Due to the data type change of API, for other versions of FortiOS, please check variable `member_block`.*
+        :param Sequence['SdwanNeighborMemberBlockArgs'] member_blocks: Member sequence number list. *Due to the data type change of API, for other versions of FortiOS, please check variable `member`.* The structure of `member_block` block is documented below.
         :param int minimum_sla_meet_members: Minimum number of members which meet SLA when the neighbor is preferred.
         :param str mode: What metric to select the neighbor. Valid values: `sla`, `speedtest`.
         :param str role: Role of neighbor. Valid values: `standalone`, `primary`, `secondary`.
@@ -11997,7 +11726,7 @@ class SdwanNeighbor(dict):
     @pulumi.getter
     def member(self) -> Optional[int]:
         """
-        Member sequence number.
+        Member sequence number. *Due to the data type change of API, for other versions of FortiOS, please check variable `member_block`.*
         """
         return pulumi.get(self, "member")
 
@@ -12005,7 +11734,7 @@ class SdwanNeighbor(dict):
     @pulumi.getter(name="memberBlocks")
     def member_blocks(self) -> Optional[Sequence['outputs.SdwanNeighborMemberBlock']]:
         """
-        Member sequence number list. The structure of `member_block` block is documented below.
+        Member sequence number list. *Due to the data type change of API, for other versions of FortiOS, please check variable `member`.* The structure of `member_block` block is documented below.
         """
         return pulumi.get(self, "member_blocks")
 
@@ -12988,18 +12717,12 @@ class SdwanService(dict):
 class SdwanServiceDst6(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
-        """
-        :param str name: Address or address group name.
-        """
         if name is not None:
             pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        Address or address group name.
-        """
         return pulumi.get(self, "name")
 
 
@@ -13338,18 +13061,12 @@ class SdwanServiceSla(dict):
 class SdwanServiceSrc6(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
-        """
-        :param str name: Address or address group name.
-        """
         if name is not None:
             pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        Address or address group name.
-        """
         return pulumi.get(self, "name")
 
 
@@ -14713,7 +14430,7 @@ class VirtualwanlinkHealthCheck(dict):
         :param str http_agent: String in the http-agent field in the HTTP header.
         :param str http_get: URL used to communicate with the server if the protocol if the protocol is HTTP.
         :param str http_match: Response string expected from the server if the protocol is HTTP.
-        :param int interval: Status check interval, or the time between attempting to connect to the server (1 - 3600 sec, default = 5).
+        :param int interval: Status check interval, or the time between attempting to connect to the server. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-6.4.0: 500 - 3600*1000 msec, default = 500.
         :param Sequence['VirtualwanlinkHealthCheckMemberArgs'] members: Member sequence number list. The structure of `members` block is documented below.
         :param str name: Status check or health check name.
         :param int packet_size: Packet size of a twamp test session,
@@ -14874,7 +14591,7 @@ class VirtualwanlinkHealthCheck(dict):
     @pulumi.getter
     def interval(self) -> Optional[int]:
         """
-        Status check interval, or the time between attempting to connect to the server (1 - 3600 sec, default = 5).
+        Status check interval, or the time between attempting to connect to the server. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-6.4.0: 500 - 3600*1000 msec, default = 500.
         """
         return pulumi.get(self, "interval")
 
@@ -15250,8 +14967,8 @@ class VirtualwanlinkMember(dict):
         :param str source6: Source IPv6 address used in the health-check packet to the server.
         :param int spillover_threshold: Egress spillover threshold for this interface (0 - 16776000 kbit/s). When this traffic volume threshold is reached, new sessions spill over to other interfaces in the SD-WAN.
         :param str status: Enable/disable this interface in the SD-WAN. Valid values: `disable`, `enable`.
-        :param int volume_ratio: Measured volume ratio (this value / sum of all values = percentage of link volume, 0 - 255).
-        :param int weight: Weight of this interface for weighted load balancing. (0 - 255) More traffic is directed to interfaces with higher weights.
+        :param int volume_ratio: Measured volume ratio (this value / sum of all values = percentage of link volume). On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
+        :param int weight: Weight of this interface for weighted load balancing. More traffic is directed to interfaces with higher weights. On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
         """
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
@@ -15382,7 +15099,7 @@ class VirtualwanlinkMember(dict):
     @pulumi.getter(name="volumeRatio")
     def volume_ratio(self) -> Optional[int]:
         """
-        Measured volume ratio (this value / sum of all values = percentage of link volume, 0 - 255).
+        Measured volume ratio (this value / sum of all values = percentage of link volume). On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
         """
         return pulumi.get(self, "volume_ratio")
 
@@ -15390,7 +15107,7 @@ class VirtualwanlinkMember(dict):
     @pulumi.getter
     def weight(self) -> Optional[int]:
         """
-        Weight of this interface for weighted load balancing. (0 - 255) More traffic is directed to interfaces with higher weights.
+        Weight of this interface for weighted load balancing. More traffic is directed to interfaces with higher weights. On FortiOS versions 6.2.0: 0 - 255. On FortiOS versions 6.2.4-6.4.0: 1 - 255.
         """
         return pulumi.get(self, "weight")
 
@@ -16201,18 +15918,12 @@ class VirtualwanlinkService(dict):
 class VirtualwanlinkServiceDst6(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
-        """
-        :param str name: Address or address group name.
-        """
         if name is not None:
             pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        Address or address group name.
-        """
         return pulumi.get(self, "name")
 
 
@@ -16532,18 +16243,12 @@ class VirtualwanlinkServiceSla(dict):
 class VirtualwanlinkServiceSrc6(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
-        """
-        :param str name: Address or address group name.
-        """
         if name is not None:
             pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        Address or address group name.
-        """
         return pulumi.get(self, "name")
 
 
@@ -16644,18 +16349,12 @@ class VirtualwirepairMember(dict):
 class VxlanRemoteIp6(dict):
     def __init__(__self__, *,
                  ip6: Optional[str] = None):
-        """
-        :param str ip6: IPv6 address.
-        """
         if ip6 is not None:
             pulumi.set(__self__, "ip6", ip6)
 
     @property
     @pulumi.getter
     def ip6(self) -> Optional[str]:
-        """
-        IPv6 address.
-        """
         return pulumi.get(self, "ip6")
 
 
@@ -16992,6 +16691,7 @@ class GetAccprofileUtmgrpPermissionResult(dict):
                  casb: str,
                  data_leak_prevention: str,
                  data_loss_prevention: str,
+                 dlp: str,
                  dnsfilter: str,
                  emailfilter: str,
                  endpoint_control: str,
@@ -17010,6 +16710,7 @@ class GetAccprofileUtmgrpPermissionResult(dict):
         :param str casb: Inline CASB filter profile and settings
         :param str data_leak_prevention: DLP profiles and settings.
         :param str data_loss_prevention: DLP profiles and settings.
+        :param str dlp: DLP profiles and settings.
         :param str dnsfilter: DNS Filter profiles and settings.
         :param str emailfilter: AntiSpam filter and settings.
         :param str endpoint_control: FortiClient Profiles.
@@ -17028,6 +16729,7 @@ class GetAccprofileUtmgrpPermissionResult(dict):
         pulumi.set(__self__, "casb", casb)
         pulumi.set(__self__, "data_leak_prevention", data_leak_prevention)
         pulumi.set(__self__, "data_loss_prevention", data_loss_prevention)
+        pulumi.set(__self__, "dlp", dlp)
         pulumi.set(__self__, "dnsfilter", dnsfilter)
         pulumi.set(__self__, "emailfilter", emailfilter)
         pulumi.set(__self__, "endpoint_control", endpoint_control)
@@ -17080,6 +16782,14 @@ class GetAccprofileUtmgrpPermissionResult(dict):
         DLP profiles and settings.
         """
         return pulumi.get(self, "data_loss_prevention")
+
+    @property
+    @pulumi.getter
+    def dlp(self) -> str:
+        """
+        DLP profiles and settings.
+        """
+        return pulumi.get(self, "dlp")
 
     @property
     @pulumi.getter
@@ -20635,6 +20345,7 @@ class GetNtpNtpserverResult(dict):
                  ip_type: str,
                  key: str,
                  key_id: int,
+                 key_type: str,
                  ntpv3: str,
                  server: str):
         """
@@ -20645,6 +20356,7 @@ class GetNtpNtpserverResult(dict):
         :param str ip_type: Choose to connect to IPv4 or/and IPv6 NTP server.
         :param str key: Key for MD5/SHA1 authentication.
         :param int key_id: Key ID for authentication.
+        :param str key_type: Select NTP authentication type.
         :param str ntpv3: Enable to use NTPv3 instead of NTPv4.
         :param str server: IP address or hostname of the NTP Server.
         """
@@ -20655,6 +20367,7 @@ class GetNtpNtpserverResult(dict):
         pulumi.set(__self__, "ip_type", ip_type)
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "key_id", key_id)
+        pulumi.set(__self__, "key_type", key_type)
         pulumi.set(__self__, "ntpv3", ntpv3)
         pulumi.set(__self__, "server", server)
 
@@ -20713,6 +20426,14 @@ class GetNtpNtpserverResult(dict):
         Key ID for authentication.
         """
         return pulumi.get(self, "key_id")
+
+    @property
+    @pulumi.getter(name="keyType")
+    def key_type(self) -> str:
+        """
+        Select NTP authentication type.
+        """
+        return pulumi.get(self, "key_type")
 
     @property
     @pulumi.getter

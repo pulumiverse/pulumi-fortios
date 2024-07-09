@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -52,7 +51,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -86,7 +84,7 @@ type Sslserver struct {
 	Port pulumi.IntOutput `pulumi:"port"`
 	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm pulumi.StringOutput `pulumi:"sslAlgorithm"`
-	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.6: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
+	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.8: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
 	SslCert pulumi.StringOutput `pulumi:"sslCert"`
 	// Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
 	SslClientRenegotiation pulumi.StringOutput `pulumi:"sslClientRenegotiation"`
@@ -103,7 +101,7 @@ type Sslserver struct {
 	// Enable/disable rewriting the URL. Valid values: `enable`, `disable`.
 	UrlRewrite pulumi.StringOutput `pulumi:"urlRewrite"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewSslserver registers a new resource with the given unique name, arguments, and options.
@@ -157,7 +155,7 @@ type sslserverState struct {
 	Port *int `pulumi:"port"`
 	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm *string `pulumi:"sslAlgorithm"`
-	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.6: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
+	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.8: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
 	SslCert *string `pulumi:"sslCert"`
 	// Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
 	SslClientRenegotiation *string `pulumi:"sslClientRenegotiation"`
@@ -190,7 +188,7 @@ type SslserverState struct {
 	Port pulumi.IntPtrInput
 	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm pulumi.StringPtrInput
-	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.6: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
+	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.8: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
 	SslCert pulumi.StringPtrInput
 	// Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
 	SslClientRenegotiation pulumi.StringPtrInput
@@ -227,7 +225,7 @@ type sslserverArgs struct {
 	Port int `pulumi:"port"`
 	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm *string `pulumi:"sslAlgorithm"`
-	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.6: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
+	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.8: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
 	SslCert string `pulumi:"sslCert"`
 	// Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
 	SslClientRenegotiation *string `pulumi:"sslClientRenegotiation"`
@@ -261,7 +259,7 @@ type SslserverArgs struct {
 	Port pulumi.IntInput
 	// Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
 	SslAlgorithm pulumi.StringPtrInput
-	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.6: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
+	// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.8: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
 	SslCert pulumi.StringInput
 	// Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
 	SslClientRenegotiation pulumi.StringPtrInput
@@ -398,7 +396,7 @@ func (o SslserverOutput) SslAlgorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sslserver) pulumi.StringOutput { return v.SslAlgorithm }).(pulumi.StringOutput)
 }
 
-// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.6: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
+// Name of certificate for SSL connections to this server. On FortiOS versions 6.2.0-7.2.8: default = "Fortinet_CA_SSL". On FortiOS versions 7.4.0-7.4.1: default = "Fortinet_SSL".
 func (o SslserverOutput) SslCert() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sslserver) pulumi.StringOutput { return v.SslCert }).(pulumi.StringOutput)
 }
@@ -439,8 +437,8 @@ func (o SslserverOutput) UrlRewrite() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SslserverOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Sslserver) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SslserverOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Sslserver) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type SslserverArrayOutput struct{ *pulumi.OutputState }

@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -157,7 +156,6 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -331,7 +329,7 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Output<string> KeylifeType { get; private set; } = null!;
 
         /// <summary>
-        /// Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+        /// Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
         /// </summary>
         [Output("keylifekbs")]
         public Output<int> Keylifekbs { get; private set; } = null!;
@@ -460,7 +458,7 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -660,7 +658,7 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Input<string>? KeylifeType { get; set; }
 
         /// <summary>
-        /// Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+        /// Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
         /// </summary>
         [Input("keylifekbs")]
         public Input<int>? Keylifekbs { get; set; }
@@ -950,7 +948,7 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
         public Input<string>? KeylifeType { get; set; }
 
         /// <summary>
-        /// Phase2 key life in number of bytes of traffic (5120 - 4294967295).
+        /// Phase2 key life in number of kilobytes of traffic (5120 - 4294967295).
         /// </summary>
         [Input("keylifekbs")]
         public Input<int>? Keylifekbs { get; set; }

@@ -121,7 +121,7 @@ class HostchecksoftwareCheckItemListMd5(dict):
     def __init__(__self__, *,
                  id: Optional[str] = None):
         """
-        :param str id: Hex string of MD5 checksum.
+        :param str id: an identifier for the resource with format {{name}}.
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -130,7 +130,7 @@ class HostchecksoftwareCheckItemListMd5(dict):
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        Hex string of MD5 checksum.
+        an identifier for the resource with format {{name}}.
         """
         return pulumi.get(self, "id")
 
@@ -264,7 +264,7 @@ class PortalBookmarkGroupBookmark(dict):
         :param str domain: Login domain.
         :param str folder: Network shared file folder parameter.
         :param Sequence['PortalBookmarkGroupBookmarkFormDataArgs'] form_datas: Form data. The structure of `form_data` block is documented below.
-        :param int height: Screen height (range from 480 - 65535, default = 768).
+        :param int height: Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         :param str host: Host name/IP parameter.
         :param str keyboard_layout: Keyboard layout.
         :param int listening_port: Listening port (0 - 65535).
@@ -274,10 +274,10 @@ class PortalBookmarkGroupBookmark(dict):
         :param str name: Bookmark name.
         :param int port: Remote port.
         :param str preconnection_blob: An arbitrary string which identifies the RDP source.
-        :param int preconnection_id: The numeric ID of the RDP source (0-2147483648).
+        :param int preconnection_id: The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
         :param int remote_port: Remote port (0 - 65535).
         :param str restricted_admin: Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
-        :param str security: Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+        :param str security: Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
         :param str send_preconnection_id: Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
         :param str server_layout: Server side keyboard layout.
         :param str show_status_window: Enable/disable showing of status window. Valid values: `enable`, `disable`.
@@ -288,7 +288,7 @@ class PortalBookmarkGroupBookmark(dict):
         :param str sso_username: SSO user name.
         :param str url: URL parameter.
         :param str vnc_keyboard_layout: Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
-        :param int width: Screen width (range from 640 - 65535, default = 1024).
+        :param int width: Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         """
         if additional_params is not None:
             pulumi.set(__self__, "additional_params", additional_params)
@@ -415,7 +415,7 @@ class PortalBookmarkGroupBookmark(dict):
     @pulumi.getter
     def height(self) -> Optional[int]:
         """
-        Screen height (range from 480 - 65535, default = 768).
+        Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         """
         return pulumi.get(self, "height")
 
@@ -495,7 +495,7 @@ class PortalBookmarkGroupBookmark(dict):
     @pulumi.getter(name="preconnectionId")
     def preconnection_id(self) -> Optional[int]:
         """
-        The numeric ID of the RDP source (0-2147483648).
+        The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
         """
         return pulumi.get(self, "preconnection_id")
 
@@ -519,7 +519,7 @@ class PortalBookmarkGroupBookmark(dict):
     @pulumi.getter
     def security(self) -> Optional[str]:
         """
-        Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+        Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
         """
         return pulumi.get(self, "security")
 
@@ -607,7 +607,7 @@ class PortalBookmarkGroupBookmark(dict):
     @pulumi.getter
     def width(self) -> Optional[int]:
         """
-        Screen width (range from 640 - 65535, default = 1024).
+        Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         """
         return pulumi.get(self, "width")
 
@@ -1054,7 +1054,7 @@ class PortalSplitDn(dict):
         """
         :param str dns_server1: DNS server 1.
         :param str dns_server2: DNS server 2.
-        :param str domains: Split DNS domains used for SSL-VPN clients separated by comma(,).
+        :param str domains: Split DNS domains used for SSL-VPN clients separated by comma.
         :param int id: ID.
         :param str ipv6_dns_server1: IPv6 DNS server 1.
         :param str ipv6_dns_server2: IPv6 DNS server 2.
@@ -1092,7 +1092,7 @@ class PortalSplitDn(dict):
     @pulumi.getter
     def domains(self) -> Optional[str]:
         """
-        Split DNS domains used for SSL-VPN clients separated by comma(,).
+        Split DNS domains used for SSL-VPN clients separated by comma.
         """
         return pulumi.get(self, "domains")
 
@@ -1238,7 +1238,7 @@ class UserbookmarkBookmark(dict):
         :param str domain: Login domain.
         :param str folder: Network shared file folder parameter.
         :param Sequence['UserbookmarkBookmarkFormDataArgs'] form_datas: Form data. The structure of `form_data` block is documented below.
-        :param int height: Screen height (range from 480 - 65535, default = 768).
+        :param int height: Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         :param str host: Host name/IP parameter.
         :param str keyboard_layout: Keyboard layout.
         :param int listening_port: Listening port (0 - 65535).
@@ -1248,10 +1248,10 @@ class UserbookmarkBookmark(dict):
         :param str name: Bookmark name.
         :param int port: Remote port.
         :param str preconnection_blob: An arbitrary string which identifies the RDP source.
-        :param int preconnection_id: The numeric ID of the RDP source (0-2147483648).
+        :param int preconnection_id: The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
         :param int remote_port: Remote port (0 - 65535).
         :param str restricted_admin: Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
-        :param str security: Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+        :param str security: Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
         :param str send_preconnection_id: Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
         :param str server_layout: Server side keyboard layout.
         :param str show_status_window: Enable/disable showing of status window. Valid values: `enable`, `disable`.
@@ -1262,7 +1262,7 @@ class UserbookmarkBookmark(dict):
         :param str sso_username: SSO user name.
         :param str url: URL parameter.
         :param str vnc_keyboard_layout: Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
-        :param int width: Screen width (range from 640 - 65535, default = 1024).
+        :param int width: Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         """
         if additional_params is not None:
             pulumi.set(__self__, "additional_params", additional_params)
@@ -1389,7 +1389,7 @@ class UserbookmarkBookmark(dict):
     @pulumi.getter
     def height(self) -> Optional[int]:
         """
-        Screen height (range from 480 - 65535, default = 768).
+        Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         """
         return pulumi.get(self, "height")
 
@@ -1469,7 +1469,7 @@ class UserbookmarkBookmark(dict):
     @pulumi.getter(name="preconnectionId")
     def preconnection_id(self) -> Optional[int]:
         """
-        The numeric ID of the RDP source (0-2147483648).
+        The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
         """
         return pulumi.get(self, "preconnection_id")
 
@@ -1493,7 +1493,7 @@ class UserbookmarkBookmark(dict):
     @pulumi.getter
     def security(self) -> Optional[str]:
         """
-        Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+        Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
         """
         return pulumi.get(self, "security")
 
@@ -1581,7 +1581,7 @@ class UserbookmarkBookmark(dict):
     @pulumi.getter
     def width(self) -> Optional[int]:
         """
-        Screen width (range from 640 - 65535, default = 1024).
+        Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         """
         return pulumi.get(self, "width")
 
@@ -1715,7 +1715,7 @@ class UsergroupbookmarkBookmark(dict):
         :param str domain: Login domain.
         :param str folder: Network shared file folder parameter.
         :param Sequence['UsergroupbookmarkBookmarkFormDataArgs'] form_datas: Form data. The structure of `form_data` block is documented below.
-        :param int height: Screen height (range from 480 - 65535, default = 768).
+        :param int height: Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         :param str host: Host name/IP parameter.
         :param str keyboard_layout: Keyboard layout.
         :param int listening_port: Listening port (0 - 65535).
@@ -1725,10 +1725,10 @@ class UsergroupbookmarkBookmark(dict):
         :param str name: Bookmark name.
         :param int port: Remote port.
         :param str preconnection_blob: An arbitrary string which identifies the RDP source.
-        :param int preconnection_id: The numeric ID of the RDP source (0-2147483648).
+        :param int preconnection_id: The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
         :param int remote_port: Remote port (0 - 65535).
         :param str restricted_admin: Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
-        :param str security: Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+        :param str security: Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
         :param str send_preconnection_id: Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
         :param str server_layout: Server side keyboard layout.
         :param str show_status_window: Enable/disable showing of status window. Valid values: `enable`, `disable`.
@@ -1739,7 +1739,7 @@ class UsergroupbookmarkBookmark(dict):
         :param str sso_username: SSO user name.
         :param str url: URL parameter.
         :param str vnc_keyboard_layout: Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
-        :param int width: Screen width (range from 640 - 65535, default = 1024).
+        :param int width: Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         """
         if additional_params is not None:
             pulumi.set(__self__, "additional_params", additional_params)
@@ -1866,7 +1866,7 @@ class UsergroupbookmarkBookmark(dict):
     @pulumi.getter
     def height(self) -> Optional[int]:
         """
-        Screen height (range from 480 - 65535, default = 768).
+        Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         """
         return pulumi.get(self, "height")
 
@@ -1946,7 +1946,7 @@ class UsergroupbookmarkBookmark(dict):
     @pulumi.getter(name="preconnectionId")
     def preconnection_id(self) -> Optional[int]:
         """
-        The numeric ID of the RDP source (0-2147483648).
+        The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
         """
         return pulumi.get(self, "preconnection_id")
 
@@ -1970,7 +1970,7 @@ class UsergroupbookmarkBookmark(dict):
     @pulumi.getter
     def security(self) -> Optional[str]:
         """
-        Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+        Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
         """
         return pulumi.get(self, "security")
 
@@ -2058,7 +2058,7 @@ class UsergroupbookmarkBookmark(dict):
     @pulumi.getter
     def width(self) -> Optional[int]:
         """
-        Screen width (range from 640 - 65535, default = 1024).
+        Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
         """
         return pulumi.get(self, "width")
 

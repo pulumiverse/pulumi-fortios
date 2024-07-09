@@ -893,10 +893,7 @@ class BgpAggregateAddress6(dict):
                  prefix6: Optional[str] = None,
                  summary_only: Optional[str] = None):
         """
-        :param str as_set: Enable/disable generate AS set path information. Valid values: `enable`, `disable`.
-        :param int id: ID.
-        :param str prefix6: Aggregate IPv6 prefix.
-        :param str summary_only: Enable/disable filter more specific routes from updates. Valid values: `enable`, `disable`.
+        :param int id: an identifier for the resource.
         """
         if as_set is not None:
             pulumi.set(__self__, "as_set", as_set)
@@ -910,33 +907,24 @@ class BgpAggregateAddress6(dict):
     @property
     @pulumi.getter(name="asSet")
     def as_set(self) -> Optional[str]:
-        """
-        Enable/disable generate AS set path information. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "as_set")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        ID.
+        an identifier for the resource.
         """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def prefix6(self) -> Optional[str]:
-        """
-        Aggregate IPv6 prefix.
-        """
         return pulumi.get(self, "prefix6")
 
     @property
     @pulumi.getter(name="summaryOnly")
     def summary_only(self) -> Optional[str]:
-        """
-        Enable/disable filter more specific routes from updates. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "summary_only")
 
 
@@ -3260,11 +3248,6 @@ class BgpNeighborConditionalAdvertise6(dict):
                  advertise_routemap: Optional[str] = None,
                  condition_routemap: Optional[str] = None,
                  condition_type: Optional[str] = None):
-        """
-        :param str advertise_routemap: Name of advertising route map.
-        :param str condition_routemap: Name of condition route map.
-        :param str condition_type: Type of condition. Valid values: `exist`, `non-exist`.
-        """
         if advertise_routemap is not None:
             pulumi.set(__self__, "advertise_routemap", advertise_routemap)
         if condition_routemap is not None:
@@ -3275,25 +3258,16 @@ class BgpNeighborConditionalAdvertise6(dict):
     @property
     @pulumi.getter(name="advertiseRoutemap")
     def advertise_routemap(self) -> Optional[str]:
-        """
-        Name of advertising route map.
-        """
         return pulumi.get(self, "advertise_routemap")
 
     @property
     @pulumi.getter(name="conditionRoutemap")
     def condition_routemap(self) -> Optional[str]:
-        """
-        Name of condition route map.
-        """
         return pulumi.get(self, "condition_routemap")
 
     @property
     @pulumi.getter(name="conditionType")
     def condition_type(self) -> Optional[str]:
-        """
-        Type of condition. Valid values: `exist`, `non-exist`.
-        """
         return pulumi.get(self, "condition_type")
 
 
@@ -3564,6 +3538,8 @@ class BgpNeighborGroup(dict):
             suggest = "prefix_list_out_vpnv6"
         elif key == "remoteAs":
             suggest = "remote_as"
+        elif key == "remoteAsFilter":
+            suggest = "remote_as_filter"
         elif key == "removePrivateAs":
             suggest = "remove_private_as"
         elif key == "removePrivateAs6":
@@ -3776,6 +3752,7 @@ class BgpNeighborGroup(dict):
                  prefix_list_out_vpnv4: Optional[str] = None,
                  prefix_list_out_vpnv6: Optional[str] = None,
                  remote_as: Optional[int] = None,
+                 remote_as_filter: Optional[str] = None,
                  remove_private_as: Optional[str] = None,
                  remove_private_as6: Optional[str] = None,
                  remove_private_as_evpn: Optional[str] = None,
@@ -3932,6 +3909,7 @@ class BgpNeighborGroup(dict):
         :param str prefix_list_out_vpnv4: Outbound filter for VPNv4 updates to this neighbor.
         :param str prefix_list_out_vpnv6: Outbound filter for VPNv6 updates to this neighbor.
         :param int remote_as: AS number of neighbor.
+        :param str remote_as_filter: BGP filter for remote AS.
         :param str remove_private_as: Enable/disable remove private AS number from IPv4 outbound updates. Valid values: `enable`, `disable`.
         :param str remove_private_as6: Enable/disable remove private AS number from IPv6 outbound updates. Valid values: `enable`, `disable`.
         :param str remove_private_as_evpn: Enable/disable removing private AS number from L2VPN EVPN outbound updates. Valid values: `enable`, `disable`.
@@ -4195,6 +4173,8 @@ class BgpNeighborGroup(dict):
             pulumi.set(__self__, "prefix_list_out_vpnv6", prefix_list_out_vpnv6)
         if remote_as is not None:
             pulumi.set(__self__, "remote_as", remote_as)
+        if remote_as_filter is not None:
+            pulumi.set(__self__, "remote_as_filter", remote_as_filter)
         if remove_private_as is not None:
             pulumi.set(__self__, "remove_private_as", remove_private_as)
         if remove_private_as6 is not None:
@@ -5149,6 +5129,14 @@ class BgpNeighborGroup(dict):
         return pulumi.get(self, "remote_as")
 
     @property
+    @pulumi.getter(name="remoteAsFilter")
+    def remote_as_filter(self) -> Optional[str]:
+        """
+        BGP filter for remote AS.
+        """
+        return pulumi.get(self, "remote_as_filter")
+
+    @property
     @pulumi.getter(name="removePrivateAs")
     def remove_private_as(self) -> Optional[str]:
         """
@@ -5560,10 +5548,8 @@ class BgpNeighborRange6(dict):
                  neighbor_group: Optional[str] = None,
                  prefix6: Optional[str] = None):
         """
-        :param int id: ID.
-        :param int max_neighbor_num: Maximum number of neighbors.
+        :param int id: an identifier for the resource.
         :param str neighbor_group: BGP neighbor group table. The structure of `neighbor_group` block is documented below.
-        :param str prefix6: Aggregate IPv6 prefix.
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -5578,16 +5564,13 @@ class BgpNeighborRange6(dict):
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        ID.
+        an identifier for the resource.
         """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="maxNeighborNum")
     def max_neighbor_num(self) -> Optional[int]:
-        """
-        Maximum number of neighbors.
-        """
         return pulumi.get(self, "max_neighbor_num")
 
     @property
@@ -5601,9 +5584,6 @@ class BgpNeighborRange6(dict):
     @property
     @pulumi.getter
     def prefix6(self) -> Optional[str]:
-        """
-        Aggregate IPv6 prefix.
-        """
         return pulumi.get(self, "prefix6")
 
 
@@ -5709,11 +5689,8 @@ class BgpNetwork6(dict):
                  prefix6: Optional[str] = None,
                  route_map: Optional[str] = None):
         """
-        :param str backdoor: Enable/disable route as backdoor. Valid values: `enable`, `disable`.
-        :param int id: ID.
+        :param int id: an identifier for the resource.
         :param str network_import_check: Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
-        :param str prefix6: Aggregate IPv6 prefix.
-        :param str route_map: Route map of VRF leaking.
         """
         if backdoor is not None:
             pulumi.set(__self__, "backdoor", backdoor)
@@ -5729,16 +5706,13 @@ class BgpNetwork6(dict):
     @property
     @pulumi.getter
     def backdoor(self) -> Optional[str]:
-        """
-        Enable/disable route as backdoor. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "backdoor")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        ID.
+        an identifier for the resource.
         """
         return pulumi.get(self, "id")
 
@@ -5753,17 +5727,11 @@ class BgpNetwork6(dict):
     @property
     @pulumi.getter
     def prefix6(self) -> Optional[str]:
-        """
-        Aggregate IPv6 prefix.
-        """
         return pulumi.get(self, "prefix6")
 
     @property
     @pulumi.getter(name="routeMap")
     def route_map(self) -> Optional[str]:
-        """
-        Route map of VRF leaking.
-        """
         return pulumi.get(self, "route_map")
 
 
@@ -5876,11 +5844,6 @@ class BgpRedistribute6(dict):
                  name: Optional[str] = None,
                  route_map: Optional[str] = None,
                  status: Optional[str] = None):
-        """
-        :param str name: Neighbor group name.
-        :param str route_map: Route map of VRF leaking.
-        :param str status: Status Valid values: `enable`, `disable`.
-        """
         if name is not None:
             pulumi.set(__self__, "name", name)
         if route_map is not None:
@@ -5891,25 +5854,16 @@ class BgpRedistribute6(dict):
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        Neighbor group name.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="routeMap")
     def route_map(self) -> Optional[str]:
-        """
-        Route map of VRF leaking.
-        """
         return pulumi.get(self, "route_map")
 
     @property
     @pulumi.getter
     def status(self) -> Optional[str]:
-        """
-        Status Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "status")
 
 
@@ -6007,12 +5961,6 @@ class BgpVrf6(dict):
                  role: Optional[str] = None,
                  vrf: Optional[str] = None):
         """
-        :param Sequence['BgpVrf6ExportRtArgs'] export_rts: List of export route target. The structure of `export_rt` block is documented below.
-        :param str import_route_map: Import route map.
-        :param Sequence['BgpVrf6ImportRtArgs'] import_rts: List of import route target. The structure of `import_rt` block is documented below.
-        :param Sequence['BgpVrf6LeakTargetArgs'] leak_targets: Target VRF table. The structure of `leak_target` block is documented below.
-        :param str rd: Route Distinguisher: AA:NN|A.B.C.D:NN.
-        :param str role: VRF role. Valid values: `standalone`, `ce`, `pe`.
         :param str vrf: BGP VRF leaking table. The structure of `vrf` block is documented below.
         """
         if export_rts is not None:
@@ -6033,49 +5981,31 @@ class BgpVrf6(dict):
     @property
     @pulumi.getter(name="exportRts")
     def export_rts(self) -> Optional[Sequence['outputs.BgpVrf6ExportRt']]:
-        """
-        List of export route target. The structure of `export_rt` block is documented below.
-        """
         return pulumi.get(self, "export_rts")
 
     @property
     @pulumi.getter(name="importRouteMap")
     def import_route_map(self) -> Optional[str]:
-        """
-        Import route map.
-        """
         return pulumi.get(self, "import_route_map")
 
     @property
     @pulumi.getter(name="importRts")
     def import_rts(self) -> Optional[Sequence['outputs.BgpVrf6ImportRt']]:
-        """
-        List of import route target. The structure of `import_rt` block is documented below.
-        """
         return pulumi.get(self, "import_rts")
 
     @property
     @pulumi.getter(name="leakTargets")
     def leak_targets(self) -> Optional[Sequence['outputs.BgpVrf6LeakTarget']]:
-        """
-        Target VRF table. The structure of `leak_target` block is documented below.
-        """
         return pulumi.get(self, "leak_targets")
 
     @property
     @pulumi.getter
     def rd(self) -> Optional[str]:
-        """
-        Route Distinguisher: AA:NN|A.B.C.D:NN.
-        """
         return pulumi.get(self, "rd")
 
     @property
     @pulumi.getter
     def role(self) -> Optional[str]:
-        """
-        VRF role. Valid values: `standalone`, `ce`, `pe`.
-        """
         return pulumi.get(self, "role")
 
     @property
@@ -6411,7 +6341,6 @@ class BgpVrfLeak6(dict):
                  targets: Optional[Sequence['outputs.BgpVrfLeak6Target']] = None,
                  vrf: Optional[str] = None):
         """
-        :param Sequence['BgpVrfLeak6TargetArgs'] targets: Target VRF table. The structure of `target` block is documented below.
         :param str vrf: BGP VRF leaking table. The structure of `vrf` block is documented below.
         """
         if targets is not None:
@@ -6422,9 +6351,6 @@ class BgpVrfLeak6(dict):
     @property
     @pulumi.getter
     def targets(self) -> Optional[Sequence['outputs.BgpVrfLeak6Target']]:
-        """
-        Target VRF table. The structure of `target` block is documented below.
-        """
         return pulumi.get(self, "targets")
 
     @property
@@ -7202,14 +7128,6 @@ class IsisRedistribute6(dict):
                  protocol: Optional[str] = None,
                  routemap: Optional[str] = None,
                  status: Optional[str] = None):
-        """
-        :param str level: Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-        :param int metric: Metric.
-        :param str metric_type: Metric type. Valid values: `external`, `internal`.
-        :param str protocol: Protocol name.
-        :param str routemap: Route map name.
-        :param str status: Enable/disable interface for IS-IS. Valid values: `enable`, `disable`.
-        """
         if level is not None:
             pulumi.set(__self__, "level", level)
         if metric is not None:
@@ -7226,49 +7144,31 @@ class IsisRedistribute6(dict):
     @property
     @pulumi.getter
     def level(self) -> Optional[str]:
-        """
-        Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-        """
         return pulumi.get(self, "level")
 
     @property
     @pulumi.getter
     def metric(self) -> Optional[int]:
-        """
-        Metric.
-        """
         return pulumi.get(self, "metric")
 
     @property
     @pulumi.getter(name="metricType")
     def metric_type(self) -> Optional[str]:
-        """
-        Metric type. Valid values: `external`, `internal`.
-        """
         return pulumi.get(self, "metric_type")
 
     @property
     @pulumi.getter
     def protocol(self) -> Optional[str]:
-        """
-        Protocol name.
-        """
         return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter
     def routemap(self) -> Optional[str]:
-        """
-        Route map name.
-        """
         return pulumi.get(self, "routemap")
 
     @property
     @pulumi.getter
     def status(self) -> Optional[str]:
-        """
-        Enable/disable interface for IS-IS. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "status")
 
 
@@ -7375,9 +7275,7 @@ class IsisSummaryAddress6(dict):
                  level: Optional[str] = None,
                  prefix6: Optional[str] = None):
         """
-        :param int id: isis-net ID.
-        :param str level: Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-        :param str prefix6: IPv6 prefix.
+        :param int id: an identifier for the resource.
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -7390,24 +7288,18 @@ class IsisSummaryAddress6(dict):
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        isis-net ID.
+        an identifier for the resource.
         """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def level(self) -> Optional[str]:
-        """
-        Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-        """
         return pulumi.get(self, "level")
 
     @property
     @pulumi.getter
     def prefix6(self) -> Optional[str]:
-        """
-        IPv6 prefix.
-        """
         return pulumi.get(self, "prefix6")
 
 
@@ -9345,26 +9237,7 @@ class Ospf6Ospf6Interface(dict):
                  status: Optional[str] = None,
                  transmit_delay: Optional[int] = None):
         """
-        :param str area_id: A.B.C.D, in IPv4 address format.
-        :param str authentication: Authentication mode. Valid values: `none`, `ah`, `esp`.
         :param str bfd: Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `enable`, `disable`.
-        :param int cost: Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-        :param int dead_interval: Dead interval.
-        :param int hello_interval: Hello interval.
-        :param str interface: Configuration interface name.
-        :param str ipsec_auth_alg: Authentication algorithm. Valid values: `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-        :param str ipsec_enc_alg: Encryption algorithm. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`.
-        :param Sequence['Ospf6Ospf6InterfaceIpsecKeyArgs'] ipsec_keys: IPsec authentication and encryption keys. The structure of `ipsec_keys` block is documented below.
-        :param int key_rollover_interval: Key roll-over interval.
-        :param int mtu: MTU for OSPFv3 packets.
-        :param str mtu_ignore: Enable/disable ignoring MTU field in DBD packets. Valid values: `enable`, `disable`.
-        :param str name: Interface entry name.
-        :param Sequence['Ospf6Ospf6InterfaceNeighborArgs'] neighbors: OSPFv3 neighbors are used when OSPFv3 runs on non-broadcast media The structure of `neighbor` block is documented below.
-        :param str network_type: Network type. Valid values: `broadcast`, `point-to-point`, `non-broadcast`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-        :param int priority: priority
-        :param int retransmit_interval: Retransmit interval.
-        :param str status: Enable/disable OSPF6 routing on this interface. Valid values: `disable`, `enable`.
-        :param int transmit_delay: Transmit delay.
         """
         if area_id is not None:
             pulumi.set(__self__, "area_id", area_id)
@@ -9410,17 +9283,11 @@ class Ospf6Ospf6Interface(dict):
     @property
     @pulumi.getter(name="areaId")
     def area_id(self) -> Optional[str]:
-        """
-        A.B.C.D, in IPv4 address format.
-        """
         return pulumi.get(self, "area_id")
 
     @property
     @pulumi.getter
     def authentication(self) -> Optional[str]:
-        """
-        Authentication mode. Valid values: `none`, `ah`, `esp`.
-        """
         return pulumi.get(self, "authentication")
 
     @property
@@ -9434,137 +9301,86 @@ class Ospf6Ospf6Interface(dict):
     @property
     @pulumi.getter
     def cost(self) -> Optional[int]:
-        """
-        Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-        """
         return pulumi.get(self, "cost")
 
     @property
     @pulumi.getter(name="deadInterval")
     def dead_interval(self) -> Optional[int]:
-        """
-        Dead interval.
-        """
         return pulumi.get(self, "dead_interval")
 
     @property
     @pulumi.getter(name="helloInterval")
     def hello_interval(self) -> Optional[int]:
-        """
-        Hello interval.
-        """
         return pulumi.get(self, "hello_interval")
 
     @property
     @pulumi.getter
     def interface(self) -> Optional[str]:
-        """
-        Configuration interface name.
-        """
         return pulumi.get(self, "interface")
 
     @property
     @pulumi.getter(name="ipsecAuthAlg")
     def ipsec_auth_alg(self) -> Optional[str]:
-        """
-        Authentication algorithm. Valid values: `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-        """
         return pulumi.get(self, "ipsec_auth_alg")
 
     @property
     @pulumi.getter(name="ipsecEncAlg")
     def ipsec_enc_alg(self) -> Optional[str]:
-        """
-        Encryption algorithm. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`.
-        """
         return pulumi.get(self, "ipsec_enc_alg")
 
     @property
     @pulumi.getter(name="ipsecKeys")
     def ipsec_keys(self) -> Optional[Sequence['outputs.Ospf6Ospf6InterfaceIpsecKey']]:
-        """
-        IPsec authentication and encryption keys. The structure of `ipsec_keys` block is documented below.
-        """
         return pulumi.get(self, "ipsec_keys")
 
     @property
     @pulumi.getter(name="keyRolloverInterval")
     def key_rollover_interval(self) -> Optional[int]:
-        """
-        Key roll-over interval.
-        """
         return pulumi.get(self, "key_rollover_interval")
 
     @property
     @pulumi.getter
     def mtu(self) -> Optional[int]:
-        """
-        MTU for OSPFv3 packets.
-        """
         return pulumi.get(self, "mtu")
 
     @property
     @pulumi.getter(name="mtuIgnore")
     def mtu_ignore(self) -> Optional[str]:
-        """
-        Enable/disable ignoring MTU field in DBD packets. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "mtu_ignore")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        Interface entry name.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def neighbors(self) -> Optional[Sequence['outputs.Ospf6Ospf6InterfaceNeighbor']]:
-        """
-        OSPFv3 neighbors are used when OSPFv3 runs on non-broadcast media The structure of `neighbor` block is documented below.
-        """
         return pulumi.get(self, "neighbors")
 
     @property
     @pulumi.getter(name="networkType")
     def network_type(self) -> Optional[str]:
-        """
-        Network type. Valid values: `broadcast`, `point-to-point`, `non-broadcast`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-        """
         return pulumi.get(self, "network_type")
 
     @property
     @pulumi.getter
     def priority(self) -> Optional[int]:
-        """
-        priority
-        """
         return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter(name="retransmitInterval")
     def retransmit_interval(self) -> Optional[int]:
-        """
-        Retransmit interval.
-        """
         return pulumi.get(self, "retransmit_interval")
 
     @property
     @pulumi.getter
     def status(self) -> Optional[str]:
-        """
-        Enable/disable OSPF6 routing on this interface. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="transmitDelay")
     def transmit_delay(self) -> Optional[int]:
-        """
-        Transmit delay.
-        """
         return pulumi.get(self, "transmit_delay")
 
 
@@ -10416,8 +10232,7 @@ class OspfAreaVirtualLinkMd5Key(dict):
                  id: Optional[int] = None,
                  key_string: Optional[str] = None):
         """
-        :param int id: Area entry IP address.
-        :param str key_string: Password for the key.
+        :param int id: an identifier for the resource.
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -10428,16 +10243,13 @@ class OspfAreaVirtualLinkMd5Key(dict):
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        Area entry IP address.
+        an identifier for the resource.
         """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="keyString")
     def key_string(self) -> Optional[str]:
-        """
-        Password for the key.
-        """
         return pulumi.get(self, "key_string")
 
 
@@ -11017,8 +10829,7 @@ class OspfOspfInterfaceMd5Key(dict):
                  id: Optional[int] = None,
                  key_string: Optional[str] = None):
         """
-        :param int id: Area entry IP address.
-        :param str key_string: Password for the key.
+        :param int id: an identifier for the resource.
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -11029,16 +10840,13 @@ class OspfOspfInterfaceMd5Key(dict):
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        Area entry IP address.
+        an identifier for the resource.
         """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="keyString")
     def key_string(self) -> Optional[str]:
-        """
-        Password for the key.
-        """
         return pulumi.get(self, "key_string")
 
 
@@ -15963,6 +15771,7 @@ class GetBgpNeighborGroupResult(dict):
                  prefix_list_out_vpnv4: str,
                  prefix_list_out_vpnv6: str,
                  remote_as: int,
+                 remote_as_filter: str,
                  remove_private_as: str,
                  remove_private_as6: str,
                  remove_private_as_evpn: str,
@@ -16119,6 +15928,7 @@ class GetBgpNeighborGroupResult(dict):
         :param str prefix_list_out_vpnv4: Outbound filter for VPNv4 updates to this neighbor.
         :param str prefix_list_out_vpnv6: Outbound filter for VPNv6 updates to this neighbor.
         :param int remote_as: AS number of neighbor.
+        :param str remote_as_filter: BGP filter for remote AS.
         :param str remove_private_as: Enable/disable remove private AS number from IPv4 outbound updates.
         :param str remove_private_as6: Enable/disable remove private AS number from IPv6 outbound updates.
         :param str remove_private_as_evpn: Enable/disable removing private AS number from L2VPN EVPN outbound updates.
@@ -16275,6 +16085,7 @@ class GetBgpNeighborGroupResult(dict):
         pulumi.set(__self__, "prefix_list_out_vpnv4", prefix_list_out_vpnv4)
         pulumi.set(__self__, "prefix_list_out_vpnv6", prefix_list_out_vpnv6)
         pulumi.set(__self__, "remote_as", remote_as)
+        pulumi.set(__self__, "remote_as_filter", remote_as_filter)
         pulumi.set(__self__, "remove_private_as", remove_private_as)
         pulumi.set(__self__, "remove_private_as6", remove_private_as6)
         pulumi.set(__self__, "remove_private_as_evpn", remove_private_as_evpn)
@@ -17179,6 +16990,14 @@ class GetBgpNeighborGroupResult(dict):
         AS number of neighbor.
         """
         return pulumi.get(self, "remote_as")
+
+    @property
+    @pulumi.getter(name="remoteAsFilter")
+    def remote_as_filter(self) -> str:
+        """
+        BGP filter for remote AS.
+        """
+        return pulumi.get(self, "remote_as_filter")
 
     @property
     @pulumi.getter(name="removePrivateAs")

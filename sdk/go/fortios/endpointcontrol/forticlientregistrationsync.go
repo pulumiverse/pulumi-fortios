@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,7 +40,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -68,7 +66,7 @@ type Forticlientregistrationsync struct {
 	// Peer name.
 	PeerName pulumi.StringOutput `pulumi:"peerName"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewForticlientregistrationsync registers a new resource with the given unique name, arguments, and options.
@@ -242,8 +240,8 @@ func (o ForticlientregistrationsyncOutput) PeerName() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ForticlientregistrationsyncOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Forticlientregistrationsync) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ForticlientregistrationsyncOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Forticlientregistrationsync) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type ForticlientregistrationsyncArrayOutput struct{ *pulumi.OutputState }

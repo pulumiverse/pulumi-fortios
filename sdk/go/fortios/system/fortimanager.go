@@ -17,7 +17,6 @@ import (
 //
 // ## Example
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -50,18 +49,17 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type Fortimanager struct {
 	pulumi.CustomResourceState
 
-	CentralManagement                pulumi.StringOutput    `pulumi:"centralManagement"`
-	CentralMgmtAutoBackup            pulumi.StringOutput    `pulumi:"centralMgmtAutoBackup"`
-	CentralMgmtScheduleConfigRestore pulumi.StringOutput    `pulumi:"centralMgmtScheduleConfigRestore"`
-	CentralMgmtScheduleScriptRestore pulumi.StringOutput    `pulumi:"centralMgmtScheduleScriptRestore"`
-	Ip                               pulumi.StringOutput    `pulumi:"ip"`
-	Ipsec                            pulumi.StringOutput    `pulumi:"ipsec"`
-	Vdom                             pulumi.StringOutput    `pulumi:"vdom"`
-	Vdomparam                        pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	CentralManagement                pulumi.StringOutput `pulumi:"centralManagement"`
+	CentralMgmtAutoBackup            pulumi.StringOutput `pulumi:"centralMgmtAutoBackup"`
+	CentralMgmtScheduleConfigRestore pulumi.StringOutput `pulumi:"centralMgmtScheduleConfigRestore"`
+	CentralMgmtScheduleScriptRestore pulumi.StringOutput `pulumi:"centralMgmtScheduleScriptRestore"`
+	Ip                               pulumi.StringOutput `pulumi:"ip"`
+	Ipsec                            pulumi.StringOutput `pulumi:"ipsec"`
+	Vdom                             pulumi.StringOutput `pulumi:"vdom"`
+	Vdomparam                        pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewFortimanager registers a new resource with the given unique name, arguments, and options.
@@ -257,8 +255,8 @@ func (o FortimanagerOutput) Vdom() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fortimanager) pulumi.StringOutput { return v.Vdom }).(pulumi.StringOutput)
 }
 
-func (o FortimanagerOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Fortimanager) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o FortimanagerOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Fortimanager) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type FortimanagerArrayOutput struct{ *pulumi.OutputState }

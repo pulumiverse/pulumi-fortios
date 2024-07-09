@@ -27,6 +27,10 @@ namespace Pulumiverse.Fortios.Switchcontroller.Outputs
         /// </summary>
         public readonly string? AggregatorMode;
         /// <summary>
+        /// Enable/Disable allow ARP monitor. Valid values: `disable`, `enable`.
+        /// </summary>
+        public readonly string? AllowArpMonitor;
+        /// <summary>
         /// Configure switch port tagged vlans The structure of `allowed_vlans` block is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.ManagedswitchPortAllowedVlan> AllowedVlans;
@@ -90,6 +94,10 @@ namespace Pulumiverse.Fortios.Switchcontroller.Outputs
         /// Switch controller export port to pool-list.
         /// </summary>
         public readonly int? ExportToPoolFlag;
+        /// <summary>
+        /// LACP fallback port.
+        /// </summary>
+        public readonly string? FallbackPort;
         /// <summary>
         /// FEC capable.
         /// </summary>
@@ -275,7 +283,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Outputs
         /// </summary>
         public readonly int? PauseMeter;
         /// <summary>
-        /// Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
+        /// Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
         /// </summary>
         public readonly string? PauseMeterResume;
         /// <summary>
@@ -367,7 +375,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Outputs
         /// </summary>
         public readonly string? SampleDirection;
         /// <summary>
-        /// sFlow sampler counter polling interval (1 - 255 sec).
+        /// sFlow sampling counter polling interval in seconds (0 - 255).
         /// </summary>
         public readonly int? SflowCounterInterval;
         /// <summary>
@@ -447,6 +455,8 @@ namespace Pulumiverse.Fortios.Switchcontroller.Outputs
 
             string? aggregatorMode,
 
+            string? allowArpMonitor,
+
             ImmutableArray<Outputs.ManagedswitchPortAllowedVlan> allowedVlans,
 
             string? allowedVlansAll,
@@ -478,6 +488,8 @@ namespace Pulumiverse.Fortios.Switchcontroller.Outputs
             string? exportToPool,
 
             int? exportToPoolFlag,
+
+            string? fallbackPort,
 
             int? fecCapable,
 
@@ -656,6 +668,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Outputs
             AccessMode = accessMode;
             AclGroups = aclGroups;
             AggregatorMode = aggregatorMode;
+            AllowArpMonitor = allowArpMonitor;
             AllowedVlans = allowedVlans;
             AllowedVlansAll = allowedVlansAll;
             ArpInspectionTrust = arpInspectionTrust;
@@ -672,6 +685,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Outputs
             ExportTo = exportTo;
             ExportToPool = exportToPool;
             ExportToPoolFlag = exportToPoolFlag;
+            FallbackPort = fallbackPort;
             FecCapable = fecCapable;
             FecState = fecState;
             FgtPeerDeviceName = fgtPeerDeviceName;

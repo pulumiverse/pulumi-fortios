@@ -14,17 +14,8 @@ namespace Pulumiverse.Fortios.Router.Outputs
     [OutputType]
     public sealed class BgpNeighborConditionalAdvertise6
     {
-        /// <summary>
-        /// Name of advertising route map.
-        /// </summary>
         public readonly string? AdvertiseRoutemap;
-        /// <summary>
-        /// Name of condition route map.
-        /// </summary>
         public readonly string? ConditionRoutemap;
-        /// <summary>
-        /// Type of condition. Valid values: `exist`, `non-exist`.
-        /// </summary>
         public readonly string? ConditionType;
 
         [OutputConstructor]

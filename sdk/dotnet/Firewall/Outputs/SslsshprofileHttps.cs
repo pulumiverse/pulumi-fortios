@@ -35,6 +35,10 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
         /// </summary>
         public readonly string? ClientCertificate;
         /// <summary>
+        /// Block/allow session based on existence of encrypted-client-hello. Valid values: `allow`, `block`.
+        /// </summary>
+        public readonly string? EncryptedClientHello;
+        /// <summary>
         /// Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
         /// </summary>
         public readonly string? ExpiredServerCert;
@@ -103,6 +107,8 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
 
             string? clientCertificate,
 
+            string? encryptedClientHello,
+
             string? expiredServerCert,
 
             string? invalidServerCert,
@@ -136,6 +142,7 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
             CertValidationTimeout = certValidationTimeout;
             ClientCertRequest = clientCertRequest;
             ClientCertificate = clientCertificate;
+            EncryptedClientHello = encryptedClientHello;
             ExpiredServerCert = expiredServerCert;
             InvalidServerCert = invalidServerCert;
             MinAllowedSslVersion = minAllowedSslVersion;

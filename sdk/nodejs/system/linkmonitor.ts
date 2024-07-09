@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -41,7 +40,6 @@ import * as utilities from "../utilities";
  *     updateStaticRoute: "enable",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -110,7 +108,7 @@ export class Linkmonitor extends pulumi.CustomResource {
      */
     public readonly failWeight!: pulumi.Output<number>;
     /**
-     * Number of retry attempts before the server is considered down (1 - 10, default = 5)
+     * Number of retry attempts before the server is considered down (default = 5). On FortiOS versions 6.2.0-7.0.5: 1 - 10. On FortiOS versions >= 7.0.6: 1 - 3600.
      */
     public readonly failtime!: pulumi.Output<number>;
     /**
@@ -122,7 +120,7 @@ export class Linkmonitor extends pulumi.CustomResource {
      */
     public readonly gatewayIp6!: pulumi.Output<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -142,7 +140,7 @@ export class Linkmonitor extends pulumi.CustomResource {
      */
     public readonly httpMatch!: pulumi.Output<string>;
     /**
-     * Detection interval (1 - 3600 sec, default = 5).
+     * Detection interval. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-7.0.10, 7.2.0-7.2.4: 500 - 3600 * 1000 msec, default = 500. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600 * 1000 msec, default = 500.
      */
     public readonly interval!: pulumi.Output<number>;
     /**
@@ -150,7 +148,7 @@ export class Linkmonitor extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Packet size of a twamp test session,
+     * Packet size of a TWAMP test session.
      */
     public readonly packetSize!: pulumi.Output<number>;
     /**
@@ -166,7 +164,7 @@ export class Linkmonitor extends pulumi.CustomResource {
      */
     public readonly probeCount!: pulumi.Output<number>;
     /**
-     * Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
+     * Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.2.4-7.0.10, 7.2.0-7.2.4: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 5000 msec.
      */
     public readonly probeTimeout!: pulumi.Output<number>;
     /**
@@ -174,7 +172,7 @@ export class Linkmonitor extends pulumi.CustomResource {
      */
     public readonly protocol!: pulumi.Output<string>;
     /**
-     * Number of successful responses received before server is considered recovered (1 - 10, default = 5).
+     * Number of successful responses received before server is considered recovered (default = 5). On FortiOS versions 6.2.0-7.0.5: 1 - 10. On FortiOS versions >= 7.0.6: 1 - 3600.
      */
     public readonly recoverytime!: pulumi.Output<number>;
     /**
@@ -236,7 +234,7 @@ export class Linkmonitor extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Linkmonitor resource with the given unique name, arguments, and options.
@@ -363,7 +361,7 @@ export interface LinkmonitorState {
      */
     failWeight?: pulumi.Input<number>;
     /**
-     * Number of retry attempts before the server is considered down (1 - 10, default = 5)
+     * Number of retry attempts before the server is considered down (default = 5). On FortiOS versions 6.2.0-7.0.5: 1 - 10. On FortiOS versions >= 7.0.6: 1 - 3600.
      */
     failtime?: pulumi.Input<number>;
     /**
@@ -375,7 +373,7 @@ export interface LinkmonitorState {
      */
     gatewayIp6?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -395,7 +393,7 @@ export interface LinkmonitorState {
      */
     httpMatch?: pulumi.Input<string>;
     /**
-     * Detection interval (1 - 3600 sec, default = 5).
+     * Detection interval. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-7.0.10, 7.2.0-7.2.4: 500 - 3600 * 1000 msec, default = 500. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600 * 1000 msec, default = 500.
      */
     interval?: pulumi.Input<number>;
     /**
@@ -403,7 +401,7 @@ export interface LinkmonitorState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Packet size of a twamp test session,
+     * Packet size of a TWAMP test session.
      */
     packetSize?: pulumi.Input<number>;
     /**
@@ -419,7 +417,7 @@ export interface LinkmonitorState {
      */
     probeCount?: pulumi.Input<number>;
     /**
-     * Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
+     * Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.2.4-7.0.10, 7.2.0-7.2.4: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 5000 msec.
      */
     probeTimeout?: pulumi.Input<number>;
     /**
@@ -427,7 +425,7 @@ export interface LinkmonitorState {
      */
     protocol?: pulumi.Input<string>;
     /**
-     * Number of successful responses received before server is considered recovered (1 - 10, default = 5).
+     * Number of successful responses received before server is considered recovered (default = 5). On FortiOS versions 6.2.0-7.0.5: 1 - 10. On FortiOS versions >= 7.0.6: 1 - 3600.
      */
     recoverytime?: pulumi.Input<number>;
     /**
@@ -517,7 +515,7 @@ export interface LinkmonitorArgs {
      */
     failWeight?: pulumi.Input<number>;
     /**
-     * Number of retry attempts before the server is considered down (1 - 10, default = 5)
+     * Number of retry attempts before the server is considered down (default = 5). On FortiOS versions 6.2.0-7.0.5: 1 - 10. On FortiOS versions >= 7.0.6: 1 - 3600.
      */
     failtime?: pulumi.Input<number>;
     /**
@@ -529,7 +527,7 @@ export interface LinkmonitorArgs {
      */
     gatewayIp6?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -549,7 +547,7 @@ export interface LinkmonitorArgs {
      */
     httpMatch?: pulumi.Input<string>;
     /**
-     * Detection interval (1 - 3600 sec, default = 5).
+     * Detection interval. On FortiOS versions 6.2.0: 1 - 3600 sec, default = 5. On FortiOS versions 6.2.4-7.0.10, 7.2.0-7.2.4: 500 - 3600 * 1000 msec, default = 500. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 3600 * 1000 msec, default = 500.
      */
     interval?: pulumi.Input<number>;
     /**
@@ -557,7 +555,7 @@ export interface LinkmonitorArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Packet size of a twamp test session,
+     * Packet size of a TWAMP test session.
      */
     packetSize?: pulumi.Input<number>;
     /**
@@ -573,7 +571,7 @@ export interface LinkmonitorArgs {
      */
     probeCount?: pulumi.Input<number>;
     /**
-     * Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
+     * Time to wait before a probe packet is considered lost (default = 500). On FortiOS versions 6.2.4-7.0.10, 7.2.0-7.2.4: 500 - 5000 msec. On FortiOS versions 7.0.11-7.0.15, >= 7.2.6: 20 - 5000 msec.
      */
     probeTimeout?: pulumi.Input<number>;
     /**
@@ -581,7 +579,7 @@ export interface LinkmonitorArgs {
      */
     protocol?: pulumi.Input<string>;
     /**
-     * Number of successful responses received before server is considered recovered (1 - 10, default = 5).
+     * Number of successful responses received before server is considered recovered (default = 5). On FortiOS versions 6.2.0-7.0.5: 1 - 10. On FortiOS versions >= 7.0.6: 1 - 3600.
      */
     recoverytime?: pulumi.Input<number>;
     /**

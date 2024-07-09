@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -35,7 +34,6 @@ import * as utilities from "../utilities";
  *     view: "shadow",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -92,9 +90,7 @@ export class Dnsdatabase extends pulumi.CustomResource {
      */
     public readonly authoritative!: pulumi.Output<string>;
     /**
-     * Email address of the administrator for this zone.
-     * You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-     * When using a simple username, the domain of the email will be this zone.
+     * Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
      */
     public readonly contact!: pulumi.Output<string>;
     /**
@@ -118,7 +114,7 @@ export class Dnsdatabase extends pulumi.CustomResource {
      */
     public readonly forwarder6!: pulumi.Output<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -158,13 +154,13 @@ export class Dnsdatabase extends pulumi.CustomResource {
      */
     public readonly ttl!: pulumi.Output<number>;
     /**
-     * Zone type (master to manage entries directly, slave to import entries from other zones).
+     * Zone type (primary to manage entries directly, secondary to import entries from other zones).
      */
     public readonly type!: pulumi.Output<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * Zone view (public to serve public clients, shadow to serve internal clients).
      */
@@ -261,9 +257,7 @@ export interface DnsdatabaseState {
      */
     authoritative?: pulumi.Input<string>;
     /**
-     * Email address of the administrator for this zone.
-     * You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-     * When using a simple username, the domain of the email will be this zone.
+     * Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
      */
     contact?: pulumi.Input<string>;
     /**
@@ -287,7 +281,7 @@ export interface DnsdatabaseState {
      */
     forwarder6?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -327,7 +321,7 @@ export interface DnsdatabaseState {
      */
     ttl?: pulumi.Input<number>;
     /**
-     * Zone type (master to manage entries directly, slave to import entries from other zones).
+     * Zone type (primary to manage entries directly, secondary to import entries from other zones).
      */
     type?: pulumi.Input<string>;
     /**
@@ -353,9 +347,7 @@ export interface DnsdatabaseArgs {
      */
     authoritative: pulumi.Input<string>;
     /**
-     * Email address of the administrator for this zone.
-     * You can specify only the username (e.g. admin) or full email address (e.g. admin@test.com)
-     * When using a simple username, the domain of the email will be this zone.
+     * Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone.
      */
     contact?: pulumi.Input<string>;
     /**
@@ -379,7 +371,7 @@ export interface DnsdatabaseArgs {
      */
     forwarder6?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -419,7 +411,7 @@ export interface DnsdatabaseArgs {
      */
     ttl: pulumi.Input<number>;
     /**
-     * Zone type (master to manage entries directly, slave to import entries from other zones).
+     * Zone type (primary to manage entries directly, secondary to import entries from other zones).
      */
     type: pulumi.Input<string>;
     /**

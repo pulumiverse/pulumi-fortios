@@ -666,6 +666,12 @@ namespace Pulumiverse.Fortios.Router.Inputs
         public Input<int>? RemoteAs { get; set; }
 
         /// <summary>
+        /// BGP filter for remote AS.
+        /// </summary>
+        [Input("remoteAsFilter")]
+        public Input<string>? RemoteAsFilter { get; set; }
+
+        /// <summary>
         /// Enable/disable remove private AS number from IPv4 outbound updates. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("removePrivateAs")]

@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -19,7 +18,6 @@ import * as utilities from "../utilities";
  *     commandName: "1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -68,7 +66,7 @@ export class Customcommand extends pulumi.CustomResource {
     }
 
     /**
-     * String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
+     * String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
      */
     public readonly command!: pulumi.Output<string>;
     /**
@@ -82,7 +80,7 @@ export class Customcommand extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Customcommand resource with the given unique name, arguments, and options.
@@ -121,7 +119,7 @@ export class Customcommand extends pulumi.CustomResource {
  */
 export interface CustomcommandState {
     /**
-     * String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
+     * String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
      */
     command?: pulumi.Input<string>;
     /**
@@ -143,7 +141,7 @@ export interface CustomcommandState {
  */
 export interface CustomcommandArgs {
     /**
-     * String of commands to send to FortiSwitch devices (For example (%!a(MISSING) = return key): config switch trunk %!a(MISSING) edit myTrunk %!a(MISSING) set members port1 port2 %!a(MISSING) end %!a(MISSING)).
+     * String of commands to send to FortiSwitch devices (For example (%0a = return key): config switch trunk %0a edit myTrunk %0a set members port1 port2 %0a end %0a).
      */
     command: pulumi.Input<string>;
     /**

@@ -242,7 +242,6 @@ class GenericApi(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -275,7 +274,6 @@ class GenericApi(pulumi.CustomResource):
             specialparams="action=move&after=1")
         pulumi.export("response3", test3.response)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -296,7 +294,6 @@ class GenericApi(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -329,7 +326,6 @@ class GenericApi(pulumi.CustomResource):
             specialparams="action=move&after=1")
         pulumi.export("response3", test3.response)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param GenericApiArgs args: The arguments to use to populate this resource's properties.

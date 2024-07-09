@@ -35,7 +35,7 @@ namespace Pulumiverse.Fortios.System.Outputs
         /// </summary>
         public readonly string? Ipv6;
         /// <summary>
-        /// DNS entry preference, 0 is the highest preference (0 - 65535, default = 10)
+        /// DNS entry preference (0 - 65535, highest preference = 0, default = 10).
         /// </summary>
         public readonly int? Preference;
         /// <summary>

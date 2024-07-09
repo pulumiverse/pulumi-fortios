@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -40,7 +39,6 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -130,6 +128,12 @@ namespace Pulumiverse.Fortios.Firewall
         public Output<int> NumBlocksPerUser { get; private set; } = null!;
 
         /// <summary>
+        /// Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
+        /// </summary>
+        [Output("pbaInterimLog")]
+        public Output<int> PbaInterimLog { get; private set; } = null!;
+
+        /// <summary>
         /// Port block allocation timeout (seconds).
         /// </summary>
         [Output("pbaTimeout")]
@@ -187,7 +191,7 @@ namespace Pulumiverse.Fortios.Firewall
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -301,6 +305,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("numBlocksPerUser")]
         public Input<int>? NumBlocksPerUser { get; set; }
+
+        /// <summary>
+        /// Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
+        /// </summary>
+        [Input("pbaInterimLog")]
+        public Input<int>? PbaInterimLog { get; set; }
 
         /// <summary>
         /// Port block allocation timeout (seconds).
@@ -435,6 +445,12 @@ namespace Pulumiverse.Fortios.Firewall
         /// </summary>
         [Input("numBlocksPerUser")]
         public Input<int>? NumBlocksPerUser { get; set; }
+
+        /// <summary>
+        /// Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
+        /// </summary>
+        [Input("pbaInterimLog")]
+        public Input<int>? PbaInterimLog { get; set; }
 
         /// <summary>
         /// Port block allocation timeout (seconds).

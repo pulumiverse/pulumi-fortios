@@ -55,7 +55,7 @@ type Local struct {
 	CmpPath pulumi.StringOutput `pulumi:"cmpPath"`
 	// CMP auto-regeneration method. Valid values: `keyupate`, `renewal`.
 	CmpRegenerationMethod pulumi.StringOutput `pulumi:"cmpRegenerationMethod"`
-	// 'ADDRESS:PORT' for CMP server.
+	// Address and port for CMP server (format = address:port).
 	CmpServer pulumi.StringOutput `pulumi:"cmpServer"`
 	// CMP server certificate.
 	CmpServerCert pulumi.StringOutput `pulumi:"cmpServerCert"`
@@ -110,7 +110,7 @@ type Local struct {
 	// Certificate Signing Request State.
 	State pulumi.StringOutput `pulumi:"state"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewLocal registers a new resource with the given unique name, arguments, and options.
@@ -184,7 +184,7 @@ type localState struct {
 	CmpPath *string `pulumi:"cmpPath"`
 	// CMP auto-regeneration method. Valid values: `keyupate`, `renewal`.
 	CmpRegenerationMethod *string `pulumi:"cmpRegenerationMethod"`
-	// 'ADDRESS:PORT' for CMP server.
+	// Address and port for CMP server (format = address:port).
 	CmpServer *string `pulumi:"cmpServer"`
 	// CMP server certificate.
 	CmpServerCert *string `pulumi:"cmpServerCert"`
@@ -265,7 +265,7 @@ type LocalState struct {
 	CmpPath pulumi.StringPtrInput
 	// CMP auto-regeneration method. Valid values: `keyupate`, `renewal`.
 	CmpRegenerationMethod pulumi.StringPtrInput
-	// 'ADDRESS:PORT' for CMP server.
+	// Address and port for CMP server (format = address:port).
 	CmpServer pulumi.StringPtrInput
 	// CMP server certificate.
 	CmpServerCert pulumi.StringPtrInput
@@ -350,7 +350,7 @@ type localArgs struct {
 	CmpPath *string `pulumi:"cmpPath"`
 	// CMP auto-regeneration method. Valid values: `keyupate`, `renewal`.
 	CmpRegenerationMethod *string `pulumi:"cmpRegenerationMethod"`
-	// 'ADDRESS:PORT' for CMP server.
+	// Address and port for CMP server (format = address:port).
 	CmpServer *string `pulumi:"cmpServer"`
 	// CMP server certificate.
 	CmpServerCert *string `pulumi:"cmpServerCert"`
@@ -432,7 +432,7 @@ type LocalArgs struct {
 	CmpPath pulumi.StringPtrInput
 	// CMP auto-regeneration method. Valid values: `keyupate`, `renewal`.
 	CmpRegenerationMethod pulumi.StringPtrInput
-	// 'ADDRESS:PORT' for CMP server.
+	// Address and port for CMP server (format = address:port).
 	CmpServer pulumi.StringPtrInput
 	// CMP server certificate.
 	CmpServerCert pulumi.StringPtrInput
@@ -632,7 +632,7 @@ func (o LocalOutput) CmpRegenerationMethod() pulumi.StringOutput {
 	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.CmpRegenerationMethod }).(pulumi.StringOutput)
 }
 
-// 'ADDRESS:PORT' for CMP server.
+// Address and port for CMP server (format = address:port).
 func (o LocalOutput) CmpServer() pulumi.StringOutput {
 	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.CmpServer }).(pulumi.StringOutput)
 }
@@ -768,8 +768,8 @@ func (o LocalOutput) State() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o LocalOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Local) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o LocalOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Local) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type LocalArrayOutput struct{ *pulumi.OutputState }

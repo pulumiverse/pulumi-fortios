@@ -513,6 +513,10 @@ export interface GetPolicyResult {
      */
     readonly poolnames: outputs.firewall.GetPolicyPoolname[];
     /**
+     * Enable/disable preservation of the original source port from source NAT if it has not been used.
+     */
+    readonly portPreserve: string;
+    /**
      * Name of profile group.
      */
     readonly profileGroup: string;

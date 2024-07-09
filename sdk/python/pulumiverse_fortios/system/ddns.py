@@ -48,7 +48,7 @@ class DdnsArgs:
         :param pulumi.Input[str] bound_ip: Bound IP address.
         :param pulumi.Input[str] clear_text: Enable/disable use of clear text connections. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ddns_auth: Enable/disable TSIG authentication for your DDNS server. Valid values: `disable`, `tsig`.
-        :param pulumi.Input[str] ddns_domain: Your fully qualified domain name (for example, yourname.DDNS.com).
+        :param pulumi.Input[str] ddns_domain: Your fully qualified domain name. For example, yourname.ddns.com.
         :param pulumi.Input[str] ddns_key: DDNS update key (base 64 encoding).
         :param pulumi.Input[str] ddns_keyname: DDNS update key name.
         :param pulumi.Input[str] ddns_password: DDNS password.
@@ -60,10 +60,10 @@ class DdnsArgs:
         :param pulumi.Input[str] ddns_zone: Zone of your domain name (for example, DDNS.com).
         :param pulumi.Input[int] ddnsid: DDNS ID.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] server_type: Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
-        :param pulumi.Input[int] update_interval: DDNS update interval (60 - 2592000 sec, default = 300).
+        :param pulumi.Input[int] update_interval: DDNS update interval, 60 - 2592000 sec. On FortiOS versions 6.2.0-7.0.3: default = 300. On FortiOS versions >= 7.0.4: 0 means default.
         :param pulumi.Input[str] use_public_ip: Enable/disable use of public IP address. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -190,7 +190,7 @@ class DdnsArgs:
     @pulumi.getter(name="ddnsDomain")
     def ddns_domain(self) -> Optional[pulumi.Input[str]]:
         """
-        Your fully qualified domain name (for example, yourname.DDNS.com).
+        Your fully qualified domain name. For example, yourname.ddns.com.
         """
         return pulumi.get(self, "ddns_domain")
 
@@ -334,7 +334,7 @@ class DdnsArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -370,7 +370,7 @@ class DdnsArgs:
     @pulumi.getter(name="updateInterval")
     def update_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        DDNS update interval (60 - 2592000 sec, default = 300).
+        DDNS update interval, 60 - 2592000 sec. On FortiOS versions 6.2.0-7.0.3: default = 300. On FortiOS versions >= 7.0.4: 0 means default.
         """
         return pulumi.get(self, "update_interval")
 
@@ -436,7 +436,7 @@ class _DdnsState:
         :param pulumi.Input[str] bound_ip: Bound IP address.
         :param pulumi.Input[str] clear_text: Enable/disable use of clear text connections. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ddns_auth: Enable/disable TSIG authentication for your DDNS server. Valid values: `disable`, `tsig`.
-        :param pulumi.Input[str] ddns_domain: Your fully qualified domain name (for example, yourname.DDNS.com).
+        :param pulumi.Input[str] ddns_domain: Your fully qualified domain name. For example, yourname.ddns.com.
         :param pulumi.Input[str] ddns_key: DDNS update key (base 64 encoding).
         :param pulumi.Input[str] ddns_keyname: DDNS update key name.
         :param pulumi.Input[str] ddns_password: DDNS password.
@@ -449,11 +449,11 @@ class _DdnsState:
         :param pulumi.Input[str] ddns_zone: Zone of your domain name (for example, DDNS.com).
         :param pulumi.Input[int] ddnsid: DDNS ID.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input['DdnsMonitorInterfaceArgs']]] monitor_interfaces: Monitored interface. The structure of `monitor_interface` block is documented below.
         :param pulumi.Input[str] server_type: Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
-        :param pulumi.Input[int] update_interval: DDNS update interval (60 - 2592000 sec, default = 300).
+        :param pulumi.Input[int] update_interval: DDNS update interval, 60 - 2592000 sec. On FortiOS versions 6.2.0-7.0.3: default = 300. On FortiOS versions >= 7.0.4: 0 means default.
         :param pulumi.Input[str] use_public_ip: Enable/disable use of public IP address. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -558,7 +558,7 @@ class _DdnsState:
     @pulumi.getter(name="ddnsDomain")
     def ddns_domain(self) -> Optional[pulumi.Input[str]]:
         """
-        Your fully qualified domain name (for example, yourname.DDNS.com).
+        Your fully qualified domain name. For example, yourname.ddns.com.
         """
         return pulumi.get(self, "ddns_domain")
 
@@ -714,7 +714,7 @@ class _DdnsState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -762,7 +762,7 @@ class _DdnsState:
     @pulumi.getter(name="updateInterval")
     def update_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        DDNS update interval (60 - 2592000 sec, default = 300).
+        DDNS update interval, 60 - 2592000 sec. On FortiOS versions 6.2.0-7.0.3: default = 300. On FortiOS versions >= 7.0.4: 0 means default.
         """
         return pulumi.get(self, "update_interval")
 
@@ -830,7 +830,6 @@ class Ddns(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -853,7 +852,6 @@ class Ddns(pulumi.CustomResource):
             update_interval=300,
             use_public_ip="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -879,7 +877,7 @@ class Ddns(pulumi.CustomResource):
         :param pulumi.Input[str] bound_ip: Bound IP address.
         :param pulumi.Input[str] clear_text: Enable/disable use of clear text connections. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ddns_auth: Enable/disable TSIG authentication for your DDNS server. Valid values: `disable`, `tsig`.
-        :param pulumi.Input[str] ddns_domain: Your fully qualified domain name (for example, yourname.DDNS.com).
+        :param pulumi.Input[str] ddns_domain: Your fully qualified domain name. For example, yourname.ddns.com.
         :param pulumi.Input[str] ddns_key: DDNS update key (base 64 encoding).
         :param pulumi.Input[str] ddns_keyname: DDNS update key name.
         :param pulumi.Input[str] ddns_password: DDNS password.
@@ -892,11 +890,11 @@ class Ddns(pulumi.CustomResource):
         :param pulumi.Input[str] ddns_zone: Zone of your domain name (for example, DDNS.com).
         :param pulumi.Input[int] ddnsid: DDNS ID.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DdnsMonitorInterfaceArgs']]]] monitor_interfaces: Monitored interface. The structure of `monitor_interface` block is documented below.
         :param pulumi.Input[str] server_type: Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
-        :param pulumi.Input[int] update_interval: DDNS update interval (60 - 2592000 sec, default = 300).
+        :param pulumi.Input[int] update_interval: DDNS update interval, 60 - 2592000 sec. On FortiOS versions 6.2.0-7.0.3: default = 300. On FortiOS versions >= 7.0.4: 0 means default.
         :param pulumi.Input[str] use_public_ip: Enable/disable use of public IP address. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -911,7 +909,6 @@ class Ddns(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -934,7 +931,6 @@ class Ddns(pulumi.CustomResource):
             update_interval=300,
             use_public_ip="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1077,7 +1073,7 @@ class Ddns(pulumi.CustomResource):
         :param pulumi.Input[str] bound_ip: Bound IP address.
         :param pulumi.Input[str] clear_text: Enable/disable use of clear text connections. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ddns_auth: Enable/disable TSIG authentication for your DDNS server. Valid values: `disable`, `tsig`.
-        :param pulumi.Input[str] ddns_domain: Your fully qualified domain name (for example, yourname.DDNS.com).
+        :param pulumi.Input[str] ddns_domain: Your fully qualified domain name. For example, yourname.ddns.com.
         :param pulumi.Input[str] ddns_key: DDNS update key (base 64 encoding).
         :param pulumi.Input[str] ddns_keyname: DDNS update key name.
         :param pulumi.Input[str] ddns_password: DDNS password.
@@ -1090,11 +1086,11 @@ class Ddns(pulumi.CustomResource):
         :param pulumi.Input[str] ddns_zone: Zone of your domain name (for example, DDNS.com).
         :param pulumi.Input[int] ddnsid: DDNS ID.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DdnsMonitorInterfaceArgs']]]] monitor_interfaces: Monitored interface. The structure of `monitor_interface` block is documented below.
         :param pulumi.Input[str] server_type: Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
-        :param pulumi.Input[int] update_interval: DDNS update interval (60 - 2592000 sec, default = 300).
+        :param pulumi.Input[int] update_interval: DDNS update interval, 60 - 2592000 sec. On FortiOS versions 6.2.0-7.0.3: default = 300. On FortiOS versions >= 7.0.4: 0 means default.
         :param pulumi.Input[str] use_public_ip: Enable/disable use of public IP address. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -1164,7 +1160,7 @@ class Ddns(pulumi.CustomResource):
     @pulumi.getter(name="ddnsDomain")
     def ddns_domain(self) -> pulumi.Output[str]:
         """
-        Your fully qualified domain name (for example, yourname.DDNS.com).
+        Your fully qualified domain name. For example, yourname.ddns.com.
         """
         return pulumi.get(self, "ddns_domain")
 
@@ -1268,7 +1264,7 @@ class Ddns(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1300,7 +1296,7 @@ class Ddns(pulumi.CustomResource):
     @pulumi.getter(name="updateInterval")
     def update_interval(self) -> pulumi.Output[int]:
         """
-        DDNS update interval (60 - 2592000 sec, default = 300).
+        DDNS update interval, 60 - 2592000 sec. On FortiOS versions 6.2.0-7.0.3: default = 300. On FortiOS versions >= 7.0.4: 0 means default.
         """
         return pulumi.get(self, "update_interval")
 
@@ -1314,7 +1310,7 @@ class Ddns(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

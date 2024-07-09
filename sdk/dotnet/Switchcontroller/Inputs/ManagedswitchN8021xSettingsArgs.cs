@@ -13,69 +13,36 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
 
     public sealed class ManagedswitchN8021xSettingsArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Authentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-        /// </summary>
         [Input("linkDownAuth")]
         public Input<string>? LinkDownAuth { get; set; }
 
-        /// <summary>
-        /// Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
-        /// </summary>
         [Input("localOverride")]
         public Input<string>? LocalOverride { get; set; }
 
-        /// <summary>
-        /// Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
-        /// </summary>
         [Input("mabReauth")]
         public Input<string>? MabReauth { get; set; }
 
-        /// <summary>
-        /// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        /// </summary>
         [Input("macCalledStationDelimiter")]
         public Input<string>? MacCalledStationDelimiter { get; set; }
 
-        /// <summary>
-        /// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        /// </summary>
         [Input("macCallingStationDelimiter")]
         public Input<string>? MacCallingStationDelimiter { get; set; }
 
-        /// <summary>
-        /// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
-        /// </summary>
         [Input("macCase")]
         public Input<string>? MacCase { get; set; }
 
-        /// <summary>
-        /// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        /// </summary>
         [Input("macPasswordDelimiter")]
         public Input<string>? MacPasswordDelimiter { get; set; }
 
-        /// <summary>
-        /// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        /// </summary>
         [Input("macUsernameDelimiter")]
         public Input<string>? MacUsernameDelimiter { get; set; }
 
-        /// <summary>
-        /// Maximum number of authentication attempts (0 - 15, default = 3).
-        /// </summary>
         [Input("maxReauthAttempt")]
         public Input<int>? MaxReauthAttempt { get; set; }
 
-        /// <summary>
-        /// Reauthentication time interval (1 - 1440 min, default = 60, 0 = disable).
-        /// </summary>
         [Input("reauthPeriod")]
         public Input<int>? ReauthPeriod { get; set; }
 
-        /// <summary>
-        /// 802.1X Tx period (seconds, default=30).
-        /// </summary>
         [Input("txPeriod")]
         public Input<int>? TxPeriod { get; set; }
 

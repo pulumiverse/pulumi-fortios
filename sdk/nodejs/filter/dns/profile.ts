@@ -11,7 +11,6 @@ import * as utilities from "../../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -58,7 +57,6 @@ import * as utilities from "../../utilities";
  *     youtubeRestrict: "strict",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -139,7 +137,7 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly ftgdDns!: pulumi.Output<outputs.filter.dns.ProfileFtgdDns>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -171,15 +169,19 @@ export class Profile extends pulumi.CustomResource {
      */
     public readonly sdnsFtgdErrLog!: pulumi.Output<string>;
     /**
+     * Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. Valid values: `disable`, `enable`.
+     */
+    public readonly stripEch!: pulumi.Output<string>;
+    /**
      * Transparent DNS database zones. The structure of `transparentDnsDatabase` block is documented below.
      */
     public readonly transparentDnsDatabases!: pulumi.Output<outputs.filter.dns.ProfileTransparentDnsDatabase[] | undefined>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
-     * Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
+     * Set safe search for YouTube restriction level.
      */
     public readonly youtubeRestrict!: pulumi.Output<string>;
 
@@ -212,6 +214,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["safeSearch"] = state ? state.safeSearch : undefined;
             resourceInputs["sdnsDomainLog"] = state ? state.sdnsDomainLog : undefined;
             resourceInputs["sdnsFtgdErrLog"] = state ? state.sdnsFtgdErrLog : undefined;
+            resourceInputs["stripEch"] = state ? state.stripEch : undefined;
             resourceInputs["transparentDnsDatabases"] = state ? state.transparentDnsDatabases : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["youtubeRestrict"] = state ? state.youtubeRestrict : undefined;
@@ -233,6 +236,7 @@ export class Profile extends pulumi.CustomResource {
             resourceInputs["safeSearch"] = args ? args.safeSearch : undefined;
             resourceInputs["sdnsDomainLog"] = args ? args.sdnsDomainLog : undefined;
             resourceInputs["sdnsFtgdErrLog"] = args ? args.sdnsFtgdErrLog : undefined;
+            resourceInputs["stripEch"] = args ? args.stripEch : undefined;
             resourceInputs["transparentDnsDatabases"] = args ? args.transparentDnsDatabases : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["youtubeRestrict"] = args ? args.youtubeRestrict : undefined;
@@ -279,7 +283,7 @@ export interface ProfileState {
      */
     ftgdDns?: pulumi.Input<inputs.filter.dns.ProfileFtgdDns>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -311,6 +315,10 @@ export interface ProfileState {
      */
     sdnsFtgdErrLog?: pulumi.Input<string>;
     /**
+     * Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. Valid values: `disable`, `enable`.
+     */
+    stripEch?: pulumi.Input<string>;
+    /**
      * Transparent DNS database zones. The structure of `transparentDnsDatabase` block is documented below.
      */
     transparentDnsDatabases?: pulumi.Input<pulumi.Input<inputs.filter.dns.ProfileTransparentDnsDatabase>[]>;
@@ -319,7 +327,7 @@ export interface ProfileState {
      */
     vdomparam?: pulumi.Input<string>;
     /**
-     * Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
+     * Set safe search for YouTube restriction level.
      */
     youtubeRestrict?: pulumi.Input<string>;
 }
@@ -361,7 +369,7 @@ export interface ProfileArgs {
      */
     ftgdDns?: pulumi.Input<inputs.filter.dns.ProfileFtgdDns>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -393,6 +401,10 @@ export interface ProfileArgs {
      */
     sdnsFtgdErrLog?: pulumi.Input<string>;
     /**
+     * Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. Valid values: `disable`, `enable`.
+     */
+    stripEch?: pulumi.Input<string>;
+    /**
      * Transparent DNS database zones. The structure of `transparentDnsDatabase` block is documented below.
      */
     transparentDnsDatabases?: pulumi.Input<pulumi.Input<inputs.filter.dns.ProfileTransparentDnsDatabase>[]>;
@@ -401,7 +413,7 @@ export interface ProfileArgs {
      */
     vdomparam?: pulumi.Input<string>;
     /**
-     * Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
+     * Set safe search for YouTube restriction level.
      */
     youtubeRestrict?: pulumi.Input<string>;
 }

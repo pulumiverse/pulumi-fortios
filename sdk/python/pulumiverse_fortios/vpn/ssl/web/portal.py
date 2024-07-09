@@ -124,7 +124,7 @@ class PortalArgs:
         :param pulumi.Input[str] focus_bookmark: Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_download: Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_download_method: FortiClient download method. Valid values: `direct`, `ssl-vpn`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] heading: Web portal heading message.
         :param pulumi.Input[str] hide_sso_credential: Enable to prevent SSO credential being sent to client. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] host_check: Type of host checking performed on endpoints. Valid values: `none`, `av`, `fw`, `av-fw`, `custom`.
@@ -156,7 +156,7 @@ class PortalArgs:
         :param pulumi.Input[Sequence[pulumi.Input['PortalOsCheckListArgs']]] os_check_lists: SSL VPN OS checks. The structure of `os_check_list` block is documented below.
         :param pulumi.Input[str] prefer_ipv6_dns: prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] redir_url: Client login redirect URL.
-        :param pulumi.Input[str] rewrite_ip_uri_ui: Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rewrite_ip_uri_ui: Rewrite contents for URI contains IP and /ui/ (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] save_password: Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] service_restriction: Enable/disable tunnel service restriction. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] skip_check_for_browser: Enable to skip host check for browser support. Valid values: `enable`, `disable`.
@@ -648,7 +648,7 @@ class PortalArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1032,7 +1032,7 @@ class PortalArgs:
     @pulumi.getter(name="rewriteIpUriUi")
     def rewrite_ip_uri_ui(self) -> Optional[pulumi.Input[str]]:
         """
-        Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+        Rewrite contents for URI contains IP and /ui/ (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "rewrite_ip_uri_ui")
 
@@ -1428,7 +1428,7 @@ class _PortalState:
         :param pulumi.Input[str] focus_bookmark: Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_download: Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_download_method: FortiClient download method. Valid values: `direct`, `ssl-vpn`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] heading: Web portal heading message.
         :param pulumi.Input[str] hide_sso_credential: Enable to prevent SSO credential being sent to client. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] host_check: Type of host checking performed on endpoints. Valid values: `none`, `av`, `fw`, `av-fw`, `custom`.
@@ -1460,7 +1460,7 @@ class _PortalState:
         :param pulumi.Input[Sequence[pulumi.Input['PortalOsCheckListArgs']]] os_check_lists: SSL VPN OS checks. The structure of `os_check_list` block is documented below.
         :param pulumi.Input[str] prefer_ipv6_dns: prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] redir_url: Client login redirect URL.
-        :param pulumi.Input[str] rewrite_ip_uri_ui: Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rewrite_ip_uri_ui: Rewrite contents for URI contains IP and /ui/ (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] save_password: Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] service_restriction: Enable/disable tunnel service restriction. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] skip_check_for_browser: Enable to skip host check for browser support. Valid values: `enable`, `disable`.
@@ -1952,7 +1952,7 @@ class _PortalState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2336,7 +2336,7 @@ class _PortalState:
     @pulumi.getter(name="rewriteIpUriUi")
     def rewrite_ip_uri_ui(self) -> Optional[pulumi.Input[str]]:
         """
-        Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+        Rewrite contents for URI contains IP and /ui/ (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "rewrite_ip_uri_ui")
 
@@ -2713,7 +2713,6 @@ class Portal(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2769,7 +2768,6 @@ class Portal(pulumi.CustomResource):
             wins_server1="0.0.0.0",
             wins_server2="0.0.0.0")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -2816,7 +2814,7 @@ class Portal(pulumi.CustomResource):
         :param pulumi.Input[str] focus_bookmark: Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_download: Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_download_method: FortiClient download method. Valid values: `direct`, `ssl-vpn`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] heading: Web portal heading message.
         :param pulumi.Input[str] hide_sso_credential: Enable to prevent SSO credential being sent to client. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] host_check: Type of host checking performed on endpoints. Valid values: `none`, `av`, `fw`, `av-fw`, `custom`.
@@ -2848,7 +2846,7 @@ class Portal(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PortalOsCheckListArgs']]]] os_check_lists: SSL VPN OS checks. The structure of `os_check_list` block is documented below.
         :param pulumi.Input[str] prefer_ipv6_dns: prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] redir_url: Client login redirect URL.
-        :param pulumi.Input[str] rewrite_ip_uri_ui: Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rewrite_ip_uri_ui: Rewrite contents for URI contains IP and /ui/ (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] save_password: Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] service_restriction: Enable/disable tunnel service restriction. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] skip_check_for_browser: Enable to skip host check for browser support. Valid values: `enable`, `disable`.
@@ -2884,7 +2882,6 @@ class Portal(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2940,7 +2937,6 @@ class Portal(pulumi.CustomResource):
             wins_server1="0.0.0.0",
             wins_server2="0.0.0.0")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -3269,7 +3265,7 @@ class Portal(pulumi.CustomResource):
         :param pulumi.Input[str] focus_bookmark: Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_download: Enable/disable download option for FortiClient. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forticlient_download_method: FortiClient download method. Valid values: `direct`, `ssl-vpn`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] heading: Web portal heading message.
         :param pulumi.Input[str] hide_sso_credential: Enable to prevent SSO credential being sent to client. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] host_check: Type of host checking performed on endpoints. Valid values: `none`, `av`, `fw`, `av-fw`, `custom`.
@@ -3301,7 +3297,7 @@ class Portal(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PortalOsCheckListArgs']]]] os_check_lists: SSL VPN OS checks. The structure of `os_check_list` block is documented below.
         :param pulumi.Input[str] prefer_ipv6_dns: prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] redir_url: Client login redirect URL.
-        :param pulumi.Input[str] rewrite_ip_uri_ui: Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rewrite_ip_uri_ui: Rewrite contents for URI contains IP and /ui/ (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] save_password: Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] service_restriction: Enable/disable tunnel service restriction. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] skip_check_for_browser: Enable to skip host check for browser support. Valid values: `enable`, `disable`.
@@ -3617,7 +3613,7 @@ class Portal(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -3873,7 +3869,7 @@ class Portal(pulumi.CustomResource):
     @pulumi.getter(name="rewriteIpUriUi")
     def rewrite_ip_uri_ui(self) -> pulumi.Output[str]:
         """
-        Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+        Rewrite contents for URI contains IP and /ui/ (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "rewrite_ip_uri_ui")
 
@@ -4023,7 +4019,7 @@ class Portal(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

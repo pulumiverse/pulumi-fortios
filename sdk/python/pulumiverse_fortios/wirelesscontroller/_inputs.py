@@ -717,18 +717,26 @@ class MpskprofileMpskGroupMpskKeyArgs:
                  comment: Optional[pulumi.Input[str]] = None,
                  concurrent_client_limit_type: Optional[pulumi.Input[str]] = None,
                  concurrent_clients: Optional[pulumi.Input[int]] = None,
+                 key_type: Optional[pulumi.Input[str]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
                  mpsk_schedules: Optional[pulumi.Input[Sequence[pulumi.Input['MpskprofileMpskGroupMpskKeyMpskScheduleArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 passphrase: Optional[pulumi.Input[str]] = None):
+                 passphrase: Optional[pulumi.Input[str]] = None,
+                 sae_password: Optional[pulumi.Input[str]] = None,
+                 sae_pk: Optional[pulumi.Input[str]] = None,
+                 sae_private_key: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] concurrent_client_limit_type: MPSK client limit type options. Valid values: `default`, `unlimited`, `specified`.
         :param pulumi.Input[int] concurrent_clients: Number of clients that can connect using this pre-shared key (1 - 65535, default is 256).
+        :param pulumi.Input[str] key_type: Select the type of the key. Valid values: `wpa2-personal`, `wpa3-sae`.
         :param pulumi.Input[str] mac: MAC address.
         :param pulumi.Input[Sequence[pulumi.Input['MpskprofileMpskGroupMpskKeyMpskScheduleArgs']]] mpsk_schedules: Firewall schedule for MPSK passphrase. The passphrase will be effective only when at least one schedule is valid. The structure of `mpsk_schedules` block is documented below.
         :param pulumi.Input[str] name: Pre-shared key name.
         :param pulumi.Input[str] passphrase: WPA Pre-shared key.
+        :param pulumi.Input[str] sae_password: WPA3 SAE password.
+        :param pulumi.Input[str] sae_pk: Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sae_private_key: Private key used for WPA3 SAE-PK authentication.
         """
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
@@ -736,6 +744,8 @@ class MpskprofileMpskGroupMpskKeyArgs:
             pulumi.set(__self__, "concurrent_client_limit_type", concurrent_client_limit_type)
         if concurrent_clients is not None:
             pulumi.set(__self__, "concurrent_clients", concurrent_clients)
+        if key_type is not None:
+            pulumi.set(__self__, "key_type", key_type)
         if mac is not None:
             pulumi.set(__self__, "mac", mac)
         if mpsk_schedules is not None:
@@ -744,6 +754,12 @@ class MpskprofileMpskGroupMpskKeyArgs:
             pulumi.set(__self__, "name", name)
         if passphrase is not None:
             pulumi.set(__self__, "passphrase", passphrase)
+        if sae_password is not None:
+            pulumi.set(__self__, "sae_password", sae_password)
+        if sae_pk is not None:
+            pulumi.set(__self__, "sae_pk", sae_pk)
+        if sae_private_key is not None:
+            pulumi.set(__self__, "sae_private_key", sae_private_key)
 
     @property
     @pulumi.getter
@@ -780,6 +796,18 @@ class MpskprofileMpskGroupMpskKeyArgs:
     @concurrent_clients.setter
     def concurrent_clients(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "concurrent_clients", value)
+
+    @property
+    @pulumi.getter(name="keyType")
+    def key_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select the type of the key. Valid values: `wpa2-personal`, `wpa3-sae`.
+        """
+        return pulumi.get(self, "key_type")
+
+    @key_type.setter
+    def key_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key_type", value)
 
     @property
     @pulumi.getter
@@ -828,6 +856,42 @@ class MpskprofileMpskGroupMpskKeyArgs:
     @passphrase.setter
     def passphrase(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "passphrase", value)
+
+    @property
+    @pulumi.getter(name="saePassword")
+    def sae_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        WPA3 SAE password.
+        """
+        return pulumi.get(self, "sae_password")
+
+    @sae_password.setter
+    def sae_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sae_password", value)
+
+    @property
+    @pulumi.getter(name="saePk")
+    def sae_pk(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "sae_pk")
+
+    @sae_pk.setter
+    def sae_pk(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sae_pk", value)
+
+    @property
+    @pulumi.getter(name="saePrivateKey")
+    def sae_private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Private key used for WPA3 SAE-PK authentication.
+        """
+        return pulumi.get(self, "sae_private_key")
+
+    @sae_private_key.setter
+    def sae_private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sae_private_key", value)
 
 
 @pulumi.input_type
@@ -2215,27 +2279,6 @@ class WtpRadio1Args:
                  spectrum_analysis: Optional[pulumi.Input[str]] = None,
                  vap_all: Optional[pulumi.Input[str]] = None,
                  vaps: Optional[pulumi.Input[Sequence[pulumi.Input['WtpRadio1VapArgs']]]] = None):
-        """
-        :param pulumi.Input[int] auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        :param pulumi.Input[str] auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        :param pulumi.Input[str] auto_power_target: The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        :param pulumi.Input[str] band: WiFi band that Radio 4 operates on.
-        :param pulumi.Input[Sequence[pulumi.Input['WtpRadio1ChannelArgs']]] channels: Selected list of wireless radio channels. The structure of `channel` block is documented below.
-        :param pulumi.Input[str] drma_manual_mode: Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-        :param pulumi.Input[str] override_analysis: Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] override_band: Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] override_channel: Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] override_txpower: Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] override_vaps: Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-        :param pulumi.Input[str] power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-        :param pulumi.Input[int] power_value: Radio EIRP power in dBm (1 - 33, default = 27).
-        :param pulumi.Input[int] radio_id: radio-id
-        :param pulumi.Input[str] spectrum_analysis: Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-        :param pulumi.Input[str] vap_all: Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-        :param pulumi.Input[Sequence[pulumi.Input['WtpRadio1VapArgs']]] vaps: Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-        """
         if auto_power_high is not None:
             pulumi.set(__self__, "auto_power_high", auto_power_high)
         if auto_power_level is not None:
@@ -2278,9 +2321,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[pulumi.Input[int]]:
-        """
-        The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        """
         return pulumi.get(self, "auto_power_high")
 
     @auto_power_high.setter
@@ -2290,9 +2330,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter(name="autoPowerLevel")
     def auto_power_level(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "auto_power_level")
 
     @auto_power_level.setter
@@ -2302,9 +2339,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter(name="autoPowerLow")
     def auto_power_low(self) -> Optional[pulumi.Input[int]]:
-        """
-        The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        """
         return pulumi.get(self, "auto_power_low")
 
     @auto_power_low.setter
@@ -2314,9 +2348,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter(name="autoPowerTarget")
     def auto_power_target(self) -> Optional[pulumi.Input[str]]:
-        """
-        The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        """
         return pulumi.get(self, "auto_power_target")
 
     @auto_power_target.setter
@@ -2326,9 +2357,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter
     def band(self) -> Optional[pulumi.Input[str]]:
-        """
-        WiFi band that Radio 4 operates on.
-        """
         return pulumi.get(self, "band")
 
     @band.setter
@@ -2338,9 +2366,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter
     def channels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WtpRadio1ChannelArgs']]]]:
-        """
-        Selected list of wireless radio channels. The structure of `channel` block is documented below.
-        """
         return pulumi.get(self, "channels")
 
     @channels.setter
@@ -2350,9 +2375,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter(name="drmaManualMode")
     def drma_manual_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-        """
         return pulumi.get(self, "drma_manual_mode")
 
     @drma_manual_mode.setter
@@ -2362,9 +2384,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter(name="overrideAnalysis")
     def override_analysis(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_analysis")
 
     @override_analysis.setter
@@ -2374,9 +2393,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter(name="overrideBand")
     def override_band(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_band")
 
     @override_band.setter
@@ -2386,9 +2402,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter(name="overrideChannel")
     def override_channel(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_channel")
 
     @override_channel.setter
@@ -2398,9 +2411,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter(name="overrideTxpower")
     def override_txpower(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_txpower")
 
     @override_txpower.setter
@@ -2410,9 +2420,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter(name="overrideVaps")
     def override_vaps(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_vaps")
 
     @override_vaps.setter
@@ -2422,9 +2429,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter(name="powerLevel")
     def power_level(self) -> Optional[pulumi.Input[int]]:
-        """
-        Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-        """
         return pulumi.get(self, "power_level")
 
     @power_level.setter
@@ -2434,9 +2438,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter(name="powerMode")
     def power_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-        """
         return pulumi.get(self, "power_mode")
 
     @power_mode.setter
@@ -2446,9 +2447,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter(name="powerValue")
     def power_value(self) -> Optional[pulumi.Input[int]]:
-        """
-        Radio EIRP power in dBm (1 - 33, default = 27).
-        """
         return pulumi.get(self, "power_value")
 
     @power_value.setter
@@ -2458,9 +2456,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter(name="radioId")
     def radio_id(self) -> Optional[pulumi.Input[int]]:
-        """
-        radio-id
-        """
         return pulumi.get(self, "radio_id")
 
     @radio_id.setter
@@ -2470,9 +2465,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter(name="spectrumAnalysis")
     def spectrum_analysis(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-        """
         return pulumi.get(self, "spectrum_analysis")
 
     @spectrum_analysis.setter
@@ -2482,9 +2474,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter(name="vapAll")
     def vap_all(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-        """
         return pulumi.get(self, "vap_all")
 
     @vap_all.setter
@@ -2494,9 +2483,6 @@ class WtpRadio1Args:
     @property
     @pulumi.getter
     def vaps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WtpRadio1VapArgs']]]]:
-        """
-        Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-        """
         return pulumi.get(self, "vaps")
 
     @vaps.setter
@@ -2572,27 +2558,6 @@ class WtpRadio2Args:
                  spectrum_analysis: Optional[pulumi.Input[str]] = None,
                  vap_all: Optional[pulumi.Input[str]] = None,
                  vaps: Optional[pulumi.Input[Sequence[pulumi.Input['WtpRadio2VapArgs']]]] = None):
-        """
-        :param pulumi.Input[int] auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        :param pulumi.Input[str] auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        :param pulumi.Input[str] auto_power_target: The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        :param pulumi.Input[str] band: WiFi band that Radio 4 operates on.
-        :param pulumi.Input[Sequence[pulumi.Input['WtpRadio2ChannelArgs']]] channels: Selected list of wireless radio channels. The structure of `channel` block is documented below.
-        :param pulumi.Input[str] drma_manual_mode: Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-        :param pulumi.Input[str] override_analysis: Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] override_band: Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] override_channel: Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] override_txpower: Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] override_vaps: Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-        :param pulumi.Input[str] power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-        :param pulumi.Input[int] power_value: Radio EIRP power in dBm (1 - 33, default = 27).
-        :param pulumi.Input[int] radio_id: radio-id
-        :param pulumi.Input[str] spectrum_analysis: Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-        :param pulumi.Input[str] vap_all: Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-        :param pulumi.Input[Sequence[pulumi.Input['WtpRadio2VapArgs']]] vaps: Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-        """
         if auto_power_high is not None:
             pulumi.set(__self__, "auto_power_high", auto_power_high)
         if auto_power_level is not None:
@@ -2635,9 +2600,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[pulumi.Input[int]]:
-        """
-        The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        """
         return pulumi.get(self, "auto_power_high")
 
     @auto_power_high.setter
@@ -2647,9 +2609,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter(name="autoPowerLevel")
     def auto_power_level(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "auto_power_level")
 
     @auto_power_level.setter
@@ -2659,9 +2618,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter(name="autoPowerLow")
     def auto_power_low(self) -> Optional[pulumi.Input[int]]:
-        """
-        The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        """
         return pulumi.get(self, "auto_power_low")
 
     @auto_power_low.setter
@@ -2671,9 +2627,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter(name="autoPowerTarget")
     def auto_power_target(self) -> Optional[pulumi.Input[str]]:
-        """
-        The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        """
         return pulumi.get(self, "auto_power_target")
 
     @auto_power_target.setter
@@ -2683,9 +2636,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter
     def band(self) -> Optional[pulumi.Input[str]]:
-        """
-        WiFi band that Radio 4 operates on.
-        """
         return pulumi.get(self, "band")
 
     @band.setter
@@ -2695,9 +2645,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter
     def channels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WtpRadio2ChannelArgs']]]]:
-        """
-        Selected list of wireless radio channels. The structure of `channel` block is documented below.
-        """
         return pulumi.get(self, "channels")
 
     @channels.setter
@@ -2707,9 +2654,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter(name="drmaManualMode")
     def drma_manual_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-        """
         return pulumi.get(self, "drma_manual_mode")
 
     @drma_manual_mode.setter
@@ -2719,9 +2663,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter(name="overrideAnalysis")
     def override_analysis(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_analysis")
 
     @override_analysis.setter
@@ -2731,9 +2672,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter(name="overrideBand")
     def override_band(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_band")
 
     @override_band.setter
@@ -2743,9 +2681,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter(name="overrideChannel")
     def override_channel(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_channel")
 
     @override_channel.setter
@@ -2755,9 +2690,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter(name="overrideTxpower")
     def override_txpower(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_txpower")
 
     @override_txpower.setter
@@ -2767,9 +2699,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter(name="overrideVaps")
     def override_vaps(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_vaps")
 
     @override_vaps.setter
@@ -2779,9 +2708,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter(name="powerLevel")
     def power_level(self) -> Optional[pulumi.Input[int]]:
-        """
-        Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-        """
         return pulumi.get(self, "power_level")
 
     @power_level.setter
@@ -2791,9 +2717,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter(name="powerMode")
     def power_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-        """
         return pulumi.get(self, "power_mode")
 
     @power_mode.setter
@@ -2803,9 +2726,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter(name="powerValue")
     def power_value(self) -> Optional[pulumi.Input[int]]:
-        """
-        Radio EIRP power in dBm (1 - 33, default = 27).
-        """
         return pulumi.get(self, "power_value")
 
     @power_value.setter
@@ -2815,9 +2735,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter(name="radioId")
     def radio_id(self) -> Optional[pulumi.Input[int]]:
-        """
-        radio-id
-        """
         return pulumi.get(self, "radio_id")
 
     @radio_id.setter
@@ -2827,9 +2744,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter(name="spectrumAnalysis")
     def spectrum_analysis(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-        """
         return pulumi.get(self, "spectrum_analysis")
 
     @spectrum_analysis.setter
@@ -2839,9 +2753,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter(name="vapAll")
     def vap_all(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-        """
         return pulumi.get(self, "vap_all")
 
     @vap_all.setter
@@ -2851,9 +2762,6 @@ class WtpRadio2Args:
     @property
     @pulumi.getter
     def vaps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WtpRadio2VapArgs']]]]:
-        """
-        Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-        """
         return pulumi.get(self, "vaps")
 
     @vaps.setter
@@ -2928,26 +2836,6 @@ class WtpRadio3Args:
                  spectrum_analysis: Optional[pulumi.Input[str]] = None,
                  vap_all: Optional[pulumi.Input[str]] = None,
                  vaps: Optional[pulumi.Input[Sequence[pulumi.Input['WtpRadio3VapArgs']]]] = None):
-        """
-        :param pulumi.Input[int] auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        :param pulumi.Input[str] auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        :param pulumi.Input[str] auto_power_target: The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        :param pulumi.Input[str] band: WiFi band that Radio 4 operates on.
-        :param pulumi.Input[Sequence[pulumi.Input['WtpRadio3ChannelArgs']]] channels: Selected list of wireless radio channels. The structure of `channel` block is documented below.
-        :param pulumi.Input[str] drma_manual_mode: Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-        :param pulumi.Input[str] override_analysis: Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] override_band: Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] override_channel: Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] override_txpower: Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] override_vaps: Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-        :param pulumi.Input[str] power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-        :param pulumi.Input[int] power_value: Radio EIRP power in dBm (1 - 33, default = 27).
-        :param pulumi.Input[str] spectrum_analysis: Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-        :param pulumi.Input[str] vap_all: Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-        :param pulumi.Input[Sequence[pulumi.Input['WtpRadio3VapArgs']]] vaps: Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-        """
         if auto_power_high is not None:
             pulumi.set(__self__, "auto_power_high", auto_power_high)
         if auto_power_level is not None:
@@ -2988,9 +2876,6 @@ class WtpRadio3Args:
     @property
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[pulumi.Input[int]]:
-        """
-        The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        """
         return pulumi.get(self, "auto_power_high")
 
     @auto_power_high.setter
@@ -3000,9 +2885,6 @@ class WtpRadio3Args:
     @property
     @pulumi.getter(name="autoPowerLevel")
     def auto_power_level(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "auto_power_level")
 
     @auto_power_level.setter
@@ -3012,9 +2894,6 @@ class WtpRadio3Args:
     @property
     @pulumi.getter(name="autoPowerLow")
     def auto_power_low(self) -> Optional[pulumi.Input[int]]:
-        """
-        The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        """
         return pulumi.get(self, "auto_power_low")
 
     @auto_power_low.setter
@@ -3024,9 +2903,6 @@ class WtpRadio3Args:
     @property
     @pulumi.getter(name="autoPowerTarget")
     def auto_power_target(self) -> Optional[pulumi.Input[str]]:
-        """
-        The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        """
         return pulumi.get(self, "auto_power_target")
 
     @auto_power_target.setter
@@ -3036,9 +2912,6 @@ class WtpRadio3Args:
     @property
     @pulumi.getter
     def band(self) -> Optional[pulumi.Input[str]]:
-        """
-        WiFi band that Radio 4 operates on.
-        """
         return pulumi.get(self, "band")
 
     @band.setter
@@ -3048,9 +2921,6 @@ class WtpRadio3Args:
     @property
     @pulumi.getter
     def channels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WtpRadio3ChannelArgs']]]]:
-        """
-        Selected list of wireless radio channels. The structure of `channel` block is documented below.
-        """
         return pulumi.get(self, "channels")
 
     @channels.setter
@@ -3060,9 +2930,6 @@ class WtpRadio3Args:
     @property
     @pulumi.getter(name="drmaManualMode")
     def drma_manual_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-        """
         return pulumi.get(self, "drma_manual_mode")
 
     @drma_manual_mode.setter
@@ -3072,9 +2939,6 @@ class WtpRadio3Args:
     @property
     @pulumi.getter(name="overrideAnalysis")
     def override_analysis(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_analysis")
 
     @override_analysis.setter
@@ -3084,9 +2948,6 @@ class WtpRadio3Args:
     @property
     @pulumi.getter(name="overrideBand")
     def override_band(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_band")
 
     @override_band.setter
@@ -3096,9 +2957,6 @@ class WtpRadio3Args:
     @property
     @pulumi.getter(name="overrideChannel")
     def override_channel(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_channel")
 
     @override_channel.setter
@@ -3108,9 +2966,6 @@ class WtpRadio3Args:
     @property
     @pulumi.getter(name="overrideTxpower")
     def override_txpower(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_txpower")
 
     @override_txpower.setter
@@ -3120,9 +2975,6 @@ class WtpRadio3Args:
     @property
     @pulumi.getter(name="overrideVaps")
     def override_vaps(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_vaps")
 
     @override_vaps.setter
@@ -3132,9 +2984,6 @@ class WtpRadio3Args:
     @property
     @pulumi.getter(name="powerLevel")
     def power_level(self) -> Optional[pulumi.Input[int]]:
-        """
-        Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-        """
         return pulumi.get(self, "power_level")
 
     @power_level.setter
@@ -3144,9 +2993,6 @@ class WtpRadio3Args:
     @property
     @pulumi.getter(name="powerMode")
     def power_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-        """
         return pulumi.get(self, "power_mode")
 
     @power_mode.setter
@@ -3156,9 +3002,6 @@ class WtpRadio3Args:
     @property
     @pulumi.getter(name="powerValue")
     def power_value(self) -> Optional[pulumi.Input[int]]:
-        """
-        Radio EIRP power in dBm (1 - 33, default = 27).
-        """
         return pulumi.get(self, "power_value")
 
     @power_value.setter
@@ -3168,9 +3011,6 @@ class WtpRadio3Args:
     @property
     @pulumi.getter(name="spectrumAnalysis")
     def spectrum_analysis(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-        """
         return pulumi.get(self, "spectrum_analysis")
 
     @spectrum_analysis.setter
@@ -3180,9 +3020,6 @@ class WtpRadio3Args:
     @property
     @pulumi.getter(name="vapAll")
     def vap_all(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-        """
         return pulumi.get(self, "vap_all")
 
     @vap_all.setter
@@ -3192,9 +3029,6 @@ class WtpRadio3Args:
     @property
     @pulumi.getter
     def vaps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WtpRadio3VapArgs']]]]:
-        """
-        Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-        """
         return pulumi.get(self, "vaps")
 
     @vaps.setter
@@ -3269,26 +3103,6 @@ class WtpRadio4Args:
                  spectrum_analysis: Optional[pulumi.Input[str]] = None,
                  vap_all: Optional[pulumi.Input[str]] = None,
                  vaps: Optional[pulumi.Input[Sequence[pulumi.Input['WtpRadio4VapArgs']]]] = None):
-        """
-        :param pulumi.Input[int] auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        :param pulumi.Input[str] auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        :param pulumi.Input[str] auto_power_target: The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        :param pulumi.Input[str] band: WiFi band that Radio 4 operates on.
-        :param pulumi.Input[Sequence[pulumi.Input['WtpRadio4ChannelArgs']]] channels: Selected list of wireless radio channels. The structure of `channel` block is documented below.
-        :param pulumi.Input[str] drma_manual_mode: Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-        :param pulumi.Input[str] override_analysis: Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] override_band: Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] override_channel: Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] override_txpower: Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] override_vaps: Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-        :param pulumi.Input[str] power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-        :param pulumi.Input[int] power_value: Radio EIRP power in dBm (1 - 33, default = 27).
-        :param pulumi.Input[str] spectrum_analysis: Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-        :param pulumi.Input[str] vap_all: Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-        :param pulumi.Input[Sequence[pulumi.Input['WtpRadio4VapArgs']]] vaps: Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-        """
         if auto_power_high is not None:
             pulumi.set(__self__, "auto_power_high", auto_power_high)
         if auto_power_level is not None:
@@ -3329,9 +3143,6 @@ class WtpRadio4Args:
     @property
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[pulumi.Input[int]]:
-        """
-        The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        """
         return pulumi.get(self, "auto_power_high")
 
     @auto_power_high.setter
@@ -3341,9 +3152,6 @@ class WtpRadio4Args:
     @property
     @pulumi.getter(name="autoPowerLevel")
     def auto_power_level(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "auto_power_level")
 
     @auto_power_level.setter
@@ -3353,9 +3161,6 @@ class WtpRadio4Args:
     @property
     @pulumi.getter(name="autoPowerLow")
     def auto_power_low(self) -> Optional[pulumi.Input[int]]:
-        """
-        The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        """
         return pulumi.get(self, "auto_power_low")
 
     @auto_power_low.setter
@@ -3365,9 +3170,6 @@ class WtpRadio4Args:
     @property
     @pulumi.getter(name="autoPowerTarget")
     def auto_power_target(self) -> Optional[pulumi.Input[str]]:
-        """
-        The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        """
         return pulumi.get(self, "auto_power_target")
 
     @auto_power_target.setter
@@ -3377,9 +3179,6 @@ class WtpRadio4Args:
     @property
     @pulumi.getter
     def band(self) -> Optional[pulumi.Input[str]]:
-        """
-        WiFi band that Radio 4 operates on.
-        """
         return pulumi.get(self, "band")
 
     @band.setter
@@ -3389,9 +3188,6 @@ class WtpRadio4Args:
     @property
     @pulumi.getter
     def channels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WtpRadio4ChannelArgs']]]]:
-        """
-        Selected list of wireless radio channels. The structure of `channel` block is documented below.
-        """
         return pulumi.get(self, "channels")
 
     @channels.setter
@@ -3401,9 +3197,6 @@ class WtpRadio4Args:
     @property
     @pulumi.getter(name="drmaManualMode")
     def drma_manual_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-        """
         return pulumi.get(self, "drma_manual_mode")
 
     @drma_manual_mode.setter
@@ -3413,9 +3206,6 @@ class WtpRadio4Args:
     @property
     @pulumi.getter(name="overrideAnalysis")
     def override_analysis(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_analysis")
 
     @override_analysis.setter
@@ -3425,9 +3215,6 @@ class WtpRadio4Args:
     @property
     @pulumi.getter(name="overrideBand")
     def override_band(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_band")
 
     @override_band.setter
@@ -3437,9 +3224,6 @@ class WtpRadio4Args:
     @property
     @pulumi.getter(name="overrideChannel")
     def override_channel(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_channel")
 
     @override_channel.setter
@@ -3449,9 +3233,6 @@ class WtpRadio4Args:
     @property
     @pulumi.getter(name="overrideTxpower")
     def override_txpower(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_txpower")
 
     @override_txpower.setter
@@ -3461,9 +3242,6 @@ class WtpRadio4Args:
     @property
     @pulumi.getter(name="overrideVaps")
     def override_vaps(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "override_vaps")
 
     @override_vaps.setter
@@ -3473,9 +3251,6 @@ class WtpRadio4Args:
     @property
     @pulumi.getter(name="powerLevel")
     def power_level(self) -> Optional[pulumi.Input[int]]:
-        """
-        Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-        """
         return pulumi.get(self, "power_level")
 
     @power_level.setter
@@ -3485,9 +3260,6 @@ class WtpRadio4Args:
     @property
     @pulumi.getter(name="powerMode")
     def power_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-        """
         return pulumi.get(self, "power_mode")
 
     @power_mode.setter
@@ -3497,9 +3269,6 @@ class WtpRadio4Args:
     @property
     @pulumi.getter(name="powerValue")
     def power_value(self) -> Optional[pulumi.Input[int]]:
-        """
-        Radio EIRP power in dBm (1 - 33, default = 27).
-        """
         return pulumi.get(self, "power_value")
 
     @power_value.setter
@@ -3509,9 +3278,6 @@ class WtpRadio4Args:
     @property
     @pulumi.getter(name="spectrumAnalysis")
     def spectrum_analysis(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-        """
         return pulumi.get(self, "spectrum_analysis")
 
     @spectrum_analysis.setter
@@ -3521,9 +3287,6 @@ class WtpRadio4Args:
     @property
     @pulumi.getter(name="vapAll")
     def vap_all(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-        """
         return pulumi.get(self, "vap_all")
 
     @vap_all.setter
@@ -3533,9 +3296,6 @@ class WtpRadio4Args:
     @property
     @pulumi.getter
     def vaps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WtpRadio4VapArgs']]]]:
-        """
-        Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-        """
         return pulumi.get(self, "vaps")
 
     @vaps.setter
@@ -4242,21 +4002,21 @@ class WtpprofileLbsArgs:
                  station_locate: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] aeroscout: Enable/disable AeroScout Real Time Location Service (RTLS) support. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] aeroscout_ap_mac: Use BSSID or board MAC address as AP MAC address in the Aeroscout AP message. Valid values: `bssid`, `board-mac`.
-        :param pulumi.Input[str] aeroscout_mmu_report: Enable/disable MU compounded report. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] aeroscout_mu: Enable/disable AeroScout support. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] aeroscout_mu_factor: AeroScout Mobile Unit (MU) mode dilution factor (default = 20).
+        :param pulumi.Input[str] aeroscout_ap_mac: Use BSSID or board MAC address as AP MAC address in AeroScout AP messages (default = bssid). Valid values: `bssid`, `board-mac`.
+        :param pulumi.Input[str] aeroscout_mmu_report: Enable/disable compounded AeroScout tag and MU report (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] aeroscout_mu: Enable/disable AeroScout Mobile Unit (MU) support (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] aeroscout_mu_factor: eroScout MU mode dilution factor (default = 20).
         :param pulumi.Input[int] aeroscout_mu_timeout: AeroScout MU mode timeout (0 - 65535 sec, default = 5).
         :param pulumi.Input[str] aeroscout_server_ip: IP address of AeroScout server.
         :param pulumi.Input[int] aeroscout_server_port: AeroScout server UDP listening port.
-        :param pulumi.Input[str] ekahau_blink_mode: Enable/disable Ekahua blink mode (also called AiRISTA Flow Blink Mode) to find the location of devices connected to a wireless LAN (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ekahau_blink_mode: Enable/disable Ekahau blink mode (now known as AiRISTA Flow) to track and locate WiFi tags (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ekahau_tag: WiFi frame MAC address or WiFi Tag.
-        :param pulumi.Input[str] erc_server_ip: IP address of Ekahua RTLS Controller (ERC).
-        :param pulumi.Input[int] erc_server_port: Ekahua RTLS Controller (ERC) UDP listening port.
+        :param pulumi.Input[str] erc_server_ip: IP address of Ekahau RTLS Controller (ERC).
+        :param pulumi.Input[int] erc_server_port: Ekahau RTLS Controller (ERC) UDP listening port.
         :param pulumi.Input[str] fortipresence: Enable/disable FortiPresence to monitor the location and activity of WiFi clients even if they don't connect to this WiFi network (default = disable). Valid values: `foreign`, `both`, `disable`.
         :param pulumi.Input[str] fortipresence_ble: Enable/disable FortiPresence finding and reporting BLE devices. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fortipresence_frequency: FortiPresence report transmit frequency (5 - 65535 sec, default = 30).
-        :param pulumi.Input[int] fortipresence_port: FortiPresence server UDP listening port (default = 3000).
+        :param pulumi.Input[int] fortipresence_port: UDP listening port of FortiPresence server (default = 3000).
         :param pulumi.Input[str] fortipresence_project: FortiPresence project name (max. 16 characters, default = fortipresence).
         :param pulumi.Input[str] fortipresence_rogue: Enable/disable FortiPresence finding and reporting rogue APs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortipresence_secret: FortiPresence secret password (max. 16 characters).
@@ -4370,7 +4130,7 @@ class WtpprofileLbsArgs:
     @pulumi.getter(name="aeroscoutApMac")
     def aeroscout_ap_mac(self) -> Optional[pulumi.Input[str]]:
         """
-        Use BSSID or board MAC address as AP MAC address in the Aeroscout AP message. Valid values: `bssid`, `board-mac`.
+        Use BSSID or board MAC address as AP MAC address in AeroScout AP messages (default = bssid). Valid values: `bssid`, `board-mac`.
         """
         return pulumi.get(self, "aeroscout_ap_mac")
 
@@ -4382,7 +4142,7 @@ class WtpprofileLbsArgs:
     @pulumi.getter(name="aeroscoutMmuReport")
     def aeroscout_mmu_report(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable MU compounded report. Valid values: `enable`, `disable`.
+        Enable/disable compounded AeroScout tag and MU report (default = enable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "aeroscout_mmu_report")
 
@@ -4394,7 +4154,7 @@ class WtpprofileLbsArgs:
     @pulumi.getter(name="aeroscoutMu")
     def aeroscout_mu(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable AeroScout support. Valid values: `enable`, `disable`.
+        Enable/disable AeroScout Mobile Unit (MU) support (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "aeroscout_mu")
 
@@ -4406,7 +4166,7 @@ class WtpprofileLbsArgs:
     @pulumi.getter(name="aeroscoutMuFactor")
     def aeroscout_mu_factor(self) -> Optional[pulumi.Input[int]]:
         """
-        AeroScout Mobile Unit (MU) mode dilution factor (default = 20).
+        eroScout MU mode dilution factor (default = 20).
         """
         return pulumi.get(self, "aeroscout_mu_factor")
 
@@ -4454,7 +4214,7 @@ class WtpprofileLbsArgs:
     @pulumi.getter(name="ekahauBlinkMode")
     def ekahau_blink_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable Ekahua blink mode (also called AiRISTA Flow Blink Mode) to find the location of devices connected to a wireless LAN (default = disable). Valid values: `enable`, `disable`.
+        Enable/disable Ekahau blink mode (now known as AiRISTA Flow) to track and locate WiFi tags (default = disable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "ekahau_blink_mode")
 
@@ -4478,7 +4238,7 @@ class WtpprofileLbsArgs:
     @pulumi.getter(name="ercServerIp")
     def erc_server_ip(self) -> Optional[pulumi.Input[str]]:
         """
-        IP address of Ekahua RTLS Controller (ERC).
+        IP address of Ekahau RTLS Controller (ERC).
         """
         return pulumi.get(self, "erc_server_ip")
 
@@ -4490,7 +4250,7 @@ class WtpprofileLbsArgs:
     @pulumi.getter(name="ercServerPort")
     def erc_server_port(self) -> Optional[pulumi.Input[int]]:
         """
-        Ekahua RTLS Controller (ERC) UDP listening port.
+        Ekahau RTLS Controller (ERC) UDP listening port.
         """
         return pulumi.get(self, "erc_server_port")
 
@@ -4538,7 +4298,7 @@ class WtpprofileLbsArgs:
     @pulumi.getter(name="fortipresencePort")
     def fortipresence_port(self) -> Optional[pulumi.Input[int]]:
         """
-        FortiPresence server UDP listening port (default = 3000).
+        UDP listening port of FortiPresence server (default = 3000).
         """
         return pulumi.get(self, "fortipresence_port")
 
@@ -4906,6 +4666,7 @@ class WtpprofileRadio1Args:
                  call_admission_control: Optional[pulumi.Input[str]] = None,
                  call_capacity: Optional[pulumi.Input[int]] = None,
                  channel_bonding: Optional[pulumi.Input[str]] = None,
+                 channel_bonding_ext: Optional[pulumi.Input[str]] = None,
                  channel_utilization: Optional[pulumi.Input[str]] = None,
                  channels: Optional[pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio1ChannelArgs']]]] = None,
                  coexistence: Optional[pulumi.Input[str]] = None,
@@ -4961,86 +4722,9 @@ class WtpprofileRadio1Args:
                  wids_profile: Optional[pulumi.Input[str]] = None,
                  zero_wait_dfs: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] airtime_fairness: Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] amsdu: Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ap_handoff: Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_addr: MAC address to monitor.
-        :param pulumi.Input[int] ap_sniffer_bufsize: Sniffer buffer size (1 - 32 MB, default = 16).
-        :param pulumi.Input[int] ap_sniffer_chan: Channel on which to operate the sniffer (default = 6).
-        :param pulumi.Input[str] ap_sniffer_ctl: Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_data: Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_mgmt_beacon: Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_mgmt_other: Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_mgmt_probe: Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] arrp_profile: Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-        :param pulumi.Input[int] auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        :param pulumi.Input[str] auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        :param pulumi.Input[str] auto_power_target: The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        :param pulumi.Input[str] band: WiFi band that Radio 3 operates on.
-        :param pulumi.Input[str] band5g_type: WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-        :param pulumi.Input[str] bandwidth_admission_control: Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] bandwidth_capacity: Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-        :param pulumi.Input[int] beacon_interval: Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-        :param pulumi.Input[int] bss_color: BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-        :param pulumi.Input[str] bss_color_mode: BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-        :param pulumi.Input[str] call_admission_control: Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] call_capacity: Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-        :param pulumi.Input[str] channel_bonding: Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-        :param pulumi.Input[str] channel_utilization: Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-        :param pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio1ChannelArgs']]] channels: Selected list of wireless radio channels. The structure of `channel` block is documented below.
-        :param pulumi.Input[str] coexistence: Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] darrp: Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] drma: Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] drma_sensitivity: Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-        :param pulumi.Input[int] dtim: Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-        :param pulumi.Input[int] frag_threshold: Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
         :param pulumi.Input[str] frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] iperf_protocol: Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-        :param pulumi.Input[int] iperf_server_port: Iperf service port number.
         :param pulumi.Input[int] max_clients: Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
-        :param pulumi.Input[int] max_distance: Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-        :param pulumi.Input[str] mimo_mode: Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-        :param pulumi.Input[str] mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-        :param pulumi.Input[str] n80211d: Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] optional_antenna: Optional antenna used on FAP (default = none).
-        :param pulumi.Input[str] optional_antenna_gain: Optional antenna gain in dBi (0 to 20, default = 0).
-        :param pulumi.Input[int] power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-        :param pulumi.Input[str] power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-        :param pulumi.Input[int] power_value: Radio EIRP power in dBm (1 - 33, default = 27).
-        :param pulumi.Input[str] powersave_optimize: Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-        :param pulumi.Input[str] protection_mode: Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-        :param pulumi.Input[int] radio_id: radio-id
-        :param pulumi.Input[int] rts_threshold: Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-        :param pulumi.Input[str] sam_bssid: BSSID for WiFi network.
-        :param pulumi.Input[str] sam_ca_certificate: CA certificate for WPA2/WPA3-ENTERPRISE.
-        :param pulumi.Input[str] sam_captive_portal: Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] sam_client_certificate: Client certificate for WPA2/WPA3-ENTERPRISE.
-        :param pulumi.Input[str] sam_cwp_failure_string: Failure identification on the page after an incorrect login.
-        :param pulumi.Input[str] sam_cwp_match_string: Identification string from the captive portal login form.
-        :param pulumi.Input[str] sam_cwp_password: Password for captive portal authentication.
-        :param pulumi.Input[str] sam_cwp_success_string: Success identification on the page after a successful login.
-        :param pulumi.Input[str] sam_cwp_test_url: Website the client is trying to access.
-        :param pulumi.Input[str] sam_cwp_username: Username for captive portal authentication.
-        :param pulumi.Input[str] sam_eap_method: Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-        :param pulumi.Input[str] sam_password: Passphrase for WiFi network connection.
-        :param pulumi.Input[str] sam_private_key: Private key for WPA2/WPA3-ENTERPRISE.
-        :param pulumi.Input[str] sam_private_key_password: Password for private key file for WPA2/WPA3-ENTERPRISE.
-        :param pulumi.Input[int] sam_report_intv: SAM report interval (sec), 0 for a one-time report.
-        :param pulumi.Input[str] sam_security_type: Select WiFi network security type (default = "wpa-personal").
-        :param pulumi.Input[str] sam_server_fqdn: SAM test server domain name.
-        :param pulumi.Input[str] sam_server_ip: SAM test server IP address.
-        :param pulumi.Input[str] sam_server_type: Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-        :param pulumi.Input[str] sam_ssid: SSID for WiFi network.
-        :param pulumi.Input[str] sam_test: Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-        :param pulumi.Input[str] sam_username: Username for WiFi network connection.
-        :param pulumi.Input[str] short_guard_interval: Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] spectrum_analysis: Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-        :param pulumi.Input[str] transmit_optimize: Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-        :param pulumi.Input[str] vap_all: Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-        :param pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio1VapArgs']]] vaps: Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-        :param pulumi.Input[str] wids_profile: Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-        :param pulumi.Input[str] zero_wait_dfs: Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
         """
         if airtime_fairness is not None:
             pulumi.set(__self__, "airtime_fairness", airtime_fairness)
@@ -5094,6 +4778,8 @@ class WtpprofileRadio1Args:
             pulumi.set(__self__, "call_capacity", call_capacity)
         if channel_bonding is not None:
             pulumi.set(__self__, "channel_bonding", channel_bonding)
+        if channel_bonding_ext is not None:
+            pulumi.set(__self__, "channel_bonding_ext", channel_bonding_ext)
         if channel_utilization is not None:
             pulumi.set(__self__, "channel_utilization", channel_utilization)
         if channels is not None:
@@ -5206,9 +4892,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="airtimeFairness")
     def airtime_fairness(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "airtime_fairness")
 
     @airtime_fairness.setter
@@ -5218,9 +4901,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter
     def amsdu(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "amsdu")
 
     @amsdu.setter
@@ -5242,9 +4922,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="apSnifferAddr")
     def ap_sniffer_addr(self) -> Optional[pulumi.Input[str]]:
-        """
-        MAC address to monitor.
-        """
         return pulumi.get(self, "ap_sniffer_addr")
 
     @ap_sniffer_addr.setter
@@ -5254,9 +4931,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="apSnifferBufsize")
     def ap_sniffer_bufsize(self) -> Optional[pulumi.Input[int]]:
-        """
-        Sniffer buffer size (1 - 32 MB, default = 16).
-        """
         return pulumi.get(self, "ap_sniffer_bufsize")
 
     @ap_sniffer_bufsize.setter
@@ -5266,9 +4940,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="apSnifferChan")
     def ap_sniffer_chan(self) -> Optional[pulumi.Input[int]]:
-        """
-        Channel on which to operate the sniffer (default = 6).
-        """
         return pulumi.get(self, "ap_sniffer_chan")
 
     @ap_sniffer_chan.setter
@@ -5278,9 +4949,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="apSnifferCtl")
     def ap_sniffer_ctl(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_ctl")
 
     @ap_sniffer_ctl.setter
@@ -5290,9 +4958,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="apSnifferData")
     def ap_sniffer_data(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_data")
 
     @ap_sniffer_data.setter
@@ -5302,9 +4967,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="apSnifferMgmtBeacon")
     def ap_sniffer_mgmt_beacon(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_mgmt_beacon")
 
     @ap_sniffer_mgmt_beacon.setter
@@ -5314,9 +4976,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="apSnifferMgmtOther")
     def ap_sniffer_mgmt_other(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_mgmt_other")
 
     @ap_sniffer_mgmt_other.setter
@@ -5326,9 +4985,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="apSnifferMgmtProbe")
     def ap_sniffer_mgmt_probe(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_mgmt_probe")
 
     @ap_sniffer_mgmt_probe.setter
@@ -5338,9 +4994,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="arrpProfile")
     def arrp_profile(self) -> Optional[pulumi.Input[str]]:
-        """
-        Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-        """
         return pulumi.get(self, "arrp_profile")
 
     @arrp_profile.setter
@@ -5350,9 +5003,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[pulumi.Input[int]]:
-        """
-        The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        """
         return pulumi.get(self, "auto_power_high")
 
     @auto_power_high.setter
@@ -5362,9 +5012,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="autoPowerLevel")
     def auto_power_level(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "auto_power_level")
 
     @auto_power_level.setter
@@ -5374,9 +5021,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="autoPowerLow")
     def auto_power_low(self) -> Optional[pulumi.Input[int]]:
-        """
-        The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        """
         return pulumi.get(self, "auto_power_low")
 
     @auto_power_low.setter
@@ -5386,9 +5030,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="autoPowerTarget")
     def auto_power_target(self) -> Optional[pulumi.Input[str]]:
-        """
-        The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        """
         return pulumi.get(self, "auto_power_target")
 
     @auto_power_target.setter
@@ -5398,9 +5039,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter
     def band(self) -> Optional[pulumi.Input[str]]:
-        """
-        WiFi band that Radio 3 operates on.
-        """
         return pulumi.get(self, "band")
 
     @band.setter
@@ -5410,9 +5048,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="band5gType")
     def band5g_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-        """
         return pulumi.get(self, "band5g_type")
 
     @band5g_type.setter
@@ -5422,9 +5057,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="bandwidthAdmissionControl")
     def bandwidth_admission_control(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "bandwidth_admission_control")
 
     @bandwidth_admission_control.setter
@@ -5434,9 +5066,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="bandwidthCapacity")
     def bandwidth_capacity(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-        """
         return pulumi.get(self, "bandwidth_capacity")
 
     @bandwidth_capacity.setter
@@ -5446,9 +5075,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="beaconInterval")
     def beacon_interval(self) -> Optional[pulumi.Input[int]]:
-        """
-        Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-        """
         return pulumi.get(self, "beacon_interval")
 
     @beacon_interval.setter
@@ -5458,9 +5084,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="bssColor")
     def bss_color(self) -> Optional[pulumi.Input[int]]:
-        """
-        BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-        """
         return pulumi.get(self, "bss_color")
 
     @bss_color.setter
@@ -5470,9 +5093,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="bssColorMode")
     def bss_color_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-        """
         return pulumi.get(self, "bss_color_mode")
 
     @bss_color_mode.setter
@@ -5482,9 +5102,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="callAdmissionControl")
     def call_admission_control(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "call_admission_control")
 
     @call_admission_control.setter
@@ -5494,9 +5111,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="callCapacity")
     def call_capacity(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-        """
         return pulumi.get(self, "call_capacity")
 
     @call_capacity.setter
@@ -5506,9 +5120,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="channelBonding")
     def channel_bonding(self) -> Optional[pulumi.Input[str]]:
-        """
-        Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-        """
         return pulumi.get(self, "channel_bonding")
 
     @channel_bonding.setter
@@ -5516,11 +5127,17 @@ class WtpprofileRadio1Args:
         pulumi.set(self, "channel_bonding", value)
 
     @property
+    @pulumi.getter(name="channelBondingExt")
+    def channel_bonding_ext(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "channel_bonding_ext")
+
+    @channel_bonding_ext.setter
+    def channel_bonding_ext(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "channel_bonding_ext", value)
+
+    @property
     @pulumi.getter(name="channelUtilization")
     def channel_utilization(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "channel_utilization")
 
     @channel_utilization.setter
@@ -5530,9 +5147,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter
     def channels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio1ChannelArgs']]]]:
-        """
-        Selected list of wireless radio channels. The structure of `channel` block is documented below.
-        """
         return pulumi.get(self, "channels")
 
     @channels.setter
@@ -5542,9 +5156,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter
     def coexistence(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "coexistence")
 
     @coexistence.setter
@@ -5554,9 +5165,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter
     def darrp(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "darrp")
 
     @darrp.setter
@@ -5566,9 +5174,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter
     def drma(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "drma")
 
     @drma.setter
@@ -5578,9 +5183,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="drmaSensitivity")
     def drma_sensitivity(self) -> Optional[pulumi.Input[str]]:
-        """
-        Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-        """
         return pulumi.get(self, "drma_sensitivity")
 
     @drma_sensitivity.setter
@@ -5590,9 +5192,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter
     def dtim(self) -> Optional[pulumi.Input[int]]:
-        """
-        Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-        """
         return pulumi.get(self, "dtim")
 
     @dtim.setter
@@ -5602,9 +5201,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="fragThreshold")
     def frag_threshold(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
-        """
         return pulumi.get(self, "frag_threshold")
 
     @frag_threshold.setter
@@ -5626,9 +5222,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="iperfProtocol")
     def iperf_protocol(self) -> Optional[pulumi.Input[str]]:
-        """
-        Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-        """
         return pulumi.get(self, "iperf_protocol")
 
     @iperf_protocol.setter
@@ -5638,9 +5231,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="iperfServerPort")
     def iperf_server_port(self) -> Optional[pulumi.Input[int]]:
-        """
-        Iperf service port number.
-        """
         return pulumi.get(self, "iperf_server_port")
 
     @iperf_server_port.setter
@@ -5662,9 +5252,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="maxDistance")
     def max_distance(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-        """
         return pulumi.get(self, "max_distance")
 
     @max_distance.setter
@@ -5674,9 +5261,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="mimoMode")
     def mimo_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-        """
         return pulumi.get(self, "mimo_mode")
 
     @mimo_mode.setter
@@ -5686,9 +5270,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -5698,9 +5279,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter
     def n80211d(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "n80211d")
 
     @n80211d.setter
@@ -5710,9 +5288,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="optionalAntenna")
     def optional_antenna(self) -> Optional[pulumi.Input[str]]:
-        """
-        Optional antenna used on FAP (default = none).
-        """
         return pulumi.get(self, "optional_antenna")
 
     @optional_antenna.setter
@@ -5722,9 +5297,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="optionalAntennaGain")
     def optional_antenna_gain(self) -> Optional[pulumi.Input[str]]:
-        """
-        Optional antenna gain in dBi (0 to 20, default = 0).
-        """
         return pulumi.get(self, "optional_antenna_gain")
 
     @optional_antenna_gain.setter
@@ -5734,9 +5306,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="powerLevel")
     def power_level(self) -> Optional[pulumi.Input[int]]:
-        """
-        Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-        """
         return pulumi.get(self, "power_level")
 
     @power_level.setter
@@ -5746,9 +5315,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="powerMode")
     def power_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-        """
         return pulumi.get(self, "power_mode")
 
     @power_mode.setter
@@ -5758,9 +5324,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="powerValue")
     def power_value(self) -> Optional[pulumi.Input[int]]:
-        """
-        Radio EIRP power in dBm (1 - 33, default = 27).
-        """
         return pulumi.get(self, "power_value")
 
     @power_value.setter
@@ -5770,9 +5333,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="powersaveOptimize")
     def powersave_optimize(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-        """
         return pulumi.get(self, "powersave_optimize")
 
     @powersave_optimize.setter
@@ -5782,9 +5342,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="protectionMode")
     def protection_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-        """
         return pulumi.get(self, "protection_mode")
 
     @protection_mode.setter
@@ -5794,9 +5351,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="radioId")
     def radio_id(self) -> Optional[pulumi.Input[int]]:
-        """
-        radio-id
-        """
         return pulumi.get(self, "radio_id")
 
     @radio_id.setter
@@ -5806,9 +5360,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="rtsThreshold")
     def rts_threshold(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-        """
         return pulumi.get(self, "rts_threshold")
 
     @rts_threshold.setter
@@ -5818,9 +5369,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samBssid")
     def sam_bssid(self) -> Optional[pulumi.Input[str]]:
-        """
-        BSSID for WiFi network.
-        """
         return pulumi.get(self, "sam_bssid")
 
     @sam_bssid.setter
@@ -5830,9 +5378,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samCaCertificate")
     def sam_ca_certificate(self) -> Optional[pulumi.Input[str]]:
-        """
-        CA certificate for WPA2/WPA3-ENTERPRISE.
-        """
         return pulumi.get(self, "sam_ca_certificate")
 
     @sam_ca_certificate.setter
@@ -5842,9 +5387,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samCaptivePortal")
     def sam_captive_portal(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "sam_captive_portal")
 
     @sam_captive_portal.setter
@@ -5854,9 +5396,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samClientCertificate")
     def sam_client_certificate(self) -> Optional[pulumi.Input[str]]:
-        """
-        Client certificate for WPA2/WPA3-ENTERPRISE.
-        """
         return pulumi.get(self, "sam_client_certificate")
 
     @sam_client_certificate.setter
@@ -5866,9 +5405,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samCwpFailureString")
     def sam_cwp_failure_string(self) -> Optional[pulumi.Input[str]]:
-        """
-        Failure identification on the page after an incorrect login.
-        """
         return pulumi.get(self, "sam_cwp_failure_string")
 
     @sam_cwp_failure_string.setter
@@ -5878,9 +5414,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samCwpMatchString")
     def sam_cwp_match_string(self) -> Optional[pulumi.Input[str]]:
-        """
-        Identification string from the captive portal login form.
-        """
         return pulumi.get(self, "sam_cwp_match_string")
 
     @sam_cwp_match_string.setter
@@ -5890,9 +5423,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samCwpPassword")
     def sam_cwp_password(self) -> Optional[pulumi.Input[str]]:
-        """
-        Password for captive portal authentication.
-        """
         return pulumi.get(self, "sam_cwp_password")
 
     @sam_cwp_password.setter
@@ -5902,9 +5432,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samCwpSuccessString")
     def sam_cwp_success_string(self) -> Optional[pulumi.Input[str]]:
-        """
-        Success identification on the page after a successful login.
-        """
         return pulumi.get(self, "sam_cwp_success_string")
 
     @sam_cwp_success_string.setter
@@ -5914,9 +5441,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samCwpTestUrl")
     def sam_cwp_test_url(self) -> Optional[pulumi.Input[str]]:
-        """
-        Website the client is trying to access.
-        """
         return pulumi.get(self, "sam_cwp_test_url")
 
     @sam_cwp_test_url.setter
@@ -5926,9 +5450,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samCwpUsername")
     def sam_cwp_username(self) -> Optional[pulumi.Input[str]]:
-        """
-        Username for captive portal authentication.
-        """
         return pulumi.get(self, "sam_cwp_username")
 
     @sam_cwp_username.setter
@@ -5938,9 +5459,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samEapMethod")
     def sam_eap_method(self) -> Optional[pulumi.Input[str]]:
-        """
-        Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-        """
         return pulumi.get(self, "sam_eap_method")
 
     @sam_eap_method.setter
@@ -5950,9 +5468,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samPassword")
     def sam_password(self) -> Optional[pulumi.Input[str]]:
-        """
-        Passphrase for WiFi network connection.
-        """
         return pulumi.get(self, "sam_password")
 
     @sam_password.setter
@@ -5962,9 +5477,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samPrivateKey")
     def sam_private_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        Private key for WPA2/WPA3-ENTERPRISE.
-        """
         return pulumi.get(self, "sam_private_key")
 
     @sam_private_key.setter
@@ -5974,9 +5486,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samPrivateKeyPassword")
     def sam_private_key_password(self) -> Optional[pulumi.Input[str]]:
-        """
-        Password for private key file for WPA2/WPA3-ENTERPRISE.
-        """
         return pulumi.get(self, "sam_private_key_password")
 
     @sam_private_key_password.setter
@@ -5986,9 +5495,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samReportIntv")
     def sam_report_intv(self) -> Optional[pulumi.Input[int]]:
-        """
-        SAM report interval (sec), 0 for a one-time report.
-        """
         return pulumi.get(self, "sam_report_intv")
 
     @sam_report_intv.setter
@@ -5998,9 +5504,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samSecurityType")
     def sam_security_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        Select WiFi network security type (default = "wpa-personal").
-        """
         return pulumi.get(self, "sam_security_type")
 
     @sam_security_type.setter
@@ -6010,9 +5513,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samServerFqdn")
     def sam_server_fqdn(self) -> Optional[pulumi.Input[str]]:
-        """
-        SAM test server domain name.
-        """
         return pulumi.get(self, "sam_server_fqdn")
 
     @sam_server_fqdn.setter
@@ -6022,9 +5522,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samServerIp")
     def sam_server_ip(self) -> Optional[pulumi.Input[str]]:
-        """
-        SAM test server IP address.
-        """
         return pulumi.get(self, "sam_server_ip")
 
     @sam_server_ip.setter
@@ -6034,9 +5531,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samServerType")
     def sam_server_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-        """
         return pulumi.get(self, "sam_server_type")
 
     @sam_server_type.setter
@@ -6046,9 +5540,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samSsid")
     def sam_ssid(self) -> Optional[pulumi.Input[str]]:
-        """
-        SSID for WiFi network.
-        """
         return pulumi.get(self, "sam_ssid")
 
     @sam_ssid.setter
@@ -6058,9 +5549,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samTest")
     def sam_test(self) -> Optional[pulumi.Input[str]]:
-        """
-        Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-        """
         return pulumi.get(self, "sam_test")
 
     @sam_test.setter
@@ -6070,9 +5558,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="samUsername")
     def sam_username(self) -> Optional[pulumi.Input[str]]:
-        """
-        Username for WiFi network connection.
-        """
         return pulumi.get(self, "sam_username")
 
     @sam_username.setter
@@ -6082,9 +5567,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="shortGuardInterval")
     def short_guard_interval(self) -> Optional[pulumi.Input[str]]:
-        """
-        Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "short_guard_interval")
 
     @short_guard_interval.setter
@@ -6094,9 +5576,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="spectrumAnalysis")
     def spectrum_analysis(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-        """
         return pulumi.get(self, "spectrum_analysis")
 
     @spectrum_analysis.setter
@@ -6106,9 +5585,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="transmitOptimize")
     def transmit_optimize(self) -> Optional[pulumi.Input[str]]:
-        """
-        Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-        """
         return pulumi.get(self, "transmit_optimize")
 
     @transmit_optimize.setter
@@ -6118,9 +5594,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="vapAll")
     def vap_all(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-        """
         return pulumi.get(self, "vap_all")
 
     @vap_all.setter
@@ -6130,9 +5603,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter
     def vaps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio1VapArgs']]]]:
-        """
-        Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-        """
         return pulumi.get(self, "vaps")
 
     @vaps.setter
@@ -6142,9 +5612,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="widsProfile")
     def wids_profile(self) -> Optional[pulumi.Input[str]]:
-        """
-        Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-        """
         return pulumi.get(self, "wids_profile")
 
     @wids_profile.setter
@@ -6154,9 +5621,6 @@ class WtpprofileRadio1Args:
     @property
     @pulumi.getter(name="zeroWaitDfs")
     def zero_wait_dfs(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "zero_wait_dfs")
 
     @zero_wait_dfs.setter
@@ -6239,6 +5703,7 @@ class WtpprofileRadio2Args:
                  call_admission_control: Optional[pulumi.Input[str]] = None,
                  call_capacity: Optional[pulumi.Input[int]] = None,
                  channel_bonding: Optional[pulumi.Input[str]] = None,
+                 channel_bonding_ext: Optional[pulumi.Input[str]] = None,
                  channel_utilization: Optional[pulumi.Input[str]] = None,
                  channels: Optional[pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio2ChannelArgs']]]] = None,
                  coexistence: Optional[pulumi.Input[str]] = None,
@@ -6294,86 +5759,9 @@ class WtpprofileRadio2Args:
                  wids_profile: Optional[pulumi.Input[str]] = None,
                  zero_wait_dfs: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] airtime_fairness: Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] amsdu: Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ap_handoff: Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_addr: MAC address to monitor.
-        :param pulumi.Input[int] ap_sniffer_bufsize: Sniffer buffer size (1 - 32 MB, default = 16).
-        :param pulumi.Input[int] ap_sniffer_chan: Channel on which to operate the sniffer (default = 6).
-        :param pulumi.Input[str] ap_sniffer_ctl: Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_data: Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_mgmt_beacon: Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_mgmt_other: Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_mgmt_probe: Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] arrp_profile: Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-        :param pulumi.Input[int] auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        :param pulumi.Input[str] auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        :param pulumi.Input[str] auto_power_target: The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        :param pulumi.Input[str] band: WiFi band that Radio 3 operates on.
-        :param pulumi.Input[str] band5g_type: WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-        :param pulumi.Input[str] bandwidth_admission_control: Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] bandwidth_capacity: Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-        :param pulumi.Input[int] beacon_interval: Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-        :param pulumi.Input[int] bss_color: BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-        :param pulumi.Input[str] bss_color_mode: BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-        :param pulumi.Input[str] call_admission_control: Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] call_capacity: Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-        :param pulumi.Input[str] channel_bonding: Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-        :param pulumi.Input[str] channel_utilization: Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-        :param pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio2ChannelArgs']]] channels: Selected list of wireless radio channels. The structure of `channel` block is documented below.
-        :param pulumi.Input[str] coexistence: Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] darrp: Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] drma: Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] drma_sensitivity: Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-        :param pulumi.Input[int] dtim: Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-        :param pulumi.Input[int] frag_threshold: Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
         :param pulumi.Input[str] frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] iperf_protocol: Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-        :param pulumi.Input[int] iperf_server_port: Iperf service port number.
         :param pulumi.Input[int] max_clients: Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
-        :param pulumi.Input[int] max_distance: Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-        :param pulumi.Input[str] mimo_mode: Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-        :param pulumi.Input[str] mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-        :param pulumi.Input[str] n80211d: Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] optional_antenna: Optional antenna used on FAP (default = none).
-        :param pulumi.Input[str] optional_antenna_gain: Optional antenna gain in dBi (0 to 20, default = 0).
-        :param pulumi.Input[int] power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-        :param pulumi.Input[str] power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-        :param pulumi.Input[int] power_value: Radio EIRP power in dBm (1 - 33, default = 27).
-        :param pulumi.Input[str] powersave_optimize: Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-        :param pulumi.Input[str] protection_mode: Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-        :param pulumi.Input[int] radio_id: radio-id
-        :param pulumi.Input[int] rts_threshold: Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-        :param pulumi.Input[str] sam_bssid: BSSID for WiFi network.
-        :param pulumi.Input[str] sam_ca_certificate: CA certificate for WPA2/WPA3-ENTERPRISE.
-        :param pulumi.Input[str] sam_captive_portal: Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] sam_client_certificate: Client certificate for WPA2/WPA3-ENTERPRISE.
-        :param pulumi.Input[str] sam_cwp_failure_string: Failure identification on the page after an incorrect login.
-        :param pulumi.Input[str] sam_cwp_match_string: Identification string from the captive portal login form.
-        :param pulumi.Input[str] sam_cwp_password: Password for captive portal authentication.
-        :param pulumi.Input[str] sam_cwp_success_string: Success identification on the page after a successful login.
-        :param pulumi.Input[str] sam_cwp_test_url: Website the client is trying to access.
-        :param pulumi.Input[str] sam_cwp_username: Username for captive portal authentication.
-        :param pulumi.Input[str] sam_eap_method: Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-        :param pulumi.Input[str] sam_password: Passphrase for WiFi network connection.
-        :param pulumi.Input[str] sam_private_key: Private key for WPA2/WPA3-ENTERPRISE.
-        :param pulumi.Input[str] sam_private_key_password: Password for private key file for WPA2/WPA3-ENTERPRISE.
-        :param pulumi.Input[int] sam_report_intv: SAM report interval (sec), 0 for a one-time report.
-        :param pulumi.Input[str] sam_security_type: Select WiFi network security type (default = "wpa-personal").
-        :param pulumi.Input[str] sam_server_fqdn: SAM test server domain name.
-        :param pulumi.Input[str] sam_server_ip: SAM test server IP address.
-        :param pulumi.Input[str] sam_server_type: Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-        :param pulumi.Input[str] sam_ssid: SSID for WiFi network.
-        :param pulumi.Input[str] sam_test: Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-        :param pulumi.Input[str] sam_username: Username for WiFi network connection.
-        :param pulumi.Input[str] short_guard_interval: Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] spectrum_analysis: Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-        :param pulumi.Input[str] transmit_optimize: Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-        :param pulumi.Input[str] vap_all: Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-        :param pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio2VapArgs']]] vaps: Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-        :param pulumi.Input[str] wids_profile: Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-        :param pulumi.Input[str] zero_wait_dfs: Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
         """
         if airtime_fairness is not None:
             pulumi.set(__self__, "airtime_fairness", airtime_fairness)
@@ -6427,6 +5815,8 @@ class WtpprofileRadio2Args:
             pulumi.set(__self__, "call_capacity", call_capacity)
         if channel_bonding is not None:
             pulumi.set(__self__, "channel_bonding", channel_bonding)
+        if channel_bonding_ext is not None:
+            pulumi.set(__self__, "channel_bonding_ext", channel_bonding_ext)
         if channel_utilization is not None:
             pulumi.set(__self__, "channel_utilization", channel_utilization)
         if channels is not None:
@@ -6539,9 +5929,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="airtimeFairness")
     def airtime_fairness(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "airtime_fairness")
 
     @airtime_fairness.setter
@@ -6551,9 +5938,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter
     def amsdu(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "amsdu")
 
     @amsdu.setter
@@ -6575,9 +5959,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="apSnifferAddr")
     def ap_sniffer_addr(self) -> Optional[pulumi.Input[str]]:
-        """
-        MAC address to monitor.
-        """
         return pulumi.get(self, "ap_sniffer_addr")
 
     @ap_sniffer_addr.setter
@@ -6587,9 +5968,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="apSnifferBufsize")
     def ap_sniffer_bufsize(self) -> Optional[pulumi.Input[int]]:
-        """
-        Sniffer buffer size (1 - 32 MB, default = 16).
-        """
         return pulumi.get(self, "ap_sniffer_bufsize")
 
     @ap_sniffer_bufsize.setter
@@ -6599,9 +5977,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="apSnifferChan")
     def ap_sniffer_chan(self) -> Optional[pulumi.Input[int]]:
-        """
-        Channel on which to operate the sniffer (default = 6).
-        """
         return pulumi.get(self, "ap_sniffer_chan")
 
     @ap_sniffer_chan.setter
@@ -6611,9 +5986,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="apSnifferCtl")
     def ap_sniffer_ctl(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_ctl")
 
     @ap_sniffer_ctl.setter
@@ -6623,9 +5995,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="apSnifferData")
     def ap_sniffer_data(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_data")
 
     @ap_sniffer_data.setter
@@ -6635,9 +6004,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="apSnifferMgmtBeacon")
     def ap_sniffer_mgmt_beacon(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_mgmt_beacon")
 
     @ap_sniffer_mgmt_beacon.setter
@@ -6647,9 +6013,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="apSnifferMgmtOther")
     def ap_sniffer_mgmt_other(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_mgmt_other")
 
     @ap_sniffer_mgmt_other.setter
@@ -6659,9 +6022,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="apSnifferMgmtProbe")
     def ap_sniffer_mgmt_probe(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_mgmt_probe")
 
     @ap_sniffer_mgmt_probe.setter
@@ -6671,9 +6031,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="arrpProfile")
     def arrp_profile(self) -> Optional[pulumi.Input[str]]:
-        """
-        Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-        """
         return pulumi.get(self, "arrp_profile")
 
     @arrp_profile.setter
@@ -6683,9 +6040,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[pulumi.Input[int]]:
-        """
-        The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        """
         return pulumi.get(self, "auto_power_high")
 
     @auto_power_high.setter
@@ -6695,9 +6049,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="autoPowerLevel")
     def auto_power_level(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "auto_power_level")
 
     @auto_power_level.setter
@@ -6707,9 +6058,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="autoPowerLow")
     def auto_power_low(self) -> Optional[pulumi.Input[int]]:
-        """
-        The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        """
         return pulumi.get(self, "auto_power_low")
 
     @auto_power_low.setter
@@ -6719,9 +6067,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="autoPowerTarget")
     def auto_power_target(self) -> Optional[pulumi.Input[str]]:
-        """
-        The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        """
         return pulumi.get(self, "auto_power_target")
 
     @auto_power_target.setter
@@ -6731,9 +6076,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter
     def band(self) -> Optional[pulumi.Input[str]]:
-        """
-        WiFi band that Radio 3 operates on.
-        """
         return pulumi.get(self, "band")
 
     @band.setter
@@ -6743,9 +6085,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="band5gType")
     def band5g_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-        """
         return pulumi.get(self, "band5g_type")
 
     @band5g_type.setter
@@ -6755,9 +6094,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="bandwidthAdmissionControl")
     def bandwidth_admission_control(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "bandwidth_admission_control")
 
     @bandwidth_admission_control.setter
@@ -6767,9 +6103,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="bandwidthCapacity")
     def bandwidth_capacity(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-        """
         return pulumi.get(self, "bandwidth_capacity")
 
     @bandwidth_capacity.setter
@@ -6779,9 +6112,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="beaconInterval")
     def beacon_interval(self) -> Optional[pulumi.Input[int]]:
-        """
-        Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-        """
         return pulumi.get(self, "beacon_interval")
 
     @beacon_interval.setter
@@ -6791,9 +6121,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="bssColor")
     def bss_color(self) -> Optional[pulumi.Input[int]]:
-        """
-        BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-        """
         return pulumi.get(self, "bss_color")
 
     @bss_color.setter
@@ -6803,9 +6130,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="bssColorMode")
     def bss_color_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-        """
         return pulumi.get(self, "bss_color_mode")
 
     @bss_color_mode.setter
@@ -6815,9 +6139,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="callAdmissionControl")
     def call_admission_control(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "call_admission_control")
 
     @call_admission_control.setter
@@ -6827,9 +6148,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="callCapacity")
     def call_capacity(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-        """
         return pulumi.get(self, "call_capacity")
 
     @call_capacity.setter
@@ -6839,9 +6157,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="channelBonding")
     def channel_bonding(self) -> Optional[pulumi.Input[str]]:
-        """
-        Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-        """
         return pulumi.get(self, "channel_bonding")
 
     @channel_bonding.setter
@@ -6849,11 +6164,17 @@ class WtpprofileRadio2Args:
         pulumi.set(self, "channel_bonding", value)
 
     @property
+    @pulumi.getter(name="channelBondingExt")
+    def channel_bonding_ext(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "channel_bonding_ext")
+
+    @channel_bonding_ext.setter
+    def channel_bonding_ext(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "channel_bonding_ext", value)
+
+    @property
     @pulumi.getter(name="channelUtilization")
     def channel_utilization(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "channel_utilization")
 
     @channel_utilization.setter
@@ -6863,9 +6184,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter
     def channels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio2ChannelArgs']]]]:
-        """
-        Selected list of wireless radio channels. The structure of `channel` block is documented below.
-        """
         return pulumi.get(self, "channels")
 
     @channels.setter
@@ -6875,9 +6193,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter
     def coexistence(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "coexistence")
 
     @coexistence.setter
@@ -6887,9 +6202,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter
     def darrp(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "darrp")
 
     @darrp.setter
@@ -6899,9 +6211,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter
     def drma(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "drma")
 
     @drma.setter
@@ -6911,9 +6220,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="drmaSensitivity")
     def drma_sensitivity(self) -> Optional[pulumi.Input[str]]:
-        """
-        Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-        """
         return pulumi.get(self, "drma_sensitivity")
 
     @drma_sensitivity.setter
@@ -6923,9 +6229,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter
     def dtim(self) -> Optional[pulumi.Input[int]]:
-        """
-        Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-        """
         return pulumi.get(self, "dtim")
 
     @dtim.setter
@@ -6935,9 +6238,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="fragThreshold")
     def frag_threshold(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
-        """
         return pulumi.get(self, "frag_threshold")
 
     @frag_threshold.setter
@@ -6959,9 +6259,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="iperfProtocol")
     def iperf_protocol(self) -> Optional[pulumi.Input[str]]:
-        """
-        Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-        """
         return pulumi.get(self, "iperf_protocol")
 
     @iperf_protocol.setter
@@ -6971,9 +6268,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="iperfServerPort")
     def iperf_server_port(self) -> Optional[pulumi.Input[int]]:
-        """
-        Iperf service port number.
-        """
         return pulumi.get(self, "iperf_server_port")
 
     @iperf_server_port.setter
@@ -6995,9 +6289,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="maxDistance")
     def max_distance(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-        """
         return pulumi.get(self, "max_distance")
 
     @max_distance.setter
@@ -7007,9 +6298,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="mimoMode")
     def mimo_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-        """
         return pulumi.get(self, "mimo_mode")
 
     @mimo_mode.setter
@@ -7019,9 +6307,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -7031,9 +6316,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter
     def n80211d(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "n80211d")
 
     @n80211d.setter
@@ -7043,9 +6325,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="optionalAntenna")
     def optional_antenna(self) -> Optional[pulumi.Input[str]]:
-        """
-        Optional antenna used on FAP (default = none).
-        """
         return pulumi.get(self, "optional_antenna")
 
     @optional_antenna.setter
@@ -7055,9 +6334,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="optionalAntennaGain")
     def optional_antenna_gain(self) -> Optional[pulumi.Input[str]]:
-        """
-        Optional antenna gain in dBi (0 to 20, default = 0).
-        """
         return pulumi.get(self, "optional_antenna_gain")
 
     @optional_antenna_gain.setter
@@ -7067,9 +6343,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="powerLevel")
     def power_level(self) -> Optional[pulumi.Input[int]]:
-        """
-        Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-        """
         return pulumi.get(self, "power_level")
 
     @power_level.setter
@@ -7079,9 +6352,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="powerMode")
     def power_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-        """
         return pulumi.get(self, "power_mode")
 
     @power_mode.setter
@@ -7091,9 +6361,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="powerValue")
     def power_value(self) -> Optional[pulumi.Input[int]]:
-        """
-        Radio EIRP power in dBm (1 - 33, default = 27).
-        """
         return pulumi.get(self, "power_value")
 
     @power_value.setter
@@ -7103,9 +6370,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="powersaveOptimize")
     def powersave_optimize(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-        """
         return pulumi.get(self, "powersave_optimize")
 
     @powersave_optimize.setter
@@ -7115,9 +6379,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="protectionMode")
     def protection_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-        """
         return pulumi.get(self, "protection_mode")
 
     @protection_mode.setter
@@ -7127,9 +6388,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="radioId")
     def radio_id(self) -> Optional[pulumi.Input[int]]:
-        """
-        radio-id
-        """
         return pulumi.get(self, "radio_id")
 
     @radio_id.setter
@@ -7139,9 +6397,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="rtsThreshold")
     def rts_threshold(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-        """
         return pulumi.get(self, "rts_threshold")
 
     @rts_threshold.setter
@@ -7151,9 +6406,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samBssid")
     def sam_bssid(self) -> Optional[pulumi.Input[str]]:
-        """
-        BSSID for WiFi network.
-        """
         return pulumi.get(self, "sam_bssid")
 
     @sam_bssid.setter
@@ -7163,9 +6415,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samCaCertificate")
     def sam_ca_certificate(self) -> Optional[pulumi.Input[str]]:
-        """
-        CA certificate for WPA2/WPA3-ENTERPRISE.
-        """
         return pulumi.get(self, "sam_ca_certificate")
 
     @sam_ca_certificate.setter
@@ -7175,9 +6424,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samCaptivePortal")
     def sam_captive_portal(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "sam_captive_portal")
 
     @sam_captive_portal.setter
@@ -7187,9 +6433,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samClientCertificate")
     def sam_client_certificate(self) -> Optional[pulumi.Input[str]]:
-        """
-        Client certificate for WPA2/WPA3-ENTERPRISE.
-        """
         return pulumi.get(self, "sam_client_certificate")
 
     @sam_client_certificate.setter
@@ -7199,9 +6442,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samCwpFailureString")
     def sam_cwp_failure_string(self) -> Optional[pulumi.Input[str]]:
-        """
-        Failure identification on the page after an incorrect login.
-        """
         return pulumi.get(self, "sam_cwp_failure_string")
 
     @sam_cwp_failure_string.setter
@@ -7211,9 +6451,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samCwpMatchString")
     def sam_cwp_match_string(self) -> Optional[pulumi.Input[str]]:
-        """
-        Identification string from the captive portal login form.
-        """
         return pulumi.get(self, "sam_cwp_match_string")
 
     @sam_cwp_match_string.setter
@@ -7223,9 +6460,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samCwpPassword")
     def sam_cwp_password(self) -> Optional[pulumi.Input[str]]:
-        """
-        Password for captive portal authentication.
-        """
         return pulumi.get(self, "sam_cwp_password")
 
     @sam_cwp_password.setter
@@ -7235,9 +6469,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samCwpSuccessString")
     def sam_cwp_success_string(self) -> Optional[pulumi.Input[str]]:
-        """
-        Success identification on the page after a successful login.
-        """
         return pulumi.get(self, "sam_cwp_success_string")
 
     @sam_cwp_success_string.setter
@@ -7247,9 +6478,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samCwpTestUrl")
     def sam_cwp_test_url(self) -> Optional[pulumi.Input[str]]:
-        """
-        Website the client is trying to access.
-        """
         return pulumi.get(self, "sam_cwp_test_url")
 
     @sam_cwp_test_url.setter
@@ -7259,9 +6487,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samCwpUsername")
     def sam_cwp_username(self) -> Optional[pulumi.Input[str]]:
-        """
-        Username for captive portal authentication.
-        """
         return pulumi.get(self, "sam_cwp_username")
 
     @sam_cwp_username.setter
@@ -7271,9 +6496,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samEapMethod")
     def sam_eap_method(self) -> Optional[pulumi.Input[str]]:
-        """
-        Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-        """
         return pulumi.get(self, "sam_eap_method")
 
     @sam_eap_method.setter
@@ -7283,9 +6505,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samPassword")
     def sam_password(self) -> Optional[pulumi.Input[str]]:
-        """
-        Passphrase for WiFi network connection.
-        """
         return pulumi.get(self, "sam_password")
 
     @sam_password.setter
@@ -7295,9 +6514,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samPrivateKey")
     def sam_private_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        Private key for WPA2/WPA3-ENTERPRISE.
-        """
         return pulumi.get(self, "sam_private_key")
 
     @sam_private_key.setter
@@ -7307,9 +6523,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samPrivateKeyPassword")
     def sam_private_key_password(self) -> Optional[pulumi.Input[str]]:
-        """
-        Password for private key file for WPA2/WPA3-ENTERPRISE.
-        """
         return pulumi.get(self, "sam_private_key_password")
 
     @sam_private_key_password.setter
@@ -7319,9 +6532,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samReportIntv")
     def sam_report_intv(self) -> Optional[pulumi.Input[int]]:
-        """
-        SAM report interval (sec), 0 for a one-time report.
-        """
         return pulumi.get(self, "sam_report_intv")
 
     @sam_report_intv.setter
@@ -7331,9 +6541,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samSecurityType")
     def sam_security_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        Select WiFi network security type (default = "wpa-personal").
-        """
         return pulumi.get(self, "sam_security_type")
 
     @sam_security_type.setter
@@ -7343,9 +6550,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samServerFqdn")
     def sam_server_fqdn(self) -> Optional[pulumi.Input[str]]:
-        """
-        SAM test server domain name.
-        """
         return pulumi.get(self, "sam_server_fqdn")
 
     @sam_server_fqdn.setter
@@ -7355,9 +6559,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samServerIp")
     def sam_server_ip(self) -> Optional[pulumi.Input[str]]:
-        """
-        SAM test server IP address.
-        """
         return pulumi.get(self, "sam_server_ip")
 
     @sam_server_ip.setter
@@ -7367,9 +6568,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samServerType")
     def sam_server_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-        """
         return pulumi.get(self, "sam_server_type")
 
     @sam_server_type.setter
@@ -7379,9 +6577,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samSsid")
     def sam_ssid(self) -> Optional[pulumi.Input[str]]:
-        """
-        SSID for WiFi network.
-        """
         return pulumi.get(self, "sam_ssid")
 
     @sam_ssid.setter
@@ -7391,9 +6586,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samTest")
     def sam_test(self) -> Optional[pulumi.Input[str]]:
-        """
-        Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-        """
         return pulumi.get(self, "sam_test")
 
     @sam_test.setter
@@ -7403,9 +6595,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="samUsername")
     def sam_username(self) -> Optional[pulumi.Input[str]]:
-        """
-        Username for WiFi network connection.
-        """
         return pulumi.get(self, "sam_username")
 
     @sam_username.setter
@@ -7415,9 +6604,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="shortGuardInterval")
     def short_guard_interval(self) -> Optional[pulumi.Input[str]]:
-        """
-        Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "short_guard_interval")
 
     @short_guard_interval.setter
@@ -7427,9 +6613,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="spectrumAnalysis")
     def spectrum_analysis(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-        """
         return pulumi.get(self, "spectrum_analysis")
 
     @spectrum_analysis.setter
@@ -7439,9 +6622,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="transmitOptimize")
     def transmit_optimize(self) -> Optional[pulumi.Input[str]]:
-        """
-        Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-        """
         return pulumi.get(self, "transmit_optimize")
 
     @transmit_optimize.setter
@@ -7451,9 +6631,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="vapAll")
     def vap_all(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-        """
         return pulumi.get(self, "vap_all")
 
     @vap_all.setter
@@ -7463,9 +6640,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter
     def vaps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio2VapArgs']]]]:
-        """
-        Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-        """
         return pulumi.get(self, "vaps")
 
     @vaps.setter
@@ -7475,9 +6649,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="widsProfile")
     def wids_profile(self) -> Optional[pulumi.Input[str]]:
-        """
-        Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-        """
         return pulumi.get(self, "wids_profile")
 
     @wids_profile.setter
@@ -7487,9 +6658,6 @@ class WtpprofileRadio2Args:
     @property
     @pulumi.getter(name="zeroWaitDfs")
     def zero_wait_dfs(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "zero_wait_dfs")
 
     @zero_wait_dfs.setter
@@ -7572,6 +6740,7 @@ class WtpprofileRadio3Args:
                  call_admission_control: Optional[pulumi.Input[str]] = None,
                  call_capacity: Optional[pulumi.Input[int]] = None,
                  channel_bonding: Optional[pulumi.Input[str]] = None,
+                 channel_bonding_ext: Optional[pulumi.Input[str]] = None,
                  channel_utilization: Optional[pulumi.Input[str]] = None,
                  channels: Optional[pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio3ChannelArgs']]]] = None,
                  coexistence: Optional[pulumi.Input[str]] = None,
@@ -7626,85 +6795,9 @@ class WtpprofileRadio3Args:
                  wids_profile: Optional[pulumi.Input[str]] = None,
                  zero_wait_dfs: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] airtime_fairness: Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] amsdu: Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ap_handoff: Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_addr: MAC address to monitor.
-        :param pulumi.Input[int] ap_sniffer_bufsize: Sniffer buffer size (1 - 32 MB, default = 16).
-        :param pulumi.Input[int] ap_sniffer_chan: Channel on which to operate the sniffer (default = 6).
-        :param pulumi.Input[str] ap_sniffer_ctl: Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_data: Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_mgmt_beacon: Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_mgmt_other: Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_mgmt_probe: Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] arrp_profile: Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-        :param pulumi.Input[int] auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        :param pulumi.Input[str] auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        :param pulumi.Input[str] auto_power_target: The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        :param pulumi.Input[str] band: WiFi band that Radio 3 operates on.
-        :param pulumi.Input[str] band5g_type: WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-        :param pulumi.Input[str] bandwidth_admission_control: Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] bandwidth_capacity: Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-        :param pulumi.Input[int] beacon_interval: Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-        :param pulumi.Input[int] bss_color: BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-        :param pulumi.Input[str] bss_color_mode: BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-        :param pulumi.Input[str] call_admission_control: Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] call_capacity: Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-        :param pulumi.Input[str] channel_bonding: Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-        :param pulumi.Input[str] channel_utilization: Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-        :param pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio3ChannelArgs']]] channels: Selected list of wireless radio channels. The structure of `channel` block is documented below.
-        :param pulumi.Input[str] coexistence: Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] darrp: Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] drma: Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] drma_sensitivity: Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-        :param pulumi.Input[int] dtim: Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-        :param pulumi.Input[int] frag_threshold: Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
         :param pulumi.Input[str] frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] iperf_protocol: Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-        :param pulumi.Input[int] iperf_server_port: Iperf service port number.
         :param pulumi.Input[int] max_clients: Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
-        :param pulumi.Input[int] max_distance: Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-        :param pulumi.Input[str] mimo_mode: Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-        :param pulumi.Input[str] mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-        :param pulumi.Input[str] n80211d: Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] optional_antenna: Optional antenna used on FAP (default = none).
-        :param pulumi.Input[str] optional_antenna_gain: Optional antenna gain in dBi (0 to 20, default = 0).
-        :param pulumi.Input[int] power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-        :param pulumi.Input[str] power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-        :param pulumi.Input[int] power_value: Radio EIRP power in dBm (1 - 33, default = 27).
-        :param pulumi.Input[str] powersave_optimize: Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-        :param pulumi.Input[str] protection_mode: Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-        :param pulumi.Input[int] rts_threshold: Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-        :param pulumi.Input[str] sam_bssid: BSSID for WiFi network.
-        :param pulumi.Input[str] sam_ca_certificate: CA certificate for WPA2/WPA3-ENTERPRISE.
-        :param pulumi.Input[str] sam_captive_portal: Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] sam_client_certificate: Client certificate for WPA2/WPA3-ENTERPRISE.
-        :param pulumi.Input[str] sam_cwp_failure_string: Failure identification on the page after an incorrect login.
-        :param pulumi.Input[str] sam_cwp_match_string: Identification string from the captive portal login form.
-        :param pulumi.Input[str] sam_cwp_password: Password for captive portal authentication.
-        :param pulumi.Input[str] sam_cwp_success_string: Success identification on the page after a successful login.
-        :param pulumi.Input[str] sam_cwp_test_url: Website the client is trying to access.
-        :param pulumi.Input[str] sam_cwp_username: Username for captive portal authentication.
-        :param pulumi.Input[str] sam_eap_method: Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-        :param pulumi.Input[str] sam_password: Passphrase for WiFi network connection.
-        :param pulumi.Input[str] sam_private_key: Private key for WPA2/WPA3-ENTERPRISE.
-        :param pulumi.Input[str] sam_private_key_password: Password for private key file for WPA2/WPA3-ENTERPRISE.
-        :param pulumi.Input[int] sam_report_intv: SAM report interval (sec), 0 for a one-time report.
-        :param pulumi.Input[str] sam_security_type: Select WiFi network security type (default = "wpa-personal").
-        :param pulumi.Input[str] sam_server_fqdn: SAM test server domain name.
-        :param pulumi.Input[str] sam_server_ip: SAM test server IP address.
-        :param pulumi.Input[str] sam_server_type: Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-        :param pulumi.Input[str] sam_ssid: SSID for WiFi network.
-        :param pulumi.Input[str] sam_test: Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-        :param pulumi.Input[str] sam_username: Username for WiFi network connection.
-        :param pulumi.Input[str] short_guard_interval: Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] spectrum_analysis: Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-        :param pulumi.Input[str] transmit_optimize: Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-        :param pulumi.Input[str] vap_all: Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-        :param pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio3VapArgs']]] vaps: Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-        :param pulumi.Input[str] wids_profile: Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-        :param pulumi.Input[str] zero_wait_dfs: Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
         """
         if airtime_fairness is not None:
             pulumi.set(__self__, "airtime_fairness", airtime_fairness)
@@ -7758,6 +6851,8 @@ class WtpprofileRadio3Args:
             pulumi.set(__self__, "call_capacity", call_capacity)
         if channel_bonding is not None:
             pulumi.set(__self__, "channel_bonding", channel_bonding)
+        if channel_bonding_ext is not None:
+            pulumi.set(__self__, "channel_bonding_ext", channel_bonding_ext)
         if channel_utilization is not None:
             pulumi.set(__self__, "channel_utilization", channel_utilization)
         if channels is not None:
@@ -7868,9 +6963,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="airtimeFairness")
     def airtime_fairness(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "airtime_fairness")
 
     @airtime_fairness.setter
@@ -7880,9 +6972,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter
     def amsdu(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "amsdu")
 
     @amsdu.setter
@@ -7904,9 +6993,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="apSnifferAddr")
     def ap_sniffer_addr(self) -> Optional[pulumi.Input[str]]:
-        """
-        MAC address to monitor.
-        """
         return pulumi.get(self, "ap_sniffer_addr")
 
     @ap_sniffer_addr.setter
@@ -7916,9 +7002,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="apSnifferBufsize")
     def ap_sniffer_bufsize(self) -> Optional[pulumi.Input[int]]:
-        """
-        Sniffer buffer size (1 - 32 MB, default = 16).
-        """
         return pulumi.get(self, "ap_sniffer_bufsize")
 
     @ap_sniffer_bufsize.setter
@@ -7928,9 +7011,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="apSnifferChan")
     def ap_sniffer_chan(self) -> Optional[pulumi.Input[int]]:
-        """
-        Channel on which to operate the sniffer (default = 6).
-        """
         return pulumi.get(self, "ap_sniffer_chan")
 
     @ap_sniffer_chan.setter
@@ -7940,9 +7020,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="apSnifferCtl")
     def ap_sniffer_ctl(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_ctl")
 
     @ap_sniffer_ctl.setter
@@ -7952,9 +7029,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="apSnifferData")
     def ap_sniffer_data(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_data")
 
     @ap_sniffer_data.setter
@@ -7964,9 +7038,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="apSnifferMgmtBeacon")
     def ap_sniffer_mgmt_beacon(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_mgmt_beacon")
 
     @ap_sniffer_mgmt_beacon.setter
@@ -7976,9 +7047,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="apSnifferMgmtOther")
     def ap_sniffer_mgmt_other(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_mgmt_other")
 
     @ap_sniffer_mgmt_other.setter
@@ -7988,9 +7056,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="apSnifferMgmtProbe")
     def ap_sniffer_mgmt_probe(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_mgmt_probe")
 
     @ap_sniffer_mgmt_probe.setter
@@ -8000,9 +7065,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="arrpProfile")
     def arrp_profile(self) -> Optional[pulumi.Input[str]]:
-        """
-        Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-        """
         return pulumi.get(self, "arrp_profile")
 
     @arrp_profile.setter
@@ -8012,9 +7074,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[pulumi.Input[int]]:
-        """
-        The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        """
         return pulumi.get(self, "auto_power_high")
 
     @auto_power_high.setter
@@ -8024,9 +7083,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="autoPowerLevel")
     def auto_power_level(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "auto_power_level")
 
     @auto_power_level.setter
@@ -8036,9 +7092,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="autoPowerLow")
     def auto_power_low(self) -> Optional[pulumi.Input[int]]:
-        """
-        The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        """
         return pulumi.get(self, "auto_power_low")
 
     @auto_power_low.setter
@@ -8048,9 +7101,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="autoPowerTarget")
     def auto_power_target(self) -> Optional[pulumi.Input[str]]:
-        """
-        The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        """
         return pulumi.get(self, "auto_power_target")
 
     @auto_power_target.setter
@@ -8060,9 +7110,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter
     def band(self) -> Optional[pulumi.Input[str]]:
-        """
-        WiFi band that Radio 3 operates on.
-        """
         return pulumi.get(self, "band")
 
     @band.setter
@@ -8072,9 +7119,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="band5gType")
     def band5g_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-        """
         return pulumi.get(self, "band5g_type")
 
     @band5g_type.setter
@@ -8084,9 +7128,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="bandwidthAdmissionControl")
     def bandwidth_admission_control(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "bandwidth_admission_control")
 
     @bandwidth_admission_control.setter
@@ -8096,9 +7137,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="bandwidthCapacity")
     def bandwidth_capacity(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-        """
         return pulumi.get(self, "bandwidth_capacity")
 
     @bandwidth_capacity.setter
@@ -8108,9 +7146,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="beaconInterval")
     def beacon_interval(self) -> Optional[pulumi.Input[int]]:
-        """
-        Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-        """
         return pulumi.get(self, "beacon_interval")
 
     @beacon_interval.setter
@@ -8120,9 +7155,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="bssColor")
     def bss_color(self) -> Optional[pulumi.Input[int]]:
-        """
-        BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-        """
         return pulumi.get(self, "bss_color")
 
     @bss_color.setter
@@ -8132,9 +7164,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="bssColorMode")
     def bss_color_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-        """
         return pulumi.get(self, "bss_color_mode")
 
     @bss_color_mode.setter
@@ -8144,9 +7173,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="callAdmissionControl")
     def call_admission_control(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "call_admission_control")
 
     @call_admission_control.setter
@@ -8156,9 +7182,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="callCapacity")
     def call_capacity(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-        """
         return pulumi.get(self, "call_capacity")
 
     @call_capacity.setter
@@ -8168,9 +7191,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="channelBonding")
     def channel_bonding(self) -> Optional[pulumi.Input[str]]:
-        """
-        Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-        """
         return pulumi.get(self, "channel_bonding")
 
     @channel_bonding.setter
@@ -8178,11 +7198,17 @@ class WtpprofileRadio3Args:
         pulumi.set(self, "channel_bonding", value)
 
     @property
+    @pulumi.getter(name="channelBondingExt")
+    def channel_bonding_ext(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "channel_bonding_ext")
+
+    @channel_bonding_ext.setter
+    def channel_bonding_ext(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "channel_bonding_ext", value)
+
+    @property
     @pulumi.getter(name="channelUtilization")
     def channel_utilization(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "channel_utilization")
 
     @channel_utilization.setter
@@ -8192,9 +7218,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter
     def channels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio3ChannelArgs']]]]:
-        """
-        Selected list of wireless radio channels. The structure of `channel` block is documented below.
-        """
         return pulumi.get(self, "channels")
 
     @channels.setter
@@ -8204,9 +7227,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter
     def coexistence(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "coexistence")
 
     @coexistence.setter
@@ -8216,9 +7236,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter
     def darrp(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "darrp")
 
     @darrp.setter
@@ -8228,9 +7245,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter
     def drma(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "drma")
 
     @drma.setter
@@ -8240,9 +7254,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="drmaSensitivity")
     def drma_sensitivity(self) -> Optional[pulumi.Input[str]]:
-        """
-        Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-        """
         return pulumi.get(self, "drma_sensitivity")
 
     @drma_sensitivity.setter
@@ -8252,9 +7263,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter
     def dtim(self) -> Optional[pulumi.Input[int]]:
-        """
-        Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-        """
         return pulumi.get(self, "dtim")
 
     @dtim.setter
@@ -8264,9 +7272,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="fragThreshold")
     def frag_threshold(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
-        """
         return pulumi.get(self, "frag_threshold")
 
     @frag_threshold.setter
@@ -8288,9 +7293,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="iperfProtocol")
     def iperf_protocol(self) -> Optional[pulumi.Input[str]]:
-        """
-        Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-        """
         return pulumi.get(self, "iperf_protocol")
 
     @iperf_protocol.setter
@@ -8300,9 +7302,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="iperfServerPort")
     def iperf_server_port(self) -> Optional[pulumi.Input[int]]:
-        """
-        Iperf service port number.
-        """
         return pulumi.get(self, "iperf_server_port")
 
     @iperf_server_port.setter
@@ -8324,9 +7323,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="maxDistance")
     def max_distance(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-        """
         return pulumi.get(self, "max_distance")
 
     @max_distance.setter
@@ -8336,9 +7332,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="mimoMode")
     def mimo_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-        """
         return pulumi.get(self, "mimo_mode")
 
     @mimo_mode.setter
@@ -8348,9 +7341,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -8360,9 +7350,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter
     def n80211d(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "n80211d")
 
     @n80211d.setter
@@ -8372,9 +7359,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="optionalAntenna")
     def optional_antenna(self) -> Optional[pulumi.Input[str]]:
-        """
-        Optional antenna used on FAP (default = none).
-        """
         return pulumi.get(self, "optional_antenna")
 
     @optional_antenna.setter
@@ -8384,9 +7368,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="optionalAntennaGain")
     def optional_antenna_gain(self) -> Optional[pulumi.Input[str]]:
-        """
-        Optional antenna gain in dBi (0 to 20, default = 0).
-        """
         return pulumi.get(self, "optional_antenna_gain")
 
     @optional_antenna_gain.setter
@@ -8396,9 +7377,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="powerLevel")
     def power_level(self) -> Optional[pulumi.Input[int]]:
-        """
-        Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-        """
         return pulumi.get(self, "power_level")
 
     @power_level.setter
@@ -8408,9 +7386,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="powerMode")
     def power_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-        """
         return pulumi.get(self, "power_mode")
 
     @power_mode.setter
@@ -8420,9 +7395,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="powerValue")
     def power_value(self) -> Optional[pulumi.Input[int]]:
-        """
-        Radio EIRP power in dBm (1 - 33, default = 27).
-        """
         return pulumi.get(self, "power_value")
 
     @power_value.setter
@@ -8432,9 +7404,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="powersaveOptimize")
     def powersave_optimize(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-        """
         return pulumi.get(self, "powersave_optimize")
 
     @powersave_optimize.setter
@@ -8444,9 +7413,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="protectionMode")
     def protection_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-        """
         return pulumi.get(self, "protection_mode")
 
     @protection_mode.setter
@@ -8456,9 +7422,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="rtsThreshold")
     def rts_threshold(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-        """
         return pulumi.get(self, "rts_threshold")
 
     @rts_threshold.setter
@@ -8468,9 +7431,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samBssid")
     def sam_bssid(self) -> Optional[pulumi.Input[str]]:
-        """
-        BSSID for WiFi network.
-        """
         return pulumi.get(self, "sam_bssid")
 
     @sam_bssid.setter
@@ -8480,9 +7440,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samCaCertificate")
     def sam_ca_certificate(self) -> Optional[pulumi.Input[str]]:
-        """
-        CA certificate for WPA2/WPA3-ENTERPRISE.
-        """
         return pulumi.get(self, "sam_ca_certificate")
 
     @sam_ca_certificate.setter
@@ -8492,9 +7449,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samCaptivePortal")
     def sam_captive_portal(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "sam_captive_portal")
 
     @sam_captive_portal.setter
@@ -8504,9 +7458,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samClientCertificate")
     def sam_client_certificate(self) -> Optional[pulumi.Input[str]]:
-        """
-        Client certificate for WPA2/WPA3-ENTERPRISE.
-        """
         return pulumi.get(self, "sam_client_certificate")
 
     @sam_client_certificate.setter
@@ -8516,9 +7467,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samCwpFailureString")
     def sam_cwp_failure_string(self) -> Optional[pulumi.Input[str]]:
-        """
-        Failure identification on the page after an incorrect login.
-        """
         return pulumi.get(self, "sam_cwp_failure_string")
 
     @sam_cwp_failure_string.setter
@@ -8528,9 +7476,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samCwpMatchString")
     def sam_cwp_match_string(self) -> Optional[pulumi.Input[str]]:
-        """
-        Identification string from the captive portal login form.
-        """
         return pulumi.get(self, "sam_cwp_match_string")
 
     @sam_cwp_match_string.setter
@@ -8540,9 +7485,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samCwpPassword")
     def sam_cwp_password(self) -> Optional[pulumi.Input[str]]:
-        """
-        Password for captive portal authentication.
-        """
         return pulumi.get(self, "sam_cwp_password")
 
     @sam_cwp_password.setter
@@ -8552,9 +7494,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samCwpSuccessString")
     def sam_cwp_success_string(self) -> Optional[pulumi.Input[str]]:
-        """
-        Success identification on the page after a successful login.
-        """
         return pulumi.get(self, "sam_cwp_success_string")
 
     @sam_cwp_success_string.setter
@@ -8564,9 +7503,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samCwpTestUrl")
     def sam_cwp_test_url(self) -> Optional[pulumi.Input[str]]:
-        """
-        Website the client is trying to access.
-        """
         return pulumi.get(self, "sam_cwp_test_url")
 
     @sam_cwp_test_url.setter
@@ -8576,9 +7512,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samCwpUsername")
     def sam_cwp_username(self) -> Optional[pulumi.Input[str]]:
-        """
-        Username for captive portal authentication.
-        """
         return pulumi.get(self, "sam_cwp_username")
 
     @sam_cwp_username.setter
@@ -8588,9 +7521,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samEapMethod")
     def sam_eap_method(self) -> Optional[pulumi.Input[str]]:
-        """
-        Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-        """
         return pulumi.get(self, "sam_eap_method")
 
     @sam_eap_method.setter
@@ -8600,9 +7530,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samPassword")
     def sam_password(self) -> Optional[pulumi.Input[str]]:
-        """
-        Passphrase for WiFi network connection.
-        """
         return pulumi.get(self, "sam_password")
 
     @sam_password.setter
@@ -8612,9 +7539,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samPrivateKey")
     def sam_private_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        Private key for WPA2/WPA3-ENTERPRISE.
-        """
         return pulumi.get(self, "sam_private_key")
 
     @sam_private_key.setter
@@ -8624,9 +7548,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samPrivateKeyPassword")
     def sam_private_key_password(self) -> Optional[pulumi.Input[str]]:
-        """
-        Password for private key file for WPA2/WPA3-ENTERPRISE.
-        """
         return pulumi.get(self, "sam_private_key_password")
 
     @sam_private_key_password.setter
@@ -8636,9 +7557,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samReportIntv")
     def sam_report_intv(self) -> Optional[pulumi.Input[int]]:
-        """
-        SAM report interval (sec), 0 for a one-time report.
-        """
         return pulumi.get(self, "sam_report_intv")
 
     @sam_report_intv.setter
@@ -8648,9 +7566,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samSecurityType")
     def sam_security_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        Select WiFi network security type (default = "wpa-personal").
-        """
         return pulumi.get(self, "sam_security_type")
 
     @sam_security_type.setter
@@ -8660,9 +7575,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samServerFqdn")
     def sam_server_fqdn(self) -> Optional[pulumi.Input[str]]:
-        """
-        SAM test server domain name.
-        """
         return pulumi.get(self, "sam_server_fqdn")
 
     @sam_server_fqdn.setter
@@ -8672,9 +7584,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samServerIp")
     def sam_server_ip(self) -> Optional[pulumi.Input[str]]:
-        """
-        SAM test server IP address.
-        """
         return pulumi.get(self, "sam_server_ip")
 
     @sam_server_ip.setter
@@ -8684,9 +7593,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samServerType")
     def sam_server_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-        """
         return pulumi.get(self, "sam_server_type")
 
     @sam_server_type.setter
@@ -8696,9 +7602,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samSsid")
     def sam_ssid(self) -> Optional[pulumi.Input[str]]:
-        """
-        SSID for WiFi network.
-        """
         return pulumi.get(self, "sam_ssid")
 
     @sam_ssid.setter
@@ -8708,9 +7611,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samTest")
     def sam_test(self) -> Optional[pulumi.Input[str]]:
-        """
-        Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-        """
         return pulumi.get(self, "sam_test")
 
     @sam_test.setter
@@ -8720,9 +7620,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="samUsername")
     def sam_username(self) -> Optional[pulumi.Input[str]]:
-        """
-        Username for WiFi network connection.
-        """
         return pulumi.get(self, "sam_username")
 
     @sam_username.setter
@@ -8732,9 +7629,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="shortGuardInterval")
     def short_guard_interval(self) -> Optional[pulumi.Input[str]]:
-        """
-        Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "short_guard_interval")
 
     @short_guard_interval.setter
@@ -8744,9 +7638,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="spectrumAnalysis")
     def spectrum_analysis(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-        """
         return pulumi.get(self, "spectrum_analysis")
 
     @spectrum_analysis.setter
@@ -8756,9 +7647,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="transmitOptimize")
     def transmit_optimize(self) -> Optional[pulumi.Input[str]]:
-        """
-        Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-        """
         return pulumi.get(self, "transmit_optimize")
 
     @transmit_optimize.setter
@@ -8768,9 +7656,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="vapAll")
     def vap_all(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-        """
         return pulumi.get(self, "vap_all")
 
     @vap_all.setter
@@ -8780,9 +7665,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter
     def vaps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio3VapArgs']]]]:
-        """
-        Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-        """
         return pulumi.get(self, "vaps")
 
     @vaps.setter
@@ -8792,9 +7674,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="widsProfile")
     def wids_profile(self) -> Optional[pulumi.Input[str]]:
-        """
-        Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-        """
         return pulumi.get(self, "wids_profile")
 
     @wids_profile.setter
@@ -8804,9 +7683,6 @@ class WtpprofileRadio3Args:
     @property
     @pulumi.getter(name="zeroWaitDfs")
     def zero_wait_dfs(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "zero_wait_dfs")
 
     @zero_wait_dfs.setter
@@ -8889,6 +7765,7 @@ class WtpprofileRadio4Args:
                  call_admission_control: Optional[pulumi.Input[str]] = None,
                  call_capacity: Optional[pulumi.Input[int]] = None,
                  channel_bonding: Optional[pulumi.Input[str]] = None,
+                 channel_bonding_ext: Optional[pulumi.Input[str]] = None,
                  channel_utilization: Optional[pulumi.Input[str]] = None,
                  channels: Optional[pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio4ChannelArgs']]]] = None,
                  coexistence: Optional[pulumi.Input[str]] = None,
@@ -8943,85 +7820,9 @@ class WtpprofileRadio4Args:
                  wids_profile: Optional[pulumi.Input[str]] = None,
                  zero_wait_dfs: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] airtime_fairness: Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] amsdu: Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ap_handoff: Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_addr: MAC address to monitor.
-        :param pulumi.Input[int] ap_sniffer_bufsize: Sniffer buffer size (1 - 32 MB, default = 16).
-        :param pulumi.Input[int] ap_sniffer_chan: Channel on which to operate the sniffer (default = 6).
-        :param pulumi.Input[str] ap_sniffer_ctl: Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_data: Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_mgmt_beacon: Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_mgmt_other: Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] ap_sniffer_mgmt_probe: Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] arrp_profile: Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-        :param pulumi.Input[int] auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        :param pulumi.Input[str] auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        :param pulumi.Input[str] auto_power_target: The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        :param pulumi.Input[str] band: WiFi band that Radio 3 operates on.
-        :param pulumi.Input[str] band5g_type: WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-        :param pulumi.Input[str] bandwidth_admission_control: Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] bandwidth_capacity: Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-        :param pulumi.Input[int] beacon_interval: Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-        :param pulumi.Input[int] bss_color: BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-        :param pulumi.Input[str] bss_color_mode: BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-        :param pulumi.Input[str] call_admission_control: Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] call_capacity: Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-        :param pulumi.Input[str] channel_bonding: Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-        :param pulumi.Input[str] channel_utilization: Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-        :param pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio4ChannelArgs']]] channels: Selected list of wireless radio channels. The structure of `channel` block is documented below.
-        :param pulumi.Input[str] coexistence: Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] darrp: Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] drma: Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] drma_sensitivity: Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-        :param pulumi.Input[int] dtim: Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-        :param pulumi.Input[int] frag_threshold: Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
         :param pulumi.Input[str] frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] iperf_protocol: Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-        :param pulumi.Input[int] iperf_server_port: Iperf service port number.
         :param pulumi.Input[int] max_clients: Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
-        :param pulumi.Input[int] max_distance: Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-        :param pulumi.Input[str] mimo_mode: Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-        :param pulumi.Input[str] mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-        :param pulumi.Input[str] n80211d: Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] optional_antenna: Optional antenna used on FAP (default = none).
-        :param pulumi.Input[str] optional_antenna_gain: Optional antenna gain in dBi (0 to 20, default = 0).
-        :param pulumi.Input[int] power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-        :param pulumi.Input[str] power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-        :param pulumi.Input[int] power_value: Radio EIRP power in dBm (1 - 33, default = 27).
-        :param pulumi.Input[str] powersave_optimize: Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-        :param pulumi.Input[str] protection_mode: Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-        :param pulumi.Input[int] rts_threshold: Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-        :param pulumi.Input[str] sam_bssid: BSSID for WiFi network.
-        :param pulumi.Input[str] sam_ca_certificate: CA certificate for WPA2/WPA3-ENTERPRISE.
-        :param pulumi.Input[str] sam_captive_portal: Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] sam_client_certificate: Client certificate for WPA2/WPA3-ENTERPRISE.
-        :param pulumi.Input[str] sam_cwp_failure_string: Failure identification on the page after an incorrect login.
-        :param pulumi.Input[str] sam_cwp_match_string: Identification string from the captive portal login form.
-        :param pulumi.Input[str] sam_cwp_password: Password for captive portal authentication.
-        :param pulumi.Input[str] sam_cwp_success_string: Success identification on the page after a successful login.
-        :param pulumi.Input[str] sam_cwp_test_url: Website the client is trying to access.
-        :param pulumi.Input[str] sam_cwp_username: Username for captive portal authentication.
-        :param pulumi.Input[str] sam_eap_method: Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-        :param pulumi.Input[str] sam_password: Passphrase for WiFi network connection.
-        :param pulumi.Input[str] sam_private_key: Private key for WPA2/WPA3-ENTERPRISE.
-        :param pulumi.Input[str] sam_private_key_password: Password for private key file for WPA2/WPA3-ENTERPRISE.
-        :param pulumi.Input[int] sam_report_intv: SAM report interval (sec), 0 for a one-time report.
-        :param pulumi.Input[str] sam_security_type: Select WiFi network security type (default = "wpa-personal").
-        :param pulumi.Input[str] sam_server_fqdn: SAM test server domain name.
-        :param pulumi.Input[str] sam_server_ip: SAM test server IP address.
-        :param pulumi.Input[str] sam_server_type: Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-        :param pulumi.Input[str] sam_ssid: SSID for WiFi network.
-        :param pulumi.Input[str] sam_test: Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-        :param pulumi.Input[str] sam_username: Username for WiFi network connection.
-        :param pulumi.Input[str] short_guard_interval: Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] spectrum_analysis: Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-        :param pulumi.Input[str] transmit_optimize: Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-        :param pulumi.Input[str] vap_all: Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-        :param pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio4VapArgs']]] vaps: Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-        :param pulumi.Input[str] wids_profile: Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-        :param pulumi.Input[str] zero_wait_dfs: Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
         """
         if airtime_fairness is not None:
             pulumi.set(__self__, "airtime_fairness", airtime_fairness)
@@ -9075,6 +7876,8 @@ class WtpprofileRadio4Args:
             pulumi.set(__self__, "call_capacity", call_capacity)
         if channel_bonding is not None:
             pulumi.set(__self__, "channel_bonding", channel_bonding)
+        if channel_bonding_ext is not None:
+            pulumi.set(__self__, "channel_bonding_ext", channel_bonding_ext)
         if channel_utilization is not None:
             pulumi.set(__self__, "channel_utilization", channel_utilization)
         if channels is not None:
@@ -9185,9 +7988,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="airtimeFairness")
     def airtime_fairness(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "airtime_fairness")
 
     @airtime_fairness.setter
@@ -9197,9 +7997,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter
     def amsdu(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "amsdu")
 
     @amsdu.setter
@@ -9221,9 +8018,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="apSnifferAddr")
     def ap_sniffer_addr(self) -> Optional[pulumi.Input[str]]:
-        """
-        MAC address to monitor.
-        """
         return pulumi.get(self, "ap_sniffer_addr")
 
     @ap_sniffer_addr.setter
@@ -9233,9 +8027,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="apSnifferBufsize")
     def ap_sniffer_bufsize(self) -> Optional[pulumi.Input[int]]:
-        """
-        Sniffer buffer size (1 - 32 MB, default = 16).
-        """
         return pulumi.get(self, "ap_sniffer_bufsize")
 
     @ap_sniffer_bufsize.setter
@@ -9245,9 +8036,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="apSnifferChan")
     def ap_sniffer_chan(self) -> Optional[pulumi.Input[int]]:
-        """
-        Channel on which to operate the sniffer (default = 6).
-        """
         return pulumi.get(self, "ap_sniffer_chan")
 
     @ap_sniffer_chan.setter
@@ -9257,9 +8045,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="apSnifferCtl")
     def ap_sniffer_ctl(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_ctl")
 
     @ap_sniffer_ctl.setter
@@ -9269,9 +8054,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="apSnifferData")
     def ap_sniffer_data(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_data")
 
     @ap_sniffer_data.setter
@@ -9281,9 +8063,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="apSnifferMgmtBeacon")
     def ap_sniffer_mgmt_beacon(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_mgmt_beacon")
 
     @ap_sniffer_mgmt_beacon.setter
@@ -9293,9 +8072,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="apSnifferMgmtOther")
     def ap_sniffer_mgmt_other(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_mgmt_other")
 
     @ap_sniffer_mgmt_other.setter
@@ -9305,9 +8081,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="apSnifferMgmtProbe")
     def ap_sniffer_mgmt_probe(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "ap_sniffer_mgmt_probe")
 
     @ap_sniffer_mgmt_probe.setter
@@ -9317,9 +8090,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="arrpProfile")
     def arrp_profile(self) -> Optional[pulumi.Input[str]]:
-        """
-        Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-        """
         return pulumi.get(self, "arrp_profile")
 
     @arrp_profile.setter
@@ -9329,9 +8099,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[pulumi.Input[int]]:
-        """
-        The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        """
         return pulumi.get(self, "auto_power_high")
 
     @auto_power_high.setter
@@ -9341,9 +8108,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="autoPowerLevel")
     def auto_power_level(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "auto_power_level")
 
     @auto_power_level.setter
@@ -9353,9 +8117,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="autoPowerLow")
     def auto_power_low(self) -> Optional[pulumi.Input[int]]:
-        """
-        The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-        """
         return pulumi.get(self, "auto_power_low")
 
     @auto_power_low.setter
@@ -9365,9 +8126,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="autoPowerTarget")
     def auto_power_target(self) -> Optional[pulumi.Input[str]]:
-        """
-        The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-        """
         return pulumi.get(self, "auto_power_target")
 
     @auto_power_target.setter
@@ -9377,9 +8135,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter
     def band(self) -> Optional[pulumi.Input[str]]:
-        """
-        WiFi band that Radio 3 operates on.
-        """
         return pulumi.get(self, "band")
 
     @band.setter
@@ -9389,9 +8144,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="band5gType")
     def band5g_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-        """
         return pulumi.get(self, "band5g_type")
 
     @band5g_type.setter
@@ -9401,9 +8153,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="bandwidthAdmissionControl")
     def bandwidth_admission_control(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "bandwidth_admission_control")
 
     @bandwidth_admission_control.setter
@@ -9413,9 +8162,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="bandwidthCapacity")
     def bandwidth_capacity(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-        """
         return pulumi.get(self, "bandwidth_capacity")
 
     @bandwidth_capacity.setter
@@ -9425,9 +8171,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="beaconInterval")
     def beacon_interval(self) -> Optional[pulumi.Input[int]]:
-        """
-        Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-        """
         return pulumi.get(self, "beacon_interval")
 
     @beacon_interval.setter
@@ -9437,9 +8180,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="bssColor")
     def bss_color(self) -> Optional[pulumi.Input[int]]:
-        """
-        BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-        """
         return pulumi.get(self, "bss_color")
 
     @bss_color.setter
@@ -9449,9 +8189,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="bssColorMode")
     def bss_color_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-        """
         return pulumi.get(self, "bss_color_mode")
 
     @bss_color_mode.setter
@@ -9461,9 +8198,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="callAdmissionControl")
     def call_admission_control(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "call_admission_control")
 
     @call_admission_control.setter
@@ -9473,9 +8207,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="callCapacity")
     def call_capacity(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-        """
         return pulumi.get(self, "call_capacity")
 
     @call_capacity.setter
@@ -9485,9 +8216,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="channelBonding")
     def channel_bonding(self) -> Optional[pulumi.Input[str]]:
-        """
-        Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-        """
         return pulumi.get(self, "channel_bonding")
 
     @channel_bonding.setter
@@ -9495,11 +8223,17 @@ class WtpprofileRadio4Args:
         pulumi.set(self, "channel_bonding", value)
 
     @property
+    @pulumi.getter(name="channelBondingExt")
+    def channel_bonding_ext(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "channel_bonding_ext")
+
+    @channel_bonding_ext.setter
+    def channel_bonding_ext(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "channel_bonding_ext", value)
+
+    @property
     @pulumi.getter(name="channelUtilization")
     def channel_utilization(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "channel_utilization")
 
     @channel_utilization.setter
@@ -9509,9 +8243,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter
     def channels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio4ChannelArgs']]]]:
-        """
-        Selected list of wireless radio channels. The structure of `channel` block is documented below.
-        """
         return pulumi.get(self, "channels")
 
     @channels.setter
@@ -9521,9 +8252,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter
     def coexistence(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "coexistence")
 
     @coexistence.setter
@@ -9533,9 +8261,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter
     def darrp(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "darrp")
 
     @darrp.setter
@@ -9545,9 +8270,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter
     def drma(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "drma")
 
     @drma.setter
@@ -9557,9 +8279,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="drmaSensitivity")
     def drma_sensitivity(self) -> Optional[pulumi.Input[str]]:
-        """
-        Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-        """
         return pulumi.get(self, "drma_sensitivity")
 
     @drma_sensitivity.setter
@@ -9569,9 +8288,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter
     def dtim(self) -> Optional[pulumi.Input[int]]:
-        """
-        Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-        """
         return pulumi.get(self, "dtim")
 
     @dtim.setter
@@ -9581,9 +8297,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="fragThreshold")
     def frag_threshold(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
-        """
         return pulumi.get(self, "frag_threshold")
 
     @frag_threshold.setter
@@ -9605,9 +8318,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="iperfProtocol")
     def iperf_protocol(self) -> Optional[pulumi.Input[str]]:
-        """
-        Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-        """
         return pulumi.get(self, "iperf_protocol")
 
     @iperf_protocol.setter
@@ -9617,9 +8327,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="iperfServerPort")
     def iperf_server_port(self) -> Optional[pulumi.Input[int]]:
-        """
-        Iperf service port number.
-        """
         return pulumi.get(self, "iperf_server_port")
 
     @iperf_server_port.setter
@@ -9641,9 +8348,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="maxDistance")
     def max_distance(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-        """
         return pulumi.get(self, "max_distance")
 
     @max_distance.setter
@@ -9653,9 +8357,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="mimoMode")
     def mimo_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-        """
         return pulumi.get(self, "mimo_mode")
 
     @mimo_mode.setter
@@ -9665,9 +8366,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -9677,9 +8375,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter
     def n80211d(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "n80211d")
 
     @n80211d.setter
@@ -9689,9 +8384,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="optionalAntenna")
     def optional_antenna(self) -> Optional[pulumi.Input[str]]:
-        """
-        Optional antenna used on FAP (default = none).
-        """
         return pulumi.get(self, "optional_antenna")
 
     @optional_antenna.setter
@@ -9701,9 +8393,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="optionalAntennaGain")
     def optional_antenna_gain(self) -> Optional[pulumi.Input[str]]:
-        """
-        Optional antenna gain in dBi (0 to 20, default = 0).
-        """
         return pulumi.get(self, "optional_antenna_gain")
 
     @optional_antenna_gain.setter
@@ -9713,9 +8402,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="powerLevel")
     def power_level(self) -> Optional[pulumi.Input[int]]:
-        """
-        Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-        """
         return pulumi.get(self, "power_level")
 
     @power_level.setter
@@ -9725,9 +8411,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="powerMode")
     def power_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-        """
         return pulumi.get(self, "power_mode")
 
     @power_mode.setter
@@ -9737,9 +8420,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="powerValue")
     def power_value(self) -> Optional[pulumi.Input[int]]:
-        """
-        Radio EIRP power in dBm (1 - 33, default = 27).
-        """
         return pulumi.get(self, "power_value")
 
     @power_value.setter
@@ -9749,9 +8429,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="powersaveOptimize")
     def powersave_optimize(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-        """
         return pulumi.get(self, "powersave_optimize")
 
     @powersave_optimize.setter
@@ -9761,9 +8438,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="protectionMode")
     def protection_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-        """
         return pulumi.get(self, "protection_mode")
 
     @protection_mode.setter
@@ -9773,9 +8447,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="rtsThreshold")
     def rts_threshold(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-        """
         return pulumi.get(self, "rts_threshold")
 
     @rts_threshold.setter
@@ -9785,9 +8456,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samBssid")
     def sam_bssid(self) -> Optional[pulumi.Input[str]]:
-        """
-        BSSID for WiFi network.
-        """
         return pulumi.get(self, "sam_bssid")
 
     @sam_bssid.setter
@@ -9797,9 +8465,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samCaCertificate")
     def sam_ca_certificate(self) -> Optional[pulumi.Input[str]]:
-        """
-        CA certificate for WPA2/WPA3-ENTERPRISE.
-        """
         return pulumi.get(self, "sam_ca_certificate")
 
     @sam_ca_certificate.setter
@@ -9809,9 +8474,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samCaptivePortal")
     def sam_captive_portal(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "sam_captive_portal")
 
     @sam_captive_portal.setter
@@ -9821,9 +8483,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samClientCertificate")
     def sam_client_certificate(self) -> Optional[pulumi.Input[str]]:
-        """
-        Client certificate for WPA2/WPA3-ENTERPRISE.
-        """
         return pulumi.get(self, "sam_client_certificate")
 
     @sam_client_certificate.setter
@@ -9833,9 +8492,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samCwpFailureString")
     def sam_cwp_failure_string(self) -> Optional[pulumi.Input[str]]:
-        """
-        Failure identification on the page after an incorrect login.
-        """
         return pulumi.get(self, "sam_cwp_failure_string")
 
     @sam_cwp_failure_string.setter
@@ -9845,9 +8501,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samCwpMatchString")
     def sam_cwp_match_string(self) -> Optional[pulumi.Input[str]]:
-        """
-        Identification string from the captive portal login form.
-        """
         return pulumi.get(self, "sam_cwp_match_string")
 
     @sam_cwp_match_string.setter
@@ -9857,9 +8510,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samCwpPassword")
     def sam_cwp_password(self) -> Optional[pulumi.Input[str]]:
-        """
-        Password for captive portal authentication.
-        """
         return pulumi.get(self, "sam_cwp_password")
 
     @sam_cwp_password.setter
@@ -9869,9 +8519,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samCwpSuccessString")
     def sam_cwp_success_string(self) -> Optional[pulumi.Input[str]]:
-        """
-        Success identification on the page after a successful login.
-        """
         return pulumi.get(self, "sam_cwp_success_string")
 
     @sam_cwp_success_string.setter
@@ -9881,9 +8528,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samCwpTestUrl")
     def sam_cwp_test_url(self) -> Optional[pulumi.Input[str]]:
-        """
-        Website the client is trying to access.
-        """
         return pulumi.get(self, "sam_cwp_test_url")
 
     @sam_cwp_test_url.setter
@@ -9893,9 +8537,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samCwpUsername")
     def sam_cwp_username(self) -> Optional[pulumi.Input[str]]:
-        """
-        Username for captive portal authentication.
-        """
         return pulumi.get(self, "sam_cwp_username")
 
     @sam_cwp_username.setter
@@ -9905,9 +8546,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samEapMethod")
     def sam_eap_method(self) -> Optional[pulumi.Input[str]]:
-        """
-        Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-        """
         return pulumi.get(self, "sam_eap_method")
 
     @sam_eap_method.setter
@@ -9917,9 +8555,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samPassword")
     def sam_password(self) -> Optional[pulumi.Input[str]]:
-        """
-        Passphrase for WiFi network connection.
-        """
         return pulumi.get(self, "sam_password")
 
     @sam_password.setter
@@ -9929,9 +8564,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samPrivateKey")
     def sam_private_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        Private key for WPA2/WPA3-ENTERPRISE.
-        """
         return pulumi.get(self, "sam_private_key")
 
     @sam_private_key.setter
@@ -9941,9 +8573,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samPrivateKeyPassword")
     def sam_private_key_password(self) -> Optional[pulumi.Input[str]]:
-        """
-        Password for private key file for WPA2/WPA3-ENTERPRISE.
-        """
         return pulumi.get(self, "sam_private_key_password")
 
     @sam_private_key_password.setter
@@ -9953,9 +8582,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samReportIntv")
     def sam_report_intv(self) -> Optional[pulumi.Input[int]]:
-        """
-        SAM report interval (sec), 0 for a one-time report.
-        """
         return pulumi.get(self, "sam_report_intv")
 
     @sam_report_intv.setter
@@ -9965,9 +8591,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samSecurityType")
     def sam_security_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        Select WiFi network security type (default = "wpa-personal").
-        """
         return pulumi.get(self, "sam_security_type")
 
     @sam_security_type.setter
@@ -9977,9 +8600,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samServerFqdn")
     def sam_server_fqdn(self) -> Optional[pulumi.Input[str]]:
-        """
-        SAM test server domain name.
-        """
         return pulumi.get(self, "sam_server_fqdn")
 
     @sam_server_fqdn.setter
@@ -9989,9 +8609,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samServerIp")
     def sam_server_ip(self) -> Optional[pulumi.Input[str]]:
-        """
-        SAM test server IP address.
-        """
         return pulumi.get(self, "sam_server_ip")
 
     @sam_server_ip.setter
@@ -10001,9 +8618,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samServerType")
     def sam_server_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-        """
         return pulumi.get(self, "sam_server_type")
 
     @sam_server_type.setter
@@ -10013,9 +8627,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samSsid")
     def sam_ssid(self) -> Optional[pulumi.Input[str]]:
-        """
-        SSID for WiFi network.
-        """
         return pulumi.get(self, "sam_ssid")
 
     @sam_ssid.setter
@@ -10025,9 +8636,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samTest")
     def sam_test(self) -> Optional[pulumi.Input[str]]:
-        """
-        Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-        """
         return pulumi.get(self, "sam_test")
 
     @sam_test.setter
@@ -10037,9 +8645,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="samUsername")
     def sam_username(self) -> Optional[pulumi.Input[str]]:
-        """
-        Username for WiFi network connection.
-        """
         return pulumi.get(self, "sam_username")
 
     @sam_username.setter
@@ -10049,9 +8654,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="shortGuardInterval")
     def short_guard_interval(self) -> Optional[pulumi.Input[str]]:
-        """
-        Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "short_guard_interval")
 
     @short_guard_interval.setter
@@ -10061,9 +8663,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="spectrumAnalysis")
     def spectrum_analysis(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-        """
         return pulumi.get(self, "spectrum_analysis")
 
     @spectrum_analysis.setter
@@ -10073,9 +8672,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="transmitOptimize")
     def transmit_optimize(self) -> Optional[pulumi.Input[str]]:
-        """
-        Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-        """
         return pulumi.get(self, "transmit_optimize")
 
     @transmit_optimize.setter
@@ -10085,9 +8681,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="vapAll")
     def vap_all(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-        """
         return pulumi.get(self, "vap_all")
 
     @vap_all.setter
@@ -10097,9 +8690,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter
     def vaps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WtpprofileRadio4VapArgs']]]]:
-        """
-        Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-        """
         return pulumi.get(self, "vaps")
 
     @vaps.setter
@@ -10109,9 +8699,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="widsProfile")
     def wids_profile(self) -> Optional[pulumi.Input[str]]:
-        """
-        Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-        """
         return pulumi.get(self, "wids_profile")
 
     @wids_profile.setter
@@ -10121,9 +8708,6 @@ class WtpprofileRadio4Args:
     @property
     @pulumi.getter(name="zeroWaitDfs")
     def zero_wait_dfs(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "zero_wait_dfs")
 
     @zero_wait_dfs.setter

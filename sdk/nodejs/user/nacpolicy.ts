@@ -80,7 +80,11 @@ export class Nacpolicy extends pulumi.CustomResource {
      */
     public readonly firewallAddress!: pulumi.Output<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * NAC policy matching FortiVoice tag.
+     */
+    public readonly fortivoiceTag!: pulumi.Output<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -99,6 +103,14 @@ export class Nacpolicy extends pulumi.CustomResource {
      * NAC policy matching MAC address.
      */
     public readonly mac!: pulumi.Output<string>;
+    /**
+     * Number of days the matched devices will be retained (0 - always retain)
+     */
+    public readonly matchPeriod!: pulumi.Output<number>;
+    /**
+     * Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+     */
+    public readonly matchType!: pulumi.Output<string>;
     /**
      * NAC policy name.
      */
@@ -166,7 +178,7 @@ export class Nacpolicy extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Nacpolicy resource with the given unique name, arguments, and options.
@@ -187,11 +199,14 @@ export class Nacpolicy extends pulumi.CustomResource {
             resourceInputs["emsTag"] = state ? state.emsTag : undefined;
             resourceInputs["family"] = state ? state.family : undefined;
             resourceInputs["firewallAddress"] = state ? state.firewallAddress : undefined;
+            resourceInputs["fortivoiceTag"] = state ? state.fortivoiceTag : undefined;
             resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["host"] = state ? state.host : undefined;
             resourceInputs["hwVendor"] = state ? state.hwVendor : undefined;
             resourceInputs["hwVersion"] = state ? state.hwVersion : undefined;
             resourceInputs["mac"] = state ? state.mac : undefined;
+            resourceInputs["matchPeriod"] = state ? state.matchPeriod : undefined;
+            resourceInputs["matchType"] = state ? state.matchType : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["os"] = state ? state.os : undefined;
             resourceInputs["severities"] = state ? state.severities : undefined;
@@ -217,11 +232,14 @@ export class Nacpolicy extends pulumi.CustomResource {
             resourceInputs["emsTag"] = args ? args.emsTag : undefined;
             resourceInputs["family"] = args ? args.family : undefined;
             resourceInputs["firewallAddress"] = args ? args.firewallAddress : undefined;
+            resourceInputs["fortivoiceTag"] = args ? args.fortivoiceTag : undefined;
             resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["host"] = args ? args.host : undefined;
             resourceInputs["hwVendor"] = args ? args.hwVendor : undefined;
             resourceInputs["hwVersion"] = args ? args.hwVersion : undefined;
             resourceInputs["mac"] = args ? args.mac : undefined;
+            resourceInputs["matchPeriod"] = args ? args.matchPeriod : undefined;
+            resourceInputs["matchType"] = args ? args.matchType : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["os"] = args ? args.os : undefined;
             resourceInputs["severities"] = args ? args.severities : undefined;
@@ -274,7 +292,11 @@ export interface NacpolicyState {
      */
     firewallAddress?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * NAC policy matching FortiVoice tag.
+     */
+    fortivoiceTag?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -293,6 +315,14 @@ export interface NacpolicyState {
      * NAC policy matching MAC address.
      */
     mac?: pulumi.Input<string>;
+    /**
+     * Number of days the matched devices will be retained (0 - always retain)
+     */
+    matchPeriod?: pulumi.Input<number>;
+    /**
+     * Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+     */
+    matchType?: pulumi.Input<string>;
     /**
      * NAC policy name.
      */
@@ -392,7 +422,11 @@ export interface NacpolicyArgs {
      */
     firewallAddress?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * NAC policy matching FortiVoice tag.
+     */
+    fortivoiceTag?: pulumi.Input<string>;
+    /**
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -411,6 +445,14 @@ export interface NacpolicyArgs {
      * NAC policy matching MAC address.
      */
     mac?: pulumi.Input<string>;
+    /**
+     * Number of days the matched devices will be retained (0 - always retain)
+     */
+    matchPeriod?: pulumi.Input<number>;
+    /**
+     * Match and retain the devices based on the type. Valid values: `dynamic`, `override`.
+     */
+    matchType?: pulumi.Input<string>;
     /**
      * NAC policy name.
      */

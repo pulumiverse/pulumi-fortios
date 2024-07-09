@@ -331,7 +331,7 @@ class Domaincontroller(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Define known domain controller servers. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,7.0.0`.
+        Define known domain controller servers. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,6.4.15,7.0.0`.
 
         ## Import
 
@@ -370,7 +370,7 @@ class Domaincontroller(pulumi.CustomResource):
                  args: Optional[DomaincontrollerArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Define known domain controller servers. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,7.0.0`.
+        Define known domain controller servers. Applies to FortiOS Version `6.4.0,6.4.1,6.4.2,6.4.10,6.4.11,6.4.12,6.4.13,6.4.14,6.4.15,7.0.0`.
 
         ## Import
 
@@ -551,7 +551,7 @@ class Domaincontroller(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

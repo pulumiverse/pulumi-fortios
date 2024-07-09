@@ -37,12 +37,12 @@ type Internetservicesubapp struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Internet Service main ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Subapp number list. The structure of `subApp` block is documented below.
 	SubApps InternetservicesubappSubAppArrayOutput `pulumi:"subApps"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewInternetservicesubapp registers a new resource with the given unique name, arguments, and options.
@@ -79,7 +79,7 @@ type internetservicesubappState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Internet Service main ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Subapp number list. The structure of `subApp` block is documented below.
 	SubApps []InternetservicesubappSubApp `pulumi:"subApps"`
@@ -92,7 +92,7 @@ type InternetservicesubappState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Internet Service main ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Subapp number list. The structure of `subApp` block is documented below.
 	SubApps InternetservicesubappSubAppArrayInput
@@ -109,7 +109,7 @@ type internetservicesubappArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Internet Service main ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Subapp number list. The structure of `subApp` block is documented below.
 	SubApps []InternetservicesubappSubApp `pulumi:"subApps"`
@@ -123,7 +123,7 @@ type InternetservicesubappArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Internet Service main ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Subapp number list. The structure of `subApp` block is documented below.
 	SubApps InternetservicesubappSubAppArrayInput
@@ -228,7 +228,7 @@ func (o InternetservicesubappOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Internetservicesubapp) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o InternetservicesubappOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Internetservicesubapp) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -239,8 +239,8 @@ func (o InternetservicesubappOutput) SubApps() InternetservicesubappSubAppArrayO
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o InternetservicesubappOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Internetservicesubapp) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o InternetservicesubappOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Internetservicesubapp) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type InternetservicesubappArrayOutput struct{ *pulumi.OutputState }

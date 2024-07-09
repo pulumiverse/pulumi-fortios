@@ -36,11 +36,11 @@ class VdomdnsArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Vdomdns resource.
-        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. (This is not used as a failover DNS server.)
-        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. This is not used as a failover DNS server.
+        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. This is not used as a failover DNS server.
         :param pulumi.Input[str] dns_over_tls: Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ip6_primary: Primary IPv6 DNS server IP address for the VDOM.
@@ -96,7 +96,7 @@ class VdomdnsArgs:
     @pulumi.getter(name="altPrimary")
     def alt_primary(self) -> Optional[pulumi.Input[str]]:
         """
-        Alternate primary DNS server. (This is not used as a failover DNS server.)
+        Alternate primary DNS server. This is not used as a failover DNS server.
         """
         return pulumi.get(self, "alt_primary")
 
@@ -108,7 +108,7 @@ class VdomdnsArgs:
     @pulumi.getter(name="altSecondary")
     def alt_secondary(self) -> Optional[pulumi.Input[str]]:
         """
-        Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        Alternate secondary DNS server. This is not used as a failover DNS server.
         """
         return pulumi.get(self, "alt_secondary")
 
@@ -144,7 +144,7 @@ class VdomdnsArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -332,11 +332,11 @@ class _VdomdnsState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Vdomdns resources.
-        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. (This is not used as a failover DNS server.)
-        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. This is not used as a failover DNS server.
+        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. This is not used as a failover DNS server.
         :param pulumi.Input[str] dns_over_tls: Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ip6_primary: Primary IPv6 DNS server IP address for the VDOM.
@@ -392,7 +392,7 @@ class _VdomdnsState:
     @pulumi.getter(name="altPrimary")
     def alt_primary(self) -> Optional[pulumi.Input[str]]:
         """
-        Alternate primary DNS server. (This is not used as a failover DNS server.)
+        Alternate primary DNS server. This is not used as a failover DNS server.
         """
         return pulumi.get(self, "alt_primary")
 
@@ -404,7 +404,7 @@ class _VdomdnsState:
     @pulumi.getter(name="altSecondary")
     def alt_secondary(self) -> Optional[pulumi.Input[str]]:
         """
-        Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        Alternate secondary DNS server. This is not used as a failover DNS server.
         """
         return pulumi.get(self, "alt_secondary")
 
@@ -440,7 +440,7 @@ class _VdomdnsState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -652,11 +652,11 @@ class Vdomdns(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. (This is not used as a failover DNS server.)
-        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. This is not used as a failover DNS server.
+        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. This is not used as a failover DNS server.
         :param pulumi.Input[str] dns_over_tls: Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ip6_primary: Primary IPv6 DNS server IP address for the VDOM.
@@ -793,11 +793,11 @@ class Vdomdns(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. (This is not used as a failover DNS server.)
-        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. This is not used as a failover DNS server.
+        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. This is not used as a failover DNS server.
         :param pulumi.Input[str] dns_over_tls: Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ip6_primary: Primary IPv6 DNS server IP address for the VDOM.
@@ -840,7 +840,7 @@ class Vdomdns(pulumi.CustomResource):
     @pulumi.getter(name="altPrimary")
     def alt_primary(self) -> pulumi.Output[str]:
         """
-        Alternate primary DNS server. (This is not used as a failover DNS server.)
+        Alternate primary DNS server. This is not used as a failover DNS server.
         """
         return pulumi.get(self, "alt_primary")
 
@@ -848,7 +848,7 @@ class Vdomdns(pulumi.CustomResource):
     @pulumi.getter(name="altSecondary")
     def alt_secondary(self) -> pulumi.Output[str]:
         """
-        Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        Alternate secondary DNS server. This is not used as a failover DNS server.
         """
         return pulumi.get(self, "alt_secondary")
 
@@ -872,7 +872,7 @@ class Vdomdns(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -974,7 +974,7 @@ class Vdomdns(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

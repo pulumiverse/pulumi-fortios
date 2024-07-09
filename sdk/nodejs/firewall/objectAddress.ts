@@ -12,7 +12,6 @@ import * as utilities from "../utilities";
  * ## Example Usage
  *
  * ### Iprange Address
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -24,10 +23,8 @@ import * as utilities from "../utilities";
  *     type: "iprange",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Geography Address
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -38,10 +35,8 @@ import * as utilities from "../utilities";
  *     type: "geography",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Fqdn Address
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -55,10 +50,8 @@ import * as utilities from "../utilities";
  *     type: "fqdn",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Ipmask Address
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -69,7 +62,6 @@ import * as utilities from "../utilities";
  *     type: "ipmask",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class ObjectAddress extends pulumi.CustomResource {
     /**

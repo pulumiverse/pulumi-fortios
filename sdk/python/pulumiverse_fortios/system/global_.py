@@ -81,6 +81,7 @@ class GlobalArgs:
                  device_identification_active_scan_delay: Optional[pulumi.Input[int]] = None,
                  device_idle_timeout: Optional[pulumi.Input[int]] = None,
                  dh_params: Optional[pulumi.Input[str]] = None,
+                 dhcp_lease_backup_interval: Optional[pulumi.Input[int]] = None,
                  dnsproxy_worker_count: Optional[pulumi.Input[int]] = None,
                  dst: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -151,10 +152,12 @@ class GlobalArgs:
                  ipsec_asic_offload: Optional[pulumi.Input[str]] = None,
                  ipsec_ha_seqjump_rate: Optional[pulumi.Input[int]] = None,
                  ipsec_hmac_offload: Optional[pulumi.Input[str]] = None,
+                 ipsec_qat_offload: Optional[pulumi.Input[str]] = None,
                  ipsec_round_robin: Optional[pulumi.Input[str]] = None,
                  ipsec_soft_dec_async: Optional[pulumi.Input[str]] = None,
                  ipv6_accept_dad: Optional[pulumi.Input[int]] = None,
                  ipv6_allow_anycast_probe: Optional[pulumi.Input[str]] = None,
+                 ipv6_allow_local_in_silent_drop: Optional[pulumi.Input[str]] = None,
                  ipv6_allow_local_in_slient_drop: Optional[pulumi.Input[str]] = None,
                  ipv6_allow_multicast_probe: Optional[pulumi.Input[str]] = None,
                  ipv6_allow_traffic_redirect: Optional[pulumi.Input[str]] = None,
@@ -184,6 +187,7 @@ class GlobalArgs:
                  multi_factor_authentication: Optional[pulumi.Input[str]] = None,
                  multicast_forward: Optional[pulumi.Input[str]] = None,
                  ndp_max_entry: Optional[pulumi.Input[int]] = None,
+                 npu_neighbor_update: Optional[pulumi.Input[str]] = None,
                  per_user_bal: Optional[pulumi.Input[str]] = None,
                  per_user_bwl: Optional[pulumi.Input[str]] = None,
                  pmtu_discovery: Optional[pulumi.Input[str]] = None,
@@ -305,8 +309,8 @@ class GlobalArgs:
                  wireless_controller_port: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a Global resource.
-        :param pulumi.Input[str] admin_concurrent: Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] admin_console_timeout: Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+        :param pulumi.Input[str] admin_concurrent: Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] admin_console_timeout: Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
         :param pulumi.Input[str] admin_forticloud_sso_default_profile: Override access profile.
         :param pulumi.Input[str] admin_forticloud_sso_login: Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] admin_host: Administrative host for HTTP and HTTPS. When set, will be used in lieu of the client's Host header for any redirection.
@@ -331,15 +335,15 @@ class GlobalArgs:
         :param pulumi.Input[str] admin_ssh_v1: Enable/disable SSH v1 compatibility. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] admin_telnet: Enable/disable TELNET service. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] admin_telnet_port: Administrative access port for TELNET. (1 - 65535, default = 23).
-        :param pulumi.Input[int] admintimeout: Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+        :param pulumi.Input[int] admintimeout: Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions >= 6.4.0: 1 - 480 minutes (8 hours).
         :param pulumi.Input[str] alias: Alias for your FortiGate unit.
         :param pulumi.Input[str] allow_traffic_redirect: Disable to allow traffic to be routed back on a different interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] anti_replay: Level of checking for packet replay and TCP sequence checking. Valid values: `disable`, `loose`, `strict`.
         :param pulumi.Input[int] arp_max_entry: Maximum number of dynamically learned MAC addresses that can be added to the ARP table (131072 - 2147483647, default = 131072).
         :param pulumi.Input[str] asymroute: Enable/disable asymmetric route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_cert: Server certificate that the FortiGate uses for HTTPS firewall authentication connections.
-        :param pulumi.Input[int] auth_http_port: User authentication HTTP port. (1 - 65535, default = 80).
-        :param pulumi.Input[int] auth_https_port: User authentication HTTPS port. (1 - 65535, default = 443).
+        :param pulumi.Input[int] auth_http_port: User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions >= 6.4.0: default = 1000.
+        :param pulumi.Input[int] auth_https_port: User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions >= 6.4.0: default = 1003.
         :param pulumi.Input[int] auth_ike_saml_port: User IKE SAML authentication port (0 - 65535, default = 1001).
         :param pulumi.Input[str] auth_keepalive: Enable to prevent user authentication sessions from timing out when idle. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_session_limit: Action to take when the number of allowed user authenticated sessions is reached. Valid values: `block-new`, `logout-inactive`.
@@ -353,7 +357,7 @@ class GlobalArgs:
         :param pulumi.Input[int] block_session_timer: Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
         :param pulumi.Input[int] br_fdb_max_entry: Maximum number of bridge forwarding database (FDB) entries.
         :param pulumi.Input[int] cert_chain_max: Maximum number of certificates that can be traversed in a certificate chain.
-        :param pulumi.Input[int] cfg_revert_timeout: Time-out for reverting to the last saved configuration.
+        :param pulumi.Input[int] cfg_revert_timeout: Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
         :param pulumi.Input[str] cfg_save: Configuration file save mode for CLI changes. Valid values: `automatic`, `manual`, `revert`.
         :param pulumi.Input[str] check_protocol_header: Level of checking performed on protocol headers. Strict checking is more thorough but may affect performance. Loose checking is ok in most cases. Valid values: `loose`, `strict`.
         :param pulumi.Input[str] check_reset_range: Configure ICMP error message verification. You can either apply strict RST range checking or disable it. Valid values: `strict`, `disable`.
@@ -363,13 +367,14 @@ class GlobalArgs:
         :param pulumi.Input[str] cmdbsvr_affinity: Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] compliance_check: Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] compliance_check_time: Time of day to run scheduled PCI DSS compliance checks.
-        :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         :param pulumi.Input[str] csr_ca_attribute: Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] daily_restart: Enable/disable daily restart of FortiGate unit. Use the restart-time option to set the time of day for the restart. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] default_service_source_port: Default service source port range. (default=1-65535)
         :param pulumi.Input[int] device_identification_active_scan_delay: Number of seconds to passively scan a device before performing an active scan. (20 - 3600 sec, (20 sec to 1 hour), default = 90).
         :param pulumi.Input[int] device_idle_timeout: Time in seconds that a device must be idle to automatically log the device user out. (30 - 31536000 sec (30 sec to 1 year), default = 300).
         :param pulumi.Input[str] dh_params: Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
+        :param pulumi.Input[int] dhcp_lease_backup_interval: DHCP leases backup interval in seconds (10 - 3600, default = 60).
         :param pulumi.Input[int] dnsproxy_worker_count: DNS proxy worker count.
         :param pulumi.Input[str] dst: Enable/disable daylight saving time. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
@@ -397,7 +402,7 @@ class GlobalArgs:
         :param pulumi.Input[str] fortitoken_cloud: Enable/disable FortiToken Cloud service. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortitoken_cloud_push_status: Enable/disable FTM push service of FortiToken Cloud. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fortitoken_cloud_sync_interval: Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gui_allow_default_hostname: Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_allow_incompatible_fabric_fgt: Enable/disable Allow FGT with incompatible firmware to be treated as compatible in security fabric on the GUI. May cause unexpected error. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_app_detection_sdwan: Enable/disable Allow app-detection based SD-WAN. Valid values: `enable`, `disable`.
@@ -440,10 +445,12 @@ class GlobalArgs:
         :param pulumi.Input[str] ipsec_asic_offload: Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ipsec_ha_seqjump_rate: ESP jump ahead rate (1G - 10G pps equivalent).
         :param pulumi.Input[str] ipsec_hmac_offload: Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ipsec_qat_offload: Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipsec_round_robin: Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipsec_soft_dec_async: Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ipv6_accept_dad: Enable/disable acceptance of IPv6 Duplicate Address Detection (DAD).
         :param pulumi.Input[str] ipv6_allow_anycast_probe: Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ipv6_allow_local_in_silent_drop: Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6_allow_local_in_slient_drop: Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6_allow_multicast_probe: Enable/disable IPv6 address probe through Multicast. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6_allow_traffic_redirect: Disable to prevent IPv6 traffic with same local ingress and egress interface from being forwarded without policy check. Valid values: `enable`, `disable`.
@@ -465,14 +472,15 @@ class GlobalArgs:
         :param pulumi.Input[int] max_dlpstat_memory: Maximum DLP stat memory (0 - 4294967295).
         :param pulumi.Input[int] max_route_cache_size: Maximum number of IP route cache entries (0 - 2147483647).
         :param pulumi.Input[str] mc_ttl_notchange: Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] memory_use_threshold_extreme: Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
-        :param pulumi.Input[int] memory_use_threshold_green: Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
-        :param pulumi.Input[int] memory_use_threshold_red: Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
-        :param pulumi.Input[str] miglog_affinity: Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
-        :param pulumi.Input[int] miglogd_children: Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+        :param pulumi.Input[int] memory_use_threshold_extreme: Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
+        :param pulumi.Input[int] memory_use_threshold_green: Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
+        :param pulumi.Input[int] memory_use_threshold_red: Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
+        :param pulumi.Input[str] miglog_affinity: Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions >= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
+        :param pulumi.Input[int] miglogd_children: Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
         :param pulumi.Input[str] multi_factor_authentication: Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
         :param pulumi.Input[str] multicast_forward: Enable/disable multicast forwarding. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ndp_max_entry: Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
+        :param pulumi.Input[str] npu_neighbor_update: Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] per_user_bal: Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] per_user_bwl: Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pmtu_discovery: Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
@@ -501,8 +509,8 @@ class GlobalArgs:
         :param pulumi.Input[str] quic_udp_payload_size_shaping_per_cid: Enable/disable UDP payload size shaping per connection ID (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] radius_port: RADIUS service port number.
         :param pulumi.Input[str] reboot_upon_config_restore: Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] refresh: Statistics refresh interval in GUI.
-        :param pulumi.Input[int] remoteauthtimeout: Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+        :param pulumi.Input[int] refresh: Statistics refresh interval second(s) in GUI.
+        :param pulumi.Input[int] remoteauthtimeout: Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions >= 6.4.0: 1-300 sec.
         :param pulumi.Input[str] reset_sessionless_tcp: Action to perform if the FortiGate receives a TCP packet but cannot find a corresponding session in its session table. NAT/Route mode only. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] restart_time: Daily restart time (hh:mm).
         :param pulumi.Input[str] revision_backup_on_logout: Enable/disable back-up of the latest configuration revision when an administrator logs out of the CLI or GUI. Valid values: `enable`, `disable`.
@@ -543,7 +551,7 @@ class GlobalArgs:
         :param pulumi.Input[str] sslvpn_plugin_version_check: Enable/disable checking browser's plugin version by SSL VPN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sslvpn_web_mode: Enable/disable SSL-VPN web mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_dirty_session_check: Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] strong_crypto: Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] strong_crypto: Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] switch_controller: Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] switch_controller_reserved_network: Enable reserved network subnet for controlled switches. This is available when the switch controller is enabled.
         :param pulumi.Input[int] sys_perf_log_interval: Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
@@ -552,7 +560,7 @@ class GlobalArgs:
         :param pulumi.Input[int] tcp_halfopen_timer: Number of seconds the FortiGate unit should wait to close a session after one peer has sent an open session packet but the other has not responded (1 - 86400 sec (1 day), default = 10).
         :param pulumi.Input[str] tcp_option: Enable SACK, timestamp and MSS TCP options. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] tcp_rst_timer: Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
-        :param pulumi.Input[int] tcp_timewait_timer: Length of the TCP TIME-WAIT state in seconds.
+        :param pulumi.Input[int] tcp_timewait_timer: Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
         :param pulumi.Input[str] tftp: Enable/disable TFTP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] timezone: Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them.
         :param pulumi.Input[str] tp_mc_skip_policy: Enable/disable skip policy check and allow multicast through. Valid values: `enable`, `disable`.
@@ -723,6 +731,8 @@ class GlobalArgs:
             pulumi.set(__self__, "device_idle_timeout", device_idle_timeout)
         if dh_params is not None:
             pulumi.set(__self__, "dh_params", dh_params)
+        if dhcp_lease_backup_interval is not None:
+            pulumi.set(__self__, "dhcp_lease_backup_interval", dhcp_lease_backup_interval)
         if dnsproxy_worker_count is not None:
             pulumi.set(__self__, "dnsproxy_worker_count", dnsproxy_worker_count)
         if dst is not None:
@@ -863,6 +873,8 @@ class GlobalArgs:
             pulumi.set(__self__, "ipsec_ha_seqjump_rate", ipsec_ha_seqjump_rate)
         if ipsec_hmac_offload is not None:
             pulumi.set(__self__, "ipsec_hmac_offload", ipsec_hmac_offload)
+        if ipsec_qat_offload is not None:
+            pulumi.set(__self__, "ipsec_qat_offload", ipsec_qat_offload)
         if ipsec_round_robin is not None:
             pulumi.set(__self__, "ipsec_round_robin", ipsec_round_robin)
         if ipsec_soft_dec_async is not None:
@@ -871,6 +883,8 @@ class GlobalArgs:
             pulumi.set(__self__, "ipv6_accept_dad", ipv6_accept_dad)
         if ipv6_allow_anycast_probe is not None:
             pulumi.set(__self__, "ipv6_allow_anycast_probe", ipv6_allow_anycast_probe)
+        if ipv6_allow_local_in_silent_drop is not None:
+            pulumi.set(__self__, "ipv6_allow_local_in_silent_drop", ipv6_allow_local_in_silent_drop)
         if ipv6_allow_local_in_slient_drop is not None:
             pulumi.set(__self__, "ipv6_allow_local_in_slient_drop", ipv6_allow_local_in_slient_drop)
         if ipv6_allow_multicast_probe is not None:
@@ -929,6 +943,8 @@ class GlobalArgs:
             pulumi.set(__self__, "multicast_forward", multicast_forward)
         if ndp_max_entry is not None:
             pulumi.set(__self__, "ndp_max_entry", ndp_max_entry)
+        if npu_neighbor_update is not None:
+            pulumi.set(__self__, "npu_neighbor_update", npu_neighbor_update)
         if per_user_bal is not None:
             pulumi.set(__self__, "per_user_bal", per_user_bal)
         if per_user_bwl is not None:
@@ -1172,7 +1188,7 @@ class GlobalArgs:
     @pulumi.getter(name="adminConcurrent")
     def admin_concurrent(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
+        Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "admin_concurrent")
 
@@ -1184,7 +1200,7 @@ class GlobalArgs:
     @pulumi.getter(name="adminConsoleTimeout")
     def admin_console_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+        Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
         """
         return pulumi.get(self, "admin_console_timeout")
 
@@ -1484,7 +1500,7 @@ class GlobalArgs:
     @pulumi.getter
     def admintimeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+        Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions >= 6.4.0: 1 - 480 minutes (8 hours).
         """
         return pulumi.get(self, "admintimeout")
 
@@ -1568,7 +1584,7 @@ class GlobalArgs:
     @pulumi.getter(name="authHttpPort")
     def auth_http_port(self) -> Optional[pulumi.Input[int]]:
         """
-        User authentication HTTP port. (1 - 65535, default = 80).
+        User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions >= 6.4.0: default = 1000.
         """
         return pulumi.get(self, "auth_http_port")
 
@@ -1580,7 +1596,7 @@ class GlobalArgs:
     @pulumi.getter(name="authHttpsPort")
     def auth_https_port(self) -> Optional[pulumi.Input[int]]:
         """
-        User authentication HTTPS port. (1 - 65535, default = 443).
+        User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions >= 6.4.0: default = 1003.
         """
         return pulumi.get(self, "auth_https_port")
 
@@ -1748,7 +1764,7 @@ class GlobalArgs:
     @pulumi.getter(name="cfgRevertTimeout")
     def cfg_revert_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Time-out for reverting to the last saved configuration.
+        Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
         """
         return pulumi.get(self, "cfg_revert_timeout")
 
@@ -1868,7 +1884,7 @@ class GlobalArgs:
     @pulumi.getter(name="cpuUseThreshold")
     def cpu_use_threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         """
         return pulumi.get(self, "cpu_use_threshold")
 
@@ -1947,6 +1963,18 @@ class GlobalArgs:
     @dh_params.setter
     def dh_params(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dh_params", value)
+
+    @property
+    @pulumi.getter(name="dhcpLeaseBackupInterval")
+    def dhcp_lease_backup_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        DHCP leases backup interval in seconds (10 - 3600, default = 60).
+        """
+        return pulumi.get(self, "dhcp_lease_backup_interval")
+
+    @dhcp_lease_backup_interval.setter
+    def dhcp_lease_backup_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dhcp_lease_backup_interval", value)
 
     @property
     @pulumi.getter(name="dnsproxyWorkerCount")
@@ -2276,7 +2304,7 @@ class GlobalArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2789,6 +2817,18 @@ class GlobalArgs:
         pulumi.set(self, "ipsec_hmac_offload", value)
 
     @property
+    @pulumi.getter(name="ipsecQatOffload")
+    def ipsec_qat_offload(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ipsec_qat_offload")
+
+    @ipsec_qat_offload.setter
+    def ipsec_qat_offload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipsec_qat_offload", value)
+
+    @property
     @pulumi.getter(name="ipsecRoundRobin")
     def ipsec_round_robin(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2835,6 +2875,18 @@ class GlobalArgs:
     @ipv6_allow_anycast_probe.setter
     def ipv6_allow_anycast_probe(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ipv6_allow_anycast_probe", value)
+
+    @property
+    @pulumi.getter(name="ipv6AllowLocalInSilentDrop")
+    def ipv6_allow_local_in_silent_drop(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ipv6_allow_local_in_silent_drop")
+
+    @ipv6_allow_local_in_silent_drop.setter
+    def ipv6_allow_local_in_silent_drop(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv6_allow_local_in_silent_drop", value)
 
     @property
     @pulumi.getter(name="ipv6AllowLocalInSlientDrop")
@@ -3092,7 +3144,7 @@ class GlobalArgs:
     @pulumi.getter(name="memoryUseThresholdExtreme")
     def memory_use_threshold_extreme(self) -> Optional[pulumi.Input[int]]:
         """
-        Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+        Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
         """
         return pulumi.get(self, "memory_use_threshold_extreme")
 
@@ -3104,7 +3156,7 @@ class GlobalArgs:
     @pulumi.getter(name="memoryUseThresholdGreen")
     def memory_use_threshold_green(self) -> Optional[pulumi.Input[int]]:
         """
-        Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+        Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
         """
         return pulumi.get(self, "memory_use_threshold_green")
 
@@ -3116,7 +3168,7 @@ class GlobalArgs:
     @pulumi.getter(name="memoryUseThresholdRed")
     def memory_use_threshold_red(self) -> Optional[pulumi.Input[int]]:
         """
-        Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+        Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
         """
         return pulumi.get(self, "memory_use_threshold_red")
 
@@ -3128,7 +3180,7 @@ class GlobalArgs:
     @pulumi.getter(name="miglogAffinity")
     def miglog_affinity(self) -> Optional[pulumi.Input[str]]:
         """
-        Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
+        Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions >= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
         """
         return pulumi.get(self, "miglog_affinity")
 
@@ -3140,7 +3192,7 @@ class GlobalArgs:
     @pulumi.getter(name="miglogdChildren")
     def miglogd_children(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+        Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
         """
         return pulumi.get(self, "miglogd_children")
 
@@ -3183,6 +3235,18 @@ class GlobalArgs:
     @ndp_max_entry.setter
     def ndp_max_entry(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "ndp_max_entry", value)
+
+    @property
+    @pulumi.getter(name="npuNeighborUpdate")
+    def npu_neighbor_update(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "npu_neighbor_update")
+
+    @npu_neighbor_update.setter
+    def npu_neighbor_update(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "npu_neighbor_update", value)
 
     @property
     @pulumi.getter(name="perUserBal")
@@ -3524,7 +3588,7 @@ class GlobalArgs:
     @pulumi.getter
     def refresh(self) -> Optional[pulumi.Input[int]]:
         """
-        Statistics refresh interval in GUI.
+        Statistics refresh interval second(s) in GUI.
         """
         return pulumi.get(self, "refresh")
 
@@ -3536,7 +3600,7 @@ class GlobalArgs:
     @pulumi.getter
     def remoteauthtimeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+        Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions >= 6.4.0: 1-300 sec.
         """
         return pulumi.get(self, "remoteauthtimeout")
 
@@ -4028,7 +4092,7 @@ class GlobalArgs:
     @pulumi.getter(name="strongCrypto")
     def strong_crypto(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+        Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "strong_crypto")
 
@@ -4136,7 +4200,7 @@ class GlobalArgs:
     @pulumi.getter(name="tcpTimewaitTimer")
     def tcp_timewait_timer(self) -> Optional[pulumi.Input[int]]:
         """
-        Length of the TCP TIME-WAIT state in seconds.
+        Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
         """
         return pulumi.get(self, "tcp_timewait_timer")
 
@@ -4681,6 +4745,7 @@ class _GlobalState:
                  device_identification_active_scan_delay: Optional[pulumi.Input[int]] = None,
                  device_idle_timeout: Optional[pulumi.Input[int]] = None,
                  dh_params: Optional[pulumi.Input[str]] = None,
+                 dhcp_lease_backup_interval: Optional[pulumi.Input[int]] = None,
                  dnsproxy_worker_count: Optional[pulumi.Input[int]] = None,
                  dst: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -4751,10 +4816,12 @@ class _GlobalState:
                  ipsec_asic_offload: Optional[pulumi.Input[str]] = None,
                  ipsec_ha_seqjump_rate: Optional[pulumi.Input[int]] = None,
                  ipsec_hmac_offload: Optional[pulumi.Input[str]] = None,
+                 ipsec_qat_offload: Optional[pulumi.Input[str]] = None,
                  ipsec_round_robin: Optional[pulumi.Input[str]] = None,
                  ipsec_soft_dec_async: Optional[pulumi.Input[str]] = None,
                  ipv6_accept_dad: Optional[pulumi.Input[int]] = None,
                  ipv6_allow_anycast_probe: Optional[pulumi.Input[str]] = None,
+                 ipv6_allow_local_in_silent_drop: Optional[pulumi.Input[str]] = None,
                  ipv6_allow_local_in_slient_drop: Optional[pulumi.Input[str]] = None,
                  ipv6_allow_multicast_probe: Optional[pulumi.Input[str]] = None,
                  ipv6_allow_traffic_redirect: Optional[pulumi.Input[str]] = None,
@@ -4784,6 +4851,7 @@ class _GlobalState:
                  multi_factor_authentication: Optional[pulumi.Input[str]] = None,
                  multicast_forward: Optional[pulumi.Input[str]] = None,
                  ndp_max_entry: Optional[pulumi.Input[int]] = None,
+                 npu_neighbor_update: Optional[pulumi.Input[str]] = None,
                  per_user_bal: Optional[pulumi.Input[str]] = None,
                  per_user_bwl: Optional[pulumi.Input[str]] = None,
                  pmtu_discovery: Optional[pulumi.Input[str]] = None,
@@ -4905,8 +4973,8 @@ class _GlobalState:
                  wireless_controller_port: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering Global resources.
-        :param pulumi.Input[str] admin_concurrent: Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] admin_console_timeout: Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+        :param pulumi.Input[str] admin_concurrent: Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] admin_console_timeout: Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
         :param pulumi.Input[str] admin_forticloud_sso_default_profile: Override access profile.
         :param pulumi.Input[str] admin_forticloud_sso_login: Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] admin_host: Administrative host for HTTP and HTTPS. When set, will be used in lieu of the client's Host header for any redirection.
@@ -4931,15 +4999,15 @@ class _GlobalState:
         :param pulumi.Input[str] admin_ssh_v1: Enable/disable SSH v1 compatibility. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] admin_telnet: Enable/disable TELNET service. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] admin_telnet_port: Administrative access port for TELNET. (1 - 65535, default = 23).
-        :param pulumi.Input[int] admintimeout: Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+        :param pulumi.Input[int] admintimeout: Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions >= 6.4.0: 1 - 480 minutes (8 hours).
         :param pulumi.Input[str] alias: Alias for your FortiGate unit.
         :param pulumi.Input[str] allow_traffic_redirect: Disable to allow traffic to be routed back on a different interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] anti_replay: Level of checking for packet replay and TCP sequence checking. Valid values: `disable`, `loose`, `strict`.
         :param pulumi.Input[int] arp_max_entry: Maximum number of dynamically learned MAC addresses that can be added to the ARP table (131072 - 2147483647, default = 131072).
         :param pulumi.Input[str] asymroute: Enable/disable asymmetric route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_cert: Server certificate that the FortiGate uses for HTTPS firewall authentication connections.
-        :param pulumi.Input[int] auth_http_port: User authentication HTTP port. (1 - 65535, default = 80).
-        :param pulumi.Input[int] auth_https_port: User authentication HTTPS port. (1 - 65535, default = 443).
+        :param pulumi.Input[int] auth_http_port: User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions >= 6.4.0: default = 1000.
+        :param pulumi.Input[int] auth_https_port: User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions >= 6.4.0: default = 1003.
         :param pulumi.Input[int] auth_ike_saml_port: User IKE SAML authentication port (0 - 65535, default = 1001).
         :param pulumi.Input[str] auth_keepalive: Enable to prevent user authentication sessions from timing out when idle. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_session_limit: Action to take when the number of allowed user authenticated sessions is reached. Valid values: `block-new`, `logout-inactive`.
@@ -4953,7 +5021,7 @@ class _GlobalState:
         :param pulumi.Input[int] block_session_timer: Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
         :param pulumi.Input[int] br_fdb_max_entry: Maximum number of bridge forwarding database (FDB) entries.
         :param pulumi.Input[int] cert_chain_max: Maximum number of certificates that can be traversed in a certificate chain.
-        :param pulumi.Input[int] cfg_revert_timeout: Time-out for reverting to the last saved configuration.
+        :param pulumi.Input[int] cfg_revert_timeout: Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
         :param pulumi.Input[str] cfg_save: Configuration file save mode for CLI changes. Valid values: `automatic`, `manual`, `revert`.
         :param pulumi.Input[str] check_protocol_header: Level of checking performed on protocol headers. Strict checking is more thorough but may affect performance. Loose checking is ok in most cases. Valid values: `loose`, `strict`.
         :param pulumi.Input[str] check_reset_range: Configure ICMP error message verification. You can either apply strict RST range checking or disable it. Valid values: `strict`, `disable`.
@@ -4963,13 +5031,14 @@ class _GlobalState:
         :param pulumi.Input[str] cmdbsvr_affinity: Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] compliance_check: Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] compliance_check_time: Time of day to run scheduled PCI DSS compliance checks.
-        :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         :param pulumi.Input[str] csr_ca_attribute: Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] daily_restart: Enable/disable daily restart of FortiGate unit. Use the restart-time option to set the time of day for the restart. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] default_service_source_port: Default service source port range. (default=1-65535)
         :param pulumi.Input[int] device_identification_active_scan_delay: Number of seconds to passively scan a device before performing an active scan. (20 - 3600 sec, (20 sec to 1 hour), default = 90).
         :param pulumi.Input[int] device_idle_timeout: Time in seconds that a device must be idle to automatically log the device user out. (30 - 31536000 sec (30 sec to 1 year), default = 300).
         :param pulumi.Input[str] dh_params: Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
+        :param pulumi.Input[int] dhcp_lease_backup_interval: DHCP leases backup interval in seconds (10 - 3600, default = 60).
         :param pulumi.Input[int] dnsproxy_worker_count: DNS proxy worker count.
         :param pulumi.Input[str] dst: Enable/disable daylight saving time. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
@@ -4997,7 +5066,7 @@ class _GlobalState:
         :param pulumi.Input[str] fortitoken_cloud: Enable/disable FortiToken Cloud service. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortitoken_cloud_push_status: Enable/disable FTM push service of FortiToken Cloud. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fortitoken_cloud_sync_interval: Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gui_allow_default_hostname: Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_allow_incompatible_fabric_fgt: Enable/disable Allow FGT with incompatible firmware to be treated as compatible in security fabric on the GUI. May cause unexpected error. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_app_detection_sdwan: Enable/disable Allow app-detection based SD-WAN. Valid values: `enable`, `disable`.
@@ -5040,10 +5109,12 @@ class _GlobalState:
         :param pulumi.Input[str] ipsec_asic_offload: Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ipsec_ha_seqjump_rate: ESP jump ahead rate (1G - 10G pps equivalent).
         :param pulumi.Input[str] ipsec_hmac_offload: Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ipsec_qat_offload: Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipsec_round_robin: Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipsec_soft_dec_async: Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ipv6_accept_dad: Enable/disable acceptance of IPv6 Duplicate Address Detection (DAD).
         :param pulumi.Input[str] ipv6_allow_anycast_probe: Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ipv6_allow_local_in_silent_drop: Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6_allow_local_in_slient_drop: Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6_allow_multicast_probe: Enable/disable IPv6 address probe through Multicast. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6_allow_traffic_redirect: Disable to prevent IPv6 traffic with same local ingress and egress interface from being forwarded without policy check. Valid values: `enable`, `disable`.
@@ -5065,14 +5136,15 @@ class _GlobalState:
         :param pulumi.Input[int] max_dlpstat_memory: Maximum DLP stat memory (0 - 4294967295).
         :param pulumi.Input[int] max_route_cache_size: Maximum number of IP route cache entries (0 - 2147483647).
         :param pulumi.Input[str] mc_ttl_notchange: Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] memory_use_threshold_extreme: Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
-        :param pulumi.Input[int] memory_use_threshold_green: Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
-        :param pulumi.Input[int] memory_use_threshold_red: Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
-        :param pulumi.Input[str] miglog_affinity: Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
-        :param pulumi.Input[int] miglogd_children: Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+        :param pulumi.Input[int] memory_use_threshold_extreme: Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
+        :param pulumi.Input[int] memory_use_threshold_green: Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
+        :param pulumi.Input[int] memory_use_threshold_red: Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
+        :param pulumi.Input[str] miglog_affinity: Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions >= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
+        :param pulumi.Input[int] miglogd_children: Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
         :param pulumi.Input[str] multi_factor_authentication: Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
         :param pulumi.Input[str] multicast_forward: Enable/disable multicast forwarding. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ndp_max_entry: Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
+        :param pulumi.Input[str] npu_neighbor_update: Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] per_user_bal: Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] per_user_bwl: Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pmtu_discovery: Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
@@ -5101,8 +5173,8 @@ class _GlobalState:
         :param pulumi.Input[str] quic_udp_payload_size_shaping_per_cid: Enable/disable UDP payload size shaping per connection ID (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] radius_port: RADIUS service port number.
         :param pulumi.Input[str] reboot_upon_config_restore: Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] refresh: Statistics refresh interval in GUI.
-        :param pulumi.Input[int] remoteauthtimeout: Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+        :param pulumi.Input[int] refresh: Statistics refresh interval second(s) in GUI.
+        :param pulumi.Input[int] remoteauthtimeout: Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions >= 6.4.0: 1-300 sec.
         :param pulumi.Input[str] reset_sessionless_tcp: Action to perform if the FortiGate receives a TCP packet but cannot find a corresponding session in its session table. NAT/Route mode only. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] restart_time: Daily restart time (hh:mm).
         :param pulumi.Input[str] revision_backup_on_logout: Enable/disable back-up of the latest configuration revision when an administrator logs out of the CLI or GUI. Valid values: `enable`, `disable`.
@@ -5143,7 +5215,7 @@ class _GlobalState:
         :param pulumi.Input[str] sslvpn_plugin_version_check: Enable/disable checking browser's plugin version by SSL VPN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sslvpn_web_mode: Enable/disable SSL-VPN web mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_dirty_session_check: Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] strong_crypto: Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] strong_crypto: Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] switch_controller: Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] switch_controller_reserved_network: Enable reserved network subnet for controlled switches. This is available when the switch controller is enabled.
         :param pulumi.Input[int] sys_perf_log_interval: Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
@@ -5152,7 +5224,7 @@ class _GlobalState:
         :param pulumi.Input[int] tcp_halfopen_timer: Number of seconds the FortiGate unit should wait to close a session after one peer has sent an open session packet but the other has not responded (1 - 86400 sec (1 day), default = 10).
         :param pulumi.Input[str] tcp_option: Enable SACK, timestamp and MSS TCP options. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] tcp_rst_timer: Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
-        :param pulumi.Input[int] tcp_timewait_timer: Length of the TCP TIME-WAIT state in seconds.
+        :param pulumi.Input[int] tcp_timewait_timer: Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
         :param pulumi.Input[str] tftp: Enable/disable TFTP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] timezone: Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them.
         :param pulumi.Input[str] tp_mc_skip_policy: Enable/disable skip policy check and allow multicast through. Valid values: `enable`, `disable`.
@@ -5323,6 +5395,8 @@ class _GlobalState:
             pulumi.set(__self__, "device_idle_timeout", device_idle_timeout)
         if dh_params is not None:
             pulumi.set(__self__, "dh_params", dh_params)
+        if dhcp_lease_backup_interval is not None:
+            pulumi.set(__self__, "dhcp_lease_backup_interval", dhcp_lease_backup_interval)
         if dnsproxy_worker_count is not None:
             pulumi.set(__self__, "dnsproxy_worker_count", dnsproxy_worker_count)
         if dst is not None:
@@ -5463,6 +5537,8 @@ class _GlobalState:
             pulumi.set(__self__, "ipsec_ha_seqjump_rate", ipsec_ha_seqjump_rate)
         if ipsec_hmac_offload is not None:
             pulumi.set(__self__, "ipsec_hmac_offload", ipsec_hmac_offload)
+        if ipsec_qat_offload is not None:
+            pulumi.set(__self__, "ipsec_qat_offload", ipsec_qat_offload)
         if ipsec_round_robin is not None:
             pulumi.set(__self__, "ipsec_round_robin", ipsec_round_robin)
         if ipsec_soft_dec_async is not None:
@@ -5471,6 +5547,8 @@ class _GlobalState:
             pulumi.set(__self__, "ipv6_accept_dad", ipv6_accept_dad)
         if ipv6_allow_anycast_probe is not None:
             pulumi.set(__self__, "ipv6_allow_anycast_probe", ipv6_allow_anycast_probe)
+        if ipv6_allow_local_in_silent_drop is not None:
+            pulumi.set(__self__, "ipv6_allow_local_in_silent_drop", ipv6_allow_local_in_silent_drop)
         if ipv6_allow_local_in_slient_drop is not None:
             pulumi.set(__self__, "ipv6_allow_local_in_slient_drop", ipv6_allow_local_in_slient_drop)
         if ipv6_allow_multicast_probe is not None:
@@ -5529,6 +5607,8 @@ class _GlobalState:
             pulumi.set(__self__, "multicast_forward", multicast_forward)
         if ndp_max_entry is not None:
             pulumi.set(__self__, "ndp_max_entry", ndp_max_entry)
+        if npu_neighbor_update is not None:
+            pulumi.set(__self__, "npu_neighbor_update", npu_neighbor_update)
         if per_user_bal is not None:
             pulumi.set(__self__, "per_user_bal", per_user_bal)
         if per_user_bwl is not None:
@@ -5772,7 +5852,7 @@ class _GlobalState:
     @pulumi.getter(name="adminConcurrent")
     def admin_concurrent(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
+        Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "admin_concurrent")
 
@@ -5784,7 +5864,7 @@ class _GlobalState:
     @pulumi.getter(name="adminConsoleTimeout")
     def admin_console_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+        Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
         """
         return pulumi.get(self, "admin_console_timeout")
 
@@ -6084,7 +6164,7 @@ class _GlobalState:
     @pulumi.getter
     def admintimeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+        Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions >= 6.4.0: 1 - 480 minutes (8 hours).
         """
         return pulumi.get(self, "admintimeout")
 
@@ -6168,7 +6248,7 @@ class _GlobalState:
     @pulumi.getter(name="authHttpPort")
     def auth_http_port(self) -> Optional[pulumi.Input[int]]:
         """
-        User authentication HTTP port. (1 - 65535, default = 80).
+        User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions >= 6.4.0: default = 1000.
         """
         return pulumi.get(self, "auth_http_port")
 
@@ -6180,7 +6260,7 @@ class _GlobalState:
     @pulumi.getter(name="authHttpsPort")
     def auth_https_port(self) -> Optional[pulumi.Input[int]]:
         """
-        User authentication HTTPS port. (1 - 65535, default = 443).
+        User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions >= 6.4.0: default = 1003.
         """
         return pulumi.get(self, "auth_https_port")
 
@@ -6348,7 +6428,7 @@ class _GlobalState:
     @pulumi.getter(name="cfgRevertTimeout")
     def cfg_revert_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Time-out for reverting to the last saved configuration.
+        Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
         """
         return pulumi.get(self, "cfg_revert_timeout")
 
@@ -6468,7 +6548,7 @@ class _GlobalState:
     @pulumi.getter(name="cpuUseThreshold")
     def cpu_use_threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         """
         return pulumi.get(self, "cpu_use_threshold")
 
@@ -6547,6 +6627,18 @@ class _GlobalState:
     @dh_params.setter
     def dh_params(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dh_params", value)
+
+    @property
+    @pulumi.getter(name="dhcpLeaseBackupInterval")
+    def dhcp_lease_backup_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        DHCP leases backup interval in seconds (10 - 3600, default = 60).
+        """
+        return pulumi.get(self, "dhcp_lease_backup_interval")
+
+    @dhcp_lease_backup_interval.setter
+    def dhcp_lease_backup_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dhcp_lease_backup_interval", value)
 
     @property
     @pulumi.getter(name="dnsproxyWorkerCount")
@@ -6876,7 +6968,7 @@ class _GlobalState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -7389,6 +7481,18 @@ class _GlobalState:
         pulumi.set(self, "ipsec_hmac_offload", value)
 
     @property
+    @pulumi.getter(name="ipsecQatOffload")
+    def ipsec_qat_offload(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ipsec_qat_offload")
+
+    @ipsec_qat_offload.setter
+    def ipsec_qat_offload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipsec_qat_offload", value)
+
+    @property
     @pulumi.getter(name="ipsecRoundRobin")
     def ipsec_round_robin(self) -> Optional[pulumi.Input[str]]:
         """
@@ -7435,6 +7539,18 @@ class _GlobalState:
     @ipv6_allow_anycast_probe.setter
     def ipv6_allow_anycast_probe(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ipv6_allow_anycast_probe", value)
+
+    @property
+    @pulumi.getter(name="ipv6AllowLocalInSilentDrop")
+    def ipv6_allow_local_in_silent_drop(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ipv6_allow_local_in_silent_drop")
+
+    @ipv6_allow_local_in_silent_drop.setter
+    def ipv6_allow_local_in_silent_drop(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv6_allow_local_in_silent_drop", value)
 
     @property
     @pulumi.getter(name="ipv6AllowLocalInSlientDrop")
@@ -7692,7 +7808,7 @@ class _GlobalState:
     @pulumi.getter(name="memoryUseThresholdExtreme")
     def memory_use_threshold_extreme(self) -> Optional[pulumi.Input[int]]:
         """
-        Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+        Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
         """
         return pulumi.get(self, "memory_use_threshold_extreme")
 
@@ -7704,7 +7820,7 @@ class _GlobalState:
     @pulumi.getter(name="memoryUseThresholdGreen")
     def memory_use_threshold_green(self) -> Optional[pulumi.Input[int]]:
         """
-        Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+        Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
         """
         return pulumi.get(self, "memory_use_threshold_green")
 
@@ -7716,7 +7832,7 @@ class _GlobalState:
     @pulumi.getter(name="memoryUseThresholdRed")
     def memory_use_threshold_red(self) -> Optional[pulumi.Input[int]]:
         """
-        Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+        Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
         """
         return pulumi.get(self, "memory_use_threshold_red")
 
@@ -7728,7 +7844,7 @@ class _GlobalState:
     @pulumi.getter(name="miglogAffinity")
     def miglog_affinity(self) -> Optional[pulumi.Input[str]]:
         """
-        Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
+        Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions >= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
         """
         return pulumi.get(self, "miglog_affinity")
 
@@ -7740,7 +7856,7 @@ class _GlobalState:
     @pulumi.getter(name="miglogdChildren")
     def miglogd_children(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+        Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
         """
         return pulumi.get(self, "miglogd_children")
 
@@ -7783,6 +7899,18 @@ class _GlobalState:
     @ndp_max_entry.setter
     def ndp_max_entry(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "ndp_max_entry", value)
+
+    @property
+    @pulumi.getter(name="npuNeighborUpdate")
+    def npu_neighbor_update(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "npu_neighbor_update")
+
+    @npu_neighbor_update.setter
+    def npu_neighbor_update(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "npu_neighbor_update", value)
 
     @property
     @pulumi.getter(name="perUserBal")
@@ -8124,7 +8252,7 @@ class _GlobalState:
     @pulumi.getter
     def refresh(self) -> Optional[pulumi.Input[int]]:
         """
-        Statistics refresh interval in GUI.
+        Statistics refresh interval second(s) in GUI.
         """
         return pulumi.get(self, "refresh")
 
@@ -8136,7 +8264,7 @@ class _GlobalState:
     @pulumi.getter
     def remoteauthtimeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+        Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions >= 6.4.0: 1-300 sec.
         """
         return pulumi.get(self, "remoteauthtimeout")
 
@@ -8628,7 +8756,7 @@ class _GlobalState:
     @pulumi.getter(name="strongCrypto")
     def strong_crypto(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+        Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "strong_crypto")
 
@@ -8736,7 +8864,7 @@ class _GlobalState:
     @pulumi.getter(name="tcpTimewaitTimer")
     def tcp_timewait_timer(self) -> Optional[pulumi.Input[int]]:
         """
-        Length of the TCP TIME-WAIT state in seconds.
+        Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
         """
         return pulumi.get(self, "tcp_timewait_timer")
 
@@ -9283,6 +9411,7 @@ class Global(pulumi.CustomResource):
                  device_identification_active_scan_delay: Optional[pulumi.Input[int]] = None,
                  device_idle_timeout: Optional[pulumi.Input[int]] = None,
                  dh_params: Optional[pulumi.Input[str]] = None,
+                 dhcp_lease_backup_interval: Optional[pulumi.Input[int]] = None,
                  dnsproxy_worker_count: Optional[pulumi.Input[int]] = None,
                  dst: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -9353,10 +9482,12 @@ class Global(pulumi.CustomResource):
                  ipsec_asic_offload: Optional[pulumi.Input[str]] = None,
                  ipsec_ha_seqjump_rate: Optional[pulumi.Input[int]] = None,
                  ipsec_hmac_offload: Optional[pulumi.Input[str]] = None,
+                 ipsec_qat_offload: Optional[pulumi.Input[str]] = None,
                  ipsec_round_robin: Optional[pulumi.Input[str]] = None,
                  ipsec_soft_dec_async: Optional[pulumi.Input[str]] = None,
                  ipv6_accept_dad: Optional[pulumi.Input[int]] = None,
                  ipv6_allow_anycast_probe: Optional[pulumi.Input[str]] = None,
+                 ipv6_allow_local_in_silent_drop: Optional[pulumi.Input[str]] = None,
                  ipv6_allow_local_in_slient_drop: Optional[pulumi.Input[str]] = None,
                  ipv6_allow_multicast_probe: Optional[pulumi.Input[str]] = None,
                  ipv6_allow_traffic_redirect: Optional[pulumi.Input[str]] = None,
@@ -9386,6 +9517,7 @@ class Global(pulumi.CustomResource):
                  multi_factor_authentication: Optional[pulumi.Input[str]] = None,
                  multicast_forward: Optional[pulumi.Input[str]] = None,
                  ndp_max_entry: Optional[pulumi.Input[int]] = None,
+                 npu_neighbor_update: Optional[pulumi.Input[str]] = None,
                  per_user_bal: Optional[pulumi.Input[str]] = None,
                  per_user_bwl: Optional[pulumi.Input[str]] = None,
                  pmtu_discovery: Optional[pulumi.Input[str]] = None,
@@ -9511,7 +9643,6 @@ class Global(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -9522,7 +9653,6 @@ class Global(pulumi.CustomResource):
             hostname="ste11",
             timezone="04")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -9544,8 +9674,8 @@ class Global(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] admin_concurrent: Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] admin_console_timeout: Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+        :param pulumi.Input[str] admin_concurrent: Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] admin_console_timeout: Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
         :param pulumi.Input[str] admin_forticloud_sso_default_profile: Override access profile.
         :param pulumi.Input[str] admin_forticloud_sso_login: Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] admin_host: Administrative host for HTTP and HTTPS. When set, will be used in lieu of the client's Host header for any redirection.
@@ -9570,15 +9700,15 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] admin_ssh_v1: Enable/disable SSH v1 compatibility. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] admin_telnet: Enable/disable TELNET service. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] admin_telnet_port: Administrative access port for TELNET. (1 - 65535, default = 23).
-        :param pulumi.Input[int] admintimeout: Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+        :param pulumi.Input[int] admintimeout: Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions >= 6.4.0: 1 - 480 minutes (8 hours).
         :param pulumi.Input[str] alias: Alias for your FortiGate unit.
         :param pulumi.Input[str] allow_traffic_redirect: Disable to allow traffic to be routed back on a different interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] anti_replay: Level of checking for packet replay and TCP sequence checking. Valid values: `disable`, `loose`, `strict`.
         :param pulumi.Input[int] arp_max_entry: Maximum number of dynamically learned MAC addresses that can be added to the ARP table (131072 - 2147483647, default = 131072).
         :param pulumi.Input[str] asymroute: Enable/disable asymmetric route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_cert: Server certificate that the FortiGate uses for HTTPS firewall authentication connections.
-        :param pulumi.Input[int] auth_http_port: User authentication HTTP port. (1 - 65535, default = 80).
-        :param pulumi.Input[int] auth_https_port: User authentication HTTPS port. (1 - 65535, default = 443).
+        :param pulumi.Input[int] auth_http_port: User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions >= 6.4.0: default = 1000.
+        :param pulumi.Input[int] auth_https_port: User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions >= 6.4.0: default = 1003.
         :param pulumi.Input[int] auth_ike_saml_port: User IKE SAML authentication port (0 - 65535, default = 1001).
         :param pulumi.Input[str] auth_keepalive: Enable to prevent user authentication sessions from timing out when idle. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_session_limit: Action to take when the number of allowed user authenticated sessions is reached. Valid values: `block-new`, `logout-inactive`.
@@ -9592,7 +9722,7 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[int] block_session_timer: Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
         :param pulumi.Input[int] br_fdb_max_entry: Maximum number of bridge forwarding database (FDB) entries.
         :param pulumi.Input[int] cert_chain_max: Maximum number of certificates that can be traversed in a certificate chain.
-        :param pulumi.Input[int] cfg_revert_timeout: Time-out for reverting to the last saved configuration.
+        :param pulumi.Input[int] cfg_revert_timeout: Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
         :param pulumi.Input[str] cfg_save: Configuration file save mode for CLI changes. Valid values: `automatic`, `manual`, `revert`.
         :param pulumi.Input[str] check_protocol_header: Level of checking performed on protocol headers. Strict checking is more thorough but may affect performance. Loose checking is ok in most cases. Valid values: `loose`, `strict`.
         :param pulumi.Input[str] check_reset_range: Configure ICMP error message verification. You can either apply strict RST range checking or disable it. Valid values: `strict`, `disable`.
@@ -9602,13 +9732,14 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] cmdbsvr_affinity: Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] compliance_check: Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] compliance_check_time: Time of day to run scheduled PCI DSS compliance checks.
-        :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         :param pulumi.Input[str] csr_ca_attribute: Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] daily_restart: Enable/disable daily restart of FortiGate unit. Use the restart-time option to set the time of day for the restart. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] default_service_source_port: Default service source port range. (default=1-65535)
         :param pulumi.Input[int] device_identification_active_scan_delay: Number of seconds to passively scan a device before performing an active scan. (20 - 3600 sec, (20 sec to 1 hour), default = 90).
         :param pulumi.Input[int] device_idle_timeout: Time in seconds that a device must be idle to automatically log the device user out. (30 - 31536000 sec (30 sec to 1 year), default = 300).
         :param pulumi.Input[str] dh_params: Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
+        :param pulumi.Input[int] dhcp_lease_backup_interval: DHCP leases backup interval in seconds (10 - 3600, default = 60).
         :param pulumi.Input[int] dnsproxy_worker_count: DNS proxy worker count.
         :param pulumi.Input[str] dst: Enable/disable daylight saving time. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
@@ -9636,7 +9767,7 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] fortitoken_cloud: Enable/disable FortiToken Cloud service. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortitoken_cloud_push_status: Enable/disable FTM push service of FortiToken Cloud. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fortitoken_cloud_sync_interval: Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gui_allow_default_hostname: Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_allow_incompatible_fabric_fgt: Enable/disable Allow FGT with incompatible firmware to be treated as compatible in security fabric on the GUI. May cause unexpected error. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_app_detection_sdwan: Enable/disable Allow app-detection based SD-WAN. Valid values: `enable`, `disable`.
@@ -9679,10 +9810,12 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] ipsec_asic_offload: Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ipsec_ha_seqjump_rate: ESP jump ahead rate (1G - 10G pps equivalent).
         :param pulumi.Input[str] ipsec_hmac_offload: Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ipsec_qat_offload: Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipsec_round_robin: Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipsec_soft_dec_async: Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ipv6_accept_dad: Enable/disable acceptance of IPv6 Duplicate Address Detection (DAD).
         :param pulumi.Input[str] ipv6_allow_anycast_probe: Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ipv6_allow_local_in_silent_drop: Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6_allow_local_in_slient_drop: Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6_allow_multicast_probe: Enable/disable IPv6 address probe through Multicast. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6_allow_traffic_redirect: Disable to prevent IPv6 traffic with same local ingress and egress interface from being forwarded without policy check. Valid values: `enable`, `disable`.
@@ -9704,14 +9837,15 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[int] max_dlpstat_memory: Maximum DLP stat memory (0 - 4294967295).
         :param pulumi.Input[int] max_route_cache_size: Maximum number of IP route cache entries (0 - 2147483647).
         :param pulumi.Input[str] mc_ttl_notchange: Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] memory_use_threshold_extreme: Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
-        :param pulumi.Input[int] memory_use_threshold_green: Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
-        :param pulumi.Input[int] memory_use_threshold_red: Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
-        :param pulumi.Input[str] miglog_affinity: Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
-        :param pulumi.Input[int] miglogd_children: Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+        :param pulumi.Input[int] memory_use_threshold_extreme: Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
+        :param pulumi.Input[int] memory_use_threshold_green: Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
+        :param pulumi.Input[int] memory_use_threshold_red: Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
+        :param pulumi.Input[str] miglog_affinity: Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions >= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
+        :param pulumi.Input[int] miglogd_children: Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
         :param pulumi.Input[str] multi_factor_authentication: Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
         :param pulumi.Input[str] multicast_forward: Enable/disable multicast forwarding. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ndp_max_entry: Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
+        :param pulumi.Input[str] npu_neighbor_update: Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] per_user_bal: Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] per_user_bwl: Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pmtu_discovery: Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
@@ -9740,8 +9874,8 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] quic_udp_payload_size_shaping_per_cid: Enable/disable UDP payload size shaping per connection ID (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] radius_port: RADIUS service port number.
         :param pulumi.Input[str] reboot_upon_config_restore: Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] refresh: Statistics refresh interval in GUI.
-        :param pulumi.Input[int] remoteauthtimeout: Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+        :param pulumi.Input[int] refresh: Statistics refresh interval second(s) in GUI.
+        :param pulumi.Input[int] remoteauthtimeout: Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions >= 6.4.0: 1-300 sec.
         :param pulumi.Input[str] reset_sessionless_tcp: Action to perform if the FortiGate receives a TCP packet but cannot find a corresponding session in its session table. NAT/Route mode only. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] restart_time: Daily restart time (hh:mm).
         :param pulumi.Input[str] revision_backup_on_logout: Enable/disable back-up of the latest configuration revision when an administrator logs out of the CLI or GUI. Valid values: `enable`, `disable`.
@@ -9782,7 +9916,7 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] sslvpn_plugin_version_check: Enable/disable checking browser's plugin version by SSL VPN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sslvpn_web_mode: Enable/disable SSL-VPN web mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_dirty_session_check: Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] strong_crypto: Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] strong_crypto: Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] switch_controller: Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] switch_controller_reserved_network: Enable reserved network subnet for controlled switches. This is available when the switch controller is enabled.
         :param pulumi.Input[int] sys_perf_log_interval: Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
@@ -9791,7 +9925,7 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[int] tcp_halfopen_timer: Number of seconds the FortiGate unit should wait to close a session after one peer has sent an open session packet but the other has not responded (1 - 86400 sec (1 day), default = 10).
         :param pulumi.Input[str] tcp_option: Enable SACK, timestamp and MSS TCP options. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] tcp_rst_timer: Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
-        :param pulumi.Input[int] tcp_timewait_timer: Length of the TCP TIME-WAIT state in seconds.
+        :param pulumi.Input[int] tcp_timewait_timer: Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
         :param pulumi.Input[str] tftp: Enable/disable TFTP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] timezone: Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them.
         :param pulumi.Input[str] tp_mc_skip_policy: Enable/disable skip policy check and allow multicast through. Valid values: `enable`, `disable`.
@@ -9843,7 +9977,6 @@ class Global(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -9854,7 +9987,6 @@ class Global(pulumi.CustomResource):
             hostname="ste11",
             timezone="04")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -9954,6 +10086,7 @@ class Global(pulumi.CustomResource):
                  device_identification_active_scan_delay: Optional[pulumi.Input[int]] = None,
                  device_idle_timeout: Optional[pulumi.Input[int]] = None,
                  dh_params: Optional[pulumi.Input[str]] = None,
+                 dhcp_lease_backup_interval: Optional[pulumi.Input[int]] = None,
                  dnsproxy_worker_count: Optional[pulumi.Input[int]] = None,
                  dst: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -10024,10 +10157,12 @@ class Global(pulumi.CustomResource):
                  ipsec_asic_offload: Optional[pulumi.Input[str]] = None,
                  ipsec_ha_seqjump_rate: Optional[pulumi.Input[int]] = None,
                  ipsec_hmac_offload: Optional[pulumi.Input[str]] = None,
+                 ipsec_qat_offload: Optional[pulumi.Input[str]] = None,
                  ipsec_round_robin: Optional[pulumi.Input[str]] = None,
                  ipsec_soft_dec_async: Optional[pulumi.Input[str]] = None,
                  ipv6_accept_dad: Optional[pulumi.Input[int]] = None,
                  ipv6_allow_anycast_probe: Optional[pulumi.Input[str]] = None,
+                 ipv6_allow_local_in_silent_drop: Optional[pulumi.Input[str]] = None,
                  ipv6_allow_local_in_slient_drop: Optional[pulumi.Input[str]] = None,
                  ipv6_allow_multicast_probe: Optional[pulumi.Input[str]] = None,
                  ipv6_allow_traffic_redirect: Optional[pulumi.Input[str]] = None,
@@ -10057,6 +10192,7 @@ class Global(pulumi.CustomResource):
                  multi_factor_authentication: Optional[pulumi.Input[str]] = None,
                  multicast_forward: Optional[pulumi.Input[str]] = None,
                  ndp_max_entry: Optional[pulumi.Input[int]] = None,
+                 npu_neighbor_update: Optional[pulumi.Input[str]] = None,
                  per_user_bal: Optional[pulumi.Input[str]] = None,
                  per_user_bwl: Optional[pulumi.Input[str]] = None,
                  pmtu_discovery: Optional[pulumi.Input[str]] = None,
@@ -10250,6 +10386,7 @@ class Global(pulumi.CustomResource):
             __props__.__dict__["device_identification_active_scan_delay"] = device_identification_active_scan_delay
             __props__.__dict__["device_idle_timeout"] = device_idle_timeout
             __props__.__dict__["dh_params"] = dh_params
+            __props__.__dict__["dhcp_lease_backup_interval"] = dhcp_lease_backup_interval
             __props__.__dict__["dnsproxy_worker_count"] = dnsproxy_worker_count
             __props__.__dict__["dst"] = dst
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
@@ -10320,10 +10457,12 @@ class Global(pulumi.CustomResource):
             __props__.__dict__["ipsec_asic_offload"] = ipsec_asic_offload
             __props__.__dict__["ipsec_ha_seqjump_rate"] = ipsec_ha_seqjump_rate
             __props__.__dict__["ipsec_hmac_offload"] = ipsec_hmac_offload
+            __props__.__dict__["ipsec_qat_offload"] = ipsec_qat_offload
             __props__.__dict__["ipsec_round_robin"] = ipsec_round_robin
             __props__.__dict__["ipsec_soft_dec_async"] = ipsec_soft_dec_async
             __props__.__dict__["ipv6_accept_dad"] = ipv6_accept_dad
             __props__.__dict__["ipv6_allow_anycast_probe"] = ipv6_allow_anycast_probe
+            __props__.__dict__["ipv6_allow_local_in_silent_drop"] = ipv6_allow_local_in_silent_drop
             __props__.__dict__["ipv6_allow_local_in_slient_drop"] = ipv6_allow_local_in_slient_drop
             __props__.__dict__["ipv6_allow_multicast_probe"] = ipv6_allow_multicast_probe
             __props__.__dict__["ipv6_allow_traffic_redirect"] = ipv6_allow_traffic_redirect
@@ -10353,6 +10492,7 @@ class Global(pulumi.CustomResource):
             __props__.__dict__["multi_factor_authentication"] = multi_factor_authentication
             __props__.__dict__["multicast_forward"] = multicast_forward
             __props__.__dict__["ndp_max_entry"] = ndp_max_entry
+            __props__.__dict__["npu_neighbor_update"] = npu_neighbor_update
             __props__.__dict__["per_user_bal"] = per_user_bal
             __props__.__dict__["per_user_bwl"] = per_user_bwl
             __props__.__dict__["pmtu_discovery"] = pmtu_discovery
@@ -10547,6 +10687,7 @@ class Global(pulumi.CustomResource):
             device_identification_active_scan_delay: Optional[pulumi.Input[int]] = None,
             device_idle_timeout: Optional[pulumi.Input[int]] = None,
             dh_params: Optional[pulumi.Input[str]] = None,
+            dhcp_lease_backup_interval: Optional[pulumi.Input[int]] = None,
             dnsproxy_worker_count: Optional[pulumi.Input[int]] = None,
             dst: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -10617,10 +10758,12 @@ class Global(pulumi.CustomResource):
             ipsec_asic_offload: Optional[pulumi.Input[str]] = None,
             ipsec_ha_seqjump_rate: Optional[pulumi.Input[int]] = None,
             ipsec_hmac_offload: Optional[pulumi.Input[str]] = None,
+            ipsec_qat_offload: Optional[pulumi.Input[str]] = None,
             ipsec_round_robin: Optional[pulumi.Input[str]] = None,
             ipsec_soft_dec_async: Optional[pulumi.Input[str]] = None,
             ipv6_accept_dad: Optional[pulumi.Input[int]] = None,
             ipv6_allow_anycast_probe: Optional[pulumi.Input[str]] = None,
+            ipv6_allow_local_in_silent_drop: Optional[pulumi.Input[str]] = None,
             ipv6_allow_local_in_slient_drop: Optional[pulumi.Input[str]] = None,
             ipv6_allow_multicast_probe: Optional[pulumi.Input[str]] = None,
             ipv6_allow_traffic_redirect: Optional[pulumi.Input[str]] = None,
@@ -10650,6 +10793,7 @@ class Global(pulumi.CustomResource):
             multi_factor_authentication: Optional[pulumi.Input[str]] = None,
             multicast_forward: Optional[pulumi.Input[str]] = None,
             ndp_max_entry: Optional[pulumi.Input[int]] = None,
+            npu_neighbor_update: Optional[pulumi.Input[str]] = None,
             per_user_bal: Optional[pulumi.Input[str]] = None,
             per_user_bwl: Optional[pulumi.Input[str]] = None,
             pmtu_discovery: Optional[pulumi.Input[str]] = None,
@@ -10776,8 +10920,8 @@ class Global(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] admin_concurrent: Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] admin_console_timeout: Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+        :param pulumi.Input[str] admin_concurrent: Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] admin_console_timeout: Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
         :param pulumi.Input[str] admin_forticloud_sso_default_profile: Override access profile.
         :param pulumi.Input[str] admin_forticloud_sso_login: Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] admin_host: Administrative host for HTTP and HTTPS. When set, will be used in lieu of the client's Host header for any redirection.
@@ -10802,15 +10946,15 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] admin_ssh_v1: Enable/disable SSH v1 compatibility. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] admin_telnet: Enable/disable TELNET service. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] admin_telnet_port: Administrative access port for TELNET. (1 - 65535, default = 23).
-        :param pulumi.Input[int] admintimeout: Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+        :param pulumi.Input[int] admintimeout: Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions >= 6.4.0: 1 - 480 minutes (8 hours).
         :param pulumi.Input[str] alias: Alias for your FortiGate unit.
         :param pulumi.Input[str] allow_traffic_redirect: Disable to allow traffic to be routed back on a different interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] anti_replay: Level of checking for packet replay and TCP sequence checking. Valid values: `disable`, `loose`, `strict`.
         :param pulumi.Input[int] arp_max_entry: Maximum number of dynamically learned MAC addresses that can be added to the ARP table (131072 - 2147483647, default = 131072).
         :param pulumi.Input[str] asymroute: Enable/disable asymmetric route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_cert: Server certificate that the FortiGate uses for HTTPS firewall authentication connections.
-        :param pulumi.Input[int] auth_http_port: User authentication HTTP port. (1 - 65535, default = 80).
-        :param pulumi.Input[int] auth_https_port: User authentication HTTPS port. (1 - 65535, default = 443).
+        :param pulumi.Input[int] auth_http_port: User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions >= 6.4.0: default = 1000.
+        :param pulumi.Input[int] auth_https_port: User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions >= 6.4.0: default = 1003.
         :param pulumi.Input[int] auth_ike_saml_port: User IKE SAML authentication port (0 - 65535, default = 1001).
         :param pulumi.Input[str] auth_keepalive: Enable to prevent user authentication sessions from timing out when idle. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_session_limit: Action to take when the number of allowed user authenticated sessions is reached. Valid values: `block-new`, `logout-inactive`.
@@ -10824,7 +10968,7 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[int] block_session_timer: Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30).
         :param pulumi.Input[int] br_fdb_max_entry: Maximum number of bridge forwarding database (FDB) entries.
         :param pulumi.Input[int] cert_chain_max: Maximum number of certificates that can be traversed in a certificate chain.
-        :param pulumi.Input[int] cfg_revert_timeout: Time-out for reverting to the last saved configuration.
+        :param pulumi.Input[int] cfg_revert_timeout: Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
         :param pulumi.Input[str] cfg_save: Configuration file save mode for CLI changes. Valid values: `automatic`, `manual`, `revert`.
         :param pulumi.Input[str] check_protocol_header: Level of checking performed on protocol headers. Strict checking is more thorough but may affect performance. Loose checking is ok in most cases. Valid values: `loose`, `strict`.
         :param pulumi.Input[str] check_reset_range: Configure ICMP error message verification. You can either apply strict RST range checking or disable it. Valid values: `strict`, `disable`.
@@ -10834,13 +10978,14 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] cmdbsvr_affinity: Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] compliance_check: Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] compliance_check_time: Time of day to run scheduled PCI DSS compliance checks.
-        :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         :param pulumi.Input[str] csr_ca_attribute: Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] daily_restart: Enable/disable daily restart of FortiGate unit. Use the restart-time option to set the time of day for the restart. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] default_service_source_port: Default service source port range. (default=1-65535)
         :param pulumi.Input[int] device_identification_active_scan_delay: Number of seconds to passively scan a device before performing an active scan. (20 - 3600 sec, (20 sec to 1 hour), default = 90).
         :param pulumi.Input[int] device_idle_timeout: Time in seconds that a device must be idle to automatically log the device user out. (30 - 31536000 sec (30 sec to 1 year), default = 300).
         :param pulumi.Input[str] dh_params: Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
+        :param pulumi.Input[int] dhcp_lease_backup_interval: DHCP leases backup interval in seconds (10 - 3600, default = 60).
         :param pulumi.Input[int] dnsproxy_worker_count: DNS proxy worker count.
         :param pulumi.Input[str] dst: Enable/disable daylight saving time. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
@@ -10868,7 +11013,7 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] fortitoken_cloud: Enable/disable FortiToken Cloud service. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortitoken_cloud_push_status: Enable/disable FTM push service of FortiToken Cloud. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fortitoken_cloud_sync_interval: Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0).
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] gui_allow_default_hostname: Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_allow_incompatible_fabric_fgt: Enable/disable Allow FGT with incompatible firmware to be treated as compatible in security fabric on the GUI. May cause unexpected error. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_app_detection_sdwan: Enable/disable Allow app-detection based SD-WAN. Valid values: `enable`, `disable`.
@@ -10911,10 +11056,12 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] ipsec_asic_offload: Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ipsec_ha_seqjump_rate: ESP jump ahead rate (1G - 10G pps equivalent).
         :param pulumi.Input[str] ipsec_hmac_offload: Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ipsec_qat_offload: Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipsec_round_robin: Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipsec_soft_dec_async: Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ipv6_accept_dad: Enable/disable acceptance of IPv6 Duplicate Address Detection (DAD).
         :param pulumi.Input[str] ipv6_allow_anycast_probe: Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ipv6_allow_local_in_silent_drop: Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6_allow_local_in_slient_drop: Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6_allow_multicast_probe: Enable/disable IPv6 address probe through Multicast. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipv6_allow_traffic_redirect: Disable to prevent IPv6 traffic with same local ingress and egress interface from being forwarded without policy check. Valid values: `enable`, `disable`.
@@ -10936,14 +11083,15 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[int] max_dlpstat_memory: Maximum DLP stat memory (0 - 4294967295).
         :param pulumi.Input[int] max_route_cache_size: Maximum number of IP route cache entries (0 - 2147483647).
         :param pulumi.Input[str] mc_ttl_notchange: Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] memory_use_threshold_extreme: Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
-        :param pulumi.Input[int] memory_use_threshold_green: Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
-        :param pulumi.Input[int] memory_use_threshold_red: Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
-        :param pulumi.Input[str] miglog_affinity: Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
-        :param pulumi.Input[int] miglogd_children: Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+        :param pulumi.Input[int] memory_use_threshold_extreme: Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
+        :param pulumi.Input[int] memory_use_threshold_green: Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
+        :param pulumi.Input[int] memory_use_threshold_red: Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
+        :param pulumi.Input[str] miglog_affinity: Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions >= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
+        :param pulumi.Input[int] miglogd_children: Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
         :param pulumi.Input[str] multi_factor_authentication: Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
         :param pulumi.Input[str] multicast_forward: Enable/disable multicast forwarding. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ndp_max_entry: Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
+        :param pulumi.Input[str] npu_neighbor_update: Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] per_user_bal: Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] per_user_bwl: Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pmtu_discovery: Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
@@ -10972,8 +11120,8 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] quic_udp_payload_size_shaping_per_cid: Enable/disable UDP payload size shaping per connection ID (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] radius_port: RADIUS service port number.
         :param pulumi.Input[str] reboot_upon_config_restore: Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] refresh: Statistics refresh interval in GUI.
-        :param pulumi.Input[int] remoteauthtimeout: Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+        :param pulumi.Input[int] refresh: Statistics refresh interval second(s) in GUI.
+        :param pulumi.Input[int] remoteauthtimeout: Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions >= 6.4.0: 1-300 sec.
         :param pulumi.Input[str] reset_sessionless_tcp: Action to perform if the FortiGate receives a TCP packet but cannot find a corresponding session in its session table. NAT/Route mode only. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] restart_time: Daily restart time (hh:mm).
         :param pulumi.Input[str] revision_backup_on_logout: Enable/disable back-up of the latest configuration revision when an administrator logs out of the CLI or GUI. Valid values: `enable`, `disable`.
@@ -11014,7 +11162,7 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] sslvpn_plugin_version_check: Enable/disable checking browser's plugin version by SSL VPN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sslvpn_web_mode: Enable/disable SSL-VPN web mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_dirty_session_check: Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] strong_crypto: Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] strong_crypto: Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] switch_controller: Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] switch_controller_reserved_network: Enable reserved network subnet for controlled switches. This is available when the switch controller is enabled.
         :param pulumi.Input[int] sys_perf_log_interval: Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled).
@@ -11023,7 +11171,7 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[int] tcp_halfopen_timer: Number of seconds the FortiGate unit should wait to close a session after one peer has sent an open session packet but the other has not responded (1 - 86400 sec (1 day), default = 10).
         :param pulumi.Input[str] tcp_option: Enable SACK, timestamp and MSS TCP options. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] tcp_rst_timer: Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
-        :param pulumi.Input[int] tcp_timewait_timer: Length of the TCP TIME-WAIT state in seconds.
+        :param pulumi.Input[int] tcp_timewait_timer: Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
         :param pulumi.Input[str] tftp: Enable/disable TFTP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] timezone: Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them.
         :param pulumi.Input[str] tp_mc_skip_policy: Enable/disable skip policy check and allow multicast through. Valid values: `enable`, `disable`.
@@ -11133,6 +11281,7 @@ class Global(pulumi.CustomResource):
         __props__.__dict__["device_identification_active_scan_delay"] = device_identification_active_scan_delay
         __props__.__dict__["device_idle_timeout"] = device_idle_timeout
         __props__.__dict__["dh_params"] = dh_params
+        __props__.__dict__["dhcp_lease_backup_interval"] = dhcp_lease_backup_interval
         __props__.__dict__["dnsproxy_worker_count"] = dnsproxy_worker_count
         __props__.__dict__["dst"] = dst
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
@@ -11203,10 +11352,12 @@ class Global(pulumi.CustomResource):
         __props__.__dict__["ipsec_asic_offload"] = ipsec_asic_offload
         __props__.__dict__["ipsec_ha_seqjump_rate"] = ipsec_ha_seqjump_rate
         __props__.__dict__["ipsec_hmac_offload"] = ipsec_hmac_offload
+        __props__.__dict__["ipsec_qat_offload"] = ipsec_qat_offload
         __props__.__dict__["ipsec_round_robin"] = ipsec_round_robin
         __props__.__dict__["ipsec_soft_dec_async"] = ipsec_soft_dec_async
         __props__.__dict__["ipv6_accept_dad"] = ipv6_accept_dad
         __props__.__dict__["ipv6_allow_anycast_probe"] = ipv6_allow_anycast_probe
+        __props__.__dict__["ipv6_allow_local_in_silent_drop"] = ipv6_allow_local_in_silent_drop
         __props__.__dict__["ipv6_allow_local_in_slient_drop"] = ipv6_allow_local_in_slient_drop
         __props__.__dict__["ipv6_allow_multicast_probe"] = ipv6_allow_multicast_probe
         __props__.__dict__["ipv6_allow_traffic_redirect"] = ipv6_allow_traffic_redirect
@@ -11236,6 +11387,7 @@ class Global(pulumi.CustomResource):
         __props__.__dict__["multi_factor_authentication"] = multi_factor_authentication
         __props__.__dict__["multicast_forward"] = multicast_forward
         __props__.__dict__["ndp_max_entry"] = ndp_max_entry
+        __props__.__dict__["npu_neighbor_update"] = npu_neighbor_update
         __props__.__dict__["per_user_bal"] = per_user_bal
         __props__.__dict__["per_user_bwl"] = per_user_bwl
         __props__.__dict__["pmtu_discovery"] = pmtu_discovery
@@ -11361,7 +11513,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="adminConcurrent")
     def admin_concurrent(self) -> pulumi.Output[str]:
         """
-        Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
+        Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "admin_concurrent")
 
@@ -11369,7 +11521,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="adminConsoleTimeout")
     def admin_console_timeout(self) -> pulumi.Output[int]:
         """
-        Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+        Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
         """
         return pulumi.get(self, "admin_console_timeout")
 
@@ -11569,7 +11721,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter
     def admintimeout(self) -> pulumi.Output[int]:
         """
-        Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+        Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions >= 6.4.0: 1 - 480 minutes (8 hours).
         """
         return pulumi.get(self, "admintimeout")
 
@@ -11625,7 +11777,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="authHttpPort")
     def auth_http_port(self) -> pulumi.Output[int]:
         """
-        User authentication HTTP port. (1 - 65535, default = 80).
+        User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions >= 6.4.0: default = 1000.
         """
         return pulumi.get(self, "auth_http_port")
 
@@ -11633,7 +11785,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="authHttpsPort")
     def auth_https_port(self) -> pulumi.Output[int]:
         """
-        User authentication HTTPS port. (1 - 65535, default = 443).
+        User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions >= 6.4.0: default = 1003.
         """
         return pulumi.get(self, "auth_https_port")
 
@@ -11745,7 +11897,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="cfgRevertTimeout")
     def cfg_revert_timeout(self) -> pulumi.Output[int]:
         """
-        Time-out for reverting to the last saved configuration.
+        Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
         """
         return pulumi.get(self, "cfg_revert_timeout")
 
@@ -11825,7 +11977,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="cpuUseThreshold")
     def cpu_use_threshold(self) -> pulumi.Output[int]:
         """
-        Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         """
         return pulumi.get(self, "cpu_use_threshold")
 
@@ -11876,6 +12028,14 @@ class Global(pulumi.CustomResource):
         Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
         """
         return pulumi.get(self, "dh_params")
+
+    @property
+    @pulumi.getter(name="dhcpLeaseBackupInterval")
+    def dhcp_lease_backup_interval(self) -> pulumi.Output[int]:
+        """
+        DHCP leases backup interval in seconds (10 - 3600, default = 60).
+        """
+        return pulumi.get(self, "dhcp_lease_backup_interval")
 
     @property
     @pulumi.getter(name="dnsproxyWorkerCount")
@@ -12097,7 +12257,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -12438,6 +12598,14 @@ class Global(pulumi.CustomResource):
         return pulumi.get(self, "ipsec_hmac_offload")
 
     @property
+    @pulumi.getter(name="ipsecQatOffload")
+    def ipsec_qat_offload(self) -> pulumi.Output[str]:
+        """
+        Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ipsec_qat_offload")
+
+    @property
     @pulumi.getter(name="ipsecRoundRobin")
     def ipsec_round_robin(self) -> pulumi.Output[str]:
         """
@@ -12468,6 +12636,14 @@ class Global(pulumi.CustomResource):
         Enable/disable IPv6 address probe through Anycast. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "ipv6_allow_anycast_probe")
+
+    @property
+    @pulumi.getter(name="ipv6AllowLocalInSilentDrop")
+    def ipv6_allow_local_in_silent_drop(self) -> pulumi.Output[str]:
+        """
+        Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ipv6_allow_local_in_silent_drop")
 
     @property
     @pulumi.getter(name="ipv6AllowLocalInSlientDrop")
@@ -12641,7 +12817,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="memoryUseThresholdExtreme")
     def memory_use_threshold_extreme(self) -> pulumi.Output[int]:
         """
-        Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+        Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
         """
         return pulumi.get(self, "memory_use_threshold_extreme")
 
@@ -12649,7 +12825,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="memoryUseThresholdGreen")
     def memory_use_threshold_green(self) -> pulumi.Output[int]:
         """
-        Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+        Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
         """
         return pulumi.get(self, "memory_use_threshold_green")
 
@@ -12657,7 +12833,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="memoryUseThresholdRed")
     def memory_use_threshold_red(self) -> pulumi.Output[int]:
         """
-        Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+        Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
         """
         return pulumi.get(self, "memory_use_threshold_red")
 
@@ -12665,7 +12841,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="miglogAffinity")
     def miglog_affinity(self) -> pulumi.Output[str]:
         """
-        Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
+        Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions >= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
         """
         return pulumi.get(self, "miglog_affinity")
 
@@ -12673,7 +12849,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="miglogdChildren")
     def miglogd_children(self) -> pulumi.Output[int]:
         """
-        Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+        Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
         """
         return pulumi.get(self, "miglogd_children")
 
@@ -12700,6 +12876,14 @@ class Global(pulumi.CustomResource):
         Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
         """
         return pulumi.get(self, "ndp_max_entry")
+
+    @property
+    @pulumi.getter(name="npuNeighborUpdate")
+    def npu_neighbor_update(self) -> pulumi.Output[str]:
+        """
+        Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "npu_neighbor_update")
 
     @property
     @pulumi.getter(name="perUserBal")
@@ -12929,7 +13113,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter
     def refresh(self) -> pulumi.Output[int]:
         """
-        Statistics refresh interval in GUI.
+        Statistics refresh interval second(s) in GUI.
         """
         return pulumi.get(self, "refresh")
 
@@ -12937,7 +13121,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter
     def remoteauthtimeout(self) -> pulumi.Output[int]:
         """
-        Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+        Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions >= 6.4.0: 1-300 sec.
         """
         return pulumi.get(self, "remoteauthtimeout")
 
@@ -13265,7 +13449,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="strongCrypto")
     def strong_crypto(self) -> pulumi.Output[str]:
         """
-        Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+        Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "strong_crypto")
 
@@ -13337,7 +13521,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="tcpTimewaitTimer")
     def tcp_timewait_timer(self) -> pulumi.Output[int]:
         """
-        Length of the TCP TIME-WAIT state in seconds.
+        Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
         """
         return pulumi.get(self, "tcp_timewait_timer")
 
@@ -13495,7 +13679,7 @@ class Global(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

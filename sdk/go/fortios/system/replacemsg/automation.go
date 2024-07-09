@@ -42,7 +42,7 @@ type Automation struct {
 	// Message type.
 	MsgType pulumi.StringOutput `pulumi:"msgType"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewAutomation registers a new resource with the given unique name, arguments, and options.
@@ -239,8 +239,8 @@ func (o AutomationOutput) MsgType() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o AutomationOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Automation) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o AutomationOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Automation) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type AutomationArrayOutput struct{ *pulumi.OutputState }

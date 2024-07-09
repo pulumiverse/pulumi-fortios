@@ -39,7 +39,7 @@ type Federatedupgrade struct {
 	FailureDevice pulumi.StringOutput `pulumi:"failureDevice"`
 	// Reason for upgrade failure.
 	FailureReason pulumi.StringOutput `pulumi:"failureReason"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
 	HaRebootController pulumi.StringOutput `pulumi:"haRebootController"`
@@ -54,7 +54,7 @@ type Federatedupgrade struct {
 	// Unique identifier for this upgrade.
 	UpgradeId pulumi.IntOutput `pulumi:"upgradeId"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewFederatedupgrade registers a new resource with the given unique name, arguments, and options.
@@ -93,7 +93,7 @@ type federatedupgradeState struct {
 	FailureDevice *string `pulumi:"failureDevice"`
 	// Reason for upgrade failure.
 	FailureReason *string `pulumi:"failureReason"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
 	HaRebootController *string `pulumi:"haRebootController"`
@@ -118,7 +118,7 @@ type FederatedupgradeState struct {
 	FailureDevice pulumi.StringPtrInput
 	// Reason for upgrade failure.
 	FailureReason pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
 	HaRebootController pulumi.StringPtrInput
@@ -147,7 +147,7 @@ type federatedupgradeArgs struct {
 	FailureDevice *string `pulumi:"failureDevice"`
 	// Reason for upgrade failure.
 	FailureReason *string `pulumi:"failureReason"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
 	HaRebootController *string `pulumi:"haRebootController"`
@@ -173,7 +173,7 @@ type FederatedupgradeArgs struct {
 	FailureDevice pulumi.StringPtrInput
 	// Reason for upgrade failure.
 	FailureReason pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster.
 	HaRebootController pulumi.StringPtrInput
@@ -293,7 +293,7 @@ func (o FederatedupgradeOutput) FailureReason() pulumi.StringOutput {
 	return o.ApplyT(func(v *Federatedupgrade) pulumi.StringOutput { return v.FailureReason }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o FederatedupgradeOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Federatedupgrade) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -329,8 +329,8 @@ func (o FederatedupgradeOutput) UpgradeId() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o FederatedupgradeOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Federatedupgrade) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o FederatedupgradeOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Federatedupgrade) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type FederatedupgradeArrayOutput struct{ *pulumi.OutputState }

@@ -14,117 +14,36 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
     [OutputType]
     public sealed class AccessproxyApiGateway6
     {
-        /// <summary>
-        /// SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
-        /// </summary>
         public readonly ImmutableArray<Outputs.AccessproxyApiGateway6Application> Applications;
-        /// <summary>
-        /// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? H2Support;
-        /// <summary>
-        /// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? H3Support;
-        /// <summary>
-        /// Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
-        /// </summary>
         public readonly int? HttpCookieAge;
-        /// <summary>
-        /// Domain that HTTP cookie persistence should apply to.
-        /// </summary>
         public readonly string? HttpCookieDomain;
-        /// <summary>
-        /// Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-        /// </summary>
         public readonly string? HttpCookieDomainFromHost;
-        /// <summary>
-        /// Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-        /// </summary>
         public readonly int? HttpCookieGeneration;
-        /// <summary>
-        /// Limit HTTP cookie persistence to the specified path.
-        /// </summary>
         public readonly string? HttpCookiePath;
-        /// <summary>
-        /// Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-        /// </summary>
         public readonly string? HttpCookieShare;
-        /// <summary>
-        /// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-        /// </summary>
         public readonly string? HttpsCookieSecure;
         /// <summary>
-        /// API Gateway ID.
+        /// an identifier for the resource with format {{name}}.
         /// </summary>
         public readonly int? Id;
-        /// <summary>
-        /// Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
-        /// </summary>
         public readonly string? LdbMethod;
-        /// <summary>
-        /// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
-        /// </summary>
         public readonly string? Persistence;
-        /// <summary>
-        /// QUIC setting. The structure of `quic` block is documented below.
-        /// </summary>
         public readonly Outputs.AccessproxyApiGateway6Quic? Quic;
-        /// <summary>
-        /// Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
-        /// </summary>
         public readonly ImmutableArray<Outputs.AccessproxyApiGateway6Realserver> Realservers;
-        /// <summary>
-        /// Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
-        /// </summary>
         public readonly string? SamlRedirect;
-        /// <summary>
-        /// SAML service provider configuration for VIP authentication.
-        /// </summary>
         public readonly string? SamlServer;
-        /// <summary>
-        /// Service.
-        /// </summary>
         public readonly string? Service;
-        /// <summary>
-        /// Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
-        /// </summary>
         public readonly string? SslAlgorithm;
-        /// <summary>
-        /// SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_cipher_suites` block is documented below.
-        /// </summary>
         public readonly ImmutableArray<Outputs.AccessproxyApiGateway6SslCipherSuite> SslCipherSuites;
-        /// <summary>
-        /// Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-        /// </summary>
         public readonly string? SslDhBits;
-        /// <summary>
-        /// Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-        /// </summary>
         public readonly string? SslMaxVersion;
-        /// <summary>
-        /// Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-        /// </summary>
         public readonly string? SslMinVersion;
-        /// <summary>
-        /// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? SslRenegotiation;
-        /// <summary>
-        /// SSL-VPN web portal.
-        /// </summary>
         public readonly string? SslVpnWebPortal;
-        /// <summary>
-        /// URL pattern to match.
-        /// </summary>
         public readonly string? UrlMap;
-        /// <summary>
-        /// Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
-        /// </summary>
         public readonly string? UrlMapType;
-        /// <summary>
-        /// Virtual host.
-        /// </summary>
         public readonly string? VirtualHost;
 
         [OutputConstructor]

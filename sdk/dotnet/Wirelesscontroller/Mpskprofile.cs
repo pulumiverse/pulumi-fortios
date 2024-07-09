@@ -41,7 +41,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<string?> DynamicSortSubtable { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -53,10 +53,28 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Output<int> MpskConcurrentClients { get; private set; } = null!;
 
         /// <summary>
+        /// RADIUS server to be used to authenticate MPSK users.
+        /// </summary>
+        [Output("mpskExternalServer")]
+        public Output<string> MpskExternalServer { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/Disable MPSK external server authentication (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("mpskExternalServerAuth")]
+        public Output<string> MpskExternalServerAuth { get; private set; } = null!;
+
+        /// <summary>
         /// List of multiple PSK groups. The structure of `mpsk_group` block is documented below.
         /// </summary>
         [Output("mpskGroups")]
         public Output<ImmutableArray<Outputs.MpskprofileMpskGroup>> MpskGroups { get; private set; } = null!;
+
+        /// <summary>
+        /// Select the security type of keys for this profile. Valid values: `wpa2-personal`, `wpa3-sae`, `wpa3-sae-transition`.
+        /// </summary>
+        [Output("mpskType")]
+        public Output<string> MpskType { get; private set; } = null!;
 
         /// <summary>
         /// MPSK profile name.
@@ -68,7 +86,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -124,7 +142,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -134,6 +152,18 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("mpskConcurrentClients")]
         public Input<int>? MpskConcurrentClients { get; set; }
+
+        /// <summary>
+        /// RADIUS server to be used to authenticate MPSK users.
+        /// </summary>
+        [Input("mpskExternalServer")]
+        public Input<string>? MpskExternalServer { get; set; }
+
+        /// <summary>
+        /// Enable/Disable MPSK external server authentication (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("mpskExternalServerAuth")]
+        public Input<string>? MpskExternalServerAuth { get; set; }
 
         [Input("mpskGroups")]
         private InputList<Inputs.MpskprofileMpskGroupArgs>? _mpskGroups;
@@ -146,6 +176,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
             get => _mpskGroups ?? (_mpskGroups = new InputList<Inputs.MpskprofileMpskGroupArgs>());
             set => _mpskGroups = value;
         }
+
+        /// <summary>
+        /// Select the security type of keys for this profile. Valid values: `wpa2-personal`, `wpa3-sae`, `wpa3-sae-transition`.
+        /// </summary>
+        [Input("mpskType")]
+        public Input<string>? MpskType { get; set; }
 
         /// <summary>
         /// MPSK profile name.
@@ -174,7 +210,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         public Input<string>? DynamicSortSubtable { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -184,6 +220,18 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
         /// </summary>
         [Input("mpskConcurrentClients")]
         public Input<int>? MpskConcurrentClients { get; set; }
+
+        /// <summary>
+        /// RADIUS server to be used to authenticate MPSK users.
+        /// </summary>
+        [Input("mpskExternalServer")]
+        public Input<string>? MpskExternalServer { get; set; }
+
+        /// <summary>
+        /// Enable/Disable MPSK external server authentication (default = disable). Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("mpskExternalServerAuth")]
+        public Input<string>? MpskExternalServerAuth { get; set; }
 
         [Input("mpskGroups")]
         private InputList<Inputs.MpskprofileMpskGroupGetArgs>? _mpskGroups;
@@ -196,6 +244,12 @@ namespace Pulumiverse.Fortios.Wirelesscontroller
             get => _mpskGroups ?? (_mpskGroups = new InputList<Inputs.MpskprofileMpskGroupGetArgs>());
             set => _mpskGroups = value;
         }
+
+        /// <summary>
+        /// Select the security type of keys for this profile. Valid values: `wpa2-personal`, `wpa3-sae`, `wpa3-sae-transition`.
+        /// </summary>
+        [Input("mpskType")]
+        public Input<string>? MpskType { get; set; }
 
         /// <summary>
         /// MPSK profile name.

@@ -54,7 +54,7 @@ export class Affinityinterrupt extends pulumi.CustomResource {
     }
 
     /**
-     * Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+     * Affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
      */
     public readonly affinityCpumask!: pulumi.Output<string>;
     /**
@@ -72,7 +72,7 @@ export class Affinityinterrupt extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Affinityinterrupt resource with the given unique name, arguments, and options.
@@ -119,7 +119,7 @@ export class Affinityinterrupt extends pulumi.CustomResource {
  */
 export interface AffinityinterruptState {
     /**
-     * Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+     * Affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
      */
     affinityCpumask?: pulumi.Input<string>;
     /**
@@ -145,7 +145,7 @@ export interface AffinityinterruptState {
  */
 export interface AffinityinterruptArgs {
     /**
-     * Affinity setting for VM throughput (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
+     * Affinity setting (64-bit hexadecimal value in the format of 0xxxxxxxxxxxxxxxxx).
      */
     affinityCpumask: pulumi.Input<string>;
     /**

@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,7 +40,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -70,7 +68,7 @@ type Guidisplay struct {
 	// Enable/disable resolving IP addresses to hostname in log messages on the GUI using reverse DNS lookup Valid values: `enable`, `disable`.
 	ResolveHosts pulumi.StringOutput `pulumi:"resolveHosts"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewGuidisplay registers a new resource with the given unique name, arguments, and options.
@@ -254,8 +252,8 @@ func (o GuidisplayOutput) ResolveHosts() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o GuidisplayOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Guidisplay) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o GuidisplayOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Guidisplay) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type GuidisplayArrayOutput struct{ *pulumi.OutputState }

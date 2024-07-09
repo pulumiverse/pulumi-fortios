@@ -19,7 +19,6 @@ import (
 // ## Example Usage
 //
 // ### Loopback Interface
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -51,10 +50,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### VLAN Interface
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -87,10 +84,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Physical Interface
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -129,7 +124,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type InterfacePort struct {
 	pulumi.CustomResourceState
 

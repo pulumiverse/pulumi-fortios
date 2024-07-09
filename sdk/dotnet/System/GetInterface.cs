@@ -17,7 +17,6 @@ namespace Pulumiverse.Fortios.System
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -37,7 +36,6 @@ namespace Pulumiverse.Fortios.System
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetInterfaceResult> InvokeAsync(GetInterfaceArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInterfaceResult>("fortios:system/getInterface:getInterface", args ?? new GetInterfaceArgs(), options.WithDefaults());
@@ -47,7 +45,6 @@ namespace Pulumiverse.Fortios.System
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -67,7 +64,6 @@ namespace Pulumiverse.Fortios.System
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetInterfaceResult> Invoke(GetInterfaceInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInterfaceResult>("fortios:system/getInterface:getInterface", args ?? new GetInterfaceInvokeArgs(), options.WithDefaults());
@@ -278,6 +274,10 @@ namespace Pulumiverse.Fortios.System
         /// Enable/disable DHCP relay agent option.
         /// </summary>
         public readonly string DhcpRelayAgentOption;
+        /// <summary>
+        /// Enable/disable relaying DHCP messages with no end option.
+        /// </summary>
+        public readonly string DhcpRelayAllowNoEndOption;
         /// <summary>
         /// DHCP relay circuit ID.
         /// </summary>
@@ -1118,6 +1118,8 @@ namespace Pulumiverse.Fortios.System
 
             string dhcpRelayAgentOption,
 
+            string dhcpRelayAllowNoEndOption,
+
             string dhcpRelayCircuitId,
 
             string dhcpRelayInterface,
@@ -1538,6 +1540,7 @@ namespace Pulumiverse.Fortios.System
             DhcpClasslessRouteAddition = dhcpClasslessRouteAddition;
             DhcpClientIdentifier = dhcpClientIdentifier;
             DhcpRelayAgentOption = dhcpRelayAgentOption;
+            DhcpRelayAllowNoEndOption = dhcpRelayAllowNoEndOption;
             DhcpRelayCircuitId = dhcpRelayCircuitId;
             DhcpRelayInterface = dhcpRelayInterface;
             DhcpRelayInterfaceSelectMethod = dhcpRelayInterfaceSelectMethod;

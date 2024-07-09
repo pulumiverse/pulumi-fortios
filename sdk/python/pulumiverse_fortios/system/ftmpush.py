@@ -25,7 +25,7 @@ class FtmpushArgs:
         The set of arguments for constructing a Ftmpush resource.
         :param pulumi.Input[str] proxy: Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] server: IPv4 address or domain name of FortiToken Mobile push services server.
-        :param pulumi.Input[str] server_cert: Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+        :param pulumi.Input[str] server_cert: Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
         :param pulumi.Input[str] server_ip: IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
         :param pulumi.Input[int] server_port: Port to communicate with FortiToken Mobile push services server (1 - 65535, default = 4433).
         :param pulumi.Input[str] status: Enable/disable the use of FortiToken Mobile push services. Valid values: `enable`, `disable`.
@@ -74,7 +74,7 @@ class FtmpushArgs:
     @pulumi.getter(name="serverCert")
     def server_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+        Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
         """
         return pulumi.get(self, "server_cert")
 
@@ -145,7 +145,7 @@ class _FtmpushState:
         Input properties used for looking up and filtering Ftmpush resources.
         :param pulumi.Input[str] proxy: Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] server: IPv4 address or domain name of FortiToken Mobile push services server.
-        :param pulumi.Input[str] server_cert: Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+        :param pulumi.Input[str] server_cert: Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
         :param pulumi.Input[str] server_ip: IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
         :param pulumi.Input[int] server_port: Port to communicate with FortiToken Mobile push services server (1 - 65535, default = 4433).
         :param pulumi.Input[str] status: Enable/disable the use of FortiToken Mobile push services. Valid values: `enable`, `disable`.
@@ -194,7 +194,7 @@ class _FtmpushState:
     @pulumi.getter(name="serverCert")
     def server_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+        Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
         """
         return pulumi.get(self, "server_cert")
 
@@ -269,7 +269,6 @@ class Ftmpush(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -279,7 +278,6 @@ class Ftmpush(pulumi.CustomResource):
             server_port=4433,
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -303,7 +301,7 @@ class Ftmpush(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] proxy: Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] server: IPv4 address or domain name of FortiToken Mobile push services server.
-        :param pulumi.Input[str] server_cert: Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+        :param pulumi.Input[str] server_cert: Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
         :param pulumi.Input[str] server_ip: IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
         :param pulumi.Input[int] server_port: Port to communicate with FortiToken Mobile push services server (1 - 65535, default = 4433).
         :param pulumi.Input[str] status: Enable/disable the use of FortiToken Mobile push services. Valid values: `enable`, `disable`.
@@ -320,7 +318,6 @@ class Ftmpush(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -330,7 +327,6 @@ class Ftmpush(pulumi.CustomResource):
             server_port=4433,
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -414,7 +410,7 @@ class Ftmpush(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] proxy: Enable/disable communication to the proxy server in FortiGuard configuration. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] server: IPv4 address or domain name of FortiToken Mobile push services server.
-        :param pulumi.Input[str] server_cert: Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+        :param pulumi.Input[str] server_cert: Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
         :param pulumi.Input[str] server_ip: IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
         :param pulumi.Input[int] server_port: Port to communicate with FortiToken Mobile push services server (1 - 65535, default = 4433).
         :param pulumi.Input[str] status: Enable/disable the use of FortiToken Mobile push services. Valid values: `enable`, `disable`.
@@ -453,7 +449,7 @@ class Ftmpush(pulumi.CustomResource):
     @pulumi.getter(name="serverCert")
     def server_cert(self) -> pulumi.Output[str]:
         """
-        Name of the server certificate to be used for SSL (default = Fortinet_Factory).
+        Name of the server certificate to be used for SSL. On FortiOS versions 6.4.0-7.4.3: default = Fortinet_Factory.
         """
         return pulumi.get(self, "server_cert")
 
@@ -483,7 +479,7 @@ class Ftmpush(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

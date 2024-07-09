@@ -17,7 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -86,7 +85,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -118,7 +116,7 @@ type Extender1 struct {
 	ExtName pulumi.StringOutput `pulumi:"extName"`
 	// FortiExtender serial number.
 	Fosid pulumi.StringOutput `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// FortiExtender login password.
 	LoginPassword pulumi.StringPtrOutput `pulumi:"loginPassword"`
@@ -131,7 +129,7 @@ type Extender1 struct {
 	// VDOM
 	Vdom pulumi.IntOutput `pulumi:"vdom"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewExtender1 registers a new resource with the given unique name, arguments, and options.
@@ -184,7 +182,7 @@ type extender1State struct {
 	ExtName *string `pulumi:"extName"`
 	// FortiExtender serial number.
 	Fosid *string `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiExtender login password.
 	LoginPassword *string `pulumi:"loginPassword"`
@@ -211,7 +209,7 @@ type Extender1State struct {
 	ExtName pulumi.StringPtrInput
 	// FortiExtender serial number.
 	Fosid pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// FortiExtender login password.
 	LoginPassword pulumi.StringPtrInput
@@ -242,7 +240,7 @@ type extender1Args struct {
 	ExtName *string `pulumi:"extName"`
 	// FortiExtender serial number.
 	Fosid *string `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// FortiExtender login password.
 	LoginPassword *string `pulumi:"loginPassword"`
@@ -270,7 +268,7 @@ type Extender1Args struct {
 	ExtName pulumi.StringPtrInput
 	// FortiExtender serial number.
 	Fosid pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// FortiExtender login password.
 	LoginPassword pulumi.StringPtrInput
@@ -398,7 +396,7 @@ func (o Extender1Output) Fosid() pulumi.StringOutput {
 	return o.ApplyT(func(v *Extender1) pulumi.StringOutput { return v.Fosid }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o Extender1Output) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Extender1) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -429,8 +427,8 @@ func (o Extender1Output) Vdom() pulumi.IntOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o Extender1Output) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Extender1) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o Extender1Output) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Extender1) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type Extender1ArrayOutput struct{ *pulumi.OutputState }

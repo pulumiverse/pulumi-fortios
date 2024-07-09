@@ -18,7 +18,6 @@ namespace Pulumiverse.Fortios.Firewall
     /// ## Example Usage
     /// 
     /// ### Fqdn Service
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -37,10 +36,8 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Iprange Service
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -62,10 +59,8 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### ICMP Service
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -86,7 +81,6 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:firewall/objectService:ObjectService")]
     public partial class ObjectService : global::Pulumi.CustomResource

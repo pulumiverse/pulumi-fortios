@@ -14,17 +14,11 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec.Outputs
     [OutputType]
     public sealed class Phase1Ipv6ExcludeRange
     {
-        /// <summary>
-        /// End of IPv6 exclusive range.
-        /// </summary>
         public readonly string? EndIp;
         /// <summary>
-        /// ID.
+        /// an identifier for the resource with format {{name}}.
         /// </summary>
         public readonly int? Id;
-        /// <summary>
-        /// Start of IPv6 exclusive range.
-        /// </summary>
         public readonly string? StartIp;
 
         [OutputConstructor]

@@ -2978,32 +2978,22 @@ func (o ProfileOutbreakPreventionPtrOutput) FtgdService() pulumi.StringPtrOutput
 }
 
 type ProfilePop3 struct {
-	// Select the archive types to block.
 	ArchiveBlock *string `pulumi:"archiveBlock"`
-	// Select the archive types to log.
-	ArchiveLog *string `pulumi:"archiveLog"`
-	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
-	AvScan *string `pulumi:"avScan"`
+	ArchiveLog   *string `pulumi:"archiveLog"`
+	AvScan       *string `pulumi:"avScan"`
 	// AV Content Disarm and Reconstruction settings. The structure of `contentDisarm` block is documented below.
 	ContentDisarm *string `pulumi:"contentDisarm"`
-	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
-	Emulator *string `pulumi:"emulator"`
-	// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
-	Executables *string `pulumi:"executables"`
+	Emulator      *string `pulumi:"emulator"`
+	Executables   *string `pulumi:"executables"`
 	// One or more external malware block lists. The structure of `externalBlocklist` block is documented below.
 	ExternalBlocklist *string `pulumi:"externalBlocklist"`
-	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
-	Fortiai *string `pulumi:"fortiai"`
-	// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
-	Fortindr *string `pulumi:"fortindr"`
-	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
-	Fortisandbox *string `pulumi:"fortisandbox"`
-	// Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
-	Options *string `pulumi:"options"`
+	Fortiai           *string `pulumi:"fortiai"`
+	Fortindr          *string `pulumi:"fortindr"`
+	Fortisandbox      *string `pulumi:"fortisandbox"`
+	Options           *string `pulumi:"options"`
 	// Configure Virus Outbreak Prevention settings. The structure of `outbreakPrevention` block is documented below.
 	OutbreakPrevention *string `pulumi:"outbreakPrevention"`
-	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
-	Quarantine *string `pulumi:"quarantine"`
+	Quarantine         *string `pulumi:"quarantine"`
 }
 
 // ProfilePop3Input is an input type that accepts ProfilePop3Args and ProfilePop3Output values.
@@ -3018,32 +3008,22 @@ type ProfilePop3Input interface {
 }
 
 type ProfilePop3Args struct {
-	// Select the archive types to block.
 	ArchiveBlock pulumi.StringPtrInput `pulumi:"archiveBlock"`
-	// Select the archive types to log.
-	ArchiveLog pulumi.StringPtrInput `pulumi:"archiveLog"`
-	// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
-	AvScan pulumi.StringPtrInput `pulumi:"avScan"`
+	ArchiveLog   pulumi.StringPtrInput `pulumi:"archiveLog"`
+	AvScan       pulumi.StringPtrInput `pulumi:"avScan"`
 	// AV Content Disarm and Reconstruction settings. The structure of `contentDisarm` block is documented below.
 	ContentDisarm pulumi.StringPtrInput `pulumi:"contentDisarm"`
-	// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
-	Emulator pulumi.StringPtrInput `pulumi:"emulator"`
-	// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
-	Executables pulumi.StringPtrInput `pulumi:"executables"`
+	Emulator      pulumi.StringPtrInput `pulumi:"emulator"`
+	Executables   pulumi.StringPtrInput `pulumi:"executables"`
 	// One or more external malware block lists. The structure of `externalBlocklist` block is documented below.
 	ExternalBlocklist pulumi.StringPtrInput `pulumi:"externalBlocklist"`
-	// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
-	Fortiai pulumi.StringPtrInput `pulumi:"fortiai"`
-	// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
-	Fortindr pulumi.StringPtrInput `pulumi:"fortindr"`
-	// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
-	Fortisandbox pulumi.StringPtrInput `pulumi:"fortisandbox"`
-	// Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
-	Options pulumi.StringPtrInput `pulumi:"options"`
+	Fortiai           pulumi.StringPtrInput `pulumi:"fortiai"`
+	Fortindr          pulumi.StringPtrInput `pulumi:"fortindr"`
+	Fortisandbox      pulumi.StringPtrInput `pulumi:"fortisandbox"`
+	Options           pulumi.StringPtrInput `pulumi:"options"`
 	// Configure Virus Outbreak Prevention settings. The structure of `outbreakPrevention` block is documented below.
 	OutbreakPrevention pulumi.StringPtrInput `pulumi:"outbreakPrevention"`
-	// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
-	Quarantine pulumi.StringPtrInput `pulumi:"quarantine"`
+	Quarantine         pulumi.StringPtrInput `pulumi:"quarantine"`
 }
 
 func (ProfilePop3Args) ElementType() reflect.Type {
@@ -3123,17 +3103,14 @@ func (o ProfilePop3Output) ToProfilePop3PtrOutputWithContext(ctx context.Context
 	}).(ProfilePop3PtrOutput)
 }
 
-// Select the archive types to block.
 func (o ProfilePop3Output) ArchiveBlock() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.ArchiveBlock }).(pulumi.StringPtrOutput)
 }
 
-// Select the archive types to log.
 func (o ProfilePop3Output) ArchiveLog() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.ArchiveLog }).(pulumi.StringPtrOutput)
 }
 
-// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
 func (o ProfilePop3Output) AvScan() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.AvScan }).(pulumi.StringPtrOutput)
 }
@@ -3143,12 +3120,10 @@ func (o ProfilePop3Output) ContentDisarm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.ContentDisarm }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
 func (o ProfilePop3Output) Emulator() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.Emulator }).(pulumi.StringPtrOutput)
 }
 
-// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
 func (o ProfilePop3Output) Executables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.Executables }).(pulumi.StringPtrOutput)
 }
@@ -3158,22 +3133,18 @@ func (o ProfilePop3Output) ExternalBlocklist() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.ExternalBlocklist }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
 func (o ProfilePop3Output) Fortiai() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.Fortiai }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 func (o ProfilePop3Output) Fortindr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.Fortindr }).(pulumi.StringPtrOutput)
 }
 
-// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 func (o ProfilePop3Output) Fortisandbox() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.Fortisandbox }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
 func (o ProfilePop3Output) Options() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
@@ -3183,7 +3154,6 @@ func (o ProfilePop3Output) OutbreakPrevention() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.OutbreakPrevention }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
 func (o ProfilePop3Output) Quarantine() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.Quarantine }).(pulumi.StringPtrOutput)
 }
@@ -3212,7 +3182,6 @@ func (o ProfilePop3PtrOutput) Elem() ProfilePop3Output {
 	}).(ProfilePop3Output)
 }
 
-// Select the archive types to block.
 func (o ProfilePop3PtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
@@ -3222,7 +3191,6 @@ func (o ProfilePop3PtrOutput) ArchiveBlock() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Select the archive types to log.
 func (o ProfilePop3PtrOutput) ArchiveLog() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
@@ -3232,7 +3200,6 @@ func (o ProfilePop3PtrOutput) ArchiveLog() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
 func (o ProfilePop3PtrOutput) AvScan() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
@@ -3252,7 +3219,6 @@ func (o ProfilePop3PtrOutput) ContentDisarm() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
 func (o ProfilePop3PtrOutput) Emulator() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
@@ -3262,7 +3228,6 @@ func (o ProfilePop3PtrOutput) Emulator() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
 func (o ProfilePop3PtrOutput) Executables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
@@ -3282,7 +3247,6 @@ func (o ProfilePop3PtrOutput) ExternalBlocklist() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
 func (o ProfilePop3PtrOutput) Fortiai() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
@@ -3292,7 +3256,6 @@ func (o ProfilePop3PtrOutput) Fortiai() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
 func (o ProfilePop3PtrOutput) Fortindr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
@@ -3302,7 +3265,6 @@ func (o ProfilePop3PtrOutput) Fortindr() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
 func (o ProfilePop3PtrOutput) Fortisandbox() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
@@ -3312,7 +3274,6 @@ func (o ProfilePop3PtrOutput) Fortisandbox() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
 func (o ProfilePop3PtrOutput) Options() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
@@ -3332,7 +3293,6 @@ func (o ProfilePop3PtrOutput) OutbreakPrevention() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
 func (o ProfilePop3PtrOutput) Quarantine() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {

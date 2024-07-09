@@ -17,7 +17,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -97,7 +96,6 @@ import * as utilities from "../utilities";
  *     synchronization: "disable",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -194,11 +192,11 @@ export class Bgp extends pulumi.CustomResource {
      */
     public readonly alwaysCompareMed!: pulumi.Output<string>;
     /**
-     * Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
+     * Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `asString`.*
      */
     public readonly as!: pulumi.Output<number>;
     /**
-     * Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+     * Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
      */
     public readonly asString!: pulumi.Output<string>;
     /**
@@ -306,7 +304,7 @@ export class Bgp extends pulumi.CustomResource {
      */
     public readonly fastExternalFailover!: pulumi.Output<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
@@ -416,7 +414,7 @@ export class Bgp extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
     /**
      * BGP IPv6 VRF leaking table. The structure of `vrf6` block is documented below.
      */
@@ -441,7 +439,7 @@ export class Bgp extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: BgpArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: BgpArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: BgpArgs | BgpState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -521,9 +519,6 @@ export class Bgp extends pulumi.CustomResource {
             resourceInputs["vrves"] = state ? state.vrves : undefined;
         } else {
             const args = argsOrState as BgpArgs | undefined;
-            if ((!args || args.as === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'as'");
-            }
             resourceInputs["additionalPath"] = args ? args.additionalPath : undefined;
             resourceInputs["additionalPath6"] = args ? args.additionalPath6 : undefined;
             resourceInputs["additionalPathSelect"] = args ? args.additionalPathSelect : undefined;
@@ -655,11 +650,11 @@ export interface BgpState {
      */
     alwaysCompareMed?: pulumi.Input<string>;
     /**
-     * Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
+     * Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `asString`.*
      */
     as?: pulumi.Input<number>;
     /**
-     * Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+     * Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
      */
     asString?: pulumi.Input<string>;
     /**
@@ -767,7 +762,7 @@ export interface BgpState {
      */
     fastExternalFailover?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
@@ -949,11 +944,11 @@ export interface BgpArgs {
      */
     alwaysCompareMed?: pulumi.Input<string>;
     /**
-     * Router AS number, valid from 1 to 4294967295, 0 to disable BGP.
+     * Router AS number, valid from 1 to 4294967295, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `asString`.*
      */
-    as: pulumi.Input<number>;
+    as?: pulumi.Input<number>;
     /**
-     * Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP.
+     * Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. *Due to the data type change of API, for other versions of FortiOS, please check variable `as`.*
      */
     asString?: pulumi.Input<string>;
     /**
@@ -1061,7 +1056,7 @@ export interface BgpArgs {
      */
     fastExternalFailover?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**

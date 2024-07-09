@@ -32,12 +32,12 @@ class SystemArgs:
         :param pulumi.Input[int] caputp_echo_interval: Echo interval for the caputp echo requests from swtp.
         :param pulumi.Input[int] caputp_max_retransmit: Maximum retransmission count for the caputp tunnel packets.
         :param pulumi.Input[int] data_sync_interval: Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
-        :param pulumi.Input[int] dynamic_periodic_interval: Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+        :param pulumi.Input[int] dynamic_periodic_interval: Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
         :param pulumi.Input[int] iot_holdoff: MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
         :param pulumi.Input[int] iot_mac_idle: MAC entry's idle time. MAC entry is removed after this value (default = 1440 mins).
         :param pulumi.Input[int] iot_scan_interval: IoT scan interval (2 - 4294967295 mins, default = 60 mins, 0 = disable).
         :param pulumi.Input[int] iot_weight_threshold: MAC entry's confidence value. Value is re-queried when below this value (default = 1, 0 = disable).
-        :param pulumi.Input[int] nac_periodic_interval: Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+        :param pulumi.Input[int] nac_periodic_interval: Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
         :param pulumi.Input[int] parallel_process: Maximum number of parallel processes (1 - 300, default = 1).
         :param pulumi.Input[str] parallel_process_override: Enable/disable parallel process override. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode.
@@ -110,7 +110,7 @@ class SystemArgs:
     @pulumi.getter(name="dynamicPeriodicInterval")
     def dynamic_periodic_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+        Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
         """
         return pulumi.get(self, "dynamic_periodic_interval")
 
@@ -170,7 +170,7 @@ class SystemArgs:
     @pulumi.getter(name="nacPeriodicInterval")
     def nac_periodic_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+        Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
         """
         return pulumi.get(self, "nac_periodic_interval")
 
@@ -248,12 +248,12 @@ class _SystemState:
         :param pulumi.Input[int] caputp_echo_interval: Echo interval for the caputp echo requests from swtp.
         :param pulumi.Input[int] caputp_max_retransmit: Maximum retransmission count for the caputp tunnel packets.
         :param pulumi.Input[int] data_sync_interval: Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
-        :param pulumi.Input[int] dynamic_periodic_interval: Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+        :param pulumi.Input[int] dynamic_periodic_interval: Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
         :param pulumi.Input[int] iot_holdoff: MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
         :param pulumi.Input[int] iot_mac_idle: MAC entry's idle time. MAC entry is removed after this value (default = 1440 mins).
         :param pulumi.Input[int] iot_scan_interval: IoT scan interval (2 - 4294967295 mins, default = 60 mins, 0 = disable).
         :param pulumi.Input[int] iot_weight_threshold: MAC entry's confidence value. Value is re-queried when below this value (default = 1, 0 = disable).
-        :param pulumi.Input[int] nac_periodic_interval: Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+        :param pulumi.Input[int] nac_periodic_interval: Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
         :param pulumi.Input[int] parallel_process: Maximum number of parallel processes (1 - 300, default = 1).
         :param pulumi.Input[str] parallel_process_override: Enable/disable parallel process override. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode.
@@ -326,7 +326,7 @@ class _SystemState:
     @pulumi.getter(name="dynamicPeriodicInterval")
     def dynamic_periodic_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+        Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
         """
         return pulumi.get(self, "dynamic_periodic_interval")
 
@@ -386,7 +386,7 @@ class _SystemState:
     @pulumi.getter(name="nacPeriodicInterval")
     def nac_periodic_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+        Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
         """
         return pulumi.get(self, "nac_periodic_interval")
 
@@ -488,12 +488,12 @@ class System(pulumi.CustomResource):
         :param pulumi.Input[int] caputp_echo_interval: Echo interval for the caputp echo requests from swtp.
         :param pulumi.Input[int] caputp_max_retransmit: Maximum retransmission count for the caputp tunnel packets.
         :param pulumi.Input[int] data_sync_interval: Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
-        :param pulumi.Input[int] dynamic_periodic_interval: Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+        :param pulumi.Input[int] dynamic_periodic_interval: Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
         :param pulumi.Input[int] iot_holdoff: MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
         :param pulumi.Input[int] iot_mac_idle: MAC entry's idle time. MAC entry is removed after this value (default = 1440 mins).
         :param pulumi.Input[int] iot_scan_interval: IoT scan interval (2 - 4294967295 mins, default = 60 mins, 0 = disable).
         :param pulumi.Input[int] iot_weight_threshold: MAC entry's confidence value. Value is re-queried when below this value (default = 1, 0 = disable).
-        :param pulumi.Input[int] nac_periodic_interval: Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+        :param pulumi.Input[int] nac_periodic_interval: Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
         :param pulumi.Input[int] parallel_process: Maximum number of parallel processes (1 - 300, default = 1).
         :param pulumi.Input[str] parallel_process_override: Enable/disable parallel process override. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode.
@@ -609,12 +609,12 @@ class System(pulumi.CustomResource):
         :param pulumi.Input[int] caputp_echo_interval: Echo interval for the caputp echo requests from swtp.
         :param pulumi.Input[int] caputp_max_retransmit: Maximum retransmission count for the caputp tunnel packets.
         :param pulumi.Input[int] data_sync_interval: Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
-        :param pulumi.Input[int] dynamic_periodic_interval: Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+        :param pulumi.Input[int] dynamic_periodic_interval: Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
         :param pulumi.Input[int] iot_holdoff: MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
         :param pulumi.Input[int] iot_mac_idle: MAC entry's idle time. MAC entry is removed after this value (default = 1440 mins).
         :param pulumi.Input[int] iot_scan_interval: IoT scan interval (2 - 4294967295 mins, default = 60 mins, 0 = disable).
         :param pulumi.Input[int] iot_weight_threshold: MAC entry's confidence value. Value is re-queried when below this value (default = 1, 0 = disable).
-        :param pulumi.Input[int] nac_periodic_interval: Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+        :param pulumi.Input[int] nac_periodic_interval: Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
         :param pulumi.Input[int] parallel_process: Maximum number of parallel processes (1 - 300, default = 1).
         :param pulumi.Input[str] parallel_process_override: Enable/disable parallel process override. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode.
@@ -667,7 +667,7 @@ class System(pulumi.CustomResource):
     @pulumi.getter(name="dynamicPeriodicInterval")
     def dynamic_periodic_interval(self) -> pulumi.Output[int]:
         """
-        Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+        Periodic time interval to run Dynamic port policy engine. On FortiOS versions 7.0.1-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
         """
         return pulumi.get(self, "dynamic_periodic_interval")
 
@@ -707,7 +707,7 @@ class System(pulumi.CustomResource):
     @pulumi.getter(name="nacPeriodicInterval")
     def nac_periodic_interval(self) -> pulumi.Output[int]:
         """
-        Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
+        Periodic time interval to run NAC engine. On FortiOS versions 7.0.0-7.4.3: 5 - 60 sec, default = 15. On FortiOS versions >= 7.4.4: 5 - 180 sec, default = 60.
         """
         return pulumi.get(self, "nac_periodic_interval")
 
@@ -737,7 +737,7 @@ class System(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

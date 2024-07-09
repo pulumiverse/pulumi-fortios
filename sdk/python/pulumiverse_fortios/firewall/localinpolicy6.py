@@ -17,7 +17,6 @@ __all__ = ['Localinpolicy6Args', 'Localinpolicy6']
 class Localinpolicy6Args:
     def __init__(__self__, *,
                  dstaddrs: pulumi.Input[Sequence[pulumi.Input['Localinpolicy6DstaddrArgs']]],
-                 intf: pulumi.Input[str],
                  schedule: pulumi.Input[str],
                  services: pulumi.Input[Sequence[pulumi.Input['Localinpolicy6ServiceArgs']]],
                  srcaddrs: pulumi.Input[Sequence[pulumi.Input['Localinpolicy6SrcaddrArgs']]],
@@ -26,6 +25,14 @@ class Localinpolicy6Args:
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
+                 internet_service6_src: Optional[pulumi.Input[str]] = None,
+                 internet_service6_src_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcCustomGroupArgs']]]] = None,
+                 internet_service6_src_customs: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcCustomArgs']]]] = None,
+                 internet_service6_src_groups: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcGroupArgs']]]] = None,
+                 internet_service6_src_names: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcNameArgs']]]] = None,
+                 internet_service6_src_negate: Optional[pulumi.Input[str]] = None,
+                 intf: Optional[pulumi.Input[str]] = None,
+                 intf_blocks: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6IntfBlockArgs']]]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  service_negate: Optional[pulumi.Input[str]] = None,
                  srcaddr_negate: Optional[pulumi.Input[str]] = None,
@@ -36,7 +43,6 @@ class Localinpolicy6Args:
         """
         The set of arguments for constructing a Localinpolicy6 resource.
         :param pulumi.Input[Sequence[pulumi.Input['Localinpolicy6DstaddrArgs']]] dstaddrs: Destination address object from available options. The structure of `dstaddr` block is documented below.
-        :param pulumi.Input[str] intf: Incoming interface name from available options.
         :param pulumi.Input[str] schedule: Schedule object from available options.
         :param pulumi.Input[Sequence[pulumi.Input['Localinpolicy6ServiceArgs']]] services: Service object from available options. Separate names with a space. The structure of `service` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['Localinpolicy6SrcaddrArgs']]] srcaddrs: Source address object from available options. The structure of `srcaddr` block is documented below.
@@ -44,7 +50,15 @@ class Localinpolicy6Args:
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] internet_service6_src: Enable/disable use of IPv6 Internet Services in source for this local-in policy.If enabled, source address is not used. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcCustomGroupArgs']]] internet_service6_src_custom_groups: Custom Internet Service6 source group name. The structure of `internet_service6_src_custom_group` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcCustomArgs']]] internet_service6_src_customs: Custom IPv6 Internet Service source name. The structure of `internet_service6_src_custom` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcGroupArgs']]] internet_service6_src_groups: Internet Service6 source group name. The structure of `internet_service6_src_group` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcNameArgs']]] internet_service6_src_names: IPv6 Internet Service source name. The structure of `internet_service6_src_name` block is documented below.
+        :param pulumi.Input[str] internet_service6_src_negate: When enabled internet-service6-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] intf: Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf_block`.*
+        :param pulumi.Input[Sequence[pulumi.Input['Localinpolicy6IntfBlockArgs']]] intf_blocks: Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intf_block` block is documented below.
         :param pulumi.Input[int] policyid: User defined local in policy ID.
         :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] srcaddr_negate: When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
@@ -54,7 +68,6 @@ class Localinpolicy6Args:
         :param pulumi.Input[str] virtual_patch: Enable/disable the virtual patching feature. Valid values: `enable`, `disable`.
         """
         pulumi.set(__self__, "dstaddrs", dstaddrs)
-        pulumi.set(__self__, "intf", intf)
         pulumi.set(__self__, "schedule", schedule)
         pulumi.set(__self__, "services", services)
         pulumi.set(__self__, "srcaddrs", srcaddrs)
@@ -68,6 +81,22 @@ class Localinpolicy6Args:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if get_all_tables is not None:
             pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if internet_service6_src is not None:
+            pulumi.set(__self__, "internet_service6_src", internet_service6_src)
+        if internet_service6_src_custom_groups is not None:
+            pulumi.set(__self__, "internet_service6_src_custom_groups", internet_service6_src_custom_groups)
+        if internet_service6_src_customs is not None:
+            pulumi.set(__self__, "internet_service6_src_customs", internet_service6_src_customs)
+        if internet_service6_src_groups is not None:
+            pulumi.set(__self__, "internet_service6_src_groups", internet_service6_src_groups)
+        if internet_service6_src_names is not None:
+            pulumi.set(__self__, "internet_service6_src_names", internet_service6_src_names)
+        if internet_service6_src_negate is not None:
+            pulumi.set(__self__, "internet_service6_src_negate", internet_service6_src_negate)
+        if intf is not None:
+            pulumi.set(__self__, "intf", intf)
+        if intf_blocks is not None:
+            pulumi.set(__self__, "intf_blocks", intf_blocks)
         if policyid is not None:
             pulumi.set(__self__, "policyid", policyid)
         if service_negate is not None:
@@ -94,18 +123,6 @@ class Localinpolicy6Args:
     @dstaddrs.setter
     def dstaddrs(self, value: pulumi.Input[Sequence[pulumi.Input['Localinpolicy6DstaddrArgs']]]):
         pulumi.set(self, "dstaddrs", value)
-
-    @property
-    @pulumi.getter
-    def intf(self) -> pulumi.Input[str]:
-        """
-        Incoming interface name from available options.
-        """
-        return pulumi.get(self, "intf")
-
-    @intf.setter
-    def intf(self, value: pulumi.Input[str]):
-        pulumi.set(self, "intf", value)
 
     @property
     @pulumi.getter
@@ -195,13 +212,109 @@ class Localinpolicy6Args:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
     @get_all_tables.setter
     def get_all_tables(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="internetService6Src")
+    def internet_service6_src(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of IPv6 Internet Services in source for this local-in policy.If enabled, source address is not used. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "internet_service6_src")
+
+    @internet_service6_src.setter
+    def internet_service6_src(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_service6_src", value)
+
+    @property
+    @pulumi.getter(name="internetService6SrcCustomGroups")
+    def internet_service6_src_custom_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcCustomGroupArgs']]]]:
+        """
+        Custom Internet Service6 source group name. The structure of `internet_service6_src_custom_group` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_src_custom_groups")
+
+    @internet_service6_src_custom_groups.setter
+    def internet_service6_src_custom_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcCustomGroupArgs']]]]):
+        pulumi.set(self, "internet_service6_src_custom_groups", value)
+
+    @property
+    @pulumi.getter(name="internetService6SrcCustoms")
+    def internet_service6_src_customs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcCustomArgs']]]]:
+        """
+        Custom IPv6 Internet Service source name. The structure of `internet_service6_src_custom` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_src_customs")
+
+    @internet_service6_src_customs.setter
+    def internet_service6_src_customs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcCustomArgs']]]]):
+        pulumi.set(self, "internet_service6_src_customs", value)
+
+    @property
+    @pulumi.getter(name="internetService6SrcGroups")
+    def internet_service6_src_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcGroupArgs']]]]:
+        """
+        Internet Service6 source group name. The structure of `internet_service6_src_group` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_src_groups")
+
+    @internet_service6_src_groups.setter
+    def internet_service6_src_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcGroupArgs']]]]):
+        pulumi.set(self, "internet_service6_src_groups", value)
+
+    @property
+    @pulumi.getter(name="internetService6SrcNames")
+    def internet_service6_src_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcNameArgs']]]]:
+        """
+        IPv6 Internet Service source name. The structure of `internet_service6_src_name` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_src_names")
+
+    @internet_service6_src_names.setter
+    def internet_service6_src_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcNameArgs']]]]):
+        pulumi.set(self, "internet_service6_src_names", value)
+
+    @property
+    @pulumi.getter(name="internetService6SrcNegate")
+    def internet_service6_src_negate(self) -> Optional[pulumi.Input[str]]:
+        """
+        When enabled internet-service6-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "internet_service6_src_negate")
+
+    @internet_service6_src_negate.setter
+    def internet_service6_src_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_service6_src_negate", value)
+
+    @property
+    @pulumi.getter
+    def intf(self) -> Optional[pulumi.Input[str]]:
+        """
+        Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf_block`.*
+        """
+        return pulumi.get(self, "intf")
+
+    @intf.setter
+    def intf(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "intf", value)
+
+    @property
+    @pulumi.getter(name="intfBlocks")
+    def intf_blocks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6IntfBlockArgs']]]]:
+        """
+        Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intf_block` block is documented below.
+        """
+        return pulumi.get(self, "intf_blocks")
+
+    @intf_blocks.setter
+    def intf_blocks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6IntfBlockArgs']]]]):
+        pulumi.set(self, "intf_blocks", value)
 
     @property
     @pulumi.getter
@@ -297,7 +410,14 @@ class _Localinpolicy6State:
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6DstaddrArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
+                 internet_service6_src: Optional[pulumi.Input[str]] = None,
+                 internet_service6_src_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcCustomGroupArgs']]]] = None,
+                 internet_service6_src_customs: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcCustomArgs']]]] = None,
+                 internet_service6_src_groups: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcGroupArgs']]]] = None,
+                 internet_service6_src_names: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcNameArgs']]]] = None,
+                 internet_service6_src_negate: Optional[pulumi.Input[str]] = None,
                  intf: Optional[pulumi.Input[str]] = None,
+                 intf_blocks: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6IntfBlockArgs']]]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  service_negate: Optional[pulumi.Input[str]] = None,
@@ -315,8 +435,15 @@ class _Localinpolicy6State:
         :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['Localinpolicy6DstaddrArgs']]] dstaddrs: Destination address object from available options. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
-        :param pulumi.Input[str] intf: Incoming interface name from available options.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] internet_service6_src: Enable/disable use of IPv6 Internet Services in source for this local-in policy.If enabled, source address is not used. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcCustomGroupArgs']]] internet_service6_src_custom_groups: Custom Internet Service6 source group name. The structure of `internet_service6_src_custom_group` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcCustomArgs']]] internet_service6_src_customs: Custom IPv6 Internet Service source name. The structure of `internet_service6_src_custom` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcGroupArgs']]] internet_service6_src_groups: Internet Service6 source group name. The structure of `internet_service6_src_group` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcNameArgs']]] internet_service6_src_names: IPv6 Internet Service source name. The structure of `internet_service6_src_name` block is documented below.
+        :param pulumi.Input[str] internet_service6_src_negate: When enabled internet-service6-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] intf: Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf_block`.*
+        :param pulumi.Input[Sequence[pulumi.Input['Localinpolicy6IntfBlockArgs']]] intf_blocks: Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intf_block` block is documented below.
         :param pulumi.Input[int] policyid: User defined local in policy ID.
         :param pulumi.Input[str] schedule: Schedule object from available options.
         :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
@@ -340,8 +467,22 @@ class _Localinpolicy6State:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if get_all_tables is not None:
             pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if internet_service6_src is not None:
+            pulumi.set(__self__, "internet_service6_src", internet_service6_src)
+        if internet_service6_src_custom_groups is not None:
+            pulumi.set(__self__, "internet_service6_src_custom_groups", internet_service6_src_custom_groups)
+        if internet_service6_src_customs is not None:
+            pulumi.set(__self__, "internet_service6_src_customs", internet_service6_src_customs)
+        if internet_service6_src_groups is not None:
+            pulumi.set(__self__, "internet_service6_src_groups", internet_service6_src_groups)
+        if internet_service6_src_names is not None:
+            pulumi.set(__self__, "internet_service6_src_names", internet_service6_src_names)
+        if internet_service6_src_negate is not None:
+            pulumi.set(__self__, "internet_service6_src_negate", internet_service6_src_negate)
         if intf is not None:
             pulumi.set(__self__, "intf", intf)
+        if intf_blocks is not None:
+            pulumi.set(__self__, "intf_blocks", intf_blocks)
         if policyid is not None:
             pulumi.set(__self__, "policyid", policyid)
         if schedule is not None:
@@ -427,7 +568,7 @@ class _Localinpolicy6State:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -436,16 +577,100 @@ class _Localinpolicy6State:
         pulumi.set(self, "get_all_tables", value)
 
     @property
+    @pulumi.getter(name="internetService6Src")
+    def internet_service6_src(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of IPv6 Internet Services in source for this local-in policy.If enabled, source address is not used. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "internet_service6_src")
+
+    @internet_service6_src.setter
+    def internet_service6_src(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_service6_src", value)
+
+    @property
+    @pulumi.getter(name="internetService6SrcCustomGroups")
+    def internet_service6_src_custom_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcCustomGroupArgs']]]]:
+        """
+        Custom Internet Service6 source group name. The structure of `internet_service6_src_custom_group` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_src_custom_groups")
+
+    @internet_service6_src_custom_groups.setter
+    def internet_service6_src_custom_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcCustomGroupArgs']]]]):
+        pulumi.set(self, "internet_service6_src_custom_groups", value)
+
+    @property
+    @pulumi.getter(name="internetService6SrcCustoms")
+    def internet_service6_src_customs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcCustomArgs']]]]:
+        """
+        Custom IPv6 Internet Service source name. The structure of `internet_service6_src_custom` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_src_customs")
+
+    @internet_service6_src_customs.setter
+    def internet_service6_src_customs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcCustomArgs']]]]):
+        pulumi.set(self, "internet_service6_src_customs", value)
+
+    @property
+    @pulumi.getter(name="internetService6SrcGroups")
+    def internet_service6_src_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcGroupArgs']]]]:
+        """
+        Internet Service6 source group name. The structure of `internet_service6_src_group` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_src_groups")
+
+    @internet_service6_src_groups.setter
+    def internet_service6_src_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcGroupArgs']]]]):
+        pulumi.set(self, "internet_service6_src_groups", value)
+
+    @property
+    @pulumi.getter(name="internetService6SrcNames")
+    def internet_service6_src_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcNameArgs']]]]:
+        """
+        IPv6 Internet Service source name. The structure of `internet_service6_src_name` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_src_names")
+
+    @internet_service6_src_names.setter
+    def internet_service6_src_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6InternetService6SrcNameArgs']]]]):
+        pulumi.set(self, "internet_service6_src_names", value)
+
+    @property
+    @pulumi.getter(name="internetService6SrcNegate")
+    def internet_service6_src_negate(self) -> Optional[pulumi.Input[str]]:
+        """
+        When enabled internet-service6-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "internet_service6_src_negate")
+
+    @internet_service6_src_negate.setter
+    def internet_service6_src_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_service6_src_negate", value)
+
+    @property
     @pulumi.getter
     def intf(self) -> Optional[pulumi.Input[str]]:
         """
-        Incoming interface name from available options.
+        Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf_block`.*
         """
         return pulumi.get(self, "intf")
 
     @intf.setter
     def intf(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "intf", value)
+
+    @property
+    @pulumi.getter(name="intfBlocks")
+    def intf_blocks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6IntfBlockArgs']]]]:
+        """
+        Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intf_block` block is documented below.
+        """
+        return pulumi.get(self, "intf_blocks")
+
+    @intf_blocks.setter
+    def intf_blocks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['Localinpolicy6IntfBlockArgs']]]]):
+        pulumi.set(self, "intf_blocks", value)
 
     @property
     @pulumi.getter
@@ -579,7 +804,14 @@ class Localinpolicy6(pulumi.CustomResource):
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6DstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
+                 internet_service6_src: Optional[pulumi.Input[str]] = None,
+                 internet_service6_src_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcCustomGroupArgs']]]]] = None,
+                 internet_service6_src_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcCustomArgs']]]]] = None,
+                 internet_service6_src_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcGroupArgs']]]]] = None,
+                 internet_service6_src_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcNameArgs']]]]] = None,
+                 internet_service6_src_negate: Optional[pulumi.Input[str]] = None,
                  intf: Optional[pulumi.Input[str]] = None,
+                 intf_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6IntfBlockArgs']]]]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  service_negate: Optional[pulumi.Input[str]] = None,
@@ -596,7 +828,6 @@ class Localinpolicy6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -617,7 +848,6 @@ class Localinpolicy6(pulumi.CustomResource):
             )],
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -644,8 +874,15 @@ class Localinpolicy6(pulumi.CustomResource):
         :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6DstaddrArgs']]]] dstaddrs: Destination address object from available options. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
-        :param pulumi.Input[str] intf: Incoming interface name from available options.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] internet_service6_src: Enable/disable use of IPv6 Internet Services in source for this local-in policy.If enabled, source address is not used. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcCustomGroupArgs']]]] internet_service6_src_custom_groups: Custom Internet Service6 source group name. The structure of `internet_service6_src_custom_group` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcCustomArgs']]]] internet_service6_src_customs: Custom IPv6 Internet Service source name. The structure of `internet_service6_src_custom` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcGroupArgs']]]] internet_service6_src_groups: Internet Service6 source group name. The structure of `internet_service6_src_group` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcNameArgs']]]] internet_service6_src_names: IPv6 Internet Service source name. The structure of `internet_service6_src_name` block is documented below.
+        :param pulumi.Input[str] internet_service6_src_negate: When enabled internet-service6-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] intf: Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf_block`.*
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6IntfBlockArgs']]]] intf_blocks: Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intf_block` block is documented below.
         :param pulumi.Input[int] policyid: User defined local in policy ID.
         :param pulumi.Input[str] schedule: Schedule object from available options.
         :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
@@ -668,7 +905,6 @@ class Localinpolicy6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -689,7 +925,6 @@ class Localinpolicy6(pulumi.CustomResource):
             )],
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -730,7 +965,14 @@ class Localinpolicy6(pulumi.CustomResource):
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6DstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
+                 internet_service6_src: Optional[pulumi.Input[str]] = None,
+                 internet_service6_src_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcCustomGroupArgs']]]]] = None,
+                 internet_service6_src_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcCustomArgs']]]]] = None,
+                 internet_service6_src_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcGroupArgs']]]]] = None,
+                 internet_service6_src_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcNameArgs']]]]] = None,
+                 internet_service6_src_negate: Optional[pulumi.Input[str]] = None,
                  intf: Optional[pulumi.Input[str]] = None,
+                 intf_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6IntfBlockArgs']]]]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  service_negate: Optional[pulumi.Input[str]] = None,
@@ -758,9 +1000,14 @@ class Localinpolicy6(pulumi.CustomResource):
             __props__.__dict__["dstaddrs"] = dstaddrs
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["get_all_tables"] = get_all_tables
-            if intf is None and not opts.urn:
-                raise TypeError("Missing required property 'intf'")
+            __props__.__dict__["internet_service6_src"] = internet_service6_src
+            __props__.__dict__["internet_service6_src_custom_groups"] = internet_service6_src_custom_groups
+            __props__.__dict__["internet_service6_src_customs"] = internet_service6_src_customs
+            __props__.__dict__["internet_service6_src_groups"] = internet_service6_src_groups
+            __props__.__dict__["internet_service6_src_names"] = internet_service6_src_names
+            __props__.__dict__["internet_service6_src_negate"] = internet_service6_src_negate
             __props__.__dict__["intf"] = intf
+            __props__.__dict__["intf_blocks"] = intf_blocks
             __props__.__dict__["policyid"] = policyid
             if schedule is None and not opts.urn:
                 raise TypeError("Missing required property 'schedule'")
@@ -793,7 +1040,14 @@ class Localinpolicy6(pulumi.CustomResource):
             dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6DstaddrArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             get_all_tables: Optional[pulumi.Input[str]] = None,
+            internet_service6_src: Optional[pulumi.Input[str]] = None,
+            internet_service6_src_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcCustomGroupArgs']]]]] = None,
+            internet_service6_src_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcCustomArgs']]]]] = None,
+            internet_service6_src_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcGroupArgs']]]]] = None,
+            internet_service6_src_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcNameArgs']]]]] = None,
+            internet_service6_src_negate: Optional[pulumi.Input[str]] = None,
             intf: Optional[pulumi.Input[str]] = None,
+            intf_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6IntfBlockArgs']]]]] = None,
             policyid: Optional[pulumi.Input[int]] = None,
             schedule: Optional[pulumi.Input[str]] = None,
             service_negate: Optional[pulumi.Input[str]] = None,
@@ -816,8 +1070,15 @@ class Localinpolicy6(pulumi.CustomResource):
         :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6DstaddrArgs']]]] dstaddrs: Destination address object from available options. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: Sort sub-tables, please do not set this parameter when configuring static sub-tables. Options: [ false, true, natural, alphabetical ]. false: Default value, do not sort tables; true/natural: sort tables in natural order. For example: [ a10, a2 ] -> [ a2, a10 ]; alphabetical: sort tables in alphabetical order. For example: [ a10, a2 ] -> [ a10, a2 ].
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
-        :param pulumi.Input[str] intf: Incoming interface name from available options.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] internet_service6_src: Enable/disable use of IPv6 Internet Services in source for this local-in policy.If enabled, source address is not used. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcCustomGroupArgs']]]] internet_service6_src_custom_groups: Custom Internet Service6 source group name. The structure of `internet_service6_src_custom_group` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcCustomArgs']]]] internet_service6_src_customs: Custom IPv6 Internet Service source name. The structure of `internet_service6_src_custom` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcGroupArgs']]]] internet_service6_src_groups: Internet Service6 source group name. The structure of `internet_service6_src_group` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6InternetService6SrcNameArgs']]]] internet_service6_src_names: IPv6 Internet Service source name. The structure of `internet_service6_src_name` block is documented below.
+        :param pulumi.Input[str] internet_service6_src_negate: When enabled internet-service6-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] intf: Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf_block`.*
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Localinpolicy6IntfBlockArgs']]]] intf_blocks: Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intf_block` block is documented below.
         :param pulumi.Input[int] policyid: User defined local in policy ID.
         :param pulumi.Input[str] schedule: Schedule object from available options.
         :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
@@ -839,7 +1100,14 @@ class Localinpolicy6(pulumi.CustomResource):
         __props__.__dict__["dstaddrs"] = dstaddrs
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["get_all_tables"] = get_all_tables
+        __props__.__dict__["internet_service6_src"] = internet_service6_src
+        __props__.__dict__["internet_service6_src_custom_groups"] = internet_service6_src_custom_groups
+        __props__.__dict__["internet_service6_src_customs"] = internet_service6_src_customs
+        __props__.__dict__["internet_service6_src_groups"] = internet_service6_src_groups
+        __props__.__dict__["internet_service6_src_names"] = internet_service6_src_names
+        __props__.__dict__["internet_service6_src_negate"] = internet_service6_src_negate
         __props__.__dict__["intf"] = intf
+        __props__.__dict__["intf_blocks"] = intf_blocks
         __props__.__dict__["policyid"] = policyid
         __props__.__dict__["schedule"] = schedule
         __props__.__dict__["service_negate"] = service_negate
@@ -896,17 +1164,73 @@ class Localinpolicy6(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
+
+    @property
+    @pulumi.getter(name="internetService6Src")
+    def internet_service6_src(self) -> pulumi.Output[str]:
+        """
+        Enable/disable use of IPv6 Internet Services in source for this local-in policy.If enabled, source address is not used. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "internet_service6_src")
+
+    @property
+    @pulumi.getter(name="internetService6SrcCustomGroups")
+    def internet_service6_src_custom_groups(self) -> pulumi.Output[Optional[Sequence['outputs.Localinpolicy6InternetService6SrcCustomGroup']]]:
+        """
+        Custom Internet Service6 source group name. The structure of `internet_service6_src_custom_group` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_src_custom_groups")
+
+    @property
+    @pulumi.getter(name="internetService6SrcCustoms")
+    def internet_service6_src_customs(self) -> pulumi.Output[Optional[Sequence['outputs.Localinpolicy6InternetService6SrcCustom']]]:
+        """
+        Custom IPv6 Internet Service source name. The structure of `internet_service6_src_custom` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_src_customs")
+
+    @property
+    @pulumi.getter(name="internetService6SrcGroups")
+    def internet_service6_src_groups(self) -> pulumi.Output[Optional[Sequence['outputs.Localinpolicy6InternetService6SrcGroup']]]:
+        """
+        Internet Service6 source group name. The structure of `internet_service6_src_group` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_src_groups")
+
+    @property
+    @pulumi.getter(name="internetService6SrcNames")
+    def internet_service6_src_names(self) -> pulumi.Output[Optional[Sequence['outputs.Localinpolicy6InternetService6SrcName']]]:
+        """
+        IPv6 Internet Service source name. The structure of `internet_service6_src_name` block is documented below.
+        """
+        return pulumi.get(self, "internet_service6_src_names")
+
+    @property
+    @pulumi.getter(name="internetService6SrcNegate")
+    def internet_service6_src_negate(self) -> pulumi.Output[str]:
+        """
+        When enabled internet-service6-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "internet_service6_src_negate")
 
     @property
     @pulumi.getter
     def intf(self) -> pulumi.Output[str]:
         """
-        Incoming interface name from available options.
+        Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf_block`.*
         """
         return pulumi.get(self, "intf")
+
+    @property
+    @pulumi.getter(name="intfBlocks")
+    def intf_blocks(self) -> pulumi.Output[Optional[Sequence['outputs.Localinpolicy6IntfBlock']]]:
+        """
+        Incoming interface name from available options. *Due to the data type change of API, for other versions of FortiOS, please check variable `intf`.* The structure of `intf_block` block is documented below.
+        """
+        return pulumi.get(self, "intf_blocks")
 
     @property
     @pulumi.getter
@@ -974,7 +1298,7 @@ class Localinpolicy6(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

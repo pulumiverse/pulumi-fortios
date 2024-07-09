@@ -14,7 +14,7 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
     public sealed class Localinpolicy6DstaddrGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Address name.
+        /// Custom Internet Service6 group name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

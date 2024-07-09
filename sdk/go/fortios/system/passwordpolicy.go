@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -49,7 +48,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -79,7 +77,7 @@ type Passwordpolicy struct {
 	ExpireDay pulumi.IntOutput `pulumi:"expireDay"`
 	// Enable/disable password expiration. Valid values: `enable`, `disable`.
 	ExpireStatus pulumi.StringOutput `pulumi:"expireStatus"`
-	// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+	// Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
 	MinChangeCharacters pulumi.IntOutput `pulumi:"minChangeCharacters"`
 	// Minimum number of lowercase characters in password (0 - 128, default = 0).
 	MinLowerCaseLetter pulumi.IntOutput `pulumi:"minLowerCaseLetter"`
@@ -91,12 +89,12 @@ type Passwordpolicy struct {
 	MinUpperCaseLetter pulumi.IntOutput `pulumi:"minUpperCaseLetter"`
 	// Minimum password length (8 - 128, default = 8).
 	MinimumLength pulumi.IntOutput `pulumi:"minimumLength"`
-	// Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
+	// Enable/disable reuse of password. On FortiOS versions 6.2.0-7.0.0: If both reuse-password and change-4-characters are enabled, change-4-characters overrides.. On FortiOS versions >= 7.0.1: If both reuse-password and min-change-characters are enabled, min-change-characters overrides.. Valid values: `enable`, `disable`.
 	ReusePassword pulumi.StringOutput `pulumi:"reusePassword"`
 	// Enable/disable setting a password policy for locally defined administrator passwords and IPsec VPN pre-shared keys. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewPasswordpolicy registers a new resource with the given unique name, arguments, and options.
@@ -137,7 +135,7 @@ type passwordpolicyState struct {
 	ExpireDay *int `pulumi:"expireDay"`
 	// Enable/disable password expiration. Valid values: `enable`, `disable`.
 	ExpireStatus *string `pulumi:"expireStatus"`
-	// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+	// Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
 	MinChangeCharacters *int `pulumi:"minChangeCharacters"`
 	// Minimum number of lowercase characters in password (0 - 128, default = 0).
 	MinLowerCaseLetter *int `pulumi:"minLowerCaseLetter"`
@@ -149,7 +147,7 @@ type passwordpolicyState struct {
 	MinUpperCaseLetter *int `pulumi:"minUpperCaseLetter"`
 	// Minimum password length (8 - 128, default = 8).
 	MinimumLength *int `pulumi:"minimumLength"`
-	// Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
+	// Enable/disable reuse of password. On FortiOS versions 6.2.0-7.0.0: If both reuse-password and change-4-characters are enabled, change-4-characters overrides.. On FortiOS versions >= 7.0.1: If both reuse-password and min-change-characters are enabled, min-change-characters overrides.. Valid values: `enable`, `disable`.
 	ReusePassword *string `pulumi:"reusePassword"`
 	// Enable/disable setting a password policy for locally defined administrator passwords and IPsec VPN pre-shared keys. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
@@ -166,7 +164,7 @@ type PasswordpolicyState struct {
 	ExpireDay pulumi.IntPtrInput
 	// Enable/disable password expiration. Valid values: `enable`, `disable`.
 	ExpireStatus pulumi.StringPtrInput
-	// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+	// Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
 	MinChangeCharacters pulumi.IntPtrInput
 	// Minimum number of lowercase characters in password (0 - 128, default = 0).
 	MinLowerCaseLetter pulumi.IntPtrInput
@@ -178,7 +176,7 @@ type PasswordpolicyState struct {
 	MinUpperCaseLetter pulumi.IntPtrInput
 	// Minimum password length (8 - 128, default = 8).
 	MinimumLength pulumi.IntPtrInput
-	// Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
+	// Enable/disable reuse of password. On FortiOS versions 6.2.0-7.0.0: If both reuse-password and change-4-characters are enabled, change-4-characters overrides.. On FortiOS versions >= 7.0.1: If both reuse-password and min-change-characters are enabled, min-change-characters overrides.. Valid values: `enable`, `disable`.
 	ReusePassword pulumi.StringPtrInput
 	// Enable/disable setting a password policy for locally defined administrator passwords and IPsec VPN pre-shared keys. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
@@ -199,7 +197,7 @@ type passwordpolicyArgs struct {
 	ExpireDay *int `pulumi:"expireDay"`
 	// Enable/disable password expiration. Valid values: `enable`, `disable`.
 	ExpireStatus *string `pulumi:"expireStatus"`
-	// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+	// Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
 	MinChangeCharacters *int `pulumi:"minChangeCharacters"`
 	// Minimum number of lowercase characters in password (0 - 128, default = 0).
 	MinLowerCaseLetter *int `pulumi:"minLowerCaseLetter"`
@@ -211,7 +209,7 @@ type passwordpolicyArgs struct {
 	MinUpperCaseLetter *int `pulumi:"minUpperCaseLetter"`
 	// Minimum password length (8 - 128, default = 8).
 	MinimumLength *int `pulumi:"minimumLength"`
-	// Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
+	// Enable/disable reuse of password. On FortiOS versions 6.2.0-7.0.0: If both reuse-password and change-4-characters are enabled, change-4-characters overrides.. On FortiOS versions >= 7.0.1: If both reuse-password and min-change-characters are enabled, min-change-characters overrides.. Valid values: `enable`, `disable`.
 	ReusePassword *string `pulumi:"reusePassword"`
 	// Enable/disable setting a password policy for locally defined administrator passwords and IPsec VPN pre-shared keys. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
@@ -229,7 +227,7 @@ type PasswordpolicyArgs struct {
 	ExpireDay pulumi.IntPtrInput
 	// Enable/disable password expiration. Valid values: `enable`, `disable`.
 	ExpireStatus pulumi.StringPtrInput
-	// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+	// Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
 	MinChangeCharacters pulumi.IntPtrInput
 	// Minimum number of lowercase characters in password (0 - 128, default = 0).
 	MinLowerCaseLetter pulumi.IntPtrInput
@@ -241,7 +239,7 @@ type PasswordpolicyArgs struct {
 	MinUpperCaseLetter pulumi.IntPtrInput
 	// Minimum password length (8 - 128, default = 8).
 	MinimumLength pulumi.IntPtrInput
-	// Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
+	// Enable/disable reuse of password. On FortiOS versions 6.2.0-7.0.0: If both reuse-password and change-4-characters are enabled, change-4-characters overrides.. On FortiOS versions >= 7.0.1: If both reuse-password and min-change-characters are enabled, min-change-characters overrides.. Valid values: `enable`, `disable`.
 	ReusePassword pulumi.StringPtrInput
 	// Enable/disable setting a password policy for locally defined administrator passwords and IPsec VPN pre-shared keys. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
@@ -356,7 +354,7 @@ func (o PasswordpolicyOutput) ExpireStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Passwordpolicy) pulumi.StringOutput { return v.ExpireStatus }).(pulumi.StringOutput)
 }
 
-// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+// Minimum number of unique characters in new password which do not exist in old password (0 - 128, default = 0. This attribute overrides reuse-password if both are enabled).
 func (o PasswordpolicyOutput) MinChangeCharacters() pulumi.IntOutput {
 	return o.ApplyT(func(v *Passwordpolicy) pulumi.IntOutput { return v.MinChangeCharacters }).(pulumi.IntOutput)
 }
@@ -386,7 +384,7 @@ func (o PasswordpolicyOutput) MinimumLength() pulumi.IntOutput {
 	return o.ApplyT(func(v *Passwordpolicy) pulumi.IntOutput { return v.MinimumLength }).(pulumi.IntOutput)
 }
 
-// Enable/disable reusing of password (if both reuse-password and change-4-characters are enabled, change-4-characters overrides). Valid values: `enable`, `disable`.
+// Enable/disable reuse of password. On FortiOS versions 6.2.0-7.0.0: If both reuse-password and change-4-characters are enabled, change-4-characters overrides.. On FortiOS versions >= 7.0.1: If both reuse-password and min-change-characters are enabled, min-change-characters overrides.. Valid values: `enable`, `disable`.
 func (o PasswordpolicyOutput) ReusePassword() pulumi.StringOutput {
 	return o.ApplyT(func(v *Passwordpolicy) pulumi.StringOutput { return v.ReusePassword }).(pulumi.StringOutput)
 }
@@ -397,8 +395,8 @@ func (o PasswordpolicyOutput) Status() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o PasswordpolicyOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Passwordpolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o PasswordpolicyOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Passwordpolicy) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type PasswordpolicyArrayOutput struct{ *pulumi.OutputState }

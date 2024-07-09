@@ -162,7 +162,7 @@ func (o HostchecksoftwareCheckItemListArrayOutput) Index(i pulumi.IntInput) Host
 }
 
 type HostchecksoftwareCheckItemListMd5 struct {
-	// Hex string of MD5 checksum.
+	// an identifier for the resource with format {{name}}.
 	Id *string `pulumi:"id"`
 }
 
@@ -178,7 +178,7 @@ type HostchecksoftwareCheckItemListMd5Input interface {
 }
 
 type HostchecksoftwareCheckItemListMd5Args struct {
-	// Hex string of MD5 checksum.
+	// an identifier for the resource with format {{name}}.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 }
 
@@ -233,7 +233,7 @@ func (o HostchecksoftwareCheckItemListMd5Output) ToHostchecksoftwareCheckItemLis
 	return o
 }
 
-// Hex string of MD5 checksum.
+// an identifier for the resource with format {{name}}.
 func (o HostchecksoftwareCheckItemListMd5Output) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HostchecksoftwareCheckItemListMd5) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -379,7 +379,7 @@ type PortalBookmarkGroupBookmark struct {
 	Folder *string `pulumi:"folder"`
 	// Form data. The structure of `formData` block is documented below.
 	FormDatas []PortalBookmarkGroupBookmarkFormData `pulumi:"formDatas"`
-	// Screen height (range from 480 - 65535, default = 768).
+	// Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
 	Height *int `pulumi:"height"`
 	// Host name/IP parameter.
 	Host *string `pulumi:"host"`
@@ -399,13 +399,13 @@ type PortalBookmarkGroupBookmark struct {
 	Port *int `pulumi:"port"`
 	// An arbitrary string which identifies the RDP source.
 	PreconnectionBlob *string `pulumi:"preconnectionBlob"`
-	// The numeric ID of the RDP source (0-2147483648).
+	// The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
 	PreconnectionId *int `pulumi:"preconnectionId"`
 	// Remote port (0 - 65535).
 	RemotePort *int `pulumi:"remotePort"`
 	// Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
 	RestrictedAdmin *string `pulumi:"restrictedAdmin"`
-	// Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+	// Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
 	Security *string `pulumi:"security"`
 	// Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
 	SendPreconnectionId *string `pulumi:"sendPreconnectionId"`
@@ -427,7 +427,7 @@ type PortalBookmarkGroupBookmark struct {
 	Url *string `pulumi:"url"`
 	// Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
 	VncKeyboardLayout *string `pulumi:"vncKeyboardLayout"`
-	// Screen width (range from 640 - 65535, default = 1024).
+	// Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
 	Width *int `pulumi:"width"`
 }
 
@@ -457,7 +457,7 @@ type PortalBookmarkGroupBookmarkArgs struct {
 	Folder pulumi.StringPtrInput `pulumi:"folder"`
 	// Form data. The structure of `formData` block is documented below.
 	FormDatas PortalBookmarkGroupBookmarkFormDataArrayInput `pulumi:"formDatas"`
-	// Screen height (range from 480 - 65535, default = 768).
+	// Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
 	Height pulumi.IntPtrInput `pulumi:"height"`
 	// Host name/IP parameter.
 	Host pulumi.StringPtrInput `pulumi:"host"`
@@ -477,13 +477,13 @@ type PortalBookmarkGroupBookmarkArgs struct {
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// An arbitrary string which identifies the RDP source.
 	PreconnectionBlob pulumi.StringPtrInput `pulumi:"preconnectionBlob"`
-	// The numeric ID of the RDP source (0-2147483648).
+	// The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
 	PreconnectionId pulumi.IntPtrInput `pulumi:"preconnectionId"`
 	// Remote port (0 - 65535).
 	RemotePort pulumi.IntPtrInput `pulumi:"remotePort"`
 	// Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
 	RestrictedAdmin pulumi.StringPtrInput `pulumi:"restrictedAdmin"`
-	// Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+	// Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
 	Security pulumi.StringPtrInput `pulumi:"security"`
 	// Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
 	SendPreconnectionId pulumi.StringPtrInput `pulumi:"sendPreconnectionId"`
@@ -505,7 +505,7 @@ type PortalBookmarkGroupBookmarkArgs struct {
 	Url pulumi.StringPtrInput `pulumi:"url"`
 	// Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
 	VncKeyboardLayout pulumi.StringPtrInput `pulumi:"vncKeyboardLayout"`
-	// Screen width (range from 640 - 65535, default = 1024).
+	// Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
 	Width pulumi.IntPtrInput `pulumi:"width"`
 }
 
@@ -595,7 +595,7 @@ func (o PortalBookmarkGroupBookmarkOutput) FormDatas() PortalBookmarkGroupBookma
 	return o.ApplyT(func(v PortalBookmarkGroupBookmark) []PortalBookmarkGroupBookmarkFormData { return v.FormDatas }).(PortalBookmarkGroupBookmarkFormDataArrayOutput)
 }
 
-// Screen height (range from 480 - 65535, default = 768).
+// Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
 func (o PortalBookmarkGroupBookmarkOutput) Height() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v PortalBookmarkGroupBookmark) *int { return v.Height }).(pulumi.IntPtrOutput)
 }
@@ -645,7 +645,7 @@ func (o PortalBookmarkGroupBookmarkOutput) PreconnectionBlob() pulumi.StringPtrO
 	return o.ApplyT(func(v PortalBookmarkGroupBookmark) *string { return v.PreconnectionBlob }).(pulumi.StringPtrOutput)
 }
 
-// The numeric ID of the RDP source (0-2147483648).
+// The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
 func (o PortalBookmarkGroupBookmarkOutput) PreconnectionId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v PortalBookmarkGroupBookmark) *int { return v.PreconnectionId }).(pulumi.IntPtrOutput)
 }
@@ -660,7 +660,7 @@ func (o PortalBookmarkGroupBookmarkOutput) RestrictedAdmin() pulumi.StringPtrOut
 	return o.ApplyT(func(v PortalBookmarkGroupBookmark) *string { return v.RestrictedAdmin }).(pulumi.StringPtrOutput)
 }
 
-// Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+// Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
 func (o PortalBookmarkGroupBookmarkOutput) Security() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PortalBookmarkGroupBookmark) *string { return v.Security }).(pulumi.StringPtrOutput)
 }
@@ -715,7 +715,7 @@ func (o PortalBookmarkGroupBookmarkOutput) VncKeyboardLayout() pulumi.StringPtrO
 	return o.ApplyT(func(v PortalBookmarkGroupBookmark) *string { return v.VncKeyboardLayout }).(pulumi.StringPtrOutput)
 }
 
-// Screen width (range from 640 - 65535, default = 1024).
+// Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
 func (o PortalBookmarkGroupBookmarkOutput) Width() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v PortalBookmarkGroupBookmark) *int { return v.Width }).(pulumi.IntPtrOutput)
 }
@@ -1932,7 +1932,7 @@ type PortalSplitDn struct {
 	DnsServer1 *string `pulumi:"dnsServer1"`
 	// DNS server 2.
 	DnsServer2 *string `pulumi:"dnsServer2"`
-	// Split DNS domains used for SSL-VPN clients separated by comma(,).
+	// Split DNS domains used for SSL-VPN clients separated by comma.
 	Domains *string `pulumi:"domains"`
 	// ID.
 	Id *int `pulumi:"id"`
@@ -1958,7 +1958,7 @@ type PortalSplitDnArgs struct {
 	DnsServer1 pulumi.StringPtrInput `pulumi:"dnsServer1"`
 	// DNS server 2.
 	DnsServer2 pulumi.StringPtrInput `pulumi:"dnsServer2"`
-	// Split DNS domains used for SSL-VPN clients separated by comma(,).
+	// Split DNS domains used for SSL-VPN clients separated by comma.
 	Domains pulumi.StringPtrInput `pulumi:"domains"`
 	// ID.
 	Id pulumi.IntPtrInput `pulumi:"id"`
@@ -2029,7 +2029,7 @@ func (o PortalSplitDnOutput) DnsServer2() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PortalSplitDn) *string { return v.DnsServer2 }).(pulumi.StringPtrOutput)
 }
 
-// Split DNS domains used for SSL-VPN clients separated by comma(,).
+// Split DNS domains used for SSL-VPN clients separated by comma.
 func (o PortalSplitDnOutput) Domains() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PortalSplitDn) *string { return v.Domains }).(pulumi.StringPtrOutput)
 }
@@ -2181,7 +2181,7 @@ type UserbookmarkBookmark struct {
 	Folder *string `pulumi:"folder"`
 	// Form data. The structure of `formData` block is documented below.
 	FormDatas []UserbookmarkBookmarkFormData `pulumi:"formDatas"`
-	// Screen height (range from 480 - 65535, default = 768).
+	// Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
 	Height *int `pulumi:"height"`
 	// Host name/IP parameter.
 	Host *string `pulumi:"host"`
@@ -2201,13 +2201,13 @@ type UserbookmarkBookmark struct {
 	Port *int `pulumi:"port"`
 	// An arbitrary string which identifies the RDP source.
 	PreconnectionBlob *string `pulumi:"preconnectionBlob"`
-	// The numeric ID of the RDP source (0-2147483648).
+	// The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
 	PreconnectionId *int `pulumi:"preconnectionId"`
 	// Remote port (0 - 65535).
 	RemotePort *int `pulumi:"remotePort"`
 	// Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
 	RestrictedAdmin *string `pulumi:"restrictedAdmin"`
-	// Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+	// Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
 	Security *string `pulumi:"security"`
 	// Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
 	SendPreconnectionId *string `pulumi:"sendPreconnectionId"`
@@ -2229,7 +2229,7 @@ type UserbookmarkBookmark struct {
 	Url *string `pulumi:"url"`
 	// Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
 	VncKeyboardLayout *string `pulumi:"vncKeyboardLayout"`
-	// Screen width (range from 640 - 65535, default = 1024).
+	// Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
 	Width *int `pulumi:"width"`
 }
 
@@ -2259,7 +2259,7 @@ type UserbookmarkBookmarkArgs struct {
 	Folder pulumi.StringPtrInput `pulumi:"folder"`
 	// Form data. The structure of `formData` block is documented below.
 	FormDatas UserbookmarkBookmarkFormDataArrayInput `pulumi:"formDatas"`
-	// Screen height (range from 480 - 65535, default = 768).
+	// Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
 	Height pulumi.IntPtrInput `pulumi:"height"`
 	// Host name/IP parameter.
 	Host pulumi.StringPtrInput `pulumi:"host"`
@@ -2279,13 +2279,13 @@ type UserbookmarkBookmarkArgs struct {
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// An arbitrary string which identifies the RDP source.
 	PreconnectionBlob pulumi.StringPtrInput `pulumi:"preconnectionBlob"`
-	// The numeric ID of the RDP source (0-2147483648).
+	// The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
 	PreconnectionId pulumi.IntPtrInput `pulumi:"preconnectionId"`
 	// Remote port (0 - 65535).
 	RemotePort pulumi.IntPtrInput `pulumi:"remotePort"`
 	// Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
 	RestrictedAdmin pulumi.StringPtrInput `pulumi:"restrictedAdmin"`
-	// Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+	// Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
 	Security pulumi.StringPtrInput `pulumi:"security"`
 	// Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
 	SendPreconnectionId pulumi.StringPtrInput `pulumi:"sendPreconnectionId"`
@@ -2307,7 +2307,7 @@ type UserbookmarkBookmarkArgs struct {
 	Url pulumi.StringPtrInput `pulumi:"url"`
 	// Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
 	VncKeyboardLayout pulumi.StringPtrInput `pulumi:"vncKeyboardLayout"`
-	// Screen width (range from 640 - 65535, default = 1024).
+	// Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
 	Width pulumi.IntPtrInput `pulumi:"width"`
 }
 
@@ -2397,7 +2397,7 @@ func (o UserbookmarkBookmarkOutput) FormDatas() UserbookmarkBookmarkFormDataArra
 	return o.ApplyT(func(v UserbookmarkBookmark) []UserbookmarkBookmarkFormData { return v.FormDatas }).(UserbookmarkBookmarkFormDataArrayOutput)
 }
 
-// Screen height (range from 480 - 65535, default = 768).
+// Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
 func (o UserbookmarkBookmarkOutput) Height() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v UserbookmarkBookmark) *int { return v.Height }).(pulumi.IntPtrOutput)
 }
@@ -2447,7 +2447,7 @@ func (o UserbookmarkBookmarkOutput) PreconnectionBlob() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UserbookmarkBookmark) *string { return v.PreconnectionBlob }).(pulumi.StringPtrOutput)
 }
 
-// The numeric ID of the RDP source (0-2147483648).
+// The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
 func (o UserbookmarkBookmarkOutput) PreconnectionId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v UserbookmarkBookmark) *int { return v.PreconnectionId }).(pulumi.IntPtrOutput)
 }
@@ -2462,7 +2462,7 @@ func (o UserbookmarkBookmarkOutput) RestrictedAdmin() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UserbookmarkBookmark) *string { return v.RestrictedAdmin }).(pulumi.StringPtrOutput)
 }
 
-// Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+// Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
 func (o UserbookmarkBookmarkOutput) Security() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UserbookmarkBookmark) *string { return v.Security }).(pulumi.StringPtrOutput)
 }
@@ -2517,7 +2517,7 @@ func (o UserbookmarkBookmarkOutput) VncKeyboardLayout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UserbookmarkBookmark) *string { return v.VncKeyboardLayout }).(pulumi.StringPtrOutput)
 }
 
-// Screen width (range from 640 - 65535, default = 1024).
+// Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
 func (o UserbookmarkBookmarkOutput) Width() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v UserbookmarkBookmark) *int { return v.Width }).(pulumi.IntPtrOutput)
 }
@@ -2663,7 +2663,7 @@ type UsergroupbookmarkBookmark struct {
 	Folder *string `pulumi:"folder"`
 	// Form data. The structure of `formData` block is documented below.
 	FormDatas []UsergroupbookmarkBookmarkFormData `pulumi:"formDatas"`
-	// Screen height (range from 480 - 65535, default = 768).
+	// Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
 	Height *int `pulumi:"height"`
 	// Host name/IP parameter.
 	Host *string `pulumi:"host"`
@@ -2683,13 +2683,13 @@ type UsergroupbookmarkBookmark struct {
 	Port *int `pulumi:"port"`
 	// An arbitrary string which identifies the RDP source.
 	PreconnectionBlob *string `pulumi:"preconnectionBlob"`
-	// The numeric ID of the RDP source (0-2147483648).
+	// The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
 	PreconnectionId *int `pulumi:"preconnectionId"`
 	// Remote port (0 - 65535).
 	RemotePort *int `pulumi:"remotePort"`
 	// Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
 	RestrictedAdmin *string `pulumi:"restrictedAdmin"`
-	// Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+	// Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
 	Security *string `pulumi:"security"`
 	// Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
 	SendPreconnectionId *string `pulumi:"sendPreconnectionId"`
@@ -2711,7 +2711,7 @@ type UsergroupbookmarkBookmark struct {
 	Url *string `pulumi:"url"`
 	// Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
 	VncKeyboardLayout *string `pulumi:"vncKeyboardLayout"`
-	// Screen width (range from 640 - 65535, default = 1024).
+	// Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
 	Width *int `pulumi:"width"`
 }
 
@@ -2741,7 +2741,7 @@ type UsergroupbookmarkBookmarkArgs struct {
 	Folder pulumi.StringPtrInput `pulumi:"folder"`
 	// Form data. The structure of `formData` block is documented below.
 	FormDatas UsergroupbookmarkBookmarkFormDataArrayInput `pulumi:"formDatas"`
-	// Screen height (range from 480 - 65535, default = 768).
+	// Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
 	Height pulumi.IntPtrInput `pulumi:"height"`
 	// Host name/IP parameter.
 	Host pulumi.StringPtrInput `pulumi:"host"`
@@ -2761,13 +2761,13 @@ type UsergroupbookmarkBookmarkArgs struct {
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// An arbitrary string which identifies the RDP source.
 	PreconnectionBlob pulumi.StringPtrInput `pulumi:"preconnectionBlob"`
-	// The numeric ID of the RDP source (0-2147483648).
+	// The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
 	PreconnectionId pulumi.IntPtrInput `pulumi:"preconnectionId"`
 	// Remote port (0 - 65535).
 	RemotePort pulumi.IntPtrInput `pulumi:"remotePort"`
 	// Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
 	RestrictedAdmin pulumi.StringPtrInput `pulumi:"restrictedAdmin"`
-	// Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+	// Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
 	Security pulumi.StringPtrInput `pulumi:"security"`
 	// Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
 	SendPreconnectionId pulumi.StringPtrInput `pulumi:"sendPreconnectionId"`
@@ -2789,7 +2789,7 @@ type UsergroupbookmarkBookmarkArgs struct {
 	Url pulumi.StringPtrInput `pulumi:"url"`
 	// Keyboard layout. Valid values: `default`, `da`, `nl`, `en-uk`, `en-uk-ext`, `fi`, `fr`, `fr-be`, `fr-ca-mul`, `de`, `de-ch`, `it`, `it-142`, `pt`, `pt-br-abnt2`, `no`, `gd`, `es`, `sv`, `us-intl`.
 	VncKeyboardLayout pulumi.StringPtrInput `pulumi:"vncKeyboardLayout"`
-	// Screen width (range from 640 - 65535, default = 1024).
+	// Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
 	Width pulumi.IntPtrInput `pulumi:"width"`
 }
 
@@ -2879,7 +2879,7 @@ func (o UsergroupbookmarkBookmarkOutput) FormDatas() UsergroupbookmarkBookmarkFo
 	return o.ApplyT(func(v UsergroupbookmarkBookmark) []UsergroupbookmarkBookmarkFormData { return v.FormDatas }).(UsergroupbookmarkBookmarkFormDataArrayOutput)
 }
 
-// Screen height (range from 480 - 65535, default = 768).
+// Screen height. On FortiOS versions 7.0.4-7.0.5: range from 480 - 65535, default = 768. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
 func (o UsergroupbookmarkBookmarkOutput) Height() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v UsergroupbookmarkBookmark) *int { return v.Height }).(pulumi.IntPtrOutput)
 }
@@ -2929,7 +2929,7 @@ func (o UsergroupbookmarkBookmarkOutput) PreconnectionBlob() pulumi.StringPtrOut
 	return o.ApplyT(func(v UsergroupbookmarkBookmark) *string { return v.PreconnectionBlob }).(pulumi.StringPtrOutput)
 }
 
-// The numeric ID of the RDP source (0-2147483648).
+// The numeric ID of the RDP source. On FortiOS versions 6.2.0-6.4.2, 7.0.0: 0-2147483648. On FortiOS versions 6.4.10-6.4.15, >= 7.0.1: 0-4294967295.
 func (o UsergroupbookmarkBookmarkOutput) PreconnectionId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v UsergroupbookmarkBookmark) *int { return v.PreconnectionId }).(pulumi.IntPtrOutput)
 }
@@ -2944,7 +2944,7 @@ func (o UsergroupbookmarkBookmarkOutput) RestrictedAdmin() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v UsergroupbookmarkBookmark) *string { return v.RestrictedAdmin }).(pulumi.StringPtrOutput)
 }
 
-// Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+// Security mode for RDP connection (default = any). Valid values: `rdp`, `nla`, `tls`, `any`.
 func (o UsergroupbookmarkBookmarkOutput) Security() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UsergroupbookmarkBookmark) *string { return v.Security }).(pulumi.StringPtrOutput)
 }
@@ -2999,7 +2999,7 @@ func (o UsergroupbookmarkBookmarkOutput) VncKeyboardLayout() pulumi.StringPtrOut
 	return o.ApplyT(func(v UsergroupbookmarkBookmark) *string { return v.VncKeyboardLayout }).(pulumi.StringPtrOutput)
 }
 
-// Screen width (range from 640 - 65535, default = 1024).
+// Screen width. On FortiOS versions 7.0.4-7.0.5: range from 640 - 65535, default = 1024. On FortiOS versions >= 7.0.6: range from 0 - 65535, default = 0.
 func (o UsergroupbookmarkBookmarkOutput) Width() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v UsergroupbookmarkBookmark) *int { return v.Width }).(pulumi.IntPtrOutput)
 }

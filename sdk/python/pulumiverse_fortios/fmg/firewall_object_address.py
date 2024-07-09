@@ -368,7 +368,6 @@ class FirewallObjectAddress(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -391,7 +390,6 @@ class FirewallObjectAddress(pulumi.CustomResource):
             start_ip="2.2.2.1",
             type="iprange")
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -417,7 +415,6 @@ class FirewallObjectAddress(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -440,7 +437,6 @@ class FirewallObjectAddress(pulumi.CustomResource):
             start_ip="2.2.2.1",
             type="iprange")
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param FirewallObjectAddressArgs args: The arguments to use to populate this resource's properties.

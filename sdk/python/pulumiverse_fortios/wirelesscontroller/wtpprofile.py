@@ -61,6 +61,7 @@ class WtpprofileArgs:
                  tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
                  tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
                  unii45ghz_band: Optional[pulumi.Input[str]] = None,
+                 usb_port: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wan_port_auth: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_macsec: Optional[pulumi.Input[str]] = None,
@@ -77,7 +78,7 @@ class WtpprofileArgs:
         :param pulumi.Input[str] ble_profile: Bluetooth Low Energy profile name.
         :param pulumi.Input[str] bonjour_profile: Bonjour profile name.
         :param pulumi.Input[str] comment: Comment.
-        :param pulumi.Input[str] console_login: Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] console_login: Enable/disable FortiAP console login access (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] control_message_offload: Enable/disable CAPWAP control message data channel offload.
         :param pulumi.Input[Sequence[pulumi.Input['WtpprofileDenyMacListArgs']]] deny_mac_lists: List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `deny_mac_list` block is documented below.
         :param pulumi.Input[str] dtls_in_kernel: Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
@@ -87,17 +88,17 @@ class WtpprofileArgs:
         :param pulumi.Input['WtpprofileEslSesDongleArgs'] esl_ses_dongle: ESL SES-imagotag dongle configuration. The structure of `esl_ses_dongle` block is documented below.
         :param pulumi.Input[str] ext_info_enable: Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] handoff_roaming: Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] handoff_rssi: Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
         :param pulumi.Input[int] handoff_sta_thresh: Threshold value for AP handoff.
         :param pulumi.Input[str] indoor_outdoor_deployment: Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
-        :param pulumi.Input[str] ip_fragment_preventing: Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        :param pulumi.Input[str] ip_fragment_preventing: Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         :param pulumi.Input['WtpprofileLanArgs'] lan: WTP LAN port mapping. The structure of `lan` block is documented below.
         :param pulumi.Input['WtpprofileLbsArgs'] lbs: Set various location based service (LBS) options. The structure of `lbs` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['WtpprofileLedScheduleArgs']]] led_schedules: Recurring firewall schedules for illuminating LEDs on the FortiAP. If led-state is enabled, LEDs will be visible when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `led_schedules` block is documented below.
         :param pulumi.Input[str] led_state: Enable/disable use of LEDs on WTP (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] lldp: Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] lldp: Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP. On FortiOS versions 6.2.0: default = disable. On FortiOS versions >= 6.2.4: default = enable. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] login_passwd: Set the managed WTP, FortiAP, or AP's administrator password.
         :param pulumi.Input[str] login_passwd_change: Change or reset the administrator password of a managed WTP, FortiAP or AP (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
         :param pulumi.Input[int] max_clients: Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
@@ -112,9 +113,10 @@ class WtpprofileArgs:
         :param pulumi.Input[str] split_tunneling_acl_path: Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
         :param pulumi.Input[Sequence[pulumi.Input['WtpprofileSplitTunnelingAclArgs']]] split_tunneling_acls: Split tunneling ACL filter list. The structure of `split_tunneling_acl` block is documented below.
         :param pulumi.Input[str] syslog_profile: System log server configuration profile name.
-        :param pulumi.Input[int] tun_mtu_downlink: Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
-        :param pulumi.Input[int] tun_mtu_uplink: Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        :param pulumi.Input[int] tun_mtu_downlink: The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
+        :param pulumi.Input[int] tun_mtu_uplink: The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         :param pulumi.Input[str] unii45ghz_band: Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] usb_port: Enable/disable USB port of the WTP (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wan_port_auth: Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
         :param pulumi.Input[str] wan_port_auth_macsec: Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
@@ -213,6 +215,8 @@ class WtpprofileArgs:
             pulumi.set(__self__, "tun_mtu_uplink", tun_mtu_uplink)
         if unii45ghz_band is not None:
             pulumi.set(__self__, "unii45ghz_band", unii45ghz_band)
+        if usb_port is not None:
+            pulumi.set(__self__, "usb_port", usb_port)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if wan_port_auth is not None:
@@ -316,7 +320,7 @@ class WtpprofileArgs:
     @pulumi.getter(name="consoleLogin")
     def console_login(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+        Enable/disable FortiAP console login access (default = enable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "console_login")
 
@@ -436,7 +440,7 @@ class WtpprofileArgs:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -496,7 +500,7 @@ class WtpprofileArgs:
     @pulumi.getter(name="ipFragmentPreventing")
     def ip_fragment_preventing(self) -> Optional[pulumi.Input[str]]:
         """
-        Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         """
         return pulumi.get(self, "ip_fragment_preventing")
 
@@ -556,7 +560,7 @@ class WtpprofileArgs:
     @pulumi.getter
     def lldp(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = disable). Valid values: `enable`, `disable`.
+        Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP. On FortiOS versions 6.2.0: default = disable. On FortiOS versions >= 6.2.4: default = enable. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "lldp")
 
@@ -736,7 +740,7 @@ class WtpprofileArgs:
     @pulumi.getter(name="tunMtuDownlink")
     def tun_mtu_downlink(self) -> Optional[pulumi.Input[int]]:
         """
-        Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         """
         return pulumi.get(self, "tun_mtu_downlink")
 
@@ -748,7 +752,7 @@ class WtpprofileArgs:
     @pulumi.getter(name="tunMtuUplink")
     def tun_mtu_uplink(self) -> Optional[pulumi.Input[int]]:
         """
-        Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         """
         return pulumi.get(self, "tun_mtu_uplink")
 
@@ -767,6 +771,18 @@ class WtpprofileArgs:
     @unii45ghz_band.setter
     def unii45ghz_band(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "unii45ghz_band", value)
+
+    @property
+    @pulumi.getter(name="usbPort")
+    def usb_port(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable USB port of the WTP (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "usb_port")
+
+    @usb_port.setter
+    def usb_port(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "usb_port", value)
 
     @property
     @pulumi.getter
@@ -901,6 +917,7 @@ class _WtpprofileState:
                  tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
                  tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
                  unii45ghz_band: Optional[pulumi.Input[str]] = None,
+                 usb_port: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wan_port_auth: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_macsec: Optional[pulumi.Input[str]] = None,
@@ -917,7 +934,7 @@ class _WtpprofileState:
         :param pulumi.Input[str] ble_profile: Bluetooth Low Energy profile name.
         :param pulumi.Input[str] bonjour_profile: Bonjour profile name.
         :param pulumi.Input[str] comment: Comment.
-        :param pulumi.Input[str] console_login: Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] console_login: Enable/disable FortiAP console login access (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] control_message_offload: Enable/disable CAPWAP control message data channel offload.
         :param pulumi.Input[Sequence[pulumi.Input['WtpprofileDenyMacListArgs']]] deny_mac_lists: List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `deny_mac_list` block is documented below.
         :param pulumi.Input[str] dtls_in_kernel: Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
@@ -927,17 +944,17 @@ class _WtpprofileState:
         :param pulumi.Input['WtpprofileEslSesDongleArgs'] esl_ses_dongle: ESL SES-imagotag dongle configuration. The structure of `esl_ses_dongle` block is documented below.
         :param pulumi.Input[str] ext_info_enable: Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] handoff_roaming: Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] handoff_rssi: Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
         :param pulumi.Input[int] handoff_sta_thresh: Threshold value for AP handoff.
         :param pulumi.Input[str] indoor_outdoor_deployment: Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
-        :param pulumi.Input[str] ip_fragment_preventing: Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        :param pulumi.Input[str] ip_fragment_preventing: Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         :param pulumi.Input['WtpprofileLanArgs'] lan: WTP LAN port mapping. The structure of `lan` block is documented below.
         :param pulumi.Input['WtpprofileLbsArgs'] lbs: Set various location based service (LBS) options. The structure of `lbs` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['WtpprofileLedScheduleArgs']]] led_schedules: Recurring firewall schedules for illuminating LEDs on the FortiAP. If led-state is enabled, LEDs will be visible when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `led_schedules` block is documented below.
         :param pulumi.Input[str] led_state: Enable/disable use of LEDs on WTP (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] lldp: Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] lldp: Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP. On FortiOS versions 6.2.0: default = disable. On FortiOS versions >= 6.2.4: default = enable. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] login_passwd: Set the managed WTP, FortiAP, or AP's administrator password.
         :param pulumi.Input[str] login_passwd_change: Change or reset the administrator password of a managed WTP, FortiAP or AP (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
         :param pulumi.Input[int] max_clients: Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
@@ -952,9 +969,10 @@ class _WtpprofileState:
         :param pulumi.Input[str] split_tunneling_acl_path: Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
         :param pulumi.Input[Sequence[pulumi.Input['WtpprofileSplitTunnelingAclArgs']]] split_tunneling_acls: Split tunneling ACL filter list. The structure of `split_tunneling_acl` block is documented below.
         :param pulumi.Input[str] syslog_profile: System log server configuration profile name.
-        :param pulumi.Input[int] tun_mtu_downlink: Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
-        :param pulumi.Input[int] tun_mtu_uplink: Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        :param pulumi.Input[int] tun_mtu_downlink: The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
+        :param pulumi.Input[int] tun_mtu_uplink: The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         :param pulumi.Input[str] unii45ghz_band: Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] usb_port: Enable/disable USB port of the WTP (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wan_port_auth: Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
         :param pulumi.Input[str] wan_port_auth_macsec: Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
@@ -1053,6 +1071,8 @@ class _WtpprofileState:
             pulumi.set(__self__, "tun_mtu_uplink", tun_mtu_uplink)
         if unii45ghz_band is not None:
             pulumi.set(__self__, "unii45ghz_band", unii45ghz_band)
+        if usb_port is not None:
+            pulumi.set(__self__, "usb_port", usb_port)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if wan_port_auth is not None:
@@ -1156,7 +1176,7 @@ class _WtpprofileState:
     @pulumi.getter(name="consoleLogin")
     def console_login(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+        Enable/disable FortiAP console login access (default = enable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "console_login")
 
@@ -1276,7 +1296,7 @@ class _WtpprofileState:
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -1336,7 +1356,7 @@ class _WtpprofileState:
     @pulumi.getter(name="ipFragmentPreventing")
     def ip_fragment_preventing(self) -> Optional[pulumi.Input[str]]:
         """
-        Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         """
         return pulumi.get(self, "ip_fragment_preventing")
 
@@ -1396,7 +1416,7 @@ class _WtpprofileState:
     @pulumi.getter
     def lldp(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = disable). Valid values: `enable`, `disable`.
+        Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP. On FortiOS versions 6.2.0: default = disable. On FortiOS versions >= 6.2.4: default = enable. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "lldp")
 
@@ -1576,7 +1596,7 @@ class _WtpprofileState:
     @pulumi.getter(name="tunMtuDownlink")
     def tun_mtu_downlink(self) -> Optional[pulumi.Input[int]]:
         """
-        Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         """
         return pulumi.get(self, "tun_mtu_downlink")
 
@@ -1588,7 +1608,7 @@ class _WtpprofileState:
     @pulumi.getter(name="tunMtuUplink")
     def tun_mtu_uplink(self) -> Optional[pulumi.Input[int]]:
         """
-        Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         """
         return pulumi.get(self, "tun_mtu_uplink")
 
@@ -1607,6 +1627,18 @@ class _WtpprofileState:
     @unii45ghz_band.setter
     def unii45ghz_band(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "unii45ghz_band", value)
+
+    @property
+    @pulumi.getter(name="usbPort")
+    def usb_port(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable USB port of the WTP (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "usb_port")
+
+    @usb_port.setter
+    def usb_port(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "usb_port", value)
 
     @property
     @pulumi.getter
@@ -1743,6 +1775,7 @@ class Wtpprofile(pulumi.CustomResource):
                  tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
                  tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
                  unii45ghz_band: Optional[pulumi.Input[str]] = None,
+                 usb_port: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wan_port_auth: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_macsec: Optional[pulumi.Input[str]] = None,
@@ -1781,7 +1814,7 @@ class Wtpprofile(pulumi.CustomResource):
         :param pulumi.Input[str] ble_profile: Bluetooth Low Energy profile name.
         :param pulumi.Input[str] bonjour_profile: Bonjour profile name.
         :param pulumi.Input[str] comment: Comment.
-        :param pulumi.Input[str] console_login: Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] console_login: Enable/disable FortiAP console login access (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] control_message_offload: Enable/disable CAPWAP control message data channel offload.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WtpprofileDenyMacListArgs']]]] deny_mac_lists: List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `deny_mac_list` block is documented below.
         :param pulumi.Input[str] dtls_in_kernel: Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
@@ -1791,17 +1824,17 @@ class Wtpprofile(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['WtpprofileEslSesDongleArgs']] esl_ses_dongle: ESL SES-imagotag dongle configuration. The structure of `esl_ses_dongle` block is documented below.
         :param pulumi.Input[str] ext_info_enable: Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] handoff_roaming: Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] handoff_rssi: Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
         :param pulumi.Input[int] handoff_sta_thresh: Threshold value for AP handoff.
         :param pulumi.Input[str] indoor_outdoor_deployment: Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
-        :param pulumi.Input[str] ip_fragment_preventing: Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        :param pulumi.Input[str] ip_fragment_preventing: Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         :param pulumi.Input[pulumi.InputType['WtpprofileLanArgs']] lan: WTP LAN port mapping. The structure of `lan` block is documented below.
         :param pulumi.Input[pulumi.InputType['WtpprofileLbsArgs']] lbs: Set various location based service (LBS) options. The structure of `lbs` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WtpprofileLedScheduleArgs']]]] led_schedules: Recurring firewall schedules for illuminating LEDs on the FortiAP. If led-state is enabled, LEDs will be visible when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `led_schedules` block is documented below.
         :param pulumi.Input[str] led_state: Enable/disable use of LEDs on WTP (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] lldp: Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] lldp: Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP. On FortiOS versions 6.2.0: default = disable. On FortiOS versions >= 6.2.4: default = enable. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] login_passwd: Set the managed WTP, FortiAP, or AP's administrator password.
         :param pulumi.Input[str] login_passwd_change: Change or reset the administrator password of a managed WTP, FortiAP or AP (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
         :param pulumi.Input[int] max_clients: Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
@@ -1816,9 +1849,10 @@ class Wtpprofile(pulumi.CustomResource):
         :param pulumi.Input[str] split_tunneling_acl_path: Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WtpprofileSplitTunnelingAclArgs']]]] split_tunneling_acls: Split tunneling ACL filter list. The structure of `split_tunneling_acl` block is documented below.
         :param pulumi.Input[str] syslog_profile: System log server configuration profile name.
-        :param pulumi.Input[int] tun_mtu_downlink: Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
-        :param pulumi.Input[int] tun_mtu_uplink: Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        :param pulumi.Input[int] tun_mtu_downlink: The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
+        :param pulumi.Input[int] tun_mtu_uplink: The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         :param pulumi.Input[str] unii45ghz_band: Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] usb_port: Enable/disable USB port of the WTP (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wan_port_auth: Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
         :param pulumi.Input[str] wan_port_auth_macsec: Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
@@ -1914,6 +1948,7 @@ class Wtpprofile(pulumi.CustomResource):
                  tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
                  tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
                  unii45ghz_band: Optional[pulumi.Input[str]] = None,
+                 usb_port: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wan_port_auth: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_macsec: Optional[pulumi.Input[str]] = None,
@@ -1975,6 +2010,7 @@ class Wtpprofile(pulumi.CustomResource):
             __props__.__dict__["tun_mtu_downlink"] = tun_mtu_downlink
             __props__.__dict__["tun_mtu_uplink"] = tun_mtu_uplink
             __props__.__dict__["unii45ghz_band"] = unii45ghz_band
+            __props__.__dict__["usb_port"] = usb_port
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["wan_port_auth"] = wan_port_auth
             __props__.__dict__["wan_port_auth_macsec"] = wan_port_auth_macsec
@@ -2039,6 +2075,7 @@ class Wtpprofile(pulumi.CustomResource):
             tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
             tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
             unii45ghz_band: Optional[pulumi.Input[str]] = None,
+            usb_port: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             wan_port_auth: Optional[pulumi.Input[str]] = None,
             wan_port_auth_macsec: Optional[pulumi.Input[str]] = None,
@@ -2060,7 +2097,7 @@ class Wtpprofile(pulumi.CustomResource):
         :param pulumi.Input[str] ble_profile: Bluetooth Low Energy profile name.
         :param pulumi.Input[str] bonjour_profile: Bonjour profile name.
         :param pulumi.Input[str] comment: Comment.
-        :param pulumi.Input[str] console_login: Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] console_login: Enable/disable FortiAP console login access (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] control_message_offload: Enable/disable CAPWAP control message data channel offload.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WtpprofileDenyMacListArgs']]]] deny_mac_lists: List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `deny_mac_list` block is documented below.
         :param pulumi.Input[str] dtls_in_kernel: Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
@@ -2070,17 +2107,17 @@ class Wtpprofile(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['WtpprofileEslSesDongleArgs']] esl_ses_dongle: ESL SES-imagotag dongle configuration. The structure of `esl_ses_dongle` block is documented below.
         :param pulumi.Input[str] ext_info_enable: Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        :param pulumi.Input[str] get_all_tables: Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         :param pulumi.Input[str] handoff_roaming: Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] handoff_rssi: Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
         :param pulumi.Input[int] handoff_sta_thresh: Threshold value for AP handoff.
         :param pulumi.Input[str] indoor_outdoor_deployment: Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
-        :param pulumi.Input[str] ip_fragment_preventing: Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        :param pulumi.Input[str] ip_fragment_preventing: Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         :param pulumi.Input[pulumi.InputType['WtpprofileLanArgs']] lan: WTP LAN port mapping. The structure of `lan` block is documented below.
         :param pulumi.Input[pulumi.InputType['WtpprofileLbsArgs']] lbs: Set various location based service (LBS) options. The structure of `lbs` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WtpprofileLedScheduleArgs']]]] led_schedules: Recurring firewall schedules for illuminating LEDs on the FortiAP. If led-state is enabled, LEDs will be visible when at least one of the schedules is valid. Separate multiple schedule names with a space. The structure of `led_schedules` block is documented below.
         :param pulumi.Input[str] led_state: Enable/disable use of LEDs on WTP (default = disable). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] lldp: Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] lldp: Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP. On FortiOS versions 6.2.0: default = disable. On FortiOS versions >= 6.2.4: default = enable. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] login_passwd: Set the managed WTP, FortiAP, or AP's administrator password.
         :param pulumi.Input[str] login_passwd_change: Change or reset the administrator password of a managed WTP, FortiAP or AP (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
         :param pulumi.Input[int] max_clients: Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
@@ -2095,9 +2132,10 @@ class Wtpprofile(pulumi.CustomResource):
         :param pulumi.Input[str] split_tunneling_acl_path: Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WtpprofileSplitTunnelingAclArgs']]]] split_tunneling_acls: Split tunneling ACL filter list. The structure of `split_tunneling_acl` block is documented below.
         :param pulumi.Input[str] syslog_profile: System log server configuration profile name.
-        :param pulumi.Input[int] tun_mtu_downlink: Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
-        :param pulumi.Input[int] tun_mtu_uplink: Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        :param pulumi.Input[int] tun_mtu_downlink: The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
+        :param pulumi.Input[int] tun_mtu_uplink: The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         :param pulumi.Input[str] unii45ghz_band: Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] usb_port: Enable/disable USB port of the WTP (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wan_port_auth: Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
         :param pulumi.Input[str] wan_port_auth_macsec: Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). Valid values: `enable`, `disable`.
@@ -2155,6 +2193,7 @@ class Wtpprofile(pulumi.CustomResource):
         __props__.__dict__["tun_mtu_downlink"] = tun_mtu_downlink
         __props__.__dict__["tun_mtu_uplink"] = tun_mtu_uplink
         __props__.__dict__["unii45ghz_band"] = unii45ghz_band
+        __props__.__dict__["usb_port"] = usb_port
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["wan_port_auth"] = wan_port_auth
         __props__.__dict__["wan_port_auth_macsec"] = wan_port_auth_macsec
@@ -2224,7 +2263,7 @@ class Wtpprofile(pulumi.CustomResource):
     @pulumi.getter(name="consoleLogin")
     def console_login(self) -> pulumi.Output[str]:
         """
-        Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+        Enable/disable FortiAP console login access (default = enable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "console_login")
 
@@ -2304,7 +2343,7 @@ class Wtpprofile(pulumi.CustomResource):
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         """
-        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         """
         return pulumi.get(self, "get_all_tables")
 
@@ -2344,7 +2383,7 @@ class Wtpprofile(pulumi.CustomResource):
     @pulumi.getter(name="ipFragmentPreventing")
     def ip_fragment_preventing(self) -> pulumi.Output[str]:
         """
-        Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
+        Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         """
         return pulumi.get(self, "ip_fragment_preventing")
 
@@ -2384,7 +2423,7 @@ class Wtpprofile(pulumi.CustomResource):
     @pulumi.getter
     def lldp(self) -> pulumi.Output[str]:
         """
-        Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = disable). Valid values: `enable`, `disable`.
+        Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP. On FortiOS versions 6.2.0: default = disable. On FortiOS versions >= 6.2.4: default = enable. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "lldp")
 
@@ -2504,7 +2543,7 @@ class Wtpprofile(pulumi.CustomResource):
     @pulumi.getter(name="tunMtuDownlink")
     def tun_mtu_downlink(self) -> pulumi.Output[int]:
         """
-        Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         """
         return pulumi.get(self, "tun_mtu_downlink")
 
@@ -2512,7 +2551,7 @@ class Wtpprofile(pulumi.CustomResource):
     @pulumi.getter(name="tunMtuUplink")
     def tun_mtu_uplink(self) -> pulumi.Output[int]:
         """
-        Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
+        The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
         """
         return pulumi.get(self, "tun_mtu_uplink")
 
@@ -2525,8 +2564,16 @@ class Wtpprofile(pulumi.CustomResource):
         return pulumi.get(self, "unii45ghz_band")
 
     @property
+    @pulumi.getter(name="usbPort")
+    def usb_port(self) -> pulumi.Output[str]:
+        """
+        Enable/disable USB port of the WTP (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "usb_port")
+
+    @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """

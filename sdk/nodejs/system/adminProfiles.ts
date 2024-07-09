@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -33,7 +32,6 @@ import * as utilities from "../utilities";
  *     wifi: "none",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class AdminProfiles extends pulumi.CustomResource {
     /**

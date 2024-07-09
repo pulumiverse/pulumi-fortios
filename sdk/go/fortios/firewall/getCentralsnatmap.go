@@ -64,6 +64,8 @@ type LookupCentralsnatmapResult struct {
 	OrigPort string `pulumi:"origPort"`
 	// Policy ID.
 	Policyid int `pulumi:"policyid"`
+	// Enable/disable preservation of the original source port from source NAT if it has not been used.
+	PortPreserve string `pulumi:"portPreserve"`
 	// Integer value for the protocol type (0 - 255).
 	Protocol int `pulumi:"protocol"`
 	// Source interface name from available interfaces. The structure of `srcintf` block is documented below.
@@ -195,6 +197,11 @@ func (o LookupCentralsnatmapResultOutput) OrigPort() pulumi.StringOutput {
 // Policy ID.
 func (o LookupCentralsnatmapResultOutput) Policyid() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupCentralsnatmapResult) int { return v.Policyid }).(pulumi.IntOutput)
+}
+
+// Enable/disable preservation of the original source port from source NAT if it has not been used.
+func (o LookupCentralsnatmapResultOutput) PortPreserve() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCentralsnatmapResult) string { return v.PortPreserve }).(pulumi.StringOutput)
 }
 
 // Integer value for the protocol type (0 - 255).

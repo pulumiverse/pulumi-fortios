@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -49,7 +48,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -103,7 +101,7 @@ type Sdnconnector struct {
 	GcpProject pulumi.StringOutput `pulumi:"gcpProject"`
 	// Configure GCP project list. The structure of `gcpProjectList` block is documented below.
 	GcpProjectLists SdnconnectorGcpProjectListArrayOutput `pulumi:"gcpProjectLists"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Group name of computers.
 	GroupName pulumi.StringOutput `pulumi:"groupName"`
@@ -173,7 +171,7 @@ type Sdnconnector struct {
 	TenantId pulumi.StringOutput `pulumi:"tenantId"`
 	// Type of SDN connector.
 	Type pulumi.StringOutput `pulumi:"type"`
-	// Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+	// Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions >= 6.2.4: 30 - 3600 sec.
 	UpdateInterval pulumi.IntOutput `pulumi:"updateInterval"`
 	// Enable/disable using IAM role from metadata to call API. Valid values: `disable`, `enable`.
 	UseMetadataIam pulumi.StringOutput `pulumi:"useMetadataIam"`
@@ -188,7 +186,7 @@ type Sdnconnector struct {
 	// vCenter server username for NSX quarantine.
 	VcenterUsername pulumi.StringOutput `pulumi:"vcenterUsername"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Enable/disable server certificate verification. Valid values: `disable`, `enable`.
 	VerifyCertificate pulumi.StringOutput `pulumi:"verifyCertificate"`
 	// AWS VPC ID.
@@ -302,7 +300,7 @@ type sdnconnectorState struct {
 	GcpProject *string `pulumi:"gcpProject"`
 	// Configure GCP project list. The structure of `gcpProjectList` block is documented below.
 	GcpProjectLists []SdnconnectorGcpProjectList `pulumi:"gcpProjectLists"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Group name of computers.
 	GroupName *string `pulumi:"groupName"`
@@ -372,7 +370,7 @@ type sdnconnectorState struct {
 	TenantId *string `pulumi:"tenantId"`
 	// Type of SDN connector.
 	Type *string `pulumi:"type"`
-	// Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+	// Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions >= 6.2.4: 30 - 3600 sec.
 	UpdateInterval *int `pulumi:"updateInterval"`
 	// Enable/disable using IAM role from metadata to call API. Valid values: `disable`, `enable`.
 	UseMetadataIam *string `pulumi:"useMetadataIam"`
@@ -427,7 +425,7 @@ type SdnconnectorState struct {
 	GcpProject pulumi.StringPtrInput
 	// Configure GCP project list. The structure of `gcpProjectList` block is documented below.
 	GcpProjectLists SdnconnectorGcpProjectListArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Group name of computers.
 	GroupName pulumi.StringPtrInput
@@ -497,7 +495,7 @@ type SdnconnectorState struct {
 	TenantId pulumi.StringPtrInput
 	// Type of SDN connector.
 	Type pulumi.StringPtrInput
-	// Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+	// Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions >= 6.2.4: 30 - 3600 sec.
 	UpdateInterval pulumi.IntPtrInput
 	// Enable/disable using IAM role from metadata to call API. Valid values: `disable`, `enable`.
 	UseMetadataIam pulumi.StringPtrInput
@@ -556,7 +554,7 @@ type sdnconnectorArgs struct {
 	GcpProject *string `pulumi:"gcpProject"`
 	// Configure GCP project list. The structure of `gcpProjectList` block is documented below.
 	GcpProjectLists []SdnconnectorGcpProjectList `pulumi:"gcpProjectLists"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Group name of computers.
 	GroupName *string `pulumi:"groupName"`
@@ -626,7 +624,7 @@ type sdnconnectorArgs struct {
 	TenantId *string `pulumi:"tenantId"`
 	// Type of SDN connector.
 	Type string `pulumi:"type"`
-	// Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+	// Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions >= 6.2.4: 30 - 3600 sec.
 	UpdateInterval *int `pulumi:"updateInterval"`
 	// Enable/disable using IAM role from metadata to call API. Valid values: `disable`, `enable`.
 	UseMetadataIam *string `pulumi:"useMetadataIam"`
@@ -682,7 +680,7 @@ type SdnconnectorArgs struct {
 	GcpProject pulumi.StringPtrInput
 	// Configure GCP project list. The structure of `gcpProjectList` block is documented below.
 	GcpProjectLists SdnconnectorGcpProjectListArrayInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Group name of computers.
 	GroupName pulumi.StringPtrInput
@@ -752,7 +750,7 @@ type SdnconnectorArgs struct {
 	TenantId pulumi.StringPtrInput
 	// Type of SDN connector.
 	Type pulumi.StringInput
-	// Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+	// Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions >= 6.2.4: 30 - 3600 sec.
 	UpdateInterval pulumi.IntPtrInput
 	// Enable/disable using IAM role from metadata to call API. Valid values: `disable`, `enable`.
 	UseMetadataIam pulumi.StringPtrInput
@@ -941,7 +939,7 @@ func (o SdnconnectorOutput) GcpProjectLists() SdnconnectorGcpProjectListArrayOut
 	return o.ApplyT(func(v *Sdnconnector) SdnconnectorGcpProjectListArrayOutput { return v.GcpProjectLists }).(SdnconnectorGcpProjectListArrayOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o SdnconnectorOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Sdnconnector) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -1116,7 +1114,7 @@ func (o SdnconnectorOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Sdnconnector) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// Dynamic object update interval (0 - 3600 sec, 0 means disabled, default = 60).
+// Dynamic object update interval (default = 60, 0 = disabled). On FortiOS versions 6.2.0: 0 - 3600 sec. On FortiOS versions >= 6.2.4: 30 - 3600 sec.
 func (o SdnconnectorOutput) UpdateInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Sdnconnector) pulumi.IntOutput { return v.UpdateInterval }).(pulumi.IntOutput)
 }
@@ -1152,8 +1150,8 @@ func (o SdnconnectorOutput) VcenterUsername() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SdnconnectorOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Sdnconnector) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SdnconnectorOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Sdnconnector) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Enable/disable server certificate verification. Valid values: `disable`, `enable`.

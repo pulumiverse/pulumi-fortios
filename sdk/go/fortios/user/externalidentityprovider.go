@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/internal"
 )
 
-// Configure external identity provider. Applies to FortiOS Version `>= 7.4.2`.
+// Configure external identity provider. Applies to FortiOS Version `7.2.8,7.4.2,7.4.3,7.4.4`.
 //
 // ## Import
 //
@@ -56,7 +56,7 @@ type Externalidentityprovider struct {
 	// User attribute name in authentication query.
 	UserAttrName pulumi.StringOutput `pulumi:"userAttrName"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// External identity API version. Valid values: `v1.0`, `beta`.
 	Version pulumi.StringOutput `pulumi:"version"`
 }
@@ -354,8 +354,8 @@ func (o ExternalidentityproviderOutput) UserAttrName() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o ExternalidentityproviderOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Externalidentityprovider) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o ExternalidentityproviderOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Externalidentityprovider) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // External identity API version. Valid values: `v1.0`, `beta`.

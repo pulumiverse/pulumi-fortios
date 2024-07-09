@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
@@ -21,7 +20,6 @@ import * as utilities from "../utilities";
  * });
  * export const sample2Output = sample2.then(sample2 => sample2.policyidlists);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getPolicylist(args?: GetPolicylistArgs, opts?: pulumi.InvokeOptions): Promise<GetPolicylistResult> {
     args = args || {};
@@ -67,7 +65,6 @@ export interface GetPolicylistResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
@@ -79,7 +76,6 @@ export interface GetPolicylistResult {
  * });
  * export const sample2Output = sample2.then(sample2 => sample2.policyidlists);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getPolicylistOutput(args?: GetPolicylistOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPolicylistResult> {
     return pulumi.output(args).apply((a: any) => getPolicylist(a, opts))

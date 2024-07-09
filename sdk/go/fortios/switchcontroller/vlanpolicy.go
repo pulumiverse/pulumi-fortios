@@ -45,14 +45,14 @@ type Vlanpolicy struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// FortiLink interface for which this VLAN policy belongs to.
 	Fortilink pulumi.StringOutput `pulumi:"fortilink"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// VLAN policy name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Untagged VLANs to be applied when using this VLAN policy. The structure of `untaggedVlans` block is documented below.
 	UntaggedVlans VlanpolicyUntaggedVlanArrayOutput `pulumi:"untaggedVlans"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 	// Native VLAN to be applied when using this VLAN policy.
 	Vlan pulumi.StringOutput `pulumi:"vlan"`
 }
@@ -99,7 +99,7 @@ type vlanpolicyState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// FortiLink interface for which this VLAN policy belongs to.
 	Fortilink *string `pulumi:"fortilink"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// VLAN policy name.
 	Name *string `pulumi:"name"`
@@ -124,7 +124,7 @@ type VlanpolicyState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// FortiLink interface for which this VLAN policy belongs to.
 	Fortilink pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// VLAN policy name.
 	Name pulumi.StringPtrInput
@@ -153,7 +153,7 @@ type vlanpolicyArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// FortiLink interface for which this VLAN policy belongs to.
 	Fortilink *string `pulumi:"fortilink"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// VLAN policy name.
 	Name *string `pulumi:"name"`
@@ -179,7 +179,7 @@ type VlanpolicyArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// FortiLink interface for which this VLAN policy belongs to.
 	Fortilink pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// VLAN policy name.
 	Name pulumi.StringPtrInput
@@ -308,7 +308,7 @@ func (o VlanpolicyOutput) Fortilink() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vlanpolicy) pulumi.StringOutput { return v.Fortilink }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o VlanpolicyOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Vlanpolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -324,8 +324,8 @@ func (o VlanpolicyOutput) UntaggedVlans() VlanpolicyUntaggedVlanArrayOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o VlanpolicyOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Vlanpolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o VlanpolicyOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vlanpolicy) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 // Native VLAN to be applied when using this VLAN policy.

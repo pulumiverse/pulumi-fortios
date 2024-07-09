@@ -19,19 +19,19 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
         /// </summary>
         public readonly string? Aeroscout;
         /// <summary>
-        /// Use BSSID or board MAC address as AP MAC address in the Aeroscout AP message. Valid values: `bssid`, `board-mac`.
+        /// Use BSSID or board MAC address as AP MAC address in AeroScout AP messages (default = bssid). Valid values: `bssid`, `board-mac`.
         /// </summary>
         public readonly string? AeroscoutApMac;
         /// <summary>
-        /// Enable/disable MU compounded report. Valid values: `enable`, `disable`.
+        /// Enable/disable compounded AeroScout tag and MU report (default = enable). Valid values: `enable`, `disable`.
         /// </summary>
         public readonly string? AeroscoutMmuReport;
         /// <summary>
-        /// Enable/disable AeroScout support. Valid values: `enable`, `disable`.
+        /// Enable/disable AeroScout Mobile Unit (MU) support (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         public readonly string? AeroscoutMu;
         /// <summary>
-        /// AeroScout Mobile Unit (MU) mode dilution factor (default = 20).
+        /// eroScout MU mode dilution factor (default = 20).
         /// </summary>
         public readonly int? AeroscoutMuFactor;
         /// <summary>
@@ -47,7 +47,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
         /// </summary>
         public readonly int? AeroscoutServerPort;
         /// <summary>
-        /// Enable/disable Ekahua blink mode (also called AiRISTA Flow Blink Mode) to find the location of devices connected to a wireless LAN (default = disable). Valid values: `enable`, `disable`.
+        /// Enable/disable Ekahau blink mode (now known as AiRISTA Flow) to track and locate WiFi tags (default = disable). Valid values: `enable`, `disable`.
         /// </summary>
         public readonly string? EkahauBlinkMode;
         /// <summary>
@@ -55,11 +55,11 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
         /// </summary>
         public readonly string? EkahauTag;
         /// <summary>
-        /// IP address of Ekahua RTLS Controller (ERC).
+        /// IP address of Ekahau RTLS Controller (ERC).
         /// </summary>
         public readonly string? ErcServerIp;
         /// <summary>
-        /// Ekahua RTLS Controller (ERC) UDP listening port.
+        /// Ekahau RTLS Controller (ERC) UDP listening port.
         /// </summary>
         public readonly int? ErcServerPort;
         /// <summary>
@@ -75,7 +75,7 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Outputs
         /// </summary>
         public readonly int? FortipresenceFrequency;
         /// <summary>
-        /// FortiPresence server UDP listening port (default = 3000).
+        /// UDP listening port of FortiPresence server (default = 3000).
         /// </summary>
         public readonly int? FortipresencePort;
         /// <summary>

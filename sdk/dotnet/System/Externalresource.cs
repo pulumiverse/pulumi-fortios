@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,7 +34,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -137,7 +135,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> UpdateMethod { get; private set; } = null!;
 
         /// <summary>
-        /// Override HTTP User-Agent header used when retrieving this external resource.
+        /// HTTP User-Agent header (default = 'curl/7.58.0').
         /// </summary>
         [Output("userAgent")]
         public Output<string> UserAgent { get; private set; } = null!;
@@ -158,7 +156,7 @@ namespace Pulumiverse.Fortios.System
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
 
         /// <summary>
@@ -300,7 +298,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? UpdateMethod { get; set; }
 
         /// <summary>
-        /// Override HTTP User-Agent header used when retrieving this external resource.
+        /// HTTP User-Agent header (default = 'curl/7.58.0').
         /// </summary>
         [Input("userAgent")]
         public Input<string>? UserAgent { get; set; }
@@ -420,7 +418,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? UpdateMethod { get; set; }
 
         /// <summary>
-        /// Override HTTP User-Agent header used when retrieving this external resource.
+        /// HTTP User-Agent header (default = 'curl/7.58.0').
         /// </summary>
         [Input("userAgent")]
         public Input<string>? UserAgent { get; set; }

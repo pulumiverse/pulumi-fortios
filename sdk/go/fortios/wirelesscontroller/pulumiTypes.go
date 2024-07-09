@@ -1048,6 +1048,8 @@ type MpskprofileMpskGroupMpskKey struct {
 	ConcurrentClientLimitType *string `pulumi:"concurrentClientLimitType"`
 	// Number of clients that can connect using this pre-shared key (1 - 65535, default is 256).
 	ConcurrentClients *int `pulumi:"concurrentClients"`
+	// Select the type of the key. Valid values: `wpa2-personal`, `wpa3-sae`.
+	KeyType *string `pulumi:"keyType"`
 	// MAC address.
 	Mac *string `pulumi:"mac"`
 	// Firewall schedule for MPSK passphrase. The passphrase will be effective only when at least one schedule is valid. The structure of `mpskSchedules` block is documented below.
@@ -1056,6 +1058,12 @@ type MpskprofileMpskGroupMpskKey struct {
 	Name *string `pulumi:"name"`
 	// WPA Pre-shared key.
 	Passphrase *string `pulumi:"passphrase"`
+	// WPA3 SAE password.
+	SaePassword *string `pulumi:"saePassword"`
+	// Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
+	SaePk *string `pulumi:"saePk"`
+	// Private key used for WPA3 SAE-PK authentication.
+	SaePrivateKey *string `pulumi:"saePrivateKey"`
 }
 
 // MpskprofileMpskGroupMpskKeyInput is an input type that accepts MpskprofileMpskGroupMpskKeyArgs and MpskprofileMpskGroupMpskKeyOutput values.
@@ -1076,6 +1084,8 @@ type MpskprofileMpskGroupMpskKeyArgs struct {
 	ConcurrentClientLimitType pulumi.StringPtrInput `pulumi:"concurrentClientLimitType"`
 	// Number of clients that can connect using this pre-shared key (1 - 65535, default is 256).
 	ConcurrentClients pulumi.IntPtrInput `pulumi:"concurrentClients"`
+	// Select the type of the key. Valid values: `wpa2-personal`, `wpa3-sae`.
+	KeyType pulumi.StringPtrInput `pulumi:"keyType"`
 	// MAC address.
 	Mac pulumi.StringPtrInput `pulumi:"mac"`
 	// Firewall schedule for MPSK passphrase. The passphrase will be effective only when at least one schedule is valid. The structure of `mpskSchedules` block is documented below.
@@ -1084,6 +1094,12 @@ type MpskprofileMpskGroupMpskKeyArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// WPA Pre-shared key.
 	Passphrase pulumi.StringPtrInput `pulumi:"passphrase"`
+	// WPA3 SAE password.
+	SaePassword pulumi.StringPtrInput `pulumi:"saePassword"`
+	// Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
+	SaePk pulumi.StringPtrInput `pulumi:"saePk"`
+	// Private key used for WPA3 SAE-PK authentication.
+	SaePrivateKey pulumi.StringPtrInput `pulumi:"saePrivateKey"`
 }
 
 func (MpskprofileMpskGroupMpskKeyArgs) ElementType() reflect.Type {
@@ -1152,6 +1168,11 @@ func (o MpskprofileMpskGroupMpskKeyOutput) ConcurrentClients() pulumi.IntPtrOutp
 	return o.ApplyT(func(v MpskprofileMpskGroupMpskKey) *int { return v.ConcurrentClients }).(pulumi.IntPtrOutput)
 }
 
+// Select the type of the key. Valid values: `wpa2-personal`, `wpa3-sae`.
+func (o MpskprofileMpskGroupMpskKeyOutput) KeyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MpskprofileMpskGroupMpskKey) *string { return v.KeyType }).(pulumi.StringPtrOutput)
+}
+
 // MAC address.
 func (o MpskprofileMpskGroupMpskKeyOutput) Mac() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v MpskprofileMpskGroupMpskKey) *string { return v.Mac }).(pulumi.StringPtrOutput)
@@ -1170,6 +1191,21 @@ func (o MpskprofileMpskGroupMpskKeyOutput) Name() pulumi.StringPtrOutput {
 // WPA Pre-shared key.
 func (o MpskprofileMpskGroupMpskKeyOutput) Passphrase() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v MpskprofileMpskGroupMpskKey) *string { return v.Passphrase }).(pulumi.StringPtrOutput)
+}
+
+// WPA3 SAE password.
+func (o MpskprofileMpskGroupMpskKeyOutput) SaePassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MpskprofileMpskGroupMpskKey) *string { return v.SaePassword }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable WPA3 SAE-PK (default = disable). Valid values: `enable`, `disable`.
+func (o MpskprofileMpskGroupMpskKeyOutput) SaePk() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MpskprofileMpskGroupMpskKey) *string { return v.SaePk }).(pulumi.StringPtrOutput)
+}
+
+// Private key used for WPA3 SAE-PK authentication.
+func (o MpskprofileMpskGroupMpskKeyOutput) SaePrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MpskprofileMpskGroupMpskKey) *string { return v.SaePrivateKey }).(pulumi.StringPtrOutput)
 }
 
 type MpskprofileMpskGroupMpskKeyArrayOutput struct{ *pulumi.OutputState }
@@ -4367,44 +4403,25 @@ func (o WtpLanPtrOutput) PortSsid() pulumi.StringPtrOutput {
 }
 
 type WtpRadio1 struct {
-	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerHigh *int `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-	AutoPowerLevel *string `pulumi:"autoPowerLevel"`
-	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerLow *int `pulumi:"autoPowerLow"`
-	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-	AutoPowerTarget *string `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 4 operates on.
-	Band *string `pulumi:"band"`
-	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
-	Channels []WtpRadio1Channel `pulumi:"channels"`
-	// Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-	DrmaManualMode *string `pulumi:"drmaManualMode"`
-	// Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-	OverrideAnalysis *string `pulumi:"overrideAnalysis"`
-	// Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-	OverrideBand *string `pulumi:"overrideBand"`
-	// Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-	OverrideChannel *string `pulumi:"overrideChannel"`
-	// Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-	OverrideTxpower *string `pulumi:"overrideTxpower"`
-	// Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-	OverrideVaps *string `pulumi:"overrideVaps"`
-	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-	PowerLevel *int `pulumi:"powerLevel"`
-	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-	PowerMode *string `pulumi:"powerMode"`
-	// Radio EIRP power in dBm (1 - 33, default = 27).
-	PowerValue *int `pulumi:"powerValue"`
-	// radio-id
-	RadioId *int `pulumi:"radioId"`
-	// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-	SpectrumAnalysis *string `pulumi:"spectrumAnalysis"`
-	// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-	VapAll *string `pulumi:"vapAll"`
-	// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-	Vaps []WtpRadio1Vap `pulumi:"vaps"`
+	AutoPowerHigh    *int               `pulumi:"autoPowerHigh"`
+	AutoPowerLevel   *string            `pulumi:"autoPowerLevel"`
+	AutoPowerLow     *int               `pulumi:"autoPowerLow"`
+	AutoPowerTarget  *string            `pulumi:"autoPowerTarget"`
+	Band             *string            `pulumi:"band"`
+	Channels         []WtpRadio1Channel `pulumi:"channels"`
+	DrmaManualMode   *string            `pulumi:"drmaManualMode"`
+	OverrideAnalysis *string            `pulumi:"overrideAnalysis"`
+	OverrideBand     *string            `pulumi:"overrideBand"`
+	OverrideChannel  *string            `pulumi:"overrideChannel"`
+	OverrideTxpower  *string            `pulumi:"overrideTxpower"`
+	OverrideVaps     *string            `pulumi:"overrideVaps"`
+	PowerLevel       *int               `pulumi:"powerLevel"`
+	PowerMode        *string            `pulumi:"powerMode"`
+	PowerValue       *int               `pulumi:"powerValue"`
+	RadioId          *int               `pulumi:"radioId"`
+	SpectrumAnalysis *string            `pulumi:"spectrumAnalysis"`
+	VapAll           *string            `pulumi:"vapAll"`
+	Vaps             []WtpRadio1Vap     `pulumi:"vaps"`
 }
 
 // WtpRadio1Input is an input type that accepts WtpRadio1Args and WtpRadio1Output values.
@@ -4419,44 +4436,25 @@ type WtpRadio1Input interface {
 }
 
 type WtpRadio1Args struct {
-	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerHigh pulumi.IntPtrInput `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-	AutoPowerLevel pulumi.StringPtrInput `pulumi:"autoPowerLevel"`
-	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerLow pulumi.IntPtrInput `pulumi:"autoPowerLow"`
-	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-	AutoPowerTarget pulumi.StringPtrInput `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 4 operates on.
-	Band pulumi.StringPtrInput `pulumi:"band"`
-	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
-	Channels WtpRadio1ChannelArrayInput `pulumi:"channels"`
-	// Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-	DrmaManualMode pulumi.StringPtrInput `pulumi:"drmaManualMode"`
-	// Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-	OverrideAnalysis pulumi.StringPtrInput `pulumi:"overrideAnalysis"`
-	// Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-	OverrideBand pulumi.StringPtrInput `pulumi:"overrideBand"`
-	// Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-	OverrideChannel pulumi.StringPtrInput `pulumi:"overrideChannel"`
-	// Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-	OverrideTxpower pulumi.StringPtrInput `pulumi:"overrideTxpower"`
-	// Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-	OverrideVaps pulumi.StringPtrInput `pulumi:"overrideVaps"`
-	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-	PowerLevel pulumi.IntPtrInput `pulumi:"powerLevel"`
-	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-	PowerMode pulumi.StringPtrInput `pulumi:"powerMode"`
-	// Radio EIRP power in dBm (1 - 33, default = 27).
-	PowerValue pulumi.IntPtrInput `pulumi:"powerValue"`
-	// radio-id
-	RadioId pulumi.IntPtrInput `pulumi:"radioId"`
-	// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-	SpectrumAnalysis pulumi.StringPtrInput `pulumi:"spectrumAnalysis"`
-	// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-	VapAll pulumi.StringPtrInput `pulumi:"vapAll"`
-	// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-	Vaps WtpRadio1VapArrayInput `pulumi:"vaps"`
+	AutoPowerHigh    pulumi.IntPtrInput         `pulumi:"autoPowerHigh"`
+	AutoPowerLevel   pulumi.StringPtrInput      `pulumi:"autoPowerLevel"`
+	AutoPowerLow     pulumi.IntPtrInput         `pulumi:"autoPowerLow"`
+	AutoPowerTarget  pulumi.StringPtrInput      `pulumi:"autoPowerTarget"`
+	Band             pulumi.StringPtrInput      `pulumi:"band"`
+	Channels         WtpRadio1ChannelArrayInput `pulumi:"channels"`
+	DrmaManualMode   pulumi.StringPtrInput      `pulumi:"drmaManualMode"`
+	OverrideAnalysis pulumi.StringPtrInput      `pulumi:"overrideAnalysis"`
+	OverrideBand     pulumi.StringPtrInput      `pulumi:"overrideBand"`
+	OverrideChannel  pulumi.StringPtrInput      `pulumi:"overrideChannel"`
+	OverrideTxpower  pulumi.StringPtrInput      `pulumi:"overrideTxpower"`
+	OverrideVaps     pulumi.StringPtrInput      `pulumi:"overrideVaps"`
+	PowerLevel       pulumi.IntPtrInput         `pulumi:"powerLevel"`
+	PowerMode        pulumi.StringPtrInput      `pulumi:"powerMode"`
+	PowerValue       pulumi.IntPtrInput         `pulumi:"powerValue"`
+	RadioId          pulumi.IntPtrInput         `pulumi:"radioId"`
+	SpectrumAnalysis pulumi.StringPtrInput      `pulumi:"spectrumAnalysis"`
+	VapAll           pulumi.StringPtrInput      `pulumi:"vapAll"`
+	Vaps             WtpRadio1VapArrayInput     `pulumi:"vaps"`
 }
 
 func (WtpRadio1Args) ElementType() reflect.Type {
@@ -4536,97 +4534,78 @@ func (o WtpRadio1Output) ToWtpRadio1PtrOutputWithContext(ctx context.Context) Wt
 	}).(WtpRadio1PtrOutput)
 }
 
-// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio1Output) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *int { return v.AutoPowerHigh }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpRadio1Output) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *string { return v.AutoPowerLevel }).(pulumi.StringPtrOutput)
 }
 
-// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio1Output) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *int { return v.AutoPowerLow }).(pulumi.IntPtrOutput)
 }
 
-// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 func (o WtpRadio1Output) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *string { return v.AutoPowerTarget }).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 4 operates on.
 func (o WtpRadio1Output) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *string { return v.Band }).(pulumi.StringPtrOutput)
 }
 
-// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 func (o WtpRadio1Output) Channels() WtpRadio1ChannelArrayOutput {
 	return o.ApplyT(func(v WtpRadio1) []WtpRadio1Channel { return v.Channels }).(WtpRadio1ChannelArrayOutput)
 }
 
-// Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
 func (o WtpRadio1Output) DrmaManualMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *string { return v.DrmaManualMode }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
 func (o WtpRadio1Output) OverrideAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *string { return v.OverrideAnalysis }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
 func (o WtpRadio1Output) OverrideBand() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *string { return v.OverrideBand }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
 func (o WtpRadio1Output) OverrideChannel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *string { return v.OverrideChannel }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
 func (o WtpRadio1Output) OverrideTxpower() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *string { return v.OverrideTxpower }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
 func (o WtpRadio1Output) OverrideVaps() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *string { return v.OverrideVaps }).(pulumi.StringPtrOutput)
 }
 
-// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 func (o WtpRadio1Output) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *int { return v.PowerLevel }).(pulumi.IntPtrOutput)
 }
 
-// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 func (o WtpRadio1Output) PowerMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *string { return v.PowerMode }).(pulumi.StringPtrOutput)
 }
 
-// Radio EIRP power in dBm (1 - 33, default = 27).
 func (o WtpRadio1Output) PowerValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *int { return v.PowerValue }).(pulumi.IntPtrOutput)
 }
 
-// radio-id
 func (o WtpRadio1Output) RadioId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *int { return v.RadioId }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
 func (o WtpRadio1Output) SpectrumAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *string { return v.SpectrumAnalysis }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
 func (o WtpRadio1Output) VapAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio1) *string { return v.VapAll }).(pulumi.StringPtrOutput)
 }
 
-// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
 func (o WtpRadio1Output) Vaps() WtpRadio1VapArrayOutput {
 	return o.ApplyT(func(v WtpRadio1) []WtpRadio1Vap { return v.Vaps }).(WtpRadio1VapArrayOutput)
 }
@@ -4655,7 +4634,6 @@ func (o WtpRadio1PtrOutput) Elem() WtpRadio1Output {
 	}).(WtpRadio1Output)
 }
 
-// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio1PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *int {
 		if v == nil {
@@ -4665,7 +4643,6 @@ func (o WtpRadio1PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpRadio1PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *string {
 		if v == nil {
@@ -4675,7 +4652,6 @@ func (o WtpRadio1PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio1PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *int {
 		if v == nil {
@@ -4685,7 +4661,6 @@ func (o WtpRadio1PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 func (o WtpRadio1PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *string {
 		if v == nil {
@@ -4695,7 +4670,6 @@ func (o WtpRadio1PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 4 operates on.
 func (o WtpRadio1PtrOutput) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *string {
 		if v == nil {
@@ -4705,7 +4679,6 @@ func (o WtpRadio1PtrOutput) Band() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 func (o WtpRadio1PtrOutput) Channels() WtpRadio1ChannelArrayOutput {
 	return o.ApplyT(func(v *WtpRadio1) []WtpRadio1Channel {
 		if v == nil {
@@ -4715,7 +4688,6 @@ func (o WtpRadio1PtrOutput) Channels() WtpRadio1ChannelArrayOutput {
 	}).(WtpRadio1ChannelArrayOutput)
 }
 
-// Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
 func (o WtpRadio1PtrOutput) DrmaManualMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *string {
 		if v == nil {
@@ -4725,7 +4697,6 @@ func (o WtpRadio1PtrOutput) DrmaManualMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
 func (o WtpRadio1PtrOutput) OverrideAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *string {
 		if v == nil {
@@ -4735,7 +4706,6 @@ func (o WtpRadio1PtrOutput) OverrideAnalysis() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
 func (o WtpRadio1PtrOutput) OverrideBand() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *string {
 		if v == nil {
@@ -4745,7 +4715,6 @@ func (o WtpRadio1PtrOutput) OverrideBand() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
 func (o WtpRadio1PtrOutput) OverrideChannel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *string {
 		if v == nil {
@@ -4755,7 +4724,6 @@ func (o WtpRadio1PtrOutput) OverrideChannel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
 func (o WtpRadio1PtrOutput) OverrideTxpower() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *string {
 		if v == nil {
@@ -4765,7 +4733,6 @@ func (o WtpRadio1PtrOutput) OverrideTxpower() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
 func (o WtpRadio1PtrOutput) OverrideVaps() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *string {
 		if v == nil {
@@ -4775,7 +4742,6 @@ func (o WtpRadio1PtrOutput) OverrideVaps() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 func (o WtpRadio1PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *int {
 		if v == nil {
@@ -4785,7 +4751,6 @@ func (o WtpRadio1PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 func (o WtpRadio1PtrOutput) PowerMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *string {
 		if v == nil {
@@ -4795,7 +4760,6 @@ func (o WtpRadio1PtrOutput) PowerMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Radio EIRP power in dBm (1 - 33, default = 27).
 func (o WtpRadio1PtrOutput) PowerValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *int {
 		if v == nil {
@@ -4805,7 +4769,6 @@ func (o WtpRadio1PtrOutput) PowerValue() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// radio-id
 func (o WtpRadio1PtrOutput) RadioId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *int {
 		if v == nil {
@@ -4815,7 +4778,6 @@ func (o WtpRadio1PtrOutput) RadioId() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
 func (o WtpRadio1PtrOutput) SpectrumAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *string {
 		if v == nil {
@@ -4825,7 +4787,6 @@ func (o WtpRadio1PtrOutput) SpectrumAnalysis() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
 func (o WtpRadio1PtrOutput) VapAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio1) *string {
 		if v == nil {
@@ -4835,7 +4796,6 @@ func (o WtpRadio1PtrOutput) VapAll() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
 func (o WtpRadio1PtrOutput) Vaps() WtpRadio1VapArrayOutput {
 	return o.ApplyT(func(v *WtpRadio1) []WtpRadio1Vap {
 		if v == nil {
@@ -5040,44 +5000,25 @@ func (o WtpRadio1VapArrayOutput) Index(i pulumi.IntInput) WtpRadio1VapOutput {
 }
 
 type WtpRadio2 struct {
-	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerHigh *int `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-	AutoPowerLevel *string `pulumi:"autoPowerLevel"`
-	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerLow *int `pulumi:"autoPowerLow"`
-	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-	AutoPowerTarget *string `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 4 operates on.
-	Band *string `pulumi:"band"`
-	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
-	Channels []WtpRadio2Channel `pulumi:"channels"`
-	// Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-	DrmaManualMode *string `pulumi:"drmaManualMode"`
-	// Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-	OverrideAnalysis *string `pulumi:"overrideAnalysis"`
-	// Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-	OverrideBand *string `pulumi:"overrideBand"`
-	// Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-	OverrideChannel *string `pulumi:"overrideChannel"`
-	// Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-	OverrideTxpower *string `pulumi:"overrideTxpower"`
-	// Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-	OverrideVaps *string `pulumi:"overrideVaps"`
-	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-	PowerLevel *int `pulumi:"powerLevel"`
-	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-	PowerMode *string `pulumi:"powerMode"`
-	// Radio EIRP power in dBm (1 - 33, default = 27).
-	PowerValue *int `pulumi:"powerValue"`
-	// radio-id
-	RadioId *int `pulumi:"radioId"`
-	// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-	SpectrumAnalysis *string `pulumi:"spectrumAnalysis"`
-	// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-	VapAll *string `pulumi:"vapAll"`
-	// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-	Vaps []WtpRadio2Vap `pulumi:"vaps"`
+	AutoPowerHigh    *int               `pulumi:"autoPowerHigh"`
+	AutoPowerLevel   *string            `pulumi:"autoPowerLevel"`
+	AutoPowerLow     *int               `pulumi:"autoPowerLow"`
+	AutoPowerTarget  *string            `pulumi:"autoPowerTarget"`
+	Band             *string            `pulumi:"band"`
+	Channels         []WtpRadio2Channel `pulumi:"channels"`
+	DrmaManualMode   *string            `pulumi:"drmaManualMode"`
+	OverrideAnalysis *string            `pulumi:"overrideAnalysis"`
+	OverrideBand     *string            `pulumi:"overrideBand"`
+	OverrideChannel  *string            `pulumi:"overrideChannel"`
+	OverrideTxpower  *string            `pulumi:"overrideTxpower"`
+	OverrideVaps     *string            `pulumi:"overrideVaps"`
+	PowerLevel       *int               `pulumi:"powerLevel"`
+	PowerMode        *string            `pulumi:"powerMode"`
+	PowerValue       *int               `pulumi:"powerValue"`
+	RadioId          *int               `pulumi:"radioId"`
+	SpectrumAnalysis *string            `pulumi:"spectrumAnalysis"`
+	VapAll           *string            `pulumi:"vapAll"`
+	Vaps             []WtpRadio2Vap     `pulumi:"vaps"`
 }
 
 // WtpRadio2Input is an input type that accepts WtpRadio2Args and WtpRadio2Output values.
@@ -5092,44 +5033,25 @@ type WtpRadio2Input interface {
 }
 
 type WtpRadio2Args struct {
-	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerHigh pulumi.IntPtrInput `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-	AutoPowerLevel pulumi.StringPtrInput `pulumi:"autoPowerLevel"`
-	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerLow pulumi.IntPtrInput `pulumi:"autoPowerLow"`
-	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-	AutoPowerTarget pulumi.StringPtrInput `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 4 operates on.
-	Band pulumi.StringPtrInput `pulumi:"band"`
-	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
-	Channels WtpRadio2ChannelArrayInput `pulumi:"channels"`
-	// Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-	DrmaManualMode pulumi.StringPtrInput `pulumi:"drmaManualMode"`
-	// Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-	OverrideAnalysis pulumi.StringPtrInput `pulumi:"overrideAnalysis"`
-	// Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-	OverrideBand pulumi.StringPtrInput `pulumi:"overrideBand"`
-	// Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-	OverrideChannel pulumi.StringPtrInput `pulumi:"overrideChannel"`
-	// Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-	OverrideTxpower pulumi.StringPtrInput `pulumi:"overrideTxpower"`
-	// Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-	OverrideVaps pulumi.StringPtrInput `pulumi:"overrideVaps"`
-	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-	PowerLevel pulumi.IntPtrInput `pulumi:"powerLevel"`
-	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-	PowerMode pulumi.StringPtrInput `pulumi:"powerMode"`
-	// Radio EIRP power in dBm (1 - 33, default = 27).
-	PowerValue pulumi.IntPtrInput `pulumi:"powerValue"`
-	// radio-id
-	RadioId pulumi.IntPtrInput `pulumi:"radioId"`
-	// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-	SpectrumAnalysis pulumi.StringPtrInput `pulumi:"spectrumAnalysis"`
-	// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-	VapAll pulumi.StringPtrInput `pulumi:"vapAll"`
-	// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-	Vaps WtpRadio2VapArrayInput `pulumi:"vaps"`
+	AutoPowerHigh    pulumi.IntPtrInput         `pulumi:"autoPowerHigh"`
+	AutoPowerLevel   pulumi.StringPtrInput      `pulumi:"autoPowerLevel"`
+	AutoPowerLow     pulumi.IntPtrInput         `pulumi:"autoPowerLow"`
+	AutoPowerTarget  pulumi.StringPtrInput      `pulumi:"autoPowerTarget"`
+	Band             pulumi.StringPtrInput      `pulumi:"band"`
+	Channels         WtpRadio2ChannelArrayInput `pulumi:"channels"`
+	DrmaManualMode   pulumi.StringPtrInput      `pulumi:"drmaManualMode"`
+	OverrideAnalysis pulumi.StringPtrInput      `pulumi:"overrideAnalysis"`
+	OverrideBand     pulumi.StringPtrInput      `pulumi:"overrideBand"`
+	OverrideChannel  pulumi.StringPtrInput      `pulumi:"overrideChannel"`
+	OverrideTxpower  pulumi.StringPtrInput      `pulumi:"overrideTxpower"`
+	OverrideVaps     pulumi.StringPtrInput      `pulumi:"overrideVaps"`
+	PowerLevel       pulumi.IntPtrInput         `pulumi:"powerLevel"`
+	PowerMode        pulumi.StringPtrInput      `pulumi:"powerMode"`
+	PowerValue       pulumi.IntPtrInput         `pulumi:"powerValue"`
+	RadioId          pulumi.IntPtrInput         `pulumi:"radioId"`
+	SpectrumAnalysis pulumi.StringPtrInput      `pulumi:"spectrumAnalysis"`
+	VapAll           pulumi.StringPtrInput      `pulumi:"vapAll"`
+	Vaps             WtpRadio2VapArrayInput     `pulumi:"vaps"`
 }
 
 func (WtpRadio2Args) ElementType() reflect.Type {
@@ -5209,97 +5131,78 @@ func (o WtpRadio2Output) ToWtpRadio2PtrOutputWithContext(ctx context.Context) Wt
 	}).(WtpRadio2PtrOutput)
 }
 
-// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio2Output) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *int { return v.AutoPowerHigh }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpRadio2Output) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *string { return v.AutoPowerLevel }).(pulumi.StringPtrOutput)
 }
 
-// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio2Output) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *int { return v.AutoPowerLow }).(pulumi.IntPtrOutput)
 }
 
-// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 func (o WtpRadio2Output) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *string { return v.AutoPowerTarget }).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 4 operates on.
 func (o WtpRadio2Output) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *string { return v.Band }).(pulumi.StringPtrOutput)
 }
 
-// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 func (o WtpRadio2Output) Channels() WtpRadio2ChannelArrayOutput {
 	return o.ApplyT(func(v WtpRadio2) []WtpRadio2Channel { return v.Channels }).(WtpRadio2ChannelArrayOutput)
 }
 
-// Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
 func (o WtpRadio2Output) DrmaManualMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *string { return v.DrmaManualMode }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
 func (o WtpRadio2Output) OverrideAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *string { return v.OverrideAnalysis }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
 func (o WtpRadio2Output) OverrideBand() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *string { return v.OverrideBand }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
 func (o WtpRadio2Output) OverrideChannel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *string { return v.OverrideChannel }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
 func (o WtpRadio2Output) OverrideTxpower() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *string { return v.OverrideTxpower }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
 func (o WtpRadio2Output) OverrideVaps() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *string { return v.OverrideVaps }).(pulumi.StringPtrOutput)
 }
 
-// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 func (o WtpRadio2Output) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *int { return v.PowerLevel }).(pulumi.IntPtrOutput)
 }
 
-// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 func (o WtpRadio2Output) PowerMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *string { return v.PowerMode }).(pulumi.StringPtrOutput)
 }
 
-// Radio EIRP power in dBm (1 - 33, default = 27).
 func (o WtpRadio2Output) PowerValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *int { return v.PowerValue }).(pulumi.IntPtrOutput)
 }
 
-// radio-id
 func (o WtpRadio2Output) RadioId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *int { return v.RadioId }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
 func (o WtpRadio2Output) SpectrumAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *string { return v.SpectrumAnalysis }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
 func (o WtpRadio2Output) VapAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio2) *string { return v.VapAll }).(pulumi.StringPtrOutput)
 }
 
-// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
 func (o WtpRadio2Output) Vaps() WtpRadio2VapArrayOutput {
 	return o.ApplyT(func(v WtpRadio2) []WtpRadio2Vap { return v.Vaps }).(WtpRadio2VapArrayOutput)
 }
@@ -5328,7 +5231,6 @@ func (o WtpRadio2PtrOutput) Elem() WtpRadio2Output {
 	}).(WtpRadio2Output)
 }
 
-// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio2PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *int {
 		if v == nil {
@@ -5338,7 +5240,6 @@ func (o WtpRadio2PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpRadio2PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *string {
 		if v == nil {
@@ -5348,7 +5249,6 @@ func (o WtpRadio2PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio2PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *int {
 		if v == nil {
@@ -5358,7 +5258,6 @@ func (o WtpRadio2PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 func (o WtpRadio2PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *string {
 		if v == nil {
@@ -5368,7 +5267,6 @@ func (o WtpRadio2PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 4 operates on.
 func (o WtpRadio2PtrOutput) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *string {
 		if v == nil {
@@ -5378,7 +5276,6 @@ func (o WtpRadio2PtrOutput) Band() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 func (o WtpRadio2PtrOutput) Channels() WtpRadio2ChannelArrayOutput {
 	return o.ApplyT(func(v *WtpRadio2) []WtpRadio2Channel {
 		if v == nil {
@@ -5388,7 +5285,6 @@ func (o WtpRadio2PtrOutput) Channels() WtpRadio2ChannelArrayOutput {
 	}).(WtpRadio2ChannelArrayOutput)
 }
 
-// Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
 func (o WtpRadio2PtrOutput) DrmaManualMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *string {
 		if v == nil {
@@ -5398,7 +5294,6 @@ func (o WtpRadio2PtrOutput) DrmaManualMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
 func (o WtpRadio2PtrOutput) OverrideAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *string {
 		if v == nil {
@@ -5408,7 +5303,6 @@ func (o WtpRadio2PtrOutput) OverrideAnalysis() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
 func (o WtpRadio2PtrOutput) OverrideBand() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *string {
 		if v == nil {
@@ -5418,7 +5312,6 @@ func (o WtpRadio2PtrOutput) OverrideBand() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
 func (o WtpRadio2PtrOutput) OverrideChannel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *string {
 		if v == nil {
@@ -5428,7 +5321,6 @@ func (o WtpRadio2PtrOutput) OverrideChannel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
 func (o WtpRadio2PtrOutput) OverrideTxpower() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *string {
 		if v == nil {
@@ -5438,7 +5330,6 @@ func (o WtpRadio2PtrOutput) OverrideTxpower() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
 func (o WtpRadio2PtrOutput) OverrideVaps() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *string {
 		if v == nil {
@@ -5448,7 +5339,6 @@ func (o WtpRadio2PtrOutput) OverrideVaps() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 func (o WtpRadio2PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *int {
 		if v == nil {
@@ -5458,7 +5348,6 @@ func (o WtpRadio2PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 func (o WtpRadio2PtrOutput) PowerMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *string {
 		if v == nil {
@@ -5468,7 +5357,6 @@ func (o WtpRadio2PtrOutput) PowerMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Radio EIRP power in dBm (1 - 33, default = 27).
 func (o WtpRadio2PtrOutput) PowerValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *int {
 		if v == nil {
@@ -5478,7 +5366,6 @@ func (o WtpRadio2PtrOutput) PowerValue() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// radio-id
 func (o WtpRadio2PtrOutput) RadioId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *int {
 		if v == nil {
@@ -5488,7 +5375,6 @@ func (o WtpRadio2PtrOutput) RadioId() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
 func (o WtpRadio2PtrOutput) SpectrumAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *string {
 		if v == nil {
@@ -5498,7 +5384,6 @@ func (o WtpRadio2PtrOutput) SpectrumAnalysis() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
 func (o WtpRadio2PtrOutput) VapAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio2) *string {
 		if v == nil {
@@ -5508,7 +5393,6 @@ func (o WtpRadio2PtrOutput) VapAll() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
 func (o WtpRadio2PtrOutput) Vaps() WtpRadio2VapArrayOutput {
 	return o.ApplyT(func(v *WtpRadio2) []WtpRadio2Vap {
 		if v == nil {
@@ -5713,42 +5597,24 @@ func (o WtpRadio2VapArrayOutput) Index(i pulumi.IntInput) WtpRadio2VapOutput {
 }
 
 type WtpRadio3 struct {
-	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerHigh *int `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-	AutoPowerLevel *string `pulumi:"autoPowerLevel"`
-	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerLow *int `pulumi:"autoPowerLow"`
-	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-	AutoPowerTarget *string `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 4 operates on.
-	Band *string `pulumi:"band"`
-	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
-	Channels []WtpRadio3Channel `pulumi:"channels"`
-	// Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-	DrmaManualMode *string `pulumi:"drmaManualMode"`
-	// Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-	OverrideAnalysis *string `pulumi:"overrideAnalysis"`
-	// Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-	OverrideBand *string `pulumi:"overrideBand"`
-	// Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-	OverrideChannel *string `pulumi:"overrideChannel"`
-	// Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-	OverrideTxpower *string `pulumi:"overrideTxpower"`
-	// Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-	OverrideVaps *string `pulumi:"overrideVaps"`
-	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-	PowerLevel *int `pulumi:"powerLevel"`
-	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-	PowerMode *string `pulumi:"powerMode"`
-	// Radio EIRP power in dBm (1 - 33, default = 27).
-	PowerValue *int `pulumi:"powerValue"`
-	// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-	SpectrumAnalysis *string `pulumi:"spectrumAnalysis"`
-	// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-	VapAll *string `pulumi:"vapAll"`
-	// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-	Vaps []WtpRadio3Vap `pulumi:"vaps"`
+	AutoPowerHigh    *int               `pulumi:"autoPowerHigh"`
+	AutoPowerLevel   *string            `pulumi:"autoPowerLevel"`
+	AutoPowerLow     *int               `pulumi:"autoPowerLow"`
+	AutoPowerTarget  *string            `pulumi:"autoPowerTarget"`
+	Band             *string            `pulumi:"band"`
+	Channels         []WtpRadio3Channel `pulumi:"channels"`
+	DrmaManualMode   *string            `pulumi:"drmaManualMode"`
+	OverrideAnalysis *string            `pulumi:"overrideAnalysis"`
+	OverrideBand     *string            `pulumi:"overrideBand"`
+	OverrideChannel  *string            `pulumi:"overrideChannel"`
+	OverrideTxpower  *string            `pulumi:"overrideTxpower"`
+	OverrideVaps     *string            `pulumi:"overrideVaps"`
+	PowerLevel       *int               `pulumi:"powerLevel"`
+	PowerMode        *string            `pulumi:"powerMode"`
+	PowerValue       *int               `pulumi:"powerValue"`
+	SpectrumAnalysis *string            `pulumi:"spectrumAnalysis"`
+	VapAll           *string            `pulumi:"vapAll"`
+	Vaps             []WtpRadio3Vap     `pulumi:"vaps"`
 }
 
 // WtpRadio3Input is an input type that accepts WtpRadio3Args and WtpRadio3Output values.
@@ -5763,42 +5629,24 @@ type WtpRadio3Input interface {
 }
 
 type WtpRadio3Args struct {
-	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerHigh pulumi.IntPtrInput `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-	AutoPowerLevel pulumi.StringPtrInput `pulumi:"autoPowerLevel"`
-	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerLow pulumi.IntPtrInput `pulumi:"autoPowerLow"`
-	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-	AutoPowerTarget pulumi.StringPtrInput `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 4 operates on.
-	Band pulumi.StringPtrInput `pulumi:"band"`
-	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
-	Channels WtpRadio3ChannelArrayInput `pulumi:"channels"`
-	// Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-	DrmaManualMode pulumi.StringPtrInput `pulumi:"drmaManualMode"`
-	// Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-	OverrideAnalysis pulumi.StringPtrInput `pulumi:"overrideAnalysis"`
-	// Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-	OverrideBand pulumi.StringPtrInput `pulumi:"overrideBand"`
-	// Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-	OverrideChannel pulumi.StringPtrInput `pulumi:"overrideChannel"`
-	// Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-	OverrideTxpower pulumi.StringPtrInput `pulumi:"overrideTxpower"`
-	// Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-	OverrideVaps pulumi.StringPtrInput `pulumi:"overrideVaps"`
-	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-	PowerLevel pulumi.IntPtrInput `pulumi:"powerLevel"`
-	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-	PowerMode pulumi.StringPtrInput `pulumi:"powerMode"`
-	// Radio EIRP power in dBm (1 - 33, default = 27).
-	PowerValue pulumi.IntPtrInput `pulumi:"powerValue"`
-	// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-	SpectrumAnalysis pulumi.StringPtrInput `pulumi:"spectrumAnalysis"`
-	// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-	VapAll pulumi.StringPtrInput `pulumi:"vapAll"`
-	// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-	Vaps WtpRadio3VapArrayInput `pulumi:"vaps"`
+	AutoPowerHigh    pulumi.IntPtrInput         `pulumi:"autoPowerHigh"`
+	AutoPowerLevel   pulumi.StringPtrInput      `pulumi:"autoPowerLevel"`
+	AutoPowerLow     pulumi.IntPtrInput         `pulumi:"autoPowerLow"`
+	AutoPowerTarget  pulumi.StringPtrInput      `pulumi:"autoPowerTarget"`
+	Band             pulumi.StringPtrInput      `pulumi:"band"`
+	Channels         WtpRadio3ChannelArrayInput `pulumi:"channels"`
+	DrmaManualMode   pulumi.StringPtrInput      `pulumi:"drmaManualMode"`
+	OverrideAnalysis pulumi.StringPtrInput      `pulumi:"overrideAnalysis"`
+	OverrideBand     pulumi.StringPtrInput      `pulumi:"overrideBand"`
+	OverrideChannel  pulumi.StringPtrInput      `pulumi:"overrideChannel"`
+	OverrideTxpower  pulumi.StringPtrInput      `pulumi:"overrideTxpower"`
+	OverrideVaps     pulumi.StringPtrInput      `pulumi:"overrideVaps"`
+	PowerLevel       pulumi.IntPtrInput         `pulumi:"powerLevel"`
+	PowerMode        pulumi.StringPtrInput      `pulumi:"powerMode"`
+	PowerValue       pulumi.IntPtrInput         `pulumi:"powerValue"`
+	SpectrumAnalysis pulumi.StringPtrInput      `pulumi:"spectrumAnalysis"`
+	VapAll           pulumi.StringPtrInput      `pulumi:"vapAll"`
+	Vaps             WtpRadio3VapArrayInput     `pulumi:"vaps"`
 }
 
 func (WtpRadio3Args) ElementType() reflect.Type {
@@ -5878,92 +5726,74 @@ func (o WtpRadio3Output) ToWtpRadio3PtrOutputWithContext(ctx context.Context) Wt
 	}).(WtpRadio3PtrOutput)
 }
 
-// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio3Output) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *int { return v.AutoPowerHigh }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpRadio3Output) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *string { return v.AutoPowerLevel }).(pulumi.StringPtrOutput)
 }
 
-// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio3Output) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *int { return v.AutoPowerLow }).(pulumi.IntPtrOutput)
 }
 
-// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 func (o WtpRadio3Output) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *string { return v.AutoPowerTarget }).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 4 operates on.
 func (o WtpRadio3Output) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *string { return v.Band }).(pulumi.StringPtrOutput)
 }
 
-// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 func (o WtpRadio3Output) Channels() WtpRadio3ChannelArrayOutput {
 	return o.ApplyT(func(v WtpRadio3) []WtpRadio3Channel { return v.Channels }).(WtpRadio3ChannelArrayOutput)
 }
 
-// Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
 func (o WtpRadio3Output) DrmaManualMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *string { return v.DrmaManualMode }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
 func (o WtpRadio3Output) OverrideAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *string { return v.OverrideAnalysis }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
 func (o WtpRadio3Output) OverrideBand() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *string { return v.OverrideBand }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
 func (o WtpRadio3Output) OverrideChannel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *string { return v.OverrideChannel }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
 func (o WtpRadio3Output) OverrideTxpower() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *string { return v.OverrideTxpower }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
 func (o WtpRadio3Output) OverrideVaps() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *string { return v.OverrideVaps }).(pulumi.StringPtrOutput)
 }
 
-// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 func (o WtpRadio3Output) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *int { return v.PowerLevel }).(pulumi.IntPtrOutput)
 }
 
-// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 func (o WtpRadio3Output) PowerMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *string { return v.PowerMode }).(pulumi.StringPtrOutput)
 }
 
-// Radio EIRP power in dBm (1 - 33, default = 27).
 func (o WtpRadio3Output) PowerValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *int { return v.PowerValue }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
 func (o WtpRadio3Output) SpectrumAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *string { return v.SpectrumAnalysis }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
 func (o WtpRadio3Output) VapAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio3) *string { return v.VapAll }).(pulumi.StringPtrOutput)
 }
 
-// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
 func (o WtpRadio3Output) Vaps() WtpRadio3VapArrayOutput {
 	return o.ApplyT(func(v WtpRadio3) []WtpRadio3Vap { return v.Vaps }).(WtpRadio3VapArrayOutput)
 }
@@ -5992,7 +5822,6 @@ func (o WtpRadio3PtrOutput) Elem() WtpRadio3Output {
 	}).(WtpRadio3Output)
 }
 
-// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio3PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *int {
 		if v == nil {
@@ -6002,7 +5831,6 @@ func (o WtpRadio3PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpRadio3PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *string {
 		if v == nil {
@@ -6012,7 +5840,6 @@ func (o WtpRadio3PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio3PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *int {
 		if v == nil {
@@ -6022,7 +5849,6 @@ func (o WtpRadio3PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 func (o WtpRadio3PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *string {
 		if v == nil {
@@ -6032,7 +5858,6 @@ func (o WtpRadio3PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 4 operates on.
 func (o WtpRadio3PtrOutput) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *string {
 		if v == nil {
@@ -6042,7 +5867,6 @@ func (o WtpRadio3PtrOutput) Band() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 func (o WtpRadio3PtrOutput) Channels() WtpRadio3ChannelArrayOutput {
 	return o.ApplyT(func(v *WtpRadio3) []WtpRadio3Channel {
 		if v == nil {
@@ -6052,7 +5876,6 @@ func (o WtpRadio3PtrOutput) Channels() WtpRadio3ChannelArrayOutput {
 	}).(WtpRadio3ChannelArrayOutput)
 }
 
-// Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
 func (o WtpRadio3PtrOutput) DrmaManualMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *string {
 		if v == nil {
@@ -6062,7 +5885,6 @@ func (o WtpRadio3PtrOutput) DrmaManualMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
 func (o WtpRadio3PtrOutput) OverrideAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *string {
 		if v == nil {
@@ -6072,7 +5894,6 @@ func (o WtpRadio3PtrOutput) OverrideAnalysis() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
 func (o WtpRadio3PtrOutput) OverrideBand() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *string {
 		if v == nil {
@@ -6082,7 +5903,6 @@ func (o WtpRadio3PtrOutput) OverrideBand() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
 func (o WtpRadio3PtrOutput) OverrideChannel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *string {
 		if v == nil {
@@ -6092,7 +5912,6 @@ func (o WtpRadio3PtrOutput) OverrideChannel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
 func (o WtpRadio3PtrOutput) OverrideTxpower() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *string {
 		if v == nil {
@@ -6102,7 +5921,6 @@ func (o WtpRadio3PtrOutput) OverrideTxpower() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
 func (o WtpRadio3PtrOutput) OverrideVaps() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *string {
 		if v == nil {
@@ -6112,7 +5930,6 @@ func (o WtpRadio3PtrOutput) OverrideVaps() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 func (o WtpRadio3PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *int {
 		if v == nil {
@@ -6122,7 +5939,6 @@ func (o WtpRadio3PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 func (o WtpRadio3PtrOutput) PowerMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *string {
 		if v == nil {
@@ -6132,7 +5948,6 @@ func (o WtpRadio3PtrOutput) PowerMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Radio EIRP power in dBm (1 - 33, default = 27).
 func (o WtpRadio3PtrOutput) PowerValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *int {
 		if v == nil {
@@ -6142,7 +5957,6 @@ func (o WtpRadio3PtrOutput) PowerValue() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
 func (o WtpRadio3PtrOutput) SpectrumAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *string {
 		if v == nil {
@@ -6152,7 +5966,6 @@ func (o WtpRadio3PtrOutput) SpectrumAnalysis() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
 func (o WtpRadio3PtrOutput) VapAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio3) *string {
 		if v == nil {
@@ -6162,7 +5975,6 @@ func (o WtpRadio3PtrOutput) VapAll() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
 func (o WtpRadio3PtrOutput) Vaps() WtpRadio3VapArrayOutput {
 	return o.ApplyT(func(v *WtpRadio3) []WtpRadio3Vap {
 		if v == nil {
@@ -6367,42 +6179,24 @@ func (o WtpRadio3VapArrayOutput) Index(i pulumi.IntInput) WtpRadio3VapOutput {
 }
 
 type WtpRadio4 struct {
-	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerHigh *int `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-	AutoPowerLevel *string `pulumi:"autoPowerLevel"`
-	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerLow *int `pulumi:"autoPowerLow"`
-	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-	AutoPowerTarget *string `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 4 operates on.
-	Band *string `pulumi:"band"`
-	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
-	Channels []WtpRadio4Channel `pulumi:"channels"`
-	// Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-	DrmaManualMode *string `pulumi:"drmaManualMode"`
-	// Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-	OverrideAnalysis *string `pulumi:"overrideAnalysis"`
-	// Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-	OverrideBand *string `pulumi:"overrideBand"`
-	// Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-	OverrideChannel *string `pulumi:"overrideChannel"`
-	// Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-	OverrideTxpower *string `pulumi:"overrideTxpower"`
-	// Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-	OverrideVaps *string `pulumi:"overrideVaps"`
-	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-	PowerLevel *int `pulumi:"powerLevel"`
-	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-	PowerMode *string `pulumi:"powerMode"`
-	// Radio EIRP power in dBm (1 - 33, default = 27).
-	PowerValue *int `pulumi:"powerValue"`
-	// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-	SpectrumAnalysis *string `pulumi:"spectrumAnalysis"`
-	// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-	VapAll *string `pulumi:"vapAll"`
-	// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-	Vaps []WtpRadio4Vap `pulumi:"vaps"`
+	AutoPowerHigh    *int               `pulumi:"autoPowerHigh"`
+	AutoPowerLevel   *string            `pulumi:"autoPowerLevel"`
+	AutoPowerLow     *int               `pulumi:"autoPowerLow"`
+	AutoPowerTarget  *string            `pulumi:"autoPowerTarget"`
+	Band             *string            `pulumi:"band"`
+	Channels         []WtpRadio4Channel `pulumi:"channels"`
+	DrmaManualMode   *string            `pulumi:"drmaManualMode"`
+	OverrideAnalysis *string            `pulumi:"overrideAnalysis"`
+	OverrideBand     *string            `pulumi:"overrideBand"`
+	OverrideChannel  *string            `pulumi:"overrideChannel"`
+	OverrideTxpower  *string            `pulumi:"overrideTxpower"`
+	OverrideVaps     *string            `pulumi:"overrideVaps"`
+	PowerLevel       *int               `pulumi:"powerLevel"`
+	PowerMode        *string            `pulumi:"powerMode"`
+	PowerValue       *int               `pulumi:"powerValue"`
+	SpectrumAnalysis *string            `pulumi:"spectrumAnalysis"`
+	VapAll           *string            `pulumi:"vapAll"`
+	Vaps             []WtpRadio4Vap     `pulumi:"vaps"`
 }
 
 // WtpRadio4Input is an input type that accepts WtpRadio4Args and WtpRadio4Output values.
@@ -6417,42 +6211,24 @@ type WtpRadio4Input interface {
 }
 
 type WtpRadio4Args struct {
-	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerHigh pulumi.IntPtrInput `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-	AutoPowerLevel pulumi.StringPtrInput `pulumi:"autoPowerLevel"`
-	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerLow pulumi.IntPtrInput `pulumi:"autoPowerLow"`
-	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-	AutoPowerTarget pulumi.StringPtrInput `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 4 operates on.
-	Band pulumi.StringPtrInput `pulumi:"band"`
-	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
-	Channels WtpRadio4ChannelArrayInput `pulumi:"channels"`
-	// Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
-	DrmaManualMode pulumi.StringPtrInput `pulumi:"drmaManualMode"`
-	// Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
-	OverrideAnalysis pulumi.StringPtrInput `pulumi:"overrideAnalysis"`
-	// Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
-	OverrideBand pulumi.StringPtrInput `pulumi:"overrideBand"`
-	// Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
-	OverrideChannel pulumi.StringPtrInput `pulumi:"overrideChannel"`
-	// Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
-	OverrideTxpower pulumi.StringPtrInput `pulumi:"overrideTxpower"`
-	// Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
-	OverrideVaps pulumi.StringPtrInput `pulumi:"overrideVaps"`
-	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-	PowerLevel pulumi.IntPtrInput `pulumi:"powerLevel"`
-	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-	PowerMode pulumi.StringPtrInput `pulumi:"powerMode"`
-	// Radio EIRP power in dBm (1 - 33, default = 27).
-	PowerValue pulumi.IntPtrInput `pulumi:"powerValue"`
-	// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-	SpectrumAnalysis pulumi.StringPtrInput `pulumi:"spectrumAnalysis"`
-	// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-	VapAll pulumi.StringPtrInput `pulumi:"vapAll"`
-	// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-	Vaps WtpRadio4VapArrayInput `pulumi:"vaps"`
+	AutoPowerHigh    pulumi.IntPtrInput         `pulumi:"autoPowerHigh"`
+	AutoPowerLevel   pulumi.StringPtrInput      `pulumi:"autoPowerLevel"`
+	AutoPowerLow     pulumi.IntPtrInput         `pulumi:"autoPowerLow"`
+	AutoPowerTarget  pulumi.StringPtrInput      `pulumi:"autoPowerTarget"`
+	Band             pulumi.StringPtrInput      `pulumi:"band"`
+	Channels         WtpRadio4ChannelArrayInput `pulumi:"channels"`
+	DrmaManualMode   pulumi.StringPtrInput      `pulumi:"drmaManualMode"`
+	OverrideAnalysis pulumi.StringPtrInput      `pulumi:"overrideAnalysis"`
+	OverrideBand     pulumi.StringPtrInput      `pulumi:"overrideBand"`
+	OverrideChannel  pulumi.StringPtrInput      `pulumi:"overrideChannel"`
+	OverrideTxpower  pulumi.StringPtrInput      `pulumi:"overrideTxpower"`
+	OverrideVaps     pulumi.StringPtrInput      `pulumi:"overrideVaps"`
+	PowerLevel       pulumi.IntPtrInput         `pulumi:"powerLevel"`
+	PowerMode        pulumi.StringPtrInput      `pulumi:"powerMode"`
+	PowerValue       pulumi.IntPtrInput         `pulumi:"powerValue"`
+	SpectrumAnalysis pulumi.StringPtrInput      `pulumi:"spectrumAnalysis"`
+	VapAll           pulumi.StringPtrInput      `pulumi:"vapAll"`
+	Vaps             WtpRadio4VapArrayInput     `pulumi:"vaps"`
 }
 
 func (WtpRadio4Args) ElementType() reflect.Type {
@@ -6532,92 +6308,74 @@ func (o WtpRadio4Output) ToWtpRadio4PtrOutputWithContext(ctx context.Context) Wt
 	}).(WtpRadio4PtrOutput)
 }
 
-// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio4Output) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *int { return v.AutoPowerHigh }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpRadio4Output) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *string { return v.AutoPowerLevel }).(pulumi.StringPtrOutput)
 }
 
-// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio4Output) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *int { return v.AutoPowerLow }).(pulumi.IntPtrOutput)
 }
 
-// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 func (o WtpRadio4Output) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *string { return v.AutoPowerTarget }).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 4 operates on.
 func (o WtpRadio4Output) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *string { return v.Band }).(pulumi.StringPtrOutput)
 }
 
-// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 func (o WtpRadio4Output) Channels() WtpRadio4ChannelArrayOutput {
 	return o.ApplyT(func(v WtpRadio4) []WtpRadio4Channel { return v.Channels }).(WtpRadio4ChannelArrayOutput)
 }
 
-// Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
 func (o WtpRadio4Output) DrmaManualMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *string { return v.DrmaManualMode }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
 func (o WtpRadio4Output) OverrideAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *string { return v.OverrideAnalysis }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
 func (o WtpRadio4Output) OverrideBand() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *string { return v.OverrideBand }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
 func (o WtpRadio4Output) OverrideChannel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *string { return v.OverrideChannel }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
 func (o WtpRadio4Output) OverrideTxpower() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *string { return v.OverrideTxpower }).(pulumi.StringPtrOutput)
 }
 
-// Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
 func (o WtpRadio4Output) OverrideVaps() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *string { return v.OverrideVaps }).(pulumi.StringPtrOutput)
 }
 
-// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 func (o WtpRadio4Output) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *int { return v.PowerLevel }).(pulumi.IntPtrOutput)
 }
 
-// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 func (o WtpRadio4Output) PowerMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *string { return v.PowerMode }).(pulumi.StringPtrOutput)
 }
 
-// Radio EIRP power in dBm (1 - 33, default = 27).
 func (o WtpRadio4Output) PowerValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *int { return v.PowerValue }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
 func (o WtpRadio4Output) SpectrumAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *string { return v.SpectrumAnalysis }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
 func (o WtpRadio4Output) VapAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpRadio4) *string { return v.VapAll }).(pulumi.StringPtrOutput)
 }
 
-// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
 func (o WtpRadio4Output) Vaps() WtpRadio4VapArrayOutput {
 	return o.ApplyT(func(v WtpRadio4) []WtpRadio4Vap { return v.Vaps }).(WtpRadio4VapArrayOutput)
 }
@@ -6646,7 +6404,6 @@ func (o WtpRadio4PtrOutput) Elem() WtpRadio4Output {
 	}).(WtpRadio4Output)
 }
 
-// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio4PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *int {
 		if v == nil {
@@ -6656,7 +6413,6 @@ func (o WtpRadio4PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpRadio4PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *string {
 		if v == nil {
@@ -6666,7 +6422,6 @@ func (o WtpRadio4PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpRadio4PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *int {
 		if v == nil {
@@ -6676,7 +6431,6 @@ func (o WtpRadio4PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 func (o WtpRadio4PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *string {
 		if v == nil {
@@ -6686,7 +6440,6 @@ func (o WtpRadio4PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 4 operates on.
 func (o WtpRadio4PtrOutput) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *string {
 		if v == nil {
@@ -6696,7 +6449,6 @@ func (o WtpRadio4PtrOutput) Band() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 func (o WtpRadio4PtrOutput) Channels() WtpRadio4ChannelArrayOutput {
 	return o.ApplyT(func(v *WtpRadio4) []WtpRadio4Channel {
 		if v == nil {
@@ -6706,7 +6458,6 @@ func (o WtpRadio4PtrOutput) Channels() WtpRadio4ChannelArrayOutput {
 	}).(WtpRadio4ChannelArrayOutput)
 }
 
-// Radio mode to be used for DRMA manual mode (default = ncf). Valid values: `ap`, `monitor`, `ncf`, `ncf-peek`.
 func (o WtpRadio4PtrOutput) DrmaManualMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *string {
 		if v == nil {
@@ -6716,7 +6467,6 @@ func (o WtpRadio4PtrOutput) DrmaManualMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile spectrum analysis configuration. Valid values: `enable`, `disable`.
 func (o WtpRadio4PtrOutput) OverrideAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *string {
 		if v == nil {
@@ -6726,7 +6476,6 @@ func (o WtpRadio4PtrOutput) OverrideAnalysis() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile band setting. Valid values: `enable`, `disable`.
 func (o WtpRadio4PtrOutput) OverrideBand() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *string {
 		if v == nil {
@@ -6736,7 +6485,6 @@ func (o WtpRadio4PtrOutput) OverrideBand() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override WTP profile channel settings. Valid values: `enable`, `disable`.
 func (o WtpRadio4PtrOutput) OverrideChannel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *string {
 		if v == nil {
@@ -6746,7 +6494,6 @@ func (o WtpRadio4PtrOutput) OverrideChannel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
 func (o WtpRadio4PtrOutput) OverrideTxpower() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *string {
 		if v == nil {
@@ -6756,7 +6503,6 @@ func (o WtpRadio4PtrOutput) OverrideTxpower() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
 func (o WtpRadio4PtrOutput) OverrideVaps() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *string {
 		if v == nil {
@@ -6766,7 +6512,6 @@ func (o WtpRadio4PtrOutput) OverrideVaps() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 func (o WtpRadio4PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *int {
 		if v == nil {
@@ -6776,7 +6521,6 @@ func (o WtpRadio4PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 func (o WtpRadio4PtrOutput) PowerMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *string {
 		if v == nil {
@@ -6786,7 +6530,6 @@ func (o WtpRadio4PtrOutput) PowerMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Radio EIRP power in dBm (1 - 33, default = 27).
 func (o WtpRadio4PtrOutput) PowerValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *int {
 		if v == nil {
@@ -6796,7 +6539,6 @@ func (o WtpRadio4PtrOutput) PowerValue() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
 func (o WtpRadio4PtrOutput) SpectrumAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *string {
 		if v == nil {
@@ -6806,7 +6548,6 @@ func (o WtpRadio4PtrOutput) SpectrumAnalysis() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
 func (o WtpRadio4PtrOutput) VapAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpRadio4) *string {
 		if v == nil {
@@ -6816,7 +6557,6 @@ func (o WtpRadio4PtrOutput) VapAll() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
 func (o WtpRadio4PtrOutput) Vaps() WtpRadio4VapArrayOutput {
 	return o.ApplyT(func(v *WtpRadio4) []WtpRadio4Vap {
 		if v == nil {
@@ -8157,13 +7897,13 @@ func (o WtpprofileLanPtrOutput) PortSsid() pulumi.StringPtrOutput {
 type WtpprofileLbs struct {
 	// Enable/disable AeroScout Real Time Location Service (RTLS) support. Valid values: `enable`, `disable`.
 	Aeroscout *string `pulumi:"aeroscout"`
-	// Use BSSID or board MAC address as AP MAC address in the Aeroscout AP message. Valid values: `bssid`, `board-mac`.
+	// Use BSSID or board MAC address as AP MAC address in AeroScout AP messages (default = bssid). Valid values: `bssid`, `board-mac`.
 	AeroscoutApMac *string `pulumi:"aeroscoutApMac"`
-	// Enable/disable MU compounded report. Valid values: `enable`, `disable`.
+	// Enable/disable compounded AeroScout tag and MU report (default = enable). Valid values: `enable`, `disable`.
 	AeroscoutMmuReport *string `pulumi:"aeroscoutMmuReport"`
-	// Enable/disable AeroScout support. Valid values: `enable`, `disable`.
+	// Enable/disable AeroScout Mobile Unit (MU) support (default = disable). Valid values: `enable`, `disable`.
 	AeroscoutMu *string `pulumi:"aeroscoutMu"`
-	// AeroScout Mobile Unit (MU) mode dilution factor (default = 20).
+	// eroScout MU mode dilution factor (default = 20).
 	AeroscoutMuFactor *int `pulumi:"aeroscoutMuFactor"`
 	// AeroScout MU mode timeout (0 - 65535 sec, default = 5).
 	AeroscoutMuTimeout *int `pulumi:"aeroscoutMuTimeout"`
@@ -8171,13 +7911,13 @@ type WtpprofileLbs struct {
 	AeroscoutServerIp *string `pulumi:"aeroscoutServerIp"`
 	// AeroScout server UDP listening port.
 	AeroscoutServerPort *int `pulumi:"aeroscoutServerPort"`
-	// Enable/disable Ekahua blink mode (also called AiRISTA Flow Blink Mode) to find the location of devices connected to a wireless LAN (default = disable). Valid values: `enable`, `disable`.
+	// Enable/disable Ekahau blink mode (now known as AiRISTA Flow) to track and locate WiFi tags (default = disable). Valid values: `enable`, `disable`.
 	EkahauBlinkMode *string `pulumi:"ekahauBlinkMode"`
 	// WiFi frame MAC address or WiFi Tag.
 	EkahauTag *string `pulumi:"ekahauTag"`
-	// IP address of Ekahua RTLS Controller (ERC).
+	// IP address of Ekahau RTLS Controller (ERC).
 	ErcServerIp *string `pulumi:"ercServerIp"`
-	// Ekahua RTLS Controller (ERC) UDP listening port.
+	// Ekahau RTLS Controller (ERC) UDP listening port.
 	ErcServerPort *int `pulumi:"ercServerPort"`
 	// Enable/disable FortiPresence to monitor the location and activity of WiFi clients even if they don't connect to this WiFi network (default = disable). Valid values: `foreign`, `both`, `disable`.
 	Fortipresence *string `pulumi:"fortipresence"`
@@ -8185,7 +7925,7 @@ type WtpprofileLbs struct {
 	FortipresenceBle *string `pulumi:"fortipresenceBle"`
 	// FortiPresence report transmit frequency (5 - 65535 sec, default = 30).
 	FortipresenceFrequency *int `pulumi:"fortipresenceFrequency"`
-	// FortiPresence server UDP listening port (default = 3000).
+	// UDP listening port of FortiPresence server (default = 3000).
 	FortipresencePort *int `pulumi:"fortipresencePort"`
 	// FortiPresence project name (max. 16 characters, default = fortipresence).
 	FortipresenceProject *string `pulumi:"fortipresenceProject"`
@@ -8245,13 +7985,13 @@ type WtpprofileLbsInput interface {
 type WtpprofileLbsArgs struct {
 	// Enable/disable AeroScout Real Time Location Service (RTLS) support. Valid values: `enable`, `disable`.
 	Aeroscout pulumi.StringPtrInput `pulumi:"aeroscout"`
-	// Use BSSID or board MAC address as AP MAC address in the Aeroscout AP message. Valid values: `bssid`, `board-mac`.
+	// Use BSSID or board MAC address as AP MAC address in AeroScout AP messages (default = bssid). Valid values: `bssid`, `board-mac`.
 	AeroscoutApMac pulumi.StringPtrInput `pulumi:"aeroscoutApMac"`
-	// Enable/disable MU compounded report. Valid values: `enable`, `disable`.
+	// Enable/disable compounded AeroScout tag and MU report (default = enable). Valid values: `enable`, `disable`.
 	AeroscoutMmuReport pulumi.StringPtrInput `pulumi:"aeroscoutMmuReport"`
-	// Enable/disable AeroScout support. Valid values: `enable`, `disable`.
+	// Enable/disable AeroScout Mobile Unit (MU) support (default = disable). Valid values: `enable`, `disable`.
 	AeroscoutMu pulumi.StringPtrInput `pulumi:"aeroscoutMu"`
-	// AeroScout Mobile Unit (MU) mode dilution factor (default = 20).
+	// eroScout MU mode dilution factor (default = 20).
 	AeroscoutMuFactor pulumi.IntPtrInput `pulumi:"aeroscoutMuFactor"`
 	// AeroScout MU mode timeout (0 - 65535 sec, default = 5).
 	AeroscoutMuTimeout pulumi.IntPtrInput `pulumi:"aeroscoutMuTimeout"`
@@ -8259,13 +7999,13 @@ type WtpprofileLbsArgs struct {
 	AeroscoutServerIp pulumi.StringPtrInput `pulumi:"aeroscoutServerIp"`
 	// AeroScout server UDP listening port.
 	AeroscoutServerPort pulumi.IntPtrInput `pulumi:"aeroscoutServerPort"`
-	// Enable/disable Ekahua blink mode (also called AiRISTA Flow Blink Mode) to find the location of devices connected to a wireless LAN (default = disable). Valid values: `enable`, `disable`.
+	// Enable/disable Ekahau blink mode (now known as AiRISTA Flow) to track and locate WiFi tags (default = disable). Valid values: `enable`, `disable`.
 	EkahauBlinkMode pulumi.StringPtrInput `pulumi:"ekahauBlinkMode"`
 	// WiFi frame MAC address or WiFi Tag.
 	EkahauTag pulumi.StringPtrInput `pulumi:"ekahauTag"`
-	// IP address of Ekahua RTLS Controller (ERC).
+	// IP address of Ekahau RTLS Controller (ERC).
 	ErcServerIp pulumi.StringPtrInput `pulumi:"ercServerIp"`
-	// Ekahua RTLS Controller (ERC) UDP listening port.
+	// Ekahau RTLS Controller (ERC) UDP listening port.
 	ErcServerPort pulumi.IntPtrInput `pulumi:"ercServerPort"`
 	// Enable/disable FortiPresence to monitor the location and activity of WiFi clients even if they don't connect to this WiFi network (default = disable). Valid values: `foreign`, `both`, `disable`.
 	Fortipresence pulumi.StringPtrInput `pulumi:"fortipresence"`
@@ -8273,7 +8013,7 @@ type WtpprofileLbsArgs struct {
 	FortipresenceBle pulumi.StringPtrInput `pulumi:"fortipresenceBle"`
 	// FortiPresence report transmit frequency (5 - 65535 sec, default = 30).
 	FortipresenceFrequency pulumi.IntPtrInput `pulumi:"fortipresenceFrequency"`
-	// FortiPresence server UDP listening port (default = 3000).
+	// UDP listening port of FortiPresence server (default = 3000).
 	FortipresencePort pulumi.IntPtrInput `pulumi:"fortipresencePort"`
 	// FortiPresence project name (max. 16 characters, default = fortipresence).
 	FortipresenceProject pulumi.StringPtrInput `pulumi:"fortipresenceProject"`
@@ -8401,22 +8141,22 @@ func (o WtpprofileLbsOutput) Aeroscout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *string { return v.Aeroscout }).(pulumi.StringPtrOutput)
 }
 
-// Use BSSID or board MAC address as AP MAC address in the Aeroscout AP message. Valid values: `bssid`, `board-mac`.
+// Use BSSID or board MAC address as AP MAC address in AeroScout AP messages (default = bssid). Valid values: `bssid`, `board-mac`.
 func (o WtpprofileLbsOutput) AeroscoutApMac() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *string { return v.AeroscoutApMac }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable MU compounded report. Valid values: `enable`, `disable`.
+// Enable/disable compounded AeroScout tag and MU report (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileLbsOutput) AeroscoutMmuReport() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *string { return v.AeroscoutMmuReport }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable AeroScout support. Valid values: `enable`, `disable`.
+// Enable/disable AeroScout Mobile Unit (MU) support (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileLbsOutput) AeroscoutMu() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *string { return v.AeroscoutMu }).(pulumi.StringPtrOutput)
 }
 
-// AeroScout Mobile Unit (MU) mode dilution factor (default = 20).
+// eroScout MU mode dilution factor (default = 20).
 func (o WtpprofileLbsOutput) AeroscoutMuFactor() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *int { return v.AeroscoutMuFactor }).(pulumi.IntPtrOutput)
 }
@@ -8436,7 +8176,7 @@ func (o WtpprofileLbsOutput) AeroscoutServerPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *int { return v.AeroscoutServerPort }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable Ekahua blink mode (also called AiRISTA Flow Blink Mode) to find the location of devices connected to a wireless LAN (default = disable). Valid values: `enable`, `disable`.
+// Enable/disable Ekahau blink mode (now known as AiRISTA Flow) to track and locate WiFi tags (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileLbsOutput) EkahauBlinkMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *string { return v.EkahauBlinkMode }).(pulumi.StringPtrOutput)
 }
@@ -8446,12 +8186,12 @@ func (o WtpprofileLbsOutput) EkahauTag() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *string { return v.EkahauTag }).(pulumi.StringPtrOutput)
 }
 
-// IP address of Ekahua RTLS Controller (ERC).
+// IP address of Ekahau RTLS Controller (ERC).
 func (o WtpprofileLbsOutput) ErcServerIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *string { return v.ErcServerIp }).(pulumi.StringPtrOutput)
 }
 
-// Ekahua RTLS Controller (ERC) UDP listening port.
+// Ekahau RTLS Controller (ERC) UDP listening port.
 func (o WtpprofileLbsOutput) ErcServerPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *int { return v.ErcServerPort }).(pulumi.IntPtrOutput)
 }
@@ -8471,7 +8211,7 @@ func (o WtpprofileLbsOutput) FortipresenceFrequency() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *int { return v.FortipresenceFrequency }).(pulumi.IntPtrOutput)
 }
 
-// FortiPresence server UDP listening port (default = 3000).
+// UDP listening port of FortiPresence server (default = 3000).
 func (o WtpprofileLbsOutput) FortipresencePort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileLbs) *int { return v.FortipresencePort }).(pulumi.IntPtrOutput)
 }
@@ -8615,7 +8355,7 @@ func (o WtpprofileLbsPtrOutput) Aeroscout() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Use BSSID or board MAC address as AP MAC address in the Aeroscout AP message. Valid values: `bssid`, `board-mac`.
+// Use BSSID or board MAC address as AP MAC address in AeroScout AP messages (default = bssid). Valid values: `bssid`, `board-mac`.
 func (o WtpprofileLbsPtrOutput) AeroscoutApMac() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileLbs) *string {
 		if v == nil {
@@ -8625,7 +8365,7 @@ func (o WtpprofileLbsPtrOutput) AeroscoutApMac() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable MU compounded report. Valid values: `enable`, `disable`.
+// Enable/disable compounded AeroScout tag and MU report (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileLbsPtrOutput) AeroscoutMmuReport() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileLbs) *string {
 		if v == nil {
@@ -8635,7 +8375,7 @@ func (o WtpprofileLbsPtrOutput) AeroscoutMmuReport() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable AeroScout support. Valid values: `enable`, `disable`.
+// Enable/disable AeroScout Mobile Unit (MU) support (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileLbsPtrOutput) AeroscoutMu() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileLbs) *string {
 		if v == nil {
@@ -8645,7 +8385,7 @@ func (o WtpprofileLbsPtrOutput) AeroscoutMu() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// AeroScout Mobile Unit (MU) mode dilution factor (default = 20).
+// eroScout MU mode dilution factor (default = 20).
 func (o WtpprofileLbsPtrOutput) AeroscoutMuFactor() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileLbs) *int {
 		if v == nil {
@@ -8685,7 +8425,7 @@ func (o WtpprofileLbsPtrOutput) AeroscoutServerPort() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable Ekahua blink mode (also called AiRISTA Flow Blink Mode) to find the location of devices connected to a wireless LAN (default = disable). Valid values: `enable`, `disable`.
+// Enable/disable Ekahau blink mode (now known as AiRISTA Flow) to track and locate WiFi tags (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileLbsPtrOutput) EkahauBlinkMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileLbs) *string {
 		if v == nil {
@@ -8705,7 +8445,7 @@ func (o WtpprofileLbsPtrOutput) EkahauTag() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// IP address of Ekahua RTLS Controller (ERC).
+// IP address of Ekahau RTLS Controller (ERC).
 func (o WtpprofileLbsPtrOutput) ErcServerIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileLbs) *string {
 		if v == nil {
@@ -8715,7 +8455,7 @@ func (o WtpprofileLbsPtrOutput) ErcServerIp() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Ekahua RTLS Controller (ERC) UDP listening port.
+// Ekahau RTLS Controller (ERC) UDP listening port.
 func (o WtpprofileLbsPtrOutput) ErcServerPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileLbs) *int {
 		if v == nil {
@@ -8755,7 +8495,7 @@ func (o WtpprofileLbsPtrOutput) FortipresenceFrequency() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// FortiPresence server UDP listening port (default = 3000).
+// UDP listening port of FortiPresence server (default = 3000).
 func (o WtpprofileLbsPtrOutput) FortipresencePort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileLbs) *int {
 		if v == nil {
@@ -9248,166 +8988,90 @@ func (o WtpprofilePlatformPtrOutput) Type() pulumi.StringPtrOutput {
 }
 
 type WtpprofileRadio1 struct {
-	// Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
 	AirtimeFairness *string `pulumi:"airtimeFairness"`
-	// Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
-	Amsdu *string `pulumi:"amsdu"`
+	Amsdu           *string `pulumi:"amsdu"`
 	// Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
-	ApHandoff *string `pulumi:"apHandoff"`
-	// MAC address to monitor.
-	ApSnifferAddr *string `pulumi:"apSnifferAddr"`
-	// Sniffer buffer size (1 - 32 MB, default = 16).
-	ApSnifferBufsize *int `pulumi:"apSnifferBufsize"`
-	// Channel on which to operate the sniffer (default = 6).
-	ApSnifferChan *int `pulumi:"apSnifferChan"`
-	// Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferCtl *string `pulumi:"apSnifferCtl"`
-	// Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferData *string `pulumi:"apSnifferData"`
-	// Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtBeacon *string `pulumi:"apSnifferMgmtBeacon"`
-	// Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtOther *string `pulumi:"apSnifferMgmtOther"`
-	// Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtProbe *string `pulumi:"apSnifferMgmtProbe"`
-	// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-	ArrpProfile *string `pulumi:"arrpProfile"`
-	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerHigh *int `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-	AutoPowerLevel *string `pulumi:"autoPowerLevel"`
-	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerLow *int `pulumi:"autoPowerLow"`
-	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-	AutoPowerTarget *string `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 3 operates on.
-	Band *string `pulumi:"band"`
-	// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-	Band5gType *string `pulumi:"band5gType"`
-	// Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-	BandwidthAdmissionControl *string `pulumi:"bandwidthAdmissionControl"`
-	// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-	BandwidthCapacity *int `pulumi:"bandwidthCapacity"`
-	// Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-	BeaconInterval *int `pulumi:"beaconInterval"`
-	// BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-	BssColor *int `pulumi:"bssColor"`
-	// BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-	BssColorMode *string `pulumi:"bssColorMode"`
-	// Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-	CallAdmissionControl *string `pulumi:"callAdmissionControl"`
-	// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-	CallCapacity *int `pulumi:"callCapacity"`
-	// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-	ChannelBonding *string `pulumi:"channelBonding"`
-	// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-	ChannelUtilization *string `pulumi:"channelUtilization"`
-	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
-	Channels []WtpprofileRadio1Channel `pulumi:"channels"`
-	// Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-	Coexistence *string `pulumi:"coexistence"`
-	// Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-	Darrp *string `pulumi:"darrp"`
-	// Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-	Drma *string `pulumi:"drma"`
-	// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-	DrmaSensitivity *string `pulumi:"drmaSensitivity"`
-	// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-	Dtim *int `pulumi:"dtim"`
-	// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
-	FragThreshold *int `pulumi:"fragThreshold"`
+	ApHandoff                 *string                   `pulumi:"apHandoff"`
+	ApSnifferAddr             *string                   `pulumi:"apSnifferAddr"`
+	ApSnifferBufsize          *int                      `pulumi:"apSnifferBufsize"`
+	ApSnifferChan             *int                      `pulumi:"apSnifferChan"`
+	ApSnifferCtl              *string                   `pulumi:"apSnifferCtl"`
+	ApSnifferData             *string                   `pulumi:"apSnifferData"`
+	ApSnifferMgmtBeacon       *string                   `pulumi:"apSnifferMgmtBeacon"`
+	ApSnifferMgmtOther        *string                   `pulumi:"apSnifferMgmtOther"`
+	ApSnifferMgmtProbe        *string                   `pulumi:"apSnifferMgmtProbe"`
+	ArrpProfile               *string                   `pulumi:"arrpProfile"`
+	AutoPowerHigh             *int                      `pulumi:"autoPowerHigh"`
+	AutoPowerLevel            *string                   `pulumi:"autoPowerLevel"`
+	AutoPowerLow              *int                      `pulumi:"autoPowerLow"`
+	AutoPowerTarget           *string                   `pulumi:"autoPowerTarget"`
+	Band                      *string                   `pulumi:"band"`
+	Band5gType                *string                   `pulumi:"band5gType"`
+	BandwidthAdmissionControl *string                   `pulumi:"bandwidthAdmissionControl"`
+	BandwidthCapacity         *int                      `pulumi:"bandwidthCapacity"`
+	BeaconInterval            *int                      `pulumi:"beaconInterval"`
+	BssColor                  *int                      `pulumi:"bssColor"`
+	BssColorMode              *string                   `pulumi:"bssColorMode"`
+	CallAdmissionControl      *string                   `pulumi:"callAdmissionControl"`
+	CallCapacity              *int                      `pulumi:"callCapacity"`
+	ChannelBonding            *string                   `pulumi:"channelBonding"`
+	ChannelBondingExt         *string                   `pulumi:"channelBondingExt"`
+	ChannelUtilization        *string                   `pulumi:"channelUtilization"`
+	Channels                  []WtpprofileRadio1Channel `pulumi:"channels"`
+	Coexistence               *string                   `pulumi:"coexistence"`
+	Darrp                     *string                   `pulumi:"darrp"`
+	Drma                      *string                   `pulumi:"drma"`
+	DrmaSensitivity           *string                   `pulumi:"drmaSensitivity"`
+	Dtim                      *int                      `pulumi:"dtim"`
+	FragThreshold             *int                      `pulumi:"fragThreshold"`
 	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
 	FrequencyHandoff *string `pulumi:"frequencyHandoff"`
-	// Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-	IperfProtocol *string `pulumi:"iperfProtocol"`
-	// Iperf service port number.
-	IperfServerPort *int `pulumi:"iperfServerPort"`
+	IperfProtocol    *string `pulumi:"iperfProtocol"`
+	IperfServerPort  *int    `pulumi:"iperfServerPort"`
 	// Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
-	MaxClients *int `pulumi:"maxClients"`
-	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-	MaxDistance *int `pulumi:"maxDistance"`
-	// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-	MimoMode *string `pulumi:"mimoMode"`
-	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-	Mode *string `pulumi:"mode"`
-	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-	N80211d *string `pulumi:"n80211d"`
-	// Optional antenna used on FAP (default = none).
-	OptionalAntenna *string `pulumi:"optionalAntenna"`
-	// Optional antenna gain in dBi (0 to 20, default = 0).
-	OptionalAntennaGain *string `pulumi:"optionalAntennaGain"`
-	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-	PowerLevel *int `pulumi:"powerLevel"`
-	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-	PowerMode *string `pulumi:"powerMode"`
-	// Radio EIRP power in dBm (1 - 33, default = 27).
-	PowerValue *int `pulumi:"powerValue"`
-	// Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-	PowersaveOptimize *string `pulumi:"powersaveOptimize"`
-	// Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-	ProtectionMode *string `pulumi:"protectionMode"`
-	// radio-id
-	RadioId *int `pulumi:"radioId"`
-	// Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-	RtsThreshold *int `pulumi:"rtsThreshold"`
-	// BSSID for WiFi network.
-	SamBssid *string `pulumi:"samBssid"`
-	// CA certificate for WPA2/WPA3-ENTERPRISE.
-	SamCaCertificate *string `pulumi:"samCaCertificate"`
-	// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-	SamCaptivePortal *string `pulumi:"samCaptivePortal"`
-	// Client certificate for WPA2/WPA3-ENTERPRISE.
-	SamClientCertificate *string `pulumi:"samClientCertificate"`
-	// Failure identification on the page after an incorrect login.
-	SamCwpFailureString *string `pulumi:"samCwpFailureString"`
-	// Identification string from the captive portal login form.
-	SamCwpMatchString *string `pulumi:"samCwpMatchString"`
-	// Password for captive portal authentication.
-	SamCwpPassword *string `pulumi:"samCwpPassword"`
-	// Success identification on the page after a successful login.
-	SamCwpSuccessString *string `pulumi:"samCwpSuccessString"`
-	// Website the client is trying to access.
-	SamCwpTestUrl *string `pulumi:"samCwpTestUrl"`
-	// Username for captive portal authentication.
-	SamCwpUsername *string `pulumi:"samCwpUsername"`
-	// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-	SamEapMethod *string `pulumi:"samEapMethod"`
-	// Passphrase for WiFi network connection.
-	SamPassword *string `pulumi:"samPassword"`
-	// Private key for WPA2/WPA3-ENTERPRISE.
-	SamPrivateKey *string `pulumi:"samPrivateKey"`
-	// Password for private key file for WPA2/WPA3-ENTERPRISE.
-	SamPrivateKeyPassword *string `pulumi:"samPrivateKeyPassword"`
-	// SAM report interval (sec), 0 for a one-time report.
-	SamReportIntv *int `pulumi:"samReportIntv"`
-	// Select WiFi network security type (default = "wpa-personal").
-	SamSecurityType *string `pulumi:"samSecurityType"`
-	// SAM test server domain name.
-	SamServerFqdn *string `pulumi:"samServerFqdn"`
-	// SAM test server IP address.
-	SamServerIp *string `pulumi:"samServerIp"`
-	// Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-	SamServerType *string `pulumi:"samServerType"`
-	// SSID for WiFi network.
-	SamSsid *string `pulumi:"samSsid"`
-	// Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-	SamTest *string `pulumi:"samTest"`
-	// Username for WiFi network connection.
-	SamUsername *string `pulumi:"samUsername"`
-	// Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-	ShortGuardInterval *string `pulumi:"shortGuardInterval"`
-	// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-	SpectrumAnalysis *string `pulumi:"spectrumAnalysis"`
-	// Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-	TransmitOptimize *string `pulumi:"transmitOptimize"`
-	// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-	VapAll *string `pulumi:"vapAll"`
-	// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-	Vaps []WtpprofileRadio1Vap `pulumi:"vaps"`
-	// Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-	WidsProfile *string `pulumi:"widsProfile"`
-	// Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
-	ZeroWaitDfs *string `pulumi:"zeroWaitDfs"`
+	MaxClients            *int                  `pulumi:"maxClients"`
+	MaxDistance           *int                  `pulumi:"maxDistance"`
+	MimoMode              *string               `pulumi:"mimoMode"`
+	Mode                  *string               `pulumi:"mode"`
+	N80211d               *string               `pulumi:"n80211d"`
+	OptionalAntenna       *string               `pulumi:"optionalAntenna"`
+	OptionalAntennaGain   *string               `pulumi:"optionalAntennaGain"`
+	PowerLevel            *int                  `pulumi:"powerLevel"`
+	PowerMode             *string               `pulumi:"powerMode"`
+	PowerValue            *int                  `pulumi:"powerValue"`
+	PowersaveOptimize     *string               `pulumi:"powersaveOptimize"`
+	ProtectionMode        *string               `pulumi:"protectionMode"`
+	RadioId               *int                  `pulumi:"radioId"`
+	RtsThreshold          *int                  `pulumi:"rtsThreshold"`
+	SamBssid              *string               `pulumi:"samBssid"`
+	SamCaCertificate      *string               `pulumi:"samCaCertificate"`
+	SamCaptivePortal      *string               `pulumi:"samCaptivePortal"`
+	SamClientCertificate  *string               `pulumi:"samClientCertificate"`
+	SamCwpFailureString   *string               `pulumi:"samCwpFailureString"`
+	SamCwpMatchString     *string               `pulumi:"samCwpMatchString"`
+	SamCwpPassword        *string               `pulumi:"samCwpPassword"`
+	SamCwpSuccessString   *string               `pulumi:"samCwpSuccessString"`
+	SamCwpTestUrl         *string               `pulumi:"samCwpTestUrl"`
+	SamCwpUsername        *string               `pulumi:"samCwpUsername"`
+	SamEapMethod          *string               `pulumi:"samEapMethod"`
+	SamPassword           *string               `pulumi:"samPassword"`
+	SamPrivateKey         *string               `pulumi:"samPrivateKey"`
+	SamPrivateKeyPassword *string               `pulumi:"samPrivateKeyPassword"`
+	SamReportIntv         *int                  `pulumi:"samReportIntv"`
+	SamSecurityType       *string               `pulumi:"samSecurityType"`
+	SamServerFqdn         *string               `pulumi:"samServerFqdn"`
+	SamServerIp           *string               `pulumi:"samServerIp"`
+	SamServerType         *string               `pulumi:"samServerType"`
+	SamSsid               *string               `pulumi:"samSsid"`
+	SamTest               *string               `pulumi:"samTest"`
+	SamUsername           *string               `pulumi:"samUsername"`
+	ShortGuardInterval    *string               `pulumi:"shortGuardInterval"`
+	SpectrumAnalysis      *string               `pulumi:"spectrumAnalysis"`
+	TransmitOptimize      *string               `pulumi:"transmitOptimize"`
+	VapAll                *string               `pulumi:"vapAll"`
+	Vaps                  []WtpprofileRadio1Vap `pulumi:"vaps"`
+	WidsProfile           *string               `pulumi:"widsProfile"`
+	ZeroWaitDfs           *string               `pulumi:"zeroWaitDfs"`
 }
 
 // WtpprofileRadio1Input is an input type that accepts WtpprofileRadio1Args and WtpprofileRadio1Output values.
@@ -9422,166 +9086,90 @@ type WtpprofileRadio1Input interface {
 }
 
 type WtpprofileRadio1Args struct {
-	// Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
 	AirtimeFairness pulumi.StringPtrInput `pulumi:"airtimeFairness"`
-	// Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
-	Amsdu pulumi.StringPtrInput `pulumi:"amsdu"`
+	Amsdu           pulumi.StringPtrInput `pulumi:"amsdu"`
 	// Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
-	ApHandoff pulumi.StringPtrInput `pulumi:"apHandoff"`
-	// MAC address to monitor.
-	ApSnifferAddr pulumi.StringPtrInput `pulumi:"apSnifferAddr"`
-	// Sniffer buffer size (1 - 32 MB, default = 16).
-	ApSnifferBufsize pulumi.IntPtrInput `pulumi:"apSnifferBufsize"`
-	// Channel on which to operate the sniffer (default = 6).
-	ApSnifferChan pulumi.IntPtrInput `pulumi:"apSnifferChan"`
-	// Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferCtl pulumi.StringPtrInput `pulumi:"apSnifferCtl"`
-	// Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferData pulumi.StringPtrInput `pulumi:"apSnifferData"`
-	// Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtBeacon pulumi.StringPtrInput `pulumi:"apSnifferMgmtBeacon"`
-	// Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtOther pulumi.StringPtrInput `pulumi:"apSnifferMgmtOther"`
-	// Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtProbe pulumi.StringPtrInput `pulumi:"apSnifferMgmtProbe"`
-	// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-	ArrpProfile pulumi.StringPtrInput `pulumi:"arrpProfile"`
-	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerHigh pulumi.IntPtrInput `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-	AutoPowerLevel pulumi.StringPtrInput `pulumi:"autoPowerLevel"`
-	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerLow pulumi.IntPtrInput `pulumi:"autoPowerLow"`
-	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-	AutoPowerTarget pulumi.StringPtrInput `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 3 operates on.
-	Band pulumi.StringPtrInput `pulumi:"band"`
-	// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-	Band5gType pulumi.StringPtrInput `pulumi:"band5gType"`
-	// Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-	BandwidthAdmissionControl pulumi.StringPtrInput `pulumi:"bandwidthAdmissionControl"`
-	// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-	BandwidthCapacity pulumi.IntPtrInput `pulumi:"bandwidthCapacity"`
-	// Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-	BeaconInterval pulumi.IntPtrInput `pulumi:"beaconInterval"`
-	// BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-	BssColor pulumi.IntPtrInput `pulumi:"bssColor"`
-	// BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-	BssColorMode pulumi.StringPtrInput `pulumi:"bssColorMode"`
-	// Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-	CallAdmissionControl pulumi.StringPtrInput `pulumi:"callAdmissionControl"`
-	// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-	CallCapacity pulumi.IntPtrInput `pulumi:"callCapacity"`
-	// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-	ChannelBonding pulumi.StringPtrInput `pulumi:"channelBonding"`
-	// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-	ChannelUtilization pulumi.StringPtrInput `pulumi:"channelUtilization"`
-	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
-	Channels WtpprofileRadio1ChannelArrayInput `pulumi:"channels"`
-	// Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-	Coexistence pulumi.StringPtrInput `pulumi:"coexistence"`
-	// Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-	Darrp pulumi.StringPtrInput `pulumi:"darrp"`
-	// Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-	Drma pulumi.StringPtrInput `pulumi:"drma"`
-	// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-	DrmaSensitivity pulumi.StringPtrInput `pulumi:"drmaSensitivity"`
-	// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-	Dtim pulumi.IntPtrInput `pulumi:"dtim"`
-	// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
-	FragThreshold pulumi.IntPtrInput `pulumi:"fragThreshold"`
+	ApHandoff                 pulumi.StringPtrInput             `pulumi:"apHandoff"`
+	ApSnifferAddr             pulumi.StringPtrInput             `pulumi:"apSnifferAddr"`
+	ApSnifferBufsize          pulumi.IntPtrInput                `pulumi:"apSnifferBufsize"`
+	ApSnifferChan             pulumi.IntPtrInput                `pulumi:"apSnifferChan"`
+	ApSnifferCtl              pulumi.StringPtrInput             `pulumi:"apSnifferCtl"`
+	ApSnifferData             pulumi.StringPtrInput             `pulumi:"apSnifferData"`
+	ApSnifferMgmtBeacon       pulumi.StringPtrInput             `pulumi:"apSnifferMgmtBeacon"`
+	ApSnifferMgmtOther        pulumi.StringPtrInput             `pulumi:"apSnifferMgmtOther"`
+	ApSnifferMgmtProbe        pulumi.StringPtrInput             `pulumi:"apSnifferMgmtProbe"`
+	ArrpProfile               pulumi.StringPtrInput             `pulumi:"arrpProfile"`
+	AutoPowerHigh             pulumi.IntPtrInput                `pulumi:"autoPowerHigh"`
+	AutoPowerLevel            pulumi.StringPtrInput             `pulumi:"autoPowerLevel"`
+	AutoPowerLow              pulumi.IntPtrInput                `pulumi:"autoPowerLow"`
+	AutoPowerTarget           pulumi.StringPtrInput             `pulumi:"autoPowerTarget"`
+	Band                      pulumi.StringPtrInput             `pulumi:"band"`
+	Band5gType                pulumi.StringPtrInput             `pulumi:"band5gType"`
+	BandwidthAdmissionControl pulumi.StringPtrInput             `pulumi:"bandwidthAdmissionControl"`
+	BandwidthCapacity         pulumi.IntPtrInput                `pulumi:"bandwidthCapacity"`
+	BeaconInterval            pulumi.IntPtrInput                `pulumi:"beaconInterval"`
+	BssColor                  pulumi.IntPtrInput                `pulumi:"bssColor"`
+	BssColorMode              pulumi.StringPtrInput             `pulumi:"bssColorMode"`
+	CallAdmissionControl      pulumi.StringPtrInput             `pulumi:"callAdmissionControl"`
+	CallCapacity              pulumi.IntPtrInput                `pulumi:"callCapacity"`
+	ChannelBonding            pulumi.StringPtrInput             `pulumi:"channelBonding"`
+	ChannelBondingExt         pulumi.StringPtrInput             `pulumi:"channelBondingExt"`
+	ChannelUtilization        pulumi.StringPtrInput             `pulumi:"channelUtilization"`
+	Channels                  WtpprofileRadio1ChannelArrayInput `pulumi:"channels"`
+	Coexistence               pulumi.StringPtrInput             `pulumi:"coexistence"`
+	Darrp                     pulumi.StringPtrInput             `pulumi:"darrp"`
+	Drma                      pulumi.StringPtrInput             `pulumi:"drma"`
+	DrmaSensitivity           pulumi.StringPtrInput             `pulumi:"drmaSensitivity"`
+	Dtim                      pulumi.IntPtrInput                `pulumi:"dtim"`
+	FragThreshold             pulumi.IntPtrInput                `pulumi:"fragThreshold"`
 	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
 	FrequencyHandoff pulumi.StringPtrInput `pulumi:"frequencyHandoff"`
-	// Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-	IperfProtocol pulumi.StringPtrInput `pulumi:"iperfProtocol"`
-	// Iperf service port number.
-	IperfServerPort pulumi.IntPtrInput `pulumi:"iperfServerPort"`
+	IperfProtocol    pulumi.StringPtrInput `pulumi:"iperfProtocol"`
+	IperfServerPort  pulumi.IntPtrInput    `pulumi:"iperfServerPort"`
 	// Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
-	MaxClients pulumi.IntPtrInput `pulumi:"maxClients"`
-	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-	MaxDistance pulumi.IntPtrInput `pulumi:"maxDistance"`
-	// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-	MimoMode pulumi.StringPtrInput `pulumi:"mimoMode"`
-	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-	Mode pulumi.StringPtrInput `pulumi:"mode"`
-	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-	N80211d pulumi.StringPtrInput `pulumi:"n80211d"`
-	// Optional antenna used on FAP (default = none).
-	OptionalAntenna pulumi.StringPtrInput `pulumi:"optionalAntenna"`
-	// Optional antenna gain in dBi (0 to 20, default = 0).
-	OptionalAntennaGain pulumi.StringPtrInput `pulumi:"optionalAntennaGain"`
-	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-	PowerLevel pulumi.IntPtrInput `pulumi:"powerLevel"`
-	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-	PowerMode pulumi.StringPtrInput `pulumi:"powerMode"`
-	// Radio EIRP power in dBm (1 - 33, default = 27).
-	PowerValue pulumi.IntPtrInput `pulumi:"powerValue"`
-	// Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-	PowersaveOptimize pulumi.StringPtrInput `pulumi:"powersaveOptimize"`
-	// Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-	ProtectionMode pulumi.StringPtrInput `pulumi:"protectionMode"`
-	// radio-id
-	RadioId pulumi.IntPtrInput `pulumi:"radioId"`
-	// Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-	RtsThreshold pulumi.IntPtrInput `pulumi:"rtsThreshold"`
-	// BSSID for WiFi network.
-	SamBssid pulumi.StringPtrInput `pulumi:"samBssid"`
-	// CA certificate for WPA2/WPA3-ENTERPRISE.
-	SamCaCertificate pulumi.StringPtrInput `pulumi:"samCaCertificate"`
-	// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-	SamCaptivePortal pulumi.StringPtrInput `pulumi:"samCaptivePortal"`
-	// Client certificate for WPA2/WPA3-ENTERPRISE.
-	SamClientCertificate pulumi.StringPtrInput `pulumi:"samClientCertificate"`
-	// Failure identification on the page after an incorrect login.
-	SamCwpFailureString pulumi.StringPtrInput `pulumi:"samCwpFailureString"`
-	// Identification string from the captive portal login form.
-	SamCwpMatchString pulumi.StringPtrInput `pulumi:"samCwpMatchString"`
-	// Password for captive portal authentication.
-	SamCwpPassword pulumi.StringPtrInput `pulumi:"samCwpPassword"`
-	// Success identification on the page after a successful login.
-	SamCwpSuccessString pulumi.StringPtrInput `pulumi:"samCwpSuccessString"`
-	// Website the client is trying to access.
-	SamCwpTestUrl pulumi.StringPtrInput `pulumi:"samCwpTestUrl"`
-	// Username for captive portal authentication.
-	SamCwpUsername pulumi.StringPtrInput `pulumi:"samCwpUsername"`
-	// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-	SamEapMethod pulumi.StringPtrInput `pulumi:"samEapMethod"`
-	// Passphrase for WiFi network connection.
-	SamPassword pulumi.StringPtrInput `pulumi:"samPassword"`
-	// Private key for WPA2/WPA3-ENTERPRISE.
-	SamPrivateKey pulumi.StringPtrInput `pulumi:"samPrivateKey"`
-	// Password for private key file for WPA2/WPA3-ENTERPRISE.
-	SamPrivateKeyPassword pulumi.StringPtrInput `pulumi:"samPrivateKeyPassword"`
-	// SAM report interval (sec), 0 for a one-time report.
-	SamReportIntv pulumi.IntPtrInput `pulumi:"samReportIntv"`
-	// Select WiFi network security type (default = "wpa-personal").
-	SamSecurityType pulumi.StringPtrInput `pulumi:"samSecurityType"`
-	// SAM test server domain name.
-	SamServerFqdn pulumi.StringPtrInput `pulumi:"samServerFqdn"`
-	// SAM test server IP address.
-	SamServerIp pulumi.StringPtrInput `pulumi:"samServerIp"`
-	// Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-	SamServerType pulumi.StringPtrInput `pulumi:"samServerType"`
-	// SSID for WiFi network.
-	SamSsid pulumi.StringPtrInput `pulumi:"samSsid"`
-	// Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-	SamTest pulumi.StringPtrInput `pulumi:"samTest"`
-	// Username for WiFi network connection.
-	SamUsername pulumi.StringPtrInput `pulumi:"samUsername"`
-	// Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-	ShortGuardInterval pulumi.StringPtrInput `pulumi:"shortGuardInterval"`
-	// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-	SpectrumAnalysis pulumi.StringPtrInput `pulumi:"spectrumAnalysis"`
-	// Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-	TransmitOptimize pulumi.StringPtrInput `pulumi:"transmitOptimize"`
-	// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-	VapAll pulumi.StringPtrInput `pulumi:"vapAll"`
-	// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-	Vaps WtpprofileRadio1VapArrayInput `pulumi:"vaps"`
-	// Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-	WidsProfile pulumi.StringPtrInput `pulumi:"widsProfile"`
-	// Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
-	ZeroWaitDfs pulumi.StringPtrInput `pulumi:"zeroWaitDfs"`
+	MaxClients            pulumi.IntPtrInput            `pulumi:"maxClients"`
+	MaxDistance           pulumi.IntPtrInput            `pulumi:"maxDistance"`
+	MimoMode              pulumi.StringPtrInput         `pulumi:"mimoMode"`
+	Mode                  pulumi.StringPtrInput         `pulumi:"mode"`
+	N80211d               pulumi.StringPtrInput         `pulumi:"n80211d"`
+	OptionalAntenna       pulumi.StringPtrInput         `pulumi:"optionalAntenna"`
+	OptionalAntennaGain   pulumi.StringPtrInput         `pulumi:"optionalAntennaGain"`
+	PowerLevel            pulumi.IntPtrInput            `pulumi:"powerLevel"`
+	PowerMode             pulumi.StringPtrInput         `pulumi:"powerMode"`
+	PowerValue            pulumi.IntPtrInput            `pulumi:"powerValue"`
+	PowersaveOptimize     pulumi.StringPtrInput         `pulumi:"powersaveOptimize"`
+	ProtectionMode        pulumi.StringPtrInput         `pulumi:"protectionMode"`
+	RadioId               pulumi.IntPtrInput            `pulumi:"radioId"`
+	RtsThreshold          pulumi.IntPtrInput            `pulumi:"rtsThreshold"`
+	SamBssid              pulumi.StringPtrInput         `pulumi:"samBssid"`
+	SamCaCertificate      pulumi.StringPtrInput         `pulumi:"samCaCertificate"`
+	SamCaptivePortal      pulumi.StringPtrInput         `pulumi:"samCaptivePortal"`
+	SamClientCertificate  pulumi.StringPtrInput         `pulumi:"samClientCertificate"`
+	SamCwpFailureString   pulumi.StringPtrInput         `pulumi:"samCwpFailureString"`
+	SamCwpMatchString     pulumi.StringPtrInput         `pulumi:"samCwpMatchString"`
+	SamCwpPassword        pulumi.StringPtrInput         `pulumi:"samCwpPassword"`
+	SamCwpSuccessString   pulumi.StringPtrInput         `pulumi:"samCwpSuccessString"`
+	SamCwpTestUrl         pulumi.StringPtrInput         `pulumi:"samCwpTestUrl"`
+	SamCwpUsername        pulumi.StringPtrInput         `pulumi:"samCwpUsername"`
+	SamEapMethod          pulumi.StringPtrInput         `pulumi:"samEapMethod"`
+	SamPassword           pulumi.StringPtrInput         `pulumi:"samPassword"`
+	SamPrivateKey         pulumi.StringPtrInput         `pulumi:"samPrivateKey"`
+	SamPrivateKeyPassword pulumi.StringPtrInput         `pulumi:"samPrivateKeyPassword"`
+	SamReportIntv         pulumi.IntPtrInput            `pulumi:"samReportIntv"`
+	SamSecurityType       pulumi.StringPtrInput         `pulumi:"samSecurityType"`
+	SamServerFqdn         pulumi.StringPtrInput         `pulumi:"samServerFqdn"`
+	SamServerIp           pulumi.StringPtrInput         `pulumi:"samServerIp"`
+	SamServerType         pulumi.StringPtrInput         `pulumi:"samServerType"`
+	SamSsid               pulumi.StringPtrInput         `pulumi:"samSsid"`
+	SamTest               pulumi.StringPtrInput         `pulumi:"samTest"`
+	SamUsername           pulumi.StringPtrInput         `pulumi:"samUsername"`
+	ShortGuardInterval    pulumi.StringPtrInput         `pulumi:"shortGuardInterval"`
+	SpectrumAnalysis      pulumi.StringPtrInput         `pulumi:"spectrumAnalysis"`
+	TransmitOptimize      pulumi.StringPtrInput         `pulumi:"transmitOptimize"`
+	VapAll                pulumi.StringPtrInput         `pulumi:"vapAll"`
+	Vaps                  WtpprofileRadio1VapArrayInput `pulumi:"vaps"`
+	WidsProfile           pulumi.StringPtrInput         `pulumi:"widsProfile"`
+	ZeroWaitDfs           pulumi.StringPtrInput         `pulumi:"zeroWaitDfs"`
 }
 
 func (WtpprofileRadio1Args) ElementType() reflect.Type {
@@ -9661,12 +9249,10 @@ func (o WtpprofileRadio1Output) ToWtpprofileRadio1PtrOutputWithContext(ctx conte
 	}).(WtpprofileRadio1PtrOutput)
 }
 
-// Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) AirtimeFairness() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.AirtimeFairness }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) Amsdu() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.Amsdu }).(pulumi.StringPtrOutput)
 }
@@ -9676,157 +9262,130 @@ func (o WtpprofileRadio1Output) ApHandoff() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.ApHandoff }).(pulumi.StringPtrOutput)
 }
 
-// MAC address to monitor.
 func (o WtpprofileRadio1Output) ApSnifferAddr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.ApSnifferAddr }).(pulumi.StringPtrOutput)
 }
 
-// Sniffer buffer size (1 - 32 MB, default = 16).
 func (o WtpprofileRadio1Output) ApSnifferBufsize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.ApSnifferBufsize }).(pulumi.IntPtrOutput)
 }
 
-// Channel on which to operate the sniffer (default = 6).
 func (o WtpprofileRadio1Output) ApSnifferChan() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.ApSnifferChan }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) ApSnifferCtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.ApSnifferCtl }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) ApSnifferData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.ApSnifferData }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) ApSnifferMgmtBeacon() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.ApSnifferMgmtBeacon }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) ApSnifferMgmtOther() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.ApSnifferMgmtOther }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) ApSnifferMgmtProbe() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.ApSnifferMgmtProbe }).(pulumi.StringPtrOutput)
 }
 
-// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 func (o WtpprofileRadio1Output) ArrpProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.ArrpProfile }).(pulumi.StringPtrOutput)
 }
 
-// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio1Output) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.AutoPowerHigh }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.AutoPowerLevel }).(pulumi.StringPtrOutput)
 }
 
-// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio1Output) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.AutoPowerLow }).(pulumi.IntPtrOutput)
 }
 
-// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 func (o WtpprofileRadio1Output) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.AutoPowerTarget }).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 3 operates on.
 func (o WtpprofileRadio1Output) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.Band }).(pulumi.StringPtrOutput)
 }
 
-// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
 func (o WtpprofileRadio1Output) Band5gType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.Band5gType }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) BandwidthAdmissionControl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.BandwidthAdmissionControl }).(pulumi.StringPtrOutput)
 }
 
-// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
 func (o WtpprofileRadio1Output) BandwidthCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.BandwidthCapacity }).(pulumi.IntPtrOutput)
 }
 
-// Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
 func (o WtpprofileRadio1Output) BeaconInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.BeaconInterval }).(pulumi.IntPtrOutput)
 }
 
-// BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
 func (o WtpprofileRadio1Output) BssColor() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.BssColor }).(pulumi.IntPtrOutput)
 }
 
-// BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
 func (o WtpprofileRadio1Output) BssColorMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.BssColorMode }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) CallAdmissionControl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.CallAdmissionControl }).(pulumi.StringPtrOutput)
 }
 
-// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
 func (o WtpprofileRadio1Output) CallCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.CallCapacity }).(pulumi.IntPtrOutput)
 }
 
-// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 func (o WtpprofileRadio1Output) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.ChannelBonding }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
+func (o WtpprofileRadio1Output) ChannelBondingExt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.ChannelBondingExt }).(pulumi.StringPtrOutput)
+}
+
 func (o WtpprofileRadio1Output) ChannelUtilization() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.ChannelUtilization }).(pulumi.StringPtrOutput)
 }
 
-// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 func (o WtpprofileRadio1Output) Channels() WtpprofileRadio1ChannelArrayOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) []WtpprofileRadio1Channel { return v.Channels }).(WtpprofileRadio1ChannelArrayOutput)
 }
 
-// Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) Coexistence() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.Coexistence }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) Darrp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.Darrp }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
 func (o WtpprofileRadio1Output) Drma() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.Drma }).(pulumi.StringPtrOutput)
 }
 
-// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
 func (o WtpprofileRadio1Output) DrmaSensitivity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.DrmaSensitivity }).(pulumi.StringPtrOutput)
 }
 
-// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 func (o WtpprofileRadio1Output) Dtim() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.Dtim }).(pulumi.IntPtrOutput)
 }
 
-// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 func (o WtpprofileRadio1Output) FragThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.FragThreshold }).(pulumi.IntPtrOutput)
 }
@@ -9836,12 +9395,10 @@ func (o WtpprofileRadio1Output) FrequencyHandoff() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.FrequencyHandoff }).(pulumi.StringPtrOutput)
 }
 
-// Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
 func (o WtpprofileRadio1Output) IperfProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.IperfProtocol }).(pulumi.StringPtrOutput)
 }
 
-// Iperf service port number.
 func (o WtpprofileRadio1Output) IperfServerPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.IperfServerPort }).(pulumi.IntPtrOutput)
 }
@@ -9851,212 +9408,170 @@ func (o WtpprofileRadio1Output) MaxClients() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.MaxClients }).(pulumi.IntPtrOutput)
 }
 
-// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 func (o WtpprofileRadio1Output) MaxDistance() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.MaxDistance }).(pulumi.IntPtrOutput)
 }
 
-// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
 func (o WtpprofileRadio1Output) MimoMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.MimoMode }).(pulumi.StringPtrOutput)
 }
 
-// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio1Output) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) N80211d() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.N80211d }).(pulumi.StringPtrOutput)
 }
 
-// Optional antenna used on FAP (default = none).
 func (o WtpprofileRadio1Output) OptionalAntenna() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.OptionalAntenna }).(pulumi.StringPtrOutput)
 }
 
-// Optional antenna gain in dBi (0 to 20, default = 0).
 func (o WtpprofileRadio1Output) OptionalAntennaGain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.OptionalAntennaGain }).(pulumi.StringPtrOutput)
 }
 
-// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 func (o WtpprofileRadio1Output) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.PowerLevel }).(pulumi.IntPtrOutput)
 }
 
-// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 func (o WtpprofileRadio1Output) PowerMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.PowerMode }).(pulumi.StringPtrOutput)
 }
 
-// Radio EIRP power in dBm (1 - 33, default = 27).
 func (o WtpprofileRadio1Output) PowerValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.PowerValue }).(pulumi.IntPtrOutput)
 }
 
-// Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
 func (o WtpprofileRadio1Output) PowersaveOptimize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.PowersaveOptimize }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
 func (o WtpprofileRadio1Output) ProtectionMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.ProtectionMode }).(pulumi.StringPtrOutput)
 }
 
-// radio-id
 func (o WtpprofileRadio1Output) RadioId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.RadioId }).(pulumi.IntPtrOutput)
 }
 
-// Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
 func (o WtpprofileRadio1Output) RtsThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.RtsThreshold }).(pulumi.IntPtrOutput)
 }
 
-// BSSID for WiFi network.
 func (o WtpprofileRadio1Output) SamBssid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamBssid }).(pulumi.StringPtrOutput)
 }
 
-// CA certificate for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio1Output) SamCaCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamCaCertificate }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) SamCaptivePortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamCaptivePortal }).(pulumi.StringPtrOutput)
 }
 
-// Client certificate for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio1Output) SamClientCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamClientCertificate }).(pulumi.StringPtrOutput)
 }
 
-// Failure identification on the page after an incorrect login.
 func (o WtpprofileRadio1Output) SamCwpFailureString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamCwpFailureString }).(pulumi.StringPtrOutput)
 }
 
-// Identification string from the captive portal login form.
 func (o WtpprofileRadio1Output) SamCwpMatchString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamCwpMatchString }).(pulumi.StringPtrOutput)
 }
 
-// Password for captive portal authentication.
 func (o WtpprofileRadio1Output) SamCwpPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamCwpPassword }).(pulumi.StringPtrOutput)
 }
 
-// Success identification on the page after a successful login.
 func (o WtpprofileRadio1Output) SamCwpSuccessString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamCwpSuccessString }).(pulumi.StringPtrOutput)
 }
 
-// Website the client is trying to access.
 func (o WtpprofileRadio1Output) SamCwpTestUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamCwpTestUrl }).(pulumi.StringPtrOutput)
 }
 
-// Username for captive portal authentication.
 func (o WtpprofileRadio1Output) SamCwpUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamCwpUsername }).(pulumi.StringPtrOutput)
 }
 
-// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
 func (o WtpprofileRadio1Output) SamEapMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamEapMethod }).(pulumi.StringPtrOutput)
 }
 
-// Passphrase for WiFi network connection.
 func (o WtpprofileRadio1Output) SamPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamPassword }).(pulumi.StringPtrOutput)
 }
 
-// Private key for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio1Output) SamPrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamPrivateKey }).(pulumi.StringPtrOutput)
 }
 
-// Password for private key file for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio1Output) SamPrivateKeyPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamPrivateKeyPassword }).(pulumi.StringPtrOutput)
 }
 
-// SAM report interval (sec), 0 for a one-time report.
 func (o WtpprofileRadio1Output) SamReportIntv() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *int { return v.SamReportIntv }).(pulumi.IntPtrOutput)
 }
 
-// Select WiFi network security type (default = "wpa-personal").
 func (o WtpprofileRadio1Output) SamSecurityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamSecurityType }).(pulumi.StringPtrOutput)
 }
 
-// SAM test server domain name.
 func (o WtpprofileRadio1Output) SamServerFqdn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamServerFqdn }).(pulumi.StringPtrOutput)
 }
 
-// SAM test server IP address.
 func (o WtpprofileRadio1Output) SamServerIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamServerIp }).(pulumi.StringPtrOutput)
 }
 
-// Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
 func (o WtpprofileRadio1Output) SamServerType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamServerType }).(pulumi.StringPtrOutput)
 }
 
-// SSID for WiFi network.
 func (o WtpprofileRadio1Output) SamSsid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamSsid }).(pulumi.StringPtrOutput)
 }
 
-// Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
 func (o WtpprofileRadio1Output) SamTest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamTest }).(pulumi.StringPtrOutput)
 }
 
-// Username for WiFi network connection.
 func (o WtpprofileRadio1Output) SamUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SamUsername }).(pulumi.StringPtrOutput)
 }
 
-// Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) ShortGuardInterval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.ShortGuardInterval }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
 func (o WtpprofileRadio1Output) SpectrumAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.SpectrumAnalysis }).(pulumi.StringPtrOutput)
 }
 
-// Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
 func (o WtpprofileRadio1Output) TransmitOptimize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.TransmitOptimize }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
 func (o WtpprofileRadio1Output) VapAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.VapAll }).(pulumi.StringPtrOutput)
 }
 
-// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
 func (o WtpprofileRadio1Output) Vaps() WtpprofileRadio1VapArrayOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) []WtpprofileRadio1Vap { return v.Vaps }).(WtpprofileRadio1VapArrayOutput)
 }
 
-// Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
 func (o WtpprofileRadio1Output) WidsProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.WidsProfile }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1Output) ZeroWaitDfs() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio1) *string { return v.ZeroWaitDfs }).(pulumi.StringPtrOutput)
 }
@@ -10085,7 +9600,6 @@ func (o WtpprofileRadio1PtrOutput) Elem() WtpprofileRadio1Output {
 	}).(WtpprofileRadio1Output)
 }
 
-// Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1PtrOutput) AirtimeFairness() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10095,7 +9609,6 @@ func (o WtpprofileRadio1PtrOutput) AirtimeFairness() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1PtrOutput) Amsdu() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10115,7 +9628,6 @@ func (o WtpprofileRadio1PtrOutput) ApHandoff() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// MAC address to monitor.
 func (o WtpprofileRadio1PtrOutput) ApSnifferAddr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10125,7 +9637,6 @@ func (o WtpprofileRadio1PtrOutput) ApSnifferAddr() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Sniffer buffer size (1 - 32 MB, default = 16).
 func (o WtpprofileRadio1PtrOutput) ApSnifferBufsize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -10135,7 +9646,6 @@ func (o WtpprofileRadio1PtrOutput) ApSnifferBufsize() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Channel on which to operate the sniffer (default = 6).
 func (o WtpprofileRadio1PtrOutput) ApSnifferChan() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -10145,7 +9655,6 @@ func (o WtpprofileRadio1PtrOutput) ApSnifferChan() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1PtrOutput) ApSnifferCtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10155,7 +9664,6 @@ func (o WtpprofileRadio1PtrOutput) ApSnifferCtl() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1PtrOutput) ApSnifferData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10165,7 +9673,6 @@ func (o WtpprofileRadio1PtrOutput) ApSnifferData() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1PtrOutput) ApSnifferMgmtBeacon() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10175,7 +9682,6 @@ func (o WtpprofileRadio1PtrOutput) ApSnifferMgmtBeacon() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1PtrOutput) ApSnifferMgmtOther() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10185,7 +9691,6 @@ func (o WtpprofileRadio1PtrOutput) ApSnifferMgmtOther() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1PtrOutput) ApSnifferMgmtProbe() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10195,7 +9700,6 @@ func (o WtpprofileRadio1PtrOutput) ApSnifferMgmtProbe() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 func (o WtpprofileRadio1PtrOutput) ArrpProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10205,7 +9709,6 @@ func (o WtpprofileRadio1PtrOutput) ArrpProfile() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio1PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -10215,7 +9718,6 @@ func (o WtpprofileRadio1PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10225,7 +9727,6 @@ func (o WtpprofileRadio1PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio1PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -10235,7 +9736,6 @@ func (o WtpprofileRadio1PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 func (o WtpprofileRadio1PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10245,7 +9745,6 @@ func (o WtpprofileRadio1PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 3 operates on.
 func (o WtpprofileRadio1PtrOutput) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10255,7 +9754,6 @@ func (o WtpprofileRadio1PtrOutput) Band() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
 func (o WtpprofileRadio1PtrOutput) Band5gType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10265,7 +9763,6 @@ func (o WtpprofileRadio1PtrOutput) Band5gType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1PtrOutput) BandwidthAdmissionControl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10275,7 +9772,6 @@ func (o WtpprofileRadio1PtrOutput) BandwidthAdmissionControl() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
 func (o WtpprofileRadio1PtrOutput) BandwidthCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -10285,7 +9781,6 @@ func (o WtpprofileRadio1PtrOutput) BandwidthCapacity() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
 func (o WtpprofileRadio1PtrOutput) BeaconInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -10295,7 +9790,6 @@ func (o WtpprofileRadio1PtrOutput) BeaconInterval() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
 func (o WtpprofileRadio1PtrOutput) BssColor() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -10305,7 +9799,6 @@ func (o WtpprofileRadio1PtrOutput) BssColor() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
 func (o WtpprofileRadio1PtrOutput) BssColorMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10315,7 +9808,6 @@ func (o WtpprofileRadio1PtrOutput) BssColorMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1PtrOutput) CallAdmissionControl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10325,7 +9817,6 @@ func (o WtpprofileRadio1PtrOutput) CallAdmissionControl() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
 func (o WtpprofileRadio1PtrOutput) CallCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -10335,7 +9826,6 @@ func (o WtpprofileRadio1PtrOutput) CallCapacity() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 func (o WtpprofileRadio1PtrOutput) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10345,7 +9835,15 @@ func (o WtpprofileRadio1PtrOutput) ChannelBonding() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
+func (o WtpprofileRadio1PtrOutput) ChannelBondingExt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ChannelBondingExt
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o WtpprofileRadio1PtrOutput) ChannelUtilization() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10355,7 +9853,6 @@ func (o WtpprofileRadio1PtrOutput) ChannelUtilization() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 func (o WtpprofileRadio1PtrOutput) Channels() WtpprofileRadio1ChannelArrayOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) []WtpprofileRadio1Channel {
 		if v == nil {
@@ -10365,7 +9862,6 @@ func (o WtpprofileRadio1PtrOutput) Channels() WtpprofileRadio1ChannelArrayOutput
 	}).(WtpprofileRadio1ChannelArrayOutput)
 }
 
-// Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1PtrOutput) Coexistence() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10375,7 +9871,6 @@ func (o WtpprofileRadio1PtrOutput) Coexistence() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1PtrOutput) Darrp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10385,7 +9880,6 @@ func (o WtpprofileRadio1PtrOutput) Darrp() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
 func (o WtpprofileRadio1PtrOutput) Drma() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10395,7 +9889,6 @@ func (o WtpprofileRadio1PtrOutput) Drma() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
 func (o WtpprofileRadio1PtrOutput) DrmaSensitivity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10405,7 +9898,6 @@ func (o WtpprofileRadio1PtrOutput) DrmaSensitivity() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 func (o WtpprofileRadio1PtrOutput) Dtim() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -10415,7 +9907,6 @@ func (o WtpprofileRadio1PtrOutput) Dtim() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 func (o WtpprofileRadio1PtrOutput) FragThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -10435,7 +9926,6 @@ func (o WtpprofileRadio1PtrOutput) FrequencyHandoff() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
 func (o WtpprofileRadio1PtrOutput) IperfProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10445,7 +9935,6 @@ func (o WtpprofileRadio1PtrOutput) IperfProtocol() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Iperf service port number.
 func (o WtpprofileRadio1PtrOutput) IperfServerPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -10465,7 +9954,6 @@ func (o WtpprofileRadio1PtrOutput) MaxClients() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 func (o WtpprofileRadio1PtrOutput) MaxDistance() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -10475,7 +9963,6 @@ func (o WtpprofileRadio1PtrOutput) MaxDistance() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
 func (o WtpprofileRadio1PtrOutput) MimoMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10485,7 +9972,6 @@ func (o WtpprofileRadio1PtrOutput) MimoMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio1PtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10495,7 +9981,6 @@ func (o WtpprofileRadio1PtrOutput) Mode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1PtrOutput) N80211d() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10505,7 +9990,6 @@ func (o WtpprofileRadio1PtrOutput) N80211d() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Optional antenna used on FAP (default = none).
 func (o WtpprofileRadio1PtrOutput) OptionalAntenna() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10515,7 +9999,6 @@ func (o WtpprofileRadio1PtrOutput) OptionalAntenna() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Optional antenna gain in dBi (0 to 20, default = 0).
 func (o WtpprofileRadio1PtrOutput) OptionalAntennaGain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10525,7 +10008,6 @@ func (o WtpprofileRadio1PtrOutput) OptionalAntennaGain() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 func (o WtpprofileRadio1PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -10535,7 +10017,6 @@ func (o WtpprofileRadio1PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 func (o WtpprofileRadio1PtrOutput) PowerMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10545,7 +10026,6 @@ func (o WtpprofileRadio1PtrOutput) PowerMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Radio EIRP power in dBm (1 - 33, default = 27).
 func (o WtpprofileRadio1PtrOutput) PowerValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -10555,7 +10035,6 @@ func (o WtpprofileRadio1PtrOutput) PowerValue() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
 func (o WtpprofileRadio1PtrOutput) PowersaveOptimize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10565,7 +10044,6 @@ func (o WtpprofileRadio1PtrOutput) PowersaveOptimize() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
 func (o WtpprofileRadio1PtrOutput) ProtectionMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10575,7 +10053,6 @@ func (o WtpprofileRadio1PtrOutput) ProtectionMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// radio-id
 func (o WtpprofileRadio1PtrOutput) RadioId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -10585,7 +10062,6 @@ func (o WtpprofileRadio1PtrOutput) RadioId() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
 func (o WtpprofileRadio1PtrOutput) RtsThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -10595,7 +10071,6 @@ func (o WtpprofileRadio1PtrOutput) RtsThreshold() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// BSSID for WiFi network.
 func (o WtpprofileRadio1PtrOutput) SamBssid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10605,7 +10080,6 @@ func (o WtpprofileRadio1PtrOutput) SamBssid() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// CA certificate for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio1PtrOutput) SamCaCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10615,7 +10089,6 @@ func (o WtpprofileRadio1PtrOutput) SamCaCertificate() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1PtrOutput) SamCaptivePortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10625,7 +10098,6 @@ func (o WtpprofileRadio1PtrOutput) SamCaptivePortal() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Client certificate for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio1PtrOutput) SamClientCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10635,7 +10107,6 @@ func (o WtpprofileRadio1PtrOutput) SamClientCertificate() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Failure identification on the page after an incorrect login.
 func (o WtpprofileRadio1PtrOutput) SamCwpFailureString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10645,7 +10116,6 @@ func (o WtpprofileRadio1PtrOutput) SamCwpFailureString() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Identification string from the captive portal login form.
 func (o WtpprofileRadio1PtrOutput) SamCwpMatchString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10655,7 +10125,6 @@ func (o WtpprofileRadio1PtrOutput) SamCwpMatchString() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Password for captive portal authentication.
 func (o WtpprofileRadio1PtrOutput) SamCwpPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10665,7 +10134,6 @@ func (o WtpprofileRadio1PtrOutput) SamCwpPassword() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Success identification on the page after a successful login.
 func (o WtpprofileRadio1PtrOutput) SamCwpSuccessString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10675,7 +10143,6 @@ func (o WtpprofileRadio1PtrOutput) SamCwpSuccessString() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Website the client is trying to access.
 func (o WtpprofileRadio1PtrOutput) SamCwpTestUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10685,7 +10152,6 @@ func (o WtpprofileRadio1PtrOutput) SamCwpTestUrl() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Username for captive portal authentication.
 func (o WtpprofileRadio1PtrOutput) SamCwpUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10695,7 +10161,6 @@ func (o WtpprofileRadio1PtrOutput) SamCwpUsername() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
 func (o WtpprofileRadio1PtrOutput) SamEapMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10705,7 +10170,6 @@ func (o WtpprofileRadio1PtrOutput) SamEapMethod() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Passphrase for WiFi network connection.
 func (o WtpprofileRadio1PtrOutput) SamPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10715,7 +10179,6 @@ func (o WtpprofileRadio1PtrOutput) SamPassword() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Private key for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio1PtrOutput) SamPrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10725,7 +10188,6 @@ func (o WtpprofileRadio1PtrOutput) SamPrivateKey() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Password for private key file for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio1PtrOutput) SamPrivateKeyPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10735,7 +10197,6 @@ func (o WtpprofileRadio1PtrOutput) SamPrivateKeyPassword() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// SAM report interval (sec), 0 for a one-time report.
 func (o WtpprofileRadio1PtrOutput) SamReportIntv() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *int {
 		if v == nil {
@@ -10745,7 +10206,6 @@ func (o WtpprofileRadio1PtrOutput) SamReportIntv() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Select WiFi network security type (default = "wpa-personal").
 func (o WtpprofileRadio1PtrOutput) SamSecurityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10755,7 +10215,6 @@ func (o WtpprofileRadio1PtrOutput) SamSecurityType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// SAM test server domain name.
 func (o WtpprofileRadio1PtrOutput) SamServerFqdn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10765,7 +10224,6 @@ func (o WtpprofileRadio1PtrOutput) SamServerFqdn() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// SAM test server IP address.
 func (o WtpprofileRadio1PtrOutput) SamServerIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10775,7 +10233,6 @@ func (o WtpprofileRadio1PtrOutput) SamServerIp() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
 func (o WtpprofileRadio1PtrOutput) SamServerType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10785,7 +10242,6 @@ func (o WtpprofileRadio1PtrOutput) SamServerType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// SSID for WiFi network.
 func (o WtpprofileRadio1PtrOutput) SamSsid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10795,7 +10251,6 @@ func (o WtpprofileRadio1PtrOutput) SamSsid() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
 func (o WtpprofileRadio1PtrOutput) SamTest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10805,7 +10260,6 @@ func (o WtpprofileRadio1PtrOutput) SamTest() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Username for WiFi network connection.
 func (o WtpprofileRadio1PtrOutput) SamUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10815,7 +10269,6 @@ func (o WtpprofileRadio1PtrOutput) SamUsername() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1PtrOutput) ShortGuardInterval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10825,7 +10278,6 @@ func (o WtpprofileRadio1PtrOutput) ShortGuardInterval() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
 func (o WtpprofileRadio1PtrOutput) SpectrumAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10835,7 +10287,6 @@ func (o WtpprofileRadio1PtrOutput) SpectrumAnalysis() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
 func (o WtpprofileRadio1PtrOutput) TransmitOptimize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10845,7 +10296,6 @@ func (o WtpprofileRadio1PtrOutput) TransmitOptimize() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
 func (o WtpprofileRadio1PtrOutput) VapAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10855,7 +10305,6 @@ func (o WtpprofileRadio1PtrOutput) VapAll() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
 func (o WtpprofileRadio1PtrOutput) Vaps() WtpprofileRadio1VapArrayOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) []WtpprofileRadio1Vap {
 		if v == nil {
@@ -10865,7 +10314,6 @@ func (o WtpprofileRadio1PtrOutput) Vaps() WtpprofileRadio1VapArrayOutput {
 	}).(WtpprofileRadio1VapArrayOutput)
 }
 
-// Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
 func (o WtpprofileRadio1PtrOutput) WidsProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -10875,7 +10323,6 @@ func (o WtpprofileRadio1PtrOutput) WidsProfile() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio1PtrOutput) ZeroWaitDfs() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio1) *string {
 		if v == nil {
@@ -11080,166 +10527,90 @@ func (o WtpprofileRadio1VapArrayOutput) Index(i pulumi.IntInput) WtpprofileRadio
 }
 
 type WtpprofileRadio2 struct {
-	// Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
 	AirtimeFairness *string `pulumi:"airtimeFairness"`
-	// Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
-	Amsdu *string `pulumi:"amsdu"`
+	Amsdu           *string `pulumi:"amsdu"`
 	// Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
-	ApHandoff *string `pulumi:"apHandoff"`
-	// MAC address to monitor.
-	ApSnifferAddr *string `pulumi:"apSnifferAddr"`
-	// Sniffer buffer size (1 - 32 MB, default = 16).
-	ApSnifferBufsize *int `pulumi:"apSnifferBufsize"`
-	// Channel on which to operate the sniffer (default = 6).
-	ApSnifferChan *int `pulumi:"apSnifferChan"`
-	// Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferCtl *string `pulumi:"apSnifferCtl"`
-	// Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferData *string `pulumi:"apSnifferData"`
-	// Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtBeacon *string `pulumi:"apSnifferMgmtBeacon"`
-	// Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtOther *string `pulumi:"apSnifferMgmtOther"`
-	// Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtProbe *string `pulumi:"apSnifferMgmtProbe"`
-	// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-	ArrpProfile *string `pulumi:"arrpProfile"`
-	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerHigh *int `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-	AutoPowerLevel *string `pulumi:"autoPowerLevel"`
-	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerLow *int `pulumi:"autoPowerLow"`
-	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-	AutoPowerTarget *string `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 3 operates on.
-	Band *string `pulumi:"band"`
-	// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-	Band5gType *string `pulumi:"band5gType"`
-	// Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-	BandwidthAdmissionControl *string `pulumi:"bandwidthAdmissionControl"`
-	// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-	BandwidthCapacity *int `pulumi:"bandwidthCapacity"`
-	// Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-	BeaconInterval *int `pulumi:"beaconInterval"`
-	// BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-	BssColor *int `pulumi:"bssColor"`
-	// BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-	BssColorMode *string `pulumi:"bssColorMode"`
-	// Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-	CallAdmissionControl *string `pulumi:"callAdmissionControl"`
-	// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-	CallCapacity *int `pulumi:"callCapacity"`
-	// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-	ChannelBonding *string `pulumi:"channelBonding"`
-	// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-	ChannelUtilization *string `pulumi:"channelUtilization"`
-	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
-	Channels []WtpprofileRadio2Channel `pulumi:"channels"`
-	// Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-	Coexistence *string `pulumi:"coexistence"`
-	// Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-	Darrp *string `pulumi:"darrp"`
-	// Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-	Drma *string `pulumi:"drma"`
-	// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-	DrmaSensitivity *string `pulumi:"drmaSensitivity"`
-	// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-	Dtim *int `pulumi:"dtim"`
-	// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
-	FragThreshold *int `pulumi:"fragThreshold"`
+	ApHandoff                 *string                   `pulumi:"apHandoff"`
+	ApSnifferAddr             *string                   `pulumi:"apSnifferAddr"`
+	ApSnifferBufsize          *int                      `pulumi:"apSnifferBufsize"`
+	ApSnifferChan             *int                      `pulumi:"apSnifferChan"`
+	ApSnifferCtl              *string                   `pulumi:"apSnifferCtl"`
+	ApSnifferData             *string                   `pulumi:"apSnifferData"`
+	ApSnifferMgmtBeacon       *string                   `pulumi:"apSnifferMgmtBeacon"`
+	ApSnifferMgmtOther        *string                   `pulumi:"apSnifferMgmtOther"`
+	ApSnifferMgmtProbe        *string                   `pulumi:"apSnifferMgmtProbe"`
+	ArrpProfile               *string                   `pulumi:"arrpProfile"`
+	AutoPowerHigh             *int                      `pulumi:"autoPowerHigh"`
+	AutoPowerLevel            *string                   `pulumi:"autoPowerLevel"`
+	AutoPowerLow              *int                      `pulumi:"autoPowerLow"`
+	AutoPowerTarget           *string                   `pulumi:"autoPowerTarget"`
+	Band                      *string                   `pulumi:"band"`
+	Band5gType                *string                   `pulumi:"band5gType"`
+	BandwidthAdmissionControl *string                   `pulumi:"bandwidthAdmissionControl"`
+	BandwidthCapacity         *int                      `pulumi:"bandwidthCapacity"`
+	BeaconInterval            *int                      `pulumi:"beaconInterval"`
+	BssColor                  *int                      `pulumi:"bssColor"`
+	BssColorMode              *string                   `pulumi:"bssColorMode"`
+	CallAdmissionControl      *string                   `pulumi:"callAdmissionControl"`
+	CallCapacity              *int                      `pulumi:"callCapacity"`
+	ChannelBonding            *string                   `pulumi:"channelBonding"`
+	ChannelBondingExt         *string                   `pulumi:"channelBondingExt"`
+	ChannelUtilization        *string                   `pulumi:"channelUtilization"`
+	Channels                  []WtpprofileRadio2Channel `pulumi:"channels"`
+	Coexistence               *string                   `pulumi:"coexistence"`
+	Darrp                     *string                   `pulumi:"darrp"`
+	Drma                      *string                   `pulumi:"drma"`
+	DrmaSensitivity           *string                   `pulumi:"drmaSensitivity"`
+	Dtim                      *int                      `pulumi:"dtim"`
+	FragThreshold             *int                      `pulumi:"fragThreshold"`
 	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
 	FrequencyHandoff *string `pulumi:"frequencyHandoff"`
-	// Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-	IperfProtocol *string `pulumi:"iperfProtocol"`
-	// Iperf service port number.
-	IperfServerPort *int `pulumi:"iperfServerPort"`
+	IperfProtocol    *string `pulumi:"iperfProtocol"`
+	IperfServerPort  *int    `pulumi:"iperfServerPort"`
 	// Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
-	MaxClients *int `pulumi:"maxClients"`
-	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-	MaxDistance *int `pulumi:"maxDistance"`
-	// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-	MimoMode *string `pulumi:"mimoMode"`
-	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-	Mode *string `pulumi:"mode"`
-	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-	N80211d *string `pulumi:"n80211d"`
-	// Optional antenna used on FAP (default = none).
-	OptionalAntenna *string `pulumi:"optionalAntenna"`
-	// Optional antenna gain in dBi (0 to 20, default = 0).
-	OptionalAntennaGain *string `pulumi:"optionalAntennaGain"`
-	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-	PowerLevel *int `pulumi:"powerLevel"`
-	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-	PowerMode *string `pulumi:"powerMode"`
-	// Radio EIRP power in dBm (1 - 33, default = 27).
-	PowerValue *int `pulumi:"powerValue"`
-	// Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-	PowersaveOptimize *string `pulumi:"powersaveOptimize"`
-	// Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-	ProtectionMode *string `pulumi:"protectionMode"`
-	// radio-id
-	RadioId *int `pulumi:"radioId"`
-	// Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-	RtsThreshold *int `pulumi:"rtsThreshold"`
-	// BSSID for WiFi network.
-	SamBssid *string `pulumi:"samBssid"`
-	// CA certificate for WPA2/WPA3-ENTERPRISE.
-	SamCaCertificate *string `pulumi:"samCaCertificate"`
-	// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-	SamCaptivePortal *string `pulumi:"samCaptivePortal"`
-	// Client certificate for WPA2/WPA3-ENTERPRISE.
-	SamClientCertificate *string `pulumi:"samClientCertificate"`
-	// Failure identification on the page after an incorrect login.
-	SamCwpFailureString *string `pulumi:"samCwpFailureString"`
-	// Identification string from the captive portal login form.
-	SamCwpMatchString *string `pulumi:"samCwpMatchString"`
-	// Password for captive portal authentication.
-	SamCwpPassword *string `pulumi:"samCwpPassword"`
-	// Success identification on the page after a successful login.
-	SamCwpSuccessString *string `pulumi:"samCwpSuccessString"`
-	// Website the client is trying to access.
-	SamCwpTestUrl *string `pulumi:"samCwpTestUrl"`
-	// Username for captive portal authentication.
-	SamCwpUsername *string `pulumi:"samCwpUsername"`
-	// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-	SamEapMethod *string `pulumi:"samEapMethod"`
-	// Passphrase for WiFi network connection.
-	SamPassword *string `pulumi:"samPassword"`
-	// Private key for WPA2/WPA3-ENTERPRISE.
-	SamPrivateKey *string `pulumi:"samPrivateKey"`
-	// Password for private key file for WPA2/WPA3-ENTERPRISE.
-	SamPrivateKeyPassword *string `pulumi:"samPrivateKeyPassword"`
-	// SAM report interval (sec), 0 for a one-time report.
-	SamReportIntv *int `pulumi:"samReportIntv"`
-	// Select WiFi network security type (default = "wpa-personal").
-	SamSecurityType *string `pulumi:"samSecurityType"`
-	// SAM test server domain name.
-	SamServerFqdn *string `pulumi:"samServerFqdn"`
-	// SAM test server IP address.
-	SamServerIp *string `pulumi:"samServerIp"`
-	// Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-	SamServerType *string `pulumi:"samServerType"`
-	// SSID for WiFi network.
-	SamSsid *string `pulumi:"samSsid"`
-	// Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-	SamTest *string `pulumi:"samTest"`
-	// Username for WiFi network connection.
-	SamUsername *string `pulumi:"samUsername"`
-	// Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-	ShortGuardInterval *string `pulumi:"shortGuardInterval"`
-	// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-	SpectrumAnalysis *string `pulumi:"spectrumAnalysis"`
-	// Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-	TransmitOptimize *string `pulumi:"transmitOptimize"`
-	// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-	VapAll *string `pulumi:"vapAll"`
-	// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-	Vaps []WtpprofileRadio2Vap `pulumi:"vaps"`
-	// Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-	WidsProfile *string `pulumi:"widsProfile"`
-	// Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
-	ZeroWaitDfs *string `pulumi:"zeroWaitDfs"`
+	MaxClients            *int                  `pulumi:"maxClients"`
+	MaxDistance           *int                  `pulumi:"maxDistance"`
+	MimoMode              *string               `pulumi:"mimoMode"`
+	Mode                  *string               `pulumi:"mode"`
+	N80211d               *string               `pulumi:"n80211d"`
+	OptionalAntenna       *string               `pulumi:"optionalAntenna"`
+	OptionalAntennaGain   *string               `pulumi:"optionalAntennaGain"`
+	PowerLevel            *int                  `pulumi:"powerLevel"`
+	PowerMode             *string               `pulumi:"powerMode"`
+	PowerValue            *int                  `pulumi:"powerValue"`
+	PowersaveOptimize     *string               `pulumi:"powersaveOptimize"`
+	ProtectionMode        *string               `pulumi:"protectionMode"`
+	RadioId               *int                  `pulumi:"radioId"`
+	RtsThreshold          *int                  `pulumi:"rtsThreshold"`
+	SamBssid              *string               `pulumi:"samBssid"`
+	SamCaCertificate      *string               `pulumi:"samCaCertificate"`
+	SamCaptivePortal      *string               `pulumi:"samCaptivePortal"`
+	SamClientCertificate  *string               `pulumi:"samClientCertificate"`
+	SamCwpFailureString   *string               `pulumi:"samCwpFailureString"`
+	SamCwpMatchString     *string               `pulumi:"samCwpMatchString"`
+	SamCwpPassword        *string               `pulumi:"samCwpPassword"`
+	SamCwpSuccessString   *string               `pulumi:"samCwpSuccessString"`
+	SamCwpTestUrl         *string               `pulumi:"samCwpTestUrl"`
+	SamCwpUsername        *string               `pulumi:"samCwpUsername"`
+	SamEapMethod          *string               `pulumi:"samEapMethod"`
+	SamPassword           *string               `pulumi:"samPassword"`
+	SamPrivateKey         *string               `pulumi:"samPrivateKey"`
+	SamPrivateKeyPassword *string               `pulumi:"samPrivateKeyPassword"`
+	SamReportIntv         *int                  `pulumi:"samReportIntv"`
+	SamSecurityType       *string               `pulumi:"samSecurityType"`
+	SamServerFqdn         *string               `pulumi:"samServerFqdn"`
+	SamServerIp           *string               `pulumi:"samServerIp"`
+	SamServerType         *string               `pulumi:"samServerType"`
+	SamSsid               *string               `pulumi:"samSsid"`
+	SamTest               *string               `pulumi:"samTest"`
+	SamUsername           *string               `pulumi:"samUsername"`
+	ShortGuardInterval    *string               `pulumi:"shortGuardInterval"`
+	SpectrumAnalysis      *string               `pulumi:"spectrumAnalysis"`
+	TransmitOptimize      *string               `pulumi:"transmitOptimize"`
+	VapAll                *string               `pulumi:"vapAll"`
+	Vaps                  []WtpprofileRadio2Vap `pulumi:"vaps"`
+	WidsProfile           *string               `pulumi:"widsProfile"`
+	ZeroWaitDfs           *string               `pulumi:"zeroWaitDfs"`
 }
 
 // WtpprofileRadio2Input is an input type that accepts WtpprofileRadio2Args and WtpprofileRadio2Output values.
@@ -11254,166 +10625,90 @@ type WtpprofileRadio2Input interface {
 }
 
 type WtpprofileRadio2Args struct {
-	// Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
 	AirtimeFairness pulumi.StringPtrInput `pulumi:"airtimeFairness"`
-	// Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
-	Amsdu pulumi.StringPtrInput `pulumi:"amsdu"`
+	Amsdu           pulumi.StringPtrInput `pulumi:"amsdu"`
 	// Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
-	ApHandoff pulumi.StringPtrInput `pulumi:"apHandoff"`
-	// MAC address to monitor.
-	ApSnifferAddr pulumi.StringPtrInput `pulumi:"apSnifferAddr"`
-	// Sniffer buffer size (1 - 32 MB, default = 16).
-	ApSnifferBufsize pulumi.IntPtrInput `pulumi:"apSnifferBufsize"`
-	// Channel on which to operate the sniffer (default = 6).
-	ApSnifferChan pulumi.IntPtrInput `pulumi:"apSnifferChan"`
-	// Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferCtl pulumi.StringPtrInput `pulumi:"apSnifferCtl"`
-	// Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferData pulumi.StringPtrInput `pulumi:"apSnifferData"`
-	// Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtBeacon pulumi.StringPtrInput `pulumi:"apSnifferMgmtBeacon"`
-	// Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtOther pulumi.StringPtrInput `pulumi:"apSnifferMgmtOther"`
-	// Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtProbe pulumi.StringPtrInput `pulumi:"apSnifferMgmtProbe"`
-	// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-	ArrpProfile pulumi.StringPtrInput `pulumi:"arrpProfile"`
-	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerHigh pulumi.IntPtrInput `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-	AutoPowerLevel pulumi.StringPtrInput `pulumi:"autoPowerLevel"`
-	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerLow pulumi.IntPtrInput `pulumi:"autoPowerLow"`
-	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-	AutoPowerTarget pulumi.StringPtrInput `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 3 operates on.
-	Band pulumi.StringPtrInput `pulumi:"band"`
-	// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-	Band5gType pulumi.StringPtrInput `pulumi:"band5gType"`
-	// Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-	BandwidthAdmissionControl pulumi.StringPtrInput `pulumi:"bandwidthAdmissionControl"`
-	// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-	BandwidthCapacity pulumi.IntPtrInput `pulumi:"bandwidthCapacity"`
-	// Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-	BeaconInterval pulumi.IntPtrInput `pulumi:"beaconInterval"`
-	// BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-	BssColor pulumi.IntPtrInput `pulumi:"bssColor"`
-	// BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-	BssColorMode pulumi.StringPtrInput `pulumi:"bssColorMode"`
-	// Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-	CallAdmissionControl pulumi.StringPtrInput `pulumi:"callAdmissionControl"`
-	// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-	CallCapacity pulumi.IntPtrInput `pulumi:"callCapacity"`
-	// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-	ChannelBonding pulumi.StringPtrInput `pulumi:"channelBonding"`
-	// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-	ChannelUtilization pulumi.StringPtrInput `pulumi:"channelUtilization"`
-	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
-	Channels WtpprofileRadio2ChannelArrayInput `pulumi:"channels"`
-	// Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-	Coexistence pulumi.StringPtrInput `pulumi:"coexistence"`
-	// Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-	Darrp pulumi.StringPtrInput `pulumi:"darrp"`
-	// Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-	Drma pulumi.StringPtrInput `pulumi:"drma"`
-	// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-	DrmaSensitivity pulumi.StringPtrInput `pulumi:"drmaSensitivity"`
-	// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-	Dtim pulumi.IntPtrInput `pulumi:"dtim"`
-	// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
-	FragThreshold pulumi.IntPtrInput `pulumi:"fragThreshold"`
+	ApHandoff                 pulumi.StringPtrInput             `pulumi:"apHandoff"`
+	ApSnifferAddr             pulumi.StringPtrInput             `pulumi:"apSnifferAddr"`
+	ApSnifferBufsize          pulumi.IntPtrInput                `pulumi:"apSnifferBufsize"`
+	ApSnifferChan             pulumi.IntPtrInput                `pulumi:"apSnifferChan"`
+	ApSnifferCtl              pulumi.StringPtrInput             `pulumi:"apSnifferCtl"`
+	ApSnifferData             pulumi.StringPtrInput             `pulumi:"apSnifferData"`
+	ApSnifferMgmtBeacon       pulumi.StringPtrInput             `pulumi:"apSnifferMgmtBeacon"`
+	ApSnifferMgmtOther        pulumi.StringPtrInput             `pulumi:"apSnifferMgmtOther"`
+	ApSnifferMgmtProbe        pulumi.StringPtrInput             `pulumi:"apSnifferMgmtProbe"`
+	ArrpProfile               pulumi.StringPtrInput             `pulumi:"arrpProfile"`
+	AutoPowerHigh             pulumi.IntPtrInput                `pulumi:"autoPowerHigh"`
+	AutoPowerLevel            pulumi.StringPtrInput             `pulumi:"autoPowerLevel"`
+	AutoPowerLow              pulumi.IntPtrInput                `pulumi:"autoPowerLow"`
+	AutoPowerTarget           pulumi.StringPtrInput             `pulumi:"autoPowerTarget"`
+	Band                      pulumi.StringPtrInput             `pulumi:"band"`
+	Band5gType                pulumi.StringPtrInput             `pulumi:"band5gType"`
+	BandwidthAdmissionControl pulumi.StringPtrInput             `pulumi:"bandwidthAdmissionControl"`
+	BandwidthCapacity         pulumi.IntPtrInput                `pulumi:"bandwidthCapacity"`
+	BeaconInterval            pulumi.IntPtrInput                `pulumi:"beaconInterval"`
+	BssColor                  pulumi.IntPtrInput                `pulumi:"bssColor"`
+	BssColorMode              pulumi.StringPtrInput             `pulumi:"bssColorMode"`
+	CallAdmissionControl      pulumi.StringPtrInput             `pulumi:"callAdmissionControl"`
+	CallCapacity              pulumi.IntPtrInput                `pulumi:"callCapacity"`
+	ChannelBonding            pulumi.StringPtrInput             `pulumi:"channelBonding"`
+	ChannelBondingExt         pulumi.StringPtrInput             `pulumi:"channelBondingExt"`
+	ChannelUtilization        pulumi.StringPtrInput             `pulumi:"channelUtilization"`
+	Channels                  WtpprofileRadio2ChannelArrayInput `pulumi:"channels"`
+	Coexistence               pulumi.StringPtrInput             `pulumi:"coexistence"`
+	Darrp                     pulumi.StringPtrInput             `pulumi:"darrp"`
+	Drma                      pulumi.StringPtrInput             `pulumi:"drma"`
+	DrmaSensitivity           pulumi.StringPtrInput             `pulumi:"drmaSensitivity"`
+	Dtim                      pulumi.IntPtrInput                `pulumi:"dtim"`
+	FragThreshold             pulumi.IntPtrInput                `pulumi:"fragThreshold"`
 	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
 	FrequencyHandoff pulumi.StringPtrInput `pulumi:"frequencyHandoff"`
-	// Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-	IperfProtocol pulumi.StringPtrInput `pulumi:"iperfProtocol"`
-	// Iperf service port number.
-	IperfServerPort pulumi.IntPtrInput `pulumi:"iperfServerPort"`
+	IperfProtocol    pulumi.StringPtrInput `pulumi:"iperfProtocol"`
+	IperfServerPort  pulumi.IntPtrInput    `pulumi:"iperfServerPort"`
 	// Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
-	MaxClients pulumi.IntPtrInput `pulumi:"maxClients"`
-	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-	MaxDistance pulumi.IntPtrInput `pulumi:"maxDistance"`
-	// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-	MimoMode pulumi.StringPtrInput `pulumi:"mimoMode"`
-	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-	Mode pulumi.StringPtrInput `pulumi:"mode"`
-	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-	N80211d pulumi.StringPtrInput `pulumi:"n80211d"`
-	// Optional antenna used on FAP (default = none).
-	OptionalAntenna pulumi.StringPtrInput `pulumi:"optionalAntenna"`
-	// Optional antenna gain in dBi (0 to 20, default = 0).
-	OptionalAntennaGain pulumi.StringPtrInput `pulumi:"optionalAntennaGain"`
-	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-	PowerLevel pulumi.IntPtrInput `pulumi:"powerLevel"`
-	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-	PowerMode pulumi.StringPtrInput `pulumi:"powerMode"`
-	// Radio EIRP power in dBm (1 - 33, default = 27).
-	PowerValue pulumi.IntPtrInput `pulumi:"powerValue"`
-	// Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-	PowersaveOptimize pulumi.StringPtrInput `pulumi:"powersaveOptimize"`
-	// Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-	ProtectionMode pulumi.StringPtrInput `pulumi:"protectionMode"`
-	// radio-id
-	RadioId pulumi.IntPtrInput `pulumi:"radioId"`
-	// Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-	RtsThreshold pulumi.IntPtrInput `pulumi:"rtsThreshold"`
-	// BSSID for WiFi network.
-	SamBssid pulumi.StringPtrInput `pulumi:"samBssid"`
-	// CA certificate for WPA2/WPA3-ENTERPRISE.
-	SamCaCertificate pulumi.StringPtrInput `pulumi:"samCaCertificate"`
-	// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-	SamCaptivePortal pulumi.StringPtrInput `pulumi:"samCaptivePortal"`
-	// Client certificate for WPA2/WPA3-ENTERPRISE.
-	SamClientCertificate pulumi.StringPtrInput `pulumi:"samClientCertificate"`
-	// Failure identification on the page after an incorrect login.
-	SamCwpFailureString pulumi.StringPtrInput `pulumi:"samCwpFailureString"`
-	// Identification string from the captive portal login form.
-	SamCwpMatchString pulumi.StringPtrInput `pulumi:"samCwpMatchString"`
-	// Password for captive portal authentication.
-	SamCwpPassword pulumi.StringPtrInput `pulumi:"samCwpPassword"`
-	// Success identification on the page after a successful login.
-	SamCwpSuccessString pulumi.StringPtrInput `pulumi:"samCwpSuccessString"`
-	// Website the client is trying to access.
-	SamCwpTestUrl pulumi.StringPtrInput `pulumi:"samCwpTestUrl"`
-	// Username for captive portal authentication.
-	SamCwpUsername pulumi.StringPtrInput `pulumi:"samCwpUsername"`
-	// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-	SamEapMethod pulumi.StringPtrInput `pulumi:"samEapMethod"`
-	// Passphrase for WiFi network connection.
-	SamPassword pulumi.StringPtrInput `pulumi:"samPassword"`
-	// Private key for WPA2/WPA3-ENTERPRISE.
-	SamPrivateKey pulumi.StringPtrInput `pulumi:"samPrivateKey"`
-	// Password for private key file for WPA2/WPA3-ENTERPRISE.
-	SamPrivateKeyPassword pulumi.StringPtrInput `pulumi:"samPrivateKeyPassword"`
-	// SAM report interval (sec), 0 for a one-time report.
-	SamReportIntv pulumi.IntPtrInput `pulumi:"samReportIntv"`
-	// Select WiFi network security type (default = "wpa-personal").
-	SamSecurityType pulumi.StringPtrInput `pulumi:"samSecurityType"`
-	// SAM test server domain name.
-	SamServerFqdn pulumi.StringPtrInput `pulumi:"samServerFqdn"`
-	// SAM test server IP address.
-	SamServerIp pulumi.StringPtrInput `pulumi:"samServerIp"`
-	// Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-	SamServerType pulumi.StringPtrInput `pulumi:"samServerType"`
-	// SSID for WiFi network.
-	SamSsid pulumi.StringPtrInput `pulumi:"samSsid"`
-	// Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-	SamTest pulumi.StringPtrInput `pulumi:"samTest"`
-	// Username for WiFi network connection.
-	SamUsername pulumi.StringPtrInput `pulumi:"samUsername"`
-	// Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-	ShortGuardInterval pulumi.StringPtrInput `pulumi:"shortGuardInterval"`
-	// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-	SpectrumAnalysis pulumi.StringPtrInput `pulumi:"spectrumAnalysis"`
-	// Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-	TransmitOptimize pulumi.StringPtrInput `pulumi:"transmitOptimize"`
-	// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-	VapAll pulumi.StringPtrInput `pulumi:"vapAll"`
-	// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-	Vaps WtpprofileRadio2VapArrayInput `pulumi:"vaps"`
-	// Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-	WidsProfile pulumi.StringPtrInput `pulumi:"widsProfile"`
-	// Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
-	ZeroWaitDfs pulumi.StringPtrInput `pulumi:"zeroWaitDfs"`
+	MaxClients            pulumi.IntPtrInput            `pulumi:"maxClients"`
+	MaxDistance           pulumi.IntPtrInput            `pulumi:"maxDistance"`
+	MimoMode              pulumi.StringPtrInput         `pulumi:"mimoMode"`
+	Mode                  pulumi.StringPtrInput         `pulumi:"mode"`
+	N80211d               pulumi.StringPtrInput         `pulumi:"n80211d"`
+	OptionalAntenna       pulumi.StringPtrInput         `pulumi:"optionalAntenna"`
+	OptionalAntennaGain   pulumi.StringPtrInput         `pulumi:"optionalAntennaGain"`
+	PowerLevel            pulumi.IntPtrInput            `pulumi:"powerLevel"`
+	PowerMode             pulumi.StringPtrInput         `pulumi:"powerMode"`
+	PowerValue            pulumi.IntPtrInput            `pulumi:"powerValue"`
+	PowersaveOptimize     pulumi.StringPtrInput         `pulumi:"powersaveOptimize"`
+	ProtectionMode        pulumi.StringPtrInput         `pulumi:"protectionMode"`
+	RadioId               pulumi.IntPtrInput            `pulumi:"radioId"`
+	RtsThreshold          pulumi.IntPtrInput            `pulumi:"rtsThreshold"`
+	SamBssid              pulumi.StringPtrInput         `pulumi:"samBssid"`
+	SamCaCertificate      pulumi.StringPtrInput         `pulumi:"samCaCertificate"`
+	SamCaptivePortal      pulumi.StringPtrInput         `pulumi:"samCaptivePortal"`
+	SamClientCertificate  pulumi.StringPtrInput         `pulumi:"samClientCertificate"`
+	SamCwpFailureString   pulumi.StringPtrInput         `pulumi:"samCwpFailureString"`
+	SamCwpMatchString     pulumi.StringPtrInput         `pulumi:"samCwpMatchString"`
+	SamCwpPassword        pulumi.StringPtrInput         `pulumi:"samCwpPassword"`
+	SamCwpSuccessString   pulumi.StringPtrInput         `pulumi:"samCwpSuccessString"`
+	SamCwpTestUrl         pulumi.StringPtrInput         `pulumi:"samCwpTestUrl"`
+	SamCwpUsername        pulumi.StringPtrInput         `pulumi:"samCwpUsername"`
+	SamEapMethod          pulumi.StringPtrInput         `pulumi:"samEapMethod"`
+	SamPassword           pulumi.StringPtrInput         `pulumi:"samPassword"`
+	SamPrivateKey         pulumi.StringPtrInput         `pulumi:"samPrivateKey"`
+	SamPrivateKeyPassword pulumi.StringPtrInput         `pulumi:"samPrivateKeyPassword"`
+	SamReportIntv         pulumi.IntPtrInput            `pulumi:"samReportIntv"`
+	SamSecurityType       pulumi.StringPtrInput         `pulumi:"samSecurityType"`
+	SamServerFqdn         pulumi.StringPtrInput         `pulumi:"samServerFqdn"`
+	SamServerIp           pulumi.StringPtrInput         `pulumi:"samServerIp"`
+	SamServerType         pulumi.StringPtrInput         `pulumi:"samServerType"`
+	SamSsid               pulumi.StringPtrInput         `pulumi:"samSsid"`
+	SamTest               pulumi.StringPtrInput         `pulumi:"samTest"`
+	SamUsername           pulumi.StringPtrInput         `pulumi:"samUsername"`
+	ShortGuardInterval    pulumi.StringPtrInput         `pulumi:"shortGuardInterval"`
+	SpectrumAnalysis      pulumi.StringPtrInput         `pulumi:"spectrumAnalysis"`
+	TransmitOptimize      pulumi.StringPtrInput         `pulumi:"transmitOptimize"`
+	VapAll                pulumi.StringPtrInput         `pulumi:"vapAll"`
+	Vaps                  WtpprofileRadio2VapArrayInput `pulumi:"vaps"`
+	WidsProfile           pulumi.StringPtrInput         `pulumi:"widsProfile"`
+	ZeroWaitDfs           pulumi.StringPtrInput         `pulumi:"zeroWaitDfs"`
 }
 
 func (WtpprofileRadio2Args) ElementType() reflect.Type {
@@ -11493,12 +10788,10 @@ func (o WtpprofileRadio2Output) ToWtpprofileRadio2PtrOutputWithContext(ctx conte
 	}).(WtpprofileRadio2PtrOutput)
 }
 
-// Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) AirtimeFairness() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.AirtimeFairness }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) Amsdu() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.Amsdu }).(pulumi.StringPtrOutput)
 }
@@ -11508,157 +10801,130 @@ func (o WtpprofileRadio2Output) ApHandoff() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.ApHandoff }).(pulumi.StringPtrOutput)
 }
 
-// MAC address to monitor.
 func (o WtpprofileRadio2Output) ApSnifferAddr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.ApSnifferAddr }).(pulumi.StringPtrOutput)
 }
 
-// Sniffer buffer size (1 - 32 MB, default = 16).
 func (o WtpprofileRadio2Output) ApSnifferBufsize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.ApSnifferBufsize }).(pulumi.IntPtrOutput)
 }
 
-// Channel on which to operate the sniffer (default = 6).
 func (o WtpprofileRadio2Output) ApSnifferChan() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.ApSnifferChan }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) ApSnifferCtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.ApSnifferCtl }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) ApSnifferData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.ApSnifferData }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) ApSnifferMgmtBeacon() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.ApSnifferMgmtBeacon }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) ApSnifferMgmtOther() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.ApSnifferMgmtOther }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) ApSnifferMgmtProbe() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.ApSnifferMgmtProbe }).(pulumi.StringPtrOutput)
 }
 
-// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 func (o WtpprofileRadio2Output) ArrpProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.ArrpProfile }).(pulumi.StringPtrOutput)
 }
 
-// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio2Output) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.AutoPowerHigh }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.AutoPowerLevel }).(pulumi.StringPtrOutput)
 }
 
-// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio2Output) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.AutoPowerLow }).(pulumi.IntPtrOutput)
 }
 
-// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 func (o WtpprofileRadio2Output) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.AutoPowerTarget }).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 3 operates on.
 func (o WtpprofileRadio2Output) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.Band }).(pulumi.StringPtrOutput)
 }
 
-// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
 func (o WtpprofileRadio2Output) Band5gType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.Band5gType }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) BandwidthAdmissionControl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.BandwidthAdmissionControl }).(pulumi.StringPtrOutput)
 }
 
-// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
 func (o WtpprofileRadio2Output) BandwidthCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.BandwidthCapacity }).(pulumi.IntPtrOutput)
 }
 
-// Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
 func (o WtpprofileRadio2Output) BeaconInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.BeaconInterval }).(pulumi.IntPtrOutput)
 }
 
-// BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
 func (o WtpprofileRadio2Output) BssColor() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.BssColor }).(pulumi.IntPtrOutput)
 }
 
-// BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
 func (o WtpprofileRadio2Output) BssColorMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.BssColorMode }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) CallAdmissionControl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.CallAdmissionControl }).(pulumi.StringPtrOutput)
 }
 
-// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
 func (o WtpprofileRadio2Output) CallCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.CallCapacity }).(pulumi.IntPtrOutput)
 }
 
-// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 func (o WtpprofileRadio2Output) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.ChannelBonding }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
+func (o WtpprofileRadio2Output) ChannelBondingExt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.ChannelBondingExt }).(pulumi.StringPtrOutput)
+}
+
 func (o WtpprofileRadio2Output) ChannelUtilization() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.ChannelUtilization }).(pulumi.StringPtrOutput)
 }
 
-// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 func (o WtpprofileRadio2Output) Channels() WtpprofileRadio2ChannelArrayOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) []WtpprofileRadio2Channel { return v.Channels }).(WtpprofileRadio2ChannelArrayOutput)
 }
 
-// Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) Coexistence() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.Coexistence }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) Darrp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.Darrp }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
 func (o WtpprofileRadio2Output) Drma() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.Drma }).(pulumi.StringPtrOutput)
 }
 
-// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
 func (o WtpprofileRadio2Output) DrmaSensitivity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.DrmaSensitivity }).(pulumi.StringPtrOutput)
 }
 
-// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 func (o WtpprofileRadio2Output) Dtim() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.Dtim }).(pulumi.IntPtrOutput)
 }
 
-// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 func (o WtpprofileRadio2Output) FragThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.FragThreshold }).(pulumi.IntPtrOutput)
 }
@@ -11668,12 +10934,10 @@ func (o WtpprofileRadio2Output) FrequencyHandoff() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.FrequencyHandoff }).(pulumi.StringPtrOutput)
 }
 
-// Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
 func (o WtpprofileRadio2Output) IperfProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.IperfProtocol }).(pulumi.StringPtrOutput)
 }
 
-// Iperf service port number.
 func (o WtpprofileRadio2Output) IperfServerPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.IperfServerPort }).(pulumi.IntPtrOutput)
 }
@@ -11683,212 +10947,170 @@ func (o WtpprofileRadio2Output) MaxClients() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.MaxClients }).(pulumi.IntPtrOutput)
 }
 
-// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 func (o WtpprofileRadio2Output) MaxDistance() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.MaxDistance }).(pulumi.IntPtrOutput)
 }
 
-// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
 func (o WtpprofileRadio2Output) MimoMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.MimoMode }).(pulumi.StringPtrOutput)
 }
 
-// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio2Output) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) N80211d() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.N80211d }).(pulumi.StringPtrOutput)
 }
 
-// Optional antenna used on FAP (default = none).
 func (o WtpprofileRadio2Output) OptionalAntenna() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.OptionalAntenna }).(pulumi.StringPtrOutput)
 }
 
-// Optional antenna gain in dBi (0 to 20, default = 0).
 func (o WtpprofileRadio2Output) OptionalAntennaGain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.OptionalAntennaGain }).(pulumi.StringPtrOutput)
 }
 
-// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 func (o WtpprofileRadio2Output) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.PowerLevel }).(pulumi.IntPtrOutput)
 }
 
-// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 func (o WtpprofileRadio2Output) PowerMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.PowerMode }).(pulumi.StringPtrOutput)
 }
 
-// Radio EIRP power in dBm (1 - 33, default = 27).
 func (o WtpprofileRadio2Output) PowerValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.PowerValue }).(pulumi.IntPtrOutput)
 }
 
-// Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
 func (o WtpprofileRadio2Output) PowersaveOptimize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.PowersaveOptimize }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
 func (o WtpprofileRadio2Output) ProtectionMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.ProtectionMode }).(pulumi.StringPtrOutput)
 }
 
-// radio-id
 func (o WtpprofileRadio2Output) RadioId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.RadioId }).(pulumi.IntPtrOutput)
 }
 
-// Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
 func (o WtpprofileRadio2Output) RtsThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.RtsThreshold }).(pulumi.IntPtrOutput)
 }
 
-// BSSID for WiFi network.
 func (o WtpprofileRadio2Output) SamBssid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamBssid }).(pulumi.StringPtrOutput)
 }
 
-// CA certificate for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio2Output) SamCaCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamCaCertificate }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) SamCaptivePortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamCaptivePortal }).(pulumi.StringPtrOutput)
 }
 
-// Client certificate for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio2Output) SamClientCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamClientCertificate }).(pulumi.StringPtrOutput)
 }
 
-// Failure identification on the page after an incorrect login.
 func (o WtpprofileRadio2Output) SamCwpFailureString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamCwpFailureString }).(pulumi.StringPtrOutput)
 }
 
-// Identification string from the captive portal login form.
 func (o WtpprofileRadio2Output) SamCwpMatchString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamCwpMatchString }).(pulumi.StringPtrOutput)
 }
 
-// Password for captive portal authentication.
 func (o WtpprofileRadio2Output) SamCwpPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamCwpPassword }).(pulumi.StringPtrOutput)
 }
 
-// Success identification on the page after a successful login.
 func (o WtpprofileRadio2Output) SamCwpSuccessString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamCwpSuccessString }).(pulumi.StringPtrOutput)
 }
 
-// Website the client is trying to access.
 func (o WtpprofileRadio2Output) SamCwpTestUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamCwpTestUrl }).(pulumi.StringPtrOutput)
 }
 
-// Username for captive portal authentication.
 func (o WtpprofileRadio2Output) SamCwpUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamCwpUsername }).(pulumi.StringPtrOutput)
 }
 
-// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
 func (o WtpprofileRadio2Output) SamEapMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamEapMethod }).(pulumi.StringPtrOutput)
 }
 
-// Passphrase for WiFi network connection.
 func (o WtpprofileRadio2Output) SamPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamPassword }).(pulumi.StringPtrOutput)
 }
 
-// Private key for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio2Output) SamPrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamPrivateKey }).(pulumi.StringPtrOutput)
 }
 
-// Password for private key file for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio2Output) SamPrivateKeyPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamPrivateKeyPassword }).(pulumi.StringPtrOutput)
 }
 
-// SAM report interval (sec), 0 for a one-time report.
 func (o WtpprofileRadio2Output) SamReportIntv() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *int { return v.SamReportIntv }).(pulumi.IntPtrOutput)
 }
 
-// Select WiFi network security type (default = "wpa-personal").
 func (o WtpprofileRadio2Output) SamSecurityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamSecurityType }).(pulumi.StringPtrOutput)
 }
 
-// SAM test server domain name.
 func (o WtpprofileRadio2Output) SamServerFqdn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamServerFqdn }).(pulumi.StringPtrOutput)
 }
 
-// SAM test server IP address.
 func (o WtpprofileRadio2Output) SamServerIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamServerIp }).(pulumi.StringPtrOutput)
 }
 
-// Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
 func (o WtpprofileRadio2Output) SamServerType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamServerType }).(pulumi.StringPtrOutput)
 }
 
-// SSID for WiFi network.
 func (o WtpprofileRadio2Output) SamSsid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamSsid }).(pulumi.StringPtrOutput)
 }
 
-// Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
 func (o WtpprofileRadio2Output) SamTest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamTest }).(pulumi.StringPtrOutput)
 }
 
-// Username for WiFi network connection.
 func (o WtpprofileRadio2Output) SamUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SamUsername }).(pulumi.StringPtrOutput)
 }
 
-// Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) ShortGuardInterval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.ShortGuardInterval }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
 func (o WtpprofileRadio2Output) SpectrumAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.SpectrumAnalysis }).(pulumi.StringPtrOutput)
 }
 
-// Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
 func (o WtpprofileRadio2Output) TransmitOptimize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.TransmitOptimize }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
 func (o WtpprofileRadio2Output) VapAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.VapAll }).(pulumi.StringPtrOutput)
 }
 
-// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
 func (o WtpprofileRadio2Output) Vaps() WtpprofileRadio2VapArrayOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) []WtpprofileRadio2Vap { return v.Vaps }).(WtpprofileRadio2VapArrayOutput)
 }
 
-// Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
 func (o WtpprofileRadio2Output) WidsProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.WidsProfile }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2Output) ZeroWaitDfs() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio2) *string { return v.ZeroWaitDfs }).(pulumi.StringPtrOutput)
 }
@@ -11917,7 +11139,6 @@ func (o WtpprofileRadio2PtrOutput) Elem() WtpprofileRadio2Output {
 	}).(WtpprofileRadio2Output)
 }
 
-// Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2PtrOutput) AirtimeFairness() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -11927,7 +11148,6 @@ func (o WtpprofileRadio2PtrOutput) AirtimeFairness() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2PtrOutput) Amsdu() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -11947,7 +11167,6 @@ func (o WtpprofileRadio2PtrOutput) ApHandoff() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// MAC address to monitor.
 func (o WtpprofileRadio2PtrOutput) ApSnifferAddr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -11957,7 +11176,6 @@ func (o WtpprofileRadio2PtrOutput) ApSnifferAddr() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Sniffer buffer size (1 - 32 MB, default = 16).
 func (o WtpprofileRadio2PtrOutput) ApSnifferBufsize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -11967,7 +11185,6 @@ func (o WtpprofileRadio2PtrOutput) ApSnifferBufsize() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Channel on which to operate the sniffer (default = 6).
 func (o WtpprofileRadio2PtrOutput) ApSnifferChan() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -11977,7 +11194,6 @@ func (o WtpprofileRadio2PtrOutput) ApSnifferChan() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2PtrOutput) ApSnifferCtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -11987,7 +11203,6 @@ func (o WtpprofileRadio2PtrOutput) ApSnifferCtl() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2PtrOutput) ApSnifferData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -11997,7 +11212,6 @@ func (o WtpprofileRadio2PtrOutput) ApSnifferData() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2PtrOutput) ApSnifferMgmtBeacon() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12007,7 +11221,6 @@ func (o WtpprofileRadio2PtrOutput) ApSnifferMgmtBeacon() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2PtrOutput) ApSnifferMgmtOther() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12017,7 +11230,6 @@ func (o WtpprofileRadio2PtrOutput) ApSnifferMgmtOther() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2PtrOutput) ApSnifferMgmtProbe() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12027,7 +11239,6 @@ func (o WtpprofileRadio2PtrOutput) ApSnifferMgmtProbe() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 func (o WtpprofileRadio2PtrOutput) ArrpProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12037,7 +11248,6 @@ func (o WtpprofileRadio2PtrOutput) ArrpProfile() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio2PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -12047,7 +11257,6 @@ func (o WtpprofileRadio2PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12057,7 +11266,6 @@ func (o WtpprofileRadio2PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio2PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -12067,7 +11275,6 @@ func (o WtpprofileRadio2PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 func (o WtpprofileRadio2PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12077,7 +11284,6 @@ func (o WtpprofileRadio2PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 3 operates on.
 func (o WtpprofileRadio2PtrOutput) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12087,7 +11293,6 @@ func (o WtpprofileRadio2PtrOutput) Band() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
 func (o WtpprofileRadio2PtrOutput) Band5gType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12097,7 +11302,6 @@ func (o WtpprofileRadio2PtrOutput) Band5gType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2PtrOutput) BandwidthAdmissionControl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12107,7 +11311,6 @@ func (o WtpprofileRadio2PtrOutput) BandwidthAdmissionControl() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
 func (o WtpprofileRadio2PtrOutput) BandwidthCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -12117,7 +11320,6 @@ func (o WtpprofileRadio2PtrOutput) BandwidthCapacity() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
 func (o WtpprofileRadio2PtrOutput) BeaconInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -12127,7 +11329,6 @@ func (o WtpprofileRadio2PtrOutput) BeaconInterval() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
 func (o WtpprofileRadio2PtrOutput) BssColor() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -12137,7 +11338,6 @@ func (o WtpprofileRadio2PtrOutput) BssColor() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
 func (o WtpprofileRadio2PtrOutput) BssColorMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12147,7 +11347,6 @@ func (o WtpprofileRadio2PtrOutput) BssColorMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2PtrOutput) CallAdmissionControl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12157,7 +11356,6 @@ func (o WtpprofileRadio2PtrOutput) CallAdmissionControl() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
 func (o WtpprofileRadio2PtrOutput) CallCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -12167,7 +11365,6 @@ func (o WtpprofileRadio2PtrOutput) CallCapacity() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 func (o WtpprofileRadio2PtrOutput) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12177,7 +11374,15 @@ func (o WtpprofileRadio2PtrOutput) ChannelBonding() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
+func (o WtpprofileRadio2PtrOutput) ChannelBondingExt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ChannelBondingExt
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o WtpprofileRadio2PtrOutput) ChannelUtilization() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12187,7 +11392,6 @@ func (o WtpprofileRadio2PtrOutput) ChannelUtilization() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 func (o WtpprofileRadio2PtrOutput) Channels() WtpprofileRadio2ChannelArrayOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) []WtpprofileRadio2Channel {
 		if v == nil {
@@ -12197,7 +11401,6 @@ func (o WtpprofileRadio2PtrOutput) Channels() WtpprofileRadio2ChannelArrayOutput
 	}).(WtpprofileRadio2ChannelArrayOutput)
 }
 
-// Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2PtrOutput) Coexistence() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12207,7 +11410,6 @@ func (o WtpprofileRadio2PtrOutput) Coexistence() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2PtrOutput) Darrp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12217,7 +11419,6 @@ func (o WtpprofileRadio2PtrOutput) Darrp() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
 func (o WtpprofileRadio2PtrOutput) Drma() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12227,7 +11428,6 @@ func (o WtpprofileRadio2PtrOutput) Drma() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
 func (o WtpprofileRadio2PtrOutput) DrmaSensitivity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12237,7 +11437,6 @@ func (o WtpprofileRadio2PtrOutput) DrmaSensitivity() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 func (o WtpprofileRadio2PtrOutput) Dtim() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -12247,7 +11446,6 @@ func (o WtpprofileRadio2PtrOutput) Dtim() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 func (o WtpprofileRadio2PtrOutput) FragThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -12267,7 +11465,6 @@ func (o WtpprofileRadio2PtrOutput) FrequencyHandoff() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
 func (o WtpprofileRadio2PtrOutput) IperfProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12277,7 +11474,6 @@ func (o WtpprofileRadio2PtrOutput) IperfProtocol() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Iperf service port number.
 func (o WtpprofileRadio2PtrOutput) IperfServerPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -12297,7 +11493,6 @@ func (o WtpprofileRadio2PtrOutput) MaxClients() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 func (o WtpprofileRadio2PtrOutput) MaxDistance() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -12307,7 +11502,6 @@ func (o WtpprofileRadio2PtrOutput) MaxDistance() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
 func (o WtpprofileRadio2PtrOutput) MimoMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12317,7 +11511,6 @@ func (o WtpprofileRadio2PtrOutput) MimoMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio2PtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12327,7 +11520,6 @@ func (o WtpprofileRadio2PtrOutput) Mode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2PtrOutput) N80211d() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12337,7 +11529,6 @@ func (o WtpprofileRadio2PtrOutput) N80211d() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Optional antenna used on FAP (default = none).
 func (o WtpprofileRadio2PtrOutput) OptionalAntenna() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12347,7 +11538,6 @@ func (o WtpprofileRadio2PtrOutput) OptionalAntenna() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Optional antenna gain in dBi (0 to 20, default = 0).
 func (o WtpprofileRadio2PtrOutput) OptionalAntennaGain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12357,7 +11547,6 @@ func (o WtpprofileRadio2PtrOutput) OptionalAntennaGain() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 func (o WtpprofileRadio2PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -12367,7 +11556,6 @@ func (o WtpprofileRadio2PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 func (o WtpprofileRadio2PtrOutput) PowerMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12377,7 +11565,6 @@ func (o WtpprofileRadio2PtrOutput) PowerMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Radio EIRP power in dBm (1 - 33, default = 27).
 func (o WtpprofileRadio2PtrOutput) PowerValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -12387,7 +11574,6 @@ func (o WtpprofileRadio2PtrOutput) PowerValue() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
 func (o WtpprofileRadio2PtrOutput) PowersaveOptimize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12397,7 +11583,6 @@ func (o WtpprofileRadio2PtrOutput) PowersaveOptimize() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
 func (o WtpprofileRadio2PtrOutput) ProtectionMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12407,7 +11592,6 @@ func (o WtpprofileRadio2PtrOutput) ProtectionMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// radio-id
 func (o WtpprofileRadio2PtrOutput) RadioId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -12417,7 +11601,6 @@ func (o WtpprofileRadio2PtrOutput) RadioId() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
 func (o WtpprofileRadio2PtrOutput) RtsThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -12427,7 +11610,6 @@ func (o WtpprofileRadio2PtrOutput) RtsThreshold() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// BSSID for WiFi network.
 func (o WtpprofileRadio2PtrOutput) SamBssid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12437,7 +11619,6 @@ func (o WtpprofileRadio2PtrOutput) SamBssid() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// CA certificate for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio2PtrOutput) SamCaCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12447,7 +11628,6 @@ func (o WtpprofileRadio2PtrOutput) SamCaCertificate() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2PtrOutput) SamCaptivePortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12457,7 +11637,6 @@ func (o WtpprofileRadio2PtrOutput) SamCaptivePortal() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Client certificate for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio2PtrOutput) SamClientCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12467,7 +11646,6 @@ func (o WtpprofileRadio2PtrOutput) SamClientCertificate() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Failure identification on the page after an incorrect login.
 func (o WtpprofileRadio2PtrOutput) SamCwpFailureString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12477,7 +11655,6 @@ func (o WtpprofileRadio2PtrOutput) SamCwpFailureString() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Identification string from the captive portal login form.
 func (o WtpprofileRadio2PtrOutput) SamCwpMatchString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12487,7 +11664,6 @@ func (o WtpprofileRadio2PtrOutput) SamCwpMatchString() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Password for captive portal authentication.
 func (o WtpprofileRadio2PtrOutput) SamCwpPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12497,7 +11673,6 @@ func (o WtpprofileRadio2PtrOutput) SamCwpPassword() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Success identification on the page after a successful login.
 func (o WtpprofileRadio2PtrOutput) SamCwpSuccessString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12507,7 +11682,6 @@ func (o WtpprofileRadio2PtrOutput) SamCwpSuccessString() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Website the client is trying to access.
 func (o WtpprofileRadio2PtrOutput) SamCwpTestUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12517,7 +11691,6 @@ func (o WtpprofileRadio2PtrOutput) SamCwpTestUrl() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Username for captive portal authentication.
 func (o WtpprofileRadio2PtrOutput) SamCwpUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12527,7 +11700,6 @@ func (o WtpprofileRadio2PtrOutput) SamCwpUsername() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
 func (o WtpprofileRadio2PtrOutput) SamEapMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12537,7 +11709,6 @@ func (o WtpprofileRadio2PtrOutput) SamEapMethod() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Passphrase for WiFi network connection.
 func (o WtpprofileRadio2PtrOutput) SamPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12547,7 +11718,6 @@ func (o WtpprofileRadio2PtrOutput) SamPassword() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Private key for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio2PtrOutput) SamPrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12557,7 +11727,6 @@ func (o WtpprofileRadio2PtrOutput) SamPrivateKey() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Password for private key file for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio2PtrOutput) SamPrivateKeyPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12567,7 +11736,6 @@ func (o WtpprofileRadio2PtrOutput) SamPrivateKeyPassword() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// SAM report interval (sec), 0 for a one-time report.
 func (o WtpprofileRadio2PtrOutput) SamReportIntv() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *int {
 		if v == nil {
@@ -12577,7 +11745,6 @@ func (o WtpprofileRadio2PtrOutput) SamReportIntv() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Select WiFi network security type (default = "wpa-personal").
 func (o WtpprofileRadio2PtrOutput) SamSecurityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12587,7 +11754,6 @@ func (o WtpprofileRadio2PtrOutput) SamSecurityType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// SAM test server domain name.
 func (o WtpprofileRadio2PtrOutput) SamServerFqdn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12597,7 +11763,6 @@ func (o WtpprofileRadio2PtrOutput) SamServerFqdn() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// SAM test server IP address.
 func (o WtpprofileRadio2PtrOutput) SamServerIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12607,7 +11772,6 @@ func (o WtpprofileRadio2PtrOutput) SamServerIp() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
 func (o WtpprofileRadio2PtrOutput) SamServerType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12617,7 +11781,6 @@ func (o WtpprofileRadio2PtrOutput) SamServerType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// SSID for WiFi network.
 func (o WtpprofileRadio2PtrOutput) SamSsid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12627,7 +11790,6 @@ func (o WtpprofileRadio2PtrOutput) SamSsid() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
 func (o WtpprofileRadio2PtrOutput) SamTest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12637,7 +11799,6 @@ func (o WtpprofileRadio2PtrOutput) SamTest() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Username for WiFi network connection.
 func (o WtpprofileRadio2PtrOutput) SamUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12647,7 +11808,6 @@ func (o WtpprofileRadio2PtrOutput) SamUsername() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2PtrOutput) ShortGuardInterval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12657,7 +11817,6 @@ func (o WtpprofileRadio2PtrOutput) ShortGuardInterval() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
 func (o WtpprofileRadio2PtrOutput) SpectrumAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12667,7 +11826,6 @@ func (o WtpprofileRadio2PtrOutput) SpectrumAnalysis() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
 func (o WtpprofileRadio2PtrOutput) TransmitOptimize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12677,7 +11835,6 @@ func (o WtpprofileRadio2PtrOutput) TransmitOptimize() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
 func (o WtpprofileRadio2PtrOutput) VapAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12687,7 +11844,6 @@ func (o WtpprofileRadio2PtrOutput) VapAll() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
 func (o WtpprofileRadio2PtrOutput) Vaps() WtpprofileRadio2VapArrayOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) []WtpprofileRadio2Vap {
 		if v == nil {
@@ -12697,7 +11853,6 @@ func (o WtpprofileRadio2PtrOutput) Vaps() WtpprofileRadio2VapArrayOutput {
 	}).(WtpprofileRadio2VapArrayOutput)
 }
 
-// Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
 func (o WtpprofileRadio2PtrOutput) WidsProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12707,7 +11862,6 @@ func (o WtpprofileRadio2PtrOutput) WidsProfile() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio2PtrOutput) ZeroWaitDfs() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio2) *string {
 		if v == nil {
@@ -12912,164 +12066,89 @@ func (o WtpprofileRadio2VapArrayOutput) Index(i pulumi.IntInput) WtpprofileRadio
 }
 
 type WtpprofileRadio3 struct {
-	// Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
 	AirtimeFairness *string `pulumi:"airtimeFairness"`
-	// Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
-	Amsdu *string `pulumi:"amsdu"`
+	Amsdu           *string `pulumi:"amsdu"`
 	// Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
-	ApHandoff *string `pulumi:"apHandoff"`
-	// MAC address to monitor.
-	ApSnifferAddr *string `pulumi:"apSnifferAddr"`
-	// Sniffer buffer size (1 - 32 MB, default = 16).
-	ApSnifferBufsize *int `pulumi:"apSnifferBufsize"`
-	// Channel on which to operate the sniffer (default = 6).
-	ApSnifferChan *int `pulumi:"apSnifferChan"`
-	// Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferCtl *string `pulumi:"apSnifferCtl"`
-	// Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferData *string `pulumi:"apSnifferData"`
-	// Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtBeacon *string `pulumi:"apSnifferMgmtBeacon"`
-	// Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtOther *string `pulumi:"apSnifferMgmtOther"`
-	// Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtProbe *string `pulumi:"apSnifferMgmtProbe"`
-	// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-	ArrpProfile *string `pulumi:"arrpProfile"`
-	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerHigh *int `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-	AutoPowerLevel *string `pulumi:"autoPowerLevel"`
-	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerLow *int `pulumi:"autoPowerLow"`
-	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-	AutoPowerTarget *string `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 3 operates on.
-	Band *string `pulumi:"band"`
-	// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-	Band5gType *string `pulumi:"band5gType"`
-	// Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-	BandwidthAdmissionControl *string `pulumi:"bandwidthAdmissionControl"`
-	// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-	BandwidthCapacity *int `pulumi:"bandwidthCapacity"`
-	// Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-	BeaconInterval *int `pulumi:"beaconInterval"`
-	// BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-	BssColor *int `pulumi:"bssColor"`
-	// BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-	BssColorMode *string `pulumi:"bssColorMode"`
-	// Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-	CallAdmissionControl *string `pulumi:"callAdmissionControl"`
-	// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-	CallCapacity *int `pulumi:"callCapacity"`
-	// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-	ChannelBonding *string `pulumi:"channelBonding"`
-	// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-	ChannelUtilization *string `pulumi:"channelUtilization"`
-	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
-	Channels []WtpprofileRadio3Channel `pulumi:"channels"`
-	// Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-	Coexistence *string `pulumi:"coexistence"`
-	// Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-	Darrp *string `pulumi:"darrp"`
-	// Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-	Drma *string `pulumi:"drma"`
-	// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-	DrmaSensitivity *string `pulumi:"drmaSensitivity"`
-	// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-	Dtim *int `pulumi:"dtim"`
-	// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
-	FragThreshold *int `pulumi:"fragThreshold"`
+	ApHandoff                 *string                   `pulumi:"apHandoff"`
+	ApSnifferAddr             *string                   `pulumi:"apSnifferAddr"`
+	ApSnifferBufsize          *int                      `pulumi:"apSnifferBufsize"`
+	ApSnifferChan             *int                      `pulumi:"apSnifferChan"`
+	ApSnifferCtl              *string                   `pulumi:"apSnifferCtl"`
+	ApSnifferData             *string                   `pulumi:"apSnifferData"`
+	ApSnifferMgmtBeacon       *string                   `pulumi:"apSnifferMgmtBeacon"`
+	ApSnifferMgmtOther        *string                   `pulumi:"apSnifferMgmtOther"`
+	ApSnifferMgmtProbe        *string                   `pulumi:"apSnifferMgmtProbe"`
+	ArrpProfile               *string                   `pulumi:"arrpProfile"`
+	AutoPowerHigh             *int                      `pulumi:"autoPowerHigh"`
+	AutoPowerLevel            *string                   `pulumi:"autoPowerLevel"`
+	AutoPowerLow              *int                      `pulumi:"autoPowerLow"`
+	AutoPowerTarget           *string                   `pulumi:"autoPowerTarget"`
+	Band                      *string                   `pulumi:"band"`
+	Band5gType                *string                   `pulumi:"band5gType"`
+	BandwidthAdmissionControl *string                   `pulumi:"bandwidthAdmissionControl"`
+	BandwidthCapacity         *int                      `pulumi:"bandwidthCapacity"`
+	BeaconInterval            *int                      `pulumi:"beaconInterval"`
+	BssColor                  *int                      `pulumi:"bssColor"`
+	BssColorMode              *string                   `pulumi:"bssColorMode"`
+	CallAdmissionControl      *string                   `pulumi:"callAdmissionControl"`
+	CallCapacity              *int                      `pulumi:"callCapacity"`
+	ChannelBonding            *string                   `pulumi:"channelBonding"`
+	ChannelBondingExt         *string                   `pulumi:"channelBondingExt"`
+	ChannelUtilization        *string                   `pulumi:"channelUtilization"`
+	Channels                  []WtpprofileRadio3Channel `pulumi:"channels"`
+	Coexistence               *string                   `pulumi:"coexistence"`
+	Darrp                     *string                   `pulumi:"darrp"`
+	Drma                      *string                   `pulumi:"drma"`
+	DrmaSensitivity           *string                   `pulumi:"drmaSensitivity"`
+	Dtim                      *int                      `pulumi:"dtim"`
+	FragThreshold             *int                      `pulumi:"fragThreshold"`
 	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
 	FrequencyHandoff *string `pulumi:"frequencyHandoff"`
-	// Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-	IperfProtocol *string `pulumi:"iperfProtocol"`
-	// Iperf service port number.
-	IperfServerPort *int `pulumi:"iperfServerPort"`
+	IperfProtocol    *string `pulumi:"iperfProtocol"`
+	IperfServerPort  *int    `pulumi:"iperfServerPort"`
 	// Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
-	MaxClients *int `pulumi:"maxClients"`
-	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-	MaxDistance *int `pulumi:"maxDistance"`
-	// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-	MimoMode *string `pulumi:"mimoMode"`
-	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-	Mode *string `pulumi:"mode"`
-	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-	N80211d *string `pulumi:"n80211d"`
-	// Optional antenna used on FAP (default = none).
-	OptionalAntenna *string `pulumi:"optionalAntenna"`
-	// Optional antenna gain in dBi (0 to 20, default = 0).
-	OptionalAntennaGain *string `pulumi:"optionalAntennaGain"`
-	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-	PowerLevel *int `pulumi:"powerLevel"`
-	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-	PowerMode *string `pulumi:"powerMode"`
-	// Radio EIRP power in dBm (1 - 33, default = 27).
-	PowerValue *int `pulumi:"powerValue"`
-	// Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-	PowersaveOptimize *string `pulumi:"powersaveOptimize"`
-	// Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-	ProtectionMode *string `pulumi:"protectionMode"`
-	// Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-	RtsThreshold *int `pulumi:"rtsThreshold"`
-	// BSSID for WiFi network.
-	SamBssid *string `pulumi:"samBssid"`
-	// CA certificate for WPA2/WPA3-ENTERPRISE.
-	SamCaCertificate *string `pulumi:"samCaCertificate"`
-	// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-	SamCaptivePortal *string `pulumi:"samCaptivePortal"`
-	// Client certificate for WPA2/WPA3-ENTERPRISE.
-	SamClientCertificate *string `pulumi:"samClientCertificate"`
-	// Failure identification on the page after an incorrect login.
-	SamCwpFailureString *string `pulumi:"samCwpFailureString"`
-	// Identification string from the captive portal login form.
-	SamCwpMatchString *string `pulumi:"samCwpMatchString"`
-	// Password for captive portal authentication.
-	SamCwpPassword *string `pulumi:"samCwpPassword"`
-	// Success identification on the page after a successful login.
-	SamCwpSuccessString *string `pulumi:"samCwpSuccessString"`
-	// Website the client is trying to access.
-	SamCwpTestUrl *string `pulumi:"samCwpTestUrl"`
-	// Username for captive portal authentication.
-	SamCwpUsername *string `pulumi:"samCwpUsername"`
-	// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-	SamEapMethod *string `pulumi:"samEapMethod"`
-	// Passphrase for WiFi network connection.
-	SamPassword *string `pulumi:"samPassword"`
-	// Private key for WPA2/WPA3-ENTERPRISE.
-	SamPrivateKey *string `pulumi:"samPrivateKey"`
-	// Password for private key file for WPA2/WPA3-ENTERPRISE.
-	SamPrivateKeyPassword *string `pulumi:"samPrivateKeyPassword"`
-	// SAM report interval (sec), 0 for a one-time report.
-	SamReportIntv *int `pulumi:"samReportIntv"`
-	// Select WiFi network security type (default = "wpa-personal").
-	SamSecurityType *string `pulumi:"samSecurityType"`
-	// SAM test server domain name.
-	SamServerFqdn *string `pulumi:"samServerFqdn"`
-	// SAM test server IP address.
-	SamServerIp *string `pulumi:"samServerIp"`
-	// Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-	SamServerType *string `pulumi:"samServerType"`
-	// SSID for WiFi network.
-	SamSsid *string `pulumi:"samSsid"`
-	// Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-	SamTest *string `pulumi:"samTest"`
-	// Username for WiFi network connection.
-	SamUsername *string `pulumi:"samUsername"`
-	// Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-	ShortGuardInterval *string `pulumi:"shortGuardInterval"`
-	// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-	SpectrumAnalysis *string `pulumi:"spectrumAnalysis"`
-	// Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-	TransmitOptimize *string `pulumi:"transmitOptimize"`
-	// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-	VapAll *string `pulumi:"vapAll"`
-	// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-	Vaps []WtpprofileRadio3Vap `pulumi:"vaps"`
-	// Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-	WidsProfile *string `pulumi:"widsProfile"`
-	// Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
-	ZeroWaitDfs *string `pulumi:"zeroWaitDfs"`
+	MaxClients            *int                  `pulumi:"maxClients"`
+	MaxDistance           *int                  `pulumi:"maxDistance"`
+	MimoMode              *string               `pulumi:"mimoMode"`
+	Mode                  *string               `pulumi:"mode"`
+	N80211d               *string               `pulumi:"n80211d"`
+	OptionalAntenna       *string               `pulumi:"optionalAntenna"`
+	OptionalAntennaGain   *string               `pulumi:"optionalAntennaGain"`
+	PowerLevel            *int                  `pulumi:"powerLevel"`
+	PowerMode             *string               `pulumi:"powerMode"`
+	PowerValue            *int                  `pulumi:"powerValue"`
+	PowersaveOptimize     *string               `pulumi:"powersaveOptimize"`
+	ProtectionMode        *string               `pulumi:"protectionMode"`
+	RtsThreshold          *int                  `pulumi:"rtsThreshold"`
+	SamBssid              *string               `pulumi:"samBssid"`
+	SamCaCertificate      *string               `pulumi:"samCaCertificate"`
+	SamCaptivePortal      *string               `pulumi:"samCaptivePortal"`
+	SamClientCertificate  *string               `pulumi:"samClientCertificate"`
+	SamCwpFailureString   *string               `pulumi:"samCwpFailureString"`
+	SamCwpMatchString     *string               `pulumi:"samCwpMatchString"`
+	SamCwpPassword        *string               `pulumi:"samCwpPassword"`
+	SamCwpSuccessString   *string               `pulumi:"samCwpSuccessString"`
+	SamCwpTestUrl         *string               `pulumi:"samCwpTestUrl"`
+	SamCwpUsername        *string               `pulumi:"samCwpUsername"`
+	SamEapMethod          *string               `pulumi:"samEapMethod"`
+	SamPassword           *string               `pulumi:"samPassword"`
+	SamPrivateKey         *string               `pulumi:"samPrivateKey"`
+	SamPrivateKeyPassword *string               `pulumi:"samPrivateKeyPassword"`
+	SamReportIntv         *int                  `pulumi:"samReportIntv"`
+	SamSecurityType       *string               `pulumi:"samSecurityType"`
+	SamServerFqdn         *string               `pulumi:"samServerFqdn"`
+	SamServerIp           *string               `pulumi:"samServerIp"`
+	SamServerType         *string               `pulumi:"samServerType"`
+	SamSsid               *string               `pulumi:"samSsid"`
+	SamTest               *string               `pulumi:"samTest"`
+	SamUsername           *string               `pulumi:"samUsername"`
+	ShortGuardInterval    *string               `pulumi:"shortGuardInterval"`
+	SpectrumAnalysis      *string               `pulumi:"spectrumAnalysis"`
+	TransmitOptimize      *string               `pulumi:"transmitOptimize"`
+	VapAll                *string               `pulumi:"vapAll"`
+	Vaps                  []WtpprofileRadio3Vap `pulumi:"vaps"`
+	WidsProfile           *string               `pulumi:"widsProfile"`
+	ZeroWaitDfs           *string               `pulumi:"zeroWaitDfs"`
 }
 
 // WtpprofileRadio3Input is an input type that accepts WtpprofileRadio3Args and WtpprofileRadio3Output values.
@@ -13084,164 +12163,89 @@ type WtpprofileRadio3Input interface {
 }
 
 type WtpprofileRadio3Args struct {
-	// Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
 	AirtimeFairness pulumi.StringPtrInput `pulumi:"airtimeFairness"`
-	// Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
-	Amsdu pulumi.StringPtrInput `pulumi:"amsdu"`
+	Amsdu           pulumi.StringPtrInput `pulumi:"amsdu"`
 	// Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
-	ApHandoff pulumi.StringPtrInput `pulumi:"apHandoff"`
-	// MAC address to monitor.
-	ApSnifferAddr pulumi.StringPtrInput `pulumi:"apSnifferAddr"`
-	// Sniffer buffer size (1 - 32 MB, default = 16).
-	ApSnifferBufsize pulumi.IntPtrInput `pulumi:"apSnifferBufsize"`
-	// Channel on which to operate the sniffer (default = 6).
-	ApSnifferChan pulumi.IntPtrInput `pulumi:"apSnifferChan"`
-	// Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferCtl pulumi.StringPtrInput `pulumi:"apSnifferCtl"`
-	// Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferData pulumi.StringPtrInput `pulumi:"apSnifferData"`
-	// Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtBeacon pulumi.StringPtrInput `pulumi:"apSnifferMgmtBeacon"`
-	// Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtOther pulumi.StringPtrInput `pulumi:"apSnifferMgmtOther"`
-	// Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtProbe pulumi.StringPtrInput `pulumi:"apSnifferMgmtProbe"`
-	// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-	ArrpProfile pulumi.StringPtrInput `pulumi:"arrpProfile"`
-	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerHigh pulumi.IntPtrInput `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-	AutoPowerLevel pulumi.StringPtrInput `pulumi:"autoPowerLevel"`
-	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerLow pulumi.IntPtrInput `pulumi:"autoPowerLow"`
-	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-	AutoPowerTarget pulumi.StringPtrInput `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 3 operates on.
-	Band pulumi.StringPtrInput `pulumi:"band"`
-	// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-	Band5gType pulumi.StringPtrInput `pulumi:"band5gType"`
-	// Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-	BandwidthAdmissionControl pulumi.StringPtrInput `pulumi:"bandwidthAdmissionControl"`
-	// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-	BandwidthCapacity pulumi.IntPtrInput `pulumi:"bandwidthCapacity"`
-	// Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-	BeaconInterval pulumi.IntPtrInput `pulumi:"beaconInterval"`
-	// BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-	BssColor pulumi.IntPtrInput `pulumi:"bssColor"`
-	// BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-	BssColorMode pulumi.StringPtrInput `pulumi:"bssColorMode"`
-	// Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-	CallAdmissionControl pulumi.StringPtrInput `pulumi:"callAdmissionControl"`
-	// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-	CallCapacity pulumi.IntPtrInput `pulumi:"callCapacity"`
-	// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-	ChannelBonding pulumi.StringPtrInput `pulumi:"channelBonding"`
-	// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-	ChannelUtilization pulumi.StringPtrInput `pulumi:"channelUtilization"`
-	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
-	Channels WtpprofileRadio3ChannelArrayInput `pulumi:"channels"`
-	// Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-	Coexistence pulumi.StringPtrInput `pulumi:"coexistence"`
-	// Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-	Darrp pulumi.StringPtrInput `pulumi:"darrp"`
-	// Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-	Drma pulumi.StringPtrInput `pulumi:"drma"`
-	// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-	DrmaSensitivity pulumi.StringPtrInput `pulumi:"drmaSensitivity"`
-	// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-	Dtim pulumi.IntPtrInput `pulumi:"dtim"`
-	// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
-	FragThreshold pulumi.IntPtrInput `pulumi:"fragThreshold"`
+	ApHandoff                 pulumi.StringPtrInput             `pulumi:"apHandoff"`
+	ApSnifferAddr             pulumi.StringPtrInput             `pulumi:"apSnifferAddr"`
+	ApSnifferBufsize          pulumi.IntPtrInput                `pulumi:"apSnifferBufsize"`
+	ApSnifferChan             pulumi.IntPtrInput                `pulumi:"apSnifferChan"`
+	ApSnifferCtl              pulumi.StringPtrInput             `pulumi:"apSnifferCtl"`
+	ApSnifferData             pulumi.StringPtrInput             `pulumi:"apSnifferData"`
+	ApSnifferMgmtBeacon       pulumi.StringPtrInput             `pulumi:"apSnifferMgmtBeacon"`
+	ApSnifferMgmtOther        pulumi.StringPtrInput             `pulumi:"apSnifferMgmtOther"`
+	ApSnifferMgmtProbe        pulumi.StringPtrInput             `pulumi:"apSnifferMgmtProbe"`
+	ArrpProfile               pulumi.StringPtrInput             `pulumi:"arrpProfile"`
+	AutoPowerHigh             pulumi.IntPtrInput                `pulumi:"autoPowerHigh"`
+	AutoPowerLevel            pulumi.StringPtrInput             `pulumi:"autoPowerLevel"`
+	AutoPowerLow              pulumi.IntPtrInput                `pulumi:"autoPowerLow"`
+	AutoPowerTarget           pulumi.StringPtrInput             `pulumi:"autoPowerTarget"`
+	Band                      pulumi.StringPtrInput             `pulumi:"band"`
+	Band5gType                pulumi.StringPtrInput             `pulumi:"band5gType"`
+	BandwidthAdmissionControl pulumi.StringPtrInput             `pulumi:"bandwidthAdmissionControl"`
+	BandwidthCapacity         pulumi.IntPtrInput                `pulumi:"bandwidthCapacity"`
+	BeaconInterval            pulumi.IntPtrInput                `pulumi:"beaconInterval"`
+	BssColor                  pulumi.IntPtrInput                `pulumi:"bssColor"`
+	BssColorMode              pulumi.StringPtrInput             `pulumi:"bssColorMode"`
+	CallAdmissionControl      pulumi.StringPtrInput             `pulumi:"callAdmissionControl"`
+	CallCapacity              pulumi.IntPtrInput                `pulumi:"callCapacity"`
+	ChannelBonding            pulumi.StringPtrInput             `pulumi:"channelBonding"`
+	ChannelBondingExt         pulumi.StringPtrInput             `pulumi:"channelBondingExt"`
+	ChannelUtilization        pulumi.StringPtrInput             `pulumi:"channelUtilization"`
+	Channels                  WtpprofileRadio3ChannelArrayInput `pulumi:"channels"`
+	Coexistence               pulumi.StringPtrInput             `pulumi:"coexistence"`
+	Darrp                     pulumi.StringPtrInput             `pulumi:"darrp"`
+	Drma                      pulumi.StringPtrInput             `pulumi:"drma"`
+	DrmaSensitivity           pulumi.StringPtrInput             `pulumi:"drmaSensitivity"`
+	Dtim                      pulumi.IntPtrInput                `pulumi:"dtim"`
+	FragThreshold             pulumi.IntPtrInput                `pulumi:"fragThreshold"`
 	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
 	FrequencyHandoff pulumi.StringPtrInput `pulumi:"frequencyHandoff"`
-	// Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-	IperfProtocol pulumi.StringPtrInput `pulumi:"iperfProtocol"`
-	// Iperf service port number.
-	IperfServerPort pulumi.IntPtrInput `pulumi:"iperfServerPort"`
+	IperfProtocol    pulumi.StringPtrInput `pulumi:"iperfProtocol"`
+	IperfServerPort  pulumi.IntPtrInput    `pulumi:"iperfServerPort"`
 	// Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
-	MaxClients pulumi.IntPtrInput `pulumi:"maxClients"`
-	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-	MaxDistance pulumi.IntPtrInput `pulumi:"maxDistance"`
-	// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-	MimoMode pulumi.StringPtrInput `pulumi:"mimoMode"`
-	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-	Mode pulumi.StringPtrInput `pulumi:"mode"`
-	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-	N80211d pulumi.StringPtrInput `pulumi:"n80211d"`
-	// Optional antenna used on FAP (default = none).
-	OptionalAntenna pulumi.StringPtrInput `pulumi:"optionalAntenna"`
-	// Optional antenna gain in dBi (0 to 20, default = 0).
-	OptionalAntennaGain pulumi.StringPtrInput `pulumi:"optionalAntennaGain"`
-	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-	PowerLevel pulumi.IntPtrInput `pulumi:"powerLevel"`
-	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-	PowerMode pulumi.StringPtrInput `pulumi:"powerMode"`
-	// Radio EIRP power in dBm (1 - 33, default = 27).
-	PowerValue pulumi.IntPtrInput `pulumi:"powerValue"`
-	// Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-	PowersaveOptimize pulumi.StringPtrInput `pulumi:"powersaveOptimize"`
-	// Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-	ProtectionMode pulumi.StringPtrInput `pulumi:"protectionMode"`
-	// Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-	RtsThreshold pulumi.IntPtrInput `pulumi:"rtsThreshold"`
-	// BSSID for WiFi network.
-	SamBssid pulumi.StringPtrInput `pulumi:"samBssid"`
-	// CA certificate for WPA2/WPA3-ENTERPRISE.
-	SamCaCertificate pulumi.StringPtrInput `pulumi:"samCaCertificate"`
-	// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-	SamCaptivePortal pulumi.StringPtrInput `pulumi:"samCaptivePortal"`
-	// Client certificate for WPA2/WPA3-ENTERPRISE.
-	SamClientCertificate pulumi.StringPtrInput `pulumi:"samClientCertificate"`
-	// Failure identification on the page after an incorrect login.
-	SamCwpFailureString pulumi.StringPtrInput `pulumi:"samCwpFailureString"`
-	// Identification string from the captive portal login form.
-	SamCwpMatchString pulumi.StringPtrInput `pulumi:"samCwpMatchString"`
-	// Password for captive portal authentication.
-	SamCwpPassword pulumi.StringPtrInput `pulumi:"samCwpPassword"`
-	// Success identification on the page after a successful login.
-	SamCwpSuccessString pulumi.StringPtrInput `pulumi:"samCwpSuccessString"`
-	// Website the client is trying to access.
-	SamCwpTestUrl pulumi.StringPtrInput `pulumi:"samCwpTestUrl"`
-	// Username for captive portal authentication.
-	SamCwpUsername pulumi.StringPtrInput `pulumi:"samCwpUsername"`
-	// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-	SamEapMethod pulumi.StringPtrInput `pulumi:"samEapMethod"`
-	// Passphrase for WiFi network connection.
-	SamPassword pulumi.StringPtrInput `pulumi:"samPassword"`
-	// Private key for WPA2/WPA3-ENTERPRISE.
-	SamPrivateKey pulumi.StringPtrInput `pulumi:"samPrivateKey"`
-	// Password for private key file for WPA2/WPA3-ENTERPRISE.
-	SamPrivateKeyPassword pulumi.StringPtrInput `pulumi:"samPrivateKeyPassword"`
-	// SAM report interval (sec), 0 for a one-time report.
-	SamReportIntv pulumi.IntPtrInput `pulumi:"samReportIntv"`
-	// Select WiFi network security type (default = "wpa-personal").
-	SamSecurityType pulumi.StringPtrInput `pulumi:"samSecurityType"`
-	// SAM test server domain name.
-	SamServerFqdn pulumi.StringPtrInput `pulumi:"samServerFqdn"`
-	// SAM test server IP address.
-	SamServerIp pulumi.StringPtrInput `pulumi:"samServerIp"`
-	// Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-	SamServerType pulumi.StringPtrInput `pulumi:"samServerType"`
-	// SSID for WiFi network.
-	SamSsid pulumi.StringPtrInput `pulumi:"samSsid"`
-	// Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-	SamTest pulumi.StringPtrInput `pulumi:"samTest"`
-	// Username for WiFi network connection.
-	SamUsername pulumi.StringPtrInput `pulumi:"samUsername"`
-	// Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-	ShortGuardInterval pulumi.StringPtrInput `pulumi:"shortGuardInterval"`
-	// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-	SpectrumAnalysis pulumi.StringPtrInput `pulumi:"spectrumAnalysis"`
-	// Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-	TransmitOptimize pulumi.StringPtrInput `pulumi:"transmitOptimize"`
-	// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-	VapAll pulumi.StringPtrInput `pulumi:"vapAll"`
-	// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-	Vaps WtpprofileRadio3VapArrayInput `pulumi:"vaps"`
-	// Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-	WidsProfile pulumi.StringPtrInput `pulumi:"widsProfile"`
-	// Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
-	ZeroWaitDfs pulumi.StringPtrInput `pulumi:"zeroWaitDfs"`
+	MaxClients            pulumi.IntPtrInput            `pulumi:"maxClients"`
+	MaxDistance           pulumi.IntPtrInput            `pulumi:"maxDistance"`
+	MimoMode              pulumi.StringPtrInput         `pulumi:"mimoMode"`
+	Mode                  pulumi.StringPtrInput         `pulumi:"mode"`
+	N80211d               pulumi.StringPtrInput         `pulumi:"n80211d"`
+	OptionalAntenna       pulumi.StringPtrInput         `pulumi:"optionalAntenna"`
+	OptionalAntennaGain   pulumi.StringPtrInput         `pulumi:"optionalAntennaGain"`
+	PowerLevel            pulumi.IntPtrInput            `pulumi:"powerLevel"`
+	PowerMode             pulumi.StringPtrInput         `pulumi:"powerMode"`
+	PowerValue            pulumi.IntPtrInput            `pulumi:"powerValue"`
+	PowersaveOptimize     pulumi.StringPtrInput         `pulumi:"powersaveOptimize"`
+	ProtectionMode        pulumi.StringPtrInput         `pulumi:"protectionMode"`
+	RtsThreshold          pulumi.IntPtrInput            `pulumi:"rtsThreshold"`
+	SamBssid              pulumi.StringPtrInput         `pulumi:"samBssid"`
+	SamCaCertificate      pulumi.StringPtrInput         `pulumi:"samCaCertificate"`
+	SamCaptivePortal      pulumi.StringPtrInput         `pulumi:"samCaptivePortal"`
+	SamClientCertificate  pulumi.StringPtrInput         `pulumi:"samClientCertificate"`
+	SamCwpFailureString   pulumi.StringPtrInput         `pulumi:"samCwpFailureString"`
+	SamCwpMatchString     pulumi.StringPtrInput         `pulumi:"samCwpMatchString"`
+	SamCwpPassword        pulumi.StringPtrInput         `pulumi:"samCwpPassword"`
+	SamCwpSuccessString   pulumi.StringPtrInput         `pulumi:"samCwpSuccessString"`
+	SamCwpTestUrl         pulumi.StringPtrInput         `pulumi:"samCwpTestUrl"`
+	SamCwpUsername        pulumi.StringPtrInput         `pulumi:"samCwpUsername"`
+	SamEapMethod          pulumi.StringPtrInput         `pulumi:"samEapMethod"`
+	SamPassword           pulumi.StringPtrInput         `pulumi:"samPassword"`
+	SamPrivateKey         pulumi.StringPtrInput         `pulumi:"samPrivateKey"`
+	SamPrivateKeyPassword pulumi.StringPtrInput         `pulumi:"samPrivateKeyPassword"`
+	SamReportIntv         pulumi.IntPtrInput            `pulumi:"samReportIntv"`
+	SamSecurityType       pulumi.StringPtrInput         `pulumi:"samSecurityType"`
+	SamServerFqdn         pulumi.StringPtrInput         `pulumi:"samServerFqdn"`
+	SamServerIp           pulumi.StringPtrInput         `pulumi:"samServerIp"`
+	SamServerType         pulumi.StringPtrInput         `pulumi:"samServerType"`
+	SamSsid               pulumi.StringPtrInput         `pulumi:"samSsid"`
+	SamTest               pulumi.StringPtrInput         `pulumi:"samTest"`
+	SamUsername           pulumi.StringPtrInput         `pulumi:"samUsername"`
+	ShortGuardInterval    pulumi.StringPtrInput         `pulumi:"shortGuardInterval"`
+	SpectrumAnalysis      pulumi.StringPtrInput         `pulumi:"spectrumAnalysis"`
+	TransmitOptimize      pulumi.StringPtrInput         `pulumi:"transmitOptimize"`
+	VapAll                pulumi.StringPtrInput         `pulumi:"vapAll"`
+	Vaps                  WtpprofileRadio3VapArrayInput `pulumi:"vaps"`
+	WidsProfile           pulumi.StringPtrInput         `pulumi:"widsProfile"`
+	ZeroWaitDfs           pulumi.StringPtrInput         `pulumi:"zeroWaitDfs"`
 }
 
 func (WtpprofileRadio3Args) ElementType() reflect.Type {
@@ -13321,12 +12325,10 @@ func (o WtpprofileRadio3Output) ToWtpprofileRadio3PtrOutputWithContext(ctx conte
 	}).(WtpprofileRadio3PtrOutput)
 }
 
-// Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) AirtimeFairness() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.AirtimeFairness }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) Amsdu() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.Amsdu }).(pulumi.StringPtrOutput)
 }
@@ -13336,157 +12338,130 @@ func (o WtpprofileRadio3Output) ApHandoff() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.ApHandoff }).(pulumi.StringPtrOutput)
 }
 
-// MAC address to monitor.
 func (o WtpprofileRadio3Output) ApSnifferAddr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.ApSnifferAddr }).(pulumi.StringPtrOutput)
 }
 
-// Sniffer buffer size (1 - 32 MB, default = 16).
 func (o WtpprofileRadio3Output) ApSnifferBufsize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.ApSnifferBufsize }).(pulumi.IntPtrOutput)
 }
 
-// Channel on which to operate the sniffer (default = 6).
 func (o WtpprofileRadio3Output) ApSnifferChan() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.ApSnifferChan }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) ApSnifferCtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.ApSnifferCtl }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) ApSnifferData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.ApSnifferData }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) ApSnifferMgmtBeacon() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.ApSnifferMgmtBeacon }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) ApSnifferMgmtOther() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.ApSnifferMgmtOther }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) ApSnifferMgmtProbe() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.ApSnifferMgmtProbe }).(pulumi.StringPtrOutput)
 }
 
-// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 func (o WtpprofileRadio3Output) ArrpProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.ArrpProfile }).(pulumi.StringPtrOutput)
 }
 
-// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio3Output) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.AutoPowerHigh }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.AutoPowerLevel }).(pulumi.StringPtrOutput)
 }
 
-// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio3Output) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.AutoPowerLow }).(pulumi.IntPtrOutput)
 }
 
-// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 func (o WtpprofileRadio3Output) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.AutoPowerTarget }).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 3 operates on.
 func (o WtpprofileRadio3Output) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.Band }).(pulumi.StringPtrOutput)
 }
 
-// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
 func (o WtpprofileRadio3Output) Band5gType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.Band5gType }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) BandwidthAdmissionControl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.BandwidthAdmissionControl }).(pulumi.StringPtrOutput)
 }
 
-// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
 func (o WtpprofileRadio3Output) BandwidthCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.BandwidthCapacity }).(pulumi.IntPtrOutput)
 }
 
-// Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
 func (o WtpprofileRadio3Output) BeaconInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.BeaconInterval }).(pulumi.IntPtrOutput)
 }
 
-// BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
 func (o WtpprofileRadio3Output) BssColor() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.BssColor }).(pulumi.IntPtrOutput)
 }
 
-// BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
 func (o WtpprofileRadio3Output) BssColorMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.BssColorMode }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) CallAdmissionControl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.CallAdmissionControl }).(pulumi.StringPtrOutput)
 }
 
-// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
 func (o WtpprofileRadio3Output) CallCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.CallCapacity }).(pulumi.IntPtrOutput)
 }
 
-// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 func (o WtpprofileRadio3Output) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.ChannelBonding }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
+func (o WtpprofileRadio3Output) ChannelBondingExt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.ChannelBondingExt }).(pulumi.StringPtrOutput)
+}
+
 func (o WtpprofileRadio3Output) ChannelUtilization() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.ChannelUtilization }).(pulumi.StringPtrOutput)
 }
 
-// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 func (o WtpprofileRadio3Output) Channels() WtpprofileRadio3ChannelArrayOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) []WtpprofileRadio3Channel { return v.Channels }).(WtpprofileRadio3ChannelArrayOutput)
 }
 
-// Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) Coexistence() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.Coexistence }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) Darrp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.Darrp }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
 func (o WtpprofileRadio3Output) Drma() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.Drma }).(pulumi.StringPtrOutput)
 }
 
-// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
 func (o WtpprofileRadio3Output) DrmaSensitivity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.DrmaSensitivity }).(pulumi.StringPtrOutput)
 }
 
-// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 func (o WtpprofileRadio3Output) Dtim() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.Dtim }).(pulumi.IntPtrOutput)
 }
 
-// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 func (o WtpprofileRadio3Output) FragThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.FragThreshold }).(pulumi.IntPtrOutput)
 }
@@ -13496,12 +12471,10 @@ func (o WtpprofileRadio3Output) FrequencyHandoff() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.FrequencyHandoff }).(pulumi.StringPtrOutput)
 }
 
-// Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
 func (o WtpprofileRadio3Output) IperfProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.IperfProtocol }).(pulumi.StringPtrOutput)
 }
 
-// Iperf service port number.
 func (o WtpprofileRadio3Output) IperfServerPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.IperfServerPort }).(pulumi.IntPtrOutput)
 }
@@ -13511,207 +12484,166 @@ func (o WtpprofileRadio3Output) MaxClients() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.MaxClients }).(pulumi.IntPtrOutput)
 }
 
-// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 func (o WtpprofileRadio3Output) MaxDistance() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.MaxDistance }).(pulumi.IntPtrOutput)
 }
 
-// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
 func (o WtpprofileRadio3Output) MimoMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.MimoMode }).(pulumi.StringPtrOutput)
 }
 
-// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio3Output) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) N80211d() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.N80211d }).(pulumi.StringPtrOutput)
 }
 
-// Optional antenna used on FAP (default = none).
 func (o WtpprofileRadio3Output) OptionalAntenna() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.OptionalAntenna }).(pulumi.StringPtrOutput)
 }
 
-// Optional antenna gain in dBi (0 to 20, default = 0).
 func (o WtpprofileRadio3Output) OptionalAntennaGain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.OptionalAntennaGain }).(pulumi.StringPtrOutput)
 }
 
-// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 func (o WtpprofileRadio3Output) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.PowerLevel }).(pulumi.IntPtrOutput)
 }
 
-// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 func (o WtpprofileRadio3Output) PowerMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.PowerMode }).(pulumi.StringPtrOutput)
 }
 
-// Radio EIRP power in dBm (1 - 33, default = 27).
 func (o WtpprofileRadio3Output) PowerValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.PowerValue }).(pulumi.IntPtrOutput)
 }
 
-// Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
 func (o WtpprofileRadio3Output) PowersaveOptimize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.PowersaveOptimize }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
 func (o WtpprofileRadio3Output) ProtectionMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.ProtectionMode }).(pulumi.StringPtrOutput)
 }
 
-// Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
 func (o WtpprofileRadio3Output) RtsThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.RtsThreshold }).(pulumi.IntPtrOutput)
 }
 
-// BSSID for WiFi network.
 func (o WtpprofileRadio3Output) SamBssid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamBssid }).(pulumi.StringPtrOutput)
 }
 
-// CA certificate for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio3Output) SamCaCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamCaCertificate }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) SamCaptivePortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamCaptivePortal }).(pulumi.StringPtrOutput)
 }
 
-// Client certificate for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio3Output) SamClientCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamClientCertificate }).(pulumi.StringPtrOutput)
 }
 
-// Failure identification on the page after an incorrect login.
 func (o WtpprofileRadio3Output) SamCwpFailureString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamCwpFailureString }).(pulumi.StringPtrOutput)
 }
 
-// Identification string from the captive portal login form.
 func (o WtpprofileRadio3Output) SamCwpMatchString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamCwpMatchString }).(pulumi.StringPtrOutput)
 }
 
-// Password for captive portal authentication.
 func (o WtpprofileRadio3Output) SamCwpPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamCwpPassword }).(pulumi.StringPtrOutput)
 }
 
-// Success identification on the page after a successful login.
 func (o WtpprofileRadio3Output) SamCwpSuccessString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamCwpSuccessString }).(pulumi.StringPtrOutput)
 }
 
-// Website the client is trying to access.
 func (o WtpprofileRadio3Output) SamCwpTestUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamCwpTestUrl }).(pulumi.StringPtrOutput)
 }
 
-// Username for captive portal authentication.
 func (o WtpprofileRadio3Output) SamCwpUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamCwpUsername }).(pulumi.StringPtrOutput)
 }
 
-// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
 func (o WtpprofileRadio3Output) SamEapMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamEapMethod }).(pulumi.StringPtrOutput)
 }
 
-// Passphrase for WiFi network connection.
 func (o WtpprofileRadio3Output) SamPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamPassword }).(pulumi.StringPtrOutput)
 }
 
-// Private key for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio3Output) SamPrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamPrivateKey }).(pulumi.StringPtrOutput)
 }
 
-// Password for private key file for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio3Output) SamPrivateKeyPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamPrivateKeyPassword }).(pulumi.StringPtrOutput)
 }
 
-// SAM report interval (sec), 0 for a one-time report.
 func (o WtpprofileRadio3Output) SamReportIntv() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *int { return v.SamReportIntv }).(pulumi.IntPtrOutput)
 }
 
-// Select WiFi network security type (default = "wpa-personal").
 func (o WtpprofileRadio3Output) SamSecurityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamSecurityType }).(pulumi.StringPtrOutput)
 }
 
-// SAM test server domain name.
 func (o WtpprofileRadio3Output) SamServerFqdn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamServerFqdn }).(pulumi.StringPtrOutput)
 }
 
-// SAM test server IP address.
 func (o WtpprofileRadio3Output) SamServerIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamServerIp }).(pulumi.StringPtrOutput)
 }
 
-// Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
 func (o WtpprofileRadio3Output) SamServerType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamServerType }).(pulumi.StringPtrOutput)
 }
 
-// SSID for WiFi network.
 func (o WtpprofileRadio3Output) SamSsid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamSsid }).(pulumi.StringPtrOutput)
 }
 
-// Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
 func (o WtpprofileRadio3Output) SamTest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamTest }).(pulumi.StringPtrOutput)
 }
 
-// Username for WiFi network connection.
 func (o WtpprofileRadio3Output) SamUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SamUsername }).(pulumi.StringPtrOutput)
 }
 
-// Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) ShortGuardInterval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.ShortGuardInterval }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
 func (o WtpprofileRadio3Output) SpectrumAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.SpectrumAnalysis }).(pulumi.StringPtrOutput)
 }
 
-// Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
 func (o WtpprofileRadio3Output) TransmitOptimize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.TransmitOptimize }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
 func (o WtpprofileRadio3Output) VapAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.VapAll }).(pulumi.StringPtrOutput)
 }
 
-// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
 func (o WtpprofileRadio3Output) Vaps() WtpprofileRadio3VapArrayOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) []WtpprofileRadio3Vap { return v.Vaps }).(WtpprofileRadio3VapArrayOutput)
 }
 
-// Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
 func (o WtpprofileRadio3Output) WidsProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.WidsProfile }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3Output) ZeroWaitDfs() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio3) *string { return v.ZeroWaitDfs }).(pulumi.StringPtrOutput)
 }
@@ -13740,7 +12672,6 @@ func (o WtpprofileRadio3PtrOutput) Elem() WtpprofileRadio3Output {
 	}).(WtpprofileRadio3Output)
 }
 
-// Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3PtrOutput) AirtimeFairness() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13750,7 +12681,6 @@ func (o WtpprofileRadio3PtrOutput) AirtimeFairness() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3PtrOutput) Amsdu() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13770,7 +12700,6 @@ func (o WtpprofileRadio3PtrOutput) ApHandoff() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// MAC address to monitor.
 func (o WtpprofileRadio3PtrOutput) ApSnifferAddr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13780,7 +12709,6 @@ func (o WtpprofileRadio3PtrOutput) ApSnifferAddr() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Sniffer buffer size (1 - 32 MB, default = 16).
 func (o WtpprofileRadio3PtrOutput) ApSnifferBufsize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -13790,7 +12718,6 @@ func (o WtpprofileRadio3PtrOutput) ApSnifferBufsize() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Channel on which to operate the sniffer (default = 6).
 func (o WtpprofileRadio3PtrOutput) ApSnifferChan() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -13800,7 +12727,6 @@ func (o WtpprofileRadio3PtrOutput) ApSnifferChan() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3PtrOutput) ApSnifferCtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13810,7 +12736,6 @@ func (o WtpprofileRadio3PtrOutput) ApSnifferCtl() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3PtrOutput) ApSnifferData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13820,7 +12745,6 @@ func (o WtpprofileRadio3PtrOutput) ApSnifferData() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3PtrOutput) ApSnifferMgmtBeacon() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13830,7 +12754,6 @@ func (o WtpprofileRadio3PtrOutput) ApSnifferMgmtBeacon() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3PtrOutput) ApSnifferMgmtOther() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13840,7 +12763,6 @@ func (o WtpprofileRadio3PtrOutput) ApSnifferMgmtOther() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3PtrOutput) ApSnifferMgmtProbe() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13850,7 +12772,6 @@ func (o WtpprofileRadio3PtrOutput) ApSnifferMgmtProbe() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 func (o WtpprofileRadio3PtrOutput) ArrpProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13860,7 +12781,6 @@ func (o WtpprofileRadio3PtrOutput) ArrpProfile() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio3PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -13870,7 +12790,6 @@ func (o WtpprofileRadio3PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13880,7 +12799,6 @@ func (o WtpprofileRadio3PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio3PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -13890,7 +12808,6 @@ func (o WtpprofileRadio3PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 func (o WtpprofileRadio3PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13900,7 +12817,6 @@ func (o WtpprofileRadio3PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 3 operates on.
 func (o WtpprofileRadio3PtrOutput) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13910,7 +12826,6 @@ func (o WtpprofileRadio3PtrOutput) Band() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
 func (o WtpprofileRadio3PtrOutput) Band5gType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13920,7 +12835,6 @@ func (o WtpprofileRadio3PtrOutput) Band5gType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3PtrOutput) BandwidthAdmissionControl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13930,7 +12844,6 @@ func (o WtpprofileRadio3PtrOutput) BandwidthAdmissionControl() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
 func (o WtpprofileRadio3PtrOutput) BandwidthCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -13940,7 +12853,6 @@ func (o WtpprofileRadio3PtrOutput) BandwidthCapacity() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
 func (o WtpprofileRadio3PtrOutput) BeaconInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -13950,7 +12862,6 @@ func (o WtpprofileRadio3PtrOutput) BeaconInterval() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
 func (o WtpprofileRadio3PtrOutput) BssColor() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -13960,7 +12871,6 @@ func (o WtpprofileRadio3PtrOutput) BssColor() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
 func (o WtpprofileRadio3PtrOutput) BssColorMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13970,7 +12880,6 @@ func (o WtpprofileRadio3PtrOutput) BssColorMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3PtrOutput) CallAdmissionControl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -13980,7 +12889,6 @@ func (o WtpprofileRadio3PtrOutput) CallAdmissionControl() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
 func (o WtpprofileRadio3PtrOutput) CallCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -13990,7 +12898,6 @@ func (o WtpprofileRadio3PtrOutput) CallCapacity() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 func (o WtpprofileRadio3PtrOutput) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14000,7 +12907,15 @@ func (o WtpprofileRadio3PtrOutput) ChannelBonding() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
+func (o WtpprofileRadio3PtrOutput) ChannelBondingExt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ChannelBondingExt
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o WtpprofileRadio3PtrOutput) ChannelUtilization() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14010,7 +12925,6 @@ func (o WtpprofileRadio3PtrOutput) ChannelUtilization() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 func (o WtpprofileRadio3PtrOutput) Channels() WtpprofileRadio3ChannelArrayOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) []WtpprofileRadio3Channel {
 		if v == nil {
@@ -14020,7 +12934,6 @@ func (o WtpprofileRadio3PtrOutput) Channels() WtpprofileRadio3ChannelArrayOutput
 	}).(WtpprofileRadio3ChannelArrayOutput)
 }
 
-// Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3PtrOutput) Coexistence() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14030,7 +12943,6 @@ func (o WtpprofileRadio3PtrOutput) Coexistence() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3PtrOutput) Darrp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14040,7 +12952,6 @@ func (o WtpprofileRadio3PtrOutput) Darrp() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
 func (o WtpprofileRadio3PtrOutput) Drma() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14050,7 +12961,6 @@ func (o WtpprofileRadio3PtrOutput) Drma() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
 func (o WtpprofileRadio3PtrOutput) DrmaSensitivity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14060,7 +12970,6 @@ func (o WtpprofileRadio3PtrOutput) DrmaSensitivity() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 func (o WtpprofileRadio3PtrOutput) Dtim() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -14070,7 +12979,6 @@ func (o WtpprofileRadio3PtrOutput) Dtim() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 func (o WtpprofileRadio3PtrOutput) FragThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -14090,7 +12998,6 @@ func (o WtpprofileRadio3PtrOutput) FrequencyHandoff() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
 func (o WtpprofileRadio3PtrOutput) IperfProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14100,7 +13007,6 @@ func (o WtpprofileRadio3PtrOutput) IperfProtocol() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Iperf service port number.
 func (o WtpprofileRadio3PtrOutput) IperfServerPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -14120,7 +13026,6 @@ func (o WtpprofileRadio3PtrOutput) MaxClients() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 func (o WtpprofileRadio3PtrOutput) MaxDistance() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -14130,7 +13035,6 @@ func (o WtpprofileRadio3PtrOutput) MaxDistance() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
 func (o WtpprofileRadio3PtrOutput) MimoMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14140,7 +13044,6 @@ func (o WtpprofileRadio3PtrOutput) MimoMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio3PtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14150,7 +13053,6 @@ func (o WtpprofileRadio3PtrOutput) Mode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3PtrOutput) N80211d() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14160,7 +13062,6 @@ func (o WtpprofileRadio3PtrOutput) N80211d() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Optional antenna used on FAP (default = none).
 func (o WtpprofileRadio3PtrOutput) OptionalAntenna() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14170,7 +13071,6 @@ func (o WtpprofileRadio3PtrOutput) OptionalAntenna() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Optional antenna gain in dBi (0 to 20, default = 0).
 func (o WtpprofileRadio3PtrOutput) OptionalAntennaGain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14180,7 +13080,6 @@ func (o WtpprofileRadio3PtrOutput) OptionalAntennaGain() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 func (o WtpprofileRadio3PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -14190,7 +13089,6 @@ func (o WtpprofileRadio3PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 func (o WtpprofileRadio3PtrOutput) PowerMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14200,7 +13098,6 @@ func (o WtpprofileRadio3PtrOutput) PowerMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Radio EIRP power in dBm (1 - 33, default = 27).
 func (o WtpprofileRadio3PtrOutput) PowerValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -14210,7 +13107,6 @@ func (o WtpprofileRadio3PtrOutput) PowerValue() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
 func (o WtpprofileRadio3PtrOutput) PowersaveOptimize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14220,7 +13116,6 @@ func (o WtpprofileRadio3PtrOutput) PowersaveOptimize() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
 func (o WtpprofileRadio3PtrOutput) ProtectionMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14230,7 +13125,6 @@ func (o WtpprofileRadio3PtrOutput) ProtectionMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
 func (o WtpprofileRadio3PtrOutput) RtsThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -14240,7 +13134,6 @@ func (o WtpprofileRadio3PtrOutput) RtsThreshold() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// BSSID for WiFi network.
 func (o WtpprofileRadio3PtrOutput) SamBssid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14250,7 +13143,6 @@ func (o WtpprofileRadio3PtrOutput) SamBssid() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// CA certificate for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio3PtrOutput) SamCaCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14260,7 +13152,6 @@ func (o WtpprofileRadio3PtrOutput) SamCaCertificate() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3PtrOutput) SamCaptivePortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14270,7 +13161,6 @@ func (o WtpprofileRadio3PtrOutput) SamCaptivePortal() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Client certificate for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio3PtrOutput) SamClientCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14280,7 +13170,6 @@ func (o WtpprofileRadio3PtrOutput) SamClientCertificate() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Failure identification on the page after an incorrect login.
 func (o WtpprofileRadio3PtrOutput) SamCwpFailureString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14290,7 +13179,6 @@ func (o WtpprofileRadio3PtrOutput) SamCwpFailureString() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Identification string from the captive portal login form.
 func (o WtpprofileRadio3PtrOutput) SamCwpMatchString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14300,7 +13188,6 @@ func (o WtpprofileRadio3PtrOutput) SamCwpMatchString() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Password for captive portal authentication.
 func (o WtpprofileRadio3PtrOutput) SamCwpPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14310,7 +13197,6 @@ func (o WtpprofileRadio3PtrOutput) SamCwpPassword() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Success identification on the page after a successful login.
 func (o WtpprofileRadio3PtrOutput) SamCwpSuccessString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14320,7 +13206,6 @@ func (o WtpprofileRadio3PtrOutput) SamCwpSuccessString() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Website the client is trying to access.
 func (o WtpprofileRadio3PtrOutput) SamCwpTestUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14330,7 +13215,6 @@ func (o WtpprofileRadio3PtrOutput) SamCwpTestUrl() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Username for captive portal authentication.
 func (o WtpprofileRadio3PtrOutput) SamCwpUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14340,7 +13224,6 @@ func (o WtpprofileRadio3PtrOutput) SamCwpUsername() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
 func (o WtpprofileRadio3PtrOutput) SamEapMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14350,7 +13233,6 @@ func (o WtpprofileRadio3PtrOutput) SamEapMethod() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Passphrase for WiFi network connection.
 func (o WtpprofileRadio3PtrOutput) SamPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14360,7 +13242,6 @@ func (o WtpprofileRadio3PtrOutput) SamPassword() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Private key for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio3PtrOutput) SamPrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14370,7 +13251,6 @@ func (o WtpprofileRadio3PtrOutput) SamPrivateKey() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Password for private key file for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio3PtrOutput) SamPrivateKeyPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14380,7 +13260,6 @@ func (o WtpprofileRadio3PtrOutput) SamPrivateKeyPassword() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// SAM report interval (sec), 0 for a one-time report.
 func (o WtpprofileRadio3PtrOutput) SamReportIntv() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *int {
 		if v == nil {
@@ -14390,7 +13269,6 @@ func (o WtpprofileRadio3PtrOutput) SamReportIntv() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Select WiFi network security type (default = "wpa-personal").
 func (o WtpprofileRadio3PtrOutput) SamSecurityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14400,7 +13278,6 @@ func (o WtpprofileRadio3PtrOutput) SamSecurityType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// SAM test server domain name.
 func (o WtpprofileRadio3PtrOutput) SamServerFqdn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14410,7 +13287,6 @@ func (o WtpprofileRadio3PtrOutput) SamServerFqdn() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// SAM test server IP address.
 func (o WtpprofileRadio3PtrOutput) SamServerIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14420,7 +13296,6 @@ func (o WtpprofileRadio3PtrOutput) SamServerIp() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
 func (o WtpprofileRadio3PtrOutput) SamServerType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14430,7 +13305,6 @@ func (o WtpprofileRadio3PtrOutput) SamServerType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// SSID for WiFi network.
 func (o WtpprofileRadio3PtrOutput) SamSsid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14440,7 +13314,6 @@ func (o WtpprofileRadio3PtrOutput) SamSsid() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
 func (o WtpprofileRadio3PtrOutput) SamTest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14450,7 +13323,6 @@ func (o WtpprofileRadio3PtrOutput) SamTest() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Username for WiFi network connection.
 func (o WtpprofileRadio3PtrOutput) SamUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14460,7 +13332,6 @@ func (o WtpprofileRadio3PtrOutput) SamUsername() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3PtrOutput) ShortGuardInterval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14470,7 +13341,6 @@ func (o WtpprofileRadio3PtrOutput) ShortGuardInterval() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
 func (o WtpprofileRadio3PtrOutput) SpectrumAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14480,7 +13350,6 @@ func (o WtpprofileRadio3PtrOutput) SpectrumAnalysis() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
 func (o WtpprofileRadio3PtrOutput) TransmitOptimize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14490,7 +13359,6 @@ func (o WtpprofileRadio3PtrOutput) TransmitOptimize() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
 func (o WtpprofileRadio3PtrOutput) VapAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14500,7 +13368,6 @@ func (o WtpprofileRadio3PtrOutput) VapAll() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
 func (o WtpprofileRadio3PtrOutput) Vaps() WtpprofileRadio3VapArrayOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) []WtpprofileRadio3Vap {
 		if v == nil {
@@ -14510,7 +13377,6 @@ func (o WtpprofileRadio3PtrOutput) Vaps() WtpprofileRadio3VapArrayOutput {
 	}).(WtpprofileRadio3VapArrayOutput)
 }
 
-// Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
 func (o WtpprofileRadio3PtrOutput) WidsProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14520,7 +13386,6 @@ func (o WtpprofileRadio3PtrOutput) WidsProfile() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio3PtrOutput) ZeroWaitDfs() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio3) *string {
 		if v == nil {
@@ -14725,164 +13590,89 @@ func (o WtpprofileRadio3VapArrayOutput) Index(i pulumi.IntInput) WtpprofileRadio
 }
 
 type WtpprofileRadio4 struct {
-	// Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
 	AirtimeFairness *string `pulumi:"airtimeFairness"`
-	// Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
-	Amsdu *string `pulumi:"amsdu"`
+	Amsdu           *string `pulumi:"amsdu"`
 	// Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
-	ApHandoff *string `pulumi:"apHandoff"`
-	// MAC address to monitor.
-	ApSnifferAddr *string `pulumi:"apSnifferAddr"`
-	// Sniffer buffer size (1 - 32 MB, default = 16).
-	ApSnifferBufsize *int `pulumi:"apSnifferBufsize"`
-	// Channel on which to operate the sniffer (default = 6).
-	ApSnifferChan *int `pulumi:"apSnifferChan"`
-	// Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferCtl *string `pulumi:"apSnifferCtl"`
-	// Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferData *string `pulumi:"apSnifferData"`
-	// Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtBeacon *string `pulumi:"apSnifferMgmtBeacon"`
-	// Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtOther *string `pulumi:"apSnifferMgmtOther"`
-	// Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtProbe *string `pulumi:"apSnifferMgmtProbe"`
-	// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-	ArrpProfile *string `pulumi:"arrpProfile"`
-	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerHigh *int `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-	AutoPowerLevel *string `pulumi:"autoPowerLevel"`
-	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerLow *int `pulumi:"autoPowerLow"`
-	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-	AutoPowerTarget *string `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 3 operates on.
-	Band *string `pulumi:"band"`
-	// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-	Band5gType *string `pulumi:"band5gType"`
-	// Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-	BandwidthAdmissionControl *string `pulumi:"bandwidthAdmissionControl"`
-	// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-	BandwidthCapacity *int `pulumi:"bandwidthCapacity"`
-	// Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-	BeaconInterval *int `pulumi:"beaconInterval"`
-	// BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-	BssColor *int `pulumi:"bssColor"`
-	// BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-	BssColorMode *string `pulumi:"bssColorMode"`
-	// Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-	CallAdmissionControl *string `pulumi:"callAdmissionControl"`
-	// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-	CallCapacity *int `pulumi:"callCapacity"`
-	// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-	ChannelBonding *string `pulumi:"channelBonding"`
-	// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-	ChannelUtilization *string `pulumi:"channelUtilization"`
-	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
-	Channels []WtpprofileRadio4Channel `pulumi:"channels"`
-	// Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-	Coexistence *string `pulumi:"coexistence"`
-	// Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-	Darrp *string `pulumi:"darrp"`
-	// Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-	Drma *string `pulumi:"drma"`
-	// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-	DrmaSensitivity *string `pulumi:"drmaSensitivity"`
-	// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-	Dtim *int `pulumi:"dtim"`
-	// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
-	FragThreshold *int `pulumi:"fragThreshold"`
+	ApHandoff                 *string                   `pulumi:"apHandoff"`
+	ApSnifferAddr             *string                   `pulumi:"apSnifferAddr"`
+	ApSnifferBufsize          *int                      `pulumi:"apSnifferBufsize"`
+	ApSnifferChan             *int                      `pulumi:"apSnifferChan"`
+	ApSnifferCtl              *string                   `pulumi:"apSnifferCtl"`
+	ApSnifferData             *string                   `pulumi:"apSnifferData"`
+	ApSnifferMgmtBeacon       *string                   `pulumi:"apSnifferMgmtBeacon"`
+	ApSnifferMgmtOther        *string                   `pulumi:"apSnifferMgmtOther"`
+	ApSnifferMgmtProbe        *string                   `pulumi:"apSnifferMgmtProbe"`
+	ArrpProfile               *string                   `pulumi:"arrpProfile"`
+	AutoPowerHigh             *int                      `pulumi:"autoPowerHigh"`
+	AutoPowerLevel            *string                   `pulumi:"autoPowerLevel"`
+	AutoPowerLow              *int                      `pulumi:"autoPowerLow"`
+	AutoPowerTarget           *string                   `pulumi:"autoPowerTarget"`
+	Band                      *string                   `pulumi:"band"`
+	Band5gType                *string                   `pulumi:"band5gType"`
+	BandwidthAdmissionControl *string                   `pulumi:"bandwidthAdmissionControl"`
+	BandwidthCapacity         *int                      `pulumi:"bandwidthCapacity"`
+	BeaconInterval            *int                      `pulumi:"beaconInterval"`
+	BssColor                  *int                      `pulumi:"bssColor"`
+	BssColorMode              *string                   `pulumi:"bssColorMode"`
+	CallAdmissionControl      *string                   `pulumi:"callAdmissionControl"`
+	CallCapacity              *int                      `pulumi:"callCapacity"`
+	ChannelBonding            *string                   `pulumi:"channelBonding"`
+	ChannelBondingExt         *string                   `pulumi:"channelBondingExt"`
+	ChannelUtilization        *string                   `pulumi:"channelUtilization"`
+	Channels                  []WtpprofileRadio4Channel `pulumi:"channels"`
+	Coexistence               *string                   `pulumi:"coexistence"`
+	Darrp                     *string                   `pulumi:"darrp"`
+	Drma                      *string                   `pulumi:"drma"`
+	DrmaSensitivity           *string                   `pulumi:"drmaSensitivity"`
+	Dtim                      *int                      `pulumi:"dtim"`
+	FragThreshold             *int                      `pulumi:"fragThreshold"`
 	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
 	FrequencyHandoff *string `pulumi:"frequencyHandoff"`
-	// Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-	IperfProtocol *string `pulumi:"iperfProtocol"`
-	// Iperf service port number.
-	IperfServerPort *int `pulumi:"iperfServerPort"`
+	IperfProtocol    *string `pulumi:"iperfProtocol"`
+	IperfServerPort  *int    `pulumi:"iperfServerPort"`
 	// Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
-	MaxClients *int `pulumi:"maxClients"`
-	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-	MaxDistance *int `pulumi:"maxDistance"`
-	// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-	MimoMode *string `pulumi:"mimoMode"`
-	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-	Mode *string `pulumi:"mode"`
-	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-	N80211d *string `pulumi:"n80211d"`
-	// Optional antenna used on FAP (default = none).
-	OptionalAntenna *string `pulumi:"optionalAntenna"`
-	// Optional antenna gain in dBi (0 to 20, default = 0).
-	OptionalAntennaGain *string `pulumi:"optionalAntennaGain"`
-	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-	PowerLevel *int `pulumi:"powerLevel"`
-	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-	PowerMode *string `pulumi:"powerMode"`
-	// Radio EIRP power in dBm (1 - 33, default = 27).
-	PowerValue *int `pulumi:"powerValue"`
-	// Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-	PowersaveOptimize *string `pulumi:"powersaveOptimize"`
-	// Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-	ProtectionMode *string `pulumi:"protectionMode"`
-	// Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-	RtsThreshold *int `pulumi:"rtsThreshold"`
-	// BSSID for WiFi network.
-	SamBssid *string `pulumi:"samBssid"`
-	// CA certificate for WPA2/WPA3-ENTERPRISE.
-	SamCaCertificate *string `pulumi:"samCaCertificate"`
-	// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-	SamCaptivePortal *string `pulumi:"samCaptivePortal"`
-	// Client certificate for WPA2/WPA3-ENTERPRISE.
-	SamClientCertificate *string `pulumi:"samClientCertificate"`
-	// Failure identification on the page after an incorrect login.
-	SamCwpFailureString *string `pulumi:"samCwpFailureString"`
-	// Identification string from the captive portal login form.
-	SamCwpMatchString *string `pulumi:"samCwpMatchString"`
-	// Password for captive portal authentication.
-	SamCwpPassword *string `pulumi:"samCwpPassword"`
-	// Success identification on the page after a successful login.
-	SamCwpSuccessString *string `pulumi:"samCwpSuccessString"`
-	// Website the client is trying to access.
-	SamCwpTestUrl *string `pulumi:"samCwpTestUrl"`
-	// Username for captive portal authentication.
-	SamCwpUsername *string `pulumi:"samCwpUsername"`
-	// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-	SamEapMethod *string `pulumi:"samEapMethod"`
-	// Passphrase for WiFi network connection.
-	SamPassword *string `pulumi:"samPassword"`
-	// Private key for WPA2/WPA3-ENTERPRISE.
-	SamPrivateKey *string `pulumi:"samPrivateKey"`
-	// Password for private key file for WPA2/WPA3-ENTERPRISE.
-	SamPrivateKeyPassword *string `pulumi:"samPrivateKeyPassword"`
-	// SAM report interval (sec), 0 for a one-time report.
-	SamReportIntv *int `pulumi:"samReportIntv"`
-	// Select WiFi network security type (default = "wpa-personal").
-	SamSecurityType *string `pulumi:"samSecurityType"`
-	// SAM test server domain name.
-	SamServerFqdn *string `pulumi:"samServerFqdn"`
-	// SAM test server IP address.
-	SamServerIp *string `pulumi:"samServerIp"`
-	// Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-	SamServerType *string `pulumi:"samServerType"`
-	// SSID for WiFi network.
-	SamSsid *string `pulumi:"samSsid"`
-	// Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-	SamTest *string `pulumi:"samTest"`
-	// Username for WiFi network connection.
-	SamUsername *string `pulumi:"samUsername"`
-	// Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-	ShortGuardInterval *string `pulumi:"shortGuardInterval"`
-	// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-	SpectrumAnalysis *string `pulumi:"spectrumAnalysis"`
-	// Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-	TransmitOptimize *string `pulumi:"transmitOptimize"`
-	// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-	VapAll *string `pulumi:"vapAll"`
-	// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-	Vaps []WtpprofileRadio4Vap `pulumi:"vaps"`
-	// Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-	WidsProfile *string `pulumi:"widsProfile"`
-	// Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
-	ZeroWaitDfs *string `pulumi:"zeroWaitDfs"`
+	MaxClients            *int                  `pulumi:"maxClients"`
+	MaxDistance           *int                  `pulumi:"maxDistance"`
+	MimoMode              *string               `pulumi:"mimoMode"`
+	Mode                  *string               `pulumi:"mode"`
+	N80211d               *string               `pulumi:"n80211d"`
+	OptionalAntenna       *string               `pulumi:"optionalAntenna"`
+	OptionalAntennaGain   *string               `pulumi:"optionalAntennaGain"`
+	PowerLevel            *int                  `pulumi:"powerLevel"`
+	PowerMode             *string               `pulumi:"powerMode"`
+	PowerValue            *int                  `pulumi:"powerValue"`
+	PowersaveOptimize     *string               `pulumi:"powersaveOptimize"`
+	ProtectionMode        *string               `pulumi:"protectionMode"`
+	RtsThreshold          *int                  `pulumi:"rtsThreshold"`
+	SamBssid              *string               `pulumi:"samBssid"`
+	SamCaCertificate      *string               `pulumi:"samCaCertificate"`
+	SamCaptivePortal      *string               `pulumi:"samCaptivePortal"`
+	SamClientCertificate  *string               `pulumi:"samClientCertificate"`
+	SamCwpFailureString   *string               `pulumi:"samCwpFailureString"`
+	SamCwpMatchString     *string               `pulumi:"samCwpMatchString"`
+	SamCwpPassword        *string               `pulumi:"samCwpPassword"`
+	SamCwpSuccessString   *string               `pulumi:"samCwpSuccessString"`
+	SamCwpTestUrl         *string               `pulumi:"samCwpTestUrl"`
+	SamCwpUsername        *string               `pulumi:"samCwpUsername"`
+	SamEapMethod          *string               `pulumi:"samEapMethod"`
+	SamPassword           *string               `pulumi:"samPassword"`
+	SamPrivateKey         *string               `pulumi:"samPrivateKey"`
+	SamPrivateKeyPassword *string               `pulumi:"samPrivateKeyPassword"`
+	SamReportIntv         *int                  `pulumi:"samReportIntv"`
+	SamSecurityType       *string               `pulumi:"samSecurityType"`
+	SamServerFqdn         *string               `pulumi:"samServerFqdn"`
+	SamServerIp           *string               `pulumi:"samServerIp"`
+	SamServerType         *string               `pulumi:"samServerType"`
+	SamSsid               *string               `pulumi:"samSsid"`
+	SamTest               *string               `pulumi:"samTest"`
+	SamUsername           *string               `pulumi:"samUsername"`
+	ShortGuardInterval    *string               `pulumi:"shortGuardInterval"`
+	SpectrumAnalysis      *string               `pulumi:"spectrumAnalysis"`
+	TransmitOptimize      *string               `pulumi:"transmitOptimize"`
+	VapAll                *string               `pulumi:"vapAll"`
+	Vaps                  []WtpprofileRadio4Vap `pulumi:"vaps"`
+	WidsProfile           *string               `pulumi:"widsProfile"`
+	ZeroWaitDfs           *string               `pulumi:"zeroWaitDfs"`
 }
 
 // WtpprofileRadio4Input is an input type that accepts WtpprofileRadio4Args and WtpprofileRadio4Output values.
@@ -14897,164 +13687,89 @@ type WtpprofileRadio4Input interface {
 }
 
 type WtpprofileRadio4Args struct {
-	// Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
 	AirtimeFairness pulumi.StringPtrInput `pulumi:"airtimeFairness"`
-	// Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
-	Amsdu pulumi.StringPtrInput `pulumi:"amsdu"`
+	Amsdu           pulumi.StringPtrInput `pulumi:"amsdu"`
 	// Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `enable`, `disable`.
-	ApHandoff pulumi.StringPtrInput `pulumi:"apHandoff"`
-	// MAC address to monitor.
-	ApSnifferAddr pulumi.StringPtrInput `pulumi:"apSnifferAddr"`
-	// Sniffer buffer size (1 - 32 MB, default = 16).
-	ApSnifferBufsize pulumi.IntPtrInput `pulumi:"apSnifferBufsize"`
-	// Channel on which to operate the sniffer (default = 6).
-	ApSnifferChan pulumi.IntPtrInput `pulumi:"apSnifferChan"`
-	// Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferCtl pulumi.StringPtrInput `pulumi:"apSnifferCtl"`
-	// Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferData pulumi.StringPtrInput `pulumi:"apSnifferData"`
-	// Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtBeacon pulumi.StringPtrInput `pulumi:"apSnifferMgmtBeacon"`
-	// Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtOther pulumi.StringPtrInput `pulumi:"apSnifferMgmtOther"`
-	// Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
-	ApSnifferMgmtProbe pulumi.StringPtrInput `pulumi:"apSnifferMgmtProbe"`
-	// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
-	ArrpProfile pulumi.StringPtrInput `pulumi:"arrpProfile"`
-	// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerHigh pulumi.IntPtrInput `pulumi:"autoPowerHigh"`
-	// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
-	AutoPowerLevel pulumi.StringPtrInput `pulumi:"autoPowerLevel"`
-	// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
-	AutoPowerLow pulumi.IntPtrInput `pulumi:"autoPowerLow"`
-	// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
-	AutoPowerTarget pulumi.StringPtrInput `pulumi:"autoPowerTarget"`
-	// WiFi band that Radio 3 operates on.
-	Band pulumi.StringPtrInput `pulumi:"band"`
-	// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
-	Band5gType pulumi.StringPtrInput `pulumi:"band5gType"`
-	// Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
-	BandwidthAdmissionControl pulumi.StringPtrInput `pulumi:"bandwidthAdmissionControl"`
-	// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
-	BandwidthCapacity pulumi.IntPtrInput `pulumi:"bandwidthCapacity"`
-	// Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
-	BeaconInterval pulumi.IntPtrInput `pulumi:"beaconInterval"`
-	// BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
-	BssColor pulumi.IntPtrInput `pulumi:"bssColor"`
-	// BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
-	BssColorMode pulumi.StringPtrInput `pulumi:"bssColorMode"`
-	// Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
-	CallAdmissionControl pulumi.StringPtrInput `pulumi:"callAdmissionControl"`
-	// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
-	CallCapacity pulumi.IntPtrInput `pulumi:"callCapacity"`
-	// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
-	ChannelBonding pulumi.StringPtrInput `pulumi:"channelBonding"`
-	// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
-	ChannelUtilization pulumi.StringPtrInput `pulumi:"channelUtilization"`
-	// Selected list of wireless radio channels. The structure of `channel` block is documented below.
-	Channels WtpprofileRadio4ChannelArrayInput `pulumi:"channels"`
-	// Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
-	Coexistence pulumi.StringPtrInput `pulumi:"coexistence"`
-	// Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
-	Darrp pulumi.StringPtrInput `pulumi:"darrp"`
-	// Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
-	Drma pulumi.StringPtrInput `pulumi:"drma"`
-	// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
-	DrmaSensitivity pulumi.StringPtrInput `pulumi:"drmaSensitivity"`
-	// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
-	Dtim pulumi.IntPtrInput `pulumi:"dtim"`
-	// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
-	FragThreshold pulumi.IntPtrInput `pulumi:"fragThreshold"`
+	ApHandoff                 pulumi.StringPtrInput             `pulumi:"apHandoff"`
+	ApSnifferAddr             pulumi.StringPtrInput             `pulumi:"apSnifferAddr"`
+	ApSnifferBufsize          pulumi.IntPtrInput                `pulumi:"apSnifferBufsize"`
+	ApSnifferChan             pulumi.IntPtrInput                `pulumi:"apSnifferChan"`
+	ApSnifferCtl              pulumi.StringPtrInput             `pulumi:"apSnifferCtl"`
+	ApSnifferData             pulumi.StringPtrInput             `pulumi:"apSnifferData"`
+	ApSnifferMgmtBeacon       pulumi.StringPtrInput             `pulumi:"apSnifferMgmtBeacon"`
+	ApSnifferMgmtOther        pulumi.StringPtrInput             `pulumi:"apSnifferMgmtOther"`
+	ApSnifferMgmtProbe        pulumi.StringPtrInput             `pulumi:"apSnifferMgmtProbe"`
+	ArrpProfile               pulumi.StringPtrInput             `pulumi:"arrpProfile"`
+	AutoPowerHigh             pulumi.IntPtrInput                `pulumi:"autoPowerHigh"`
+	AutoPowerLevel            pulumi.StringPtrInput             `pulumi:"autoPowerLevel"`
+	AutoPowerLow              pulumi.IntPtrInput                `pulumi:"autoPowerLow"`
+	AutoPowerTarget           pulumi.StringPtrInput             `pulumi:"autoPowerTarget"`
+	Band                      pulumi.StringPtrInput             `pulumi:"band"`
+	Band5gType                pulumi.StringPtrInput             `pulumi:"band5gType"`
+	BandwidthAdmissionControl pulumi.StringPtrInput             `pulumi:"bandwidthAdmissionControl"`
+	BandwidthCapacity         pulumi.IntPtrInput                `pulumi:"bandwidthCapacity"`
+	BeaconInterval            pulumi.IntPtrInput                `pulumi:"beaconInterval"`
+	BssColor                  pulumi.IntPtrInput                `pulumi:"bssColor"`
+	BssColorMode              pulumi.StringPtrInput             `pulumi:"bssColorMode"`
+	CallAdmissionControl      pulumi.StringPtrInput             `pulumi:"callAdmissionControl"`
+	CallCapacity              pulumi.IntPtrInput                `pulumi:"callCapacity"`
+	ChannelBonding            pulumi.StringPtrInput             `pulumi:"channelBonding"`
+	ChannelBondingExt         pulumi.StringPtrInput             `pulumi:"channelBondingExt"`
+	ChannelUtilization        pulumi.StringPtrInput             `pulumi:"channelUtilization"`
+	Channels                  WtpprofileRadio4ChannelArrayInput `pulumi:"channels"`
+	Coexistence               pulumi.StringPtrInput             `pulumi:"coexistence"`
+	Darrp                     pulumi.StringPtrInput             `pulumi:"darrp"`
+	Drma                      pulumi.StringPtrInput             `pulumi:"drma"`
+	DrmaSensitivity           pulumi.StringPtrInput             `pulumi:"drmaSensitivity"`
+	Dtim                      pulumi.IntPtrInput                `pulumi:"dtim"`
+	FragThreshold             pulumi.IntPtrInput                `pulumi:"fragThreshold"`
 	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
 	FrequencyHandoff pulumi.StringPtrInput `pulumi:"frequencyHandoff"`
-	// Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-	IperfProtocol pulumi.StringPtrInput `pulumi:"iperfProtocol"`
-	// Iperf service port number.
-	IperfServerPort pulumi.IntPtrInput `pulumi:"iperfServerPort"`
+	IperfProtocol    pulumi.StringPtrInput `pulumi:"iperfProtocol"`
+	IperfServerPort  pulumi.IntPtrInput    `pulumi:"iperfServerPort"`
 	// Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
-	MaxClients pulumi.IntPtrInput `pulumi:"maxClients"`
-	// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-	MaxDistance pulumi.IntPtrInput `pulumi:"maxDistance"`
-	// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
-	MimoMode pulumi.StringPtrInput `pulumi:"mimoMode"`
-	// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
-	Mode pulumi.StringPtrInput `pulumi:"mode"`
-	// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
-	N80211d pulumi.StringPtrInput `pulumi:"n80211d"`
-	// Optional antenna used on FAP (default = none).
-	OptionalAntenna pulumi.StringPtrInput `pulumi:"optionalAntenna"`
-	// Optional antenna gain in dBi (0 to 20, default = 0).
-	OptionalAntennaGain pulumi.StringPtrInput `pulumi:"optionalAntennaGain"`
-	// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
-	PowerLevel pulumi.IntPtrInput `pulumi:"powerLevel"`
-	// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-	PowerMode pulumi.StringPtrInput `pulumi:"powerMode"`
-	// Radio EIRP power in dBm (1 - 33, default = 27).
-	PowerValue pulumi.IntPtrInput `pulumi:"powerValue"`
-	// Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
-	PowersaveOptimize pulumi.StringPtrInput `pulumi:"powersaveOptimize"`
-	// Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
-	ProtectionMode pulumi.StringPtrInput `pulumi:"protectionMode"`
-	// Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-	RtsThreshold pulumi.IntPtrInput `pulumi:"rtsThreshold"`
-	// BSSID for WiFi network.
-	SamBssid pulumi.StringPtrInput `pulumi:"samBssid"`
-	// CA certificate for WPA2/WPA3-ENTERPRISE.
-	SamCaCertificate pulumi.StringPtrInput `pulumi:"samCaCertificate"`
-	// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
-	SamCaptivePortal pulumi.StringPtrInput `pulumi:"samCaptivePortal"`
-	// Client certificate for WPA2/WPA3-ENTERPRISE.
-	SamClientCertificate pulumi.StringPtrInput `pulumi:"samClientCertificate"`
-	// Failure identification on the page after an incorrect login.
-	SamCwpFailureString pulumi.StringPtrInput `pulumi:"samCwpFailureString"`
-	// Identification string from the captive portal login form.
-	SamCwpMatchString pulumi.StringPtrInput `pulumi:"samCwpMatchString"`
-	// Password for captive portal authentication.
-	SamCwpPassword pulumi.StringPtrInput `pulumi:"samCwpPassword"`
-	// Success identification on the page after a successful login.
-	SamCwpSuccessString pulumi.StringPtrInput `pulumi:"samCwpSuccessString"`
-	// Website the client is trying to access.
-	SamCwpTestUrl pulumi.StringPtrInput `pulumi:"samCwpTestUrl"`
-	// Username for captive portal authentication.
-	SamCwpUsername pulumi.StringPtrInput `pulumi:"samCwpUsername"`
-	// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
-	SamEapMethod pulumi.StringPtrInput `pulumi:"samEapMethod"`
-	// Passphrase for WiFi network connection.
-	SamPassword pulumi.StringPtrInput `pulumi:"samPassword"`
-	// Private key for WPA2/WPA3-ENTERPRISE.
-	SamPrivateKey pulumi.StringPtrInput `pulumi:"samPrivateKey"`
-	// Password for private key file for WPA2/WPA3-ENTERPRISE.
-	SamPrivateKeyPassword pulumi.StringPtrInput `pulumi:"samPrivateKeyPassword"`
-	// SAM report interval (sec), 0 for a one-time report.
-	SamReportIntv pulumi.IntPtrInput `pulumi:"samReportIntv"`
-	// Select WiFi network security type (default = "wpa-personal").
-	SamSecurityType pulumi.StringPtrInput `pulumi:"samSecurityType"`
-	// SAM test server domain name.
-	SamServerFqdn pulumi.StringPtrInput `pulumi:"samServerFqdn"`
-	// SAM test server IP address.
-	SamServerIp pulumi.StringPtrInput `pulumi:"samServerIp"`
-	// Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
-	SamServerType pulumi.StringPtrInput `pulumi:"samServerType"`
-	// SSID for WiFi network.
-	SamSsid pulumi.StringPtrInput `pulumi:"samSsid"`
-	// Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-	SamTest pulumi.StringPtrInput `pulumi:"samTest"`
-	// Username for WiFi network connection.
-	SamUsername pulumi.StringPtrInput `pulumi:"samUsername"`
-	// Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
-	ShortGuardInterval pulumi.StringPtrInput `pulumi:"shortGuardInterval"`
-	// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
-	SpectrumAnalysis pulumi.StringPtrInput `pulumi:"spectrumAnalysis"`
-	// Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
-	TransmitOptimize pulumi.StringPtrInput `pulumi:"transmitOptimize"`
-	// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
-	VapAll pulumi.StringPtrInput `pulumi:"vapAll"`
-	// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
-	Vaps WtpprofileRadio4VapArrayInput `pulumi:"vaps"`
-	// Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
-	WidsProfile pulumi.StringPtrInput `pulumi:"widsProfile"`
-	// Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
-	ZeroWaitDfs pulumi.StringPtrInput `pulumi:"zeroWaitDfs"`
+	MaxClients            pulumi.IntPtrInput            `pulumi:"maxClients"`
+	MaxDistance           pulumi.IntPtrInput            `pulumi:"maxDistance"`
+	MimoMode              pulumi.StringPtrInput         `pulumi:"mimoMode"`
+	Mode                  pulumi.StringPtrInput         `pulumi:"mode"`
+	N80211d               pulumi.StringPtrInput         `pulumi:"n80211d"`
+	OptionalAntenna       pulumi.StringPtrInput         `pulumi:"optionalAntenna"`
+	OptionalAntennaGain   pulumi.StringPtrInput         `pulumi:"optionalAntennaGain"`
+	PowerLevel            pulumi.IntPtrInput            `pulumi:"powerLevel"`
+	PowerMode             pulumi.StringPtrInput         `pulumi:"powerMode"`
+	PowerValue            pulumi.IntPtrInput            `pulumi:"powerValue"`
+	PowersaveOptimize     pulumi.StringPtrInput         `pulumi:"powersaveOptimize"`
+	ProtectionMode        pulumi.StringPtrInput         `pulumi:"protectionMode"`
+	RtsThreshold          pulumi.IntPtrInput            `pulumi:"rtsThreshold"`
+	SamBssid              pulumi.StringPtrInput         `pulumi:"samBssid"`
+	SamCaCertificate      pulumi.StringPtrInput         `pulumi:"samCaCertificate"`
+	SamCaptivePortal      pulumi.StringPtrInput         `pulumi:"samCaptivePortal"`
+	SamClientCertificate  pulumi.StringPtrInput         `pulumi:"samClientCertificate"`
+	SamCwpFailureString   pulumi.StringPtrInput         `pulumi:"samCwpFailureString"`
+	SamCwpMatchString     pulumi.StringPtrInput         `pulumi:"samCwpMatchString"`
+	SamCwpPassword        pulumi.StringPtrInput         `pulumi:"samCwpPassword"`
+	SamCwpSuccessString   pulumi.StringPtrInput         `pulumi:"samCwpSuccessString"`
+	SamCwpTestUrl         pulumi.StringPtrInput         `pulumi:"samCwpTestUrl"`
+	SamCwpUsername        pulumi.StringPtrInput         `pulumi:"samCwpUsername"`
+	SamEapMethod          pulumi.StringPtrInput         `pulumi:"samEapMethod"`
+	SamPassword           pulumi.StringPtrInput         `pulumi:"samPassword"`
+	SamPrivateKey         pulumi.StringPtrInput         `pulumi:"samPrivateKey"`
+	SamPrivateKeyPassword pulumi.StringPtrInput         `pulumi:"samPrivateKeyPassword"`
+	SamReportIntv         pulumi.IntPtrInput            `pulumi:"samReportIntv"`
+	SamSecurityType       pulumi.StringPtrInput         `pulumi:"samSecurityType"`
+	SamServerFqdn         pulumi.StringPtrInput         `pulumi:"samServerFqdn"`
+	SamServerIp           pulumi.StringPtrInput         `pulumi:"samServerIp"`
+	SamServerType         pulumi.StringPtrInput         `pulumi:"samServerType"`
+	SamSsid               pulumi.StringPtrInput         `pulumi:"samSsid"`
+	SamTest               pulumi.StringPtrInput         `pulumi:"samTest"`
+	SamUsername           pulumi.StringPtrInput         `pulumi:"samUsername"`
+	ShortGuardInterval    pulumi.StringPtrInput         `pulumi:"shortGuardInterval"`
+	SpectrumAnalysis      pulumi.StringPtrInput         `pulumi:"spectrumAnalysis"`
+	TransmitOptimize      pulumi.StringPtrInput         `pulumi:"transmitOptimize"`
+	VapAll                pulumi.StringPtrInput         `pulumi:"vapAll"`
+	Vaps                  WtpprofileRadio4VapArrayInput `pulumi:"vaps"`
+	WidsProfile           pulumi.StringPtrInput         `pulumi:"widsProfile"`
+	ZeroWaitDfs           pulumi.StringPtrInput         `pulumi:"zeroWaitDfs"`
 }
 
 func (WtpprofileRadio4Args) ElementType() reflect.Type {
@@ -15134,12 +13849,10 @@ func (o WtpprofileRadio4Output) ToWtpprofileRadio4PtrOutputWithContext(ctx conte
 	}).(WtpprofileRadio4PtrOutput)
 }
 
-// Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) AirtimeFairness() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.AirtimeFairness }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) Amsdu() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.Amsdu }).(pulumi.StringPtrOutput)
 }
@@ -15149,157 +13862,130 @@ func (o WtpprofileRadio4Output) ApHandoff() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.ApHandoff }).(pulumi.StringPtrOutput)
 }
 
-// MAC address to monitor.
 func (o WtpprofileRadio4Output) ApSnifferAddr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.ApSnifferAddr }).(pulumi.StringPtrOutput)
 }
 
-// Sniffer buffer size (1 - 32 MB, default = 16).
 func (o WtpprofileRadio4Output) ApSnifferBufsize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.ApSnifferBufsize }).(pulumi.IntPtrOutput)
 }
 
-// Channel on which to operate the sniffer (default = 6).
 func (o WtpprofileRadio4Output) ApSnifferChan() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.ApSnifferChan }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) ApSnifferCtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.ApSnifferCtl }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) ApSnifferData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.ApSnifferData }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) ApSnifferMgmtBeacon() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.ApSnifferMgmtBeacon }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) ApSnifferMgmtOther() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.ApSnifferMgmtOther }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) ApSnifferMgmtProbe() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.ApSnifferMgmtProbe }).(pulumi.StringPtrOutput)
 }
 
-// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 func (o WtpprofileRadio4Output) ArrpProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.ArrpProfile }).(pulumi.StringPtrOutput)
 }
 
-// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio4Output) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.AutoPowerHigh }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.AutoPowerLevel }).(pulumi.StringPtrOutput)
 }
 
-// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio4Output) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.AutoPowerLow }).(pulumi.IntPtrOutput)
 }
 
-// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 func (o WtpprofileRadio4Output) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.AutoPowerTarget }).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 3 operates on.
 func (o WtpprofileRadio4Output) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.Band }).(pulumi.StringPtrOutput)
 }
 
-// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
 func (o WtpprofileRadio4Output) Band5gType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.Band5gType }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) BandwidthAdmissionControl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.BandwidthAdmissionControl }).(pulumi.StringPtrOutput)
 }
 
-// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
 func (o WtpprofileRadio4Output) BandwidthCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.BandwidthCapacity }).(pulumi.IntPtrOutput)
 }
 
-// Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
 func (o WtpprofileRadio4Output) BeaconInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.BeaconInterval }).(pulumi.IntPtrOutput)
 }
 
-// BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
 func (o WtpprofileRadio4Output) BssColor() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.BssColor }).(pulumi.IntPtrOutput)
 }
 
-// BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
 func (o WtpprofileRadio4Output) BssColorMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.BssColorMode }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) CallAdmissionControl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.CallAdmissionControl }).(pulumi.StringPtrOutput)
 }
 
-// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
 func (o WtpprofileRadio4Output) CallCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.CallCapacity }).(pulumi.IntPtrOutput)
 }
 
-// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 func (o WtpprofileRadio4Output) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.ChannelBonding }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
+func (o WtpprofileRadio4Output) ChannelBondingExt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.ChannelBondingExt }).(pulumi.StringPtrOutput)
+}
+
 func (o WtpprofileRadio4Output) ChannelUtilization() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.ChannelUtilization }).(pulumi.StringPtrOutput)
 }
 
-// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 func (o WtpprofileRadio4Output) Channels() WtpprofileRadio4ChannelArrayOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) []WtpprofileRadio4Channel { return v.Channels }).(WtpprofileRadio4ChannelArrayOutput)
 }
 
-// Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) Coexistence() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.Coexistence }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) Darrp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.Darrp }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
 func (o WtpprofileRadio4Output) Drma() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.Drma }).(pulumi.StringPtrOutput)
 }
 
-// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
 func (o WtpprofileRadio4Output) DrmaSensitivity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.DrmaSensitivity }).(pulumi.StringPtrOutput)
 }
 
-// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 func (o WtpprofileRadio4Output) Dtim() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.Dtim }).(pulumi.IntPtrOutput)
 }
 
-// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 func (o WtpprofileRadio4Output) FragThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.FragThreshold }).(pulumi.IntPtrOutput)
 }
@@ -15309,12 +13995,10 @@ func (o WtpprofileRadio4Output) FrequencyHandoff() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.FrequencyHandoff }).(pulumi.StringPtrOutput)
 }
 
-// Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
 func (o WtpprofileRadio4Output) IperfProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.IperfProtocol }).(pulumi.StringPtrOutput)
 }
 
-// Iperf service port number.
 func (o WtpprofileRadio4Output) IperfServerPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.IperfServerPort }).(pulumi.IntPtrOutput)
 }
@@ -15324,207 +14008,166 @@ func (o WtpprofileRadio4Output) MaxClients() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.MaxClients }).(pulumi.IntPtrOutput)
 }
 
-// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 func (o WtpprofileRadio4Output) MaxDistance() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.MaxDistance }).(pulumi.IntPtrOutput)
 }
 
-// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
 func (o WtpprofileRadio4Output) MimoMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.MimoMode }).(pulumi.StringPtrOutput)
 }
 
-// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio4Output) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) N80211d() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.N80211d }).(pulumi.StringPtrOutput)
 }
 
-// Optional antenna used on FAP (default = none).
 func (o WtpprofileRadio4Output) OptionalAntenna() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.OptionalAntenna }).(pulumi.StringPtrOutput)
 }
 
-// Optional antenna gain in dBi (0 to 20, default = 0).
 func (o WtpprofileRadio4Output) OptionalAntennaGain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.OptionalAntennaGain }).(pulumi.StringPtrOutput)
 }
 
-// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 func (o WtpprofileRadio4Output) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.PowerLevel }).(pulumi.IntPtrOutput)
 }
 
-// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 func (o WtpprofileRadio4Output) PowerMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.PowerMode }).(pulumi.StringPtrOutput)
 }
 
-// Radio EIRP power in dBm (1 - 33, default = 27).
 func (o WtpprofileRadio4Output) PowerValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.PowerValue }).(pulumi.IntPtrOutput)
 }
 
-// Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
 func (o WtpprofileRadio4Output) PowersaveOptimize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.PowersaveOptimize }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
 func (o WtpprofileRadio4Output) ProtectionMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.ProtectionMode }).(pulumi.StringPtrOutput)
 }
 
-// Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
 func (o WtpprofileRadio4Output) RtsThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.RtsThreshold }).(pulumi.IntPtrOutput)
 }
 
-// BSSID for WiFi network.
 func (o WtpprofileRadio4Output) SamBssid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamBssid }).(pulumi.StringPtrOutput)
 }
 
-// CA certificate for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio4Output) SamCaCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamCaCertificate }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) SamCaptivePortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamCaptivePortal }).(pulumi.StringPtrOutput)
 }
 
-// Client certificate for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio4Output) SamClientCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamClientCertificate }).(pulumi.StringPtrOutput)
 }
 
-// Failure identification on the page after an incorrect login.
 func (o WtpprofileRadio4Output) SamCwpFailureString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamCwpFailureString }).(pulumi.StringPtrOutput)
 }
 
-// Identification string from the captive portal login form.
 func (o WtpprofileRadio4Output) SamCwpMatchString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamCwpMatchString }).(pulumi.StringPtrOutput)
 }
 
-// Password for captive portal authentication.
 func (o WtpprofileRadio4Output) SamCwpPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamCwpPassword }).(pulumi.StringPtrOutput)
 }
 
-// Success identification on the page after a successful login.
 func (o WtpprofileRadio4Output) SamCwpSuccessString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamCwpSuccessString }).(pulumi.StringPtrOutput)
 }
 
-// Website the client is trying to access.
 func (o WtpprofileRadio4Output) SamCwpTestUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamCwpTestUrl }).(pulumi.StringPtrOutput)
 }
 
-// Username for captive portal authentication.
 func (o WtpprofileRadio4Output) SamCwpUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamCwpUsername }).(pulumi.StringPtrOutput)
 }
 
-// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
 func (o WtpprofileRadio4Output) SamEapMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamEapMethod }).(pulumi.StringPtrOutput)
 }
 
-// Passphrase for WiFi network connection.
 func (o WtpprofileRadio4Output) SamPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamPassword }).(pulumi.StringPtrOutput)
 }
 
-// Private key for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio4Output) SamPrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamPrivateKey }).(pulumi.StringPtrOutput)
 }
 
-// Password for private key file for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio4Output) SamPrivateKeyPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamPrivateKeyPassword }).(pulumi.StringPtrOutput)
 }
 
-// SAM report interval (sec), 0 for a one-time report.
 func (o WtpprofileRadio4Output) SamReportIntv() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *int { return v.SamReportIntv }).(pulumi.IntPtrOutput)
 }
 
-// Select WiFi network security type (default = "wpa-personal").
 func (o WtpprofileRadio4Output) SamSecurityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamSecurityType }).(pulumi.StringPtrOutput)
 }
 
-// SAM test server domain name.
 func (o WtpprofileRadio4Output) SamServerFqdn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamServerFqdn }).(pulumi.StringPtrOutput)
 }
 
-// SAM test server IP address.
 func (o WtpprofileRadio4Output) SamServerIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamServerIp }).(pulumi.StringPtrOutput)
 }
 
-// Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
 func (o WtpprofileRadio4Output) SamServerType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamServerType }).(pulumi.StringPtrOutput)
 }
 
-// SSID for WiFi network.
 func (o WtpprofileRadio4Output) SamSsid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamSsid }).(pulumi.StringPtrOutput)
 }
 
-// Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
 func (o WtpprofileRadio4Output) SamTest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamTest }).(pulumi.StringPtrOutput)
 }
 
-// Username for WiFi network connection.
 func (o WtpprofileRadio4Output) SamUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SamUsername }).(pulumi.StringPtrOutput)
 }
 
-// Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) ShortGuardInterval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.ShortGuardInterval }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
 func (o WtpprofileRadio4Output) SpectrumAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.SpectrumAnalysis }).(pulumi.StringPtrOutput)
 }
 
-// Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
 func (o WtpprofileRadio4Output) TransmitOptimize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.TransmitOptimize }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
 func (o WtpprofileRadio4Output) VapAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.VapAll }).(pulumi.StringPtrOutput)
 }
 
-// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
 func (o WtpprofileRadio4Output) Vaps() WtpprofileRadio4VapArrayOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) []WtpprofileRadio4Vap { return v.Vaps }).(WtpprofileRadio4VapArrayOutput)
 }
 
-// Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
 func (o WtpprofileRadio4Output) WidsProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.WidsProfile }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4Output) ZeroWaitDfs() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WtpprofileRadio4) *string { return v.ZeroWaitDfs }).(pulumi.StringPtrOutput)
 }
@@ -15553,7 +14196,6 @@ func (o WtpprofileRadio4PtrOutput) Elem() WtpprofileRadio4Output {
 	}).(WtpprofileRadio4Output)
 }
 
-// Enable/disable airtime fairness (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4PtrOutput) AirtimeFairness() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15563,7 +14205,6 @@ func (o WtpprofileRadio4PtrOutput) AirtimeFairness() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4PtrOutput) Amsdu() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15583,7 +14224,6 @@ func (o WtpprofileRadio4PtrOutput) ApHandoff() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// MAC address to monitor.
 func (o WtpprofileRadio4PtrOutput) ApSnifferAddr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15593,7 +14233,6 @@ func (o WtpprofileRadio4PtrOutput) ApSnifferAddr() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Sniffer buffer size (1 - 32 MB, default = 16).
 func (o WtpprofileRadio4PtrOutput) ApSnifferBufsize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -15603,7 +14242,6 @@ func (o WtpprofileRadio4PtrOutput) ApSnifferBufsize() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Channel on which to operate the sniffer (default = 6).
 func (o WtpprofileRadio4PtrOutput) ApSnifferChan() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -15613,7 +14251,6 @@ func (o WtpprofileRadio4PtrOutput) ApSnifferChan() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi control frame (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4PtrOutput) ApSnifferCtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15623,7 +14260,6 @@ func (o WtpprofileRadio4PtrOutput) ApSnifferCtl() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi data frame (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4PtrOutput) ApSnifferData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15633,7 +14269,6 @@ func (o WtpprofileRadio4PtrOutput) ApSnifferData() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4PtrOutput) ApSnifferMgmtBeacon() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15643,7 +14278,6 @@ func (o WtpprofileRadio4PtrOutput) ApSnifferMgmtBeacon() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4PtrOutput) ApSnifferMgmtOther() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15653,7 +14287,6 @@ func (o WtpprofileRadio4PtrOutput) ApSnifferMgmtOther() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4PtrOutput) ApSnifferMgmtProbe() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15663,7 +14296,6 @@ func (o WtpprofileRadio4PtrOutput) ApSnifferMgmtProbe() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 func (o WtpprofileRadio4PtrOutput) ArrpProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15673,7 +14305,6 @@ func (o WtpprofileRadio4PtrOutput) ArrpProfile() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio4PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -15683,7 +14314,6 @@ func (o WtpprofileRadio4PtrOutput) AutoPowerHigh() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15693,7 +14323,6 @@ func (o WtpprofileRadio4PtrOutput) AutoPowerLevel() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 func (o WtpprofileRadio4PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -15703,7 +14332,6 @@ func (o WtpprofileRadio4PtrOutput) AutoPowerLow() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The target of automatic transmit power adjustment in dBm. (-95 to -20, default = -70).
 func (o WtpprofileRadio4PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15713,7 +14341,6 @@ func (o WtpprofileRadio4PtrOutput) AutoPowerTarget() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi band that Radio 3 operates on.
 func (o WtpprofileRadio4PtrOutput) Band() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15723,7 +14350,6 @@ func (o WtpprofileRadio4PtrOutput) Band() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// WiFi 5G band type. Valid values: `5g-full`, `5g-high`, `5g-low`.
 func (o WtpprofileRadio4PtrOutput) Band5gType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15733,7 +14359,6 @@ func (o WtpprofileRadio4PtrOutput) Band5gType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable WiFi multimedia (WMM) bandwidth admission control to optimize WiFi bandwidth use. A request to join the wireless network is only allowed if the access point has enough bandwidth to support it. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4PtrOutput) BandwidthAdmissionControl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15743,7 +14368,6 @@ func (o WtpprofileRadio4PtrOutput) BandwidthAdmissionControl() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
 func (o WtpprofileRadio4PtrOutput) BandwidthCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -15753,7 +14377,6 @@ func (o WtpprofileRadio4PtrOutput) BandwidthCapacity() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
 func (o WtpprofileRadio4PtrOutput) BeaconInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -15763,7 +14386,6 @@ func (o WtpprofileRadio4PtrOutput) BeaconInterval() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
 func (o WtpprofileRadio4PtrOutput) BssColor() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -15773,7 +14395,6 @@ func (o WtpprofileRadio4PtrOutput) BssColor() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
 func (o WtpprofileRadio4PtrOutput) BssColorMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15783,7 +14404,6 @@ func (o WtpprofileRadio4PtrOutput) BssColorMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4PtrOutput) CallAdmissionControl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15793,7 +14413,6 @@ func (o WtpprofileRadio4PtrOutput) CallAdmissionControl() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
 func (o WtpprofileRadio4PtrOutput) CallCapacity() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -15803,7 +14422,6 @@ func (o WtpprofileRadio4PtrOutput) CallCapacity() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
 func (o WtpprofileRadio4PtrOutput) ChannelBonding() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15813,7 +14431,15 @@ func (o WtpprofileRadio4PtrOutput) ChannelBonding() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable measuring channel utilization. Valid values: `enable`, `disable`.
+func (o WtpprofileRadio4PtrOutput) ChannelBondingExt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WtpprofileRadio4) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ChannelBondingExt
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o WtpprofileRadio4PtrOutput) ChannelUtilization() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15823,7 +14449,6 @@ func (o WtpprofileRadio4PtrOutput) ChannelUtilization() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Selected list of wireless radio channels. The structure of `channel` block is documented below.
 func (o WtpprofileRadio4PtrOutput) Channels() WtpprofileRadio4ChannelArrayOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) []WtpprofileRadio4Channel {
 		if v == nil {
@@ -15833,7 +14458,6 @@ func (o WtpprofileRadio4PtrOutput) Channels() WtpprofileRadio4ChannelArrayOutput
 	}).(WtpprofileRadio4ChannelArrayOutput)
 }
 
-// Enable/disable allowing both HT20 and HT40 on the same radio (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4PtrOutput) Coexistence() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15843,7 +14467,6 @@ func (o WtpprofileRadio4PtrOutput) Coexistence() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable Distributed Automatic Radio Resource Provisioning (DARRP) to make sure the radio is always using the most optimal channel (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4PtrOutput) Darrp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15853,7 +14476,6 @@ func (o WtpprofileRadio4PtrOutput) Darrp() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable dynamic radio mode assignment (DRMA) (default = disable). Valid values: `disable`, `enable`.
 func (o WtpprofileRadio4PtrOutput) Drma() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15863,7 +14485,6 @@ func (o WtpprofileRadio4PtrOutput) Drma() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Network Coverage Factor (NCF) percentage required to consider a radio as redundant (default = low). Valid values: `low`, `medium`, `high`.
 func (o WtpprofileRadio4PtrOutput) DrmaSensitivity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15873,7 +14494,6 @@ func (o WtpprofileRadio4PtrOutput) DrmaSensitivity() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 func (o WtpprofileRadio4PtrOutput) Dtim() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -15883,7 +14503,6 @@ func (o WtpprofileRadio4PtrOutput) Dtim() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 func (o WtpprofileRadio4PtrOutput) FragThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -15903,7 +14522,6 @@ func (o WtpprofileRadio4PtrOutput) FrequencyHandoff() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
 func (o WtpprofileRadio4PtrOutput) IperfProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15913,7 +14531,6 @@ func (o WtpprofileRadio4PtrOutput) IperfProtocol() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Iperf service port number.
 func (o WtpprofileRadio4PtrOutput) IperfServerPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -15933,7 +14550,6 @@ func (o WtpprofileRadio4PtrOutput) MaxClients() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 func (o WtpprofileRadio4PtrOutput) MaxDistance() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -15943,7 +14559,6 @@ func (o WtpprofileRadio4PtrOutput) MaxDistance() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
 func (o WtpprofileRadio4PtrOutput) MimoMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15953,7 +14568,6 @@ func (o WtpprofileRadio4PtrOutput) MimoMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
 func (o WtpprofileRadio4PtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15963,7 +14577,6 @@ func (o WtpprofileRadio4PtrOutput) Mode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11d countryie(default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4PtrOutput) N80211d() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15973,7 +14586,6 @@ func (o WtpprofileRadio4PtrOutput) N80211d() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Optional antenna used on FAP (default = none).
 func (o WtpprofileRadio4PtrOutput) OptionalAntenna() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15983,7 +14595,6 @@ func (o WtpprofileRadio4PtrOutput) OptionalAntenna() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Optional antenna gain in dBi (0 to 20, default = 0).
 func (o WtpprofileRadio4PtrOutput) OptionalAntennaGain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -15993,7 +14604,6 @@ func (o WtpprofileRadio4PtrOutput) OptionalAntennaGain() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 func (o WtpprofileRadio4PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -16003,7 +14613,6 @@ func (o WtpprofileRadio4PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 func (o WtpprofileRadio4PtrOutput) PowerMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16013,7 +14622,6 @@ func (o WtpprofileRadio4PtrOutput) PowerMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Radio EIRP power in dBm (1 - 33, default = 27).
 func (o WtpprofileRadio4PtrOutput) PowerValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -16023,7 +14631,6 @@ func (o WtpprofileRadio4PtrOutput) PowerValue() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
 func (o WtpprofileRadio4PtrOutput) PowersaveOptimize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16033,7 +14640,6 @@ func (o WtpprofileRadio4PtrOutput) PowersaveOptimize() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
 func (o WtpprofileRadio4PtrOutput) ProtectionMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16043,7 +14649,6 @@ func (o WtpprofileRadio4PtrOutput) ProtectionMode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
 func (o WtpprofileRadio4PtrOutput) RtsThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -16053,7 +14658,6 @@ func (o WtpprofileRadio4PtrOutput) RtsThreshold() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// BSSID for WiFi network.
 func (o WtpprofileRadio4PtrOutput) SamBssid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16063,7 +14667,6 @@ func (o WtpprofileRadio4PtrOutput) SamBssid() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// CA certificate for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio4PtrOutput) SamCaCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16073,7 +14676,6 @@ func (o WtpprofileRadio4PtrOutput) SamCaCertificate() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4PtrOutput) SamCaptivePortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16083,7 +14685,6 @@ func (o WtpprofileRadio4PtrOutput) SamCaptivePortal() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Client certificate for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio4PtrOutput) SamClientCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16093,7 +14694,6 @@ func (o WtpprofileRadio4PtrOutput) SamClientCertificate() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Failure identification on the page after an incorrect login.
 func (o WtpprofileRadio4PtrOutput) SamCwpFailureString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16103,7 +14703,6 @@ func (o WtpprofileRadio4PtrOutput) SamCwpFailureString() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Identification string from the captive portal login form.
 func (o WtpprofileRadio4PtrOutput) SamCwpMatchString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16113,7 +14712,6 @@ func (o WtpprofileRadio4PtrOutput) SamCwpMatchString() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Password for captive portal authentication.
 func (o WtpprofileRadio4PtrOutput) SamCwpPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16123,7 +14721,6 @@ func (o WtpprofileRadio4PtrOutput) SamCwpPassword() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Success identification on the page after a successful login.
 func (o WtpprofileRadio4PtrOutput) SamCwpSuccessString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16133,7 +14730,6 @@ func (o WtpprofileRadio4PtrOutput) SamCwpSuccessString() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Website the client is trying to access.
 func (o WtpprofileRadio4PtrOutput) SamCwpTestUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16143,7 +14739,6 @@ func (o WtpprofileRadio4PtrOutput) SamCwpTestUrl() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Username for captive portal authentication.
 func (o WtpprofileRadio4PtrOutput) SamCwpUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16153,7 +14748,6 @@ func (o WtpprofileRadio4PtrOutput) SamCwpUsername() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `both`, `tls`, `peap`.
 func (o WtpprofileRadio4PtrOutput) SamEapMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16163,7 +14757,6 @@ func (o WtpprofileRadio4PtrOutput) SamEapMethod() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Passphrase for WiFi network connection.
 func (o WtpprofileRadio4PtrOutput) SamPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16173,7 +14766,6 @@ func (o WtpprofileRadio4PtrOutput) SamPassword() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Private key for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio4PtrOutput) SamPrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16183,7 +14775,6 @@ func (o WtpprofileRadio4PtrOutput) SamPrivateKey() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Password for private key file for WPA2/WPA3-ENTERPRISE.
 func (o WtpprofileRadio4PtrOutput) SamPrivateKeyPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16193,7 +14784,6 @@ func (o WtpprofileRadio4PtrOutput) SamPrivateKeyPassword() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// SAM report interval (sec), 0 for a one-time report.
 func (o WtpprofileRadio4PtrOutput) SamReportIntv() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *int {
 		if v == nil {
@@ -16203,7 +14793,6 @@ func (o WtpprofileRadio4PtrOutput) SamReportIntv() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Select WiFi network security type (default = "wpa-personal").
 func (o WtpprofileRadio4PtrOutput) SamSecurityType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16213,7 +14802,6 @@ func (o WtpprofileRadio4PtrOutput) SamSecurityType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// SAM test server domain name.
 func (o WtpprofileRadio4PtrOutput) SamServerFqdn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16223,7 +14811,6 @@ func (o WtpprofileRadio4PtrOutput) SamServerFqdn() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// SAM test server IP address.
 func (o WtpprofileRadio4PtrOutput) SamServerIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16233,7 +14820,6 @@ func (o WtpprofileRadio4PtrOutput) SamServerIp() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
 func (o WtpprofileRadio4PtrOutput) SamServerType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16243,7 +14829,6 @@ func (o WtpprofileRadio4PtrOutput) SamServerType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// SSID for WiFi network.
 func (o WtpprofileRadio4PtrOutput) SamSsid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16253,7 +14838,6 @@ func (o WtpprofileRadio4PtrOutput) SamSsid() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
 func (o WtpprofileRadio4PtrOutput) SamTest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16263,7 +14847,6 @@ func (o WtpprofileRadio4PtrOutput) SamTest() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Username for WiFi network connection.
 func (o WtpprofileRadio4PtrOutput) SamUsername() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16273,7 +14856,6 @@ func (o WtpprofileRadio4PtrOutput) SamUsername() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4PtrOutput) ShortGuardInterval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16283,7 +14865,6 @@ func (o WtpprofileRadio4PtrOutput) ShortGuardInterval() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
 func (o WtpprofileRadio4PtrOutput) SpectrumAnalysis() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16293,7 +14874,6 @@ func (o WtpprofileRadio4PtrOutput) SpectrumAnalysis() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
 func (o WtpprofileRadio4PtrOutput) TransmitOptimize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16303,7 +14883,6 @@ func (o WtpprofileRadio4PtrOutput) TransmitOptimize() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
 func (o WtpprofileRadio4PtrOutput) VapAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16313,7 +14892,6 @@ func (o WtpprofileRadio4PtrOutput) VapAll() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
 func (o WtpprofileRadio4PtrOutput) Vaps() WtpprofileRadio4VapArrayOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) []WtpprofileRadio4Vap {
 		if v == nil {
@@ -16323,7 +14901,6 @@ func (o WtpprofileRadio4PtrOutput) Vaps() WtpprofileRadio4VapArrayOutput {
 	}).(WtpprofileRadio4VapArrayOutput)
 }
 
-// Wireless Intrusion Detection System (WIDS) profile name to assign to the radio.
 func (o WtpprofileRadio4PtrOutput) WidsProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {
@@ -16333,7 +14910,6 @@ func (o WtpprofileRadio4PtrOutput) WidsProfile() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable zero wait DFS on radio (default = enable). Valid values: `enable`, `disable`.
 func (o WtpprofileRadio4PtrOutput) ZeroWaitDfs() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WtpprofileRadio4) *string {
 		if v == nil {

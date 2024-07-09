@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,7 +38,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -65,7 +63,7 @@ type Quarantine struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Firewall address group which includes all quarantine MAC address.
 	FirewallGroups pulumi.StringOutput `pulumi:"firewallGroups"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Enable/disable quarantine. Valid values: `enable`, `disable`.
 	Quarantine pulumi.StringOutput `pulumi:"quarantine"`
@@ -74,7 +72,7 @@ type Quarantine struct {
 	// Traffic policy for quarantined MACs.
 	TrafficPolicy pulumi.StringOutput `pulumi:"trafficPolicy"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewQuarantine registers a new resource with the given unique name, arguments, and options.
@@ -111,7 +109,7 @@ type quarantineState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Firewall address group which includes all quarantine MAC address.
 	FirewallGroups *string `pulumi:"firewallGroups"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable quarantine. Valid values: `enable`, `disable`.
 	Quarantine *string `pulumi:"quarantine"`
@@ -128,7 +126,7 @@ type QuarantineState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Firewall address group which includes all quarantine MAC address.
 	FirewallGroups pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable quarantine. Valid values: `enable`, `disable`.
 	Quarantine pulumi.StringPtrInput
@@ -149,7 +147,7 @@ type quarantineArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Firewall address group which includes all quarantine MAC address.
 	FirewallGroups *string `pulumi:"firewallGroups"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Enable/disable quarantine. Valid values: `enable`, `disable`.
 	Quarantine *string `pulumi:"quarantine"`
@@ -167,7 +165,7 @@ type QuarantineArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Firewall address group which includes all quarantine MAC address.
 	FirewallGroups pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Enable/disable quarantine. Valid values: `enable`, `disable`.
 	Quarantine pulumi.StringPtrInput
@@ -276,7 +274,7 @@ func (o QuarantineOutput) FirewallGroups() pulumi.StringOutput {
 	return o.ApplyT(func(v *Quarantine) pulumi.StringOutput { return v.FirewallGroups }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o QuarantineOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Quarantine) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -297,8 +295,8 @@ func (o QuarantineOutput) TrafficPolicy() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o QuarantineOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Quarantine) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o QuarantineOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Quarantine) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type QuarantineArrayOutput struct{ *pulumi.OutputState }

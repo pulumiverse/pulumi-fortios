@@ -13,27 +13,15 @@ namespace Pulumiverse.Fortios.Filter.Spam.Inputs
 
     public sealed class ProfilePop3GetArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Action for spam email. Valid values: `pass`, `tag`.
-        /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }
 
-        /// <summary>
-        /// Enable/disable logging. Valid values: `enable`, `disable`.
-        /// </summary>
         [Input("log")]
         public Input<string>? Log { get; set; }
 
-        /// <summary>
-        /// Subject text or header added to spam email.
-        /// </summary>
         [Input("tagMsg")]
         public Input<string>? TagMsg { get; set; }
 
-        /// <summary>
-        /// Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-        /// </summary>
         [Input("tagType")]
         public Input<string>? TagType { get; set; }
 

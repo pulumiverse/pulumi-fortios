@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -58,7 +57,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -88,7 +86,7 @@ type Scheme struct {
 	FssoAgentForNtlm pulumi.StringOutput `pulumi:"fssoAgentForNtlm"`
 	// Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
 	FssoGuest pulumi.StringOutput `pulumi:"fssoGuest"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// Kerberos keytab setting.
 	KerberosKeytab pulumi.StringOutput `pulumi:"kerberosKeytab"`
@@ -111,7 +109,7 @@ type Scheme struct {
 	// Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `userDatabase` block is documented below.
 	UserDatabases SchemeUserDatabaseArrayOutput `pulumi:"userDatabases"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewScheme registers a new resource with the given unique name, arguments, and options.
@@ -155,7 +153,7 @@ type schemeState struct {
 	FssoAgentForNtlm *string `pulumi:"fssoAgentForNtlm"`
 	// Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
 	FssoGuest *string `pulumi:"fssoGuest"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Kerberos keytab setting.
 	KerberosKeytab *string `pulumi:"kerberosKeytab"`
@@ -190,7 +188,7 @@ type SchemeState struct {
 	FssoAgentForNtlm pulumi.StringPtrInput
 	// Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
 	FssoGuest pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Kerberos keytab setting.
 	KerberosKeytab pulumi.StringPtrInput
@@ -229,7 +227,7 @@ type schemeArgs struct {
 	FssoAgentForNtlm *string `pulumi:"fssoAgentForNtlm"`
 	// Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
 	FssoGuest *string `pulumi:"fssoGuest"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// Kerberos keytab setting.
 	KerberosKeytab *string `pulumi:"kerberosKeytab"`
@@ -265,7 +263,7 @@ type SchemeArgs struct {
 	FssoAgentForNtlm pulumi.StringPtrInput
 	// Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
 	FssoGuest pulumi.StringPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// Kerberos keytab setting.
 	KerberosKeytab pulumi.StringPtrInput
@@ -398,7 +396,7 @@ func (o SchemeOutput) FssoGuest() pulumi.StringOutput {
 	return o.ApplyT(func(v *Scheme) pulumi.StringOutput { return v.FssoGuest }).(pulumi.StringOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o SchemeOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Scheme) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -454,8 +452,8 @@ func (o SchemeOutput) UserDatabases() SchemeUserDatabaseArrayOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o SchemeOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Scheme) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o SchemeOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Scheme) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type SchemeArrayOutput struct{ *pulumi.OutputState }

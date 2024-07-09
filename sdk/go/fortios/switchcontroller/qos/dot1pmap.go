@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -46,7 +45,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -91,7 +89,7 @@ type Dot1pmap struct {
 	// COS queue mapped to dot1p priority number. Valid values: `queue-0`, `queue-1`, `queue-2`, `queue-3`, `queue-4`, `queue-5`, `queue-6`, `queue-7`.
 	Priority7 pulumi.StringOutput `pulumi:"priority7"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewDot1pmap registers a new resource with the given unique name, arguments, and options.
@@ -379,8 +377,8 @@ func (o Dot1pmapOutput) Priority7() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o Dot1pmapOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Dot1pmap) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o Dot1pmapOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Dot1pmap) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type Dot1pmapArrayOutput struct{ *pulumi.OutputState }

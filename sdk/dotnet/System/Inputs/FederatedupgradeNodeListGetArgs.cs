@@ -38,13 +38,13 @@ namespace Pulumiverse.Fortios.System.Inputs
         public Input<string>? Serial { get; set; }
 
         /// <summary>
-        /// When the upgrade was configured. Format hh:mm yyyy/mm/dd UTC.
+        /// Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC).
         /// </summary>
         [Input("setupTime")]
         public Input<string>? SetupTime { get; set; }
 
         /// <summary>
-        /// Scheduled time for the upgrade. Format hh:mm yyyy/mm/dd UTC.
+        /// Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC).
         /// </summary>
         [Input("time")]
         public Input<string>? Time { get; set; }

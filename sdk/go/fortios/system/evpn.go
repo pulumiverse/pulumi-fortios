@@ -41,7 +41,7 @@ type Evpn struct {
 	ExportRts EvpnExportRtArrayOutput `pulumi:"exportRts"`
 	// ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
 	// List of import route targets. The structure of `importRt` block is documented below.
 	ImportRts EvpnImportRtArrayOutput `pulumi:"importRts"`
@@ -50,7 +50,7 @@ type Evpn struct {
 	// Route Distinguisher: AA|AA:NN|A.B.C.D:NN.
 	Rd pulumi.StringOutput `pulumi:"rd"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Vdomparam pulumi.StringOutput `pulumi:"vdomparam"`
 }
 
 // NewEvpn registers a new resource with the given unique name, arguments, and options.
@@ -91,7 +91,7 @@ type evpnState struct {
 	ExportRts []EvpnExportRt `pulumi:"exportRts"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// List of import route targets. The structure of `importRt` block is documented below.
 	ImportRts []EvpnImportRt `pulumi:"importRts"`
@@ -112,7 +112,7 @@ type EvpnState struct {
 	ExportRts EvpnExportRtArrayInput
 	// ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// List of import route targets. The structure of `importRt` block is documented below.
 	ImportRts EvpnImportRtArrayInput
@@ -137,7 +137,7 @@ type evpnArgs struct {
 	ExportRts []EvpnExportRt `pulumi:"exportRts"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables *string `pulumi:"getAllTables"`
 	// List of import route targets. The structure of `importRt` block is documented below.
 	ImportRts []EvpnImportRt `pulumi:"importRts"`
@@ -159,7 +159,7 @@ type EvpnArgs struct {
 	ExportRts EvpnExportRtArrayInput
 	// ID.
 	Fosid pulumi.IntPtrInput
-	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+	// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 	GetAllTables pulumi.StringPtrInput
 	// List of import route targets. The structure of `importRt` block is documented below.
 	ImportRts EvpnImportRtArrayInput
@@ -278,7 +278,7 @@ func (o EvpnOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *Evpn) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
-// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
 func (o EvpnOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Evpn) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -299,8 +299,8 @@ func (o EvpnOutput) Rd() pulumi.StringOutput {
 }
 
 // Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-func (o EvpnOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Evpn) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o EvpnOutput) Vdomparam() pulumi.StringOutput {
+	return o.ApplyT(func(v *Evpn) pulumi.StringOutput { return v.Vdomparam }).(pulumi.StringOutput)
 }
 
 type EvpnArrayOutput struct{ *pulumi.OutputState }

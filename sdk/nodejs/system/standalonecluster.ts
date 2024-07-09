@@ -72,11 +72,11 @@ export class Standalonecluster extends pulumi.CustomResource {
      */
     public readonly encryption!: pulumi.Output<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     /**
-     * Cluster member ID (0 - 3).
+     * Cluster member ID. On FortiOS versions 6.4.0: 0 - 3. On FortiOS versions >= 6.4.1: 0 - 15.
      */
     public readonly groupMemberId!: pulumi.Output<number>;
     /**
@@ -98,7 +98,7 @@ export class Standalonecluster extends pulumi.CustomResource {
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
-    public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly vdomparam!: pulumi.Output<string>;
 
     /**
      * Create a Standalonecluster resource with the given unique name, arguments, and options.
@@ -166,11 +166,11 @@ export interface StandaloneclusterState {
      */
     encryption?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
-     * Cluster member ID (0 - 3).
+     * Cluster member ID. On FortiOS versions 6.4.0: 0 - 3. On FortiOS versions >= 6.4.1: 0 - 15.
      */
     groupMemberId?: pulumi.Input<number>;
     /**
@@ -216,11 +216,11 @@ export interface StandaloneclusterArgs {
      */
     encryption?: pulumi.Input<string>;
     /**
-     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+     * Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
      */
     getAllTables?: pulumi.Input<string>;
     /**
-     * Cluster member ID (0 - 3).
+     * Cluster member ID. On FortiOS versions 6.4.0: 0 - 3. On FortiOS versions >= 6.4.1: 0 - 15.
      */
     groupMemberId?: pulumi.Input<number>;
     /**

@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -34,7 +33,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -58,13 +56,13 @@ namespace Pulumiverse.Fortios.System
     public partial class Global : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
+        /// Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("adminConcurrent")]
         public Output<string> AdminConcurrent { get; private set; } = null!;
 
         /// <summary>
-        /// Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+        /// Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
         /// </summary>
         [Output("adminConsoleTimeout")]
         public Output<int> AdminConsoleTimeout { get; private set; } = null!;
@@ -214,7 +212,7 @@ namespace Pulumiverse.Fortios.System
         public Output<int> AdminTelnetPort { get; private set; } = null!;
 
         /// <summary>
-        /// Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+        /// Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions &gt;= 6.4.0: 1 - 480 minutes (8 hours).
         /// </summary>
         [Output("admintimeout")]
         public Output<int> Admintimeout { get; private set; } = null!;
@@ -256,13 +254,13 @@ namespace Pulumiverse.Fortios.System
         public Output<string> AuthCert { get; private set; } = null!;
 
         /// <summary>
-        /// User authentication HTTP port. (1 - 65535, default = 80).
+        /// User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions &gt;= 6.4.0: default = 1000.
         /// </summary>
         [Output("authHttpPort")]
         public Output<int> AuthHttpPort { get; private set; } = null!;
 
         /// <summary>
-        /// User authentication HTTPS port. (1 - 65535, default = 443).
+        /// User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions &gt;= 6.4.0: default = 1003.
         /// </summary>
         [Output("authHttpsPort")]
         public Output<int> AuthHttpsPort { get; private set; } = null!;
@@ -346,7 +344,7 @@ namespace Pulumiverse.Fortios.System
         public Output<int> CertChainMax { get; private set; } = null!;
 
         /// <summary>
-        /// Time-out for reverting to the last saved configuration.
+        /// Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
         /// </summary>
         [Output("cfgRevertTimeout")]
         public Output<int> CfgRevertTimeout { get; private set; } = null!;
@@ -406,7 +404,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> ComplianceCheckTime { get; private set; } = null!;
 
         /// <summary>
-        /// Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        /// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         /// </summary>
         [Output("cpuUseThreshold")]
         public Output<int> CpuUseThreshold { get; private set; } = null!;
@@ -446,6 +444,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("dhParams")]
         public Output<string> DhParams { get; private set; } = null!;
+
+        /// <summary>
+        /// DHCP leases backup interval in seconds (10 - 3600, default = 60).
+        /// </summary>
+        [Output("dhcpLeaseBackupInterval")]
+        public Output<int> DhcpLeaseBackupInterval { get; private set; } = null!;
 
         /// <summary>
         /// DNS proxy worker count.
@@ -610,7 +614,7 @@ namespace Pulumiverse.Fortios.System
         public Output<int> FortitokenCloudSyncInterval { get; private set; } = null!;
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Output("getAllTables")]
         public Output<string?> GetAllTables { get; private set; } = null!;
@@ -868,6 +872,12 @@ namespace Pulumiverse.Fortios.System
         public Output<string> IpsecHmacOffload { get; private set; } = null!;
 
         /// <summary>
+        /// Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("ipsecQatOffload")]
+        public Output<string> IpsecQatOffload { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("ipsecRoundRobin")]
@@ -890,6 +900,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("ipv6AllowAnycastProbe")]
         public Output<string> Ipv6AllowAnycastProbe { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("ipv6AllowLocalInSilentDrop")]
+        public Output<string> Ipv6AllowLocalInSilentDrop { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
@@ -1018,31 +1034,31 @@ namespace Pulumiverse.Fortios.System
         public Output<string> McTtlNotchange { get; private set; } = null!;
 
         /// <summary>
-        /// Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+        /// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
         /// </summary>
         [Output("memoryUseThresholdExtreme")]
         public Output<int> MemoryUseThresholdExtreme { get; private set; } = null!;
 
         /// <summary>
-        /// Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+        /// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
         /// </summary>
         [Output("memoryUseThresholdGreen")]
         public Output<int> MemoryUseThresholdGreen { get; private set; } = null!;
 
         /// <summary>
-        /// Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+        /// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
         /// </summary>
         [Output("memoryUseThresholdRed")]
         public Output<int> MemoryUseThresholdRed { get; private set; } = null!;
 
         /// <summary>
-        /// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
+        /// Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions &gt;= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
         /// </summary>
         [Output("miglogAffinity")]
         public Output<string> MiglogAffinity { get; private set; } = null!;
 
         /// <summary>
-        /// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+        /// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
         /// </summary>
         [Output("miglogdChildren")]
         public Output<int> MiglogdChildren { get; private set; } = null!;
@@ -1064,6 +1080,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Output("ndpMaxEntry")]
         public Output<int> NdpMaxEntry { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Output("npuNeighborUpdate")]
+        public Output<string> NpuNeighborUpdate { get; private set; } = null!;
 
         /// <summary>
         /// Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
@@ -1234,13 +1256,13 @@ namespace Pulumiverse.Fortios.System
         public Output<string> RebootUponConfigRestore { get; private set; } = null!;
 
         /// <summary>
-        /// Statistics refresh interval in GUI.
+        /// Statistics refresh interval second(s) in GUI.
         /// </summary>
         [Output("refresh")]
         public Output<int> Refresh { get; private set; } = null!;
 
         /// <summary>
-        /// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+        /// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions &gt;= 6.4.0: 1-300 sec.
         /// </summary>
         [Output("remoteauthtimeout")]
         public Output<int> Remoteauthtimeout { get; private set; } = null!;
@@ -1486,7 +1508,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> StrictDirtySessionCheck { get; private set; } = null!;
 
         /// <summary>
-        /// Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+        /// Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
         /// </summary>
         [Output("strongCrypto")]
         public Output<string> StrongCrypto { get; private set; } = null!;
@@ -1540,7 +1562,7 @@ namespace Pulumiverse.Fortios.System
         public Output<int> TcpRstTimer { get; private set; } = null!;
 
         /// <summary>
-        /// Length of the TCP TIME-WAIT state in seconds.
+        /// Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
         /// </summary>
         [Output("tcpTimewaitTimer")]
         public Output<int> TcpTimewaitTimer { get; private set; } = null!;
@@ -1663,7 +1685,7 @@ namespace Pulumiverse.Fortios.System
         /// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         /// </summary>
         [Output("vdomparam")]
-        public Output<string?> Vdomparam { get; private set; } = null!;
+        public Output<string> Vdomparam { get; private set; } = null!;
 
         /// <summary>
         /// Controls the number of ARPs that the FortiGate sends for a Virtual IP (VIP) address range. Valid values: `unlimited`, `restricted`.
@@ -1827,13 +1849,13 @@ namespace Pulumiverse.Fortios.System
     public sealed class GlobalArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
+        /// Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("adminConcurrent")]
         public Input<string>? AdminConcurrent { get; set; }
 
         /// <summary>
-        /// Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+        /// Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
         /// </summary>
         [Input("adminConsoleTimeout")]
         public Input<int>? AdminConsoleTimeout { get; set; }
@@ -1983,7 +2005,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? AdminTelnetPort { get; set; }
 
         /// <summary>
-        /// Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+        /// Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions &gt;= 6.4.0: 1 - 480 minutes (8 hours).
         /// </summary>
         [Input("admintimeout")]
         public Input<int>? Admintimeout { get; set; }
@@ -2025,13 +2047,13 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? AuthCert { get; set; }
 
         /// <summary>
-        /// User authentication HTTP port. (1 - 65535, default = 80).
+        /// User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions &gt;= 6.4.0: default = 1000.
         /// </summary>
         [Input("authHttpPort")]
         public Input<int>? AuthHttpPort { get; set; }
 
         /// <summary>
-        /// User authentication HTTPS port. (1 - 65535, default = 443).
+        /// User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions &gt;= 6.4.0: default = 1003.
         /// </summary>
         [Input("authHttpsPort")]
         public Input<int>? AuthHttpsPort { get; set; }
@@ -2115,7 +2137,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? CertChainMax { get; set; }
 
         /// <summary>
-        /// Time-out for reverting to the last saved configuration.
+        /// Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
         /// </summary>
         [Input("cfgRevertTimeout")]
         public Input<int>? CfgRevertTimeout { get; set; }
@@ -2175,7 +2197,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? ComplianceCheckTime { get; set; }
 
         /// <summary>
-        /// Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        /// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         /// </summary>
         [Input("cpuUseThreshold")]
         public Input<int>? CpuUseThreshold { get; set; }
@@ -2215,6 +2237,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("dhParams")]
         public Input<string>? DhParams { get; set; }
+
+        /// <summary>
+        /// DHCP leases backup interval in seconds (10 - 3600, default = 60).
+        /// </summary>
+        [Input("dhcpLeaseBackupInterval")]
+        public Input<int>? DhcpLeaseBackupInterval { get; set; }
 
         /// <summary>
         /// DNS proxy worker count.
@@ -2379,7 +2407,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? FortitokenCloudSyncInterval { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -2643,6 +2671,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? IpsecHmacOffload { get; set; }
 
         /// <summary>
+        /// Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("ipsecQatOffload")]
+        public Input<string>? IpsecQatOffload { get; set; }
+
+        /// <summary>
         /// Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("ipsecRoundRobin")]
@@ -2665,6 +2699,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("ipv6AllowAnycastProbe")]
         public Input<string>? Ipv6AllowAnycastProbe { get; set; }
+
+        /// <summary>
+        /// Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("ipv6AllowLocalInSilentDrop")]
+        public Input<string>? Ipv6AllowLocalInSilentDrop { get; set; }
 
         /// <summary>
         /// Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
@@ -2793,31 +2833,31 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? McTtlNotchange { get; set; }
 
         /// <summary>
-        /// Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+        /// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
         /// </summary>
         [Input("memoryUseThresholdExtreme")]
         public Input<int>? MemoryUseThresholdExtreme { get; set; }
 
         /// <summary>
-        /// Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+        /// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
         /// </summary>
         [Input("memoryUseThresholdGreen")]
         public Input<int>? MemoryUseThresholdGreen { get; set; }
 
         /// <summary>
-        /// Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+        /// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
         /// </summary>
         [Input("memoryUseThresholdRed")]
         public Input<int>? MemoryUseThresholdRed { get; set; }
 
         /// <summary>
-        /// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
+        /// Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions &gt;= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
         /// </summary>
         [Input("miglogAffinity")]
         public Input<string>? MiglogAffinity { get; set; }
 
         /// <summary>
-        /// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+        /// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
         /// </summary>
         [Input("miglogdChildren")]
         public Input<int>? MiglogdChildren { get; set; }
@@ -2839,6 +2879,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("ndpMaxEntry")]
         public Input<int>? NdpMaxEntry { get; set; }
+
+        /// <summary>
+        /// Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("npuNeighborUpdate")]
+        public Input<string>? NpuNeighborUpdate { get; set; }
 
         /// <summary>
         /// Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
@@ -3009,13 +3055,13 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? RebootUponConfigRestore { get; set; }
 
         /// <summary>
-        /// Statistics refresh interval in GUI.
+        /// Statistics refresh interval second(s) in GUI.
         /// </summary>
         [Input("refresh")]
         public Input<int>? Refresh { get; set; }
 
         /// <summary>
-        /// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+        /// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions &gt;= 6.4.0: 1-300 sec.
         /// </summary>
         [Input("remoteauthtimeout")]
         public Input<int>? Remoteauthtimeout { get; set; }
@@ -3261,7 +3307,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? StrictDirtySessionCheck { get; set; }
 
         /// <summary>
-        /// Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+        /// Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("strongCrypto")]
         public Input<string>? StrongCrypto { get; set; }
@@ -3315,7 +3361,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? TcpRstTimer { get; set; }
 
         /// <summary>
-        /// Length of the TCP TIME-WAIT state in seconds.
+        /// Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
         /// </summary>
         [Input("tcpTimewaitTimer")]
         public Input<int>? TcpTimewaitTimer { get; set; }
@@ -3563,13 +3609,13 @@ namespace Pulumiverse.Fortios.System
     public sealed class GlobalState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
+        /// Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("adminConcurrent")]
         public Input<string>? AdminConcurrent { get; set; }
 
         /// <summary>
-        /// Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+        /// Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout).
         /// </summary>
         [Input("adminConsoleTimeout")]
         public Input<int>? AdminConsoleTimeout { get; set; }
@@ -3719,7 +3765,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? AdminTelnetPort { get; set; }
 
         /// <summary>
-        /// Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+        /// Number of minutes before an idle administrator session times out (default = 5). A shorter idle timeout is more secure. On FortiOS versions 6.2.0-6.2.6: 5 - 480 minutes (8 hours). On FortiOS versions &gt;= 6.4.0: 1 - 480 minutes (8 hours).
         /// </summary>
         [Input("admintimeout")]
         public Input<int>? Admintimeout { get; set; }
@@ -3761,13 +3807,13 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? AuthCert { get; set; }
 
         /// <summary>
-        /// User authentication HTTP port. (1 - 65535, default = 80).
+        /// User authentication HTTP port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 80. On FortiOS versions &gt;= 6.4.0: default = 1000.
         /// </summary>
         [Input("authHttpPort")]
         public Input<int>? AuthHttpPort { get; set; }
 
         /// <summary>
-        /// User authentication HTTPS port. (1 - 65535, default = 443).
+        /// User authentication HTTPS port. (1 - 65535). On FortiOS versions 6.2.0-6.2.6: default = 443. On FortiOS versions &gt;= 6.4.0: default = 1003.
         /// </summary>
         [Input("authHttpsPort")]
         public Input<int>? AuthHttpsPort { get; set; }
@@ -3851,7 +3897,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? CertChainMax { get; set; }
 
         /// <summary>
-        /// Time-out for reverting to the last saved configuration.
+        /// Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600).
         /// </summary>
         [Input("cfgRevertTimeout")]
         public Input<int>? CfgRevertTimeout { get; set; }
@@ -3911,7 +3957,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? ComplianceCheckTime { get; set; }
 
         /// <summary>
-        /// Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        /// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         /// </summary>
         [Input("cpuUseThreshold")]
         public Input<int>? CpuUseThreshold { get; set; }
@@ -3951,6 +3997,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("dhParams")]
         public Input<string>? DhParams { get; set; }
+
+        /// <summary>
+        /// DHCP leases backup interval in seconds (10 - 3600, default = 60).
+        /// </summary>
+        [Input("dhcpLeaseBackupInterval")]
+        public Input<int>? DhcpLeaseBackupInterval { get; set; }
 
         /// <summary>
         /// DNS proxy worker count.
@@ -4115,7 +4167,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? FortitokenCloudSyncInterval { get; set; }
 
         /// <summary>
-        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwish conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
+        /// Get all sub-tables including unconfigured tables. Do not set this variable to true if you configure sub-table in another resource, otherwise, conflicts and overwrite will occur. Options: [ false, true ]. false: Default value, do not get unconfigured tables; true: get all tables including unconfigured tables.
         /// </summary>
         [Input("getAllTables")]
         public Input<string>? GetAllTables { get; set; }
@@ -4379,6 +4431,12 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? IpsecHmacOffload { get; set; }
 
         /// <summary>
+        /// Enable/disable QAT offloading (Intel QuickAssist) for IPsec VPN traffic. QuickAssist can accelerate IPsec encryption and decryption. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("ipsecQatOffload")]
+        public Input<string>? IpsecQatOffload { get; set; }
+
+        /// <summary>
         /// Enable/disable round-robin redistribution to multiple CPUs for IPsec VPN traffic. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("ipsecRoundRobin")]
@@ -4401,6 +4459,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("ipv6AllowAnycastProbe")]
         public Input<string>? Ipv6AllowAnycastProbe { get; set; }
+
+        /// <summary>
+        /// Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("ipv6AllowLocalInSilentDrop")]
+        public Input<string>? Ipv6AllowLocalInSilentDrop { get; set; }
 
         /// <summary>
         /// Enable/disable silent drop of IPv6 local-in traffic. Valid values: `enable`, `disable`.
@@ -4529,31 +4593,31 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? McTtlNotchange { get; set; }
 
         /// <summary>
-        /// Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+        /// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
         /// </summary>
         [Input("memoryUseThresholdExtreme")]
         public Input<int>? MemoryUseThresholdExtreme { get; set; }
 
         /// <summary>
-        /// Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+        /// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
         /// </summary>
         [Input("memoryUseThresholdGreen")]
         public Input<int>? MemoryUseThresholdGreen { get; set; }
 
         /// <summary>
-        /// Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+        /// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
         /// </summary>
         [Input("memoryUseThresholdRed")]
         public Input<int>? MemoryUseThresholdRed { get; set; }
 
         /// <summary>
-        /// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
+        /// Affinity setting for logging. On FortiOS versions 6.2.0-7.2.3: 64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx. On FortiOS versions &gt;= 7.2.4: hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx.
         /// </summary>
         [Input("miglogAffinity")]
         public Input<string>? MiglogAffinity { get; set; }
 
         /// <summary>
-        /// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
+        /// Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time.
         /// </summary>
         [Input("miglogdChildren")]
         public Input<int>? MiglogdChildren { get; set; }
@@ -4575,6 +4639,12 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         [Input("ndpMaxEntry")]
         public Input<int>? NdpMaxEntry { get; set; }
+
+        /// <summary>
+        /// Enable/disable sending of probing packets to update neighbors for offloaded sessions. Valid values: `enable`, `disable`.
+        /// </summary>
+        [Input("npuNeighborUpdate")]
+        public Input<string>? NpuNeighborUpdate { get; set; }
 
         /// <summary>
         /// Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
@@ -4745,13 +4815,13 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? RebootUponConfigRestore { get; set; }
 
         /// <summary>
-        /// Statistics refresh interval in GUI.
+        /// Statistics refresh interval second(s) in GUI.
         /// </summary>
         [Input("refresh")]
         public Input<int>? Refresh { get; set; }
 
         /// <summary>
-        /// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (0-300 sec, default = 5, 0 means no timeout).
+        /// Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (default = 5). On FortiOS versions 6.2.0-6.2.6: 0-300 sec, 0 means no timeout. On FortiOS versions &gt;= 6.4.0: 1-300 sec.
         /// </summary>
         [Input("remoteauthtimeout")]
         public Input<int>? Remoteauthtimeout { get; set; }
@@ -4997,7 +5067,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? StrictDirtySessionCheck { get; set; }
 
         /// <summary>
-        /// Enable to use strong encryption and only allow strong ciphers (AES, 3DES) and digest (SHA1) for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
+        /// Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. Valid values: `enable`, `disable`.
         /// </summary>
         [Input("strongCrypto")]
         public Input<string>? StrongCrypto { get; set; }
@@ -5051,7 +5121,7 @@ namespace Pulumiverse.Fortios.System
         public Input<int>? TcpRstTimer { get; set; }
 
         /// <summary>
-        /// Length of the TCP TIME-WAIT state in seconds.
+        /// Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1).
         /// </summary>
         [Input("tcpTimewaitTimer")]
         public Input<int>? TcpTimewaitTimer { get; set; }

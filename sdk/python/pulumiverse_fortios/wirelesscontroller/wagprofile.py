@@ -30,7 +30,7 @@ class WagprofileArgs:
         :param pulumi.Input[str] dhcp_ip_addr: IP address of the monitoring DHCP request packet sent through the tunnel.
         :param pulumi.Input[str] name: Tunnel profile name.
         :param pulumi.Input[int] ping_interval: Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1).
-        :param pulumi.Input[int] ping_number: Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+        :param pulumi.Input[int] ping_number: Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
         :param pulumi.Input[int] return_packet_timeout: Window of time for the return packets from the tunnel's remote end (1 - 65535 sec, default = 160).
         :param pulumi.Input[str] tunnel_type: Tunnel type. Valid values: `l2tpv3`, `gre`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -110,7 +110,7 @@ class WagprofileArgs:
     @pulumi.getter(name="pingNumber")
     def ping_number(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+        Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
         """
         return pulumi.get(self, "ping_number")
 
@@ -198,7 +198,7 @@ class _WagprofileState:
         :param pulumi.Input[str] dhcp_ip_addr: IP address of the monitoring DHCP request packet sent through the tunnel.
         :param pulumi.Input[str] name: Tunnel profile name.
         :param pulumi.Input[int] ping_interval: Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1).
-        :param pulumi.Input[int] ping_number: Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+        :param pulumi.Input[int] ping_number: Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
         :param pulumi.Input[int] return_packet_timeout: Window of time for the return packets from the tunnel's remote end (1 - 65535 sec, default = 160).
         :param pulumi.Input[str] tunnel_type: Tunnel type. Valid values: `l2tpv3`, `gre`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -278,7 +278,7 @@ class _WagprofileState:
     @pulumi.getter(name="pingNumber")
     def ping_number(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+        Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
         """
         return pulumi.get(self, "ping_number")
 
@@ -390,7 +390,7 @@ class Wagprofile(pulumi.CustomResource):
         :param pulumi.Input[str] dhcp_ip_addr: IP address of the monitoring DHCP request packet sent through the tunnel.
         :param pulumi.Input[str] name: Tunnel profile name.
         :param pulumi.Input[int] ping_interval: Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1).
-        :param pulumi.Input[int] ping_number: Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+        :param pulumi.Input[int] ping_number: Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
         :param pulumi.Input[int] return_packet_timeout: Window of time for the return packets from the tunnel's remote end (1 - 65535 sec, default = 160).
         :param pulumi.Input[str] tunnel_type: Tunnel type. Valid values: `l2tpv3`, `gre`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -499,7 +499,7 @@ class Wagprofile(pulumi.CustomResource):
         :param pulumi.Input[str] dhcp_ip_addr: IP address of the monitoring DHCP request packet sent through the tunnel.
         :param pulumi.Input[str] name: Tunnel profile name.
         :param pulumi.Input[int] ping_interval: Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1).
-        :param pulumi.Input[int] ping_number: Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+        :param pulumi.Input[int] ping_number: Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
         :param pulumi.Input[int] return_packet_timeout: Window of time for the return packets from the tunnel's remote end (1 - 65535 sec, default = 160).
         :param pulumi.Input[str] tunnel_type: Tunnel type. Valid values: `l2tpv3`, `gre`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -558,7 +558,7 @@ class Wagprofile(pulumi.CustomResource):
     @pulumi.getter(name="pingNumber")
     def ping_number(self) -> pulumi.Output[int]:
         """
-        Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
+        Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
         """
         return pulumi.get(self, "ping_number")
 
@@ -580,7 +580,7 @@ class Wagprofile(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vdomparam(self) -> pulumi.Output[Optional[str]]:
+    def vdomparam(self) -> pulumi.Output[str]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
