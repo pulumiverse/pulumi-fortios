@@ -64,7 +64,7 @@ jobs:
       uses: goreleaser/goreleaser-action@v6
       with:
         args: -p 3 release --clean
-        version: latest
+        version: "~> v2"
 
     strategy:
       fail-fast: true
