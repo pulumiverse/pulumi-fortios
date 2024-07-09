@@ -199,7 +199,6 @@ class Ipv6neighborcache(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -210,7 +209,6 @@ class Ipv6neighborcache(pulumi.CustomResource):
             ipv6="fe80::b11a:5ae3:198:ba1c",
             mac="00:00:00:00:00:00")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -249,7 +247,6 @@ class Ipv6neighborcache(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -260,7 +257,6 @@ class Ipv6neighborcache(pulumi.CustomResource):
             ipv6="fe80::b11a:5ae3:198:ba1c",
             mac="00:00:00:00:00:00")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

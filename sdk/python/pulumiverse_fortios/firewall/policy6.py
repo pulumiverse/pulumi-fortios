@@ -3104,7 +3104,6 @@ class Policy6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -3161,7 +3160,6 @@ class Policy6(pulumi.CustomResource):
             tos_negate="disable",
             utm_status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -3288,7 +3286,6 @@ class Policy6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -3345,7 +3342,6 @@ class Policy6(pulumi.CustomResource):
             tos_negate="disable",
             utm_status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

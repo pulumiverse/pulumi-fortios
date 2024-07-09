@@ -103,14 +103,12 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.log.nulldevice.Setting("trname", status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -146,14 +144,12 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.log.nulldevice.Setting("trname", status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

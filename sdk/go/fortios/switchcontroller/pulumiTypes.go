@@ -3795,28 +3795,17 @@ func (o ManagedswitchMirrorSrcIngressArrayOutput) Index(i pulumi.IntInput) Manag
 }
 
 type ManagedswitchN8021xSettings struct {
-	// Authentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-	LinkDownAuth *string `pulumi:"linkDownAuth"`
-	// Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
-	LocalOverride *string `pulumi:"localOverride"`
-	// Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
-	MabReauth *string `pulumi:"mabReauth"`
-	// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-	MacCalledStationDelimiter *string `pulumi:"macCalledStationDelimiter"`
-	// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	LinkDownAuth               *string `pulumi:"linkDownAuth"`
+	LocalOverride              *string `pulumi:"localOverride"`
+	MabReauth                  *string `pulumi:"mabReauth"`
+	MacCalledStationDelimiter  *string `pulumi:"macCalledStationDelimiter"`
 	MacCallingStationDelimiter *string `pulumi:"macCallingStationDelimiter"`
-	// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
-	MacCase *string `pulumi:"macCase"`
-	// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-	MacPasswordDelimiter *string `pulumi:"macPasswordDelimiter"`
-	// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-	MacUsernameDelimiter *string `pulumi:"macUsernameDelimiter"`
-	// Maximum number of authentication attempts (0 - 15, default = 3).
-	MaxReauthAttempt *int `pulumi:"maxReauthAttempt"`
-	// Reauthentication time interval (1 - 1440 min, default = 60, 0 = disable).
-	ReauthPeriod *int `pulumi:"reauthPeriod"`
-	// 802.1X Tx period (seconds, default=30).
-	TxPeriod *int `pulumi:"txPeriod"`
+	MacCase                    *string `pulumi:"macCase"`
+	MacPasswordDelimiter       *string `pulumi:"macPasswordDelimiter"`
+	MacUsernameDelimiter       *string `pulumi:"macUsernameDelimiter"`
+	MaxReauthAttempt           *int    `pulumi:"maxReauthAttempt"`
+	ReauthPeriod               *int    `pulumi:"reauthPeriod"`
+	TxPeriod                   *int    `pulumi:"txPeriod"`
 }
 
 // ManagedswitchN8021xSettingsInput is an input type that accepts ManagedswitchN8021xSettingsArgs and ManagedswitchN8021xSettingsOutput values.
@@ -3831,28 +3820,17 @@ type ManagedswitchN8021xSettingsInput interface {
 }
 
 type ManagedswitchN8021xSettingsArgs struct {
-	// Authentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-	LinkDownAuth pulumi.StringPtrInput `pulumi:"linkDownAuth"`
-	// Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
-	LocalOverride pulumi.StringPtrInput `pulumi:"localOverride"`
-	// Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
-	MabReauth pulumi.StringPtrInput `pulumi:"mabReauth"`
-	// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-	MacCalledStationDelimiter pulumi.StringPtrInput `pulumi:"macCalledStationDelimiter"`
-	// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
+	LinkDownAuth               pulumi.StringPtrInput `pulumi:"linkDownAuth"`
+	LocalOverride              pulumi.StringPtrInput `pulumi:"localOverride"`
+	MabReauth                  pulumi.StringPtrInput `pulumi:"mabReauth"`
+	MacCalledStationDelimiter  pulumi.StringPtrInput `pulumi:"macCalledStationDelimiter"`
 	MacCallingStationDelimiter pulumi.StringPtrInput `pulumi:"macCallingStationDelimiter"`
-	// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
-	MacCase pulumi.StringPtrInput `pulumi:"macCase"`
-	// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-	MacPasswordDelimiter pulumi.StringPtrInput `pulumi:"macPasswordDelimiter"`
-	// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-	MacUsernameDelimiter pulumi.StringPtrInput `pulumi:"macUsernameDelimiter"`
-	// Maximum number of authentication attempts (0 - 15, default = 3).
-	MaxReauthAttempt pulumi.IntPtrInput `pulumi:"maxReauthAttempt"`
-	// Reauthentication time interval (1 - 1440 min, default = 60, 0 = disable).
-	ReauthPeriod pulumi.IntPtrInput `pulumi:"reauthPeriod"`
-	// 802.1X Tx period (seconds, default=30).
-	TxPeriod pulumi.IntPtrInput `pulumi:"txPeriod"`
+	MacCase                    pulumi.StringPtrInput `pulumi:"macCase"`
+	MacPasswordDelimiter       pulumi.StringPtrInput `pulumi:"macPasswordDelimiter"`
+	MacUsernameDelimiter       pulumi.StringPtrInput `pulumi:"macUsernameDelimiter"`
+	MaxReauthAttempt           pulumi.IntPtrInput    `pulumi:"maxReauthAttempt"`
+	ReauthPeriod               pulumi.IntPtrInput    `pulumi:"reauthPeriod"`
+	TxPeriod                   pulumi.IntPtrInput    `pulumi:"txPeriod"`
 }
 
 func (ManagedswitchN8021xSettingsArgs) ElementType() reflect.Type {
@@ -3932,57 +3910,46 @@ func (o ManagedswitchN8021xSettingsOutput) ToManagedswitchN8021xSettingsPtrOutpu
 	}).(ManagedswitchN8021xSettingsPtrOutput)
 }
 
-// Authentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
 func (o ManagedswitchN8021xSettingsOutput) LinkDownAuth() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchN8021xSettings) *string { return v.LinkDownAuth }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
 func (o ManagedswitchN8021xSettingsOutput) LocalOverride() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchN8021xSettings) *string { return v.LocalOverride }).(pulumi.StringPtrOutput)
 }
 
-// Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
 func (o ManagedswitchN8021xSettingsOutput) MabReauth() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchN8021xSettings) *string { return v.MabReauth }).(pulumi.StringPtrOutput)
 }
 
-// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
 func (o ManagedswitchN8021xSettingsOutput) MacCalledStationDelimiter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchN8021xSettings) *string { return v.MacCalledStationDelimiter }).(pulumi.StringPtrOutput)
 }
 
-// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
 func (o ManagedswitchN8021xSettingsOutput) MacCallingStationDelimiter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchN8021xSettings) *string { return v.MacCallingStationDelimiter }).(pulumi.StringPtrOutput)
 }
 
-// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
 func (o ManagedswitchN8021xSettingsOutput) MacCase() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchN8021xSettings) *string { return v.MacCase }).(pulumi.StringPtrOutput)
 }
 
-// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
 func (o ManagedswitchN8021xSettingsOutput) MacPasswordDelimiter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchN8021xSettings) *string { return v.MacPasswordDelimiter }).(pulumi.StringPtrOutput)
 }
 
-// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
 func (o ManagedswitchN8021xSettingsOutput) MacUsernameDelimiter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchN8021xSettings) *string { return v.MacUsernameDelimiter }).(pulumi.StringPtrOutput)
 }
 
-// Maximum number of authentication attempts (0 - 15, default = 3).
 func (o ManagedswitchN8021xSettingsOutput) MaxReauthAttempt() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedswitchN8021xSettings) *int { return v.MaxReauthAttempt }).(pulumi.IntPtrOutput)
 }
 
-// Reauthentication time interval (1 - 1440 min, default = 60, 0 = disable).
 func (o ManagedswitchN8021xSettingsOutput) ReauthPeriod() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedswitchN8021xSettings) *int { return v.ReauthPeriod }).(pulumi.IntPtrOutput)
 }
 
-// 802.1X Tx period (seconds, default=30).
 func (o ManagedswitchN8021xSettingsOutput) TxPeriod() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedswitchN8021xSettings) *int { return v.TxPeriod }).(pulumi.IntPtrOutput)
 }
@@ -4011,7 +3978,6 @@ func (o ManagedswitchN8021xSettingsPtrOutput) Elem() ManagedswitchN8021xSettings
 	}).(ManagedswitchN8021xSettingsOutput)
 }
 
-// Authentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
 func (o ManagedswitchN8021xSettingsPtrOutput) LinkDownAuth() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedswitchN8021xSettings) *string {
 		if v == nil {
@@ -4021,7 +3987,6 @@ func (o ManagedswitchN8021xSettingsPtrOutput) LinkDownAuth() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
 func (o ManagedswitchN8021xSettingsPtrOutput) LocalOverride() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedswitchN8021xSettings) *string {
 		if v == nil {
@@ -4031,7 +3996,6 @@ func (o ManagedswitchN8021xSettingsPtrOutput) LocalOverride() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
 func (o ManagedswitchN8021xSettingsPtrOutput) MabReauth() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedswitchN8021xSettings) *string {
 		if v == nil {
@@ -4041,7 +4005,6 @@ func (o ManagedswitchN8021xSettingsPtrOutput) MabReauth() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
 func (o ManagedswitchN8021xSettingsPtrOutput) MacCalledStationDelimiter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedswitchN8021xSettings) *string {
 		if v == nil {
@@ -4051,7 +4014,6 @@ func (o ManagedswitchN8021xSettingsPtrOutput) MacCalledStationDelimiter() pulumi
 	}).(pulumi.StringPtrOutput)
 }
 
-// MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
 func (o ManagedswitchN8021xSettingsPtrOutput) MacCallingStationDelimiter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedswitchN8021xSettings) *string {
 		if v == nil {
@@ -4061,7 +4023,6 @@ func (o ManagedswitchN8021xSettingsPtrOutput) MacCallingStationDelimiter() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
-// MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
 func (o ManagedswitchN8021xSettingsPtrOutput) MacCase() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedswitchN8021xSettings) *string {
 		if v == nil {
@@ -4071,7 +4032,6 @@ func (o ManagedswitchN8021xSettingsPtrOutput) MacCase() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
 func (o ManagedswitchN8021xSettingsPtrOutput) MacPasswordDelimiter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedswitchN8021xSettings) *string {
 		if v == nil {
@@ -4081,7 +4041,6 @@ func (o ManagedswitchN8021xSettingsPtrOutput) MacPasswordDelimiter() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
-// MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
 func (o ManagedswitchN8021xSettingsPtrOutput) MacUsernameDelimiter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ManagedswitchN8021xSettings) *string {
 		if v == nil {
@@ -4091,7 +4050,6 @@ func (o ManagedswitchN8021xSettingsPtrOutput) MacUsernameDelimiter() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum number of authentication attempts (0 - 15, default = 3).
 func (o ManagedswitchN8021xSettingsPtrOutput) MaxReauthAttempt() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedswitchN8021xSettings) *int {
 		if v == nil {
@@ -4101,7 +4059,6 @@ func (o ManagedswitchN8021xSettingsPtrOutput) MaxReauthAttempt() pulumi.IntPtrOu
 	}).(pulumi.IntPtrOutput)
 }
 
-// Reauthentication time interval (1 - 1440 min, default = 60, 0 = disable).
 func (o ManagedswitchN8021xSettingsPtrOutput) ReauthPeriod() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedswitchN8021xSettings) *int {
 		if v == nil {
@@ -4111,7 +4068,6 @@ func (o ManagedswitchN8021xSettingsPtrOutput) ReauthPeriod() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
-// 802.1X Tx period (seconds, default=30).
 func (o ManagedswitchN8021xSettingsPtrOutput) TxPeriod() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ManagedswitchN8021xSettings) *int {
 		if v == nil {
@@ -4252,7 +4208,7 @@ type ManagedswitchPort struct {
 	PacketSampler *string `pulumi:"packetSampler"`
 	// Configure ingress pause metering rate, in kbps (default = 0, disabled).
 	PauseMeter *int `pulumi:"pauseMeter"`
-	// Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
+	// Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
 	PauseMeterResume *string `pulumi:"pauseMeterResume"`
 	// PoE capable.
 	PoeCapable *int `pulumi:"poeCapable"`
@@ -4478,7 +4434,7 @@ type ManagedswitchPortArgs struct {
 	PacketSampler pulumi.StringPtrInput `pulumi:"packetSampler"`
 	// Configure ingress pause metering rate, in kbps (default = 0, disabled).
 	PauseMeter pulumi.IntPtrInput `pulumi:"pauseMeter"`
-	// Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
+	// Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
 	PauseMeterResume pulumi.StringPtrInput `pulumi:"pauseMeterResume"`
 	// PoE capable.
 	PoeCapable pulumi.IntPtrInput `pulumi:"poeCapable"`
@@ -4940,7 +4896,7 @@ func (o ManagedswitchPortOutput) PauseMeter() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *int { return v.PauseMeter }).(pulumi.IntPtrOutput)
 }
 
-// Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
+// Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
 func (o ManagedswitchPortOutput) PauseMeterResume() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPort) *string { return v.PauseMeterResume }).(pulumi.StringPtrOutput)
 }
@@ -5360,12 +5316,9 @@ func (o ManagedswitchPortAllowedVlanArrayOutput) Index(i pulumi.IntInput) Manage
 }
 
 type ManagedswitchPortDhcpSnoopOption82Override struct {
-	// Circuit ID string.
 	CircuitId *string `pulumi:"circuitId"`
-	// Remote ID string.
-	RemoteId *string `pulumi:"remoteId"`
-	// VLAN name.
-	VlanName *string `pulumi:"vlanName"`
+	RemoteId  *string `pulumi:"remoteId"`
+	VlanName  *string `pulumi:"vlanName"`
 }
 
 // ManagedswitchPortDhcpSnoopOption82OverrideInput is an input type that accepts ManagedswitchPortDhcpSnoopOption82OverrideArgs and ManagedswitchPortDhcpSnoopOption82OverrideOutput values.
@@ -5380,12 +5333,9 @@ type ManagedswitchPortDhcpSnoopOption82OverrideInput interface {
 }
 
 type ManagedswitchPortDhcpSnoopOption82OverrideArgs struct {
-	// Circuit ID string.
 	CircuitId pulumi.StringPtrInput `pulumi:"circuitId"`
-	// Remote ID string.
-	RemoteId pulumi.StringPtrInput `pulumi:"remoteId"`
-	// VLAN name.
-	VlanName pulumi.StringPtrInput `pulumi:"vlanName"`
+	RemoteId  pulumi.StringPtrInput `pulumi:"remoteId"`
+	VlanName  pulumi.StringPtrInput `pulumi:"vlanName"`
 }
 
 func (ManagedswitchPortDhcpSnoopOption82OverrideArgs) ElementType() reflect.Type {
@@ -5439,17 +5389,14 @@ func (o ManagedswitchPortDhcpSnoopOption82OverrideOutput) ToManagedswitchPortDhc
 	return o
 }
 
-// Circuit ID string.
 func (o ManagedswitchPortDhcpSnoopOption82OverrideOutput) CircuitId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPortDhcpSnoopOption82Override) *string { return v.CircuitId }).(pulumi.StringPtrOutput)
 }
 
-// Remote ID string.
 func (o ManagedswitchPortDhcpSnoopOption82OverrideOutput) RemoteId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPortDhcpSnoopOption82Override) *string { return v.RemoteId }).(pulumi.StringPtrOutput)
 }
 
-// VLAN name.
 func (o ManagedswitchPortDhcpSnoopOption82OverrideOutput) VlanName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedswitchPortDhcpSnoopOption82Override) *string { return v.VlanName }).(pulumi.StringPtrOutput)
 }

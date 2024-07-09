@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,7 +37,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupGlobal(ctx *pulumi.Context, args *LookupGlobalArgs, opts ...pulumi.InvokeOption) (*LookupGlobalResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupGlobalResult
@@ -173,7 +171,7 @@ type LookupGlobalResult struct {
 	ComplianceCheck string `pulumi:"complianceCheck"`
 	// Time of day to run scheduled PCI DSS compliance checks.
 	ComplianceCheckTime string `pulumi:"complianceCheckTime"`
-	// Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+	// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
 	CpuUseThreshold int `pulumi:"cpuUseThreshold"`
 	// Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute.
 	CsrCaAttribute string `pulumi:"csrCaAttribute"`
@@ -375,11 +373,11 @@ type LookupGlobalResult struct {
 	MaxRouteCacheSize int `pulumi:"maxRouteCacheSize"`
 	// Enable/disable no modification of multicast TTL.
 	McTtlNotchange string `pulumi:"mcTtlNotchange"`
-	// Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+	// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
 	MemoryUseThresholdExtreme int `pulumi:"memoryUseThresholdExtreme"`
-	// Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+	// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
 	MemoryUseThresholdGreen int `pulumi:"memoryUseThresholdGreen"`
-	// Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+	// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
 	MemoryUseThresholdRed int `pulumi:"memoryUseThresholdRed"`
 	// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
 	MiglogAffinity string `pulumi:"miglogAffinity"`
@@ -958,7 +956,7 @@ func (o LookupGlobalResultOutput) ComplianceCheckTime() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.ComplianceCheckTime }).(pulumi.StringOutput)
 }
 
-// Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
 func (o LookupGlobalResultOutput) CpuUseThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupGlobalResult) int { return v.CpuUseThreshold }).(pulumi.IntOutput)
 }
@@ -1465,17 +1463,17 @@ func (o LookupGlobalResultOutput) McTtlNotchange() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalResult) string { return v.McTtlNotchange }).(pulumi.StringOutput)
 }
 
-// Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
 func (o LookupGlobalResultOutput) MemoryUseThresholdExtreme() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupGlobalResult) int { return v.MemoryUseThresholdExtreme }).(pulumi.IntOutput)
 }
 
-// Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
 func (o LookupGlobalResultOutput) MemoryUseThresholdGreen() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupGlobalResult) int { return v.MemoryUseThresholdGreen }).(pulumi.IntOutput)
 }
 
-// Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
 func (o LookupGlobalResultOutput) MemoryUseThresholdRed() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupGlobalResult) int { return v.MemoryUseThresholdRed }).(pulumi.IntOutput)
 }

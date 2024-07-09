@@ -729,7 +729,6 @@ class Ippool(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -746,7 +745,6 @@ class Ippool(pulumi.CustomResource):
             startip="1.0.0.0",
             type="overload")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -801,7 +799,6 @@ class Ippool(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -818,7 +815,6 @@ class Ippool(pulumi.CustomResource):
             startip="1.0.0.0",
             type="overload")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

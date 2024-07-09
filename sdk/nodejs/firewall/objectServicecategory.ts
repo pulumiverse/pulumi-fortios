@@ -11,14 +11,12 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
  *
  * const testCategoryName = new fortios.firewall.ObjectServicecategory("testCategoryName", {comment: "comment"});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class ObjectServicecategory extends pulumi.CustomResource {
     /**

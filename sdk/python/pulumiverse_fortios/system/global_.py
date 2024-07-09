@@ -363,7 +363,7 @@ class GlobalArgs:
         :param pulumi.Input[str] cmdbsvr_affinity: Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] compliance_check: Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] compliance_check_time: Time of day to run scheduled PCI DSS compliance checks.
-        :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         :param pulumi.Input[str] csr_ca_attribute: Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] daily_restart: Enable/disable daily restart of FortiGate unit. Use the restart-time option to set the time of day for the restart. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] default_service_source_port: Default service source port range. (default=1-65535)
@@ -465,9 +465,9 @@ class GlobalArgs:
         :param pulumi.Input[int] max_dlpstat_memory: Maximum DLP stat memory (0 - 4294967295).
         :param pulumi.Input[int] max_route_cache_size: Maximum number of IP route cache entries (0 - 2147483647).
         :param pulumi.Input[str] mc_ttl_notchange: Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] memory_use_threshold_extreme: Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
-        :param pulumi.Input[int] memory_use_threshold_green: Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
-        :param pulumi.Input[int] memory_use_threshold_red: Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+        :param pulumi.Input[int] memory_use_threshold_extreme: Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
+        :param pulumi.Input[int] memory_use_threshold_green: Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
+        :param pulumi.Input[int] memory_use_threshold_red: Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
         :param pulumi.Input[str] miglog_affinity: Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[int] miglogd_children: Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
         :param pulumi.Input[str] multi_factor_authentication: Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
@@ -1868,7 +1868,7 @@ class GlobalArgs:
     @pulumi.getter(name="cpuUseThreshold")
     def cpu_use_threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         """
         return pulumi.get(self, "cpu_use_threshold")
 
@@ -3092,7 +3092,7 @@ class GlobalArgs:
     @pulumi.getter(name="memoryUseThresholdExtreme")
     def memory_use_threshold_extreme(self) -> Optional[pulumi.Input[int]]:
         """
-        Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+        Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
         """
         return pulumi.get(self, "memory_use_threshold_extreme")
 
@@ -3104,7 +3104,7 @@ class GlobalArgs:
     @pulumi.getter(name="memoryUseThresholdGreen")
     def memory_use_threshold_green(self) -> Optional[pulumi.Input[int]]:
         """
-        Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+        Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
         """
         return pulumi.get(self, "memory_use_threshold_green")
 
@@ -3116,7 +3116,7 @@ class GlobalArgs:
     @pulumi.getter(name="memoryUseThresholdRed")
     def memory_use_threshold_red(self) -> Optional[pulumi.Input[int]]:
         """
-        Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+        Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
         """
         return pulumi.get(self, "memory_use_threshold_red")
 
@@ -4963,7 +4963,7 @@ class _GlobalState:
         :param pulumi.Input[str] cmdbsvr_affinity: Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] compliance_check: Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] compliance_check_time: Time of day to run scheduled PCI DSS compliance checks.
-        :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         :param pulumi.Input[str] csr_ca_attribute: Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] daily_restart: Enable/disable daily restart of FortiGate unit. Use the restart-time option to set the time of day for the restart. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] default_service_source_port: Default service source port range. (default=1-65535)
@@ -5065,9 +5065,9 @@ class _GlobalState:
         :param pulumi.Input[int] max_dlpstat_memory: Maximum DLP stat memory (0 - 4294967295).
         :param pulumi.Input[int] max_route_cache_size: Maximum number of IP route cache entries (0 - 2147483647).
         :param pulumi.Input[str] mc_ttl_notchange: Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] memory_use_threshold_extreme: Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
-        :param pulumi.Input[int] memory_use_threshold_green: Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
-        :param pulumi.Input[int] memory_use_threshold_red: Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+        :param pulumi.Input[int] memory_use_threshold_extreme: Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
+        :param pulumi.Input[int] memory_use_threshold_green: Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
+        :param pulumi.Input[int] memory_use_threshold_red: Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
         :param pulumi.Input[str] miglog_affinity: Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[int] miglogd_children: Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
         :param pulumi.Input[str] multi_factor_authentication: Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
@@ -6468,7 +6468,7 @@ class _GlobalState:
     @pulumi.getter(name="cpuUseThreshold")
     def cpu_use_threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         """
         return pulumi.get(self, "cpu_use_threshold")
 
@@ -7692,7 +7692,7 @@ class _GlobalState:
     @pulumi.getter(name="memoryUseThresholdExtreme")
     def memory_use_threshold_extreme(self) -> Optional[pulumi.Input[int]]:
         """
-        Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+        Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
         """
         return pulumi.get(self, "memory_use_threshold_extreme")
 
@@ -7704,7 +7704,7 @@ class _GlobalState:
     @pulumi.getter(name="memoryUseThresholdGreen")
     def memory_use_threshold_green(self) -> Optional[pulumi.Input[int]]:
         """
-        Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+        Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
         """
         return pulumi.get(self, "memory_use_threshold_green")
 
@@ -7716,7 +7716,7 @@ class _GlobalState:
     @pulumi.getter(name="memoryUseThresholdRed")
     def memory_use_threshold_red(self) -> Optional[pulumi.Input[int]]:
         """
-        Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+        Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
         """
         return pulumi.get(self, "memory_use_threshold_red")
 
@@ -9511,7 +9511,6 @@ class Global(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -9522,7 +9521,6 @@ class Global(pulumi.CustomResource):
             hostname="ste11",
             timezone="04")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -9602,7 +9600,7 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] cmdbsvr_affinity: Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] compliance_check: Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] compliance_check_time: Time of day to run scheduled PCI DSS compliance checks.
-        :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         :param pulumi.Input[str] csr_ca_attribute: Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] daily_restart: Enable/disable daily restart of FortiGate unit. Use the restart-time option to set the time of day for the restart. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] default_service_source_port: Default service source port range. (default=1-65535)
@@ -9704,9 +9702,9 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[int] max_dlpstat_memory: Maximum DLP stat memory (0 - 4294967295).
         :param pulumi.Input[int] max_route_cache_size: Maximum number of IP route cache entries (0 - 2147483647).
         :param pulumi.Input[str] mc_ttl_notchange: Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] memory_use_threshold_extreme: Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
-        :param pulumi.Input[int] memory_use_threshold_green: Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
-        :param pulumi.Input[int] memory_use_threshold_red: Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+        :param pulumi.Input[int] memory_use_threshold_extreme: Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
+        :param pulumi.Input[int] memory_use_threshold_green: Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
+        :param pulumi.Input[int] memory_use_threshold_red: Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
         :param pulumi.Input[str] miglog_affinity: Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[int] miglogd_children: Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
         :param pulumi.Input[str] multi_factor_authentication: Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
@@ -9843,7 +9841,6 @@ class Global(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -9854,7 +9851,6 @@ class Global(pulumi.CustomResource):
             hostname="ste11",
             timezone="04")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -10834,7 +10830,7 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[str] cmdbsvr_affinity: Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] compliance_check: Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] compliance_check_time: Time of day to run scheduled PCI DSS compliance checks.
-        :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         :param pulumi.Input[str] csr_ca_attribute: Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] daily_restart: Enable/disable daily restart of FortiGate unit. Use the restart-time option to set the time of day for the restart. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] default_service_source_port: Default service source port range. (default=1-65535)
@@ -10936,9 +10932,9 @@ class Global(pulumi.CustomResource):
         :param pulumi.Input[int] max_dlpstat_memory: Maximum DLP stat memory (0 - 4294967295).
         :param pulumi.Input[int] max_route_cache_size: Maximum number of IP route cache entries (0 - 2147483647).
         :param pulumi.Input[str] mc_ttl_notchange: Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] memory_use_threshold_extreme: Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
-        :param pulumi.Input[int] memory_use_threshold_green: Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
-        :param pulumi.Input[int] memory_use_threshold_red: Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+        :param pulumi.Input[int] memory_use_threshold_extreme: Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
+        :param pulumi.Input[int] memory_use_threshold_green: Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
+        :param pulumi.Input[int] memory_use_threshold_red: Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
         :param pulumi.Input[str] miglog_affinity: Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[int] miglogd_children: Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. No logs will be dropped or lost if the number is changed.
         :param pulumi.Input[str] multi_factor_authentication: Enforce all login methods to require an additional authentication factor (default = optional). Valid values: `optional`, `mandatory`.
@@ -11825,7 +11821,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="cpuUseThreshold")
     def cpu_use_threshold(self) -> pulumi.Output[int]:
         """
-        Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         """
         return pulumi.get(self, "cpu_use_threshold")
 
@@ -12641,7 +12637,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="memoryUseThresholdExtreme")
     def memory_use_threshold_extreme(self) -> pulumi.Output[int]:
         """
-        Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+        Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
         """
         return pulumi.get(self, "memory_use_threshold_extreme")
 
@@ -12649,7 +12645,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="memoryUseThresholdGreen")
     def memory_use_threshold_green(self) -> pulumi.Output[int]:
         """
-        Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+        Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
         """
         return pulumi.get(self, "memory_use_threshold_green")
 
@@ -12657,7 +12653,7 @@ class Global(pulumi.CustomResource):
     @pulumi.getter(name="memoryUseThresholdRed")
     def memory_use_threshold_red(self) -> pulumi.Output[int]:
         """
-        Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+        Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
         """
         return pulumi.get(self, "memory_use_threshold_red")
 

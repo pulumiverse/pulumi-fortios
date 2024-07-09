@@ -893,7 +893,6 @@ class Policy46(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -933,7 +932,6 @@ class Policy46(pulumi.CustomResource):
                 name="FIREWALL_AUTH_PORTAL_ADDRESS",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -993,7 +991,6 @@ class Policy46(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1033,7 +1030,6 @@ class Policy46(pulumi.CustomResource):
                 name="FIREWALL_AUTH_PORTAL_ADDRESS",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

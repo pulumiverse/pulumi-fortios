@@ -14,12 +14,9 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type NeighborConditionalAdvertise6 struct {
-	// Name of advertising route map.
 	AdvertiseRoutemap *string `pulumi:"advertiseRoutemap"`
-	// Name of condition route map.
 	ConditionRoutemap *string `pulumi:"conditionRoutemap"`
-	// Type of condition. Valid values: `exist`, `non-exist`.
-	ConditionType *string `pulumi:"conditionType"`
+	ConditionType     *string `pulumi:"conditionType"`
 }
 
 // NeighborConditionalAdvertise6Input is an input type that accepts NeighborConditionalAdvertise6Args and NeighborConditionalAdvertise6Output values.
@@ -34,12 +31,9 @@ type NeighborConditionalAdvertise6Input interface {
 }
 
 type NeighborConditionalAdvertise6Args struct {
-	// Name of advertising route map.
 	AdvertiseRoutemap pulumi.StringPtrInput `pulumi:"advertiseRoutemap"`
-	// Name of condition route map.
 	ConditionRoutemap pulumi.StringPtrInput `pulumi:"conditionRoutemap"`
-	// Type of condition. Valid values: `exist`, `non-exist`.
-	ConditionType pulumi.StringPtrInput `pulumi:"conditionType"`
+	ConditionType     pulumi.StringPtrInput `pulumi:"conditionType"`
 }
 
 func (NeighborConditionalAdvertise6Args) ElementType() reflect.Type {
@@ -93,17 +87,14 @@ func (o NeighborConditionalAdvertise6Output) ToNeighborConditionalAdvertise6Outp
 	return o
 }
 
-// Name of advertising route map.
 func (o NeighborConditionalAdvertise6Output) AdvertiseRoutemap() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NeighborConditionalAdvertise6) *string { return v.AdvertiseRoutemap }).(pulumi.StringPtrOutput)
 }
 
-// Name of condition route map.
 func (o NeighborConditionalAdvertise6Output) ConditionRoutemap() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NeighborConditionalAdvertise6) *string { return v.ConditionRoutemap }).(pulumi.StringPtrOutput)
 }
 
-// Type of condition. Valid values: `exist`, `non-exist`.
 func (o NeighborConditionalAdvertise6Output) ConditionType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NeighborConditionalAdvertise6) *string { return v.ConditionType }).(pulumi.StringPtrOutput)
 }

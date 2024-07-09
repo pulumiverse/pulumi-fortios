@@ -502,7 +502,6 @@ class Contentdeliverynetworkrule(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -519,7 +518,6 @@ class Contentdeliverynetworkrule(pulumi.CustomResource):
             text_response_vcache="enable",
             updateserver="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -567,7 +565,6 @@ class Contentdeliverynetworkrule(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -584,7 +581,6 @@ class Contentdeliverynetworkrule(pulumi.CustomResource):
             text_response_vcache="enable",
             updateserver="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

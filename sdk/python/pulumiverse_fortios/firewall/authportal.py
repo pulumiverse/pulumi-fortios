@@ -304,7 +304,6 @@ class Authportal(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -315,7 +314,6 @@ class Authportal(pulumi.CustomResource):
             )],
             portal_addr="1.1.1.1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -357,7 +355,6 @@ class Authportal(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -368,7 +365,6 @@ class Authportal(pulumi.CustomResource):
             )],
             portal_addr="1.1.1.1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

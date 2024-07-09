@@ -14,49 +14,22 @@ namespace Pulumiverse.Fortios.System.Outputs
     [OutputType]
     public sealed class InterfaceIpv6Vrrp6
     {
-        /// <summary>
-        /// Enable/disable accept mode. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? AcceptMode;
-        /// <summary>
-        /// Advertisement interval (1 - 255 seconds).
-        /// </summary>
         public readonly int? AdvInterval;
-        /// <summary>
-        /// Enable/disable ignoring of default route when checking destination. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? IgnoreDefaultRoute;
-        /// <summary>
-        /// Enable/disable preempt mode. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? Preempt;
         /// <summary>
         /// Priority of learned routes.
         /// </summary>
         public readonly int? Priority;
-        /// <summary>
-        /// Startup time (1 - 255 seconds).
-        /// </summary>
         public readonly int? StartTime;
         /// <summary>
         /// Bring the interface up or shut the interface down. Valid values: `up`, `down`.
         /// </summary>
         public readonly string? Status;
-        /// <summary>
-        /// Monitor the route to this destination.
-        /// </summary>
         public readonly string? Vrdst6;
-        /// <summary>
-        /// VRRP group ID (1 - 65535).
-        /// </summary>
         public readonly int? Vrgrp;
-        /// <summary>
-        /// Virtual router identifier (1 - 255).
-        /// </summary>
         public readonly int? Vrid;
-        /// <summary>
-        /// IPv6 address of the virtual router.
-        /// </summary>
         public readonly string? Vrip6;
 
         [OutputConstructor]

@@ -267,7 +267,6 @@ class Ippool6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -276,7 +275,6 @@ class Ippool6(pulumi.CustomResource):
             endip="2001:3ca1:10f:1a:121b::19",
             startip="2001:3ca1:10f:1a:121b::10")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -317,7 +315,6 @@ class Ippool6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -326,7 +323,6 @@ class Ippool6(pulumi.CustomResource):
             endip="2001:3ca1:10f:1a:121b::19",
             startip="2001:3ca1:10f:1a:121b::10")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -236,7 +236,6 @@ class Settings(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -247,7 +246,6 @@ class Settings(pulumi.CustomResource):
             packet_log_memory=256,
             packet_log_post_attack=0)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -287,7 +285,6 @@ class Settings(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -298,7 +295,6 @@ class Settings(pulumi.CustomResource):
             packet_log_memory=256,
             packet_log_post_attack=0)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

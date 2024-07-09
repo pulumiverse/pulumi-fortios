@@ -170,7 +170,6 @@ class Anqpnetworkauthtype(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -179,7 +178,6 @@ class Anqpnetworkauthtype(pulumi.CustomResource):
             auth_type="acceptance-of-terms",
             url="www.example.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -217,7 +215,6 @@ class Anqpnetworkauthtype(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -226,7 +223,6 @@ class Anqpnetworkauthtype(pulumi.CustomResource):
             auth_type="acceptance-of-terms",
             url="www.example.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

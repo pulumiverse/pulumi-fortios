@@ -2713,7 +2713,6 @@ class Portal(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2769,7 +2768,6 @@ class Portal(pulumi.CustomResource):
             wins_server1="0.0.0.0",
             wins_server2="0.0.0.0")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -2884,7 +2882,6 @@ class Portal(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2940,7 +2937,6 @@ class Portal(pulumi.CustomResource):
             wins_server1="0.0.0.0",
             wins_server2="0.0.0.0")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -266,7 +266,6 @@ class Ipiptunnel(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -276,7 +275,6 @@ class Ipiptunnel(pulumi.CustomResource):
             local_gw="1.1.1.1",
             remote_gw="2.2.2.2")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -317,7 +315,6 @@ class Ipiptunnel(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -327,7 +324,6 @@ class Ipiptunnel(pulumi.CustomResource):
             local_gw="1.1.1.1",
             remote_gw="2.2.2.2")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

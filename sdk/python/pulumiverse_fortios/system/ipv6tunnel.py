@@ -268,7 +268,6 @@ class Ipv6tunnel(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -278,7 +277,6 @@ class Ipv6tunnel(pulumi.CustomResource):
             interface="port3",
             source="2001:db8:85a3::8a2e:370:7334")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -319,7 +317,6 @@ class Ipv6tunnel(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -329,7 +326,6 @@ class Ipv6tunnel(pulumi.CustomResource):
             interface="port3",
             source="2001:db8:85a3::8a2e:370:7334")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

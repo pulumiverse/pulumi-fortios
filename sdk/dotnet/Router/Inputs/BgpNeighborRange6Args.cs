@@ -14,14 +14,11 @@ namespace Pulumiverse.Fortios.Router.Inputs
     public sealed class BgpNeighborRange6Args : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID.
+        /// an identifier for the resource.
         /// </summary>
         [Input("id")]
         public Input<int>? Id { get; set; }
 
-        /// <summary>
-        /// Maximum number of neighbors.
-        /// </summary>
         [Input("maxNeighborNum")]
         public Input<int>? MaxNeighborNum { get; set; }
 
@@ -31,9 +28,6 @@ namespace Pulumiverse.Fortios.Router.Inputs
         [Input("neighborGroup")]
         public Input<string>? NeighborGroup { get; set; }
 
-        /// <summary>
-        /// Aggregate IPv6 prefix.
-        /// </summary>
         [Input("prefix6")]
         public Input<string>? Prefix6 { get; set; }
 

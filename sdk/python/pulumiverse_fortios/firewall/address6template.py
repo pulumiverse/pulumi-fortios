@@ -302,7 +302,6 @@ class Address6template(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -325,7 +324,6 @@ class Address6template(pulumi.CustomResource):
             ],
             subnet_segment_count=2)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -367,7 +365,6 @@ class Address6template(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -390,7 +387,6 @@ class Address6template(pulumi.CustomResource):
             ],
             subnet_segment_count=2)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

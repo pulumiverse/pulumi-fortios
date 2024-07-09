@@ -12,7 +12,6 @@ import * as utilities from "../utilities";
  * ## Example Usage
  *
  * ### Loopback Interface
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -29,10 +28,8 @@ import * as utilities from "../utilities";
  *     vdom: "root",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### VLAN Interface
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -50,10 +47,8 @@ import * as utilities from "../utilities";
  *     vlanid: "3",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Physical Interface
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -77,7 +72,6 @@ import * as utilities from "../utilities";
  *     type: "physical",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class InterfacePort extends pulumi.CustomResource {
     /**

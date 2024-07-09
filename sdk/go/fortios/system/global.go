@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,7 +41,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -180,7 +178,7 @@ type Global struct {
 	ComplianceCheck pulumi.StringOutput `pulumi:"complianceCheck"`
 	// Time of day to run scheduled PCI DSS compliance checks.
 	ComplianceCheckTime pulumi.StringOutput `pulumi:"complianceCheckTime"`
-	// Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+	// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
 	CpuUseThreshold pulumi.IntOutput `pulumi:"cpuUseThreshold"`
 	// Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
 	CsrCaAttribute pulumi.StringOutput `pulumi:"csrCaAttribute"`
@@ -384,11 +382,11 @@ type Global struct {
 	MaxRouteCacheSize pulumi.IntOutput `pulumi:"maxRouteCacheSize"`
 	// Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
 	McTtlNotchange pulumi.StringOutput `pulumi:"mcTtlNotchange"`
-	// Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+	// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
 	MemoryUseThresholdExtreme pulumi.IntOutput `pulumi:"memoryUseThresholdExtreme"`
-	// Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+	// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
 	MemoryUseThresholdGreen pulumi.IntOutput `pulumi:"memoryUseThresholdGreen"`
-	// Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+	// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
 	MemoryUseThresholdRed pulumi.IntOutput `pulumi:"memoryUseThresholdRed"`
 	// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
 	MiglogAffinity pulumi.StringOutput `pulumi:"miglogAffinity"`
@@ -786,7 +784,7 @@ type globalState struct {
 	ComplianceCheck *string `pulumi:"complianceCheck"`
 	// Time of day to run scheduled PCI DSS compliance checks.
 	ComplianceCheckTime *string `pulumi:"complianceCheckTime"`
-	// Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+	// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
 	CpuUseThreshold *int `pulumi:"cpuUseThreshold"`
 	// Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
 	CsrCaAttribute *string `pulumi:"csrCaAttribute"`
@@ -990,11 +988,11 @@ type globalState struct {
 	MaxRouteCacheSize *int `pulumi:"maxRouteCacheSize"`
 	// Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
 	McTtlNotchange *string `pulumi:"mcTtlNotchange"`
-	// Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+	// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
 	MemoryUseThresholdExtreme *int `pulumi:"memoryUseThresholdExtreme"`
-	// Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+	// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
 	MemoryUseThresholdGreen *int `pulumi:"memoryUseThresholdGreen"`
-	// Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+	// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
 	MemoryUseThresholdRed *int `pulumi:"memoryUseThresholdRed"`
 	// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
 	MiglogAffinity *string `pulumi:"miglogAffinity"`
@@ -1363,7 +1361,7 @@ type GlobalState struct {
 	ComplianceCheck pulumi.StringPtrInput
 	// Time of day to run scheduled PCI DSS compliance checks.
 	ComplianceCheckTime pulumi.StringPtrInput
-	// Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+	// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
 	CpuUseThreshold pulumi.IntPtrInput
 	// Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
 	CsrCaAttribute pulumi.StringPtrInput
@@ -1567,11 +1565,11 @@ type GlobalState struct {
 	MaxRouteCacheSize pulumi.IntPtrInput
 	// Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
 	McTtlNotchange pulumi.StringPtrInput
-	// Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+	// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
 	MemoryUseThresholdExtreme pulumi.IntPtrInput
-	// Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+	// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
 	MemoryUseThresholdGreen pulumi.IntPtrInput
-	// Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+	// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
 	MemoryUseThresholdRed pulumi.IntPtrInput
 	// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
 	MiglogAffinity pulumi.StringPtrInput
@@ -1944,7 +1942,7 @@ type globalArgs struct {
 	ComplianceCheck *string `pulumi:"complianceCheck"`
 	// Time of day to run scheduled PCI DSS compliance checks.
 	ComplianceCheckTime *string `pulumi:"complianceCheckTime"`
-	// Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+	// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
 	CpuUseThreshold *int `pulumi:"cpuUseThreshold"`
 	// Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
 	CsrCaAttribute *string `pulumi:"csrCaAttribute"`
@@ -2148,11 +2146,11 @@ type globalArgs struct {
 	MaxRouteCacheSize *int `pulumi:"maxRouteCacheSize"`
 	// Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
 	McTtlNotchange *string `pulumi:"mcTtlNotchange"`
-	// Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+	// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
 	MemoryUseThresholdExtreme *int `pulumi:"memoryUseThresholdExtreme"`
-	// Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+	// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
 	MemoryUseThresholdGreen *int `pulumi:"memoryUseThresholdGreen"`
-	// Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+	// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
 	MemoryUseThresholdRed *int `pulumi:"memoryUseThresholdRed"`
 	// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
 	MiglogAffinity *string `pulumi:"miglogAffinity"`
@@ -2522,7 +2520,7 @@ type GlobalArgs struct {
 	ComplianceCheck pulumi.StringPtrInput
 	// Time of day to run scheduled PCI DSS compliance checks.
 	ComplianceCheckTime pulumi.StringPtrInput
-	// Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+	// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
 	CpuUseThreshold pulumi.IntPtrInput
 	// Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. Valid values: `enable`, `disable`.
 	CsrCaAttribute pulumi.StringPtrInput
@@ -2726,11 +2724,11 @@ type GlobalArgs struct {
 	MaxRouteCacheSize pulumi.IntPtrInput
 	// Enable/disable no modification of multicast TTL. Valid values: `enable`, `disable`.
 	McTtlNotchange pulumi.StringPtrInput
-	// Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+	// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
 	MemoryUseThresholdExtreme pulumi.IntPtrInput
-	// Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+	// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
 	MemoryUseThresholdGreen pulumi.IntPtrInput
-	// Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+	// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
 	MemoryUseThresholdRed pulumi.IntPtrInput
 	// Affinity setting for logging (64-bit hexadecimal value in the format of xxxxxxxxxxxxxxxx).
 	MiglogAffinity pulumi.StringPtrInput
@@ -3359,7 +3357,7 @@ func (o GlobalOutput) ComplianceCheckTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.ComplianceCheckTime }).(pulumi.StringOutput)
 }
 
-// Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
 func (o GlobalOutput) CpuUseThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.CpuUseThreshold }).(pulumi.IntOutput)
 }
@@ -3869,17 +3867,17 @@ func (o GlobalOutput) McTtlNotchange() pulumi.StringOutput {
 	return o.ApplyT(func(v *Global) pulumi.StringOutput { return v.McTtlNotchange }).(pulumi.StringOutput)
 }
 
-// Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
 func (o GlobalOutput) MemoryUseThresholdExtreme() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.MemoryUseThresholdExtreme }).(pulumi.IntOutput)
 }
 
-// Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
 func (o GlobalOutput) MemoryUseThresholdGreen() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.MemoryUseThresholdGreen }).(pulumi.IntOutput)
 }
 
-// Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
 func (o GlobalOutput) MemoryUseThresholdRed() pulumi.IntOutput {
 	return o.ApplyT(func(v *Global) pulumi.IntOutput { return v.MemoryUseThresholdRed }).(pulumi.IntOutput)
 }

@@ -567,7 +567,6 @@ class Scheme(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -588,7 +587,6 @@ class Scheme(pulumi.CustomResource):
             negotiate_ntlm="enable",
             require_tfa="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -638,7 +636,6 @@ class Scheme(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -659,7 +656,6 @@ class Scheme(pulumi.CustomResource):
             negotiate_ntlm="enable",
             require_tfa="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

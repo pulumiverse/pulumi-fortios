@@ -530,7 +530,6 @@ class Sslserver(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -550,7 +549,6 @@ class Sslserver(pulumi.CustomResource):
             ssl_send_empty_frags="enable",
             url_rewrite="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -599,7 +597,6 @@ class Sslserver(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -619,7 +616,6 @@ class Sslserver(pulumi.CustomResource):
             ssl_send_empty_frags="enable",
             url_rewrite="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

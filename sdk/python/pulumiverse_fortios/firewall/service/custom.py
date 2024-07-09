@@ -1063,7 +1063,6 @@ class Custom(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1085,7 +1084,6 @@ class Custom(pulumi.CustomResource):
             udp_idle_timer=0,
             visibility="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1150,7 +1148,6 @@ class Custom(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1172,7 +1169,6 @@ class Custom(pulumi.CustomResource):
             udp_idle_timer=0,
             visibility="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

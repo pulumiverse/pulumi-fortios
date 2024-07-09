@@ -203,7 +203,6 @@ class Ipsurlfiltersetting6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -212,7 +211,6 @@ class Ipsurlfiltersetting6(pulumi.CustomResource):
             distance=1,
             gateway6="::")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -251,7 +249,6 @@ class Ipsurlfiltersetting6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -260,7 +257,6 @@ class Ipsurlfiltersetting6(pulumi.CustomResource):
             distance=1,
             gateway6="::")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

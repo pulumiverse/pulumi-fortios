@@ -1060,7 +1060,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1092,7 +1091,6 @@ class Setting(pulumi.CustomResource):
             uploadtime="00:00",
             uploadtype="traffic event virus webfilter IPS spamfilter dlp-archive anomaly voip dlp app-ctrl waf netscan gtp dns")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1157,7 +1155,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1189,7 +1186,6 @@ class Setting(pulumi.CustomResource):
             uploadtime="00:00",
             uploadtype="traffic event virus webfilter IPS spamfilter dlp-archive anomaly voip dlp app-ctrl waf netscan gtp dns")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

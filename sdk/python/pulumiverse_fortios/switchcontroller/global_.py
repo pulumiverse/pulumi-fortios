@@ -997,7 +997,6 @@ class Global(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1010,7 +1009,6 @@ class Global(pulumi.CustomResource):
             mac_retention_period=24,
             mac_violation_timer=0)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1073,7 +1071,6 @@ class Global(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1086,7 +1083,6 @@ class Global(pulumi.CustomResource):
             mac_retention_period=24,
             mac_violation_timer=0)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

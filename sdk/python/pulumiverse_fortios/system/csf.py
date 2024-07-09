@@ -1029,7 +1029,6 @@ class Csf(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1043,7 +1042,6 @@ class Csf(pulumi.CustomResource):
             upstream_ip="0.0.0.0",
             upstream_port=8013)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1107,7 +1105,6 @@ class Csf(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1121,7 +1118,6 @@ class Csf(pulumi.CustomResource):
             upstream_ip="0.0.0.0",
             upstream_port=8013)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -203,7 +203,6 @@ class Globalsetting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -214,7 +213,6 @@ class Globalsetting(pulumi.CustomResource):
             full_second_warning_threshold=90,
             max_size=163840)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -253,7 +251,6 @@ class Globalsetting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -264,7 +261,6 @@ class Globalsetting(pulumi.CustomResource):
             full_second_warning_threshold=90,
             max_size=163840)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -304,7 +304,6 @@ class Multicast(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -334,7 +333,6 @@ class Multicast(pulumi.CustomResource):
             route_limit=2147483647,
             route_threshold=2147483647)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -376,7 +374,6 @@ class Multicast(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -406,7 +403,6 @@ class Multicast(pulumi.CustomResource):
             route_limit=2147483647,
             route_threshold=2147483647)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -269,14 +269,12 @@ class Switchprofile(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.switchcontroller.Switchprofile("trname", login_passwd_override="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -317,14 +315,12 @@ class Switchprofile(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.switchcontroller.Switchprofile("trname", login_passwd_override="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

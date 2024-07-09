@@ -271,7 +271,6 @@ class Multicast6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -283,7 +282,6 @@ class Multicast6(pulumi.CustomResource):
                 register_rate_limit=0,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -324,7 +322,6 @@ class Multicast6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -336,7 +333,6 @@ class Multicast6(pulumi.CustomResource):
                 register_rate_limit=0,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

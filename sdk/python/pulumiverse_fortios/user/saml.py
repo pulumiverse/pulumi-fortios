@@ -693,7 +693,6 @@ class Saml(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -709,7 +708,6 @@ class Saml(pulumi.CustomResource):
             single_sign_on_url="https://1.1.1.1/sign",
             user_name="ad111")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -763,7 +761,6 @@ class Saml(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -779,7 +776,6 @@ class Saml(pulumi.CustomResource):
             single_sign_on_url="https://1.1.1.1/sign",
             user_name="ad111")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

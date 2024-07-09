@@ -136,7 +136,6 @@ class Forticlientregistrationsync(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -145,7 +144,6 @@ class Forticlientregistrationsync(pulumi.CustomResource):
             peer_ip="1.1.1.1",
             peer_name="1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -182,7 +180,6 @@ class Forticlientregistrationsync(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -191,7 +188,6 @@ class Forticlientregistrationsync(pulumi.CustomResource):
             peer_ip="1.1.1.1",
             peer_name="1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

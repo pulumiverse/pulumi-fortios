@@ -15,16 +15,10 @@ namespace Pulumiverse.Fortios.Router.Outputs
     public sealed class IsisSummaryAddress6
     {
         /// <summary>
-        /// isis-net ID.
+        /// an identifier for the resource.
         /// </summary>
         public readonly int? Id;
-        /// <summary>
-        /// Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-        /// </summary>
         public readonly string? Level;
-        /// <summary>
-        /// IPv6 prefix.
-        /// </summary>
         public readonly string? Prefix6;
 
         [OutputConstructor]

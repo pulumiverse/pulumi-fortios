@@ -136,14 +136,12 @@ class Smsserver(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.system.Smsserver("trname", mail_server="1.1.1.2")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -180,14 +178,12 @@ class Smsserver(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.system.Smsserver("trname", mail_server="1.1.1.2")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

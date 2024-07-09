@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
@@ -19,7 +18,6 @@ import * as utilities from "../utilities";
  * const sample1 = fortios.system.getGlobal({});
  * export const output1 = sample1.then(sample1 => sample1.hostname);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getGlobal(args?: GetGlobalArgs, opts?: pulumi.InvokeOptions): Promise<GetGlobalResult> {
     args = args || {};
@@ -277,7 +275,7 @@ export interface GetGlobalResult {
      */
     readonly complianceCheckTime: string;
     /**
-     * Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+     * Threshold at which CPU usage is reported. (% of total CPU, default = 90).
      */
     readonly cpuUseThreshold: number;
     /**
@@ -681,15 +679,15 @@ export interface GetGlobalResult {
      */
     readonly mcTtlNotchange: string;
     /**
-     * Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+     * Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
      */
     readonly memoryUseThresholdExtreme: number;
     /**
-     * Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+     * Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
      */
     readonly memoryUseThresholdGreen: number;
     /**
-     * Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+     * Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
      */
     readonly memoryUseThresholdRed: number;
     /**
@@ -1191,7 +1189,6 @@ export interface GetGlobalResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
@@ -1199,7 +1196,6 @@ export interface GetGlobalResult {
  * const sample1 = fortios.system.getGlobal({});
  * export const output1 = sample1.then(sample1 => sample1.hostname);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getGlobalOutput(args?: GetGlobalOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGlobalResult> {
     return pulumi.output(args).apply((a: any) => getGlobal(a, opts))

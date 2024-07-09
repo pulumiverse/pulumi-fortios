@@ -370,7 +370,6 @@ class Objecttagging(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -383,7 +382,6 @@ class Objecttagging(pulumi.CustomResource):
             interface="disable",
             multiple="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -427,7 +425,6 @@ class Objecttagging(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -440,7 +437,6 @@ class Objecttagging(pulumi.CustomResource):
             interface="disable",
             multiple="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -368,7 +368,6 @@ class Hostkey(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -380,7 +379,6 @@ class Hostkey(pulumi.CustomResource):
             status="trusted",
             type="RSA")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -424,7 +422,6 @@ class Hostkey(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -436,7 +433,6 @@ class Hostkey(pulumi.CustomResource):
             status="trusted",
             type="RSA")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

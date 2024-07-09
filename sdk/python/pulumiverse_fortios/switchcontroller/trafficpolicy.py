@@ -401,7 +401,6 @@ class Trafficpolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -413,7 +412,6 @@ class Trafficpolicy(pulumi.CustomResource):
             policer_status="enable",
             type="ingress")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -458,7 +456,6 @@ class Trafficpolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -470,7 +467,6 @@ class Trafficpolicy(pulumi.CustomResource):
             policer_status="enable",
             type="ingress")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

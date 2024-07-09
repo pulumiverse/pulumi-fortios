@@ -63,7 +63,7 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string AntispamCache;
         /// <summary>
-        /// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+        /// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
         /// </summary>
         public readonly int AntispamCacheMpercent;
         /// <summary>
@@ -171,7 +171,7 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string OutbreakPreventionCache;
         /// <summary>
-        /// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+        /// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
         /// </summary>
         public readonly int OutbreakPreventionCacheMpercent;
         /// <summary>

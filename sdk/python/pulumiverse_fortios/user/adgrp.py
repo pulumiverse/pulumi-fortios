@@ -203,7 +203,6 @@ class Adgrp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -219,7 +218,6 @@ class Adgrp(pulumi.CustomResource):
             source_ip6="::")
         trname = fortios.user.Adgrp("trname", server_name=trname1.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -258,7 +256,6 @@ class Adgrp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -274,7 +271,6 @@ class Adgrp(pulumi.CustomResource):
             source_ip6="::")
         trname = fortios.user.Adgrp("trname", server_name=trname1.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

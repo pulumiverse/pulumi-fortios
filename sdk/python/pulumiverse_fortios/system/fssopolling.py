@@ -203,7 +203,6 @@ class Fssopolling(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -213,7 +212,6 @@ class Fssopolling(pulumi.CustomResource):
             listening_port=8000,
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -252,7 +250,6 @@ class Fssopolling(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -262,7 +259,6 @@ class Fssopolling(pulumi.CustomResource):
             listening_port=8000,
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

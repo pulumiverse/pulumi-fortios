@@ -4690,7 +4690,6 @@ class Phase1(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -4768,7 +4767,6 @@ class Phase1(pulumi.CustomResource):
             wizard_type="custom",
             xauthtype="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -4943,7 +4941,6 @@ class Phase1(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -5021,7 +5018,6 @@ class Phase1(pulumi.CustomResource):
             wizard_type="custom",
             xauthtype="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

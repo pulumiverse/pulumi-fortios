@@ -269,7 +269,6 @@ class Ftmpush(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -279,7 +278,6 @@ class Ftmpush(pulumi.CustomResource):
             server_port=4433,
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -320,7 +318,6 @@ class Ftmpush(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -330,7 +327,6 @@ class Ftmpush(pulumi.CustomResource):
             server_port=4433,
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

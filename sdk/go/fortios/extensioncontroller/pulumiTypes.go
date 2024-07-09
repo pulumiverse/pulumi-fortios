@@ -655,28 +655,17 @@ func (o ExtenderprofileCellularDataplanArrayOutput) Index(i pulumi.IntInput) Ext
 }
 
 type ExtenderprofileCellularModem1 struct {
-	// FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
-	AutoSwitch *ExtenderprofileCellularModem1AutoSwitch `pulumi:"autoSwitch"`
-	// Connection status.
-	ConnStatus *int `pulumi:"connStatus"`
-	// Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-	DefaultSim *string `pulumi:"defaultSim"`
-	// FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-	Gps *string `pulumi:"gps"`
-	// Preferred carrier.
-	PreferredCarrier *string `pulumi:"preferredCarrier"`
-	// Redundant interface.
-	RedundantIntf *string `pulumi:"redundantIntf"`
-	// FortiExtender mode. Valid values: `disable`, `enable`.
-	RedundantMode *string `pulumi:"redundantMode"`
-	// SIM #1 PIN status. Valid values: `disable`, `enable`.
-	Sim1Pin *string `pulumi:"sim1Pin"`
-	// SIM #1 PIN password.
-	Sim1PinCode *string `pulumi:"sim1PinCode"`
-	// SIM #2 PIN status. Valid values: `disable`, `enable`.
-	Sim2Pin *string `pulumi:"sim2Pin"`
-	// SIM #2 PIN password.
-	Sim2PinCode *string `pulumi:"sim2PinCode"`
+	AutoSwitch       *ExtenderprofileCellularModem1AutoSwitch `pulumi:"autoSwitch"`
+	ConnStatus       *int                                     `pulumi:"connStatus"`
+	DefaultSim       *string                                  `pulumi:"defaultSim"`
+	Gps              *string                                  `pulumi:"gps"`
+	PreferredCarrier *string                                  `pulumi:"preferredCarrier"`
+	RedundantIntf    *string                                  `pulumi:"redundantIntf"`
+	RedundantMode    *string                                  `pulumi:"redundantMode"`
+	Sim1Pin          *string                                  `pulumi:"sim1Pin"`
+	Sim1PinCode      *string                                  `pulumi:"sim1PinCode"`
+	Sim2Pin          *string                                  `pulumi:"sim2Pin"`
+	Sim2PinCode      *string                                  `pulumi:"sim2PinCode"`
 }
 
 // ExtenderprofileCellularModem1Input is an input type that accepts ExtenderprofileCellularModem1Args and ExtenderprofileCellularModem1Output values.
@@ -691,28 +680,17 @@ type ExtenderprofileCellularModem1Input interface {
 }
 
 type ExtenderprofileCellularModem1Args struct {
-	// FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
-	AutoSwitch ExtenderprofileCellularModem1AutoSwitchPtrInput `pulumi:"autoSwitch"`
-	// Connection status.
-	ConnStatus pulumi.IntPtrInput `pulumi:"connStatus"`
-	// Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-	DefaultSim pulumi.StringPtrInput `pulumi:"defaultSim"`
-	// FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-	Gps pulumi.StringPtrInput `pulumi:"gps"`
-	// Preferred carrier.
-	PreferredCarrier pulumi.StringPtrInput `pulumi:"preferredCarrier"`
-	// Redundant interface.
-	RedundantIntf pulumi.StringPtrInput `pulumi:"redundantIntf"`
-	// FortiExtender mode. Valid values: `disable`, `enable`.
-	RedundantMode pulumi.StringPtrInput `pulumi:"redundantMode"`
-	// SIM #1 PIN status. Valid values: `disable`, `enable`.
-	Sim1Pin pulumi.StringPtrInput `pulumi:"sim1Pin"`
-	// SIM #1 PIN password.
-	Sim1PinCode pulumi.StringPtrInput `pulumi:"sim1PinCode"`
-	// SIM #2 PIN status. Valid values: `disable`, `enable`.
-	Sim2Pin pulumi.StringPtrInput `pulumi:"sim2Pin"`
-	// SIM #2 PIN password.
-	Sim2PinCode pulumi.StringPtrInput `pulumi:"sim2PinCode"`
+	AutoSwitch       ExtenderprofileCellularModem1AutoSwitchPtrInput `pulumi:"autoSwitch"`
+	ConnStatus       pulumi.IntPtrInput                              `pulumi:"connStatus"`
+	DefaultSim       pulumi.StringPtrInput                           `pulumi:"defaultSim"`
+	Gps              pulumi.StringPtrInput                           `pulumi:"gps"`
+	PreferredCarrier pulumi.StringPtrInput                           `pulumi:"preferredCarrier"`
+	RedundantIntf    pulumi.StringPtrInput                           `pulumi:"redundantIntf"`
+	RedundantMode    pulumi.StringPtrInput                           `pulumi:"redundantMode"`
+	Sim1Pin          pulumi.StringPtrInput                           `pulumi:"sim1Pin"`
+	Sim1PinCode      pulumi.StringPtrInput                           `pulumi:"sim1PinCode"`
+	Sim2Pin          pulumi.StringPtrInput                           `pulumi:"sim2Pin"`
+	Sim2PinCode      pulumi.StringPtrInput                           `pulumi:"sim2PinCode"`
 }
 
 func (ExtenderprofileCellularModem1Args) ElementType() reflect.Type {
@@ -792,57 +770,46 @@ func (o ExtenderprofileCellularModem1Output) ToExtenderprofileCellularModem1PtrO
 	}).(ExtenderprofileCellularModem1PtrOutput)
 }
 
-// FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
 func (o ExtenderprofileCellularModem1Output) AutoSwitch() ExtenderprofileCellularModem1AutoSwitchPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem1) *ExtenderprofileCellularModem1AutoSwitch { return v.AutoSwitch }).(ExtenderprofileCellularModem1AutoSwitchPtrOutput)
 }
 
-// Connection status.
 func (o ExtenderprofileCellularModem1Output) ConnStatus() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem1) *int { return v.ConnStatus }).(pulumi.IntPtrOutput)
 }
 
-// Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
 func (o ExtenderprofileCellularModem1Output) DefaultSim() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem1) *string { return v.DefaultSim }).(pulumi.StringPtrOutput)
 }
 
-// FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
 func (o ExtenderprofileCellularModem1Output) Gps() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem1) *string { return v.Gps }).(pulumi.StringPtrOutput)
 }
 
-// Preferred carrier.
 func (o ExtenderprofileCellularModem1Output) PreferredCarrier() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem1) *string { return v.PreferredCarrier }).(pulumi.StringPtrOutput)
 }
 
-// Redundant interface.
 func (o ExtenderprofileCellularModem1Output) RedundantIntf() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem1) *string { return v.RedundantIntf }).(pulumi.StringPtrOutput)
 }
 
-// FortiExtender mode. Valid values: `disable`, `enable`.
 func (o ExtenderprofileCellularModem1Output) RedundantMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem1) *string { return v.RedundantMode }).(pulumi.StringPtrOutput)
 }
 
-// SIM #1 PIN status. Valid values: `disable`, `enable`.
 func (o ExtenderprofileCellularModem1Output) Sim1Pin() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem1) *string { return v.Sim1Pin }).(pulumi.StringPtrOutput)
 }
 
-// SIM #1 PIN password.
 func (o ExtenderprofileCellularModem1Output) Sim1PinCode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem1) *string { return v.Sim1PinCode }).(pulumi.StringPtrOutput)
 }
 
-// SIM #2 PIN status. Valid values: `disable`, `enable`.
 func (o ExtenderprofileCellularModem1Output) Sim2Pin() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem1) *string { return v.Sim2Pin }).(pulumi.StringPtrOutput)
 }
 
-// SIM #2 PIN password.
 func (o ExtenderprofileCellularModem1Output) Sim2PinCode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem1) *string { return v.Sim2PinCode }).(pulumi.StringPtrOutput)
 }
@@ -871,7 +838,6 @@ func (o ExtenderprofileCellularModem1PtrOutput) Elem() ExtenderprofileCellularMo
 	}).(ExtenderprofileCellularModem1Output)
 }
 
-// FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
 func (o ExtenderprofileCellularModem1PtrOutput) AutoSwitch() ExtenderprofileCellularModem1AutoSwitchPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem1) *ExtenderprofileCellularModem1AutoSwitch {
 		if v == nil {
@@ -881,7 +847,6 @@ func (o ExtenderprofileCellularModem1PtrOutput) AutoSwitch() ExtenderprofileCell
 	}).(ExtenderprofileCellularModem1AutoSwitchPtrOutput)
 }
 
-// Connection status.
 func (o ExtenderprofileCellularModem1PtrOutput) ConnStatus() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem1) *int {
 		if v == nil {
@@ -891,7 +856,6 @@ func (o ExtenderprofileCellularModem1PtrOutput) ConnStatus() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
-// Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
 func (o ExtenderprofileCellularModem1PtrOutput) DefaultSim() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem1) *string {
 		if v == nil {
@@ -901,7 +865,6 @@ func (o ExtenderprofileCellularModem1PtrOutput) DefaultSim() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
 func (o ExtenderprofileCellularModem1PtrOutput) Gps() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem1) *string {
 		if v == nil {
@@ -911,7 +874,6 @@ func (o ExtenderprofileCellularModem1PtrOutput) Gps() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Preferred carrier.
 func (o ExtenderprofileCellularModem1PtrOutput) PreferredCarrier() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem1) *string {
 		if v == nil {
@@ -921,7 +883,6 @@ func (o ExtenderprofileCellularModem1PtrOutput) PreferredCarrier() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-// Redundant interface.
 func (o ExtenderprofileCellularModem1PtrOutput) RedundantIntf() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem1) *string {
 		if v == nil {
@@ -931,7 +892,6 @@ func (o ExtenderprofileCellularModem1PtrOutput) RedundantIntf() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// FortiExtender mode. Valid values: `disable`, `enable`.
 func (o ExtenderprofileCellularModem1PtrOutput) RedundantMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem1) *string {
 		if v == nil {
@@ -941,7 +901,6 @@ func (o ExtenderprofileCellularModem1PtrOutput) RedundantMode() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// SIM #1 PIN status. Valid values: `disable`, `enable`.
 func (o ExtenderprofileCellularModem1PtrOutput) Sim1Pin() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem1) *string {
 		if v == nil {
@@ -951,7 +910,6 @@ func (o ExtenderprofileCellularModem1PtrOutput) Sim1Pin() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// SIM #1 PIN password.
 func (o ExtenderprofileCellularModem1PtrOutput) Sim1PinCode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem1) *string {
 		if v == nil {
@@ -961,7 +919,6 @@ func (o ExtenderprofileCellularModem1PtrOutput) Sim1PinCode() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-// SIM #2 PIN status. Valid values: `disable`, `enable`.
 func (o ExtenderprofileCellularModem1PtrOutput) Sim2Pin() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem1) *string {
 		if v == nil {
@@ -971,7 +928,6 @@ func (o ExtenderprofileCellularModem1PtrOutput) Sim2Pin() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// SIM #2 PIN password.
 func (o ExtenderprofileCellularModem1PtrOutput) Sim2PinCode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem1) *string {
 		if v == nil {
@@ -1252,28 +1208,17 @@ func (o ExtenderprofileCellularModem1AutoSwitchPtrOutput) SwitchBackTimer() pulu
 }
 
 type ExtenderprofileCellularModem2 struct {
-	// FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
-	AutoSwitch *ExtenderprofileCellularModem2AutoSwitch `pulumi:"autoSwitch"`
-	// Connection status.
-	ConnStatus *int `pulumi:"connStatus"`
-	// Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-	DefaultSim *string `pulumi:"defaultSim"`
-	// FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-	Gps *string `pulumi:"gps"`
-	// Preferred carrier.
-	PreferredCarrier *string `pulumi:"preferredCarrier"`
-	// Redundant interface.
-	RedundantIntf *string `pulumi:"redundantIntf"`
-	// FortiExtender mode. Valid values: `disable`, `enable`.
-	RedundantMode *string `pulumi:"redundantMode"`
-	// SIM #1 PIN status. Valid values: `disable`, `enable`.
-	Sim1Pin *string `pulumi:"sim1Pin"`
-	// SIM #1 PIN password.
-	Sim1PinCode *string `pulumi:"sim1PinCode"`
-	// SIM #2 PIN status. Valid values: `disable`, `enable`.
-	Sim2Pin *string `pulumi:"sim2Pin"`
-	// SIM #2 PIN password.
-	Sim2PinCode *string `pulumi:"sim2PinCode"`
+	AutoSwitch       *ExtenderprofileCellularModem2AutoSwitch `pulumi:"autoSwitch"`
+	ConnStatus       *int                                     `pulumi:"connStatus"`
+	DefaultSim       *string                                  `pulumi:"defaultSim"`
+	Gps              *string                                  `pulumi:"gps"`
+	PreferredCarrier *string                                  `pulumi:"preferredCarrier"`
+	RedundantIntf    *string                                  `pulumi:"redundantIntf"`
+	RedundantMode    *string                                  `pulumi:"redundantMode"`
+	Sim1Pin          *string                                  `pulumi:"sim1Pin"`
+	Sim1PinCode      *string                                  `pulumi:"sim1PinCode"`
+	Sim2Pin          *string                                  `pulumi:"sim2Pin"`
+	Sim2PinCode      *string                                  `pulumi:"sim2PinCode"`
 }
 
 // ExtenderprofileCellularModem2Input is an input type that accepts ExtenderprofileCellularModem2Args and ExtenderprofileCellularModem2Output values.
@@ -1288,28 +1233,17 @@ type ExtenderprofileCellularModem2Input interface {
 }
 
 type ExtenderprofileCellularModem2Args struct {
-	// FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
-	AutoSwitch ExtenderprofileCellularModem2AutoSwitchPtrInput `pulumi:"autoSwitch"`
-	// Connection status.
-	ConnStatus pulumi.IntPtrInput `pulumi:"connStatus"`
-	// Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-	DefaultSim pulumi.StringPtrInput `pulumi:"defaultSim"`
-	// FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-	Gps pulumi.StringPtrInput `pulumi:"gps"`
-	// Preferred carrier.
-	PreferredCarrier pulumi.StringPtrInput `pulumi:"preferredCarrier"`
-	// Redundant interface.
-	RedundantIntf pulumi.StringPtrInput `pulumi:"redundantIntf"`
-	// FortiExtender mode. Valid values: `disable`, `enable`.
-	RedundantMode pulumi.StringPtrInput `pulumi:"redundantMode"`
-	// SIM #1 PIN status. Valid values: `disable`, `enable`.
-	Sim1Pin pulumi.StringPtrInput `pulumi:"sim1Pin"`
-	// SIM #1 PIN password.
-	Sim1PinCode pulumi.StringPtrInput `pulumi:"sim1PinCode"`
-	// SIM #2 PIN status. Valid values: `disable`, `enable`.
-	Sim2Pin pulumi.StringPtrInput `pulumi:"sim2Pin"`
-	// SIM #2 PIN password.
-	Sim2PinCode pulumi.StringPtrInput `pulumi:"sim2PinCode"`
+	AutoSwitch       ExtenderprofileCellularModem2AutoSwitchPtrInput `pulumi:"autoSwitch"`
+	ConnStatus       pulumi.IntPtrInput                              `pulumi:"connStatus"`
+	DefaultSim       pulumi.StringPtrInput                           `pulumi:"defaultSim"`
+	Gps              pulumi.StringPtrInput                           `pulumi:"gps"`
+	PreferredCarrier pulumi.StringPtrInput                           `pulumi:"preferredCarrier"`
+	RedundantIntf    pulumi.StringPtrInput                           `pulumi:"redundantIntf"`
+	RedundantMode    pulumi.StringPtrInput                           `pulumi:"redundantMode"`
+	Sim1Pin          pulumi.StringPtrInput                           `pulumi:"sim1Pin"`
+	Sim1PinCode      pulumi.StringPtrInput                           `pulumi:"sim1PinCode"`
+	Sim2Pin          pulumi.StringPtrInput                           `pulumi:"sim2Pin"`
+	Sim2PinCode      pulumi.StringPtrInput                           `pulumi:"sim2PinCode"`
 }
 
 func (ExtenderprofileCellularModem2Args) ElementType() reflect.Type {
@@ -1389,57 +1323,46 @@ func (o ExtenderprofileCellularModem2Output) ToExtenderprofileCellularModem2PtrO
 	}).(ExtenderprofileCellularModem2PtrOutput)
 }
 
-// FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
 func (o ExtenderprofileCellularModem2Output) AutoSwitch() ExtenderprofileCellularModem2AutoSwitchPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem2) *ExtenderprofileCellularModem2AutoSwitch { return v.AutoSwitch }).(ExtenderprofileCellularModem2AutoSwitchPtrOutput)
 }
 
-// Connection status.
 func (o ExtenderprofileCellularModem2Output) ConnStatus() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem2) *int { return v.ConnStatus }).(pulumi.IntPtrOutput)
 }
 
-// Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
 func (o ExtenderprofileCellularModem2Output) DefaultSim() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem2) *string { return v.DefaultSim }).(pulumi.StringPtrOutput)
 }
 
-// FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
 func (o ExtenderprofileCellularModem2Output) Gps() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem2) *string { return v.Gps }).(pulumi.StringPtrOutput)
 }
 
-// Preferred carrier.
 func (o ExtenderprofileCellularModem2Output) PreferredCarrier() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem2) *string { return v.PreferredCarrier }).(pulumi.StringPtrOutput)
 }
 
-// Redundant interface.
 func (o ExtenderprofileCellularModem2Output) RedundantIntf() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem2) *string { return v.RedundantIntf }).(pulumi.StringPtrOutput)
 }
 
-// FortiExtender mode. Valid values: `disable`, `enable`.
 func (o ExtenderprofileCellularModem2Output) RedundantMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem2) *string { return v.RedundantMode }).(pulumi.StringPtrOutput)
 }
 
-// SIM #1 PIN status. Valid values: `disable`, `enable`.
 func (o ExtenderprofileCellularModem2Output) Sim1Pin() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem2) *string { return v.Sim1Pin }).(pulumi.StringPtrOutput)
 }
 
-// SIM #1 PIN password.
 func (o ExtenderprofileCellularModem2Output) Sim1PinCode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem2) *string { return v.Sim1PinCode }).(pulumi.StringPtrOutput)
 }
 
-// SIM #2 PIN status. Valid values: `disable`, `enable`.
 func (o ExtenderprofileCellularModem2Output) Sim2Pin() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem2) *string { return v.Sim2Pin }).(pulumi.StringPtrOutput)
 }
 
-// SIM #2 PIN password.
 func (o ExtenderprofileCellularModem2Output) Sim2PinCode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExtenderprofileCellularModem2) *string { return v.Sim2PinCode }).(pulumi.StringPtrOutput)
 }
@@ -1468,7 +1391,6 @@ func (o ExtenderprofileCellularModem2PtrOutput) Elem() ExtenderprofileCellularMo
 	}).(ExtenderprofileCellularModem2Output)
 }
 
-// FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
 func (o ExtenderprofileCellularModem2PtrOutput) AutoSwitch() ExtenderprofileCellularModem2AutoSwitchPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem2) *ExtenderprofileCellularModem2AutoSwitch {
 		if v == nil {
@@ -1478,7 +1400,6 @@ func (o ExtenderprofileCellularModem2PtrOutput) AutoSwitch() ExtenderprofileCell
 	}).(ExtenderprofileCellularModem2AutoSwitchPtrOutput)
 }
 
-// Connection status.
 func (o ExtenderprofileCellularModem2PtrOutput) ConnStatus() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem2) *int {
 		if v == nil {
@@ -1488,7 +1409,6 @@ func (o ExtenderprofileCellularModem2PtrOutput) ConnStatus() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
-// Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
 func (o ExtenderprofileCellularModem2PtrOutput) DefaultSim() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem2) *string {
 		if v == nil {
@@ -1498,7 +1418,6 @@ func (o ExtenderprofileCellularModem2PtrOutput) DefaultSim() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
 func (o ExtenderprofileCellularModem2PtrOutput) Gps() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem2) *string {
 		if v == nil {
@@ -1508,7 +1427,6 @@ func (o ExtenderprofileCellularModem2PtrOutput) Gps() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Preferred carrier.
 func (o ExtenderprofileCellularModem2PtrOutput) PreferredCarrier() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem2) *string {
 		if v == nil {
@@ -1518,7 +1436,6 @@ func (o ExtenderprofileCellularModem2PtrOutput) PreferredCarrier() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-// Redundant interface.
 func (o ExtenderprofileCellularModem2PtrOutput) RedundantIntf() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem2) *string {
 		if v == nil {
@@ -1528,7 +1445,6 @@ func (o ExtenderprofileCellularModem2PtrOutput) RedundantIntf() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// FortiExtender mode. Valid values: `disable`, `enable`.
 func (o ExtenderprofileCellularModem2PtrOutput) RedundantMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem2) *string {
 		if v == nil {
@@ -1538,7 +1454,6 @@ func (o ExtenderprofileCellularModem2PtrOutput) RedundantMode() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// SIM #1 PIN status. Valid values: `disable`, `enable`.
 func (o ExtenderprofileCellularModem2PtrOutput) Sim1Pin() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem2) *string {
 		if v == nil {
@@ -1548,7 +1463,6 @@ func (o ExtenderprofileCellularModem2PtrOutput) Sim1Pin() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// SIM #1 PIN password.
 func (o ExtenderprofileCellularModem2PtrOutput) Sim1PinCode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem2) *string {
 		if v == nil {
@@ -1558,7 +1472,6 @@ func (o ExtenderprofileCellularModem2PtrOutput) Sim1PinCode() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-// SIM #2 PIN status. Valid values: `disable`, `enable`.
 func (o ExtenderprofileCellularModem2PtrOutput) Sim2Pin() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem2) *string {
 		if v == nil {
@@ -1568,7 +1481,6 @@ func (o ExtenderprofileCellularModem2PtrOutput) Sim2Pin() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// SIM #2 PIN password.
 func (o ExtenderprofileCellularModem2PtrOutput) Sim2PinCode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExtenderprofileCellularModem2) *string {
 		if v == nil {

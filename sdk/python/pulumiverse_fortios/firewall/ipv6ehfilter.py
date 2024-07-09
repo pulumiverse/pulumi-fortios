@@ -335,7 +335,6 @@ class Ipv6ehfilter(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -348,7 +347,6 @@ class Ipv6ehfilter(pulumi.CustomResource):
             no_next="disable",
             routing="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -391,7 +389,6 @@ class Ipv6ehfilter(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -404,7 +401,6 @@ class Ipv6ehfilter(pulumi.CustomResource):
             no_next="disable",
             routing="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -304,7 +304,6 @@ class Forwardservergroup(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -325,7 +324,6 @@ class Forwardservergroup(pulumi.CustomResource):
                 weight=12,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -367,7 +365,6 @@ class Forwardservergroup(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -388,7 +385,6 @@ class Forwardservergroup(pulumi.CustomResource):
                 weight=12,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

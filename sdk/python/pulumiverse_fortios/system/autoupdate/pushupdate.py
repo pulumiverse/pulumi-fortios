@@ -199,7 +199,6 @@ class Pushupdate(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -210,7 +209,6 @@ class Pushupdate(pulumi.CustomResource):
             port=9443,
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -249,7 +247,6 @@ class Pushupdate(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -260,7 +257,6 @@ class Pushupdate(pulumi.CustomResource):
             port=9443,
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

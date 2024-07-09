@@ -466,7 +466,6 @@ class Vxlan(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -480,7 +479,6 @@ class Vxlan(pulumi.CustomResource):
             )],
             vni=3)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -527,7 +525,6 @@ class Vxlan(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -541,7 +538,6 @@ class Vxlan(pulumi.CustomResource):
             )],
             vni=3)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -236,7 +236,6 @@ class Console(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -247,7 +246,6 @@ class Console(pulumi.CustomResource):
             mode="line",
             output="more")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -287,7 +285,6 @@ class Console(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -298,7 +295,6 @@ class Console(pulumi.CustomResource):
             mode="line",
             output="more")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

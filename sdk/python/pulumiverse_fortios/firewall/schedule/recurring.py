@@ -267,7 +267,6 @@ class Recurring(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -278,7 +277,6 @@ class Recurring(pulumi.CustomResource):
             end="00:00",
             start="00:00")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -319,7 +317,6 @@ class Recurring(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -330,7 +327,6 @@ class Recurring(pulumi.CustomResource):
             end="00:00",
             start="00:00")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

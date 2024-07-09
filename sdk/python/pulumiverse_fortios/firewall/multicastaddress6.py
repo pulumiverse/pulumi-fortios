@@ -336,7 +336,6 @@ class Multicastaddress6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -346,7 +345,6 @@ class Multicastaddress6(pulumi.CustomResource):
             ip6="ff02::1:ff0e:8c6c/128",
             visibility="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -389,7 +387,6 @@ class Multicastaddress6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -399,7 +396,6 @@ class Multicastaddress6(pulumi.CustomResource):
             ip6="ff02::1:ff0e:8c6c/128",
             visibility="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

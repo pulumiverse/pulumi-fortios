@@ -733,7 +733,6 @@ class Lldpprofile(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -745,7 +744,6 @@ class Lldpprofile(pulumi.CustomResource):
             auto_isl_receive_timeout=60,
             med_tlvs="inventory-management network-policy")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -800,7 +798,6 @@ class Lldpprofile(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -812,7 +809,6 @@ class Lldpprofile(pulumi.CustomResource):
             auto_isl_receive_timeout=60,
             med_tlvs="inventory-management network-policy")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

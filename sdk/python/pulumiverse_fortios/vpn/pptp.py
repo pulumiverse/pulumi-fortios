@@ -268,7 +268,6 @@ class Pptp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -281,7 +280,6 @@ class Pptp(pulumi.CustomResource):
             status="enable",
             usrgrp="Guest-group")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -322,7 +320,6 @@ class Pptp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -335,7 +332,6 @@ class Pptp(pulumi.CustomResource):
             status="enable",
             usrgrp="Guest-group")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -14,25 +14,10 @@ namespace Pulumiverse.Fortios.Filter.Email.Outputs
     [OutputType]
     public sealed class ProfilePop3
     {
-        /// <summary>
-        /// Action taken for matched file. Valid values: `log`, `block`.
-        /// </summary>
         public readonly string? Action;
-        /// <summary>
-        /// Enable/disable file filter logging. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? Log;
-        /// <summary>
-        /// Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-        /// </summary>
         public readonly string? LogAll;
-        /// <summary>
-        /// Subject text or header added to spam email.
-        /// </summary>
         public readonly string? TagMsg;
-        /// <summary>
-        /// Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
-        /// </summary>
         public readonly string? TagType;
 
         [OutputConstructor]

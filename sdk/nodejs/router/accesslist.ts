@@ -11,21 +11,18 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
  *
  * const trname = new fortios.router.Accesslist("trname", {comments: "test accesslist"});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Note
  *
  * The feature can only be correctly supported when FortiOS Version >= 6.2.4, for FortiOS Version < 6.2.4, please use the following resource configuration as an alternative.
  *
  * ### Example
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -48,7 +45,6 @@ import * as utilities from "../utilities";
  *     start: "auto",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

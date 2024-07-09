@@ -733,7 +733,6 @@ class Filter(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -752,7 +751,6 @@ class Filter(pulumi.CustomResource):
             ssh="enable",
             voip="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -807,7 +805,6 @@ class Filter(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -826,7 +823,6 @@ class Filter(pulumi.CustomResource):
             ssh="enable",
             voip="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

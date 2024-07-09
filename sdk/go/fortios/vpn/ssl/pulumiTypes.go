@@ -329,7 +329,6 @@ func (o SettingsAuthenticationRuleGroupArrayOutput) Index(i pulumi.IntInput) Set
 }
 
 type SettingsAuthenticationRuleSourceAddress6 struct {
-	// Group name.
 	Name *string `pulumi:"name"`
 }
 
@@ -345,7 +344,6 @@ type SettingsAuthenticationRuleSourceAddress6Input interface {
 }
 
 type SettingsAuthenticationRuleSourceAddress6Args struct {
-	// Group name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -400,7 +398,6 @@ func (o SettingsAuthenticationRuleSourceAddress6Output) ToSettingsAuthentication
 	return o
 }
 
-// Group name.
 func (o SettingsAuthenticationRuleSourceAddress6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SettingsAuthenticationRuleSourceAddress6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -717,7 +714,6 @@ func (o SettingsAuthenticationRuleUserArrayOutput) Index(i pulumi.IntInput) Sett
 }
 
 type SettingsSourceAddress6 struct {
-	// Group name.
 	Name *string `pulumi:"name"`
 }
 
@@ -733,7 +729,6 @@ type SettingsSourceAddress6Input interface {
 }
 
 type SettingsSourceAddress6Args struct {
-	// Group name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -788,7 +783,6 @@ func (o SettingsSourceAddress6Output) ToSettingsSourceAddress6OutputWithContext(
 	return o
 }
 
-// Group name.
 func (o SettingsSourceAddress6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SettingsSourceAddress6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -1105,7 +1099,6 @@ func (o SettingsTunnelIpPoolArrayOutput) Index(i pulumi.IntInput) SettingsTunnel
 }
 
 type SettingsTunnelIpv6Pool struct {
-	// Group name.
 	Name *string `pulumi:"name"`
 }
 
@@ -1121,7 +1114,6 @@ type SettingsTunnelIpv6PoolInput interface {
 }
 
 type SettingsTunnelIpv6PoolArgs struct {
-	// Group name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -1176,7 +1168,6 @@ func (o SettingsTunnelIpv6PoolOutput) ToSettingsTunnelIpv6PoolOutputWithContext(
 	return o
 }
 
-// Group name.
 func (o SettingsTunnelIpv6PoolOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SettingsTunnelIpv6Pool) *string { return v.Name }).(pulumi.StringPtrOutput)
 }

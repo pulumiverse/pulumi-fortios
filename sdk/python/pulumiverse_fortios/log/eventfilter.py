@@ -665,7 +665,6 @@ class Eventfilter(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -683,7 +682,6 @@ class Eventfilter(pulumi.CustomResource):
             wan_opt="enable",
             wireless_activity="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -736,7 +734,6 @@ class Eventfilter(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -754,7 +751,6 @@ class Eventfilter(pulumi.CustomResource):
             wan_opt="enable",
             wireless_activity="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

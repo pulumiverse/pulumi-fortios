@@ -401,7 +401,6 @@ class Fortisandbox(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -411,7 +410,6 @@ class Fortisandbox(pulumi.CustomResource):
             ssl_min_proto_version="default",
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -456,7 +454,6 @@ class Fortisandbox(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -466,7 +463,6 @@ class Fortisandbox(pulumi.CustomResource):
             ssl_min_proto_version="default",
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

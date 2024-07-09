@@ -331,7 +331,6 @@ class Geneve(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -344,7 +343,6 @@ class Geneve(pulumi.CustomResource):
             remote_ip6="::",
             vni=0)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -387,7 +385,6 @@ class Geneve(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -400,7 +397,6 @@ class Geneve(pulumi.CustomResource):
             remote_ip6="::",
             vni=0)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

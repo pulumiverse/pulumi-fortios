@@ -1222,7 +1222,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1245,7 +1244,6 @@ class Setting(pulumi.CustomResource):
             strict_ocsp_check="disable",
             subject_match="substring")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1315,7 +1313,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1338,7 +1335,6 @@ class Setting(pulumi.CustomResource):
             strict_ocsp_check="disable",
             subject_match="substring")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

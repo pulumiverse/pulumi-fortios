@@ -1260,7 +1260,6 @@ class Linkmonitor(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1289,7 +1288,6 @@ class Linkmonitor(pulumi.CustomResource):
             update_cascade_interface="enable",
             update_static_route="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1360,7 +1358,6 @@ class Linkmonitor(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1389,7 +1386,6 @@ class Linkmonitor(pulumi.CustomResource):
             update_cascade_interface="enable",
             update_static_route="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

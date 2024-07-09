@@ -767,7 +767,6 @@ class Ospf6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -816,7 +815,6 @@ class Ospf6(pulumi.CustomResource):
             router_id="0.0.0.0",
             spf_timers="5 10")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -874,7 +872,6 @@ class Ospf6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -923,7 +920,6 @@ class Ospf6(pulumi.CustomResource):
             router_id="0.0.0.0",
             spf_timers="5 10")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

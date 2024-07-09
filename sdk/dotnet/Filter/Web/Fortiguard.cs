@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.Filter.Web
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -41,7 +40,6 @@ namespace Pulumiverse.Fortios.Filter.Web
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -65,7 +63,7 @@ namespace Pulumiverse.Fortios.Filter.Web
     public partial class Fortiguard : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+        /// Maximum percentage of available memory allocated to caching (1 - 15%).
         /// </summary>
         [Output("cacheMemPercent")]
         public Output<int> CacheMemPercent { get; private set; } = null!;
@@ -202,7 +200,7 @@ namespace Pulumiverse.Fortios.Filter.Web
     public sealed class FortiguardArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+        /// Maximum percentage of available memory allocated to caching (1 - 15%).
         /// </summary>
         [Input("cacheMemPercent")]
         public Input<int>? CacheMemPercent { get; set; }
@@ -300,7 +298,7 @@ namespace Pulumiverse.Fortios.Filter.Web
     public sealed class FortiguardState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+        /// Maximum percentage of available memory allocated to caching (1 - 15%).
         /// </summary>
         [Input("cacheMemPercent")]
         public Input<int>? CacheMemPercent { get; set; }

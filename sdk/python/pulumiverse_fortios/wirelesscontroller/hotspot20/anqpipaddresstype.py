@@ -170,7 +170,6 @@ class Anqpipaddresstype(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -179,7 +178,6 @@ class Anqpipaddresstype(pulumi.CustomResource):
             ipv4_address_type="public",
             ipv6_address_type="not-available")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -217,7 +215,6 @@ class Anqpipaddresstype(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -226,7 +223,6 @@ class Anqpipaddresstype(pulumi.CustomResource):
             ipv4_address_type="public",
             ipv6_address_type="not-available")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

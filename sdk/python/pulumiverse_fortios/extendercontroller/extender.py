@@ -1886,7 +1886,6 @@ class Extender(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1912,7 +1911,6 @@ class Extender(pulumi.CustomResource):
             vdom=0,
             wimax_auth_protocol="tls")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -2003,7 +2001,6 @@ class Extender(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2029,7 +2026,6 @@ class Extender(pulumi.CustomResource):
             vdom=0,
             wimax_auth_protocol="tls")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

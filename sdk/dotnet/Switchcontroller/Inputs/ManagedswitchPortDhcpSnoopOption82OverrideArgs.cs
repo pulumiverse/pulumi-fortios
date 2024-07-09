@@ -13,21 +13,12 @@ namespace Pulumiverse.Fortios.Switchcontroller.Inputs
 
     public sealed class ManagedswitchPortDhcpSnoopOption82OverrideArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Circuit ID string.
-        /// </summary>
         [Input("circuitId")]
         public Input<string>? CircuitId { get; set; }
 
-        /// <summary>
-        /// Remote ID string.
-        /// </summary>
         [Input("remoteId")]
         public Input<string>? RemoteId { get; set; }
 
-        /// <summary>
-        /// VLAN name.
-        /// </summary>
         [Input("vlanName")]
         public Input<string>? VlanName { get; set; }
 

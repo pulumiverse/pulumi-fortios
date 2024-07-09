@@ -1195,7 +1195,6 @@ class Sslsshprofile(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1227,7 +1226,6 @@ class Sslsshprofile(pulumi.CustomResource):
                 inspect_all="deep-inspection",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1296,7 +1294,6 @@ class Sslsshprofile(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1328,7 +1325,6 @@ class Sslsshprofile(pulumi.CustomResource):
                 inspect_all="deep-inspection",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

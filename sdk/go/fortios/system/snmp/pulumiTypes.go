@@ -147,15 +147,11 @@ func (o CommunityHostArrayOutput) Index(i pulumi.IntInput) CommunityHostOutput {
 }
 
 type CommunityHosts6 struct {
-	// Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
 	HaDirect *string `pulumi:"haDirect"`
-	// Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both. Valid values: `any`, `query`, `trap`.
 	HostType *string `pulumi:"hostType"`
-	// Host6 entry ID.
-	Id *int `pulumi:"id"`
-	// SNMP manager IPv6 address prefix.
-	Ipv6 *string `pulumi:"ipv6"`
-	// Source IPv6 address for SNMP traps.
+	// an identifier for the resource with format {{fosid}}.
+	Id         *int    `pulumi:"id"`
+	Ipv6       *string `pulumi:"ipv6"`
 	SourceIpv6 *string `pulumi:"sourceIpv6"`
 }
 
@@ -171,15 +167,11 @@ type CommunityHosts6Input interface {
 }
 
 type CommunityHosts6Args struct {
-	// Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
 	HaDirect pulumi.StringPtrInput `pulumi:"haDirect"`
-	// Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both. Valid values: `any`, `query`, `trap`.
 	HostType pulumi.StringPtrInput `pulumi:"hostType"`
-	// Host6 entry ID.
-	Id pulumi.IntPtrInput `pulumi:"id"`
-	// SNMP manager IPv6 address prefix.
-	Ipv6 pulumi.StringPtrInput `pulumi:"ipv6"`
-	// Source IPv6 address for SNMP traps.
+	// an identifier for the resource with format {{fosid}}.
+	Id         pulumi.IntPtrInput    `pulumi:"id"`
+	Ipv6       pulumi.StringPtrInput `pulumi:"ipv6"`
 	SourceIpv6 pulumi.StringPtrInput `pulumi:"sourceIpv6"`
 }
 
@@ -234,27 +226,23 @@ func (o CommunityHosts6Output) ToCommunityHosts6OutputWithContext(ctx context.Co
 	return o
 }
 
-// Enable/disable direct management of HA cluster members. Valid values: `enable`, `disable`.
 func (o CommunityHosts6Output) HaDirect() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CommunityHosts6) *string { return v.HaDirect }).(pulumi.StringPtrOutput)
 }
 
-// Control whether the SNMP manager sends SNMP queries, receives SNMP traps, or both. Valid values: `any`, `query`, `trap`.
 func (o CommunityHosts6Output) HostType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CommunityHosts6) *string { return v.HostType }).(pulumi.StringPtrOutput)
 }
 
-// Host6 entry ID.
+// an identifier for the resource with format {{fosid}}.
 func (o CommunityHosts6Output) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v CommunityHosts6) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
-// SNMP manager IPv6 address prefix.
 func (o CommunityHosts6Output) Ipv6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CommunityHosts6) *string { return v.Ipv6 }).(pulumi.StringPtrOutput)
 }
 
-// Source IPv6 address for SNMP traps.
 func (o CommunityHosts6Output) SourceIpv6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CommunityHosts6) *string { return v.SourceIpv6 }).(pulumi.StringPtrOutput)
 }

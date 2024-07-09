@@ -467,7 +467,6 @@ class Server(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -479,7 +478,6 @@ class Server(pulumi.CustomResource):
             max_connections=100,
             port=22)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -526,7 +524,6 @@ class Server(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -538,7 +535,6 @@ class Server(pulumi.CustomResource):
             max_connections=100,
             port=22)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

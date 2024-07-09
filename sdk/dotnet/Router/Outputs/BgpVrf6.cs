@@ -14,29 +14,11 @@ namespace Pulumiverse.Fortios.Router.Outputs
     [OutputType]
     public sealed class BgpVrf6
     {
-        /// <summary>
-        /// List of export route target. The structure of `export_rt` block is documented below.
-        /// </summary>
         public readonly ImmutableArray<Outputs.BgpVrf6ExportRt> ExportRts;
-        /// <summary>
-        /// Import route map.
-        /// </summary>
         public readonly string? ImportRouteMap;
-        /// <summary>
-        /// List of import route target. The structure of `import_rt` block is documented below.
-        /// </summary>
         public readonly ImmutableArray<Outputs.BgpVrf6ImportRt> ImportRts;
-        /// <summary>
-        /// Target VRF table. The structure of `leak_target` block is documented below.
-        /// </summary>
         public readonly ImmutableArray<Outputs.BgpVrf6LeakTarget> LeakTargets;
-        /// <summary>
-        /// Route Distinguisher: AA:NN|A.B.C.D:NN.
-        /// </summary>
         public readonly string? Rd;
-        /// <summary>
-        /// VRF role. Valid values: `standalone`, `ce`, `pe`.
-        /// </summary>
         public readonly string? Role;
         /// <summary>
         /// BGP VRF leaking table. The structure of `vrf` block is documented below.

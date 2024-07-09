@@ -14,49 +14,16 @@ namespace Pulumiverse.Fortios.Extensioncontroller.Outputs
     [OutputType]
     public sealed class ExtenderprofileCellularModem2
     {
-        /// <summary>
-        /// FortiExtender auto switch configuration. The structure of `auto_switch` block is documented below.
-        /// </summary>
         public readonly Outputs.ExtenderprofileCellularModem2AutoSwitch? AutoSwitch;
-        /// <summary>
-        /// Connection status.
-        /// </summary>
         public readonly int? ConnStatus;
-        /// <summary>
-        /// Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-        /// </summary>
         public readonly string? DefaultSim;
-        /// <summary>
-        /// FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-        /// </summary>
         public readonly string? Gps;
-        /// <summary>
-        /// Preferred carrier.
-        /// </summary>
         public readonly string? PreferredCarrier;
-        /// <summary>
-        /// Redundant interface.
-        /// </summary>
         public readonly string? RedundantIntf;
-        /// <summary>
-        /// FortiExtender mode. Valid values: `disable`, `enable`.
-        /// </summary>
         public readonly string? RedundantMode;
-        /// <summary>
-        /// SIM #1 PIN status. Valid values: `disable`, `enable`.
-        /// </summary>
         public readonly string? Sim1Pin;
-        /// <summary>
-        /// SIM #1 PIN password.
-        /// </summary>
         public readonly string? Sim1PinCode;
-        /// <summary>
-        /// SIM #2 PIN status. Valid values: `disable`, `enable`.
-        /// </summary>
         public readonly string? Sim2Pin;
-        /// <summary>
-        /// SIM #2 PIN password.
-        /// </summary>
         public readonly string? Sim2PinCode;
 
         [OutputConstructor]

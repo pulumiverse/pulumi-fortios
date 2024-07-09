@@ -170,14 +170,12 @@ class Category(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.firewall.service.Category("trname")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -215,14 +213,12 @@ class Category(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.firewall.service.Category("trname")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

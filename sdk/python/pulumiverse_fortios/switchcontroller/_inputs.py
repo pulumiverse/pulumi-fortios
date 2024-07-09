@@ -2156,19 +2156,6 @@ class ManagedswitchN8021xSettingsArgs:
                  max_reauth_attempt: Optional[pulumi.Input[int]] = None,
                  reauth_period: Optional[pulumi.Input[int]] = None,
                  tx_period: Optional[pulumi.Input[int]] = None):
-        """
-        :param pulumi.Input[str] link_down_auth: Authentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-        :param pulumi.Input[str] local_override: Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] mab_reauth: Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] mac_called_station_delimiter: MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        :param pulumi.Input[str] mac_calling_station_delimiter: MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        :param pulumi.Input[str] mac_case: MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
-        :param pulumi.Input[str] mac_password_delimiter: MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        :param pulumi.Input[str] mac_username_delimiter: MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        :param pulumi.Input[int] max_reauth_attempt: Maximum number of authentication attempts (0 - 15, default = 3).
-        :param pulumi.Input[int] reauth_period: Reauthentication time interval (1 - 1440 min, default = 60, 0 = disable).
-        :param pulumi.Input[int] tx_period: 802.1X Tx period (seconds, default=30).
-        """
         if link_down_auth is not None:
             pulumi.set(__self__, "link_down_auth", link_down_auth)
         if local_override is not None:
@@ -2195,9 +2182,6 @@ class ManagedswitchN8021xSettingsArgs:
     @property
     @pulumi.getter(name="linkDownAuth")
     def link_down_auth(self) -> Optional[pulumi.Input[str]]:
-        """
-        Authentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-        """
         return pulumi.get(self, "link_down_auth")
 
     @link_down_auth.setter
@@ -2207,9 +2191,6 @@ class ManagedswitchN8021xSettingsArgs:
     @property
     @pulumi.getter(name="localOverride")
     def local_override(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "local_override")
 
     @local_override.setter
@@ -2219,9 +2200,6 @@ class ManagedswitchN8021xSettingsArgs:
     @property
     @pulumi.getter(name="mabReauth")
     def mab_reauth(self) -> Optional[pulumi.Input[str]]:
-        """
-        Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "mab_reauth")
 
     @mab_reauth.setter
@@ -2231,9 +2209,6 @@ class ManagedswitchN8021xSettingsArgs:
     @property
     @pulumi.getter(name="macCalledStationDelimiter")
     def mac_called_station_delimiter(self) -> Optional[pulumi.Input[str]]:
-        """
-        MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        """
         return pulumi.get(self, "mac_called_station_delimiter")
 
     @mac_called_station_delimiter.setter
@@ -2243,9 +2218,6 @@ class ManagedswitchN8021xSettingsArgs:
     @property
     @pulumi.getter(name="macCallingStationDelimiter")
     def mac_calling_station_delimiter(self) -> Optional[pulumi.Input[str]]:
-        """
-        MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        """
         return pulumi.get(self, "mac_calling_station_delimiter")
 
     @mac_calling_station_delimiter.setter
@@ -2255,9 +2227,6 @@ class ManagedswitchN8021xSettingsArgs:
     @property
     @pulumi.getter(name="macCase")
     def mac_case(self) -> Optional[pulumi.Input[str]]:
-        """
-        MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
-        """
         return pulumi.get(self, "mac_case")
 
     @mac_case.setter
@@ -2267,9 +2236,6 @@ class ManagedswitchN8021xSettingsArgs:
     @property
     @pulumi.getter(name="macPasswordDelimiter")
     def mac_password_delimiter(self) -> Optional[pulumi.Input[str]]:
-        """
-        MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        """
         return pulumi.get(self, "mac_password_delimiter")
 
     @mac_password_delimiter.setter
@@ -2279,9 +2245,6 @@ class ManagedswitchN8021xSettingsArgs:
     @property
     @pulumi.getter(name="macUsernameDelimiter")
     def mac_username_delimiter(self) -> Optional[pulumi.Input[str]]:
-        """
-        MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        """
         return pulumi.get(self, "mac_username_delimiter")
 
     @mac_username_delimiter.setter
@@ -2291,9 +2254,6 @@ class ManagedswitchN8021xSettingsArgs:
     @property
     @pulumi.getter(name="maxReauthAttempt")
     def max_reauth_attempt(self) -> Optional[pulumi.Input[int]]:
-        """
-        Maximum number of authentication attempts (0 - 15, default = 3).
-        """
         return pulumi.get(self, "max_reauth_attempt")
 
     @max_reauth_attempt.setter
@@ -2303,9 +2263,6 @@ class ManagedswitchN8021xSettingsArgs:
     @property
     @pulumi.getter(name="reauthPeriod")
     def reauth_period(self) -> Optional[pulumi.Input[int]]:
-        """
-        Reauthentication time interval (1 - 1440 min, default = 60, 0 = disable).
-        """
         return pulumi.get(self, "reauth_period")
 
     @reauth_period.setter
@@ -2315,9 +2272,6 @@ class ManagedswitchN8021xSettingsArgs:
     @property
     @pulumi.getter(name="txPeriod")
     def tx_period(self) -> Optional[pulumi.Input[int]]:
-        """
-        802.1X Tx period (seconds, default=30).
-        """
         return pulumi.get(self, "tx_period")
 
     @tx_period.setter
@@ -2500,7 +2454,7 @@ class ManagedswitchPortArgs:
         :param pulumi.Input[int] packet_sample_rate: Packet sampling rate (0 - 99999 p/sec).
         :param pulumi.Input[str] packet_sampler: Enable/disable packet sampling on this interface. Valid values: `enabled`, `disabled`.
         :param pulumi.Input[int] pause_meter: Configure ingress pause metering rate, in kbps (default = 0, disabled).
-        :param pulumi.Input[str] pause_meter_resume: Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
+        :param pulumi.Input[str] pause_meter_resume: Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
         :param pulumi.Input[int] poe_capable: PoE capable.
         :param pulumi.Input[str] poe_max_power: PoE maximum power.
         :param pulumi.Input[int] poe_mode_bt_cabable: PoE mode IEEE 802.3BT capable.
@@ -3539,7 +3493,7 @@ class ManagedswitchPortArgs:
     @pulumi.getter(name="pauseMeterResume")
     def pause_meter_resume(self) -> Optional[pulumi.Input[str]]:
         """
-        Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
+        Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
         """
         return pulumi.get(self, "pause_meter_resume")
 
@@ -4080,11 +4034,6 @@ class ManagedswitchPortDhcpSnoopOption82OverrideArgs:
                  circuit_id: Optional[pulumi.Input[str]] = None,
                  remote_id: Optional[pulumi.Input[str]] = None,
                  vlan_name: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] circuit_id: Circuit ID string.
-        :param pulumi.Input[str] remote_id: Remote ID string.
-        :param pulumi.Input[str] vlan_name: VLAN name.
-        """
         if circuit_id is not None:
             pulumi.set(__self__, "circuit_id", circuit_id)
         if remote_id is not None:
@@ -4095,9 +4044,6 @@ class ManagedswitchPortDhcpSnoopOption82OverrideArgs:
     @property
     @pulumi.getter(name="circuitId")
     def circuit_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Circuit ID string.
-        """
         return pulumi.get(self, "circuit_id")
 
     @circuit_id.setter
@@ -4107,9 +4053,6 @@ class ManagedswitchPortDhcpSnoopOption82OverrideArgs:
     @property
     @pulumi.getter(name="remoteId")
     def remote_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Remote ID string.
-        """
         return pulumi.get(self, "remote_id")
 
     @remote_id.setter
@@ -4119,9 +4062,6 @@ class ManagedswitchPortDhcpSnoopOption82OverrideArgs:
     @property
     @pulumi.getter(name="vlanName")
     def vlan_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        VLAN name.
-        """
         return pulumi.get(self, "vlan_name")
 
     @vlan_name.setter

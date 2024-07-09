@@ -434,7 +434,6 @@ class Sysinfo(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -445,7 +444,6 @@ class Sysinfo(pulumi.CustomResource):
             trap_log_full_threshold=90,
             trap_low_memory_threshold=80)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -491,7 +489,6 @@ class Sysinfo(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -502,7 +499,6 @@ class Sysinfo(pulumi.CustomResource):
             trap_log_full_threshold=90,
             trap_low_memory_threshold=80)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

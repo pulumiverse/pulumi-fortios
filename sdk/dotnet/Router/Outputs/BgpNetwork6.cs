@@ -14,25 +14,16 @@ namespace Pulumiverse.Fortios.Router.Outputs
     [OutputType]
     public sealed class BgpNetwork6
     {
-        /// <summary>
-        /// Enable/disable route as backdoor. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? Backdoor;
         /// <summary>
-        /// ID.
+        /// an identifier for the resource.
         /// </summary>
         public readonly int? Id;
         /// <summary>
         /// Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
         /// </summary>
         public readonly string? NetworkImportCheck;
-        /// <summary>
-        /// Aggregate IPv6 prefix.
-        /// </summary>
         public readonly string? Prefix6;
-        /// <summary>
-        /// Route map of VRF leaking.
-        /// </summary>
         public readonly string? RouteMap;
 
         [OutputConstructor]

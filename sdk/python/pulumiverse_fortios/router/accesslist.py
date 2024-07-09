@@ -214,21 +214,18 @@ class Accesslist(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.router.Accesslist("trname", comments="test accesslist")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Note
 
         The feature can only be correctly supported when FortiOS Version >= 6.2.4, for FortiOS Version < 6.2.4, please use the following resource configuration as an alternative.
 
         ### Example
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -250,7 +247,6 @@ class Accesslist(pulumi.CustomResource):
         \"\"\",
             start="auto")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -287,21 +283,18 @@ class Accesslist(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.router.Accesslist("trname", comments="test accesslist")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Note
 
         The feature can only be correctly supported when FortiOS Version >= 6.2.4, for FortiOS Version < 6.2.4, please use the following resource configuration as an alternative.
 
         ### Example
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -323,7 +316,6 @@ class Accesslist(pulumi.CustomResource):
         \"\"\",
             start="auto")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

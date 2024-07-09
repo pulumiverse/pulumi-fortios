@@ -898,7 +898,6 @@ class Static(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -921,7 +920,6 @@ class Static(pulumi.CustomResource):
             vrf=0,
             weight=2)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -981,7 +979,6 @@ class Static(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1004,7 +1001,6 @@ class Static(pulumi.CustomResource):
             vrf=0,
             weight=2)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

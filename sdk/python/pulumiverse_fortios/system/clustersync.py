@@ -601,7 +601,6 @@ class Clustersync(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -614,7 +613,6 @@ class Clustersync(pulumi.CustomResource):
             slave_add_ike_routes="enable",
             sync_id=1)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -665,7 +663,6 @@ class Clustersync(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -678,7 +675,6 @@ class Clustersync(pulumi.CustomResource):
             slave_add_ike_routes="enable",
             sync_id=1)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

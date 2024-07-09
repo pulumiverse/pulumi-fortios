@@ -9,14 +9,12 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
  *
  * const test1 = new fortios.fmg.FirewallSecurityPolicypackage("test1", {target: "FGVM64-test"});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class FirewallSecurityPolicypackage extends pulumi.CustomResource {
     /**

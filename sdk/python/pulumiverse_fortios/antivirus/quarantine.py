@@ -500,7 +500,6 @@ class Quarantine(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -515,7 +514,6 @@ class Quarantine(pulumi.CustomResource):
             store_heuristic="imap smtp pop3 http ftp nntp imaps smtps pop3s https ftps mapi cifs",
             store_infected="imap smtp pop3 http ftp nntp imaps smtps pop3s https ftps mapi cifs")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -563,7 +561,6 @@ class Quarantine(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -578,7 +575,6 @@ class Quarantine(pulumi.CustomResource):
             store_heuristic="imap smtp pop3 http ftp nntp imaps smtps pop3s https ftps mapi cifs",
             store_infected="imap smtp pop3 http ftp nntp imaps smtps pop3s https ftps mapi cifs")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -14,39 +14,13 @@ namespace Pulumiverse.Fortios.System.Outputs
     [OutputType]
     public sealed class InterfaceIpv6Ip6DelegatedPrefixList
     {
-        /// <summary>
-        /// Enable/disable the autonomous flag. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? AutonomousFlag;
-        /// <summary>
-        /// IAID of obtained delegated-prefix from the upstream interface.
-        /// </summary>
         public readonly int? DelegatedPrefixIaid;
-        /// <summary>
-        /// Enable/disable the onlink flag. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? OnlinkFlag;
-        /// <summary>
-        /// Prefix ID.
-        /// </summary>
         public readonly int? PrefixId;
-        /// <summary>
-        /// Recursive DNS server option.
-        /// 
-        /// The `dhcp6_iapd_list` block supports:
-        /// </summary>
         public readonly string? Rdnss;
-        /// <summary>
-        /// Recursive DNS service option. Valid values: `delegated`, `default`, `specify`.
-        /// </summary>
         public readonly string? RdnssService;
-        /// <summary>
-        /// Add subnet ID to routing prefix.
-        /// </summary>
         public readonly string? Subnet;
-        /// <summary>
-        /// Name of the interface that provides delegated information.
-        /// </summary>
         public readonly string? UpstreamInterface;
 
         [OutputConstructor]

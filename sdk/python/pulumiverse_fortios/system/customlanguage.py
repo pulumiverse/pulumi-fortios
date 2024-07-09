@@ -169,14 +169,12 @@ class Customlanguage(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.system.Customlanguage("trname", filename="en")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -214,14 +212,12 @@ class Customlanguage(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.system.Customlanguage("trname", filename="en")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -233,7 +233,6 @@ class Iptranslation(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -245,7 +244,6 @@ class Iptranslation(pulumi.CustomResource):
             transid=1,
             type="SCTP")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -285,7 +283,6 @@ class Iptranslation(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -297,7 +294,6 @@ class Iptranslation(pulumi.CustomResource):
             transid=1,
             type="SCTP")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

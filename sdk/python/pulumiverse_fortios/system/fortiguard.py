@@ -85,7 +85,7 @@ class FortiguardArgs:
         :param pulumi.Input[int] outbreak_prevention_timeout: FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
         :param pulumi.Input[int] webfilter_timeout: Web filter query time out (1 - 30 sec, default = 7).
         :param pulumi.Input[str] antispam_cache: Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] antispam_cache_mpercent: Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+        :param pulumi.Input[int] antispam_cache_mpercent: Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
         :param pulumi.Input[int] antispam_cache_mpermille: Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
         :param pulumi.Input[int] antispam_cache_ttl: Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
         :param pulumi.Input[int] antispam_expiration: Expiration date of the FortiGuard antispam contract.
@@ -110,7 +110,7 @@ class FortiguardArgs:
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[int] load_balance_servers: Number of servers to alternate between as first FortiGuard option.
         :param pulumi.Input[str] outbreak_prevention_cache: Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] outbreak_prevention_cache_mpercent: Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+        :param pulumi.Input[int] outbreak_prevention_cache_mpercent: Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
         :param pulumi.Input[int] outbreak_prevention_cache_mpermille: Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
         :param pulumi.Input[int] outbreak_prevention_cache_ttl: Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
         :param pulumi.Input[int] outbreak_prevention_expiration: Expiration date of FortiGuard Virus Outbreak Prevention contract.
@@ -327,7 +327,7 @@ class FortiguardArgs:
     @pulumi.getter(name="antispamCacheMpercent")
     def antispam_cache_mpercent(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+        Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
         """
         return pulumi.get(self, "antispam_cache_mpercent")
 
@@ -627,7 +627,7 @@ class FortiguardArgs:
     @pulumi.getter(name="outbreakPreventionCacheMpercent")
     def outbreak_prevention_cache_mpercent(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+        Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
         """
         return pulumi.get(self, "outbreak_prevention_cache_mpercent")
 
@@ -1127,7 +1127,7 @@ class _FortiguardState:
         """
         Input properties used for looking up and filtering Fortiguard resources.
         :param pulumi.Input[str] antispam_cache: Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] antispam_cache_mpercent: Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+        :param pulumi.Input[int] antispam_cache_mpercent: Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
         :param pulumi.Input[int] antispam_cache_mpermille: Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
         :param pulumi.Input[int] antispam_cache_ttl: Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
         :param pulumi.Input[int] antispam_expiration: Expiration date of the FortiGuard antispam contract.
@@ -1153,7 +1153,7 @@ class _FortiguardState:
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[int] load_balance_servers: Number of servers to alternate between as first FortiGuard option.
         :param pulumi.Input[str] outbreak_prevention_cache: Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] outbreak_prevention_cache_mpercent: Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+        :param pulumi.Input[int] outbreak_prevention_cache_mpercent: Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
         :param pulumi.Input[int] outbreak_prevention_cache_mpermille: Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
         :param pulumi.Input[int] outbreak_prevention_cache_ttl: Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
         :param pulumi.Input[int] outbreak_prevention_expiration: Expiration date of FortiGuard Virus Outbreak Prevention contract.
@@ -1339,7 +1339,7 @@ class _FortiguardState:
     @pulumi.getter(name="antispamCacheMpercent")
     def antispam_cache_mpercent(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+        Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
         """
         return pulumi.get(self, "antispam_cache_mpercent")
 
@@ -1651,7 +1651,7 @@ class _FortiguardState:
     @pulumi.getter(name="outbreakPreventionCacheMpercent")
     def outbreak_prevention_cache_mpercent(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+        Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
         """
         return pulumi.get(self, "outbreak_prevention_cache_mpercent")
 
@@ -2180,7 +2180,6 @@ class Fortiguard(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2217,7 +2216,6 @@ class Fortiguard(pulumi.CustomResource):
             webfilter_license=1,
             webfilter_timeout=15)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -2240,7 +2238,7 @@ class Fortiguard(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] antispam_cache: Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] antispam_cache_mpercent: Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+        :param pulumi.Input[int] antispam_cache_mpercent: Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
         :param pulumi.Input[int] antispam_cache_mpermille: Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
         :param pulumi.Input[int] antispam_cache_ttl: Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
         :param pulumi.Input[int] antispam_expiration: Expiration date of the FortiGuard antispam contract.
@@ -2266,7 +2264,7 @@ class Fortiguard(pulumi.CustomResource):
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[int] load_balance_servers: Number of servers to alternate between as first FortiGuard option.
         :param pulumi.Input[str] outbreak_prevention_cache: Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] outbreak_prevention_cache_mpercent: Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+        :param pulumi.Input[int] outbreak_prevention_cache_mpercent: Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
         :param pulumi.Input[int] outbreak_prevention_cache_mpermille: Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
         :param pulumi.Input[int] outbreak_prevention_cache_ttl: Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
         :param pulumi.Input[int] outbreak_prevention_expiration: Expiration date of FortiGuard Virus Outbreak Prevention contract.
@@ -2316,7 +2314,6 @@ class Fortiguard(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2353,7 +2350,6 @@ class Fortiguard(pulumi.CustomResource):
             webfilter_license=1,
             webfilter_timeout=15)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -2618,7 +2614,7 @@ class Fortiguard(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] antispam_cache: Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] antispam_cache_mpercent: Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+        :param pulumi.Input[int] antispam_cache_mpercent: Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
         :param pulumi.Input[int] antispam_cache_mpermille: Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
         :param pulumi.Input[int] antispam_cache_ttl: Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
         :param pulumi.Input[int] antispam_expiration: Expiration date of the FortiGuard antispam contract.
@@ -2644,7 +2640,7 @@ class Fortiguard(pulumi.CustomResource):
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[int] load_balance_servers: Number of servers to alternate between as first FortiGuard option.
         :param pulumi.Input[str] outbreak_prevention_cache: Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `enable`, `disable`.
-        :param pulumi.Input[int] outbreak_prevention_cache_mpercent: Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+        :param pulumi.Input[int] outbreak_prevention_cache_mpercent: Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
         :param pulumi.Input[int] outbreak_prevention_cache_mpermille: Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
         :param pulumi.Input[int] outbreak_prevention_cache_ttl: Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
         :param pulumi.Input[int] outbreak_prevention_expiration: Expiration date of FortiGuard Virus Outbreak Prevention contract.
@@ -2766,7 +2762,7 @@ class Fortiguard(pulumi.CustomResource):
     @pulumi.getter(name="antispamCacheMpercent")
     def antispam_cache_mpercent(self) -> pulumi.Output[int]:
         """
-        Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+        Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
         """
         return pulumi.get(self, "antispam_cache_mpercent")
 
@@ -2974,7 +2970,7 @@ class Fortiguard(pulumi.CustomResource):
     @pulumi.getter(name="outbreakPreventionCacheMpercent")
     def outbreak_prevention_cache_mpercent(self) -> pulumi.Output[int]:
         """
-        Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+        Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
         """
         return pulumi.get(self, "outbreak_prevention_cache_mpercent")
 

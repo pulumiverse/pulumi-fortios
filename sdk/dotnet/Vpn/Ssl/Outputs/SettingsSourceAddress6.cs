@@ -14,9 +14,6 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Outputs
     [OutputType]
     public sealed class SettingsSourceAddress6
     {
-        /// <summary>
-        /// Group name.
-        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

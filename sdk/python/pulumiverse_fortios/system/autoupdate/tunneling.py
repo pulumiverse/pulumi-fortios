@@ -236,7 +236,6 @@ class Tunneling(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -245,7 +244,6 @@ class Tunneling(pulumi.CustomResource):
             port=0,
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -285,7 +283,6 @@ class Tunneling(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -294,7 +291,6 @@ class Tunneling(pulumi.CustomResource):
             port=0,
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

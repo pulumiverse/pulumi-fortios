@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Hotspot20
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -32,7 +31,6 @@ namespace Pulumiverse.Fortios.Wirelesscontroller.Hotspot20
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

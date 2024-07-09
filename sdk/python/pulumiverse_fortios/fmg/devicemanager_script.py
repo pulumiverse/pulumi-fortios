@@ -202,7 +202,6 @@ class DevicemanagerScript(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -210,16 +209,15 @@ class DevicemanagerScript(pulumi.CustomResource):
         test1 = fortios.fmg.DevicemanagerScript("test1",
             content=\"\"\"config system interface 
          edit port3 
-        	 set vdom "root"
-        	 set ip 10.7.0.200 255.255.0.0 
-        	 set allowaccess ping http https
-        	 next 
+        \\x09 set vdom "root"
+        \\x09 set ip 10.7.0.200 255.255.0.0 
+        \\x09 set allowaccess ping http https
+        \\x09 next 
          end
         \"\"\",
             description="description",
             target="remote_device")
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -240,7 +238,6 @@ class DevicemanagerScript(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -248,16 +245,15 @@ class DevicemanagerScript(pulumi.CustomResource):
         test1 = fortios.fmg.DevicemanagerScript("test1",
             content=\"\"\"config system interface 
          edit port3 
-        	 set vdom "root"
-        	 set ip 10.7.0.200 255.255.0.0 
-        	 set allowaccess ping http https
-        	 next 
+        \\x09 set vdom "root"
+        \\x09 set ip 10.7.0.200 255.255.0.0 
+        \\x09 set allowaccess ping http https
+        \\x09 next 
          end
         \"\"\",
             description="description",
             target="remote_device")
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param DevicemanagerScriptArgs args: The arguments to use to populate this resource's properties.

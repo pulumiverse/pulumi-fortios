@@ -17,7 +17,6 @@ import (
 //
 // ### Example1
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -49,11 +48,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example2
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -92,7 +89,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetCidr(ctx *pulumi.Context, args *GetCidrArgs, opts ...pulumi.InvokeOption) (*GetCidrResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetCidrResult

@@ -663,7 +663,6 @@ class Gretunnel(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -685,7 +684,6 @@ class Gretunnel(pulumi.CustomResource):
             sequence_number_reception="disable",
             sequence_number_transmission="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -738,7 +736,6 @@ class Gretunnel(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -760,7 +757,6 @@ class Gretunnel(pulumi.CustomResource):
             sequence_number_reception="disable",
             sequence_number_transmission="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

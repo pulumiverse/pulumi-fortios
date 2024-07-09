@@ -335,7 +335,6 @@ class Vipgrp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -354,7 +353,6 @@ class Vipgrp(pulumi.CustomResource):
                 name=trname1.name,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -397,7 +395,6 @@ class Vipgrp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -416,7 +413,6 @@ class Vipgrp(pulumi.CustomResource):
                 name=trname1.name,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -269,7 +269,6 @@ class Networkvisibility(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -282,7 +281,6 @@ class Networkvisibility(pulumi.CustomResource):
             hostname_ttl=86400,
             source_location="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -323,7 +321,6 @@ class Networkvisibility(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -336,7 +333,6 @@ class Networkvisibility(pulumi.CustomResource):
             hostname_ttl=86400,
             source_location="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

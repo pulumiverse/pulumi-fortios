@@ -368,7 +368,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -384,7 +383,6 @@ class Setting(pulumi.CustomResource):
             hostkey_rsa2048="Fortinet_SSH_RSA2048",
             untrusted_caname="Fortinet_SSH_CA_Untrusted")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -428,7 +426,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -444,7 +441,6 @@ class Setting(pulumi.CustomResource):
             hostkey_rsa2048="Fortinet_SSH_RSA2048",
             untrusted_caname="Fortinet_SSH_CA_Untrusted")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -301,7 +301,6 @@ class Sittunnel(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -312,7 +311,6 @@ class Sittunnel(pulumi.CustomResource):
             ip6="::/0",
             source="2.2.2.2")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -354,7 +352,6 @@ class Sittunnel(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -365,7 +362,6 @@ class Sittunnel(pulumi.CustomResource):
             ip6="::/0",
             source="2.2.2.2")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

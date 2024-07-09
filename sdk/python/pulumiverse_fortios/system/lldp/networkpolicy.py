@@ -436,14 +436,12 @@ class Networkpolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.system.lldp.Networkpolicy("trname", comment="test")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -489,14 +487,12 @@ class Networkpolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.system.lldp.Networkpolicy("trname", comment="test")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -931,7 +931,6 @@ class Group(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -949,7 +948,6 @@ class Group(pulumi.CustomResource):
             mobile_phone="disable",
             multiple_guest_add="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1010,7 +1008,6 @@ class Group(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1028,7 +1025,6 @@ class Group(pulumi.CustomResource):
             mobile_phone="disable",
             multiple_guest_add="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

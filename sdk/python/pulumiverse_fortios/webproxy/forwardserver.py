@@ -500,7 +500,6 @@ class Forwardserver(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -513,7 +512,6 @@ class Forwardserver(pulumi.CustomResource):
             port=3128,
             server_down_option="block")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -561,7 +559,6 @@ class Forwardserver(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -574,7 +571,6 @@ class Forwardserver(pulumi.CustomResource):
             port=3128,
             server_down_option="block")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

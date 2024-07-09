@@ -469,7 +469,6 @@ class Multicastaddress(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -482,7 +481,6 @@ class Multicastaddress(pulumi.CustomResource):
             type="multicastrange",
             visibility="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -529,7 +527,6 @@ class Multicastaddress(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -542,7 +539,6 @@ class Multicastaddress(pulumi.CustomResource):
             type="multicastrange",
             visibility="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

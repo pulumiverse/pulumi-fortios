@@ -733,7 +733,6 @@ class Saml(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -746,7 +745,6 @@ class Saml(pulumi.CustomResource):
             status="disable",
             tolerance=5)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -801,7 +799,6 @@ class Saml(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -814,7 +811,6 @@ class Saml(pulumi.CustomResource):
             status="disable",
             tolerance=5)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

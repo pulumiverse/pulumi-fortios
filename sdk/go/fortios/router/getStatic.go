@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,7 +39,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupStatic(ctx *pulumi.Context, args *LookupStaticArgs, opts ...pulumi.InvokeOption) (*LookupStaticResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupStaticResult

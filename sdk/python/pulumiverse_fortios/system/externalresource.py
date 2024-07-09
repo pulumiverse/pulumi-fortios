@@ -597,7 +597,6 @@ class Externalresource(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -609,7 +608,6 @@ class Externalresource(pulumi.CustomResource):
             status="enable",
             type="category")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -660,7 +658,6 @@ class Externalresource(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -672,7 +669,6 @@ class Externalresource(pulumi.CustomResource):
             status="enable",
             type="category")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

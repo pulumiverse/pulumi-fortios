@@ -14,17 +14,11 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
     [OutputType]
     public sealed class InternetserviceextensionDisableEntryIp6Range
     {
-        /// <summary>
-        /// End IPv6 address.
-        /// </summary>
         public readonly string? EndIp6;
         /// <summary>
-        /// Disable entry ID.
+        /// an identifier for the resource with format {{fosid}}.
         /// </summary>
         public readonly int? Id;
-        /// <summary>
-        /// Start IPv6 address.
-        /// </summary>
         public readonly string? StartIp6;
 
         [OutputConstructor]

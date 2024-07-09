@@ -136,7 +136,6 @@ class Sflow(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -145,7 +144,6 @@ class Sflow(pulumi.CustomResource):
             collector_ip="0.0.0.0",
             collector_port=6343)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -182,7 +180,6 @@ class Sflow(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -191,7 +188,6 @@ class Sflow(pulumi.CustomResource):
             collector_ip="0.0.0.0",
             collector_port=6343)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

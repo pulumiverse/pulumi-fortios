@@ -502,7 +502,6 @@ class Group(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -514,7 +513,6 @@ class Group(pulumi.CustomResource):
             comment="group1 test",
             type="category")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -562,7 +560,6 @@ class Group(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -574,7 +571,6 @@ class Group(pulumi.CustomResource):
             comment="group1 test",
             type="category")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

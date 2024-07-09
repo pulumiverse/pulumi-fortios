@@ -17,7 +17,6 @@ namespace Pulumiverse.Fortios.System
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,7 +33,6 @@ namespace Pulumiverse.Fortios.System
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetGlobalResult> InvokeAsync(GetGlobalArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetGlobalResult>("fortios:system/getGlobal:getGlobal", args ?? new GetGlobalArgs(), options.WithDefaults());
@@ -44,7 +42,6 @@ namespace Pulumiverse.Fortios.System
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -61,7 +58,6 @@ namespace Pulumiverse.Fortios.System
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetGlobalResult> Invoke(GetGlobalInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetGlobalResult>("fortios:system/getGlobal:getGlobal", args ?? new GetGlobalInvokeArgs(), options.WithDefaults());
@@ -333,7 +329,7 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string ComplianceCheckTime;
         /// <summary>
-        /// Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        /// Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         /// </summary>
         public readonly int CpuUseThreshold;
         /// <summary>
@@ -737,15 +733,15 @@ namespace Pulumiverse.Fortios.System
         /// </summary>
         public readonly string McTtlNotchange;
         /// <summary>
-        /// Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+        /// Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
         /// </summary>
         public readonly int MemoryUseThresholdExtreme;
         /// <summary>
-        /// Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+        /// Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
         /// </summary>
         public readonly int MemoryUseThresholdGreen;
         /// <summary>
-        /// Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+        /// Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
         /// </summary>
         public readonly int MemoryUseThresholdRed;
         /// <summary>

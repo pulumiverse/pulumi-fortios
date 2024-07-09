@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -23,7 +22,6 @@ import * as utilities from "../utilities";
  *     timezone: "04",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -304,7 +302,7 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly complianceCheckTime!: pulumi.Output<string>;
     /**
-     * Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+     * Threshold at which CPU usage is reported. (% of total CPU, default = 90).
      */
     public readonly cpuUseThreshold!: pulumi.Output<number>;
     /**
@@ -712,15 +710,15 @@ export class Global extends pulumi.CustomResource {
      */
     public readonly mcTtlNotchange!: pulumi.Output<string>;
     /**
-     * Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+     * Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
      */
     public readonly memoryUseThresholdExtreme!: pulumi.Output<number>;
     /**
-     * Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+     * Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
      */
     public readonly memoryUseThresholdGreen!: pulumi.Output<number>;
     /**
-     * Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+     * Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
      */
     public readonly memoryUseThresholdRed!: pulumi.Output<number>;
     /**
@@ -2052,7 +2050,7 @@ export interface GlobalState {
      */
     complianceCheckTime?: pulumi.Input<string>;
     /**
-     * Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+     * Threshold at which CPU usage is reported. (% of total CPU, default = 90).
      */
     cpuUseThreshold?: pulumi.Input<number>;
     /**
@@ -2460,15 +2458,15 @@ export interface GlobalState {
      */
     mcTtlNotchange?: pulumi.Input<string>;
     /**
-     * Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+     * Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
      */
     memoryUseThresholdExtreme?: pulumi.Input<number>;
     /**
-     * Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+     * Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
      */
     memoryUseThresholdGreen?: pulumi.Input<number>;
     /**
-     * Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+     * Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
      */
     memoryUseThresholdRed?: pulumi.Input<number>;
     /**
@@ -3206,7 +3204,7 @@ export interface GlobalArgs {
      */
     complianceCheckTime?: pulumi.Input<string>;
     /**
-     * Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+     * Threshold at which CPU usage is reported. (% of total CPU, default = 90).
      */
     cpuUseThreshold?: pulumi.Input<number>;
     /**
@@ -3614,15 +3612,15 @@ export interface GlobalArgs {
      */
     mcTtlNotchange?: pulumi.Input<string>;
     /**
-     * Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+     * Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
      */
     memoryUseThresholdExtreme?: pulumi.Input<number>;
     /**
-     * Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+     * Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
      */
     memoryUseThresholdGreen?: pulumi.Input<number>;
     /**
-     * Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+     * Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
      */
     memoryUseThresholdRed?: pulumi.Input<number>;
     /**

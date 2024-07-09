@@ -624,7 +624,6 @@ class Mobiletunnel(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -644,7 +643,6 @@ class Mobiletunnel(pulumi.CustomResource):
             status="disable",
             tunnel_mode="gre")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -696,7 +694,6 @@ class Mobiletunnel(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -716,7 +713,6 @@ class Mobiletunnel(pulumi.CustomResource):
             status="disable",
             tunnel_mode="gre")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

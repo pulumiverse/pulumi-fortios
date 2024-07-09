@@ -14,9 +14,6 @@ namespace Pulumiverse.Fortios.Webproxy.Outputs
     [OutputType]
     public sealed class ExplicitPacPolicySrcaddr6
     {
-        /// <summary>
-        /// Address name.
-        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

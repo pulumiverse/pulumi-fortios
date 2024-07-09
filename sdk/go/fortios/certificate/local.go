@@ -18,8 +18,66 @@ import (
 //
 // ## Example
 //
+// ### Import Certificate:
+//
+// **Step1: Prepare certificate**
+//
+// The following key is a randomly generated example key for testing. In actual use, please replace it with your own key.
+//
+// **Step2: Prepare TF file with json.GenericApi resource**
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-local/sdk/go/local"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-fortios/sdk/go/fortios/json"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			keyFile, err := local.LookupFile(ctx, &local.LookupFileArgs{
+//				Filename: "./test.key",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			crtFile, err := local.LookupFile(ctx, &local.LookupFileArgs{
+//				Filename: "./test.crt",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = json.NewGenericApi(ctx, "genericapi1", &json.GenericApiArgs{
+//				Json: pulumi.String(fmt.Sprintf(`{
+//	    "type": "regular",
+//	    "certname": "testcer",
+//	    "password": "",
+//	    "key_file_content": "%v",
+//	    "file_content": "%v"
+//	}
+//
+// `, keyFile.ContentBase64, crtFile.ContentBase64)),
+//
+//				Method: pulumi.String("POST"),
+//				Path:   pulumi.String("/api/v2/monitor/vpn-certificate/local/import"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// **Step3: Apply**
 // ### Delete Certificate:
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -47,7 +105,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type Local struct {
 	pulumi.CustomResourceState
 

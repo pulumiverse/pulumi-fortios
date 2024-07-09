@@ -1061,7 +1061,6 @@ class Theme(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1071,7 +1070,6 @@ class Theme(pulumi.CustomResource):
             graph_chart_style="PS",
             page_orient="portrait")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1136,7 +1134,6 @@ class Theme(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1146,7 +1143,6 @@ class Theme(pulumi.CustomResource):
             graph_chart_style="PS",
             page_orient="portrait")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

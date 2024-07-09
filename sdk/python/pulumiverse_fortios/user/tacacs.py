@@ -500,7 +500,6 @@ class Tacacs(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -511,7 +510,6 @@ class Tacacs(pulumi.CustomResource):
             port=2342,
             server="1.1.1.1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -559,7 +557,6 @@ class Tacacs(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -570,7 +567,6 @@ class Tacacs(pulumi.CustomResource):
             port=2342,
             server="1.1.1.1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

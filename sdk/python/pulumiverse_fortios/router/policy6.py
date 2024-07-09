@@ -897,7 +897,6 @@ class Policy6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -916,7 +915,6 @@ class Policy6(pulumi.CustomResource):
             tos="0x00",
             tos_mask="0x00")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -976,7 +974,6 @@ class Policy6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -995,7 +992,6 @@ class Policy6(pulumi.CustomResource):
             tos="0x00",
             tos_mask="0x00")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

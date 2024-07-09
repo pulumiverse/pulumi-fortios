@@ -368,7 +368,6 @@ class H2qpwanmetric(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -383,7 +382,6 @@ class H2qpwanmetric(pulumi.CustomResource):
             uplink_load=0,
             uplink_speed=2400)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -427,7 +425,6 @@ class H2qpwanmetric(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -442,7 +439,6 @@ class H2qpwanmetric(pulumi.CustomResource):
             uplink_load=0,
             uplink_speed=2400)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

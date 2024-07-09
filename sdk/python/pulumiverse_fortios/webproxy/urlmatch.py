@@ -301,7 +301,6 @@ class Urlmatch(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -319,7 +318,6 @@ class Urlmatch(pulumi.CustomResource):
             status="enable",
             url_pattern="/examples/servlet/*Servlet")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -361,7 +359,6 @@ class Urlmatch(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -379,7 +376,6 @@ class Urlmatch(pulumi.CustomResource):
             status="enable",
             url_pattern="/examples/servlet/*Servlet")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

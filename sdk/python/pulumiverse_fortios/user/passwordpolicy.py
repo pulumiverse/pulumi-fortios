@@ -467,7 +467,6 @@ class Passwordpolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -476,7 +475,6 @@ class Passwordpolicy(pulumi.CustomResource):
             expire_days=22,
             warn_days=13)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -523,7 +521,6 @@ class Passwordpolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -532,7 +529,6 @@ class Passwordpolicy(pulumi.CustomResource):
             expire_days=22,
             warn_days=13)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

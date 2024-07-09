@@ -237,7 +237,6 @@ class Communitylist(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -250,7 +249,6 @@ class Communitylist(pulumi.CustomResource):
             )],
             type="standard")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -290,7 +288,6 @@ class Communitylist(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -303,7 +300,6 @@ class Communitylist(pulumi.CustomResource):
             )],
             type="standard")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

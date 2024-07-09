@@ -302,7 +302,6 @@ class Shapingprofile(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -318,7 +317,6 @@ class Shapingprofile(pulumi.CustomResource):
                 priority="high",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -360,7 +358,6 @@ class Shapingprofile(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -376,7 +373,6 @@ class Shapingprofile(pulumi.CustomResource):
                 priority="high",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

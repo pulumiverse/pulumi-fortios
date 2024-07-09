@@ -205,7 +205,6 @@ class Keychain(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -216,7 +215,6 @@ class Keychain(pulumi.CustomResource):
             send_lifetime="04:00:00 01 01 2008 04:00:00 01 01 2022",
         )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -255,7 +253,6 @@ class Keychain(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -266,7 +263,6 @@ class Keychain(pulumi.CustomResource):
             send_lifetime="04:00:00 01 01 2008 04:00:00 01 01 2022",
         )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -238,14 +238,12 @@ class Accesslist6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.router.Accesslist6("trname", comments="access-list6 test")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -285,14 +283,12 @@ class Accesslist6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.router.Accesslist6("trname", comments="access-list6 test")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

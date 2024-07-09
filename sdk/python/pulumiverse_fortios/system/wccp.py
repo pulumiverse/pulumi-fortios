@@ -830,7 +830,6 @@ class Wccp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -856,7 +855,6 @@ class Wccp(pulumi.CustomResource):
             service_id="1",
             service_type="auto")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -914,7 +912,6 @@ class Wccp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -940,7 +937,6 @@ class Wccp(pulumi.CustomResource):
             service_id="1",
             service_type="auto")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -270,7 +270,6 @@ class Domainfilter(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -285,7 +284,6 @@ class Domainfilter(pulumi.CustomResource):
             )],
             fosid=1)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -326,7 +324,6 @@ class Domainfilter(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -341,7 +338,6 @@ class Domainfilter(pulumi.CustomResource):
             )],
             fosid=1)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

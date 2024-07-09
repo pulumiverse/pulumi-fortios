@@ -335,7 +335,6 @@ class Stpsettings(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -349,7 +348,6 @@ class Stpsettings(pulumi.CustomResource):
             revision=0,
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -392,7 +390,6 @@ class Stpsettings(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -406,7 +403,6 @@ class Stpsettings(pulumi.CustomResource):
             revision=0,
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

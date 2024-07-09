@@ -599,7 +599,6 @@ class Settings(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -618,7 +617,6 @@ class Settings(pulumi.CustomResource):
             forticlient_user_avatar="enable",
             forticlient_warning_interval=1)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -669,7 +667,6 @@ class Settings(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -688,7 +685,6 @@ class Settings(pulumi.CustomResource):
             forticlient_user_avatar="enable",
             forticlient_warning_interval=1)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

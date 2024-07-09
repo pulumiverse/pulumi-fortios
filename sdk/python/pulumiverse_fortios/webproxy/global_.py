@@ -930,7 +930,6 @@ class Global(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -950,7 +949,6 @@ class Global(pulumi.CustomResource):
             tunnel_non_http="enable",
             unknown_http_version="best-effort")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1011,7 +1009,6 @@ class Global(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1031,7 +1028,6 @@ class Global(pulumi.CustomResource):
             tunnel_non_http="enable",
             unknown_http_version="best-effort")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

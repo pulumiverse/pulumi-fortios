@@ -632,7 +632,6 @@ class Webcache(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -656,7 +655,6 @@ class Webcache(pulumi.CustomResource):
             neg_resp_time=0,
             reval_pnc="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -708,7 +706,6 @@ class Webcache(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -732,7 +729,6 @@ class Webcache(pulumi.CustomResource):
             neg_resp_time=0,
             reval_pnc="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -426,7 +426,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -444,7 +443,6 @@ class Setting(pulumi.CustomResource):
             ssl_queue_threshold=32,
             ssl_send_empty_frags="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -490,7 +488,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -508,7 +505,6 @@ class Setting(pulumi.CustomResource):
             ssl_queue_threshold=32,
             ssl_send_empty_frags="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

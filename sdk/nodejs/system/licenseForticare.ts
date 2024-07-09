@@ -9,14 +9,12 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
  *
  * const test2 = new fortios.system.LicenseForticare("test2", {registrationCode: "license"});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class LicenseForticare extends pulumi.CustomResource {
     /**

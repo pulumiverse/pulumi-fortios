@@ -700,7 +700,6 @@ class Profileprotocoloptions(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -799,7 +798,6 @@ class Profileprotocoloptions(pulumi.CustomResource):
             ),
             switching_protocols_log="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -853,7 +851,6 @@ class Profileprotocoloptions(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -952,7 +949,6 @@ class Profileprotocoloptions(pulumi.CustomResource):
             ),
             switching_protocols_log="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -865,7 +865,6 @@ class Proxyaddress(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -877,7 +876,6 @@ class Proxyaddress(pulumi.CustomResource):
             type="host-regex",
             visibility="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -936,7 +934,6 @@ class Proxyaddress(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -948,7 +945,6 @@ class Proxyaddress(pulumi.CustomResource):
             type="host-regex",
             visibility="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

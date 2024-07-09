@@ -533,7 +533,6 @@ class Emailserver(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -549,7 +548,6 @@ class Emailserver(pulumi.CustomResource):
             type="custom",
             validate_server="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -598,7 +596,6 @@ class Emailserver(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -614,7 +611,6 @@ class Emailserver(pulumi.CustomResource):
             type="custom",
             validate_server="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

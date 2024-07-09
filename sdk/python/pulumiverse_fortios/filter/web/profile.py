@@ -1426,7 +1426,6 @@ class Profile(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1502,7 +1501,6 @@ class Profile(pulumi.CustomResource):
             wisp_algorithm="auto-learning",
             youtube_channel_status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1578,7 +1576,6 @@ class Profile(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1654,7 +1651,6 @@ class Profile(pulumi.CustomResource):
             wisp_algorithm="auto-learning",
             youtube_channel_status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -18,7 +18,6 @@ namespace Pulumiverse.Fortios.Firewall
     /// ## Example Usage
     /// 
     /// ### Iprange Address
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -37,10 +36,8 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Geography Address
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -58,10 +55,8 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Fqdn Address
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -82,10 +77,8 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Ipmask Address
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -103,7 +96,6 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:firewall/objectAddress:ObjectAddress")]
     public partial class ObjectAddress : global::Pulumi.CustomResource

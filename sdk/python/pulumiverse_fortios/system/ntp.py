@@ -535,7 +535,6 @@ class Ntp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -548,7 +547,6 @@ class Ntp(pulumi.CustomResource):
             syncinterval=1,
             type="fortiguard")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -597,7 +595,6 @@ class Ntp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -610,7 +607,6 @@ class Ntp(pulumi.CustomResource):
             syncinterval=1,
             type="fortiguard")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

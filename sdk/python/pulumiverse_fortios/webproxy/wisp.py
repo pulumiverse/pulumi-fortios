@@ -300,7 +300,6 @@ class Wisp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -312,7 +311,6 @@ class Wisp(pulumi.CustomResource):
             server_port=15868,
             timeout=5)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -354,7 +352,6 @@ class Wisp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -366,7 +363,6 @@ class Wisp(pulumi.CustomResource):
             server_port=15868,
             timeout=5)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

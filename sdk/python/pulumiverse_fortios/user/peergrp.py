@@ -205,7 +205,6 @@ class Peergrp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -220,7 +219,6 @@ class Peergrp(pulumi.CustomResource):
             name=trname2.name,
         )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -259,7 +257,6 @@ class Peergrp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -274,7 +271,6 @@ class Peergrp(pulumi.CustomResource):
             name=trname2.name,
         )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

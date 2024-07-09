@@ -170,7 +170,6 @@ class Hamonitor(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -180,7 +179,6 @@ class Hamonitor(pulumi.CustomResource):
             vlan_hb_interval=5,
             vlan_hb_lost_threshold=3)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -218,7 +216,6 @@ class Hamonitor(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -228,7 +225,6 @@ class Hamonitor(pulumi.CustomResource):
             vlan_hb_interval=5,
             vlan_hb_lost_threshold=3)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

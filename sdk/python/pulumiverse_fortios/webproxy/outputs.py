@@ -169,18 +169,12 @@ class ExplicitPacPolicyDstaddr(dict):
 class ExplicitPacPolicySrcaddr6(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
-        """
-        :param str name: Address name.
-        """
         if name is not None:
             pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        Address name.
-        """
         return pulumi.get(self, "name")
 
 
@@ -257,18 +251,12 @@ class ForwardservergroupServerList(dict):
 class GlobalLearnClientIpSrcaddr6(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
-        """
-        :param str name: Address name.
-        """
         if name is not None:
             pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        Address name.
-        """
         return pulumi.get(self, "name")
 
 

@@ -1350,7 +1350,7 @@ class GetGlobalResult:
     @pulumi.getter(name="cpuUseThreshold")
     def cpu_use_threshold(self) -> int:
         """
-        Threshold at which CPU usage is reported. (%!o(MISSING)f total CPU, default = 90).
+        Threshold at which CPU usage is reported. (% of total CPU, default = 90).
         """
         return pulumi.get(self, "cpu_use_threshold")
 
@@ -2158,7 +2158,7 @@ class GetGlobalResult:
     @pulumi.getter(name="memoryUseThresholdExtreme")
     def memory_use_threshold_extreme(self) -> int:
         """
-        Threshold at which memory usage is considered extreme (new sessions are dropped) (%!o(MISSING)f total RAM, default = 95).
+        Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95).
         """
         return pulumi.get(self, "memory_use_threshold_extreme")
 
@@ -2166,7 +2166,7 @@ class GetGlobalResult:
     @pulumi.getter(name="memoryUseThresholdGreen")
     def memory_use_threshold_green(self) -> int:
         """
-        Threshold at which memory usage forces the FortiGate to exit conserve mode (%!o(MISSING)f total RAM, default = 82).
+        Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82).
         """
         return pulumi.get(self, "memory_use_threshold_green")
 
@@ -2174,7 +2174,7 @@ class GetGlobalResult:
     @pulumi.getter(name="memoryUseThresholdRed")
     def memory_use_threshold_red(self) -> int:
         """
-        Threshold at which memory usage forces the FortiGate to enter conserve mode (%!o(MISSING)f total RAM, default = 88).
+        Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88).
         """
         return pulumi.get(self, "memory_use_threshold_red")
 
@@ -3469,7 +3469,6 @@ def get_global(vdomparam: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -3477,7 +3476,6 @@ def get_global(vdomparam: Optional[str] = None,
     sample1 = fortios.system.get_global()
     pulumi.export("output1", sample1.hostname)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -3784,7 +3782,6 @@ def get_global_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -3792,7 +3789,6 @@ def get_global_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
     sample1 = fortios.system.get_global()
     pulumi.export("output1", sample1.hostname)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.

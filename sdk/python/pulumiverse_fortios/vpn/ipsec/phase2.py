@@ -1587,7 +1587,6 @@ class Phase2(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1701,7 +1700,6 @@ class Phase2(pulumi.CustomResource):
             src_subnet6="::/0",
             use_natip="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1782,7 +1780,6 @@ class Phase2(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1896,7 +1893,6 @@ class Phase2(pulumi.CustomResource):
             src_subnet6="::/0",
             use_natip="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

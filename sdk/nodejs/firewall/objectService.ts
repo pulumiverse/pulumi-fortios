@@ -12,7 +12,6 @@ import * as utilities from "../utilities";
  * ## Example Usage
  *
  * ### Fqdn Service
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -24,10 +23,8 @@ import * as utilities from "../utilities";
  *     protocol: "TCP/UDP/SCTP",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Iprange Service
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -42,10 +39,8 @@ import * as utilities from "../utilities";
  *     udpPortrange: "44-55",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### ICMP Service
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -59,7 +54,6 @@ import * as utilities from "../utilities";
  *     protocolNumber: "1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class ObjectService extends pulumi.CustomResource {
     /**

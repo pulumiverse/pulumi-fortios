@@ -270,14 +270,12 @@ class Contentheader(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.filter.web.Contentheader("trname", fosid=1)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -318,14 +316,12 @@ class Contentheader(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.filter.web.Contentheader("trname", fosid=1)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

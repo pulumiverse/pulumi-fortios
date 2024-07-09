@@ -337,7 +337,6 @@ class Profile(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -347,7 +346,6 @@ class Profile(pulumi.CustomResource):
             default_command_log="enable",
             log="x11")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -390,7 +388,6 @@ class Profile(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -400,7 +397,6 @@ class Profile(pulumi.CustomResource):
             default_command_log="enable",
             log="x11")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

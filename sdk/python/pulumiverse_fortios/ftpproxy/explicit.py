@@ -401,7 +401,6 @@ class Explicit(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -411,7 +410,6 @@ class Explicit(pulumi.CustomResource):
             sec_default_action="deny",
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -456,7 +454,6 @@ class Explicit(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -466,7 +463,6 @@ class Explicit(pulumi.CustomResource):
             sec_default_action="deny",
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

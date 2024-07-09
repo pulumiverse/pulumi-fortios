@@ -436,7 +436,6 @@ class Device(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -447,7 +446,6 @@ class Device(pulumi.CustomResource):
             mac="08:00:20:0a:8c:6d",
             type="unknown")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -493,7 +491,6 @@ class Device(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -504,7 +501,6 @@ class Device(pulumi.CustomResource):
             mac="08:00:20:0a:8c:6d",
             type="unknown")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

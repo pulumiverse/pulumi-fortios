@@ -238,7 +238,6 @@ class Routemap(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -275,7 +274,6 @@ class Routemap(pulumi.CustomResource):
             set_weight=21,
         )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -315,7 +313,6 @@ class Routemap(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -352,7 +349,6 @@ class Routemap(pulumi.CustomResource):
             set_weight=21,
         )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

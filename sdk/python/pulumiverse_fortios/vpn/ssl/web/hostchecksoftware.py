@@ -337,7 +337,6 @@ class Hostchecksoftware(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -346,7 +345,6 @@ class Hostchecksoftware(pulumi.CustomResource):
             os_type="windows",
             type="fw")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -389,7 +387,6 @@ class Hostchecksoftware(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -398,7 +395,6 @@ class Hostchecksoftware(pulumi.CustomResource):
             os_type="windows",
             type="fw")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

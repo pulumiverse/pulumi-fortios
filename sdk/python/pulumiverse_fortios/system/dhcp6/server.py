@@ -862,7 +862,6 @@ class Server(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -875,7 +874,6 @@ class Server(pulumi.CustomResource):
             status="enable",
             subnet="2001:db8:1234:113::/64")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -934,7 +932,6 @@ class Server(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -947,7 +944,6 @@ class Server(pulumi.CustomResource):
             status="enable",
             subnet="2001:db8:1234:113::/64")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -29,7 +28,6 @@ import * as utilities from "../utilities";
  *     vdom: "root",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class Fortimanager extends pulumi.CustomResource {
     /**

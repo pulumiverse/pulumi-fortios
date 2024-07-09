@@ -2798,7 +2798,6 @@ def get_interface(name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -2806,7 +2805,6 @@ def get_interface(name: Optional[str] = None,
     sample1 = fortios.system.get_interface(name="port1")
     pulumi.export("output1", sample1.ip)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: Specify the name of the desired system interface.
@@ -3060,7 +3058,6 @@ def get_interface_output(name: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -3068,7 +3065,6 @@ def get_interface_output(name: Optional[pulumi.Input[str]] = None,
     sample1 = fortios.system.get_interface(name="port1")
     pulumi.export("output1", sample1.ip)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: Specify the name of the desired system interface.

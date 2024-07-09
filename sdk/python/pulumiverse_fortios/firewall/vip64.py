@@ -731,7 +731,6 @@ class Vip64(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -749,7 +748,6 @@ class Vip64(pulumi.CustomResource):
             protocol="tcp",
             type="static-nat")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -804,7 +802,6 @@ class Vip64(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -822,7 +819,6 @@ class Vip64(pulumi.CustomResource):
             protocol="tcp",
             type="static-nat")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

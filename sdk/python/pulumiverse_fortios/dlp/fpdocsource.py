@@ -662,7 +662,6 @@ class Fpdocsource(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -684,7 +683,6 @@ class Fpdocsource(pulumi.CustomResource):
             vdom="mgmt",
             weekday="sunday")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -737,7 +735,6 @@ class Fpdocsource(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -759,7 +756,6 @@ class Fpdocsource(pulumi.CustomResource):
             vdom="mgmt",
             weekday="sunday")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -11,7 +11,6 @@ import * as utilities from "../../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
@@ -21,7 +20,6 @@ import * as utilities from "../../utilities";
  * });
  * export const output1 = sample1;
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNeighbor(args: GetNeighborArgs, opts?: pulumi.InvokeOptions): Promise<GetNeighborResult> {
 
@@ -689,7 +687,6 @@ export interface GetNeighborResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
@@ -699,7 +696,6 @@ export interface GetNeighborResult {
  * });
  * export const output1 = sample1;
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNeighborOutput(args: GetNeighborOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNeighborResult> {
     return pulumi.output(args).apply((a: any) => getNeighbor(a, opts))

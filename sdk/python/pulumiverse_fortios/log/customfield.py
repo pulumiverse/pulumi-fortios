@@ -169,7 +169,6 @@ class Customfield(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -178,7 +177,6 @@ class Customfield(pulumi.CustomResource):
             fosid="1",
             value="logteststr")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -216,7 +214,6 @@ class Customfield(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -225,7 +222,6 @@ class Customfield(pulumi.CustomResource):
             fosid="1",
             value="logteststr")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.Fmg
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -85,7 +84,6 @@ namespace Pulumiverse.Fortios.Fmg
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:fmg/firewallSecurityPolicy:FirewallSecurityPolicy")]
     public partial class FirewallSecurityPolicy : global::Pulumi.CustomResource

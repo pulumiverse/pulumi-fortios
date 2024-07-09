@@ -828,7 +828,6 @@ class Multicastpolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -853,7 +852,6 @@ class Multicastpolicy(pulumi.CustomResource):
             start_port=1,
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -911,7 +909,6 @@ class Multicastpolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -936,7 +933,6 @@ class Multicastpolicy(pulumi.CustomResource):
             start_port=1,
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

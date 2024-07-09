@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -22,7 +21,6 @@ import * as utilities from "../utilities";
  *     sendLifetime: "04:00:00 01 01 2008 04:00:00 01 01 2022",
  * }]});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

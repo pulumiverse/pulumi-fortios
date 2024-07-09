@@ -9,7 +9,6 @@ import * as utilities from "../../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -42,7 +41,6 @@ import * as utilities from "../../utilities";
  *     uploadtype: "traffic event virus webfilter IPS spamfilter dlp-archive anomaly voip dlp app-ctrl waf netscan gtp dns",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

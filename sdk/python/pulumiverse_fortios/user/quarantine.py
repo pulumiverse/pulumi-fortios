@@ -271,14 +271,12 @@ class Quarantine(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.user.Quarantine("trname", quarantine="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -319,14 +317,12 @@ class Quarantine(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.user.Quarantine("trname", quarantine="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

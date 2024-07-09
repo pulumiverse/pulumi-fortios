@@ -302,7 +302,6 @@ class Ocspserver(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -313,7 +312,6 @@ class Ocspserver(pulumi.CustomResource):
             unavail_action="revoke",
             url="www.tetserv.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -355,7 +353,6 @@ class Ocspserver(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -366,7 +363,6 @@ class Ocspserver(pulumi.CustomResource):
             unavail_action="revoke",
             url="www.tetserv.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

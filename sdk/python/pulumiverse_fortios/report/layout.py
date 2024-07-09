@@ -699,7 +699,6 @@ class Layout(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -717,7 +716,6 @@ class Layout(pulumi.CustomResource):
             time="00:00",
             title="FortiGate System Analysis Report")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -771,7 +769,6 @@ class Layout(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -789,7 +786,6 @@ class Layout(pulumi.CustomResource):
             time="00:00",
             title="FortiGate System Analysis Report")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

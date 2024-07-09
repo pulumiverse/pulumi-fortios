@@ -2875,7 +2875,6 @@ class Proxypolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2918,7 +2917,6 @@ class Proxypolicy(pulumi.CustomResource):
             webcache="disable",
             webcache_https="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -3038,7 +3036,6 @@ class Proxypolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -3081,7 +3078,6 @@ class Proxypolicy(pulumi.CustomResource):
             webcache="disable",
             webcache_https="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

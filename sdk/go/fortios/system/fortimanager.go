@@ -17,7 +17,6 @@ import (
 //
 // ## Example
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -50,7 +49,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type Fortimanager struct {
 	pulumi.CustomResourceState
 

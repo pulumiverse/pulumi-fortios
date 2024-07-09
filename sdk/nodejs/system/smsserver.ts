@@ -9,14 +9,12 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
  *
  * const trname = new fortios.system.Smsserver("trname", {mailServer: "1.1.1.2"});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

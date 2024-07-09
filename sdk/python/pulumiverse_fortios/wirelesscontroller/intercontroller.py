@@ -370,7 +370,6 @@ class Intercontroller(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -382,7 +381,6 @@ class Intercontroller(pulumi.CustomResource):
             inter_controller_mode="disable",
             inter_controller_pri="primary")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -426,7 +424,6 @@ class Intercontroller(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -438,7 +435,6 @@ class Intercontroller(pulumi.CustomResource):
             inter_controller_mode="disable",
             inter_controller_pri="primary")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

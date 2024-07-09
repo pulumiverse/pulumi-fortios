@@ -2944,7 +2944,6 @@ class Securitypolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2970,7 +2969,6 @@ class Securitypolicy(pulumi.CustomResource):
             )],
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -3092,7 +3090,6 @@ class Securitypolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -3118,7 +3115,6 @@ class Securitypolicy(pulumi.CustomResource):
             )],
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

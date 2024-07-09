@@ -736,7 +736,6 @@ class Dnsdatabase(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -759,7 +758,6 @@ class Dnsdatabase(pulumi.CustomResource):
             type="master",
             view="shadow")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -816,7 +814,6 @@ class Dnsdatabase(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -839,7 +836,6 @@ class Dnsdatabase(pulumi.CustomResource):
             type="master",
             view="shadow")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

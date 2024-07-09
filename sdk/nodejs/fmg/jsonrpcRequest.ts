@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -70,7 +69,6 @@ import * as utilities from "../utilities";
  *
  * `});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class JsonrpcRequest extends pulumi.CustomResource {
     /**

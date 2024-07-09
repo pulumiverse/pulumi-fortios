@@ -499,7 +499,6 @@ class Ldbmonitor(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -512,7 +511,6 @@ class Ldbmonitor(pulumi.CustomResource):
             timeout=2,
             type="ping")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -560,7 +558,6 @@ class Ldbmonitor(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -573,7 +570,6 @@ class Ldbmonitor(pulumi.CustomResource):
             timeout=2,
             type="ping")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

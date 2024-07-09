@@ -799,7 +799,6 @@ class Policy8021X(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -821,7 +820,6 @@ class Policy8021X(pulumi.CustomResource):
                 name="Guest-group",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -878,7 +876,6 @@ class Policy8021X(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -900,7 +897,6 @@ class Policy8021X(pulumi.CustomResource):
                 name="Guest-group",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

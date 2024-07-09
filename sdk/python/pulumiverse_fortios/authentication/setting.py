@@ -832,7 +832,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -845,7 +844,6 @@ class Setting(pulumi.CustomResource):
             captive_portal_ssl_port=7831,
             captive_portal_type="fqdn")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -903,7 +901,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -916,7 +913,6 @@ class Setting(pulumi.CustomResource):
             captive_portal_ssl_port=7831,
             captive_portal_type="fqdn")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

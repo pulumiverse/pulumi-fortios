@@ -203,7 +203,6 @@ class Fipscc(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -214,7 +213,6 @@ class Fipscc(pulumi.CustomResource):
             self_test_period=1440,
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -253,7 +251,6 @@ class Fipscc(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -264,7 +261,6 @@ class Fipscc(pulumi.CustomResource):
             self_test_period=1440,
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

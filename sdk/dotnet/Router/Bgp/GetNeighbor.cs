@@ -17,7 +17,6 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -37,7 +36,6 @@ namespace Pulumiverse.Fortios.Router.Bgp
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetNeighborResult> InvokeAsync(GetNeighborArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNeighborResult>("fortios:router/bgp/getNeighbor:getNeighbor", args ?? new GetNeighborArgs(), options.WithDefaults());
@@ -47,7 +45,6 @@ namespace Pulumiverse.Fortios.Router.Bgp
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -67,7 +64,6 @@ namespace Pulumiverse.Fortios.Router.Bgp
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetNeighborResult> Invoke(GetNeighborInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNeighborResult>("fortios:router/bgp/getNeighbor:getNeighbor", args ?? new GetNeighborInvokeArgs(), options.WithDefaults());

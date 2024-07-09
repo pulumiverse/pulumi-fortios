@@ -162,7 +162,7 @@ func (o HostchecksoftwareCheckItemListArrayOutput) Index(i pulumi.IntInput) Host
 }
 
 type HostchecksoftwareCheckItemListMd5 struct {
-	// Hex string of MD5 checksum.
+	// an identifier for the resource with format {{name}}.
 	Id *string `pulumi:"id"`
 }
 
@@ -178,7 +178,7 @@ type HostchecksoftwareCheckItemListMd5Input interface {
 }
 
 type HostchecksoftwareCheckItemListMd5Args struct {
-	// Hex string of MD5 checksum.
+	// an identifier for the resource with format {{name}}.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 }
 
@@ -233,7 +233,7 @@ func (o HostchecksoftwareCheckItemListMd5Output) ToHostchecksoftwareCheckItemLis
 	return o
 }
 
-// Hex string of MD5 checksum.
+// an identifier for the resource with format {{name}}.
 func (o HostchecksoftwareCheckItemListMd5Output) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HostchecksoftwareCheckItemListMd5) *string { return v.Id }).(pulumi.StringPtrOutput)
 }

@@ -236,7 +236,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -248,7 +247,6 @@ class Setting(pulumi.CustomResource):
             top_n=1000,
             web_browsing_threshold=3)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -288,7 +286,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -300,7 +297,6 @@ class Setting(pulumi.CustomResource):
             top_n=1000,
             web_browsing_threshold=3)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

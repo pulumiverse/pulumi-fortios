@@ -13,27 +13,18 @@ namespace Pulumiverse.Fortios.Router.Inputs
 
     public sealed class BgpAggregateAddress6GetArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Enable/disable generate AS set path information. Valid values: `enable`, `disable`.
-        /// </summary>
         [Input("asSet")]
         public Input<string>? AsSet { get; set; }
 
         /// <summary>
-        /// ID.
+        /// an identifier for the resource.
         /// </summary>
         [Input("id")]
         public Input<int>? Id { get; set; }
 
-        /// <summary>
-        /// Aggregate IPv6 prefix.
-        /// </summary>
         [Input("prefix6")]
         public Input<string>? Prefix6 { get; set; }
 
-        /// <summary>
-        /// Enable/disable filter more specific routes from updates. Valid values: `enable`, `disable`.
-        /// </summary>
         [Input("summaryOnly")]
         public Input<string>? SummaryOnly { get; set; }
 

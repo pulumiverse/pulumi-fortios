@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -19,7 +18,6 @@ import * as utilities from "../utilities";
  *     startip: "2001:3ca1:10f:1a:121b::10",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

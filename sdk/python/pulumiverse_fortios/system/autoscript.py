@@ -302,7 +302,6 @@ class Autoscript(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -321,7 +320,6 @@ class Autoscript(pulumi.CustomResource):
         \"\"\",
             start="auto")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -363,7 +361,6 @@ class Autoscript(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -382,7 +379,6 @@ class Autoscript(pulumi.CustomResource):
         \"\"\",
             start="auto")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

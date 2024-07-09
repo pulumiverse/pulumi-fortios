@@ -896,7 +896,6 @@ class Chart(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -916,7 +915,6 @@ class Chart(pulumi.CustomResource):
             title_font_size=0,
             type="graph")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -976,7 +974,6 @@ class Chart(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -996,7 +993,6 @@ class Chart(pulumi.CustomResource):
             title_font_size=0,
             type="graph")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

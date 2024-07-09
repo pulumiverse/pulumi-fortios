@@ -631,7 +631,6 @@ class Localinpolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -653,7 +652,6 @@ class Localinpolicy(pulumi.CustomResource):
             )],
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -705,7 +703,6 @@ class Localinpolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -727,7 +724,6 @@ class Localinpolicy(pulumi.CustomResource):
             )],
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

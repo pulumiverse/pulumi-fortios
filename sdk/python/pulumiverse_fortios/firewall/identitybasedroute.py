@@ -238,14 +238,12 @@ class Identitybasedroute(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.firewall.Identitybasedroute("trname", comments="test")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -285,14 +283,12 @@ class Identitybasedroute(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.firewall.Identitybasedroute("trname", comments="test")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

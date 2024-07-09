@@ -369,7 +369,6 @@ class Ptp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -381,7 +380,6 @@ class Ptp(pulumi.CustomResource):
             request_interval=1,
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -425,7 +423,6 @@ class Ptp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -437,7 +434,6 @@ class Ptp(pulumi.CustomResource):
             request_interval=1,
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

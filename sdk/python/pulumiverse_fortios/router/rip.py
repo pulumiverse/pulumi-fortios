@@ -667,7 +667,6 @@ class Rip(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -709,7 +708,6 @@ class Rip(pulumi.CustomResource):
             update_timer=30,
             version="2")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -762,7 +760,6 @@ class Rip(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -804,7 +801,6 @@ class Rip(pulumi.CustomResource):
             update_timer=30,
             version="2")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

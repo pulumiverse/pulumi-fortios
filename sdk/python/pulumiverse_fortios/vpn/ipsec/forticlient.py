@@ -201,7 +201,6 @@ class Forticlient(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -350,7 +349,6 @@ class Forticlient(pulumi.CustomResource):
             status="enable",
             usergroupname="Guest-group")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -389,7 +387,6 @@ class Forticlient(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -538,7 +535,6 @@ class Forticlient(pulumi.CustomResource):
             status="enable",
             usergroupname="Guest-group")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

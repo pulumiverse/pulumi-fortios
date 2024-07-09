@@ -898,7 +898,6 @@ class Automationtrigger(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -912,7 +911,6 @@ class Automationtrigger(pulumi.CustomResource):
             trigger_minute=60,
             trigger_type="event-based")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -972,7 +970,6 @@ class Automationtrigger(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -986,7 +983,6 @@ class Automationtrigger(pulumi.CustomResource):
             trigger_minute=60,
             trigger_type="event-based")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

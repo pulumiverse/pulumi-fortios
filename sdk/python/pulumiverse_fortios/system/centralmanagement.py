@@ -865,7 +865,6 @@ class Centralmanagement(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -896,7 +895,6 @@ class Centralmanagement(pulumi.CustomResource):
             type="fortimanager",
             vdom="root")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -955,7 +953,6 @@ class Centralmanagement(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -986,7 +983,6 @@ class Centralmanagement(pulumi.CustomResource):
             type="fortimanager",
             vdom="root")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

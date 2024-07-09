@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -60,7 +59,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -90,7 +88,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> AntispamCache { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+        /// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
         /// </summary>
         [Output("antispamCacheMpercent")]
         public Output<int> AntispamCacheMpercent { get; private set; } = null!;
@@ -246,7 +244,7 @@ namespace Pulumiverse.Fortios.System
         public Output<string> OutbreakPreventionCache { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+        /// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
         /// </summary>
         [Output("outbreakPreventionCacheMpercent")]
         public Output<int> OutbreakPreventionCacheMpercent { get; private set; } = null!;
@@ -531,7 +529,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? AntispamCache { get; set; }
 
         /// <summary>
-        /// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+        /// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
         /// </summary>
         [Input("antispamCacheMpercent")]
         public Input<int>? AntispamCacheMpercent { get; set; }
@@ -687,7 +685,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? OutbreakPreventionCache { get; set; }
 
         /// <summary>
-        /// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+        /// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
         /// </summary>
         [Input("outbreakPreventionCacheMpercent")]
         public Input<int>? OutbreakPreventionCacheMpercent { get; set; }
@@ -939,7 +937,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? AntispamCache { get; set; }
 
         /// <summary>
-        /// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+        /// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
         /// </summary>
         [Input("antispamCacheMpercent")]
         public Input<int>? AntispamCacheMpercent { get; set; }
@@ -1095,7 +1093,7 @@ namespace Pulumiverse.Fortios.System
         public Input<string>? OutbreakPreventionCache { get; set; }
 
         /// <summary>
-        /// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+        /// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
         /// </summary>
         [Input("outbreakPreventionCacheMpercent")]
         public Input<int>? OutbreakPreventionCacheMpercent { get; set; }

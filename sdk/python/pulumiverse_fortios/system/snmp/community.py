@@ -732,7 +732,6 @@ class Community(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -752,7 +751,6 @@ class Community(pulumi.CustomResource):
             trap_v2c_rport=162,
             trap_v2c_status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -807,7 +805,6 @@ class Community(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -827,7 +824,6 @@ class Community(pulumi.CustomResource):
             trap_v2c_rport=162,
             trap_v2c_status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

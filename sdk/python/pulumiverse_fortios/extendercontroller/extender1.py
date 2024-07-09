@@ -436,7 +436,6 @@ class Extender1(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -489,7 +488,6 @@ class Extender1(pulumi.CustomResource):
             ),
             vdom=0)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -536,7 +534,6 @@ class Extender1(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -589,7 +586,6 @@ class Extender1(pulumi.CustomResource):
             ),
             vdom=0)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

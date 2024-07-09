@@ -598,7 +598,6 @@ class Pppoeinterface(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -616,7 +615,6 @@ class Pppoeinterface(pulumi.CustomResource):
             padt_retry_timeout=1,
             pppoe_unnumbered_negotiate="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -667,7 +665,6 @@ class Pppoeinterface(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -685,7 +682,6 @@ class Pppoeinterface(pulumi.CustomResource):
             padt_retry_timeout=1,
             pppoe_unnumbered_negotiate="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -368,7 +368,6 @@ class Realm(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -379,7 +378,6 @@ class Realm(pulumi.CustomResource):
             url_path="1",
             virtual_host="2.2.2.2")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -423,7 +421,6 @@ class Realm(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -434,7 +431,6 @@ class Realm(pulumi.CustomResource):
             url_path="1",
             virtual_host="2.2.2.2")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

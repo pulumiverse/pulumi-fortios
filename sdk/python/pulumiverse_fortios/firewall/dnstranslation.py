@@ -203,7 +203,6 @@ class Dnstranslation(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -214,7 +213,6 @@ class Dnstranslation(pulumi.CustomResource):
             netmask="255.0.0.0",
             src="1.1.1.1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -253,7 +251,6 @@ class Dnstranslation(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -264,7 +261,6 @@ class Dnstranslation(pulumi.CustomResource):
             netmask="255.0.0.0",
             src="1.1.1.1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

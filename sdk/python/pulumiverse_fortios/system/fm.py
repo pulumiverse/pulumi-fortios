@@ -302,7 +302,6 @@ class Fm(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -315,7 +314,6 @@ class Fm(pulumi.CustomResource):
             status="disable",
             vdom="root")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -357,7 +355,6 @@ class Fm(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -370,7 +367,6 @@ class Fm(pulumi.CustomResource):
             status="disable",
             vdom="root")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

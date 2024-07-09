@@ -2051,7 +2051,6 @@ class Sdnconnector(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2068,7 +2067,6 @@ class Sdnconnector(pulumi.CustomResource):
             use_metadata_iam="disable",
             username="sg")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -2163,7 +2161,6 @@ class Sdnconnector(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2180,7 +2177,6 @@ class Sdnconnector(pulumi.CustomResource):
             use_metadata_iam="disable",
             username="sg")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

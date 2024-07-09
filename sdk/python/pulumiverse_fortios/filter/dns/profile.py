@@ -667,7 +667,6 @@ class Profile(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -713,7 +712,6 @@ class Profile(pulumi.CustomResource):
             sdns_ftgd_err_log="enable",
             youtube_restrict="strict")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -766,7 +764,6 @@ class Profile(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -812,7 +809,6 @@ class Profile(pulumi.CustomResource):
             sdns_ftgd_err_log="enable",
             youtube_restrict="strict")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

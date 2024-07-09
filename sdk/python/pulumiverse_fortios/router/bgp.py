@@ -2421,7 +2421,6 @@ class Bgp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2500,7 +2499,6 @@ class Bgp(pulumi.CustomResource):
             scan_time=60,
             synchronization="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -2612,7 +2610,6 @@ class Bgp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2691,7 +2688,6 @@ class Bgp(pulumi.CustomResource):
             scan_time=60,
             synchronization="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

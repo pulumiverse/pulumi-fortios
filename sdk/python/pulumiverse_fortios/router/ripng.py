@@ -634,7 +634,6 @@ class Ripng(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -674,7 +673,6 @@ class Ripng(pulumi.CustomResource):
             timeout_timer=180,
             update_timer=30)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -726,7 +724,6 @@ class Ripng(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -766,7 +763,6 @@ class Ripng(pulumi.CustomResource):
             timeout_timer=180,
             update_timer=30)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -203,7 +203,6 @@ class Remotestorage(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -212,7 +211,6 @@ class Remotestorage(pulumi.CustomResource):
             remote_cache_ip="0.0.0.0",
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -251,7 +249,6 @@ class Remotestorage(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -260,7 +257,6 @@ class Remotestorage(pulumi.CustomResource):
             remote_cache_ip="0.0.0.0",
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

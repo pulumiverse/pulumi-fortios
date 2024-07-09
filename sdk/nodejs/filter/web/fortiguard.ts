@@ -9,7 +9,6 @@ import * as utilities from "../../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -28,7 +27,6 @@ import * as utilities from "../../utilities";
  *     warnAuthHttps: "enable",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -77,7 +75,7 @@ export class Fortiguard extends pulumi.CustomResource {
     }
 
     /**
-     * Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+     * Maximum percentage of available memory allocated to caching (1 - 15%).
      */
     public readonly cacheMemPercent!: pulumi.Output<number>;
     /**
@@ -193,7 +191,7 @@ export class Fortiguard extends pulumi.CustomResource {
  */
 export interface FortiguardState {
     /**
-     * Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+     * Maximum percentage of available memory allocated to caching (1 - 15%).
      */
     cacheMemPercent?: pulumi.Input<number>;
     /**
@@ -259,7 +257,7 @@ export interface FortiguardState {
  */
 export interface FortiguardArgs {
     /**
-     * Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+     * Maximum percentage of available memory allocated to caching (1 - 15%).
      */
     cacheMemPercent?: pulumi.Input<number>;
     /**

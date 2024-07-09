@@ -467,7 +467,6 @@ class H2qpconncapability(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -485,7 +484,6 @@ class H2qpconncapability(pulumi.CustomResource):
             voip_tcp_port="unknown",
             voip_udp_port="unknown")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -532,7 +530,6 @@ class H2qpconncapability(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -550,7 +547,6 @@ class H2qpconncapability(pulumi.CustomResource):
             voip_tcp_port="unknown",
             voip_udp_port="unknown")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

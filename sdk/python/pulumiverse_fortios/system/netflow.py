@@ -469,7 +469,6 @@ class Netflow(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -483,7 +482,6 @@ class Netflow(pulumi.CustomResource):
             template_tx_counter=20,
             template_tx_timeout=30)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -530,7 +528,6 @@ class Netflow(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -544,7 +541,6 @@ class Netflow(pulumi.CustomResource):
             template_tx_counter=20,
             template_tx_timeout=30)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

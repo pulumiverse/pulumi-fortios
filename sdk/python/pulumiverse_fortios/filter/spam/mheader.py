@@ -270,7 +270,6 @@ class Mheader(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -287,7 +286,6 @@ class Mheader(pulumi.CustomResource):
             )],
             fosid=1)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -328,7 +326,6 @@ class Mheader(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -345,7 +342,6 @@ class Mheader(pulumi.CustomResource):
             )],
             fosid=1)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -69,7 +68,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -93,7 +91,7 @@ type Fortiguard struct {
 
 	// Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
 	AntispamCache pulumi.StringOutput `pulumi:"antispamCache"`
-	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
 	AntispamCacheMpercent pulumi.IntOutput `pulumi:"antispamCacheMpercent"`
 	// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
 	AntispamCacheMpermille pulumi.IntOutput `pulumi:"antispamCacheMpermille"`
@@ -145,7 +143,7 @@ type Fortiguard struct {
 	LoadBalanceServers pulumi.IntOutput `pulumi:"loadBalanceServers"`
 	// Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `enable`, `disable`.
 	OutbreakPreventionCache pulumi.StringOutput `pulumi:"outbreakPreventionCache"`
-	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
 	OutbreakPreventionCacheMpercent pulumi.IntOutput `pulumi:"outbreakPreventionCacheMpercent"`
 	// Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
 	OutbreakPreventionCacheMpermille pulumi.IntOutput `pulumi:"outbreakPreventionCacheMpermille"`
@@ -271,7 +269,7 @@ func GetFortiguard(ctx *pulumi.Context,
 type fortiguardState struct {
 	// Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
 	AntispamCache *string `pulumi:"antispamCache"`
-	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
 	AntispamCacheMpercent *int `pulumi:"antispamCacheMpercent"`
 	// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
 	AntispamCacheMpermille *int `pulumi:"antispamCacheMpermille"`
@@ -323,7 +321,7 @@ type fortiguardState struct {
 	LoadBalanceServers *int `pulumi:"loadBalanceServers"`
 	// Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `enable`, `disable`.
 	OutbreakPreventionCache *string `pulumi:"outbreakPreventionCache"`
-	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
 	OutbreakPreventionCacheMpercent *int `pulumi:"outbreakPreventionCacheMpercent"`
 	// Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
 	OutbreakPreventionCacheMpermille *int `pulumi:"outbreakPreventionCacheMpermille"`
@@ -404,7 +402,7 @@ type fortiguardState struct {
 type FortiguardState struct {
 	// Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
 	AntispamCache pulumi.StringPtrInput
-	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
 	AntispamCacheMpercent pulumi.IntPtrInput
 	// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
 	AntispamCacheMpermille pulumi.IntPtrInput
@@ -456,7 +454,7 @@ type FortiguardState struct {
 	LoadBalanceServers pulumi.IntPtrInput
 	// Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `enable`, `disable`.
 	OutbreakPreventionCache pulumi.StringPtrInput
-	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
 	OutbreakPreventionCacheMpercent pulumi.IntPtrInput
 	// Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
 	OutbreakPreventionCacheMpermille pulumi.IntPtrInput
@@ -541,7 +539,7 @@ func (FortiguardState) ElementType() reflect.Type {
 type fortiguardArgs struct {
 	// Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
 	AntispamCache *string `pulumi:"antispamCache"`
-	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
 	AntispamCacheMpercent *int `pulumi:"antispamCacheMpercent"`
 	// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
 	AntispamCacheMpermille *int `pulumi:"antispamCacheMpermille"`
@@ -593,7 +591,7 @@ type fortiguardArgs struct {
 	LoadBalanceServers *int `pulumi:"loadBalanceServers"`
 	// Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `enable`, `disable`.
 	OutbreakPreventionCache *string `pulumi:"outbreakPreventionCache"`
-	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
 	OutbreakPreventionCacheMpercent *int `pulumi:"outbreakPreventionCacheMpercent"`
 	// Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
 	OutbreakPreventionCacheMpermille *int `pulumi:"outbreakPreventionCacheMpermille"`
@@ -675,7 +673,7 @@ type fortiguardArgs struct {
 type FortiguardArgs struct {
 	// Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `enable`, `disable`.
 	AntispamCache pulumi.StringPtrInput
-	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+	// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
 	AntispamCacheMpercent pulumi.IntPtrInput
 	// Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
 	AntispamCacheMpermille pulumi.IntPtrInput
@@ -727,7 +725,7 @@ type FortiguardArgs struct {
 	LoadBalanceServers pulumi.IntPtrInput
 	// Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `enable`, `disable`.
 	OutbreakPreventionCache pulumi.StringPtrInput
-	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+	// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
 	OutbreakPreventionCacheMpercent pulumi.IntPtrInput
 	// Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
 	OutbreakPreventionCacheMpermille pulumi.IntPtrInput
@@ -897,7 +895,7 @@ func (o FortiguardOutput) AntispamCache() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.StringOutput { return v.AntispamCache }).(pulumi.StringOutput)
 }
 
-// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
 func (o FortiguardOutput) AntispamCacheMpercent() pulumi.IntOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.IntOutput { return v.AntispamCacheMpercent }).(pulumi.IntOutput)
 }
@@ -1027,7 +1025,7 @@ func (o FortiguardOutput) OutbreakPreventionCache() pulumi.StringOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.StringOutput { return v.OutbreakPreventionCache }).(pulumi.StringOutput)
 }
 
-// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
 func (o FortiguardOutput) OutbreakPreventionCacheMpercent() pulumi.IntOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.IntOutput { return v.OutbreakPreventionCacheMpercent }).(pulumi.IntOutput)
 }

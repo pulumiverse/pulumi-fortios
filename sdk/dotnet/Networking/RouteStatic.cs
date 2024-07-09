@@ -17,7 +17,6 @@ namespace Pulumiverse.Fortios.Networking
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -54,7 +53,6 @@ namespace Pulumiverse.Fortios.Networking
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:networking/routeStatic:RouteStatic")]
     public partial class RouteStatic : global::Pulumi.CustomResource

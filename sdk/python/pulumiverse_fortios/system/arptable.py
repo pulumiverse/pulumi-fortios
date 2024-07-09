@@ -199,7 +199,6 @@ class Arptable(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -210,7 +209,6 @@ class Arptable(pulumi.CustomResource):
             ip="1.1.1.1",
             mac="08:00:27:1c:a3:8b")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -249,7 +247,6 @@ class Arptable(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -260,7 +257,6 @@ class Arptable(pulumi.CustomResource):
             ip="1.1.1.1",
             mac="08:00:27:1c:a3:8b")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

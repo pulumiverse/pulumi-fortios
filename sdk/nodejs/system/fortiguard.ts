@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -47,7 +46,6 @@ import * as utilities from "../utilities";
  *     webfilterTimeout: 15,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -100,7 +98,7 @@ export class Fortiguard extends pulumi.CustomResource {
      */
     public readonly antispamCache!: pulumi.Output<string>;
     /**
-     * Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+     * Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
      */
     public readonly antispamCacheMpercent!: pulumi.Output<number>;
     /**
@@ -204,7 +202,7 @@ export class Fortiguard extends pulumi.CustomResource {
      */
     public readonly outbreakPreventionCache!: pulumi.Output<string>;
     /**
-     * Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+     * Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
      */
     public readonly outbreakPreventionCacheMpercent!: pulumi.Output<number>;
     /**
@@ -527,7 +525,7 @@ export interface FortiguardState {
      */
     antispamCache?: pulumi.Input<string>;
     /**
-     * Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+     * Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
      */
     antispamCacheMpercent?: pulumi.Input<number>;
     /**
@@ -631,7 +629,7 @@ export interface FortiguardState {
      */
     outbreakPreventionCache?: pulumi.Input<string>;
     /**
-     * Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+     * Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
      */
     outbreakPreventionCacheMpercent?: pulumi.Input<number>;
     /**
@@ -793,7 +791,7 @@ export interface FortiguardArgs {
      */
     antispamCache?: pulumi.Input<string>;
     /**
-     * Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+     * Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
      */
     antispamCacheMpercent?: pulumi.Input<number>;
     /**
@@ -897,7 +895,7 @@ export interface FortiguardArgs {
      */
     outbreakPreventionCache?: pulumi.Input<string>;
     /**
-     * Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+     * Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
      */
     outbreakPreventionCacheMpercent?: pulumi.Input<number>;
     /**

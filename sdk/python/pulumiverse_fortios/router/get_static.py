@@ -338,7 +338,6 @@ def get_static(seq_num: Optional[int] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -346,7 +345,6 @@ def get_static(seq_num: Optional[int] = None,
     sample1 = fortios.router.get_static(seq_num=1)
     pulumi.export("output1", sample1)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param int seq_num: Specify the seq_num of the desired router static.
@@ -395,7 +393,6 @@ def get_static_output(seq_num: Optional[pulumi.Input[int]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fortios as fortios
@@ -403,7 +400,6 @@ def get_static_output(seq_num: Optional[pulumi.Input[int]] = None,
     sample1 = fortios.router.get_static(seq_num=1)
     pulumi.export("output1", sample1)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param int seq_num: Specify the seq_num of the desired router static.

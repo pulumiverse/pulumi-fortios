@@ -170,7 +170,6 @@ class Fortishield(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -180,7 +179,6 @@ class Fortishield(pulumi.CustomResource):
             spam_submit_srv="www.nospammer.net",
             spam_submit_txt2htm="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -218,7 +216,6 @@ class Fortishield(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -228,7 +225,6 @@ class Fortishield(pulumi.CustomResource):
             spam_submit_srv="www.nospammer.net",
             spam_submit_txt2htm="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

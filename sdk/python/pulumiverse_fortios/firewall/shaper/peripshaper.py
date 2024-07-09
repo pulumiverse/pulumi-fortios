@@ -401,7 +401,6 @@ class Peripshaper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -415,7 +414,6 @@ class Peripshaper(pulumi.CustomResource):
             max_bandwidth=1024,
             max_concurrent_session=33)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -460,7 +458,6 @@ class Peripshaper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -474,7 +471,6 @@ class Peripshaper(pulumi.CustomResource):
             max_bandwidth=1024,
             max_concurrent_session=33)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

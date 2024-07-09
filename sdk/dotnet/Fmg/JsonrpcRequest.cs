@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.Fmg
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -93,7 +92,6 @@ namespace Pulumiverse.Fortios.Fmg
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:fmg/jsonrpcRequest:JsonrpcRequest")]
     public partial class JsonrpcRequest : global::Pulumi.CustomResource

@@ -1195,7 +1195,6 @@ class Overridesetting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1218,7 +1217,6 @@ class Overridesetting(pulumi.CustomResource):
             upload_time="00:59",
             use_management_vdom="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1287,7 +1285,6 @@ class Overridesetting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1310,7 +1307,6 @@ class Overridesetting(pulumi.CustomResource):
             upload_time="00:59",
             use_management_vdom="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

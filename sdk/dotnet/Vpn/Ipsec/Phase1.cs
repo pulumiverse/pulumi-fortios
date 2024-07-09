@@ -15,7 +15,6 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -101,7 +100,6 @@ namespace Pulumiverse.Fortios.Vpn.Ipsec
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

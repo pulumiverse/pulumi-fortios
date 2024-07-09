@@ -238,14 +238,12 @@ class Deviceaccesslist(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.user.Deviceaccesslist("trname", default_action="accept")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -285,14 +283,12 @@ class Deviceaccesslist(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.user.Deviceaccesslist("trname", default_action="accept")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

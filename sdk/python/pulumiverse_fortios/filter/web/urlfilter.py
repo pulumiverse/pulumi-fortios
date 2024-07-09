@@ -369,7 +369,6 @@ class Urlfilter(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -379,7 +378,6 @@ class Urlfilter(pulumi.CustomResource):
             ip_addr_block="enable",
             one_arm_ips_urlfilter="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -423,7 +421,6 @@ class Urlfilter(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -433,7 +430,6 @@ class Urlfilter(pulumi.CustomResource):
             ip_addr_block="enable",
             one_arm_ips_urlfilter="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

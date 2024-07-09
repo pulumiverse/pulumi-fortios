@@ -369,7 +369,6 @@ class Nat64(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -382,7 +381,6 @@ class Nat64(pulumi.CustomResource):
             secondary_prefix_status="disable",
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -426,7 +424,6 @@ class Nat64(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -439,7 +436,6 @@ class Nat64(pulumi.CustomResource):
             secondary_prefix_status="disable",
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

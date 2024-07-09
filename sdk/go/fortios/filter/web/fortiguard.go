@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -49,7 +48,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -71,7 +69,7 @@ import (
 type Fortiguard struct {
 	pulumi.CustomResourceState
 
-	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+	// Maximum percentage of available memory allocated to caching (1 - 15%).
 	CacheMemPercent pulumi.IntOutput `pulumi:"cacheMemPercent"`
 	// Maximum permille of available memory allocated to caching (1 - 150).
 	CacheMemPermille pulumi.IntOutput `pulumi:"cacheMemPermille"`
@@ -133,7 +131,7 @@ func GetFortiguard(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Fortiguard resources.
 type fortiguardState struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+	// Maximum percentage of available memory allocated to caching (1 - 15%).
 	CacheMemPercent *int `pulumi:"cacheMemPercent"`
 	// Maximum permille of available memory allocated to caching (1 - 150).
 	CacheMemPermille *int `pulumi:"cacheMemPermille"`
@@ -166,7 +164,7 @@ type fortiguardState struct {
 }
 
 type FortiguardState struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+	// Maximum percentage of available memory allocated to caching (1 - 15%).
 	CacheMemPercent pulumi.IntPtrInput
 	// Maximum permille of available memory allocated to caching (1 - 150).
 	CacheMemPermille pulumi.IntPtrInput
@@ -203,7 +201,7 @@ func (FortiguardState) ElementType() reflect.Type {
 }
 
 type fortiguardArgs struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+	// Maximum percentage of available memory allocated to caching (1 - 15%).
 	CacheMemPercent *int `pulumi:"cacheMemPercent"`
 	// Maximum permille of available memory allocated to caching (1 - 150).
 	CacheMemPermille *int `pulumi:"cacheMemPermille"`
@@ -237,7 +235,7 @@ type fortiguardArgs struct {
 
 // The set of arguments for constructing a Fortiguard resource.
 type FortiguardArgs struct {
-	// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+	// Maximum percentage of available memory allocated to caching (1 - 15%).
 	CacheMemPercent pulumi.IntPtrInput
 	// Maximum permille of available memory allocated to caching (1 - 150).
 	CacheMemPermille pulumi.IntPtrInput
@@ -356,7 +354,7 @@ func (o FortiguardOutput) ToFortiguardOutputWithContext(ctx context.Context) For
 	return o
 }
 
-// Maximum percentage of available memory allocated to caching (1 - 15%!)(MISSING).
+// Maximum percentage of available memory allocated to caching (1 - 15%).
 func (o FortiguardOutput) CacheMemPercent() pulumi.IntOutput {
 	return o.ApplyT(func(v *Fortiguard) pulumi.IntOutput { return v.CacheMemPercent }).(pulumi.IntOutput)
 }

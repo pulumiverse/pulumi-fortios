@@ -268,7 +268,6 @@ class Authgroup(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -278,7 +277,6 @@ class Authgroup(pulumi.CustomResource):
             cert="Fortinet_CA_SSL",
             peer_accept="any")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -319,7 +317,6 @@ class Authgroup(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -329,7 +326,6 @@ class Authgroup(pulumi.CustomResource):
             cert="Fortinet_CA_SSL",
             peer_accept="any")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -14,9 +14,6 @@ namespace Pulumiverse.Fortios.System.Outputs
     [OutputType]
     public sealed class VxlanRemoteIp6
     {
-        /// <summary>
-        /// IPv6 address.
-        /// </summary>
         public readonly string? Ip6;
 
         [OutputConstructor]

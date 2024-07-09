@@ -13,9 +13,6 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
 
     public sealed class CentralsnatmapOrigAddr6GetArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Address name.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

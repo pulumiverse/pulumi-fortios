@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -25,7 +24,6 @@ import * as utilities from "../utilities";
  *     vdoms: ["root"],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class AdminAdministrator extends pulumi.CustomResource {
     /**
@@ -69,6 +67,7 @@ export class AdminAdministrator extends pulumi.CustomResource {
     public readonly name!: pulumi.Output<string>;
     /**
      * Admin user password.
+     * * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
      */
     public readonly password!: pulumi.Output<string>;
     public readonly trusthost1!: pulumi.Output<string>;
@@ -161,6 +160,7 @@ export interface AdminAdministratorState {
     name?: pulumi.Input<string>;
     /**
      * Admin user password.
+     * * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
      */
     password?: pulumi.Input<string>;
     trusthost1?: pulumi.Input<string>;
@@ -197,6 +197,7 @@ export interface AdminAdministratorArgs {
     name?: pulumi.Input<string>;
     /**
      * Admin user password.
+     * * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
      */
     password: pulumi.Input<string>;
     trusthost1?: pulumi.Input<string>;

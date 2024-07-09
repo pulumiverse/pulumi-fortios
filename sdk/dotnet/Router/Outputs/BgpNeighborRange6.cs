@@ -15,20 +15,14 @@ namespace Pulumiverse.Fortios.Router.Outputs
     public sealed class BgpNeighborRange6
     {
         /// <summary>
-        /// ID.
+        /// an identifier for the resource.
         /// </summary>
         public readonly int? Id;
-        /// <summary>
-        /// Maximum number of neighbors.
-        /// </summary>
         public readonly int? MaxNeighborNum;
         /// <summary>
         /// BGP neighbor group table. The structure of `neighbor_group` block is documented below.
         /// </summary>
         public readonly string? NeighborGroup;
-        /// <summary>
-        /// Aggregate IPv6 prefix.
-        /// </summary>
         public readonly string? Prefix6;
 
         [OutputConstructor]

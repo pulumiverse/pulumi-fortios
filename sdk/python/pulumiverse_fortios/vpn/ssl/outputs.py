@@ -262,18 +262,12 @@ class SettingsAuthenticationRuleGroup(dict):
 class SettingsAuthenticationRuleSourceAddress6(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
-        """
-        :param str name: Group name.
-        """
         if name is not None:
             pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        Group name.
-        """
         return pulumi.get(self, "name")
 
 
@@ -338,18 +332,12 @@ class SettingsAuthenticationRuleUser(dict):
 class SettingsSourceAddress6(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
-        """
-        :param str name: Group name.
-        """
         if name is not None:
             pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        Group name.
-        """
         return pulumi.get(self, "name")
 
 
@@ -414,18 +402,12 @@ class SettingsTunnelIpPool(dict):
 class SettingsTunnelIpv6Pool(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
-        """
-        :param str name: Group name.
-        """
         if name is not None:
             pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        Group name.
-        """
         return pulumi.get(self, "name")
 
 

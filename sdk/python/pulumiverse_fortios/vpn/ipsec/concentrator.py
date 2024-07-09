@@ -271,14 +271,12 @@ class Concentrator(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.vpn.ipsec.Concentrator("trname", src_check="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -319,14 +317,12 @@ class Concentrator(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.vpn.ipsec.Concentrator("trname", src_check="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -733,7 +733,6 @@ class List(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -749,7 +748,6 @@ class List(pulumi.CustomResource):
             unknown_application_action="pass",
             unknown_application_log="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -804,7 +802,6 @@ class List(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -820,7 +817,6 @@ class List(pulumi.CustomResource):
             unknown_application_action="pass",
             unknown_application_log="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

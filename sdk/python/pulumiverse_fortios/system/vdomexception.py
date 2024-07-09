@@ -303,7 +303,6 @@ class Vdomexception(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -314,7 +313,6 @@ class Vdomexception(pulumi.CustomResource):
             oid=7150,
             scope="all")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -356,7 +354,6 @@ class Vdomexception(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -367,7 +364,6 @@ class Vdomexception(pulumi.CustomResource):
             oid=7150,
             scope="all")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

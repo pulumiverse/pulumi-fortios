@@ -13,21 +13,15 @@ namespace Pulumiverse.Fortios.Firewall.Inputs
 
     public sealed class InternetserviceextensionDisableEntryIp6RangeArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// End IPv6 address.
-        /// </summary>
         [Input("endIp6")]
         public Input<string>? EndIp6 { get; set; }
 
         /// <summary>
-        /// Disable entry ID.
+        /// an identifier for the resource with format {{fosid}}.
         /// </summary>
         [Input("id")]
         public Input<int>? Id { get; set; }
 
-        /// <summary>
-        /// Start IPv6 address.
-        /// </summary>
         [Input("startIp6")]
         public Input<string>? StartIp6 { get; set; }
 

@@ -270,7 +270,6 @@ class Ssoadmin(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -281,7 +280,6 @@ class Ssoadmin(pulumi.CustomResource):
                 name="root",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -322,7 +320,6 @@ class Ssoadmin(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -333,7 +330,6 @@ class Ssoadmin(pulumi.CustomResource):
                 name="root",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

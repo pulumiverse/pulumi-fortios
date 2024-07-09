@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
@@ -19,7 +18,6 @@ import * as utilities from "../utilities";
  * });
  * export const output1 = sample1.then(sample1 => sample1.seqNumlists);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getStaticlist(args?: GetStaticlistArgs, opts?: pulumi.InvokeOptions): Promise<GetStaticlistResult> {
     args = args || {};
@@ -65,7 +63,6 @@ export interface GetStaticlistResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
@@ -75,7 +72,6 @@ export interface GetStaticlistResult {
  * });
  * export const output1 = sample1.then(sample1 => sample1.seqNumlists);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getStaticlistOutput(args?: GetStaticlistOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStaticlistResult> {
     return pulumi.output(args).apply((a: any) => getStaticlist(a, opts))

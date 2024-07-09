@@ -137,7 +137,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -146,7 +145,6 @@ class Setting(pulumi.CustomResource):
             diskfull="overwrite",
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -183,7 +181,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -192,7 +189,6 @@ class Setting(pulumi.CustomResource):
             diskfull="overwrite",
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

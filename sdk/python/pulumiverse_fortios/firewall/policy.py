@@ -6539,7 +6539,6 @@ class Policy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -6604,7 +6603,6 @@ class Policy(pulumi.CustomResource):
             status="enable",
             utm_status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -6835,7 +6833,6 @@ class Policy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -6900,7 +6897,6 @@ class Policy(pulumi.CustomResource):
             status="enable",
             utm_status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -238,14 +238,12 @@ class Prefixlist6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.router.Prefixlist6("trname")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -285,14 +283,12 @@ class Prefixlist6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.router.Prefixlist6("trname")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

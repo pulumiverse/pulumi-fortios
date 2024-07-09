@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -17,17 +16,16 @@ import * as utilities from "../utilities";
  * const test1 = new fortios.fmg.DevicemanagerScript("test1", {
  *     content: `config system interface 
  *  edit port3 
- * 	 set vdom "root"
- * 	 set ip 10.7.0.200 255.255.0.0 
- * 	 set allowaccess ping http https
- * 	 next 
+ * \x09 set vdom "root"
+ * \x09 set ip 10.7.0.200 255.255.0.0 
+ * \x09 set allowaccess ping http https
+ * \x09 next 
  *  end
  * `,
  *     description: "description",
  *     target: "remote_device",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class DevicemanagerScript extends pulumi.CustomResource {
     /**

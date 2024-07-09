@@ -270,7 +270,6 @@ class Dnsbl(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -284,7 +283,6 @@ class Dnsbl(pulumi.CustomResource):
             )],
             fosid=1)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -325,7 +323,6 @@ class Dnsbl(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -339,7 +336,6 @@ class Dnsbl(pulumi.CustomResource):
             )],
             fosid=1)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

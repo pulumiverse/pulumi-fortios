@@ -139,7 +139,6 @@ class SettingDns(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -149,7 +148,6 @@ class SettingDns(pulumi.CustomResource):
             primary="208.91.112.53",
             secondary="208.91.112.22")
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -170,7 +168,6 @@ class SettingDns(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -180,7 +177,6 @@ class SettingDns(pulumi.CustomResource):
             primary="208.91.112.53",
             secondary="208.91.112.22")
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param SettingDnsArgs args: The arguments to use to populate this resource's properties.

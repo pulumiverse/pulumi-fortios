@@ -200,7 +200,6 @@ class Proxyarp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -211,7 +210,6 @@ class Proxyarp(pulumi.CustomResource):
             interface="port4",
             ip="1.1.1.1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -250,7 +248,6 @@ class Proxyarp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -261,7 +258,6 @@ class Proxyarp(pulumi.CustomResource):
             interface="port4",
             ip="1.1.1.1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

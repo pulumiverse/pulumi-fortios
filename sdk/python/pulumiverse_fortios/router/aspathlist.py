@@ -205,7 +205,6 @@ class Aspathlist(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -215,7 +214,6 @@ class Aspathlist(pulumi.CustomResource):
             regexp="/d+/n",
         )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -254,7 +252,6 @@ class Aspathlist(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -264,7 +261,6 @@ class Aspathlist(pulumi.CustomResource):
             regexp="/d+/n",
         )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

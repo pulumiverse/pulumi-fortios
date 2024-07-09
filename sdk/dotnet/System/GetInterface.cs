@@ -17,7 +17,6 @@ namespace Pulumiverse.Fortios.System
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -37,7 +36,6 @@ namespace Pulumiverse.Fortios.System
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetInterfaceResult> InvokeAsync(GetInterfaceArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInterfaceResult>("fortios:system/getInterface:getInterface", args ?? new GetInterfaceArgs(), options.WithDefaults());
@@ -47,7 +45,6 @@ namespace Pulumiverse.Fortios.System
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -67,7 +64,6 @@ namespace Pulumiverse.Fortios.System
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetInterfaceResult> Invoke(GetInterfaceInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInterfaceResult>("fortios:system/getInterface:getInterface", args ?? new GetInterfaceInvokeArgs(), options.WithDefaults());

@@ -1492,7 +1492,6 @@ class Isis(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1524,7 +1523,6 @@ class Isis(pulumi.CustomResource):
             spf_interval_exp_l1="500 50000",
             spf_interval_exp_l2="500 50000")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1602,7 +1600,6 @@ class Isis(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1634,7 +1631,6 @@ class Isis(pulumi.CustomResource):
             spf_interval_exp_l1="500 50000",
             spf_interval_exp_l2="500 50000")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

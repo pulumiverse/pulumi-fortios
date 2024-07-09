@@ -233,7 +233,7 @@ class GetFortiguardResult:
     @pulumi.getter(name="antispamCacheMpercent")
     def antispam_cache_mpercent(self) -> int:
         """
-        Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+        Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
         """
         return pulumi.get(self, "antispam_cache_mpercent")
 
@@ -449,7 +449,7 @@ class GetFortiguardResult:
     @pulumi.getter(name="outbreakPreventionCacheMpercent")
     def outbreak_prevention_cache_mpercent(self) -> int:
         """
-        Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+        Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
         """
         return pulumi.get(self, "outbreak_prevention_cache_mpercent")
 

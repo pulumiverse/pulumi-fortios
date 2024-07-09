@@ -337,7 +337,6 @@ class Cacheservice(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -348,7 +347,6 @@ class Cacheservice(pulumi.CustomResource):
             device_id="default_dev_id",
             prefer_scenario="balance")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -391,7 +389,6 @@ class Cacheservice(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -402,7 +399,6 @@ class Cacheservice(pulumi.CustomResource):
             device_id="default_dev_id",
             prefer_scenario="balance")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

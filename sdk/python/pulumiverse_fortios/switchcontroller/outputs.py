@@ -2079,19 +2079,6 @@ class ManagedswitchN8021xSettings(dict):
                  max_reauth_attempt: Optional[int] = None,
                  reauth_period: Optional[int] = None,
                  tx_period: Optional[int] = None):
-        """
-        :param str link_down_auth: Authentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-        :param str local_override: Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
-        :param str mab_reauth: Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
-        :param str mac_called_station_delimiter: MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        :param str mac_calling_station_delimiter: MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        :param str mac_case: MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
-        :param str mac_password_delimiter: MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        :param str mac_username_delimiter: MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        :param int max_reauth_attempt: Maximum number of authentication attempts (0 - 15, default = 3).
-        :param int reauth_period: Reauthentication time interval (1 - 1440 min, default = 60, 0 = disable).
-        :param int tx_period: 802.1X Tx period (seconds, default=30).
-        """
         if link_down_auth is not None:
             pulumi.set(__self__, "link_down_auth", link_down_auth)
         if local_override is not None:
@@ -2118,89 +2105,56 @@ class ManagedswitchN8021xSettings(dict):
     @property
     @pulumi.getter(name="linkDownAuth")
     def link_down_auth(self) -> Optional[str]:
-        """
-        Authentication state to set if a link is down. Valid values: `set-unauth`, `no-action`.
-        """
         return pulumi.get(self, "link_down_auth")
 
     @property
     @pulumi.getter(name="localOverride")
     def local_override(self) -> Optional[str]:
-        """
-        Enable/disable overriding the global IGMP snooping configuration. Valid values: `enable`, `disable`.
-        """
         return pulumi.get(self, "local_override")
 
     @property
     @pulumi.getter(name="mabReauth")
     def mab_reauth(self) -> Optional[str]:
-        """
-        Enable or disable MAB reauthentication settings. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "mab_reauth")
 
     @property
     @pulumi.getter(name="macCalledStationDelimiter")
     def mac_called_station_delimiter(self) -> Optional[str]:
-        """
-        MAC called station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        """
         return pulumi.get(self, "mac_called_station_delimiter")
 
     @property
     @pulumi.getter(name="macCallingStationDelimiter")
     def mac_calling_station_delimiter(self) -> Optional[str]:
-        """
-        MAC calling station delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        """
         return pulumi.get(self, "mac_calling_station_delimiter")
 
     @property
     @pulumi.getter(name="macCase")
     def mac_case(self) -> Optional[str]:
-        """
-        MAC case (default = lowercase). Valid values: `lowercase`, `uppercase`.
-        """
         return pulumi.get(self, "mac_case")
 
     @property
     @pulumi.getter(name="macPasswordDelimiter")
     def mac_password_delimiter(self) -> Optional[str]:
-        """
-        MAC authentication password delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        """
         return pulumi.get(self, "mac_password_delimiter")
 
     @property
     @pulumi.getter(name="macUsernameDelimiter")
     def mac_username_delimiter(self) -> Optional[str]:
-        """
-        MAC authentication username delimiter (default = hyphen). Valid values: `colon`, `hyphen`, `none`, `single-hyphen`.
-        """
         return pulumi.get(self, "mac_username_delimiter")
 
     @property
     @pulumi.getter(name="maxReauthAttempt")
     def max_reauth_attempt(self) -> Optional[int]:
-        """
-        Maximum number of authentication attempts (0 - 15, default = 3).
-        """
         return pulumi.get(self, "max_reauth_attempt")
 
     @property
     @pulumi.getter(name="reauthPeriod")
     def reauth_period(self) -> Optional[int]:
-        """
-        Reauthentication time interval (1 - 1440 min, default = 60, 0 = disable).
-        """
         return pulumi.get(self, "reauth_period")
 
     @property
     @pulumi.getter(name="txPeriod")
     def tx_period(self) -> Optional[int]:
-        """
-        802.1X Tx period (seconds, default=30).
-        """
         return pulumi.get(self, "tx_period")
 
 
@@ -2584,7 +2538,7 @@ class ManagedswitchPort(dict):
         :param int packet_sample_rate: Packet sampling rate (0 - 99999 p/sec).
         :param str packet_sampler: Enable/disable packet sampling on this interface. Valid values: `enabled`, `disabled`.
         :param int pause_meter: Configure ingress pause metering rate, in kbps (default = 0, disabled).
-        :param str pause_meter_resume: Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
+        :param str pause_meter_resume: Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
         :param int poe_capable: PoE capable.
         :param str poe_max_power: PoE maximum power.
         :param int poe_mode_bt_cabable: PoE mode IEEE 802.3BT capable.
@@ -3363,7 +3317,7 @@ class ManagedswitchPort(dict):
     @pulumi.getter(name="pauseMeterResume")
     def pause_meter_resume(self) -> Optional[str]:
         """
-        Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
+        Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
         """
         return pulumi.get(self, "pause_meter_resume")
 
@@ -3770,11 +3724,6 @@ class ManagedswitchPortDhcpSnoopOption82Override(dict):
                  circuit_id: Optional[str] = None,
                  remote_id: Optional[str] = None,
                  vlan_name: Optional[str] = None):
-        """
-        :param str circuit_id: Circuit ID string.
-        :param str remote_id: Remote ID string.
-        :param str vlan_name: VLAN name.
-        """
         if circuit_id is not None:
             pulumi.set(__self__, "circuit_id", circuit_id)
         if remote_id is not None:
@@ -3785,25 +3734,16 @@ class ManagedswitchPortDhcpSnoopOption82Override(dict):
     @property
     @pulumi.getter(name="circuitId")
     def circuit_id(self) -> Optional[str]:
-        """
-        Circuit ID string.
-        """
         return pulumi.get(self, "circuit_id")
 
     @property
     @pulumi.getter(name="remoteId")
     def remote_id(self) -> Optional[str]:
-        """
-        Remote ID string.
-        """
         return pulumi.get(self, "remote_id")
 
     @property
     @pulumi.getter(name="vlanName")
     def vlan_name(self) -> Optional[str]:
-        """
-        VLAN name.
-        """
         return pulumi.get(self, "vlan_name")
 
 

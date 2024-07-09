@@ -271,7 +271,6 @@ func (o ExplicitPacPolicyDstaddrArrayOutput) Index(i pulumi.IntInput) ExplicitPa
 }
 
 type ExplicitPacPolicySrcaddr6 struct {
-	// Address name.
 	Name *string `pulumi:"name"`
 }
 
@@ -287,7 +286,6 @@ type ExplicitPacPolicySrcaddr6Input interface {
 }
 
 type ExplicitPacPolicySrcaddr6Args struct {
-	// Address name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -342,7 +340,6 @@ func (o ExplicitPacPolicySrcaddr6Output) ToExplicitPacPolicySrcaddr6OutputWithCo
 	return o
 }
 
-// Address name.
 func (o ExplicitPacPolicySrcaddr6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExplicitPacPolicySrcaddr6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -668,7 +665,6 @@ func (o ForwardservergroupServerListArrayOutput) Index(i pulumi.IntInput) Forwar
 }
 
 type GlobalLearnClientIpSrcaddr6 struct {
-	// Address name.
 	Name *string `pulumi:"name"`
 }
 
@@ -684,7 +680,6 @@ type GlobalLearnClientIpSrcaddr6Input interface {
 }
 
 type GlobalLearnClientIpSrcaddr6Args struct {
-	// Address name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -739,7 +734,6 @@ func (o GlobalLearnClientIpSrcaddr6Output) ToGlobalLearnClientIpSrcaddr6OutputWi
 	return o
 }
 
-// Address name.
 func (o GlobalLearnClientIpSrcaddr6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GlobalLearnClientIpSrcaddr6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }

@@ -1657,7 +1657,6 @@ class Address(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1672,7 +1671,6 @@ class Address(pulumi.CustomResource):
             type="ipmask",
             visibility="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1755,7 +1753,6 @@ class Address(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1770,7 +1767,6 @@ class Address(pulumi.CustomResource):
             type="ipmask",
             visibility="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

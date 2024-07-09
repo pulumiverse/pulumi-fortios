@@ -333,7 +333,6 @@ class Onetime(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -344,7 +343,6 @@ class Onetime(pulumi.CustomResource):
             expiration_days=2,
             start="00:00 2010/12/12")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -387,7 +385,6 @@ class Onetime(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -398,7 +395,6 @@ class Onetime(pulumi.CustomResource):
             expiration_days=2,
             start="00:00 2010/12/12")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

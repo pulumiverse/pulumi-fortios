@@ -863,7 +863,6 @@ class Global(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -885,7 +884,6 @@ class Global(pulumi.CustomResource):
             rogue_scan_mac_adjacency=7,
             wtp_share="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -944,7 +942,6 @@ class Global(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -966,7 +963,6 @@ class Global(pulumi.CustomResource):
             rogue_scan_mac_adjacency=7,
             wtp_share="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

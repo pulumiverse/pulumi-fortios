@@ -830,7 +830,6 @@ class Ddns(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -853,7 +852,6 @@ class Ddns(pulumi.CustomResource):
             update_interval=300,
             use_public_ip="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -911,7 +909,6 @@ class Ddns(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -934,7 +931,6 @@ class Ddns(pulumi.CustomResource):
             update_interval=300,
             use_public_ip="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

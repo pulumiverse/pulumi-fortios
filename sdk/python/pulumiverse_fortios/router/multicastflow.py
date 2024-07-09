@@ -238,7 +238,6 @@ class Multicastflow(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -248,7 +247,6 @@ class Multicastflow(pulumi.CustomResource):
             source_addr="224.112.0.0",
         )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -288,7 +286,6 @@ class Multicastflow(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -298,7 +295,6 @@ class Multicastflow(pulumi.CustomResource):
             source_addr="224.112.0.0",
         )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

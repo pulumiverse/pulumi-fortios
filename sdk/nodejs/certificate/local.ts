@@ -11,8 +11,42 @@ import * as utilities from "../utilities";
  *
  * ## Example
  *
+ * ### Import Certificate:
+ *
+ * **Step1: Prepare certificate**
+ *
+ * The following key is a randomly generated example key for testing. In actual use, please replace it with your own key.
+ *
+ * **Step2: Prepare TF file with fortios.json.GenericApi resource**
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fortios from "@pulumiverse/fortios";
+ * import * as local from "@pulumi/local";
+ *
+ * const keyFile = local.getFile({
+ *     filename: "./test.key",
+ * });
+ * const crtFile = local.getFile({
+ *     filename: "./test.crt",
+ * });
+ * const genericapi1 = new fortios.json.GenericApi("genericapi1", {
+ *     json: Promise.all([keyFile, crtFile]).then(([keyFile, crtFile]) => `{
+ *     "type": "regular",
+ *     "certname": "testcer",
+ *     "password": "",
+ *     "key_file_content": "${keyFile.contentBase64}",
+ *     "file_content": "${crtFile.contentBase64}"
+ * }
+ *
+ * `),
+ *     method: "POST",
+ *     path: "/api/v2/monitor/vpn-certificate/local/import",
+ * });
+ * ```
+ *
+ * **Step3: Apply**
  * ### Delete Certificate:
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -29,7 +63,6 @@ import * as utilities from "../utilities";
  *     start: "auto",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class Local extends pulumi.CustomResource {
     /**

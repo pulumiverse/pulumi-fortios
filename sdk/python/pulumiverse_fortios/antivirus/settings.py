@@ -302,7 +302,6 @@ class Settings(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -311,7 +310,6 @@ class Settings(pulumi.CustomResource):
             default_db="extended",
             grayware="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -353,7 +351,6 @@ class Settings(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -362,7 +359,6 @@ class Settings(pulumi.CustomResource):
             default_db="extended",
             grayware="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

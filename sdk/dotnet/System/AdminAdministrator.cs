@@ -17,7 +17,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -41,7 +40,6 @@ namespace Pulumiverse.Fortios.System
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:system/adminAdministrator:AdminAdministrator")]
     public partial class AdminAdministrator : global::Pulumi.CustomResource
@@ -66,6 +64,7 @@ namespace Pulumiverse.Fortios.System
 
         /// <summary>
         /// Admin user password.
+        /// * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
         /// </summary>
         [Output("password")]
         public Output<string> Password { get; private set; } = null!;
@@ -173,6 +172,7 @@ namespace Pulumiverse.Fortios.System
 
         /// <summary>
         /// Admin user password.
+        /// * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
         /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
@@ -247,6 +247,7 @@ namespace Pulumiverse.Fortios.System
 
         /// <summary>
         /// Admin user password.
+        /// * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
         /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }

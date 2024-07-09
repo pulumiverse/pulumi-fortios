@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -21,7 +20,6 @@ import * as utilities from "../utilities";
  *     mac: "08:00:27:1c:a3:8b",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

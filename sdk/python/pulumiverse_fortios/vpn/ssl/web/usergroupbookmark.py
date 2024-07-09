@@ -205,7 +205,6 @@ class Usergroupbookmark(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -225,7 +224,6 @@ class Usergroupbookmark(pulumi.CustomResource):
             url="www.aaa.com",
         )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -264,7 +262,6 @@ class Usergroupbookmark(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -284,7 +281,6 @@ class Usergroupbookmark(pulumi.CustomResource):
             url="www.aaa.com",
         )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

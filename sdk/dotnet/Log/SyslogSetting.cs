@@ -17,7 +17,6 @@ namespace Pulumiverse.Fortios.Log
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -39,7 +38,6 @@ namespace Pulumiverse.Fortios.Log
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:log/syslogSetting:SyslogSetting")]
     public partial class SyslogSetting : global::Pulumi.CustomResource

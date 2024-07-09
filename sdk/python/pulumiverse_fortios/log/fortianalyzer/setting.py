@@ -1129,7 +1129,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1151,7 +1150,6 @@ class Setting(pulumi.CustomResource):
             upload_option="5-minute",
             upload_time="00:59")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1218,7 +1216,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1240,7 +1237,6 @@ class Setting(pulumi.CustomResource):
             upload_option="5-minute",
             upload_time="00:59")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

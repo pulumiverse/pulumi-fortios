@@ -799,7 +799,6 @@ class User(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -819,7 +818,6 @@ class User(pulumi.CustomResource):
             trap_rport=162,
             trap_status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -876,7 +874,6 @@ class User(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -896,7 +893,6 @@ class User(pulumi.CustomResource):
             trap_rport=162,
             trap_status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

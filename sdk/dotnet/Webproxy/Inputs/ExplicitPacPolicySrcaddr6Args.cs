@@ -13,9 +13,6 @@ namespace Pulumiverse.Fortios.Webproxy.Inputs
 
     public sealed class ExplicitPacPolicySrcaddr6Args : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Address name.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

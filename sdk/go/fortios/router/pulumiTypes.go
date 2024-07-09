@@ -1060,13 +1060,10 @@ func (o BgpAdminDistanceArrayOutput) Index(i pulumi.IntInput) BgpAdminDistanceOu
 }
 
 type BgpAggregateAddress6 struct {
-	// Enable/disable generate AS set path information. Valid values: `enable`, `disable`.
 	AsSet *string `pulumi:"asSet"`
-	// ID.
-	Id *int `pulumi:"id"`
-	// Aggregate IPv6 prefix.
-	Prefix6 *string `pulumi:"prefix6"`
-	// Enable/disable filter more specific routes from updates. Valid values: `enable`, `disable`.
+	// an identifier for the resource.
+	Id          *int    `pulumi:"id"`
+	Prefix6     *string `pulumi:"prefix6"`
 	SummaryOnly *string `pulumi:"summaryOnly"`
 }
 
@@ -1082,13 +1079,10 @@ type BgpAggregateAddress6Input interface {
 }
 
 type BgpAggregateAddress6Args struct {
-	// Enable/disable generate AS set path information. Valid values: `enable`, `disable`.
 	AsSet pulumi.StringPtrInput `pulumi:"asSet"`
-	// ID.
-	Id pulumi.IntPtrInput `pulumi:"id"`
-	// Aggregate IPv6 prefix.
-	Prefix6 pulumi.StringPtrInput `pulumi:"prefix6"`
-	// Enable/disable filter more specific routes from updates. Valid values: `enable`, `disable`.
+	// an identifier for the resource.
+	Id          pulumi.IntPtrInput    `pulumi:"id"`
+	Prefix6     pulumi.StringPtrInput `pulumi:"prefix6"`
 	SummaryOnly pulumi.StringPtrInput `pulumi:"summaryOnly"`
 }
 
@@ -1143,22 +1137,19 @@ func (o BgpAggregateAddress6Output) ToBgpAggregateAddress6OutputWithContext(ctx 
 	return o
 }
 
-// Enable/disable generate AS set path information. Valid values: `enable`, `disable`.
 func (o BgpAggregateAddress6Output) AsSet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BgpAggregateAddress6) *string { return v.AsSet }).(pulumi.StringPtrOutput)
 }
 
-// ID.
+// an identifier for the resource.
 func (o BgpAggregateAddress6Output) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v BgpAggregateAddress6) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
-// Aggregate IPv6 prefix.
 func (o BgpAggregateAddress6Output) Prefix6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BgpAggregateAddress6) *string { return v.Prefix6 }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable filter more specific routes from updates. Valid values: `enable`, `disable`.
 func (o BgpAggregateAddress6Output) SummaryOnly() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BgpAggregateAddress6) *string { return v.SummaryOnly }).(pulumi.StringPtrOutput)
 }
@@ -2906,12 +2897,9 @@ func (o BgpNeighborArrayOutput) Index(i pulumi.IntInput) BgpNeighborOutput {
 }
 
 type BgpNeighborConditionalAdvertise6 struct {
-	// Name of advertising route map.
 	AdvertiseRoutemap *string `pulumi:"advertiseRoutemap"`
-	// Name of condition route map.
 	ConditionRoutemap *string `pulumi:"conditionRoutemap"`
-	// Type of condition. Valid values: `exist`, `non-exist`.
-	ConditionType *string `pulumi:"conditionType"`
+	ConditionType     *string `pulumi:"conditionType"`
 }
 
 // BgpNeighborConditionalAdvertise6Input is an input type that accepts BgpNeighborConditionalAdvertise6Args and BgpNeighborConditionalAdvertise6Output values.
@@ -2926,12 +2914,9 @@ type BgpNeighborConditionalAdvertise6Input interface {
 }
 
 type BgpNeighborConditionalAdvertise6Args struct {
-	// Name of advertising route map.
 	AdvertiseRoutemap pulumi.StringPtrInput `pulumi:"advertiseRoutemap"`
-	// Name of condition route map.
 	ConditionRoutemap pulumi.StringPtrInput `pulumi:"conditionRoutemap"`
-	// Type of condition. Valid values: `exist`, `non-exist`.
-	ConditionType pulumi.StringPtrInput `pulumi:"conditionType"`
+	ConditionType     pulumi.StringPtrInput `pulumi:"conditionType"`
 }
 
 func (BgpNeighborConditionalAdvertise6Args) ElementType() reflect.Type {
@@ -2985,17 +2970,14 @@ func (o BgpNeighborConditionalAdvertise6Output) ToBgpNeighborConditionalAdvertis
 	return o
 }
 
-// Name of advertising route map.
 func (o BgpNeighborConditionalAdvertise6Output) AdvertiseRoutemap() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BgpNeighborConditionalAdvertise6) *string { return v.AdvertiseRoutemap }).(pulumi.StringPtrOutput)
 }
 
-// Name of condition route map.
 func (o BgpNeighborConditionalAdvertise6Output) ConditionRoutemap() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BgpNeighborConditionalAdvertise6) *string { return v.ConditionRoutemap }).(pulumi.StringPtrOutput)
 }
 
-// Type of condition. Valid values: `exist`, `non-exist`.
 func (o BgpNeighborConditionalAdvertise6Output) ConditionType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BgpNeighborConditionalAdvertise6) *string { return v.ConditionType }).(pulumi.StringPtrOutput)
 }
@@ -4619,14 +4601,12 @@ func (o BgpNeighborGroupArrayOutput) Index(i pulumi.IntInput) BgpNeighborGroupOu
 }
 
 type BgpNeighborRange6 struct {
-	// ID.
-	Id *int `pulumi:"id"`
-	// Maximum number of neighbors.
+	// an identifier for the resource.
+	Id             *int `pulumi:"id"`
 	MaxNeighborNum *int `pulumi:"maxNeighborNum"`
 	// BGP neighbor group table. The structure of `neighborGroup` block is documented below.
 	NeighborGroup *string `pulumi:"neighborGroup"`
-	// Aggregate IPv6 prefix.
-	Prefix6 *string `pulumi:"prefix6"`
+	Prefix6       *string `pulumi:"prefix6"`
 }
 
 // BgpNeighborRange6Input is an input type that accepts BgpNeighborRange6Args and BgpNeighborRange6Output values.
@@ -4641,14 +4621,12 @@ type BgpNeighborRange6Input interface {
 }
 
 type BgpNeighborRange6Args struct {
-	// ID.
-	Id pulumi.IntPtrInput `pulumi:"id"`
-	// Maximum number of neighbors.
+	// an identifier for the resource.
+	Id             pulumi.IntPtrInput `pulumi:"id"`
 	MaxNeighborNum pulumi.IntPtrInput `pulumi:"maxNeighborNum"`
 	// BGP neighbor group table. The structure of `neighborGroup` block is documented below.
 	NeighborGroup pulumi.StringPtrInput `pulumi:"neighborGroup"`
-	// Aggregate IPv6 prefix.
-	Prefix6 pulumi.StringPtrInput `pulumi:"prefix6"`
+	Prefix6       pulumi.StringPtrInput `pulumi:"prefix6"`
 }
 
 func (BgpNeighborRange6Args) ElementType() reflect.Type {
@@ -4702,12 +4680,11 @@ func (o BgpNeighborRange6Output) ToBgpNeighborRange6OutputWithContext(ctx contex
 	return o
 }
 
-// ID.
+// an identifier for the resource.
 func (o BgpNeighborRange6Output) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v BgpNeighborRange6) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
-// Maximum number of neighbors.
 func (o BgpNeighborRange6Output) MaxNeighborNum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v BgpNeighborRange6) *int { return v.MaxNeighborNum }).(pulumi.IntPtrOutput)
 }
@@ -4717,7 +4694,6 @@ func (o BgpNeighborRange6Output) NeighborGroup() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BgpNeighborRange6) *string { return v.NeighborGroup }).(pulumi.StringPtrOutput)
 }
 
-// Aggregate IPv6 prefix.
 func (o BgpNeighborRange6Output) Prefix6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BgpNeighborRange6) *string { return v.Prefix6 }).(pulumi.StringPtrOutput)
 }
@@ -4867,16 +4843,13 @@ func (o BgpNeighborRangeArrayOutput) Index(i pulumi.IntInput) BgpNeighborRangeOu
 }
 
 type BgpNetwork6 struct {
-	// Enable/disable route as backdoor. Valid values: `enable`, `disable`.
 	Backdoor *string `pulumi:"backdoor"`
-	// ID.
+	// an identifier for the resource.
 	Id *int `pulumi:"id"`
 	// Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
 	NetworkImportCheck *string `pulumi:"networkImportCheck"`
-	// Aggregate IPv6 prefix.
-	Prefix6 *string `pulumi:"prefix6"`
-	// Route map of VRF leaking.
-	RouteMap *string `pulumi:"routeMap"`
+	Prefix6            *string `pulumi:"prefix6"`
+	RouteMap           *string `pulumi:"routeMap"`
 }
 
 // BgpNetwork6Input is an input type that accepts BgpNetwork6Args and BgpNetwork6Output values.
@@ -4891,16 +4864,13 @@ type BgpNetwork6Input interface {
 }
 
 type BgpNetwork6Args struct {
-	// Enable/disable route as backdoor. Valid values: `enable`, `disable`.
 	Backdoor pulumi.StringPtrInput `pulumi:"backdoor"`
-	// ID.
+	// an identifier for the resource.
 	Id pulumi.IntPtrInput `pulumi:"id"`
 	// Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
 	NetworkImportCheck pulumi.StringPtrInput `pulumi:"networkImportCheck"`
-	// Aggregate IPv6 prefix.
-	Prefix6 pulumi.StringPtrInput `pulumi:"prefix6"`
-	// Route map of VRF leaking.
-	RouteMap pulumi.StringPtrInput `pulumi:"routeMap"`
+	Prefix6            pulumi.StringPtrInput `pulumi:"prefix6"`
+	RouteMap           pulumi.StringPtrInput `pulumi:"routeMap"`
 }
 
 func (BgpNetwork6Args) ElementType() reflect.Type {
@@ -4954,12 +4924,11 @@ func (o BgpNetwork6Output) ToBgpNetwork6OutputWithContext(ctx context.Context) B
 	return o
 }
 
-// Enable/disable route as backdoor. Valid values: `enable`, `disable`.
 func (o BgpNetwork6Output) Backdoor() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BgpNetwork6) *string { return v.Backdoor }).(pulumi.StringPtrOutput)
 }
 
-// ID.
+// an identifier for the resource.
 func (o BgpNetwork6Output) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v BgpNetwork6) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
@@ -4969,12 +4938,10 @@ func (o BgpNetwork6Output) NetworkImportCheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BgpNetwork6) *string { return v.NetworkImportCheck }).(pulumi.StringPtrOutput)
 }
 
-// Aggregate IPv6 prefix.
 func (o BgpNetwork6Output) Prefix6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BgpNetwork6) *string { return v.Prefix6 }).(pulumi.StringPtrOutput)
 }
 
-// Route map of VRF leaking.
 func (o BgpNetwork6Output) RouteMap() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BgpNetwork6) *string { return v.RouteMap }).(pulumi.StringPtrOutput)
 }
@@ -5133,12 +5100,9 @@ func (o BgpNetworkArrayOutput) Index(i pulumi.IntInput) BgpNetworkOutput {
 }
 
 type BgpRedistribute6 struct {
-	// Neighbor group name.
-	Name *string `pulumi:"name"`
-	// Route map of VRF leaking.
+	Name     *string `pulumi:"name"`
 	RouteMap *string `pulumi:"routeMap"`
-	// Status Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
+	Status   *string `pulumi:"status"`
 }
 
 // BgpRedistribute6Input is an input type that accepts BgpRedistribute6Args and BgpRedistribute6Output values.
@@ -5153,12 +5117,9 @@ type BgpRedistribute6Input interface {
 }
 
 type BgpRedistribute6Args struct {
-	// Neighbor group name.
-	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Route map of VRF leaking.
+	Name     pulumi.StringPtrInput `pulumi:"name"`
 	RouteMap pulumi.StringPtrInput `pulumi:"routeMap"`
-	// Status Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput `pulumi:"status"`
+	Status   pulumi.StringPtrInput `pulumi:"status"`
 }
 
 func (BgpRedistribute6Args) ElementType() reflect.Type {
@@ -5212,17 +5173,14 @@ func (o BgpRedistribute6Output) ToBgpRedistribute6OutputWithContext(ctx context.
 	return o
 }
 
-// Neighbor group name.
 func (o BgpRedistribute6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BgpRedistribute6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// Route map of VRF leaking.
 func (o BgpRedistribute6Output) RouteMap() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BgpRedistribute6) *string { return v.RouteMap }).(pulumi.StringPtrOutput)
 }
 
-// Status Valid values: `enable`, `disable`.
 func (o BgpRedistribute6Output) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BgpRedistribute6) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
@@ -5363,18 +5321,12 @@ func (o BgpRedistributeArrayOutput) Index(i pulumi.IntInput) BgpRedistributeOutp
 }
 
 type BgpVrf6 struct {
-	// List of export route target. The structure of `exportRt` block is documented below.
-	ExportRts []BgpVrf6ExportRt `pulumi:"exportRts"`
-	// Import route map.
-	ImportRouteMap *string `pulumi:"importRouteMap"`
-	// List of import route target. The structure of `importRt` block is documented below.
-	ImportRts []BgpVrf6ImportRt `pulumi:"importRts"`
-	// Target VRF table. The structure of `leakTarget` block is documented below.
-	LeakTargets []BgpVrf6LeakTarget `pulumi:"leakTargets"`
-	// Route Distinguisher: AA:NN|A.B.C.D:NN.
-	Rd *string `pulumi:"rd"`
-	// VRF role. Valid values: `standalone`, `ce`, `pe`.
-	Role *string `pulumi:"role"`
+	ExportRts      []BgpVrf6ExportRt   `pulumi:"exportRts"`
+	ImportRouteMap *string             `pulumi:"importRouteMap"`
+	ImportRts      []BgpVrf6ImportRt   `pulumi:"importRts"`
+	LeakTargets    []BgpVrf6LeakTarget `pulumi:"leakTargets"`
+	Rd             *string             `pulumi:"rd"`
+	Role           *string             `pulumi:"role"`
 	// BGP VRF leaking table. The structure of `vrf` block is documented below.
 	Vrf *string `pulumi:"vrf"`
 }
@@ -5391,18 +5343,12 @@ type BgpVrf6Input interface {
 }
 
 type BgpVrf6Args struct {
-	// List of export route target. The structure of `exportRt` block is documented below.
-	ExportRts BgpVrf6ExportRtArrayInput `pulumi:"exportRts"`
-	// Import route map.
-	ImportRouteMap pulumi.StringPtrInput `pulumi:"importRouteMap"`
-	// List of import route target. The structure of `importRt` block is documented below.
-	ImportRts BgpVrf6ImportRtArrayInput `pulumi:"importRts"`
-	// Target VRF table. The structure of `leakTarget` block is documented below.
-	LeakTargets BgpVrf6LeakTargetArrayInput `pulumi:"leakTargets"`
-	// Route Distinguisher: AA:NN|A.B.C.D:NN.
-	Rd pulumi.StringPtrInput `pulumi:"rd"`
-	// VRF role. Valid values: `standalone`, `ce`, `pe`.
-	Role pulumi.StringPtrInput `pulumi:"role"`
+	ExportRts      BgpVrf6ExportRtArrayInput   `pulumi:"exportRts"`
+	ImportRouteMap pulumi.StringPtrInput       `pulumi:"importRouteMap"`
+	ImportRts      BgpVrf6ImportRtArrayInput   `pulumi:"importRts"`
+	LeakTargets    BgpVrf6LeakTargetArrayInput `pulumi:"leakTargets"`
+	Rd             pulumi.StringPtrInput       `pulumi:"rd"`
+	Role           pulumi.StringPtrInput       `pulumi:"role"`
 	// BGP VRF leaking table. The structure of `vrf` block is documented below.
 	Vrf pulumi.StringPtrInput `pulumi:"vrf"`
 }
@@ -5458,32 +5404,26 @@ func (o BgpVrf6Output) ToBgpVrf6OutputWithContext(ctx context.Context) BgpVrf6Ou
 	return o
 }
 
-// List of export route target. The structure of `exportRt` block is documented below.
 func (o BgpVrf6Output) ExportRts() BgpVrf6ExportRtArrayOutput {
 	return o.ApplyT(func(v BgpVrf6) []BgpVrf6ExportRt { return v.ExportRts }).(BgpVrf6ExportRtArrayOutput)
 }
 
-// Import route map.
 func (o BgpVrf6Output) ImportRouteMap() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BgpVrf6) *string { return v.ImportRouteMap }).(pulumi.StringPtrOutput)
 }
 
-// List of import route target. The structure of `importRt` block is documented below.
 func (o BgpVrf6Output) ImportRts() BgpVrf6ImportRtArrayOutput {
 	return o.ApplyT(func(v BgpVrf6) []BgpVrf6ImportRt { return v.ImportRts }).(BgpVrf6ImportRtArrayOutput)
 }
 
-// Target VRF table. The structure of `leakTarget` block is documented below.
 func (o BgpVrf6Output) LeakTargets() BgpVrf6LeakTargetArrayOutput {
 	return o.ApplyT(func(v BgpVrf6) []BgpVrf6LeakTarget { return v.LeakTargets }).(BgpVrf6LeakTargetArrayOutput)
 }
 
-// Route Distinguisher: AA:NN|A.B.C.D:NN.
 func (o BgpVrf6Output) Rd() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BgpVrf6) *string { return v.Rd }).(pulumi.StringPtrOutput)
 }
 
-// VRF role. Valid values: `standalone`, `ce`, `pe`.
 func (o BgpVrf6Output) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BgpVrf6) *string { return v.Role }).(pulumi.StringPtrOutput)
 }
@@ -6168,7 +6108,6 @@ func (o BgpVrfImportRtArrayOutput) Index(i pulumi.IntInput) BgpVrfImportRtOutput
 }
 
 type BgpVrfLeak6 struct {
-	// Target VRF table. The structure of `target` block is documented below.
 	Targets []BgpVrfLeak6Target `pulumi:"targets"`
 	// BGP VRF leaking table. The structure of `vrf` block is documented below.
 	Vrf *string `pulumi:"vrf"`
@@ -6186,7 +6125,6 @@ type BgpVrfLeak6Input interface {
 }
 
 type BgpVrfLeak6Args struct {
-	// Target VRF table. The structure of `target` block is documented below.
 	Targets BgpVrfLeak6TargetArrayInput `pulumi:"targets"`
 	// BGP VRF leaking table. The structure of `vrf` block is documented below.
 	Vrf pulumi.StringPtrInput `pulumi:"vrf"`
@@ -6243,7 +6181,6 @@ func (o BgpVrfLeak6Output) ToBgpVrfLeak6OutputWithContext(ctx context.Context) B
 	return o
 }
 
-// Target VRF table. The structure of `target` block is documented below.
 func (o BgpVrfLeak6Output) Targets() BgpVrfLeak6TargetArrayOutput {
 	return o.ApplyT(func(v BgpVrfLeak6) []BgpVrfLeak6Target { return v.Targets }).(BgpVrfLeak6TargetArrayOutput)
 }
@@ -7331,18 +7268,12 @@ func (o IsisIsisNetArrayOutput) Index(i pulumi.IntInput) IsisIsisNetOutput {
 }
 
 type IsisRedistribute6 struct {
-	// Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-	Level *string `pulumi:"level"`
-	// Metric.
-	Metric *int `pulumi:"metric"`
-	// Metric type. Valid values: `external`, `internal`.
+	Level      *string `pulumi:"level"`
+	Metric     *int    `pulumi:"metric"`
 	MetricType *string `pulumi:"metricType"`
-	// Protocol name.
-	Protocol *string `pulumi:"protocol"`
-	// Route map name.
-	Routemap *string `pulumi:"routemap"`
-	// Enable/disable interface for IS-IS. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
+	Protocol   *string `pulumi:"protocol"`
+	Routemap   *string `pulumi:"routemap"`
+	Status     *string `pulumi:"status"`
 }
 
 // IsisRedistribute6Input is an input type that accepts IsisRedistribute6Args and IsisRedistribute6Output values.
@@ -7357,18 +7288,12 @@ type IsisRedistribute6Input interface {
 }
 
 type IsisRedistribute6Args struct {
-	// Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-	Level pulumi.StringPtrInput `pulumi:"level"`
-	// Metric.
-	Metric pulumi.IntPtrInput `pulumi:"metric"`
-	// Metric type. Valid values: `external`, `internal`.
+	Level      pulumi.StringPtrInput `pulumi:"level"`
+	Metric     pulumi.IntPtrInput    `pulumi:"metric"`
 	MetricType pulumi.StringPtrInput `pulumi:"metricType"`
-	// Protocol name.
-	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
-	// Route map name.
-	Routemap pulumi.StringPtrInput `pulumi:"routemap"`
-	// Enable/disable interface for IS-IS. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput `pulumi:"status"`
+	Protocol   pulumi.StringPtrInput `pulumi:"protocol"`
+	Routemap   pulumi.StringPtrInput `pulumi:"routemap"`
+	Status     pulumi.StringPtrInput `pulumi:"status"`
 }
 
 func (IsisRedistribute6Args) ElementType() reflect.Type {
@@ -7422,32 +7347,26 @@ func (o IsisRedistribute6Output) ToIsisRedistribute6OutputWithContext(ctx contex
 	return o
 }
 
-// Level. Valid values: `level-1-2`, `level-1`, `level-2`.
 func (o IsisRedistribute6Output) Level() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IsisRedistribute6) *string { return v.Level }).(pulumi.StringPtrOutput)
 }
 
-// Metric.
 func (o IsisRedistribute6Output) Metric() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v IsisRedistribute6) *int { return v.Metric }).(pulumi.IntPtrOutput)
 }
 
-// Metric type. Valid values: `external`, `internal`.
 func (o IsisRedistribute6Output) MetricType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IsisRedistribute6) *string { return v.MetricType }).(pulumi.StringPtrOutput)
 }
 
-// Protocol name.
 func (o IsisRedistribute6Output) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IsisRedistribute6) *string { return v.Protocol }).(pulumi.StringPtrOutput)
 }
 
-// Route map name.
 func (o IsisRedistribute6Output) Routemap() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IsisRedistribute6) *string { return v.Routemap }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable interface for IS-IS. Valid values: `enable`, `disable`.
 func (o IsisRedistribute6Output) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IsisRedistribute6) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
@@ -7615,11 +7534,9 @@ func (o IsisRedistributeArrayOutput) Index(i pulumi.IntInput) IsisRedistributeOu
 }
 
 type IsisSummaryAddress6 struct {
-	// isis-net ID.
-	Id *int `pulumi:"id"`
-	// Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-	Level *string `pulumi:"level"`
-	// IPv6 prefix.
+	// an identifier for the resource.
+	Id      *int    `pulumi:"id"`
+	Level   *string `pulumi:"level"`
 	Prefix6 *string `pulumi:"prefix6"`
 }
 
@@ -7635,11 +7552,9 @@ type IsisSummaryAddress6Input interface {
 }
 
 type IsisSummaryAddress6Args struct {
-	// isis-net ID.
-	Id pulumi.IntPtrInput `pulumi:"id"`
-	// Level. Valid values: `level-1-2`, `level-1`, `level-2`.
-	Level pulumi.StringPtrInput `pulumi:"level"`
-	// IPv6 prefix.
+	// an identifier for the resource.
+	Id      pulumi.IntPtrInput    `pulumi:"id"`
+	Level   pulumi.StringPtrInput `pulumi:"level"`
 	Prefix6 pulumi.StringPtrInput `pulumi:"prefix6"`
 }
 
@@ -7694,17 +7609,15 @@ func (o IsisSummaryAddress6Output) ToIsisSummaryAddress6OutputWithContext(ctx co
 	return o
 }
 
-// isis-net ID.
+// an identifier for the resource.
 func (o IsisSummaryAddress6Output) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v IsisSummaryAddress6) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
-// Level. Valid values: `level-1-2`, `level-1`, `level-2`.
 func (o IsisSummaryAddress6Output) Level() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IsisSummaryAddress6) *string { return v.Level }).(pulumi.StringPtrOutput)
 }
 
-// IPv6 prefix.
 func (o IsisSummaryAddress6Output) Prefix6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IsisSummaryAddress6) *string { return v.Prefix6 }).(pulumi.StringPtrOutput)
 }
@@ -10652,46 +10565,27 @@ func (o Ospf6AreaVirtualLinkIpsecKeyArrayOutput) Index(i pulumi.IntInput) Ospf6A
 }
 
 type Ospf6Ospf6Interface struct {
-	// A.B.C.D, in IPv4 address format.
-	AreaId *string `pulumi:"areaId"`
-	// Authentication mode. Valid values: `none`, `ah`, `esp`.
+	AreaId         *string `pulumi:"areaId"`
 	Authentication *string `pulumi:"authentication"`
 	// Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `enable`, `disable`.
-	Bfd *string `pulumi:"bfd"`
-	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-	Cost *int `pulumi:"cost"`
-	// Dead interval.
-	DeadInterval *int `pulumi:"deadInterval"`
-	// Hello interval.
-	HelloInterval *int `pulumi:"helloInterval"`
-	// Configuration interface name.
-	Interface *string `pulumi:"interface"`
-	// Authentication algorithm. Valid values: `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-	IpsecAuthAlg *string `pulumi:"ipsecAuthAlg"`
-	// Encryption algorithm. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`.
-	IpsecEncAlg *string `pulumi:"ipsecEncAlg"`
-	// IPsec authentication and encryption keys. The structure of `ipsecKeys` block is documented below.
-	IpsecKeys []Ospf6Ospf6InterfaceIpsecKey `pulumi:"ipsecKeys"`
-	// Key roll-over interval.
-	KeyRolloverInterval *int `pulumi:"keyRolloverInterval"`
-	// MTU for OSPFv3 packets.
-	Mtu *int `pulumi:"mtu"`
-	// Enable/disable ignoring MTU field in DBD packets. Valid values: `enable`, `disable`.
-	MtuIgnore *string `pulumi:"mtuIgnore"`
-	// Interface entry name.
-	Name *string `pulumi:"name"`
-	// OSPFv3 neighbors are used when OSPFv3 runs on non-broadcast media The structure of `neighbor` block is documented below.
-	Neighbors []Ospf6Ospf6InterfaceNeighbor `pulumi:"neighbors"`
-	// Network type. Valid values: `broadcast`, `point-to-point`, `non-broadcast`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-	NetworkType *string `pulumi:"networkType"`
-	// priority
-	Priority *int `pulumi:"priority"`
-	// Retransmit interval.
-	RetransmitInterval *int `pulumi:"retransmitInterval"`
-	// Enable/disable OSPF6 routing on this interface. Valid values: `disable`, `enable`.
-	Status *string `pulumi:"status"`
-	// Transmit delay.
-	TransmitDelay *int `pulumi:"transmitDelay"`
+	Bfd                 *string                       `pulumi:"bfd"`
+	Cost                *int                          `pulumi:"cost"`
+	DeadInterval        *int                          `pulumi:"deadInterval"`
+	HelloInterval       *int                          `pulumi:"helloInterval"`
+	Interface           *string                       `pulumi:"interface"`
+	IpsecAuthAlg        *string                       `pulumi:"ipsecAuthAlg"`
+	IpsecEncAlg         *string                       `pulumi:"ipsecEncAlg"`
+	IpsecKeys           []Ospf6Ospf6InterfaceIpsecKey `pulumi:"ipsecKeys"`
+	KeyRolloverInterval *int                          `pulumi:"keyRolloverInterval"`
+	Mtu                 *int                          `pulumi:"mtu"`
+	MtuIgnore           *string                       `pulumi:"mtuIgnore"`
+	Name                *string                       `pulumi:"name"`
+	Neighbors           []Ospf6Ospf6InterfaceNeighbor `pulumi:"neighbors"`
+	NetworkType         *string                       `pulumi:"networkType"`
+	Priority            *int                          `pulumi:"priority"`
+	RetransmitInterval  *int                          `pulumi:"retransmitInterval"`
+	Status              *string                       `pulumi:"status"`
+	TransmitDelay       *int                          `pulumi:"transmitDelay"`
 }
 
 // Ospf6Ospf6InterfaceInput is an input type that accepts Ospf6Ospf6InterfaceArgs and Ospf6Ospf6InterfaceOutput values.
@@ -10706,46 +10600,27 @@ type Ospf6Ospf6InterfaceInput interface {
 }
 
 type Ospf6Ospf6InterfaceArgs struct {
-	// A.B.C.D, in IPv4 address format.
-	AreaId pulumi.StringPtrInput `pulumi:"areaId"`
-	// Authentication mode. Valid values: `none`, `ah`, `esp`.
+	AreaId         pulumi.StringPtrInput `pulumi:"areaId"`
 	Authentication pulumi.StringPtrInput `pulumi:"authentication"`
 	// Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `enable`, `disable`.
-	Bfd pulumi.StringPtrInput `pulumi:"bfd"`
-	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
-	Cost pulumi.IntPtrInput `pulumi:"cost"`
-	// Dead interval.
-	DeadInterval pulumi.IntPtrInput `pulumi:"deadInterval"`
-	// Hello interval.
-	HelloInterval pulumi.IntPtrInput `pulumi:"helloInterval"`
-	// Configuration interface name.
-	Interface pulumi.StringPtrInput `pulumi:"interface"`
-	// Authentication algorithm. Valid values: `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
-	IpsecAuthAlg pulumi.StringPtrInput `pulumi:"ipsecAuthAlg"`
-	// Encryption algorithm. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`.
-	IpsecEncAlg pulumi.StringPtrInput `pulumi:"ipsecEncAlg"`
-	// IPsec authentication and encryption keys. The structure of `ipsecKeys` block is documented below.
-	IpsecKeys Ospf6Ospf6InterfaceIpsecKeyArrayInput `pulumi:"ipsecKeys"`
-	// Key roll-over interval.
-	KeyRolloverInterval pulumi.IntPtrInput `pulumi:"keyRolloverInterval"`
-	// MTU for OSPFv3 packets.
-	Mtu pulumi.IntPtrInput `pulumi:"mtu"`
-	// Enable/disable ignoring MTU field in DBD packets. Valid values: `enable`, `disable`.
-	MtuIgnore pulumi.StringPtrInput `pulumi:"mtuIgnore"`
-	// Interface entry name.
-	Name pulumi.StringPtrInput `pulumi:"name"`
-	// OSPFv3 neighbors are used when OSPFv3 runs on non-broadcast media The structure of `neighbor` block is documented below.
-	Neighbors Ospf6Ospf6InterfaceNeighborArrayInput `pulumi:"neighbors"`
-	// Network type. Valid values: `broadcast`, `point-to-point`, `non-broadcast`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
-	NetworkType pulumi.StringPtrInput `pulumi:"networkType"`
-	// priority
-	Priority pulumi.IntPtrInput `pulumi:"priority"`
-	// Retransmit interval.
-	RetransmitInterval pulumi.IntPtrInput `pulumi:"retransmitInterval"`
-	// Enable/disable OSPF6 routing on this interface. Valid values: `disable`, `enable`.
-	Status pulumi.StringPtrInput `pulumi:"status"`
-	// Transmit delay.
-	TransmitDelay pulumi.IntPtrInput `pulumi:"transmitDelay"`
+	Bfd                 pulumi.StringPtrInput                 `pulumi:"bfd"`
+	Cost                pulumi.IntPtrInput                    `pulumi:"cost"`
+	DeadInterval        pulumi.IntPtrInput                    `pulumi:"deadInterval"`
+	HelloInterval       pulumi.IntPtrInput                    `pulumi:"helloInterval"`
+	Interface           pulumi.StringPtrInput                 `pulumi:"interface"`
+	IpsecAuthAlg        pulumi.StringPtrInput                 `pulumi:"ipsecAuthAlg"`
+	IpsecEncAlg         pulumi.StringPtrInput                 `pulumi:"ipsecEncAlg"`
+	IpsecKeys           Ospf6Ospf6InterfaceIpsecKeyArrayInput `pulumi:"ipsecKeys"`
+	KeyRolloverInterval pulumi.IntPtrInput                    `pulumi:"keyRolloverInterval"`
+	Mtu                 pulumi.IntPtrInput                    `pulumi:"mtu"`
+	MtuIgnore           pulumi.StringPtrInput                 `pulumi:"mtuIgnore"`
+	Name                pulumi.StringPtrInput                 `pulumi:"name"`
+	Neighbors           Ospf6Ospf6InterfaceNeighborArrayInput `pulumi:"neighbors"`
+	NetworkType         pulumi.StringPtrInput                 `pulumi:"networkType"`
+	Priority            pulumi.IntPtrInput                    `pulumi:"priority"`
+	RetransmitInterval  pulumi.IntPtrInput                    `pulumi:"retransmitInterval"`
+	Status              pulumi.StringPtrInput                 `pulumi:"status"`
+	TransmitDelay       pulumi.IntPtrInput                    `pulumi:"transmitDelay"`
 }
 
 func (Ospf6Ospf6InterfaceArgs) ElementType() reflect.Type {
@@ -10799,12 +10674,10 @@ func (o Ospf6Ospf6InterfaceOutput) ToOspf6Ospf6InterfaceOutputWithContext(ctx co
 	return o
 }
 
-// A.B.C.D, in IPv4 address format.
 func (o Ospf6Ospf6InterfaceOutput) AreaId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) *string { return v.AreaId }).(pulumi.StringPtrOutput)
 }
 
-// Authentication mode. Valid values: `none`, `ah`, `esp`.
 func (o Ospf6Ospf6InterfaceOutput) Authentication() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) *string { return v.Authentication }).(pulumi.StringPtrOutput)
 }
@@ -10814,87 +10687,70 @@ func (o Ospf6Ospf6InterfaceOutput) Bfd() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) *string { return v.Bfd }).(pulumi.StringPtrOutput)
 }
 
-// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
 func (o Ospf6Ospf6InterfaceOutput) Cost() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) *int { return v.Cost }).(pulumi.IntPtrOutput)
 }
 
-// Dead interval.
 func (o Ospf6Ospf6InterfaceOutput) DeadInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) *int { return v.DeadInterval }).(pulumi.IntPtrOutput)
 }
 
-// Hello interval.
 func (o Ospf6Ospf6InterfaceOutput) HelloInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) *int { return v.HelloInterval }).(pulumi.IntPtrOutput)
 }
 
-// Configuration interface name.
 func (o Ospf6Ospf6InterfaceOutput) Interface() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) *string { return v.Interface }).(pulumi.StringPtrOutput)
 }
 
-// Authentication algorithm. Valid values: `md5`, `sha1`, `sha256`, `sha384`, `sha512`.
 func (o Ospf6Ospf6InterfaceOutput) IpsecAuthAlg() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) *string { return v.IpsecAuthAlg }).(pulumi.StringPtrOutput)
 }
 
-// Encryption algorithm. Valid values: `null`, `des`, `3des`, `aes128`, `aes192`, `aes256`.
 func (o Ospf6Ospf6InterfaceOutput) IpsecEncAlg() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) *string { return v.IpsecEncAlg }).(pulumi.StringPtrOutput)
 }
 
-// IPsec authentication and encryption keys. The structure of `ipsecKeys` block is documented below.
 func (o Ospf6Ospf6InterfaceOutput) IpsecKeys() Ospf6Ospf6InterfaceIpsecKeyArrayOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) []Ospf6Ospf6InterfaceIpsecKey { return v.IpsecKeys }).(Ospf6Ospf6InterfaceIpsecKeyArrayOutput)
 }
 
-// Key roll-over interval.
 func (o Ospf6Ospf6InterfaceOutput) KeyRolloverInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) *int { return v.KeyRolloverInterval }).(pulumi.IntPtrOutput)
 }
 
-// MTU for OSPFv3 packets.
 func (o Ospf6Ospf6InterfaceOutput) Mtu() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) *int { return v.Mtu }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable ignoring MTU field in DBD packets. Valid values: `enable`, `disable`.
 func (o Ospf6Ospf6InterfaceOutput) MtuIgnore() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) *string { return v.MtuIgnore }).(pulumi.StringPtrOutput)
 }
 
-// Interface entry name.
 func (o Ospf6Ospf6InterfaceOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// OSPFv3 neighbors are used when OSPFv3 runs on non-broadcast media The structure of `neighbor` block is documented below.
 func (o Ospf6Ospf6InterfaceOutput) Neighbors() Ospf6Ospf6InterfaceNeighborArrayOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) []Ospf6Ospf6InterfaceNeighbor { return v.Neighbors }).(Ospf6Ospf6InterfaceNeighborArrayOutput)
 }
 
-// Network type. Valid values: `broadcast`, `point-to-point`, `non-broadcast`, `point-to-multipoint`, `point-to-multipoint-non-broadcast`.
 func (o Ospf6Ospf6InterfaceOutput) NetworkType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) *string { return v.NetworkType }).(pulumi.StringPtrOutput)
 }
 
-// priority
 func (o Ospf6Ospf6InterfaceOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
-// Retransmit interval.
 func (o Ospf6Ospf6InterfaceOutput) RetransmitInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) *int { return v.RetransmitInterval }).(pulumi.IntPtrOutput)
 }
 
-// Enable/disable OSPF6 routing on this interface. Valid values: `disable`, `enable`.
 func (o Ospf6Ospf6InterfaceOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// Transmit delay.
 func (o Ospf6Ospf6InterfaceOutput) TransmitDelay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Ospf6Ospf6Interface) *int { return v.TransmitDelay }).(pulumi.IntPtrOutput)
 }
@@ -12186,9 +12042,8 @@ func (o OspfAreaVirtualLinkArrayOutput) Index(i pulumi.IntInput) OspfAreaVirtual
 }
 
 type OspfAreaVirtualLinkMd5Key struct {
-	// Area entry IP address.
-	Id *int `pulumi:"id"`
-	// Password for the key.
+	// an identifier for the resource.
+	Id        *int    `pulumi:"id"`
 	KeyString *string `pulumi:"keyString"`
 }
 
@@ -12204,9 +12059,8 @@ type OspfAreaVirtualLinkMd5KeyInput interface {
 }
 
 type OspfAreaVirtualLinkMd5KeyArgs struct {
-	// Area entry IP address.
-	Id pulumi.IntPtrInput `pulumi:"id"`
-	// Password for the key.
+	// an identifier for the resource.
+	Id        pulumi.IntPtrInput    `pulumi:"id"`
 	KeyString pulumi.StringPtrInput `pulumi:"keyString"`
 }
 
@@ -12261,12 +12115,11 @@ func (o OspfAreaVirtualLinkMd5KeyOutput) ToOspfAreaVirtualLinkMd5KeyOutputWithCo
 	return o
 }
 
-// Area entry IP address.
+// an identifier for the resource.
 func (o OspfAreaVirtualLinkMd5KeyOutput) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v OspfAreaVirtualLinkMd5Key) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
-// Password for the key.
 func (o OspfAreaVirtualLinkMd5KeyOutput) KeyString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v OspfAreaVirtualLinkMd5Key) *string { return v.KeyString }).(pulumi.StringPtrOutput)
 }
@@ -12983,9 +12836,8 @@ func (o OspfOspfInterfaceArrayOutput) Index(i pulumi.IntInput) OspfOspfInterface
 }
 
 type OspfOspfInterfaceMd5Key struct {
-	// Area entry IP address.
-	Id *int `pulumi:"id"`
-	// Password for the key.
+	// an identifier for the resource.
+	Id        *int    `pulumi:"id"`
 	KeyString *string `pulumi:"keyString"`
 }
 
@@ -13001,9 +12853,8 @@ type OspfOspfInterfaceMd5KeyInput interface {
 }
 
 type OspfOspfInterfaceMd5KeyArgs struct {
-	// Area entry IP address.
-	Id pulumi.IntPtrInput `pulumi:"id"`
-	// Password for the key.
+	// an identifier for the resource.
+	Id        pulumi.IntPtrInput    `pulumi:"id"`
 	KeyString pulumi.StringPtrInput `pulumi:"keyString"`
 }
 
@@ -13058,12 +12909,11 @@ func (o OspfOspfInterfaceMd5KeyOutput) ToOspfOspfInterfaceMd5KeyOutputWithContex
 	return o
 }
 
-// Area entry IP address.
+// an identifier for the resource.
 func (o OspfOspfInterfaceMd5KeyOutput) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v OspfOspfInterfaceMd5Key) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
-// Password for the key.
 func (o OspfOspfInterfaceMd5KeyOutput) KeyString() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v OspfOspfInterfaceMd5Key) *string { return v.KeyString }).(pulumi.StringPtrOutput)
 }

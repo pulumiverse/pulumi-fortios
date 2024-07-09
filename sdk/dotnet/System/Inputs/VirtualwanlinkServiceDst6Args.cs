@@ -13,9 +13,6 @@ namespace Pulumiverse.Fortios.System.Inputs
 
     public sealed class VirtualwanlinkServiceDst6Args : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Address or address group name.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

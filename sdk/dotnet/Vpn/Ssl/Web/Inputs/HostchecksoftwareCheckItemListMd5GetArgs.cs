@@ -14,7 +14,7 @@ namespace Pulumiverse.Fortios.Vpn.Ssl.Web.Inputs
     public sealed class HostchecksoftwareCheckItemListMd5GetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Hex string of MD5 checksum.
+        /// an identifier for the resource with format {{name}}.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }

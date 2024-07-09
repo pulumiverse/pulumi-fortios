@@ -233,7 +233,6 @@ class Krbkeytab(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -260,7 +259,6 @@ class Krbkeytab(pulumi.CustomResource):
             ldap_server=trname2.name,
             principal="testprin")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -300,7 +298,6 @@ class Krbkeytab(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -327,7 +324,6 @@ class Krbkeytab(pulumi.CustomResource):
             ldap_server=trname2.name,
             principal="testprin")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

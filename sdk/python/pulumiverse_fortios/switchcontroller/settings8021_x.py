@@ -401,7 +401,6 @@ class Settings8021X(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -411,7 +410,6 @@ class Settings8021X(pulumi.CustomResource):
             max_reauth_attempt=3,
             reauth_period=12)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -456,7 +454,6 @@ class Settings8021X(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -466,7 +463,6 @@ class Settings8021X(pulumi.CustomResource):
             max_reauth_attempt=3,
             reauth_period=12)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

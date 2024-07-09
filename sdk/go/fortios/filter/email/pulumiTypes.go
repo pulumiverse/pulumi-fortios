@@ -2190,15 +2190,10 @@ func (o ProfileOtherWebmailsPtrOutput) LogAll() pulumi.StringPtrOutput {
 }
 
 type ProfilePop3 struct {
-	// Action taken for matched file. Valid values: `log`, `block`.
-	Action *string `pulumi:"action"`
-	// Enable/disable file filter logging. Valid values: `enable`, `disable`.
-	Log *string `pulumi:"log"`
-	// Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-	LogAll *string `pulumi:"logAll"`
-	// Subject text or header added to spam email.
-	TagMsg *string `pulumi:"tagMsg"`
-	// Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
+	Action  *string `pulumi:"action"`
+	Log     *string `pulumi:"log"`
+	LogAll  *string `pulumi:"logAll"`
+	TagMsg  *string `pulumi:"tagMsg"`
 	TagType *string `pulumi:"tagType"`
 }
 
@@ -2214,15 +2209,10 @@ type ProfilePop3Input interface {
 }
 
 type ProfilePop3Args struct {
-	// Action taken for matched file. Valid values: `log`, `block`.
-	Action pulumi.StringPtrInput `pulumi:"action"`
-	// Enable/disable file filter logging. Valid values: `enable`, `disable`.
-	Log pulumi.StringPtrInput `pulumi:"log"`
-	// Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
-	LogAll pulumi.StringPtrInput `pulumi:"logAll"`
-	// Subject text or header added to spam email.
-	TagMsg pulumi.StringPtrInput `pulumi:"tagMsg"`
-	// Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
+	Action  pulumi.StringPtrInput `pulumi:"action"`
+	Log     pulumi.StringPtrInput `pulumi:"log"`
+	LogAll  pulumi.StringPtrInput `pulumi:"logAll"`
+	TagMsg  pulumi.StringPtrInput `pulumi:"tagMsg"`
 	TagType pulumi.StringPtrInput `pulumi:"tagType"`
 }
 
@@ -2303,27 +2293,22 @@ func (o ProfilePop3Output) ToProfilePop3PtrOutputWithContext(ctx context.Context
 	}).(ProfilePop3PtrOutput)
 }
 
-// Action taken for matched file. Valid values: `log`, `block`.
 func (o ProfilePop3Output) Action() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.Action }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable file filter logging. Valid values: `enable`, `disable`.
 func (o ProfilePop3Output) Log() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.Log }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
 func (o ProfilePop3Output) LogAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.LogAll }).(pulumi.StringPtrOutput)
 }
 
-// Subject text or header added to spam email.
 func (o ProfilePop3Output) TagMsg() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.TagMsg }).(pulumi.StringPtrOutput)
 }
 
-// Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
 func (o ProfilePop3Output) TagType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfilePop3) *string { return v.TagType }).(pulumi.StringPtrOutput)
 }
@@ -2352,7 +2337,6 @@ func (o ProfilePop3PtrOutput) Elem() ProfilePop3Output {
 	}).(ProfilePop3Output)
 }
 
-// Action taken for matched file. Valid values: `log`, `block`.
 func (o ProfilePop3PtrOutput) Action() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
@@ -2362,7 +2346,6 @@ func (o ProfilePop3PtrOutput) Action() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable file filter logging. Valid values: `enable`, `disable`.
 func (o ProfilePop3PtrOutput) Log() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
@@ -2372,7 +2355,6 @@ func (o ProfilePop3PtrOutput) Log() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable logging of all email traffic. Valid values: `disable`, `enable`.
 func (o ProfilePop3PtrOutput) LogAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
@@ -2382,7 +2364,6 @@ func (o ProfilePop3PtrOutput) LogAll() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Subject text or header added to spam email.
 func (o ProfilePop3PtrOutput) TagMsg() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {
@@ -2392,7 +2373,6 @@ func (o ProfilePop3PtrOutput) TagMsg() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Tag subject or header for spam email. Valid values: `subject`, `header`, `spaminfo`.
 func (o ProfilePop3PtrOutput) TagType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfilePop3) *string {
 		if v == nil {

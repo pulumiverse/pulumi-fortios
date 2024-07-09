@@ -1987,7 +1987,6 @@ class Automationaction(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2002,7 +2001,6 @@ class Automationaction(pulumi.CustomResource):
             protocol="http",
             required="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -2095,7 +2093,6 @@ class Automationaction(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2110,7 +2107,6 @@ class Automationaction(pulumi.CustomResource):
             protocol="http",
             required="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

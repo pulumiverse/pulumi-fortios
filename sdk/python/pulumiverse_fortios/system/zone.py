@@ -304,14 +304,12 @@ class Zone(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.system.Zone("trname", intrazone="allow")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -353,14 +351,12 @@ class Zone(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.system.Zone("trname", intrazone="allow")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

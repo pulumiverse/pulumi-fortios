@@ -35,7 +35,7 @@ export interface GetFortiguardResult {
      */
     readonly antispamCache: string;
     /**
-     * Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%!)(MISSING).
+     * Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
      */
     readonly antispamCacheMpercent: number;
     /**
@@ -143,7 +143,7 @@ export interface GetFortiguardResult {
      */
     readonly outbreakPreventionCache: string;
     /**
-     * Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%!,(MISSING) default = 2).
+     * Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
      */
     readonly outbreakPreventionCacheMpercent: number;
     /**

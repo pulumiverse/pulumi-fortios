@@ -370,7 +370,6 @@ class Vdomsflow(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -381,7 +380,6 @@ class Vdomsflow(pulumi.CustomResource):
             source_ip="0.0.0.0",
             vdom_sflow="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -425,7 +423,6 @@ class Vdomsflow(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -436,7 +433,6 @@ class Vdomsflow(pulumi.CustomResource):
             source_ip="0.0.0.0",
             vdom_sflow="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

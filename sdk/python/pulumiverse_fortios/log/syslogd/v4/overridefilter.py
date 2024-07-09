@@ -700,7 +700,6 @@ class Overridefilter(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -718,7 +717,6 @@ class Overridefilter(pulumi.CustomResource):
             ssh="enable",
             voip="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -772,7 +770,6 @@ class Overridefilter(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -790,7 +787,6 @@ class Overridefilter(pulumi.CustomResource):
             ssh="enable",
             voip="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

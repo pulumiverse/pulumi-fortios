@@ -397,7 +397,6 @@ class Ttlpolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -416,7 +415,6 @@ class Ttlpolicy(pulumi.CustomResource):
             status="enable",
             ttl="23")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -461,7 +459,6 @@ class Ttlpolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -480,7 +477,6 @@ class Ttlpolicy(pulumi.CustomResource):
             status="enable",
             ttl="23")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

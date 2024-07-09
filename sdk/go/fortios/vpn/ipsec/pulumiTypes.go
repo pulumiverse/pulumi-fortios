@@ -568,11 +568,9 @@ func (o Phase1InternalDomainListArrayOutput) Index(i pulumi.IntInput) Phase1Inte
 }
 
 type Phase1Ipv4ExcludeRange struct {
-	// End of IPv6 exclusive range.
 	EndIp *string `pulumi:"endIp"`
-	// ID.
-	Id *int `pulumi:"id"`
-	// Start of IPv6 exclusive range.
+	// an identifier for the resource with format {{name}}.
+	Id      *int    `pulumi:"id"`
 	StartIp *string `pulumi:"startIp"`
 }
 
@@ -588,11 +586,9 @@ type Phase1Ipv4ExcludeRangeInput interface {
 }
 
 type Phase1Ipv4ExcludeRangeArgs struct {
-	// End of IPv6 exclusive range.
 	EndIp pulumi.StringPtrInput `pulumi:"endIp"`
-	// ID.
-	Id pulumi.IntPtrInput `pulumi:"id"`
-	// Start of IPv6 exclusive range.
+	// an identifier for the resource with format {{name}}.
+	Id      pulumi.IntPtrInput    `pulumi:"id"`
 	StartIp pulumi.StringPtrInput `pulumi:"startIp"`
 }
 
@@ -647,17 +643,15 @@ func (o Phase1Ipv4ExcludeRangeOutput) ToPhase1Ipv4ExcludeRangeOutputWithContext(
 	return o
 }
 
-// End of IPv6 exclusive range.
 func (o Phase1Ipv4ExcludeRangeOutput) EndIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Phase1Ipv4ExcludeRange) *string { return v.EndIp }).(pulumi.StringPtrOutput)
 }
 
-// ID.
+// an identifier for the resource with format {{name}}.
 func (o Phase1Ipv4ExcludeRangeOutput) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Phase1Ipv4ExcludeRange) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
-// Start of IPv6 exclusive range.
 func (o Phase1Ipv4ExcludeRangeOutput) StartIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Phase1Ipv4ExcludeRange) *string { return v.StartIp }).(pulumi.StringPtrOutput)
 }
@@ -683,11 +677,9 @@ func (o Phase1Ipv4ExcludeRangeArrayOutput) Index(i pulumi.IntInput) Phase1Ipv4Ex
 }
 
 type Phase1Ipv6ExcludeRange struct {
-	// End of IPv6 exclusive range.
 	EndIp *string `pulumi:"endIp"`
-	// ID.
-	Id *int `pulumi:"id"`
-	// Start of IPv6 exclusive range.
+	// an identifier for the resource with format {{name}}.
+	Id      *int    `pulumi:"id"`
 	StartIp *string `pulumi:"startIp"`
 }
 
@@ -703,11 +695,9 @@ type Phase1Ipv6ExcludeRangeInput interface {
 }
 
 type Phase1Ipv6ExcludeRangeArgs struct {
-	// End of IPv6 exclusive range.
 	EndIp pulumi.StringPtrInput `pulumi:"endIp"`
-	// ID.
-	Id pulumi.IntPtrInput `pulumi:"id"`
-	// Start of IPv6 exclusive range.
+	// an identifier for the resource with format {{name}}.
+	Id      pulumi.IntPtrInput    `pulumi:"id"`
 	StartIp pulumi.StringPtrInput `pulumi:"startIp"`
 }
 
@@ -762,17 +752,15 @@ func (o Phase1Ipv6ExcludeRangeOutput) ToPhase1Ipv6ExcludeRangeOutputWithContext(
 	return o
 }
 
-// End of IPv6 exclusive range.
 func (o Phase1Ipv6ExcludeRangeOutput) EndIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Phase1Ipv6ExcludeRange) *string { return v.EndIp }).(pulumi.StringPtrOutput)
 }
 
-// ID.
+// an identifier for the resource with format {{name}}.
 func (o Phase1Ipv6ExcludeRangeOutput) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Phase1Ipv6ExcludeRange) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
-// Start of IPv6 exclusive range.
 func (o Phase1Ipv6ExcludeRangeOutput) StartIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Phase1Ipv6ExcludeRange) *string { return v.StartIp }).(pulumi.StringPtrOutput)
 }
@@ -1095,11 +1083,9 @@ func (o Phase1interfaceInternalDomainListArrayOutput) Index(i pulumi.IntInput) P
 }
 
 type Phase1interfaceIpv4ExcludeRange struct {
-	// End of IPv6 exclusive range.
 	EndIp *string `pulumi:"endIp"`
-	// ID.
-	Id *int `pulumi:"id"`
-	// Start of IPv6 exclusive range.
+	// an identifier for the resource with format {{name}}.
+	Id      *int    `pulumi:"id"`
 	StartIp *string `pulumi:"startIp"`
 }
 
@@ -1115,11 +1101,9 @@ type Phase1interfaceIpv4ExcludeRangeInput interface {
 }
 
 type Phase1interfaceIpv4ExcludeRangeArgs struct {
-	// End of IPv6 exclusive range.
 	EndIp pulumi.StringPtrInput `pulumi:"endIp"`
-	// ID.
-	Id pulumi.IntPtrInput `pulumi:"id"`
-	// Start of IPv6 exclusive range.
+	// an identifier for the resource with format {{name}}.
+	Id      pulumi.IntPtrInput    `pulumi:"id"`
 	StartIp pulumi.StringPtrInput `pulumi:"startIp"`
 }
 
@@ -1174,17 +1158,15 @@ func (o Phase1interfaceIpv4ExcludeRangeOutput) ToPhase1interfaceIpv4ExcludeRange
 	return o
 }
 
-// End of IPv6 exclusive range.
 func (o Phase1interfaceIpv4ExcludeRangeOutput) EndIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Phase1interfaceIpv4ExcludeRange) *string { return v.EndIp }).(pulumi.StringPtrOutput)
 }
 
-// ID.
+// an identifier for the resource with format {{name}}.
 func (o Phase1interfaceIpv4ExcludeRangeOutput) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Phase1interfaceIpv4ExcludeRange) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
-// Start of IPv6 exclusive range.
 func (o Phase1interfaceIpv4ExcludeRangeOutput) StartIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Phase1interfaceIpv4ExcludeRange) *string { return v.StartIp }).(pulumi.StringPtrOutput)
 }
@@ -1210,11 +1192,9 @@ func (o Phase1interfaceIpv4ExcludeRangeArrayOutput) Index(i pulumi.IntInput) Pha
 }
 
 type Phase1interfaceIpv6ExcludeRange struct {
-	// End of IPv6 exclusive range.
 	EndIp *string `pulumi:"endIp"`
-	// ID.
-	Id *int `pulumi:"id"`
-	// Start of IPv6 exclusive range.
+	// an identifier for the resource with format {{name}}.
+	Id      *int    `pulumi:"id"`
 	StartIp *string `pulumi:"startIp"`
 }
 
@@ -1230,11 +1210,9 @@ type Phase1interfaceIpv6ExcludeRangeInput interface {
 }
 
 type Phase1interfaceIpv6ExcludeRangeArgs struct {
-	// End of IPv6 exclusive range.
 	EndIp pulumi.StringPtrInput `pulumi:"endIp"`
-	// ID.
-	Id pulumi.IntPtrInput `pulumi:"id"`
-	// Start of IPv6 exclusive range.
+	// an identifier for the resource with format {{name}}.
+	Id      pulumi.IntPtrInput    `pulumi:"id"`
 	StartIp pulumi.StringPtrInput `pulumi:"startIp"`
 }
 
@@ -1289,17 +1267,15 @@ func (o Phase1interfaceIpv6ExcludeRangeOutput) ToPhase1interfaceIpv6ExcludeRange
 	return o
 }
 
-// End of IPv6 exclusive range.
 func (o Phase1interfaceIpv6ExcludeRangeOutput) EndIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Phase1interfaceIpv6ExcludeRange) *string { return v.EndIp }).(pulumi.StringPtrOutput)
 }
 
-// ID.
+// an identifier for the resource with format {{name}}.
 func (o Phase1interfaceIpv6ExcludeRangeOutput) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Phase1interfaceIpv6ExcludeRange) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
-// Start of IPv6 exclusive range.
 func (o Phase1interfaceIpv6ExcludeRangeOutput) StartIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Phase1interfaceIpv6ExcludeRange) *string { return v.StartIp }).(pulumi.StringPtrOutput)
 }

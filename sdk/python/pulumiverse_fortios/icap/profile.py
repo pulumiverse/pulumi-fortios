@@ -1129,7 +1129,6 @@ class Profile(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1148,7 +1147,6 @@ class Profile(pulumi.CustomResource):
             response_req_hdr="disable",
             streaming_content_bypass="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1215,7 +1213,6 @@ class Profile(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1234,7 +1231,6 @@ class Profile(pulumi.CustomResource):
             response_req_hdr="disable",
             streaming_content_bypass="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

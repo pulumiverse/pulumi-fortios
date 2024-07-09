@@ -275,7 +275,7 @@ namespace Pulumiverse.Fortios.Switchcontroller.Outputs
         /// </summary>
         public readonly int? PauseMeter;
         /// <summary>
-        /// Resume threshold for resuming traffic on ingress port. Valid values: `75%!`(MISSING), `50%!`(MISSING), `25%!`(MISSING).
+        /// Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
         /// </summary>
         public readonly string? PauseMeterResume;
         /// <summary>

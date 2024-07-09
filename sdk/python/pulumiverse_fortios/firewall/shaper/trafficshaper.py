@@ -698,7 +698,6 @@ class Trafficshaper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -712,7 +711,6 @@ class Trafficshaper(pulumi.CustomResource):
             per_policy="disable",
             priority="low")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -766,7 +764,6 @@ class Trafficshaper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -780,7 +777,6 @@ class Trafficshaper(pulumi.CustomResource):
             per_policy="disable",
             priority="low")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

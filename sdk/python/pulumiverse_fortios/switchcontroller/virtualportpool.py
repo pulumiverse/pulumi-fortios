@@ -137,14 +137,12 @@ class Virtualportpool(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.switchcontroller.Virtualportpool("trname", description="virtualport")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -181,14 +179,12 @@ class Virtualportpool(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.switchcontroller.Virtualportpool("trname", description="virtualport")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

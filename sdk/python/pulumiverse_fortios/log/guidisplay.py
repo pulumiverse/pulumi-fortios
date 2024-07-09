@@ -170,7 +170,6 @@ class Guidisplay(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -180,7 +179,6 @@ class Guidisplay(pulumi.CustomResource):
             resolve_apps="enable",
             resolve_hosts="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -218,7 +216,6 @@ class Guidisplay(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -228,7 +225,6 @@ class Guidisplay(pulumi.CustomResource):
             resolve_apps="enable",
             resolve_hosts="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

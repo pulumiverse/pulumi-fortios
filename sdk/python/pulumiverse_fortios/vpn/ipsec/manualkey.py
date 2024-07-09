@@ -430,7 +430,6 @@ class Manualkey(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -446,7 +445,6 @@ class Manualkey(pulumi.CustomResource):
             remote_gw="1.1.1.1",
             remotespi="0x100")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -492,7 +490,6 @@ class Manualkey(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -508,7 +505,6 @@ class Manualkey(pulumi.CustomResource):
             remote_gw="1.1.1.1",
             remotespi="0x100")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

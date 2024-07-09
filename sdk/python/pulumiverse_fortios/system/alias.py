@@ -137,14 +137,12 @@ class Alias(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.system.Alias("trname")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -181,14 +179,12 @@ class Alias(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.system.Alias("trname")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

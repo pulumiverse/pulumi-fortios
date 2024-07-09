@@ -1587,7 +1587,6 @@ class Phase2interface(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1718,7 +1717,6 @@ class Phase2interface(pulumi.CustomResource):
             src_port=0,
             src_subnet="0.0.0.0 0.0.0.0")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1799,7 +1797,6 @@ class Phase2interface(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1930,7 +1927,6 @@ class Phase2interface(pulumi.CustomResource):
             src_port=0,
             src_subnet="0.0.0.0 0.0.0.0")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

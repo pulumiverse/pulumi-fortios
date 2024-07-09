@@ -15,12 +15,9 @@ namespace Pulumiverse.Fortios.Router.Outputs
     public sealed class OspfOspfInterfaceMd5Key
     {
         /// <summary>
-        /// Area entry IP address.
+        /// an identifier for the resource.
         /// </summary>
         public readonly int? Id;
-        /// <summary>
-        /// Password for the key.
-        /// </summary>
         public readonly string? KeyString;
 
         [OutputConstructor]

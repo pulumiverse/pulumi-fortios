@@ -237,7 +237,6 @@ class Ipsecaggregate(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -373,7 +372,6 @@ class Ipsecaggregate(pulumi.CustomResource):
                 tunnel_name=trname1_phase1interface.name,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -413,7 +411,6 @@ class Ipsecaggregate(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -549,7 +546,6 @@ class Ipsecaggregate(pulumi.CustomResource):
                 tunnel_name=trname1_phase1interface.name,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

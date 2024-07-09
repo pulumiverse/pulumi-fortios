@@ -1389,7 +1389,6 @@ class Ldap(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1412,7 +1411,6 @@ class Ldap(pulumi.CustomResource):
             ssl_min_proto_version="default",
             type="simple")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1487,7 +1485,6 @@ class Ldap(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1510,7 +1507,6 @@ class Ldap(pulumi.CustomResource):
             ssl_min_proto_version="default",
             type="simple")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

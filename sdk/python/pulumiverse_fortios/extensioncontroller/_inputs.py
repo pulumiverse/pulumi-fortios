@@ -244,19 +244,6 @@ class ExtenderprofileCellularModem1Args:
                  sim1_pin_code: Optional[pulumi.Input[str]] = None,
                  sim2_pin: Optional[pulumi.Input[str]] = None,
                  sim2_pin_code: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input['ExtenderprofileCellularModem1AutoSwitchArgs'] auto_switch: FortiExtender auto switch configuration. The structure of `auto_switch` block is documented below.
-        :param pulumi.Input[int] conn_status: Connection status.
-        :param pulumi.Input[str] default_sim: Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-        :param pulumi.Input[str] gps: FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] preferred_carrier: Preferred carrier.
-        :param pulumi.Input[str] redundant_intf: Redundant interface.
-        :param pulumi.Input[str] redundant_mode: FortiExtender mode. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] sim1_pin: SIM #1 PIN status. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] sim1_pin_code: SIM #1 PIN password.
-        :param pulumi.Input[str] sim2_pin: SIM #2 PIN status. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] sim2_pin_code: SIM #2 PIN password.
-        """
         if auto_switch is not None:
             pulumi.set(__self__, "auto_switch", auto_switch)
         if conn_status is not None:
@@ -283,9 +270,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="autoSwitch")
     def auto_switch(self) -> Optional[pulumi.Input['ExtenderprofileCellularModem1AutoSwitchArgs']]:
-        """
-        FortiExtender auto switch configuration. The structure of `auto_switch` block is documented below.
-        """
         return pulumi.get(self, "auto_switch")
 
     @auto_switch.setter
@@ -295,9 +279,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="connStatus")
     def conn_status(self) -> Optional[pulumi.Input[int]]:
-        """
-        Connection status.
-        """
         return pulumi.get(self, "conn_status")
 
     @conn_status.setter
@@ -307,9 +288,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="defaultSim")
     def default_sim(self) -> Optional[pulumi.Input[str]]:
-        """
-        Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-        """
         return pulumi.get(self, "default_sim")
 
     @default_sim.setter
@@ -319,9 +297,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter
     def gps(self) -> Optional[pulumi.Input[str]]:
-        """
-        FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "gps")
 
     @gps.setter
@@ -331,9 +306,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="preferredCarrier")
     def preferred_carrier(self) -> Optional[pulumi.Input[str]]:
-        """
-        Preferred carrier.
-        """
         return pulumi.get(self, "preferred_carrier")
 
     @preferred_carrier.setter
@@ -343,9 +315,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="redundantIntf")
     def redundant_intf(self) -> Optional[pulumi.Input[str]]:
-        """
-        Redundant interface.
-        """
         return pulumi.get(self, "redundant_intf")
 
     @redundant_intf.setter
@@ -355,9 +324,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="redundantMode")
     def redundant_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        FortiExtender mode. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "redundant_mode")
 
     @redundant_mode.setter
@@ -367,9 +333,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="sim1Pin")
     def sim1_pin(self) -> Optional[pulumi.Input[str]]:
-        """
-        SIM #1 PIN status. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "sim1_pin")
 
     @sim1_pin.setter
@@ -379,9 +342,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="sim1PinCode")
     def sim1_pin_code(self) -> Optional[pulumi.Input[str]]:
-        """
-        SIM #1 PIN password.
-        """
         return pulumi.get(self, "sim1_pin_code")
 
     @sim1_pin_code.setter
@@ -391,9 +351,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="sim2Pin")
     def sim2_pin(self) -> Optional[pulumi.Input[str]]:
-        """
-        SIM #2 PIN status. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "sim2_pin")
 
     @sim2_pin.setter
@@ -403,9 +360,6 @@ class ExtenderprofileCellularModem1Args:
     @property
     @pulumi.getter(name="sim2PinCode")
     def sim2_pin_code(self) -> Optional[pulumi.Input[str]]:
-        """
-        SIM #2 PIN password.
-        """
         return pulumi.get(self, "sim2_pin_code")
 
     @sim2_pin_code.setter
@@ -562,19 +516,6 @@ class ExtenderprofileCellularModem2Args:
                  sim1_pin_code: Optional[pulumi.Input[str]] = None,
                  sim2_pin: Optional[pulumi.Input[str]] = None,
                  sim2_pin_code: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input['ExtenderprofileCellularModem2AutoSwitchArgs'] auto_switch: FortiExtender auto switch configuration. The structure of `auto_switch` block is documented below.
-        :param pulumi.Input[int] conn_status: Connection status.
-        :param pulumi.Input[str] default_sim: Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-        :param pulumi.Input[str] gps: FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] preferred_carrier: Preferred carrier.
-        :param pulumi.Input[str] redundant_intf: Redundant interface.
-        :param pulumi.Input[str] redundant_mode: FortiExtender mode. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] sim1_pin: SIM #1 PIN status. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] sim1_pin_code: SIM #1 PIN password.
-        :param pulumi.Input[str] sim2_pin: SIM #2 PIN status. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] sim2_pin_code: SIM #2 PIN password.
-        """
         if auto_switch is not None:
             pulumi.set(__self__, "auto_switch", auto_switch)
         if conn_status is not None:
@@ -601,9 +542,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="autoSwitch")
     def auto_switch(self) -> Optional[pulumi.Input['ExtenderprofileCellularModem2AutoSwitchArgs']]:
-        """
-        FortiExtender auto switch configuration. The structure of `auto_switch` block is documented below.
-        """
         return pulumi.get(self, "auto_switch")
 
     @auto_switch.setter
@@ -613,9 +551,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="connStatus")
     def conn_status(self) -> Optional[pulumi.Input[int]]:
-        """
-        Connection status.
-        """
         return pulumi.get(self, "conn_status")
 
     @conn_status.setter
@@ -625,9 +560,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="defaultSim")
     def default_sim(self) -> Optional[pulumi.Input[str]]:
-        """
-        Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
-        """
         return pulumi.get(self, "default_sim")
 
     @default_sim.setter
@@ -637,9 +569,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter
     def gps(self) -> Optional[pulumi.Input[str]]:
-        """
-        FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "gps")
 
     @gps.setter
@@ -649,9 +578,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="preferredCarrier")
     def preferred_carrier(self) -> Optional[pulumi.Input[str]]:
-        """
-        Preferred carrier.
-        """
         return pulumi.get(self, "preferred_carrier")
 
     @preferred_carrier.setter
@@ -661,9 +587,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="redundantIntf")
     def redundant_intf(self) -> Optional[pulumi.Input[str]]:
-        """
-        Redundant interface.
-        """
         return pulumi.get(self, "redundant_intf")
 
     @redundant_intf.setter
@@ -673,9 +596,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="redundantMode")
     def redundant_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        FortiExtender mode. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "redundant_mode")
 
     @redundant_mode.setter
@@ -685,9 +605,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="sim1Pin")
     def sim1_pin(self) -> Optional[pulumi.Input[str]]:
-        """
-        SIM #1 PIN status. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "sim1_pin")
 
     @sim1_pin.setter
@@ -697,9 +614,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="sim1PinCode")
     def sim1_pin_code(self) -> Optional[pulumi.Input[str]]:
-        """
-        SIM #1 PIN password.
-        """
         return pulumi.get(self, "sim1_pin_code")
 
     @sim1_pin_code.setter
@@ -709,9 +623,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="sim2Pin")
     def sim2_pin(self) -> Optional[pulumi.Input[str]]:
-        """
-        SIM #2 PIN status. Valid values: `disable`, `enable`.
-        """
         return pulumi.get(self, "sim2_pin")
 
     @sim2_pin.setter
@@ -721,9 +632,6 @@ class ExtenderprofileCellularModem2Args:
     @property
     @pulumi.getter(name="sim2PinCode")
     def sim2_pin_code(self) -> Optional[pulumi.Input[str]]:
-        """
-        SIM #2 PIN password.
-        """
         return pulumi.get(self, "sim2_pin_code")
 
     @sim2_pin_code.setter

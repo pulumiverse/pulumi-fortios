@@ -792,7 +792,6 @@ class Centralsnatmap(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -817,7 +816,6 @@ class Centralsnatmap(pulumi.CustomResource):
             )],
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -874,7 +872,6 @@ class Centralsnatmap(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -899,7 +896,6 @@ class Centralsnatmap(pulumi.CustomResource):
             )],
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

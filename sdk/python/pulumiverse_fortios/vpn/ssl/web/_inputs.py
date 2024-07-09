@@ -144,7 +144,7 @@ class HostchecksoftwareCheckItemListMd5Args:
     def __init__(__self__, *,
                  id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] id: Hex string of MD5 checksum.
+        :param pulumi.Input[str] id: an identifier for the resource with format {{name}}.
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -153,7 +153,7 @@ class HostchecksoftwareCheckItemListMd5Args:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
         """
-        Hex string of MD5 checksum.
+        an identifier for the resource with format {{name}}.
         """
         return pulumi.get(self, "id")
 

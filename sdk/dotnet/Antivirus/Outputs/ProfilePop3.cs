@@ -14,57 +14,27 @@ namespace Pulumiverse.Fortios.Antivirus.Outputs
     [OutputType]
     public sealed class ProfilePop3
     {
-        /// <summary>
-        /// Select the archive types to block.
-        /// </summary>
         public readonly string? ArchiveBlock;
-        /// <summary>
-        /// Select the archive types to log.
-        /// </summary>
         public readonly string? ArchiveLog;
-        /// <summary>
-        /// Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
-        /// </summary>
         public readonly string? AvScan;
         /// <summary>
         /// AV Content Disarm and Reconstruction settings. The structure of `content_disarm` block is documented below.
         /// </summary>
         public readonly string? ContentDisarm;
-        /// <summary>
-        /// Enable/disable the virus emulator. Valid values: `enable`, `disable`.
-        /// </summary>
         public readonly string? Emulator;
-        /// <summary>
-        /// Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
-        /// </summary>
         public readonly string? Executables;
         /// <summary>
         /// One or more external malware block lists. The structure of `external_blocklist` block is documented below.
         /// </summary>
         public readonly string? ExternalBlocklist;
-        /// <summary>
-        /// Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
-        /// </summary>
         public readonly string? Fortiai;
-        /// <summary>
-        /// Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `block`, `monitor`.
-        /// </summary>
         public readonly string? Fortindr;
-        /// <summary>
-        /// Enable scanning of files by FortiSandbox. Valid values: `disable`, `block`, `monitor`.
-        /// </summary>
         public readonly string? Fortisandbox;
-        /// <summary>
-        /// Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
-        /// </summary>
         public readonly string? Options;
         /// <summary>
         /// Configure Virus Outbreak Prevention settings. The structure of `outbreak_prevention` block is documented below.
         /// </summary>
         public readonly string? OutbreakPrevention;
-        /// <summary>
-        /// Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
-        /// </summary>
         public readonly string? Quarantine;
 
         [OutputConstructor]

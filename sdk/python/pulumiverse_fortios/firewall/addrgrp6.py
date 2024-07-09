@@ -468,7 +468,6 @@ class Addrgrp6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -490,7 +489,6 @@ class Addrgrp6(pulumi.CustomResource):
                 name=trname1.name,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -537,7 +535,6 @@ class Addrgrp6(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -559,7 +556,6 @@ class Addrgrp6(pulumi.CustomResource):
                 name=trname1.name,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

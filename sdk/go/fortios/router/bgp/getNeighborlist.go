@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,7 +37,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetNeighborlist(ctx *pulumi.Context, args *GetNeighborlistArgs, opts ...pulumi.InvokeOption) (*GetNeighborlistResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetNeighborlistResult

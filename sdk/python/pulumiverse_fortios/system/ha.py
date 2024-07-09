@@ -2911,7 +2911,6 @@ class Ha(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2953,7 +2952,6 @@ class Ha(pulumi.CustomResource):
             ),
             weight="40 ")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -3074,7 +3072,6 @@ class Ha(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -3116,7 +3113,6 @@ class Ha(pulumi.CustomResource):
             ),
             weight="40 ")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

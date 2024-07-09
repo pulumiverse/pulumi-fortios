@@ -205,14 +205,12 @@ class Icon(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.wirelesscontroller.hotspot20.Icon("trname")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -251,14 +249,12 @@ class Icon(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.wirelesscontroller.hotspot20.Icon("trname")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

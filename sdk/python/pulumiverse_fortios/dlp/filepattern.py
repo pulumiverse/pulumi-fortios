@@ -270,14 +270,12 @@ class Filepattern(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.dlp.Filepattern("trname", fosid=9)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -318,14 +316,12 @@ class Filepattern(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.dlp.Filepattern("trname", fosid=9)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

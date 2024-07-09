@@ -766,7 +766,6 @@ class Global(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -785,7 +784,6 @@ class Global(pulumi.CustomResource):
             sync_session_ttl="enable",
             traffic_submit="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -841,7 +839,6 @@ class Global(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -860,7 +857,6 @@ class Global(pulumi.CustomResource):
             sync_session_ttl="enable",
             traffic_submit="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

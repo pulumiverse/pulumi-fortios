@@ -535,7 +535,6 @@ class Virtualwanlink(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -545,7 +544,6 @@ class Virtualwanlink(pulumi.CustomResource):
             load_balance_mode="source-ip-based",
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -594,7 +592,6 @@ class Virtualwanlink(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -604,7 +601,6 @@ class Virtualwanlink(pulumi.CustomResource):
             load_balance_mode="source-ip-based",
             status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

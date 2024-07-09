@@ -104,14 +104,12 @@ class Switchinterfacetag(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.switchcontroller.Switchinterfacetag("trname")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -147,14 +145,12 @@ class Switchinterfacetag(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.switchcontroller.Switchinterfacetag("trname")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

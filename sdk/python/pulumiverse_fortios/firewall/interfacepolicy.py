@@ -1158,7 +1158,6 @@ class Interfacepolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1187,7 +1186,6 @@ class Interfacepolicy(pulumi.CustomResource):
             status="enable",
             webfilter_profile_status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1255,7 +1253,6 @@ class Interfacepolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1284,7 +1281,6 @@ class Interfacepolicy(pulumi.CustomResource):
             status="enable",
             webfilter_profile_status="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

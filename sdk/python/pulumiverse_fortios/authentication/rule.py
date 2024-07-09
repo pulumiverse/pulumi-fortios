@@ -700,7 +700,6 @@ class Rule(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -712,7 +711,6 @@ class Rule(pulumi.CustomResource):
             transaction_based="disable",
             web_auth_cookie="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -766,7 +764,6 @@ class Rule(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -778,7 +775,6 @@ class Rule(pulumi.CustomResource):
             transaction_based="disable",
             web_auth_cookie="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

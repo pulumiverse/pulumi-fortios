@@ -238,14 +238,12 @@ class Userbookmark(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.vpn.ssl.web.Userbookmark("trname", custom_lang="big5")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -285,14 +283,12 @@ class Userbookmark(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.vpn.ssl.web.Userbookmark("trname", custom_lang="big5")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

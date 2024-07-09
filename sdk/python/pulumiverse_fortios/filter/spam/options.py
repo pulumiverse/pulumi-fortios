@@ -104,14 +104,12 @@ class Options(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.filter.spam.Options("trname", dns_timeout=7)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -147,14 +145,12 @@ class Options(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
 
         trname = fortios.filter.spam.Options("trname", dns_timeout=7)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

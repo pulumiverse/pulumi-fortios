@@ -430,7 +430,6 @@ class Override(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -446,7 +445,6 @@ class Override(pulumi.CustomResource):
             status="disable",
             user="Eew")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -492,7 +490,6 @@ class Override(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -508,7 +505,6 @@ class Override(pulumi.CustomResource):
             status="disable",
             user="Eew")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -275,9 +275,7 @@ class Phase1Ipv4ExcludeRange(dict):
                  id: Optional[int] = None,
                  start_ip: Optional[str] = None):
         """
-        :param str end_ip: End of IPv6 exclusive range.
-        :param int id: ID.
-        :param str start_ip: Start of IPv6 exclusive range.
+        :param int id: an identifier for the resource with format {{name}}.
         """
         if end_ip is not None:
             pulumi.set(__self__, "end_ip", end_ip)
@@ -289,25 +287,19 @@ class Phase1Ipv4ExcludeRange(dict):
     @property
     @pulumi.getter(name="endIp")
     def end_ip(self) -> Optional[str]:
-        """
-        End of IPv6 exclusive range.
-        """
         return pulumi.get(self, "end_ip")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        ID.
+        an identifier for the resource with format {{name}}.
         """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="startIp")
     def start_ip(self) -> Optional[str]:
-        """
-        Start of IPv6 exclusive range.
-        """
         return pulumi.get(self, "start_ip")
 
 
@@ -337,9 +329,7 @@ class Phase1Ipv6ExcludeRange(dict):
                  id: Optional[int] = None,
                  start_ip: Optional[str] = None):
         """
-        :param str end_ip: End of IPv6 exclusive range.
-        :param int id: ID.
-        :param str start_ip: Start of IPv6 exclusive range.
+        :param int id: an identifier for the resource with format {{name}}.
         """
         if end_ip is not None:
             pulumi.set(__self__, "end_ip", end_ip)
@@ -351,25 +341,19 @@ class Phase1Ipv6ExcludeRange(dict):
     @property
     @pulumi.getter(name="endIp")
     def end_ip(self) -> Optional[str]:
-        """
-        End of IPv6 exclusive range.
-        """
         return pulumi.get(self, "end_ip")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        ID.
+        an identifier for the resource with format {{name}}.
         """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="startIp")
     def start_ip(self) -> Optional[str]:
-        """
-        Start of IPv6 exclusive range.
-        """
         return pulumi.get(self, "start_ip")
 
 
@@ -477,9 +461,7 @@ class Phase1interfaceIpv4ExcludeRange(dict):
                  id: Optional[int] = None,
                  start_ip: Optional[str] = None):
         """
-        :param str end_ip: End of IPv6 exclusive range.
-        :param int id: ID.
-        :param str start_ip: Start of IPv6 exclusive range.
+        :param int id: an identifier for the resource with format {{name}}.
         """
         if end_ip is not None:
             pulumi.set(__self__, "end_ip", end_ip)
@@ -491,25 +473,19 @@ class Phase1interfaceIpv4ExcludeRange(dict):
     @property
     @pulumi.getter(name="endIp")
     def end_ip(self) -> Optional[str]:
-        """
-        End of IPv6 exclusive range.
-        """
         return pulumi.get(self, "end_ip")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        ID.
+        an identifier for the resource with format {{name}}.
         """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="startIp")
     def start_ip(self) -> Optional[str]:
-        """
-        Start of IPv6 exclusive range.
-        """
         return pulumi.get(self, "start_ip")
 
 
@@ -539,9 +515,7 @@ class Phase1interfaceIpv6ExcludeRange(dict):
                  id: Optional[int] = None,
                  start_ip: Optional[str] = None):
         """
-        :param str end_ip: End of IPv6 exclusive range.
-        :param int id: ID.
-        :param str start_ip: Start of IPv6 exclusive range.
+        :param int id: an identifier for the resource with format {{name}}.
         """
         if end_ip is not None:
             pulumi.set(__self__, "end_ip", end_ip)
@@ -553,25 +527,19 @@ class Phase1interfaceIpv6ExcludeRange(dict):
     @property
     @pulumi.getter(name="endIp")
     def end_ip(self) -> Optional[str]:
-        """
-        End of IPv6 exclusive range.
-        """
         return pulumi.get(self, "end_ip")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        ID.
+        an identifier for the resource with format {{name}}.
         """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="startIp")
     def start_ip(self) -> Optional[str]:
-        """
-        Start of IPv6 exclusive range.
-        """
         return pulumi.get(self, "start_ip")
 
 

@@ -2119,7 +2119,6 @@ class Admin(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2142,7 +2141,6 @@ class Admin(pulumi.CustomResource):
             )],
             wildcard="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -2239,7 +2237,6 @@ class Admin(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -2262,7 +2259,6 @@ class Admin(pulumi.CustomResource):
             )],
             wildcard="disable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

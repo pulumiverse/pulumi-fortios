@@ -14,62 +14,35 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type Accessproxy6ApiGateway6 struct {
-	// SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
-	Applications []Accessproxy6ApiGateway6Application `pulumi:"applications"`
-	// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
-	H2Support *string `pulumi:"h2Support"`
-	// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
-	H3Support *string `pulumi:"h3Support"`
-	// Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
-	HttpCookieAge *int `pulumi:"httpCookieAge"`
-	// Domain that HTTP cookie persistence should apply to.
-	HttpCookieDomain *string `pulumi:"httpCookieDomain"`
-	// Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-	HttpCookieDomainFromHost *string `pulumi:"httpCookieDomainFromHost"`
-	// Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-	HttpCookieGeneration *int `pulumi:"httpCookieGeneration"`
-	// Limit HTTP cookie persistence to the specified path.
-	HttpCookiePath *string `pulumi:"httpCookiePath"`
-	// Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-	HttpCookieShare *string `pulumi:"httpCookieShare"`
-	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-	HttpsCookieSecure *string `pulumi:"httpsCookieSecure"`
-	// API Gateway ID.
-	Id *int `pulumi:"id"`
-	// Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
-	LdbMethod *string `pulumi:"ldbMethod"`
-	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
-	Persistence *string `pulumi:"persistence"`
-	// QUIC setting. The structure of `quic` block is documented below.
-	Quic *Accessproxy6ApiGateway6Quic `pulumi:"quic"`
-	// Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
-	Realservers []Accessproxy6ApiGateway6Realserver `pulumi:"realservers"`
-	// Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
-	SamlRedirect *string `pulumi:"samlRedirect"`
-	// SAML service provider configuration for VIP authentication.
-	SamlServer *string `pulumi:"samlServer"`
-	// Service.
-	Service *string `pulumi:"service"`
-	// Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm *string `pulumi:"sslAlgorithm"`
-	// SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslCipherSuites` block is documented below.
-	SslCipherSuites []Accessproxy6ApiGateway6SslCipherSuite `pulumi:"sslCipherSuites"`
-	// Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-	SslDhBits *string `pulumi:"sslDhBits"`
-	// Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-	SslMaxVersion *string `pulumi:"sslMaxVersion"`
-	// Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-	SslMinVersion *string `pulumi:"sslMinVersion"`
-	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
-	SslRenegotiation *string `pulumi:"sslRenegotiation"`
-	// SSL-VPN web portal.
-	SslVpnWebPortal *string `pulumi:"sslVpnWebPortal"`
-	// URL pattern to match.
-	UrlMap *string `pulumi:"urlMap"`
-	// Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
-	UrlMapType *string `pulumi:"urlMapType"`
-	// Virtual host.
-	VirtualHost *string `pulumi:"virtualHost"`
+	Applications             []Accessproxy6ApiGateway6Application `pulumi:"applications"`
+	H2Support                *string                              `pulumi:"h2Support"`
+	H3Support                *string                              `pulumi:"h3Support"`
+	HttpCookieAge            *int                                 `pulumi:"httpCookieAge"`
+	HttpCookieDomain         *string                              `pulumi:"httpCookieDomain"`
+	HttpCookieDomainFromHost *string                              `pulumi:"httpCookieDomainFromHost"`
+	HttpCookieGeneration     *int                                 `pulumi:"httpCookieGeneration"`
+	HttpCookiePath           *string                              `pulumi:"httpCookiePath"`
+	HttpCookieShare          *string                              `pulumi:"httpCookieShare"`
+	HttpsCookieSecure        *string                              `pulumi:"httpsCookieSecure"`
+	// an identifier for the resource with format {{name}}.
+	Id               *int                                    `pulumi:"id"`
+	LdbMethod        *string                                 `pulumi:"ldbMethod"`
+	Persistence      *string                                 `pulumi:"persistence"`
+	Quic             *Accessproxy6ApiGateway6Quic            `pulumi:"quic"`
+	Realservers      []Accessproxy6ApiGateway6Realserver     `pulumi:"realservers"`
+	SamlRedirect     *string                                 `pulumi:"samlRedirect"`
+	SamlServer       *string                                 `pulumi:"samlServer"`
+	Service          *string                                 `pulumi:"service"`
+	SslAlgorithm     *string                                 `pulumi:"sslAlgorithm"`
+	SslCipherSuites  []Accessproxy6ApiGateway6SslCipherSuite `pulumi:"sslCipherSuites"`
+	SslDhBits        *string                                 `pulumi:"sslDhBits"`
+	SslMaxVersion    *string                                 `pulumi:"sslMaxVersion"`
+	SslMinVersion    *string                                 `pulumi:"sslMinVersion"`
+	SslRenegotiation *string                                 `pulumi:"sslRenegotiation"`
+	SslVpnWebPortal  *string                                 `pulumi:"sslVpnWebPortal"`
+	UrlMap           *string                                 `pulumi:"urlMap"`
+	UrlMapType       *string                                 `pulumi:"urlMapType"`
+	VirtualHost      *string                                 `pulumi:"virtualHost"`
 }
 
 // Accessproxy6ApiGateway6Input is an input type that accepts Accessproxy6ApiGateway6Args and Accessproxy6ApiGateway6Output values.
@@ -84,62 +57,35 @@ type Accessproxy6ApiGateway6Input interface {
 }
 
 type Accessproxy6ApiGateway6Args struct {
-	// SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
-	Applications Accessproxy6ApiGateway6ApplicationArrayInput `pulumi:"applications"`
-	// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
-	H2Support pulumi.StringPtrInput `pulumi:"h2Support"`
-	// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
-	H3Support pulumi.StringPtrInput `pulumi:"h3Support"`
-	// Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
-	HttpCookieAge pulumi.IntPtrInput `pulumi:"httpCookieAge"`
-	// Domain that HTTP cookie persistence should apply to.
-	HttpCookieDomain pulumi.StringPtrInput `pulumi:"httpCookieDomain"`
-	// Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-	HttpCookieDomainFromHost pulumi.StringPtrInput `pulumi:"httpCookieDomainFromHost"`
-	// Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-	HttpCookieGeneration pulumi.IntPtrInput `pulumi:"httpCookieGeneration"`
-	// Limit HTTP cookie persistence to the specified path.
-	HttpCookiePath pulumi.StringPtrInput `pulumi:"httpCookiePath"`
-	// Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-	HttpCookieShare pulumi.StringPtrInput `pulumi:"httpCookieShare"`
-	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-	HttpsCookieSecure pulumi.StringPtrInput `pulumi:"httpsCookieSecure"`
-	// API Gateway ID.
-	Id pulumi.IntPtrInput `pulumi:"id"`
-	// Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
-	LdbMethod pulumi.StringPtrInput `pulumi:"ldbMethod"`
-	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
-	Persistence pulumi.StringPtrInput `pulumi:"persistence"`
-	// QUIC setting. The structure of `quic` block is documented below.
-	Quic Accessproxy6ApiGateway6QuicPtrInput `pulumi:"quic"`
-	// Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
-	Realservers Accessproxy6ApiGateway6RealserverArrayInput `pulumi:"realservers"`
-	// Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
-	SamlRedirect pulumi.StringPtrInput `pulumi:"samlRedirect"`
-	// SAML service provider configuration for VIP authentication.
-	SamlServer pulumi.StringPtrInput `pulumi:"samlServer"`
-	// Service.
-	Service pulumi.StringPtrInput `pulumi:"service"`
-	// Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm pulumi.StringPtrInput `pulumi:"sslAlgorithm"`
-	// SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslCipherSuites` block is documented below.
-	SslCipherSuites Accessproxy6ApiGateway6SslCipherSuiteArrayInput `pulumi:"sslCipherSuites"`
-	// Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-	SslDhBits pulumi.StringPtrInput `pulumi:"sslDhBits"`
-	// Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-	SslMaxVersion pulumi.StringPtrInput `pulumi:"sslMaxVersion"`
-	// Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-	SslMinVersion pulumi.StringPtrInput `pulumi:"sslMinVersion"`
-	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
-	SslRenegotiation pulumi.StringPtrInput `pulumi:"sslRenegotiation"`
-	// SSL-VPN web portal.
-	SslVpnWebPortal pulumi.StringPtrInput `pulumi:"sslVpnWebPortal"`
-	// URL pattern to match.
-	UrlMap pulumi.StringPtrInput `pulumi:"urlMap"`
-	// Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
-	UrlMapType pulumi.StringPtrInput `pulumi:"urlMapType"`
-	// Virtual host.
-	VirtualHost pulumi.StringPtrInput `pulumi:"virtualHost"`
+	Applications             Accessproxy6ApiGateway6ApplicationArrayInput `pulumi:"applications"`
+	H2Support                pulumi.StringPtrInput                        `pulumi:"h2Support"`
+	H3Support                pulumi.StringPtrInput                        `pulumi:"h3Support"`
+	HttpCookieAge            pulumi.IntPtrInput                           `pulumi:"httpCookieAge"`
+	HttpCookieDomain         pulumi.StringPtrInput                        `pulumi:"httpCookieDomain"`
+	HttpCookieDomainFromHost pulumi.StringPtrInput                        `pulumi:"httpCookieDomainFromHost"`
+	HttpCookieGeneration     pulumi.IntPtrInput                           `pulumi:"httpCookieGeneration"`
+	HttpCookiePath           pulumi.StringPtrInput                        `pulumi:"httpCookiePath"`
+	HttpCookieShare          pulumi.StringPtrInput                        `pulumi:"httpCookieShare"`
+	HttpsCookieSecure        pulumi.StringPtrInput                        `pulumi:"httpsCookieSecure"`
+	// an identifier for the resource with format {{name}}.
+	Id               pulumi.IntPtrInput                              `pulumi:"id"`
+	LdbMethod        pulumi.StringPtrInput                           `pulumi:"ldbMethod"`
+	Persistence      pulumi.StringPtrInput                           `pulumi:"persistence"`
+	Quic             Accessproxy6ApiGateway6QuicPtrInput             `pulumi:"quic"`
+	Realservers      Accessproxy6ApiGateway6RealserverArrayInput     `pulumi:"realservers"`
+	SamlRedirect     pulumi.StringPtrInput                           `pulumi:"samlRedirect"`
+	SamlServer       pulumi.StringPtrInput                           `pulumi:"samlServer"`
+	Service          pulumi.StringPtrInput                           `pulumi:"service"`
+	SslAlgorithm     pulumi.StringPtrInput                           `pulumi:"sslAlgorithm"`
+	SslCipherSuites  Accessproxy6ApiGateway6SslCipherSuiteArrayInput `pulumi:"sslCipherSuites"`
+	SslDhBits        pulumi.StringPtrInput                           `pulumi:"sslDhBits"`
+	SslMaxVersion    pulumi.StringPtrInput                           `pulumi:"sslMaxVersion"`
+	SslMinVersion    pulumi.StringPtrInput                           `pulumi:"sslMinVersion"`
+	SslRenegotiation pulumi.StringPtrInput                           `pulumi:"sslRenegotiation"`
+	SslVpnWebPortal  pulumi.StringPtrInput                           `pulumi:"sslVpnWebPortal"`
+	UrlMap           pulumi.StringPtrInput                           `pulumi:"urlMap"`
+	UrlMapType       pulumi.StringPtrInput                           `pulumi:"urlMapType"`
+	VirtualHost      pulumi.StringPtrInput                           `pulumi:"virtualHost"`
 }
 
 func (Accessproxy6ApiGateway6Args) ElementType() reflect.Type {
@@ -193,142 +139,115 @@ func (o Accessproxy6ApiGateway6Output) ToAccessproxy6ApiGateway6OutputWithContex
 	return o
 }
 
-// SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
 func (o Accessproxy6ApiGateway6Output) Applications() Accessproxy6ApiGateway6ApplicationArrayOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) []Accessproxy6ApiGateway6Application { return v.Applications }).(Accessproxy6ApiGateway6ApplicationArrayOutput)
 }
 
-// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
 func (o Accessproxy6ApiGateway6Output) H2Support() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.H2Support }).(pulumi.StringPtrOutput)
 }
 
-// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
 func (o Accessproxy6ApiGateway6Output) H3Support() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.H3Support }).(pulumi.StringPtrOutput)
 }
 
-// Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
 func (o Accessproxy6ApiGateway6Output) HttpCookieAge() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *int { return v.HttpCookieAge }).(pulumi.IntPtrOutput)
 }
 
-// Domain that HTTP cookie persistence should apply to.
 func (o Accessproxy6ApiGateway6Output) HttpCookieDomain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.HttpCookieDomain }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
 func (o Accessproxy6ApiGateway6Output) HttpCookieDomainFromHost() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.HttpCookieDomainFromHost }).(pulumi.StringPtrOutput)
 }
 
-// Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
 func (o Accessproxy6ApiGateway6Output) HttpCookieGeneration() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *int { return v.HttpCookieGeneration }).(pulumi.IntPtrOutput)
 }
 
-// Limit HTTP cookie persistence to the specified path.
 func (o Accessproxy6ApiGateway6Output) HttpCookiePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.HttpCookiePath }).(pulumi.StringPtrOutput)
 }
 
-// Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
 func (o Accessproxy6ApiGateway6Output) HttpCookieShare() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.HttpCookieShare }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
 func (o Accessproxy6ApiGateway6Output) HttpsCookieSecure() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.HttpsCookieSecure }).(pulumi.StringPtrOutput)
 }
 
-// API Gateway ID.
+// an identifier for the resource with format {{name}}.
 func (o Accessproxy6ApiGateway6Output) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
-// Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
 func (o Accessproxy6ApiGateway6Output) LdbMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.LdbMethod }).(pulumi.StringPtrOutput)
 }
 
-// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
 func (o Accessproxy6ApiGateway6Output) Persistence() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.Persistence }).(pulumi.StringPtrOutput)
 }
 
-// QUIC setting. The structure of `quic` block is documented below.
 func (o Accessproxy6ApiGateway6Output) Quic() Accessproxy6ApiGateway6QuicPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *Accessproxy6ApiGateway6Quic { return v.Quic }).(Accessproxy6ApiGateway6QuicPtrOutput)
 }
 
-// Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
 func (o Accessproxy6ApiGateway6Output) Realservers() Accessproxy6ApiGateway6RealserverArrayOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) []Accessproxy6ApiGateway6Realserver { return v.Realservers }).(Accessproxy6ApiGateway6RealserverArrayOutput)
 }
 
-// Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
 func (o Accessproxy6ApiGateway6Output) SamlRedirect() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.SamlRedirect }).(pulumi.StringPtrOutput)
 }
 
-// SAML service provider configuration for VIP authentication.
 func (o Accessproxy6ApiGateway6Output) SamlServer() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.SamlServer }).(pulumi.StringPtrOutput)
 }
 
-// Service.
 func (o Accessproxy6ApiGateway6Output) Service() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.Service }).(pulumi.StringPtrOutput)
 }
 
-// Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
 func (o Accessproxy6ApiGateway6Output) SslAlgorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.SslAlgorithm }).(pulumi.StringPtrOutput)
 }
 
-// SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslCipherSuites` block is documented below.
 func (o Accessproxy6ApiGateway6Output) SslCipherSuites() Accessproxy6ApiGateway6SslCipherSuiteArrayOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) []Accessproxy6ApiGateway6SslCipherSuite { return v.SslCipherSuites }).(Accessproxy6ApiGateway6SslCipherSuiteArrayOutput)
 }
 
-// Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
 func (o Accessproxy6ApiGateway6Output) SslDhBits() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.SslDhBits }).(pulumi.StringPtrOutput)
 }
 
-// Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 func (o Accessproxy6ApiGateway6Output) SslMaxVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.SslMaxVersion }).(pulumi.StringPtrOutput)
 }
 
-// Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 func (o Accessproxy6ApiGateway6Output) SslMinVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.SslMinVersion }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
 func (o Accessproxy6ApiGateway6Output) SslRenegotiation() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.SslRenegotiation }).(pulumi.StringPtrOutput)
 }
 
-// SSL-VPN web portal.
 func (o Accessproxy6ApiGateway6Output) SslVpnWebPortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.SslVpnWebPortal }).(pulumi.StringPtrOutput)
 }
 
-// URL pattern to match.
 func (o Accessproxy6ApiGateway6Output) UrlMap() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.UrlMap }).(pulumi.StringPtrOutput)
 }
 
-// Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
 func (o Accessproxy6ApiGateway6Output) UrlMapType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.UrlMapType }).(pulumi.StringPtrOutput)
 }
 
-// Virtual host.
 func (o Accessproxy6ApiGateway6Output) VirtualHost() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Accessproxy6ApiGateway6) *string { return v.VirtualHost }).(pulumi.StringPtrOutput)
 }
@@ -2392,62 +2311,35 @@ func (o Accessproxy6ApiGatewaySslCipherSuiteArrayOutput) Index(i pulumi.IntInput
 }
 
 type AccessproxyApiGateway6 struct {
-	// SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
-	Applications []AccessproxyApiGateway6Application `pulumi:"applications"`
-	// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
-	H2Support *string `pulumi:"h2Support"`
-	// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
-	H3Support *string `pulumi:"h3Support"`
-	// Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
-	HttpCookieAge *int `pulumi:"httpCookieAge"`
-	// Domain that HTTP cookie persistence should apply to.
-	HttpCookieDomain *string `pulumi:"httpCookieDomain"`
-	// Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-	HttpCookieDomainFromHost *string `pulumi:"httpCookieDomainFromHost"`
-	// Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-	HttpCookieGeneration *int `pulumi:"httpCookieGeneration"`
-	// Limit HTTP cookie persistence to the specified path.
-	HttpCookiePath *string `pulumi:"httpCookiePath"`
-	// Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-	HttpCookieShare *string `pulumi:"httpCookieShare"`
-	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-	HttpsCookieSecure *string `pulumi:"httpsCookieSecure"`
-	// API Gateway ID.
-	Id *int `pulumi:"id"`
-	// Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
-	LdbMethod *string `pulumi:"ldbMethod"`
-	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
-	Persistence *string `pulumi:"persistence"`
-	// QUIC setting. The structure of `quic` block is documented below.
-	Quic *AccessproxyApiGateway6Quic `pulumi:"quic"`
-	// Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
-	Realservers []AccessproxyApiGateway6Realserver `pulumi:"realservers"`
-	// Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
-	SamlRedirect *string `pulumi:"samlRedirect"`
-	// SAML service provider configuration for VIP authentication.
-	SamlServer *string `pulumi:"samlServer"`
-	// Service.
-	Service *string `pulumi:"service"`
-	// Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm *string `pulumi:"sslAlgorithm"`
-	// SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslCipherSuites` block is documented below.
-	SslCipherSuites []AccessproxyApiGateway6SslCipherSuite `pulumi:"sslCipherSuites"`
-	// Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-	SslDhBits *string `pulumi:"sslDhBits"`
-	// Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-	SslMaxVersion *string `pulumi:"sslMaxVersion"`
-	// Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-	SslMinVersion *string `pulumi:"sslMinVersion"`
-	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
-	SslRenegotiation *string `pulumi:"sslRenegotiation"`
-	// SSL-VPN web portal.
-	SslVpnWebPortal *string `pulumi:"sslVpnWebPortal"`
-	// URL pattern to match.
-	UrlMap *string `pulumi:"urlMap"`
-	// Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
-	UrlMapType *string `pulumi:"urlMapType"`
-	// Virtual host.
-	VirtualHost *string `pulumi:"virtualHost"`
+	Applications             []AccessproxyApiGateway6Application `pulumi:"applications"`
+	H2Support                *string                             `pulumi:"h2Support"`
+	H3Support                *string                             `pulumi:"h3Support"`
+	HttpCookieAge            *int                                `pulumi:"httpCookieAge"`
+	HttpCookieDomain         *string                             `pulumi:"httpCookieDomain"`
+	HttpCookieDomainFromHost *string                             `pulumi:"httpCookieDomainFromHost"`
+	HttpCookieGeneration     *int                                `pulumi:"httpCookieGeneration"`
+	HttpCookiePath           *string                             `pulumi:"httpCookiePath"`
+	HttpCookieShare          *string                             `pulumi:"httpCookieShare"`
+	HttpsCookieSecure        *string                             `pulumi:"httpsCookieSecure"`
+	// an identifier for the resource with format {{name}}.
+	Id               *int                                   `pulumi:"id"`
+	LdbMethod        *string                                `pulumi:"ldbMethod"`
+	Persistence      *string                                `pulumi:"persistence"`
+	Quic             *AccessproxyApiGateway6Quic            `pulumi:"quic"`
+	Realservers      []AccessproxyApiGateway6Realserver     `pulumi:"realservers"`
+	SamlRedirect     *string                                `pulumi:"samlRedirect"`
+	SamlServer       *string                                `pulumi:"samlServer"`
+	Service          *string                                `pulumi:"service"`
+	SslAlgorithm     *string                                `pulumi:"sslAlgorithm"`
+	SslCipherSuites  []AccessproxyApiGateway6SslCipherSuite `pulumi:"sslCipherSuites"`
+	SslDhBits        *string                                `pulumi:"sslDhBits"`
+	SslMaxVersion    *string                                `pulumi:"sslMaxVersion"`
+	SslMinVersion    *string                                `pulumi:"sslMinVersion"`
+	SslRenegotiation *string                                `pulumi:"sslRenegotiation"`
+	SslVpnWebPortal  *string                                `pulumi:"sslVpnWebPortal"`
+	UrlMap           *string                                `pulumi:"urlMap"`
+	UrlMapType       *string                                `pulumi:"urlMapType"`
+	VirtualHost      *string                                `pulumi:"virtualHost"`
 }
 
 // AccessproxyApiGateway6Input is an input type that accepts AccessproxyApiGateway6Args and AccessproxyApiGateway6Output values.
@@ -2462,62 +2354,35 @@ type AccessproxyApiGateway6Input interface {
 }
 
 type AccessproxyApiGateway6Args struct {
-	// SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
-	Applications AccessproxyApiGateway6ApplicationArrayInput `pulumi:"applications"`
-	// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
-	H2Support pulumi.StringPtrInput `pulumi:"h2Support"`
-	// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
-	H3Support pulumi.StringPtrInput `pulumi:"h3Support"`
-	// Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
-	HttpCookieAge pulumi.IntPtrInput `pulumi:"httpCookieAge"`
-	// Domain that HTTP cookie persistence should apply to.
-	HttpCookieDomain pulumi.StringPtrInput `pulumi:"httpCookieDomain"`
-	// Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
-	HttpCookieDomainFromHost pulumi.StringPtrInput `pulumi:"httpCookieDomainFromHost"`
-	// Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
-	HttpCookieGeneration pulumi.IntPtrInput `pulumi:"httpCookieGeneration"`
-	// Limit HTTP cookie persistence to the specified path.
-	HttpCookiePath pulumi.StringPtrInput `pulumi:"httpCookiePath"`
-	// Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
-	HttpCookieShare pulumi.StringPtrInput `pulumi:"httpCookieShare"`
-	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
-	HttpsCookieSecure pulumi.StringPtrInput `pulumi:"httpsCookieSecure"`
-	// API Gateway ID.
-	Id pulumi.IntPtrInput `pulumi:"id"`
-	// Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
-	LdbMethod pulumi.StringPtrInput `pulumi:"ldbMethod"`
-	// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
-	Persistence pulumi.StringPtrInput `pulumi:"persistence"`
-	// QUIC setting. The structure of `quic` block is documented below.
-	Quic AccessproxyApiGateway6QuicPtrInput `pulumi:"quic"`
-	// Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
-	Realservers AccessproxyApiGateway6RealserverArrayInput `pulumi:"realservers"`
-	// Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
-	SamlRedirect pulumi.StringPtrInput `pulumi:"samlRedirect"`
-	// SAML service provider configuration for VIP authentication.
-	SamlServer pulumi.StringPtrInput `pulumi:"samlServer"`
-	// Service.
-	Service pulumi.StringPtrInput `pulumi:"service"`
-	// Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
-	SslAlgorithm pulumi.StringPtrInput `pulumi:"sslAlgorithm"`
-	// SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslCipherSuites` block is documented below.
-	SslCipherSuites AccessproxyApiGateway6SslCipherSuiteArrayInput `pulumi:"sslCipherSuites"`
-	// Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
-	SslDhBits pulumi.StringPtrInput `pulumi:"sslDhBits"`
-	// Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-	SslMaxVersion pulumi.StringPtrInput `pulumi:"sslMaxVersion"`
-	// Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
-	SslMinVersion pulumi.StringPtrInput `pulumi:"sslMinVersion"`
-	// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
-	SslRenegotiation pulumi.StringPtrInput `pulumi:"sslRenegotiation"`
-	// SSL-VPN web portal.
-	SslVpnWebPortal pulumi.StringPtrInput `pulumi:"sslVpnWebPortal"`
-	// URL pattern to match.
-	UrlMap pulumi.StringPtrInput `pulumi:"urlMap"`
-	// Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
-	UrlMapType pulumi.StringPtrInput `pulumi:"urlMapType"`
-	// Virtual host.
-	VirtualHost pulumi.StringPtrInput `pulumi:"virtualHost"`
+	Applications             AccessproxyApiGateway6ApplicationArrayInput `pulumi:"applications"`
+	H2Support                pulumi.StringPtrInput                       `pulumi:"h2Support"`
+	H3Support                pulumi.StringPtrInput                       `pulumi:"h3Support"`
+	HttpCookieAge            pulumi.IntPtrInput                          `pulumi:"httpCookieAge"`
+	HttpCookieDomain         pulumi.StringPtrInput                       `pulumi:"httpCookieDomain"`
+	HttpCookieDomainFromHost pulumi.StringPtrInput                       `pulumi:"httpCookieDomainFromHost"`
+	HttpCookieGeneration     pulumi.IntPtrInput                          `pulumi:"httpCookieGeneration"`
+	HttpCookiePath           pulumi.StringPtrInput                       `pulumi:"httpCookiePath"`
+	HttpCookieShare          pulumi.StringPtrInput                       `pulumi:"httpCookieShare"`
+	HttpsCookieSecure        pulumi.StringPtrInput                       `pulumi:"httpsCookieSecure"`
+	// an identifier for the resource with format {{name}}.
+	Id               pulumi.IntPtrInput                             `pulumi:"id"`
+	LdbMethod        pulumi.StringPtrInput                          `pulumi:"ldbMethod"`
+	Persistence      pulumi.StringPtrInput                          `pulumi:"persistence"`
+	Quic             AccessproxyApiGateway6QuicPtrInput             `pulumi:"quic"`
+	Realservers      AccessproxyApiGateway6RealserverArrayInput     `pulumi:"realservers"`
+	SamlRedirect     pulumi.StringPtrInput                          `pulumi:"samlRedirect"`
+	SamlServer       pulumi.StringPtrInput                          `pulumi:"samlServer"`
+	Service          pulumi.StringPtrInput                          `pulumi:"service"`
+	SslAlgorithm     pulumi.StringPtrInput                          `pulumi:"sslAlgorithm"`
+	SslCipherSuites  AccessproxyApiGateway6SslCipherSuiteArrayInput `pulumi:"sslCipherSuites"`
+	SslDhBits        pulumi.StringPtrInput                          `pulumi:"sslDhBits"`
+	SslMaxVersion    pulumi.StringPtrInput                          `pulumi:"sslMaxVersion"`
+	SslMinVersion    pulumi.StringPtrInput                          `pulumi:"sslMinVersion"`
+	SslRenegotiation pulumi.StringPtrInput                          `pulumi:"sslRenegotiation"`
+	SslVpnWebPortal  pulumi.StringPtrInput                          `pulumi:"sslVpnWebPortal"`
+	UrlMap           pulumi.StringPtrInput                          `pulumi:"urlMap"`
+	UrlMapType       pulumi.StringPtrInput                          `pulumi:"urlMapType"`
+	VirtualHost      pulumi.StringPtrInput                          `pulumi:"virtualHost"`
 }
 
 func (AccessproxyApiGateway6Args) ElementType() reflect.Type {
@@ -2571,142 +2436,115 @@ func (o AccessproxyApiGateway6Output) ToAccessproxyApiGateway6OutputWithContext(
 	return o
 }
 
-// SaaS application controlled by this Access Proxy. The structure of `application` block is documented below.
 func (o AccessproxyApiGateway6Output) Applications() AccessproxyApiGateway6ApplicationArrayOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) []AccessproxyApiGateway6Application { return v.Applications }).(AccessproxyApiGateway6ApplicationArrayOutput)
 }
 
-// HTTP2 support, default=Enable. Valid values: `enable`, `disable`.
 func (o AccessproxyApiGateway6Output) H2Support() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.H2Support }).(pulumi.StringPtrOutput)
 }
 
-// HTTP3/QUIC support, default=Disable. Valid values: `enable`, `disable`.
 func (o AccessproxyApiGateway6Output) H3Support() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.H3Support }).(pulumi.StringPtrOutput)
 }
 
-// Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
 func (o AccessproxyApiGateway6Output) HttpCookieAge() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *int { return v.HttpCookieAge }).(pulumi.IntPtrOutput)
 }
 
-// Domain that HTTP cookie persistence should apply to.
 func (o AccessproxyApiGateway6Output) HttpCookieDomain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.HttpCookieDomain }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
 func (o AccessproxyApiGateway6Output) HttpCookieDomainFromHost() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.HttpCookieDomainFromHost }).(pulumi.StringPtrOutput)
 }
 
-// Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
 func (o AccessproxyApiGateway6Output) HttpCookieGeneration() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *int { return v.HttpCookieGeneration }).(pulumi.IntPtrOutput)
 }
 
-// Limit HTTP cookie persistence to the specified path.
 func (o AccessproxyApiGateway6Output) HttpCookiePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.HttpCookiePath }).(pulumi.StringPtrOutput)
 }
 
-// Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
 func (o AccessproxyApiGateway6Output) HttpCookieShare() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.HttpCookieShare }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
 func (o AccessproxyApiGateway6Output) HttpsCookieSecure() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.HttpsCookieSecure }).(pulumi.StringPtrOutput)
 }
 
-// API Gateway ID.
+// an identifier for the resource with format {{name}}.
 func (o AccessproxyApiGateway6Output) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
-// Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
 func (o AccessproxyApiGateway6Output) LdbMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.LdbMethod }).(pulumi.StringPtrOutput)
 }
 
-// Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
 func (o AccessproxyApiGateway6Output) Persistence() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.Persistence }).(pulumi.StringPtrOutput)
 }
 
-// QUIC setting. The structure of `quic` block is documented below.
 func (o AccessproxyApiGateway6Output) Quic() AccessproxyApiGateway6QuicPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *AccessproxyApiGateway6Quic { return v.Quic }).(AccessproxyApiGateway6QuicPtrOutput)
 }
 
-// Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
 func (o AccessproxyApiGateway6Output) Realservers() AccessproxyApiGateway6RealserverArrayOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) []AccessproxyApiGateway6Realserver { return v.Realservers }).(AccessproxyApiGateway6RealserverArrayOutput)
 }
 
-// Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
 func (o AccessproxyApiGateway6Output) SamlRedirect() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.SamlRedirect }).(pulumi.StringPtrOutput)
 }
 
-// SAML service provider configuration for VIP authentication.
 func (o AccessproxyApiGateway6Output) SamlServer() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.SamlServer }).(pulumi.StringPtrOutput)
 }
 
-// Service.
 func (o AccessproxyApiGateway6Output) Service() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.Service }).(pulumi.StringPtrOutput)
 }
 
-// Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
 func (o AccessproxyApiGateway6Output) SslAlgorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.SslAlgorithm }).(pulumi.StringPtrOutput)
 }
 
-// SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslCipherSuites` block is documented below.
 func (o AccessproxyApiGateway6Output) SslCipherSuites() AccessproxyApiGateway6SslCipherSuiteArrayOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) []AccessproxyApiGateway6SslCipherSuite { return v.SslCipherSuites }).(AccessproxyApiGateway6SslCipherSuiteArrayOutput)
 }
 
-// Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
 func (o AccessproxyApiGateway6Output) SslDhBits() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.SslDhBits }).(pulumi.StringPtrOutput)
 }
 
-// Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 func (o AccessproxyApiGateway6Output) SslMaxVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.SslMaxVersion }).(pulumi.StringPtrOutput)
 }
 
-// Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 func (o AccessproxyApiGateway6Output) SslMinVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.SslMinVersion }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `enable`, `disable`.
 func (o AccessproxyApiGateway6Output) SslRenegotiation() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.SslRenegotiation }).(pulumi.StringPtrOutput)
 }
 
-// SSL-VPN web portal.
 func (o AccessproxyApiGateway6Output) SslVpnWebPortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.SslVpnWebPortal }).(pulumi.StringPtrOutput)
 }
 
-// URL pattern to match.
 func (o AccessproxyApiGateway6Output) UrlMap() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.UrlMap }).(pulumi.StringPtrOutput)
 }
 
-// Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
 func (o AccessproxyApiGateway6Output) UrlMapType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.UrlMapType }).(pulumi.StringPtrOutput)
 }
 
-// Virtual host.
 func (o AccessproxyApiGateway6Output) VirtualHost() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AccessproxyApiGateway6) *string { return v.VirtualHost }).(pulumi.StringPtrOutput)
 }
@@ -7066,7 +6904,6 @@ func (o AuthportalGroupArrayOutput) Index(i pulumi.IntInput) AuthportalGroupOutp
 }
 
 type CentralsnatmapDstAddr6 struct {
-	// Address name.
 	Name *string `pulumi:"name"`
 }
 
@@ -7082,7 +6919,6 @@ type CentralsnatmapDstAddr6Input interface {
 }
 
 type CentralsnatmapDstAddr6Args struct {
-	// Address name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -7137,7 +6973,6 @@ func (o CentralsnatmapDstAddr6Output) ToCentralsnatmapDstAddr6OutputWithContext(
 	return o
 }
 
-// Address name.
 func (o CentralsnatmapDstAddr6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CentralsnatmapDstAddr6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -7357,7 +7192,6 @@ func (o CentralsnatmapDstintfArrayOutput) Index(i pulumi.IntInput) Centralsnatma
 }
 
 type CentralsnatmapNatIppool6 struct {
-	// Address name.
 	Name *string `pulumi:"name"`
 }
 
@@ -7373,7 +7207,6 @@ type CentralsnatmapNatIppool6Input interface {
 }
 
 type CentralsnatmapNatIppool6Args struct {
-	// Address name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -7428,7 +7261,6 @@ func (o CentralsnatmapNatIppool6Output) ToCentralsnatmapNatIppool6OutputWithCont
 	return o
 }
 
-// Address name.
 func (o CentralsnatmapNatIppool6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CentralsnatmapNatIppool6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -7551,7 +7383,6 @@ func (o CentralsnatmapNatIppoolArrayOutput) Index(i pulumi.IntInput) Centralsnat
 }
 
 type CentralsnatmapOrigAddr6 struct {
-	// Address name.
 	Name *string `pulumi:"name"`
 }
 
@@ -7567,7 +7398,6 @@ type CentralsnatmapOrigAddr6Input interface {
 }
 
 type CentralsnatmapOrigAddr6Args struct {
-	// Address name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -7622,7 +7452,6 @@ func (o CentralsnatmapOrigAddr6Output) ToCentralsnatmapOrigAddr6OutputWithContex
 	return o
 }
 
-// Address name.
 func (o CentralsnatmapOrigAddr6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CentralsnatmapOrigAddr6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -11054,11 +10883,9 @@ func (o InternetserviceextensionDisableEntryArrayOutput) Index(i pulumi.IntInput
 }
 
 type InternetserviceextensionDisableEntryIp6Range struct {
-	// End IPv6 address.
 	EndIp6 *string `pulumi:"endIp6"`
-	// Disable entry ID.
-	Id *int `pulumi:"id"`
-	// Start IPv6 address.
+	// an identifier for the resource with format {{fosid}}.
+	Id       *int    `pulumi:"id"`
 	StartIp6 *string `pulumi:"startIp6"`
 }
 
@@ -11074,11 +10901,9 @@ type InternetserviceextensionDisableEntryIp6RangeInput interface {
 }
 
 type InternetserviceextensionDisableEntryIp6RangeArgs struct {
-	// End IPv6 address.
 	EndIp6 pulumi.StringPtrInput `pulumi:"endIp6"`
-	// Disable entry ID.
-	Id pulumi.IntPtrInput `pulumi:"id"`
-	// Start IPv6 address.
+	// an identifier for the resource with format {{fosid}}.
+	Id       pulumi.IntPtrInput    `pulumi:"id"`
 	StartIp6 pulumi.StringPtrInput `pulumi:"startIp6"`
 }
 
@@ -11133,17 +10958,15 @@ func (o InternetserviceextensionDisableEntryIp6RangeOutput) ToInternetserviceext
 	return o
 }
 
-// End IPv6 address.
 func (o InternetserviceextensionDisableEntryIp6RangeOutput) EndIp6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InternetserviceextensionDisableEntryIp6Range) *string { return v.EndIp6 }).(pulumi.StringPtrOutput)
 }
 
-// Disable entry ID.
+// an identifier for the resource with format {{fosid}}.
 func (o InternetserviceextensionDisableEntryIp6RangeOutput) Id() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InternetserviceextensionDisableEntryIp6Range) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
-// Start IPv6 address.
 func (o InternetserviceextensionDisableEntryIp6RangeOutput) StartIp6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InternetserviceextensionDisableEntryIp6Range) *string { return v.StartIp6 }).(pulumi.StringPtrOutput)
 }
@@ -11547,7 +11370,6 @@ func (o InternetserviceextensionEntryArrayOutput) Index(i pulumi.IntInput) Inter
 }
 
 type InternetserviceextensionEntryDst6 struct {
-	// Select the destination address6 or address group object from available options.
 	Name *string `pulumi:"name"`
 }
 
@@ -11563,7 +11385,6 @@ type InternetserviceextensionEntryDst6Input interface {
 }
 
 type InternetserviceextensionEntryDst6Args struct {
-	// Select the destination address6 or address group object from available options.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -11618,7 +11439,6 @@ func (o InternetserviceextensionEntryDst6Output) ToInternetserviceextensionEntry
 	return o
 }
 
-// Select the destination address6 or address group object from available options.
 func (o InternetserviceextensionEntryDst6Output) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InternetserviceextensionEntryDst6) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -23288,26 +23108,16 @@ func (o ProfileprotocoloptionsNntpPtrOutput) UncompressedOversizeLimit() pulumi.
 }
 
 type ProfileprotocoloptionsPop3 struct {
-	// Enable/disable the inspection of all ports for the protocol. Valid values: `enable`, `disable`.
-	InspectAll *string `pulumi:"inspectAll"`
-	// One or more options that can be applied to the session. Valid values: `oversize`.
-	Options *string `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (MB).
-	OversizeLimit *int `pulumi:"oversizeLimit"`
-	// Ports to scan for content (1 - 65535, default = 445).
-	Ports *int `pulumi:"ports"`
-	// Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
-	ProxyAfterTcpHandshake *string `pulumi:"proxyAfterTcpHandshake"`
-	// Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
-	ScanBzip2 *string `pulumi:"scanBzip2"`
-	// SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
-	SslOffloaded *string `pulumi:"sslOffloaded"`
-	// Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
-	Status *string `pulumi:"status"`
-	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
-	UncompressedNestLimit *int `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (MB).
-	UncompressedOversizeLimit *int `pulumi:"uncompressedOversizeLimit"`
+	InspectAll                *string `pulumi:"inspectAll"`
+	Options                   *string `pulumi:"options"`
+	OversizeLimit             *int    `pulumi:"oversizeLimit"`
+	Ports                     *int    `pulumi:"ports"`
+	ProxyAfterTcpHandshake    *string `pulumi:"proxyAfterTcpHandshake"`
+	ScanBzip2                 *string `pulumi:"scanBzip2"`
+	SslOffloaded              *string `pulumi:"sslOffloaded"`
+	Status                    *string `pulumi:"status"`
+	UncompressedNestLimit     *int    `pulumi:"uncompressedNestLimit"`
+	UncompressedOversizeLimit *int    `pulumi:"uncompressedOversizeLimit"`
 }
 
 // ProfileprotocoloptionsPop3Input is an input type that accepts ProfileprotocoloptionsPop3Args and ProfileprotocoloptionsPop3Output values.
@@ -23322,26 +23132,16 @@ type ProfileprotocoloptionsPop3Input interface {
 }
 
 type ProfileprotocoloptionsPop3Args struct {
-	// Enable/disable the inspection of all ports for the protocol. Valid values: `enable`, `disable`.
-	InspectAll pulumi.StringPtrInput `pulumi:"inspectAll"`
-	// One or more options that can be applied to the session. Valid values: `oversize`.
-	Options pulumi.StringPtrInput `pulumi:"options"`
-	// Maximum in-memory file size that can be scanned (MB).
-	OversizeLimit pulumi.IntPtrInput `pulumi:"oversizeLimit"`
-	// Ports to scan for content (1 - 65535, default = 445).
-	Ports pulumi.IntPtrInput `pulumi:"ports"`
-	// Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
-	ProxyAfterTcpHandshake pulumi.StringPtrInput `pulumi:"proxyAfterTcpHandshake"`
-	// Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
-	ScanBzip2 pulumi.StringPtrInput `pulumi:"scanBzip2"`
-	// SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
-	SslOffloaded pulumi.StringPtrInput `pulumi:"sslOffloaded"`
-	// Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
-	Status pulumi.StringPtrInput `pulumi:"status"`
-	// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
-	UncompressedNestLimit pulumi.IntPtrInput `pulumi:"uncompressedNestLimit"`
-	// Maximum in-memory uncompressed file size that can be scanned (MB).
-	UncompressedOversizeLimit pulumi.IntPtrInput `pulumi:"uncompressedOversizeLimit"`
+	InspectAll                pulumi.StringPtrInput `pulumi:"inspectAll"`
+	Options                   pulumi.StringPtrInput `pulumi:"options"`
+	OversizeLimit             pulumi.IntPtrInput    `pulumi:"oversizeLimit"`
+	Ports                     pulumi.IntPtrInput    `pulumi:"ports"`
+	ProxyAfterTcpHandshake    pulumi.StringPtrInput `pulumi:"proxyAfterTcpHandshake"`
+	ScanBzip2                 pulumi.StringPtrInput `pulumi:"scanBzip2"`
+	SslOffloaded              pulumi.StringPtrInput `pulumi:"sslOffloaded"`
+	Status                    pulumi.StringPtrInput `pulumi:"status"`
+	UncompressedNestLimit     pulumi.IntPtrInput    `pulumi:"uncompressedNestLimit"`
+	UncompressedOversizeLimit pulumi.IntPtrInput    `pulumi:"uncompressedOversizeLimit"`
 }
 
 func (ProfileprotocoloptionsPop3Args) ElementType() reflect.Type {
@@ -23421,52 +23221,42 @@ func (o ProfileprotocoloptionsPop3Output) ToProfileprotocoloptionsPop3PtrOutputW
 	}).(ProfileprotocoloptionsPop3PtrOutput)
 }
 
-// Enable/disable the inspection of all ports for the protocol. Valid values: `enable`, `disable`.
 func (o ProfileprotocoloptionsPop3Output) InspectAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *string { return v.InspectAll }).(pulumi.StringPtrOutput)
 }
 
-// One or more options that can be applied to the session. Valid values: `oversize`.
 func (o ProfileprotocoloptionsPop3Output) Options() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *string { return v.Options }).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (MB).
 func (o ProfileprotocoloptionsPop3Output) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *int { return v.OversizeLimit }).(pulumi.IntPtrOutput)
 }
 
-// Ports to scan for content (1 - 65535, default = 445).
 func (o ProfileprotocoloptionsPop3Output) Ports() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *int { return v.Ports }).(pulumi.IntPtrOutput)
 }
 
-// Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
 func (o ProfileprotocoloptionsPop3Output) ProxyAfterTcpHandshake() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *string { return v.ProxyAfterTcpHandshake }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
 func (o ProfileprotocoloptionsPop3Output) ScanBzip2() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *string { return v.ScanBzip2 }).(pulumi.StringPtrOutput)
 }
 
-// SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
 func (o ProfileprotocoloptionsPop3Output) SslOffloaded() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *string { return v.SslOffloaded }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
 func (o ProfileprotocoloptionsPop3Output) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 func (o ProfileprotocoloptionsPop3Output) UncompressedNestLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *int { return v.UncompressedNestLimit }).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsPop3Output) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProfileprotocoloptionsPop3) *int { return v.UncompressedOversizeLimit }).(pulumi.IntPtrOutput)
 }
@@ -23495,7 +23285,6 @@ func (o ProfileprotocoloptionsPop3PtrOutput) Elem() ProfileprotocoloptionsPop3Ou
 	}).(ProfileprotocoloptionsPop3Output)
 }
 
-// Enable/disable the inspection of all ports for the protocol. Valid values: `enable`, `disable`.
 func (o ProfileprotocoloptionsPop3PtrOutput) InspectAll() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsPop3) *string {
 		if v == nil {
@@ -23505,7 +23294,6 @@ func (o ProfileprotocoloptionsPop3PtrOutput) InspectAll() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// One or more options that can be applied to the session. Valid values: `oversize`.
 func (o ProfileprotocoloptionsPop3PtrOutput) Options() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsPop3) *string {
 		if v == nil {
@@ -23515,7 +23303,6 @@ func (o ProfileprotocoloptionsPop3PtrOutput) Options() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum in-memory file size that can be scanned (MB).
 func (o ProfileprotocoloptionsPop3PtrOutput) OversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsPop3) *int {
 		if v == nil {
@@ -23525,7 +23312,6 @@ func (o ProfileprotocoloptionsPop3PtrOutput) OversizeLimit() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
-// Ports to scan for content (1 - 65535, default = 445).
 func (o ProfileprotocoloptionsPop3PtrOutput) Ports() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsPop3) *int {
 		if v == nil {
@@ -23535,7 +23321,6 @@ func (o ProfileprotocoloptionsPop3PtrOutput) Ports() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
 func (o ProfileprotocoloptionsPop3PtrOutput) ProxyAfterTcpHandshake() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsPop3) *string {
 		if v == nil {
@@ -23545,7 +23330,6 @@ func (o ProfileprotocoloptionsPop3PtrOutput) ProxyAfterTcpHandshake() pulumi.Str
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable scanning of BZip2 compressed files. Valid values: `enable`, `disable`.
 func (o ProfileprotocoloptionsPop3PtrOutput) ScanBzip2() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsPop3) *string {
 		if v == nil {
@@ -23555,7 +23339,6 @@ func (o ProfileprotocoloptionsPop3PtrOutput) ScanBzip2() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
 func (o ProfileprotocoloptionsPop3PtrOutput) SslOffloaded() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsPop3) *string {
 		if v == nil {
@@ -23565,7 +23348,6 @@ func (o ProfileprotocoloptionsPop3PtrOutput) SslOffloaded() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable the active status of scanning for this protocol. Valid values: `enable`, `disable`.
 func (o ProfileprotocoloptionsPop3PtrOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsPop3) *string {
 		if v == nil {
@@ -23575,7 +23357,6 @@ func (o ProfileprotocoloptionsPop3PtrOutput) Status() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 func (o ProfileprotocoloptionsPop3PtrOutput) UncompressedNestLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsPop3) *int {
 		if v == nil {
@@ -23585,7 +23366,6 @@ func (o ProfileprotocoloptionsPop3PtrOutput) UncompressedNestLimit() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maximum in-memory uncompressed file size that can be scanned (MB).
 func (o ProfileprotocoloptionsPop3PtrOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProfileprotocoloptionsPop3) *int {
 		if v == nil {
@@ -35346,38 +35126,22 @@ func (o SslsshprofileImapsPtrOutput) UntrustedServerCert() pulumi.StringPtrOutpu
 }
 
 type SslsshprofilePop3s struct {
-	// Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
-	CertValidationFailure *string `pulumi:"certValidationFailure"`
-	// Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
-	CertValidationTimeout *string `pulumi:"certValidationTimeout"`
-	// Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
-	ClientCertRequest *string `pulumi:"clientCertRequest"`
-	// Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
-	ClientCertificate *string `pulumi:"clientCertificate"`
-	// Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
-	ExpiredServerCert *string `pulumi:"expiredServerCert"`
-	// Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
-	InvalidServerCert *string `pulumi:"invalidServerCert"`
-	// Ports to use for scanning (1 - 65535, default = 443).
-	Ports *string `pulumi:"ports"`
-	// Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
-	ProxyAfterTcpHandshake *string `pulumi:"proxyAfterTcpHandshake"`
-	// Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
-	RevokedServerCert *string `pulumi:"revokedServerCert"`
-	// Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
-	SniServerCertCheck *string `pulumi:"sniServerCertCheck"`
-	// Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
-	Status *string `pulumi:"status"`
-	// Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
-	UnsupportedSsl *string `pulumi:"unsupportedSsl"`
-	// Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
-	UnsupportedSslCipher *string `pulumi:"unsupportedSslCipher"`
-	// Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
+	CertValidationFailure     *string `pulumi:"certValidationFailure"`
+	CertValidationTimeout     *string `pulumi:"certValidationTimeout"`
+	ClientCertRequest         *string `pulumi:"clientCertRequest"`
+	ClientCertificate         *string `pulumi:"clientCertificate"`
+	ExpiredServerCert         *string `pulumi:"expiredServerCert"`
+	InvalidServerCert         *string `pulumi:"invalidServerCert"`
+	Ports                     *string `pulumi:"ports"`
+	ProxyAfterTcpHandshake    *string `pulumi:"proxyAfterTcpHandshake"`
+	RevokedServerCert         *string `pulumi:"revokedServerCert"`
+	SniServerCertCheck        *string `pulumi:"sniServerCertCheck"`
+	Status                    *string `pulumi:"status"`
+	UnsupportedSsl            *string `pulumi:"unsupportedSsl"`
+	UnsupportedSslCipher      *string `pulumi:"unsupportedSslCipher"`
 	UnsupportedSslNegotiation *string `pulumi:"unsupportedSslNegotiation"`
-	// Action based on the SSL version used being unsupported.
-	UnsupportedSslVersion *string `pulumi:"unsupportedSslVersion"`
-	// Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
-	UntrustedServerCert *string `pulumi:"untrustedServerCert"`
+	UnsupportedSslVersion     *string `pulumi:"unsupportedSslVersion"`
+	UntrustedServerCert       *string `pulumi:"untrustedServerCert"`
 }
 
 // SslsshprofilePop3sInput is an input type that accepts SslsshprofilePop3sArgs and SslsshprofilePop3sOutput values.
@@ -35392,38 +35156,22 @@ type SslsshprofilePop3sInput interface {
 }
 
 type SslsshprofilePop3sArgs struct {
-	// Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
-	CertValidationFailure pulumi.StringPtrInput `pulumi:"certValidationFailure"`
-	// Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
-	CertValidationTimeout pulumi.StringPtrInput `pulumi:"certValidationTimeout"`
-	// Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
-	ClientCertRequest pulumi.StringPtrInput `pulumi:"clientCertRequest"`
-	// Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
-	ClientCertificate pulumi.StringPtrInput `pulumi:"clientCertificate"`
-	// Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
-	ExpiredServerCert pulumi.StringPtrInput `pulumi:"expiredServerCert"`
-	// Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
-	InvalidServerCert pulumi.StringPtrInput `pulumi:"invalidServerCert"`
-	// Ports to use for scanning (1 - 65535, default = 443).
-	Ports pulumi.StringPtrInput `pulumi:"ports"`
-	// Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
-	ProxyAfterTcpHandshake pulumi.StringPtrInput `pulumi:"proxyAfterTcpHandshake"`
-	// Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
-	RevokedServerCert pulumi.StringPtrInput `pulumi:"revokedServerCert"`
-	// Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
-	SniServerCertCheck pulumi.StringPtrInput `pulumi:"sniServerCertCheck"`
-	// Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
-	Status pulumi.StringPtrInput `pulumi:"status"`
-	// Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
-	UnsupportedSsl pulumi.StringPtrInput `pulumi:"unsupportedSsl"`
-	// Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
-	UnsupportedSslCipher pulumi.StringPtrInput `pulumi:"unsupportedSslCipher"`
-	// Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
+	CertValidationFailure     pulumi.StringPtrInput `pulumi:"certValidationFailure"`
+	CertValidationTimeout     pulumi.StringPtrInput `pulumi:"certValidationTimeout"`
+	ClientCertRequest         pulumi.StringPtrInput `pulumi:"clientCertRequest"`
+	ClientCertificate         pulumi.StringPtrInput `pulumi:"clientCertificate"`
+	ExpiredServerCert         pulumi.StringPtrInput `pulumi:"expiredServerCert"`
+	InvalidServerCert         pulumi.StringPtrInput `pulumi:"invalidServerCert"`
+	Ports                     pulumi.StringPtrInput `pulumi:"ports"`
+	ProxyAfterTcpHandshake    pulumi.StringPtrInput `pulumi:"proxyAfterTcpHandshake"`
+	RevokedServerCert         pulumi.StringPtrInput `pulumi:"revokedServerCert"`
+	SniServerCertCheck        pulumi.StringPtrInput `pulumi:"sniServerCertCheck"`
+	Status                    pulumi.StringPtrInput `pulumi:"status"`
+	UnsupportedSsl            pulumi.StringPtrInput `pulumi:"unsupportedSsl"`
+	UnsupportedSslCipher      pulumi.StringPtrInput `pulumi:"unsupportedSslCipher"`
 	UnsupportedSslNegotiation pulumi.StringPtrInput `pulumi:"unsupportedSslNegotiation"`
-	// Action based on the SSL version used being unsupported.
-	UnsupportedSslVersion pulumi.StringPtrInput `pulumi:"unsupportedSslVersion"`
-	// Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
-	UntrustedServerCert pulumi.StringPtrInput `pulumi:"untrustedServerCert"`
+	UnsupportedSslVersion     pulumi.StringPtrInput `pulumi:"unsupportedSslVersion"`
+	UntrustedServerCert       pulumi.StringPtrInput `pulumi:"untrustedServerCert"`
 }
 
 func (SslsshprofilePop3sArgs) ElementType() reflect.Type {
@@ -35503,82 +35251,66 @@ func (o SslsshprofilePop3sOutput) ToSslsshprofilePop3sPtrOutputWithContext(ctx c
 	}).(SslsshprofilePop3sPtrOutput)
 }
 
-// Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
 func (o SslsshprofilePop3sOutput) CertValidationFailure() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.CertValidationFailure }).(pulumi.StringPtrOutput)
 }
 
-// Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
 func (o SslsshprofilePop3sOutput) CertValidationTimeout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.CertValidationTimeout }).(pulumi.StringPtrOutput)
 }
 
-// Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
 func (o SslsshprofilePop3sOutput) ClientCertRequest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.ClientCertRequest }).(pulumi.StringPtrOutput)
 }
 
-// Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
 func (o SslsshprofilePop3sOutput) ClientCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.ClientCertificate }).(pulumi.StringPtrOutput)
 }
 
-// Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
 func (o SslsshprofilePop3sOutput) ExpiredServerCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.ExpiredServerCert }).(pulumi.StringPtrOutput)
 }
 
-// Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
 func (o SslsshprofilePop3sOutput) InvalidServerCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.InvalidServerCert }).(pulumi.StringPtrOutput)
 }
 
-// Ports to use for scanning (1 - 65535, default = 443).
 func (o SslsshprofilePop3sOutput) Ports() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.Ports }).(pulumi.StringPtrOutput)
 }
 
-// Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
 func (o SslsshprofilePop3sOutput) ProxyAfterTcpHandshake() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.ProxyAfterTcpHandshake }).(pulumi.StringPtrOutput)
 }
 
-// Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
 func (o SslsshprofilePop3sOutput) RevokedServerCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.RevokedServerCert }).(pulumi.StringPtrOutput)
 }
 
-// Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
 func (o SslsshprofilePop3sOutput) SniServerCertCheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.SniServerCertCheck }).(pulumi.StringPtrOutput)
 }
 
-// Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
 func (o SslsshprofilePop3sOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
 func (o SslsshprofilePop3sOutput) UnsupportedSsl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.UnsupportedSsl }).(pulumi.StringPtrOutput)
 }
 
-// Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
 func (o SslsshprofilePop3sOutput) UnsupportedSslCipher() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.UnsupportedSslCipher }).(pulumi.StringPtrOutput)
 }
 
-// Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
 func (o SslsshprofilePop3sOutput) UnsupportedSslNegotiation() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.UnsupportedSslNegotiation }).(pulumi.StringPtrOutput)
 }
 
-// Action based on the SSL version used being unsupported.
 func (o SslsshprofilePop3sOutput) UnsupportedSslVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.UnsupportedSslVersion }).(pulumi.StringPtrOutput)
 }
 
-// Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 func (o SslsshprofilePop3sOutput) UntrustedServerCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslsshprofilePop3s) *string { return v.UntrustedServerCert }).(pulumi.StringPtrOutput)
 }
@@ -35607,7 +35339,6 @@ func (o SslsshprofilePop3sPtrOutput) Elem() SslsshprofilePop3sOutput {
 	}).(SslsshprofilePop3sOutput)
 }
 
-// Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
 func (o SslsshprofilePop3sPtrOutput) CertValidationFailure() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {
@@ -35617,7 +35348,6 @@ func (o SslsshprofilePop3sPtrOutput) CertValidationFailure() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
 func (o SslsshprofilePop3sPtrOutput) CertValidationTimeout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {
@@ -35627,7 +35357,6 @@ func (o SslsshprofilePop3sPtrOutput) CertValidationTimeout() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
 func (o SslsshprofilePop3sPtrOutput) ClientCertRequest() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {
@@ -35637,7 +35366,6 @@ func (o SslsshprofilePop3sPtrOutput) ClientCertRequest() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
 func (o SslsshprofilePop3sPtrOutput) ClientCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {
@@ -35647,7 +35375,6 @@ func (o SslsshprofilePop3sPtrOutput) ClientCertificate() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
 func (o SslsshprofilePop3sPtrOutput) ExpiredServerCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {
@@ -35657,7 +35384,6 @@ func (o SslsshprofilePop3sPtrOutput) ExpiredServerCert() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
 func (o SslsshprofilePop3sPtrOutput) InvalidServerCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {
@@ -35667,7 +35393,6 @@ func (o SslsshprofilePop3sPtrOutput) InvalidServerCert() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Ports to use for scanning (1 - 65535, default = 443).
 func (o SslsshprofilePop3sPtrOutput) Ports() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {
@@ -35677,7 +35402,6 @@ func (o SslsshprofilePop3sPtrOutput) Ports() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
 func (o SslsshprofilePop3sPtrOutput) ProxyAfterTcpHandshake() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {
@@ -35687,7 +35411,6 @@ func (o SslsshprofilePop3sPtrOutput) ProxyAfterTcpHandshake() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
 func (o SslsshprofilePop3sPtrOutput) RevokedServerCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {
@@ -35697,7 +35420,6 @@ func (o SslsshprofilePop3sPtrOutput) RevokedServerCert() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
 func (o SslsshprofilePop3sPtrOutput) SniServerCertCheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {
@@ -35707,7 +35429,6 @@ func (o SslsshprofilePop3sPtrOutput) SniServerCertCheck() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
 func (o SslsshprofilePop3sPtrOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {
@@ -35717,7 +35438,6 @@ func (o SslsshprofilePop3sPtrOutput) Status() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
 func (o SslsshprofilePop3sPtrOutput) UnsupportedSsl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {
@@ -35727,7 +35447,6 @@ func (o SslsshprofilePop3sPtrOutput) UnsupportedSsl() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
 func (o SslsshprofilePop3sPtrOutput) UnsupportedSslCipher() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {
@@ -35737,7 +35456,6 @@ func (o SslsshprofilePop3sPtrOutput) UnsupportedSslCipher() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-// Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
 func (o SslsshprofilePop3sPtrOutput) UnsupportedSslNegotiation() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {
@@ -35747,7 +35465,6 @@ func (o SslsshprofilePop3sPtrOutput) UnsupportedSslNegotiation() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// Action based on the SSL version used being unsupported.
 func (o SslsshprofilePop3sPtrOutput) UnsupportedSslVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {
@@ -35757,7 +35474,6 @@ func (o SslsshprofilePop3sPtrOutput) UnsupportedSslVersion() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 func (o SslsshprofilePop3sPtrOutput) UntrustedServerCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslsshprofilePop3s) *string {
 		if v == nil {

@@ -18,7 +18,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -49,7 +48,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type AdminAdministrator struct {
 	pulumi.CustomResourceState
 
@@ -60,6 +58,7 @@ type AdminAdministrator struct {
 	// User name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Admin user password.
+	// * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
 	Password    pulumi.StringOutput `pulumi:"password"`
 	Trusthost1  pulumi.StringOutput `pulumi:"trusthost1"`
 	Trusthost10 pulumi.StringOutput `pulumi:"trusthost10"`
@@ -118,6 +117,7 @@ type adminAdministratorState struct {
 	// User name.
 	Name *string `pulumi:"name"`
 	// Admin user password.
+	// * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
 	Password    *string `pulumi:"password"`
 	Trusthost1  *string `pulumi:"trusthost1"`
 	Trusthost10 *string `pulumi:"trusthost10"`
@@ -141,6 +141,7 @@ type AdminAdministratorState struct {
 	// User name.
 	Name pulumi.StringPtrInput
 	// Admin user password.
+	// * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
 	Password    pulumi.StringPtrInput
 	Trusthost1  pulumi.StringPtrInput
 	Trusthost10 pulumi.StringPtrInput
@@ -168,6 +169,7 @@ type adminAdministratorArgs struct {
 	// User name.
 	Name *string `pulumi:"name"`
 	// Admin user password.
+	// * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
 	Password    string  `pulumi:"password"`
 	Trusthost1  *string `pulumi:"trusthost1"`
 	Trusthost10 *string `pulumi:"trusthost10"`
@@ -192,6 +194,7 @@ type AdminAdministratorArgs struct {
 	// User name.
 	Name pulumi.StringPtrInput
 	// Admin user password.
+	// * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
 	Password    pulumi.StringInput
 	Trusthost1  pulumi.StringPtrInput
 	Trusthost10 pulumi.StringPtrInput
@@ -310,6 +313,7 @@ func (o AdminAdministratorOutput) Name() pulumi.StringOutput {
 }
 
 // Admin user password.
+// * `trusthostN` - Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit.
 func (o AdminAdministratorOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *AdminAdministrator) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }

@@ -12,7 +12,6 @@ import * as utilities from "../utilities";
  * ## Example Usage
  *
  * ### Overload Ippool
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -25,10 +24,8 @@ import * as utilities from "../utilities";
  *     type: "overload",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### One-To-One Ippool
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumiverse/fortios";
@@ -41,7 +38,6 @@ import * as utilities from "../utilities";
  *     type: "one-to-one",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class ObjectIppool extends pulumi.CustomResource {
     /**

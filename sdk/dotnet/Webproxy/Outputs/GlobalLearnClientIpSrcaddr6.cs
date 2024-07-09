@@ -14,9 +14,6 @@ namespace Pulumiverse.Fortios.Webproxy.Outputs
     [OutputType]
     public sealed class GlobalLearnClientIpSrcaddr6
     {
-        /// <summary>
-        /// Address name.
-        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

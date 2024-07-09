@@ -893,7 +893,6 @@ class Policy64(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -921,7 +920,6 @@ class Policy64(pulumi.CustomResource):
             tcp_mss_receiver=0,
             tcp_mss_sender=0)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -981,7 +979,6 @@ class Policy64(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -1009,7 +1006,6 @@ class Policy64(pulumi.CustomResource):
             tcp_mss_receiver=0,
             tcp_mss_sender=0)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

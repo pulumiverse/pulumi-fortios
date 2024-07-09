@@ -865,7 +865,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -887,7 +886,6 @@ class Setting(pulumi.CustomResource):
             auth_type="http https ftp telnet",
             radius_ses_timeout_act="hard-timeout")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -946,7 +944,6 @@ class Setting(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -968,7 +965,6 @@ class Setting(pulumi.CustomResource):
             auth_type="http https ftp telnet",
             radius_ses_timeout_act="hard-timeout")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

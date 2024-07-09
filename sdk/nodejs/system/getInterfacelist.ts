@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
@@ -19,7 +18,6 @@ import * as utilities from "../utilities";
  * });
  * export const output1 = data.fortios_system_interfacelist.sample2.namelist;
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getInterfacelist(args?: GetInterfacelistArgs, opts?: pulumi.InvokeOptions): Promise<GetInterfacelistResult> {
     args = args || {};
@@ -65,7 +63,6 @@ export interface GetInterfacelistResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
@@ -75,7 +72,6 @@ export interface GetInterfacelistResult {
  * });
  * export const output1 = data.fortios_system_interfacelist.sample2.namelist;
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getInterfacelistOutput(args?: GetInterfacelistOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInterfacelistResult> {
     return pulumi.output(args).apply((a: any) => getInterfacelist(a, opts))

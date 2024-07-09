@@ -271,7 +271,6 @@ class Internetserviceextension(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -280,7 +279,6 @@ class Internetserviceextension(pulumi.CustomResource):
             comment="EIWE",
             fosid=65536)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -321,7 +319,6 @@ class Internetserviceextension(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -330,7 +327,6 @@ class Internetserviceextension(pulumi.CustomResource):
             comment="EIWE",
             fosid=65536)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

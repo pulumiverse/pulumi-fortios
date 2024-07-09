@@ -665,7 +665,6 @@ class Resourcelimits(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -690,7 +689,6 @@ class Resourcelimits(pulumi.CustomResource):
             user=0,
             user_group=0)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -743,7 +741,6 @@ class Resourcelimits(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -768,7 +765,6 @@ class Resourcelimits(pulumi.CustomResource):
             user=0,
             user_group=0)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

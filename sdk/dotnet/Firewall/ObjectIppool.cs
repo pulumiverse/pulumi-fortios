@@ -18,7 +18,6 @@ namespace Pulumiverse.Fortios.Firewall
     /// ## Example Usage
     /// 
     /// ### Overload Ippool
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -38,10 +37,8 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### One-To-One Ippool
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -61,7 +58,6 @@ namespace Pulumiverse.Fortios.Firewall
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [FortiosResourceType("fortios:firewall/objectIppool:ObjectIppool")]
     public partial class ObjectIppool : global::Pulumi.CustomResource

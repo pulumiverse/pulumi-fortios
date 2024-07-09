@@ -302,7 +302,6 @@ class Managementtunnel(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -315,7 +314,6 @@ class Managementtunnel(pulumi.CustomResource):
             authorized_manager_only="enable",
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -357,7 +355,6 @@ class Managementtunnel(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -370,7 +367,6 @@ class Managementtunnel(pulumi.CustomResource):
             authorized_manager_only="enable",
             status="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

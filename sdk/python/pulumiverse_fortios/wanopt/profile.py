@@ -403,7 +403,6 @@ class Profile(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -462,7 +461,6 @@ class Profile(pulumi.CustomResource):
             ),
             transparent="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -507,7 +505,6 @@ class Profile(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -566,7 +563,6 @@ class Profile(pulumi.CustomResource):
             ),
             transparent="enable")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

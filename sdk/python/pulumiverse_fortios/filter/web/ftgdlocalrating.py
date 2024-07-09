@@ -202,7 +202,6 @@ class Ftgdlocalrating(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -212,7 +211,6 @@ class Ftgdlocalrating(pulumi.CustomResource):
             status="enable",
             url="sgala.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -251,7 +249,6 @@ class Ftgdlocalrating(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -261,7 +258,6 @@ class Ftgdlocalrating(pulumi.CustomResource):
             status="enable",
             url="sgala.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

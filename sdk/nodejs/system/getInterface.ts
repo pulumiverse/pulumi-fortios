@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
@@ -21,7 +20,6 @@ import * as utilities from "../utilities";
  * });
  * export const output1 = sample1.then(sample1 => sample1.ip);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getInterface(args: GetInterfaceArgs, opts?: pulumi.InvokeOptions): Promise<GetInterfaceResult> {
 
@@ -973,7 +971,6 @@ export interface GetInterfaceResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fortios from "@pulumi/fortios";
@@ -983,7 +980,6 @@ export interface GetInterfaceResult {
  * });
  * export const output1 = sample1.then(sample1 => sample1.ip);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getInterfaceOutput(args: GetInterfaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInterfaceResult> {
     return pulumi.output(args).apply((a: any) => getInterface(a, opts))

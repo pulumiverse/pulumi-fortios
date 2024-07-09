@@ -14,9 +14,6 @@ namespace Pulumiverse.Fortios.Firewall.Outputs
     [OutputType]
     public sealed class CentralsnatmapOrigAddr6
     {
-        /// <summary>
-        /// Address name.
-        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

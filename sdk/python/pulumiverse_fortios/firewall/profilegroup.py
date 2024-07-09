@@ -863,7 +863,6 @@ class Profilegroup(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -872,7 +871,6 @@ class Profilegroup(pulumi.CustomResource):
             profile_protocol_options="default",
             ssl_ssh_profile="deep-inspection")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -931,7 +929,6 @@ class Profilegroup(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumiverse_fortios as fortios
@@ -940,7 +937,6 @@ class Profilegroup(pulumi.CustomResource):
             profile_protocol_options="default",
             ssl_ssh_profile="deep-inspection")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
