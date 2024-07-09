@@ -460,6 +460,9 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_extensioncontroller_extenderprofile": {
 				Tok: makeResource(mainMod, "fortios_extensioncontroller_extenderprofile"),
 			},
+			"fortios_extensioncontroller_extendervap": {
+				Tok: makeResource(mainMod, "fortios_extensioncontroller_extendervap"),
+			},
 			"fortios_extensioncontroller_fortigate": {
 				Tok: makeResource(mainMod, "fortios_extensioncontroller_fortigate"),
 			},
@@ -693,6 +696,9 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_firewall_sniffer": {
 				Tok: makeResource(mainMod, "fortios_firewall_sniffer"),
+			},
+			"fortios_firewall_ondemandsniffer": {
+				Tok: makeResource(mainMod, "fortios_firewall_ondemandsniffer"),
 			},
 			"fortios_firewall_sslserver": {
 				Tok: makeResource(mainMod, "fortios_firewall_sslserver"),
@@ -1642,6 +1648,9 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_system_license_forticare": {
 				Tok: makeResource(mainMod, "fortios_system_license_forticare"),
 			},
+			"fortios_system_license_fortiflex": {
+				Tok: makeResource(mainMod, "fortios_system_license_fortiflex"),
+			},
 			"fortios_system_license_vdom": {
 				Tok: makeResource(mainMod, "fortios_system_license_vdom"),
 			},
@@ -1758,6 +1767,9 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"fortios_system_speedtestserver": {
 				Tok: makeResource(mainMod, "fortios_system_speedtestserver"),
+			},
+			"fortios_system_sshconfig": {
+				Tok: makeResource(mainMod, "fortios_system_sshconfig"),
 			},
 			"fortios_system_ssoadmin": {
 				Tok: makeResource(mainMod, "fortios_system_ssoadmin"),
